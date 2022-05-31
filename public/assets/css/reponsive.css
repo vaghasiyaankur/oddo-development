@@ -1,0 +1,104 @@
+@media screen and (max-width:991px) {
+    .s-top-city .container{
+        max-width:720px;
+    }
+    .check-in-out .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option{
+        max-width: 100%;
+    }   
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev{
+        left: -4%;
+    }
+    .s-top-city .s-top-city-inner .s-top-city-main  .slick-next{
+        right: -4%;
+    }
+    .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .check-inout{
+        top: -7%;
+    }
+    .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .check-inout.check-out-label{
+        top: 45%;
+    }
+}
+@media screen and (max-width:767px) {
+    .travel-planning .travel-planning-inner .travel-planning-heading h1{
+        font-size: 43px;
+        line-height: 25px;
+        margin-bottom: 31px;
+    }
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev{
+        left: 4%;
+    }
+    .s-top-city .s-top-city-inner .s-top-city-main  .slick-next{
+        right: 4%;
+    }
+    .t-hotels-main .t-hotels-inner .top-hotels-wraper{
+        margin-top: -63px;
+    }
+    .t-hotels-main .t-hotels-inner .top-hotels-wraper .top-hotels-card .top-hotels-card-inner{
+        max-height: 180px;
+        padding: 60px 50px;
+    }
+    
+}
+@media screen and (max-width:1399px) {
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon{
+        right: -15px;
+        top: 7px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest{
+        top: 19px;
+        right: 16%;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag{
+        top: 77px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-tree{
+        left: 45%;
+        top: -8px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bank{
+        top: 56px;
+        left: 29%;
+    }
+}
+@media screen and (max-width:1240px) {
+    .homepage-swiper .swiper-slide .content p.title{
+        font-size: 43px;
+        margin-top: 30px;
+    }
+}
+@media screen and (min-width:1044px) and (max-width:1240px) {
+    
+}
+@media screen and (max-width:1199px) {
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest{
+        top: 26%;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag{
+        top: 8px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bank{
+        top: 76px; 
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-car{
+        top: 46px;
+    }
+    .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .input--text{
+        padding: 6px 0;
+    }
+    
+}
+@media screen and (max-width:576px) {
+    .t-hotels-main .t-hotels-inner .top-hotels-wraper .top-hotels-card .top-hotels-card-inner{
+        max-height: 156px;
+        padding: 37px 37px;
+    }
+  
+}
+@media screen and (max-width:420px){
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev{
+        display: none !important;
+    }
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-next{
+        display: none !important;
+    }
+}
