@@ -143,7 +143,7 @@ Layout & pricing
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100">Continue</a>
+                            <a href="{{route('room-list')}}" class="btn another-c-d-btn w-100">Continue</a>
                         </div>
                     </main>
                 </div>
@@ -182,8 +182,7 @@ Layout & pricing
         $('[data-toggle="tooltip"]').tooltip();
 
         $("#p_add_another").bind("click", function () {
-            var counter = 1;
-            $("#text-input-add").append('<div class="d-flex align-items-center mb-3 bed_option_'+ counter+1 +'" >' +
+            $("#text-input-add").append('<div class="d-flex align-items-center mb-3" >' +
                                             '<select class="form-select w-50" >'+
                                                 '<option selected>N/A</option>'+
                                                 '<option value="twinb">Twin bed(s) / 90-130 cm wide</option>'+
@@ -209,7 +208,7 @@ Layout & pricing
 
     $('.room_type').on('change', function(){ 
         var room_type = $('.room_type :selected').text();
-        var abc = $('.room_type_title').html(room_type);
+        var set_title = $('.room_type_title').html(room_type);
         var room_type_id = $('.room_type :selected').val(); 
 
         if(room_type != 'Please Select'){
@@ -234,6 +233,11 @@ Layout & pricing
                 })
             }
         })
+    });
+
+    $('.room_name_select').on('change', function(){ 
+        var room_type = $('.room_name_select :selected').text();
+        var set_title = $('.room_type_title').html(room_type);
     });
 });
 </script>

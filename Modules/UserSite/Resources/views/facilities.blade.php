@@ -33,17 +33,17 @@ Facilities
                                         guests?</label>
                                 </div>
                                 <div class="p-form-select d-flex justify-content-between">
-                                    <select class="form-select w-50 me-3">
-                                        <option selected>N/A</option>
-                                        <option value="">yes,free</option>
-                                        <option value="">no,paid</option>
+                                    <select class="form-select w-50 me-3 parking-avaliable">
+                                        <option value="no" selected>No</option>
+                                        <option value="paid">yes, paid</option>
+                                        <option value="free">yes, free</option>
                                     </select>
-                                    <select class="form-select input-w-20 me-3">
+                                    <select class="form-select input-w-20 me-3 d-none parking-type">
                                         <option selected>Private</option>
                                         <option value="private">Private</option>
                                         <option value="personal">persnoal</option>
                                     </select>
-                                    <select class="form-select input-w-20">
+                                    <select class="form-select input-w-20 d-none parking-site">
                                         <option selected>Onsite</option>
                                         <option value="onsite">Onsite</option>
                                         <option value="double">no,paid</option>
@@ -76,14 +76,19 @@ Facilities
                                     <i class="fa-solid fa-circle-exclamation ps-2 mt-1" data-toggle="tooltip"
                                         data-bs-placement="top" title="What languages do you or your staff speak?"></i>
                                 </div>
-                                <div class="p-form-select d-flex">
-                                    <select class="form-select w-25 me-3">
-                                        <option selected>English</option>
-                                        <option value="">Hindi</option>
-                                        <option value="">Russian</option>
-                                    </select>
+                                <div id="add_languages">
+                                    <div class="p-form-select d-flex mb-3">
+                                        <select class="form-select w-25 me-3">
+                                            <option selected>English</option>
+                                            <option value="">Hindi</option>
+                                            <option value="">Russian</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </form>
+                            <div class="pannel-add-another py-3" >
+                                <a href="javascript:;" class="para-fs-14"  id="p_add_lan"><i class="fa-solid fa-circle-plus purple"></i> <span class="purple">Add another languages</span></a>
+                            </div>
                         </div>
                         <div class="form-info-box mt-3">
                             <form action="" class="form-facility-part">
@@ -93,118 +98,16 @@ Facilities
                                         data-bs-placement="top"
                                         title="Guests look for these facilities the most when they are searching for properties."></i>
                                 </div>
-                                <div class="facilities-list pt-4">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="facilities-check">
-                                                <div class="form-check pb-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Free Wifi
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Restaurant
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Room Services
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Bar
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        24-hour front desk
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Sauna
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Fitness center
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Garden
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Terrace
-                                                    </label>
-                                                </div>
+                                <div class="facilities-list pt-4">      
+                                    <div class="facilities-check d-flex flex-wrap align-items-center justify-content-between">
+                                        @foreach ($facilities as $facilitate)
+                                            <div class="form-check py-3 border--dotted">
+                                                <input class="form-check-input" type="checkbox" value="" checked>
+                                                <label class="form-check-label para-fs-14 fs-6">
+                                                {{$facilitate->facilities_name}}
+                                                </label>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="facilities-check">
-                                                <div class="form-check pb-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Non somking rooms
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Airport shuttle
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Family rooms
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        spa
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Hot tub /Jacuzzi
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Air conditioning
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        water park
-                                                    </label>
-                                                </div>
-                                                <div class="form-check py-3 border--dotted">
-                                                    <input class="form-check-input" type="checkbox" value="" checked>
-                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                        Swimming pool
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach     
                                     </div>
                                 </div>
                             </form>
@@ -234,6 +137,11 @@ Facilities
         border: 3px solid currentColor;
         border-right-color: transparent;
     }
+
+    .form-check{
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
 </style>
 @endpush
 
@@ -241,6 +149,46 @@ Facilities
 <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('.parking-avaliable').on('change', function(){
+            var parking = $('.parking-avaliable :selected').val();
+            if(parking == 'no') {
+                $('.parking-site').addClass('d-none');
+                $('.parking-type').addClass('d-none');;
+            }
+
+            if(parking == 'paid') {
+                $('.parking-site').removeClass('d-none');
+                $('.parking-type').removeClass('d-none');
+            }
+
+            if(parking == 'free') {
+                $('.parking-site').removeClass('d-none');
+                $('.parking-type').removeClass('d-none');
+            }
+
+        });
+
+        $("#p_add_lan").bind("click", function () {
+            var div = $("<div />");
+            div.html(GetDynamicTextBox(""));
+            $("#add_languages").append(div);
+        });
+
+        $("body").on("click", ".remove", function () {
+            $(this).closest("div").remove();
+        });
+
+        function GetDynamicTextBox(value) {
+            return '<div class="p-form-select d-flex mb-3 align-items-center">' +
+                        '<select class="form-select w-25 me-3">' +
+                            '<option selected>English</option>' +
+                            '<option value="">Hindi</option>' +
+                            '<option value="">Russian</option>' +
+                        '</select>' + '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />'
+                    '</div>'
+        }
+        
     });
 </script>
 @endpush

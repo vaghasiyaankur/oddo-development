@@ -53,34 +53,27 @@ Add-Property
                             <div class="p-form-heading">
                                 <h5>What’s the contact details for this property?</h5>
                             </div>
-                            <div class="contact--name">
-                                <label for="contactname" class="form-label label-heading">Contact
-                                    Name</label>
-                                <input type="text" id="contactname" name="contact_name"
-                                    class="form-control custom-from-control contact_name">
-                            </div>
-                            <span id="contact_name-error" class="text-danger"></span>
-
-                            <div class="contact-number pt-3">
-                                <div class="contact-number-main d-flex">
-                                    <div class="contact-number-inner">
-                                        <label for="" class="form-label label-heading ">Phone Number</label>
-                                        <input type="tel" class="form-control custom-from-control contact_phone"
-                                            name="contact_phone">
-                                            <span id="contact_phone-error" class="text-danger"></span>
-                                    </div>
-                                    
-                                    <div class="contact-number-inner mx-auto">
-                                        <label for="" class="form-label label-heading ">Alternative Phone
-                                            Number(Optional)</label>
-                                        <input type="tel"
-                                            class="form-control custom-from-control contact_phone_optional"
-                                            name="contact_phone_optional">
+                            <div id="add_pro_detail" class="data_1">
+                                <input type="hidden" class='contant_count' value="1">
+                                <div class="contact--name">  
+                                    <label for="contactname" class="form-label label-heading">Contact Name</label>
+                                    <input type="text" id="contactname" name="contactname_1" class="form-control custom-from-control contactname_1">
+                                </div>
+                                <div class="contact-number pt-3">
+                                    <div class="contact-number-main d-flex">
+                                        <div class="contact-number-inner">
+                                            <label for="" class="form-label label-heading ">Phone Number</label>
+                                            <input type="tel" name="phone_1"  class="form-control custom-from-control phone_1">
+                                        </div>
+                                        <div class="contact-number-inner mx-auto">
+                                            <label for="" class="form-label label-heading ">Alternative Phone Number(Optional)</label>
+                                            <input type="tel"  name="optional_1" class="form-control custom-from-control optional_1">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="another-c-details mt-4">
-                                <a href="javascript:;" class="btn another-c-d-btn">Add Another Contact Details</a>
+                                <a href="javascript:;" class="btn another-c-d-btn" id="add_contact_detail">Add Another Contact Details</a>
                             </div>
                         </form>
                     </div>
@@ -195,6 +188,10 @@ Add-Property
     $(document).ready(function(){
 
         $(".btn-submit-click").on('click', function(){
+
+           
+
+
             let property_name = $('.property_name').val();
             !property_name ? $(`#property-name-error`).html(`The Property Name field is required.`) : $(`#property-name-error`).html(``);
 
@@ -224,18 +221,32 @@ Add-Property
             let zipcode = $('.zipcode').val();
             !zipcode ? $(`#zipcode-error`).html(`The Zipcode field is required.`) : $(`#zipcode-error`).html(``);
 
+            var number = $('.contant_count').val();
+
+            var contant        = [];
+            // var phone          = []; 
+            // var optional_phone = [];
+
+            for(i=1; i <= number; i++){
+                contant.push({'contects' : $('.contactname_'+ number).val(), 'phone' : $('.phone_'+ number).val(), 'optinal' : $('.optional_'+ number).val()});
+                // phone.push($('.phone_'+ number).val());
+                // optional_phone.push($('.optional_'+ number).val());
+            }
+
+            console.log(contant);
             formdata = new FormData();
 
             formdata.append('property_name', property_name);
             formdata.append('star_rating', star_rating);
-            formdata.append('contact_name', contact_name);
-            formdata.append('contact_phone', contact_phone);
-            formdata.append('contact_phone_optional', contact_phone_optional);
+            formdata.append('contact_name', JSON.stringify(contant));
+            // formdata.append('contact_phone', phone);
+            formdata.append('count', number);
             formdata.append('address', address);
             formdata.append('address_line', address_line);
             formdata.append('country', country);
             formdata.append('city', city);
             formdata.append('zipcode', zipcode);
+
 
             $('.spinner-border').show();
             $.ajax({
@@ -253,6 +264,44 @@ Add-Property
                 },
             }); 
         });
+
+        // var number = 1;
+        
+        
+
+        $("#add_contact_detail").bind("click", function () {
+            var number = $('.contant_count').val();
+            var numbers = parseInt(number)+1;     
+            
+                $("#add_pro_detail").append('<div class="remove-p-details data_'+ numbers +' ">' +
+                    '<div class="contact--name pt-3 ">' +
+                        '<label for="contactname" class="form-label label-heading">Contact Name</label>' +
+                        '<input type="text" id="contactname" name="contactname_'+ numbers +'" class="form-control custom-from-control contactname_'+ numbers +'">' +
+                    '</div>' +
+                    '<div class="contact-number pt-3">' +
+                        '<div class="contact-number-main d-flex align-items-center">' +
+                            '<div class="contact-number-inner">' +
+                                '<label for="" class="form-label label-heading ">Phone Number</label>' +
+                                '<input type="tel" name="phone_'+ numbers +'" class="form-control custom-from-control phone_'+ numbers +'">' +
+                            '</div>' +
+                            '<div class="contact-number-inner mx-auto">' +
+                                '<label for="" class="form-label label-heading ">Alternative Phone Number(Optional)</label>' +
+                                ' <input type="tel" name="optional_'+ numbers +'"  class="form-control custom-from-control optional_'+ numbers +'">' +
+                            '</div>' + 
+                            '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />' + '</div>' +
+                    '</div>' +
+                '</div>');
+
+                var number = $('.contant_count').val(numbers);
+
+
+        });
+        
+        $("body").on("click", ".remove", function () {
+            $(this).closest(".remove-p-details").remove();
+        });
+
     });
+
 </script>
 @endpush

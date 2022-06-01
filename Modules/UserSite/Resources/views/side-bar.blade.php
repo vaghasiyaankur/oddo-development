@@ -5,13 +5,13 @@
                 <a class="nav-link {{ Request::routeIs('property-form') ? 'active' : '' }}" href="{{route('property-form')}}" >Basic Info</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::routeIs('layout-pricing-form') ? 'active' : '' }}" href="{{route('layout-pricing-form')}}">Layout & Pricing</a>
+                <a class="nav-link {{ Request::routeIs('layout-form', 'layout-pricing-form') ? 'active' : '' }}" href="{{route('layout-pricing-form')}}">Layout & Pricing</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::routeIs('facilities-form') ? 'active' : '' }}" href="{{route('facilities-form')}}">Facilities & Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Aminities</a>
+                <a class="nav-link {{ Request::routeIs('amenities') ? 'active' : '' }}" href="{{route('amenities')}}">Aminities</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="javascript">Photos</a>

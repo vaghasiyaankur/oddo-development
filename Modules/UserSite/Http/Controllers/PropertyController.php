@@ -11,6 +11,9 @@ use App\Models\Hotel;
 use App\Models\HotelContact;
 use App\Models\RoomType;
 use App\Models\RoomList;
+use App\Models\Facilities;
+use App\Models\Amenities;
+use App\Models\AmenitiesCategory;
 
 class PropertyController extends Controller
 {
@@ -26,8 +29,15 @@ class PropertyController extends Controller
     }
 
     public function property_submit(Request $request){
-        // dd($request->property_name);
+        // dd($request->get('contact_name'));
         $companyId = $request->id;
+        $count = $request->count;
+         
+        // $content = $request->contact_name;
+                    
+       
+
+        // dd($content_name);
  
         $Hotel   =   Hotel::updateOrCreate(
                     [
@@ -44,18 +54,28 @@ class PropertyController extends Controller
                     ]);  
         
         $hotel_id = Hotel::latest('created_at')->take(1)->first();
-        
-                    
-        $hotel_contact = HotelContact::updateOrCreate(
-            [
-             'id' => $companyId
-            ],
-            [
-                'name'             => $request->contact_name,
-                'number'           => $request->contact_phone,
-                'number_optinal'   => $request->contact_phone_optional,
-                'hotels_id'        => $hotel_id->id
-            ]);         
+
+
+        // $contents = json_decode($request->get('contact_name'));
+        // $hotel_contect =  HotelContact::create([
+        //         'name' =>   $contents[0]->contects,
+        //         'number' =>   $contents[0]->phone,
+        //         'hotels_id' => $hotel_id->id
+        // ]);   
+         
+        // $data = array();
+        // $hotel_contect =  new HotelContact();
+        // foreach($contents as $contect){
+            
+        //             $hotel_contect->name = $contect->contects;
+        //             $hotel_contect->number = $contect->phone;
+        //             // $hotel_contect->number_optinal = $contect['optinal'];
+        //             $hotel_contact->save();
+              
+        //     }
+            // $hotel_contact->save();
+            // dd($hotel_id->id);
+
                          
         return Response()->json(["success" => true]);
 
@@ -67,7 +87,8 @@ class PropertyController extends Controller
     }
 
     public function facilities(){
-        return view('usersite::facilities');
+        $facilities = Facilities::active()->get();
+        return view('usersite::facilities', compact('facilities'));
     }
     
     public function room_lists(Request $request)
@@ -77,6 +98,13 @@ class PropertyController extends Controller
         return response()->json([
             'roomlist' => $roomlist
         ]);
+    }
+
+    public function amenities(){
+        // $amenities = Amenities::active()->get();
+        // $amenities_category = AmenitiesCategory::active()->get();
+        $amenities_category = AmenitiesCategory::with('amenities')->active()->get();
+        return view('usersite::amenities',compact('amenities_category'));
     }
    
 }

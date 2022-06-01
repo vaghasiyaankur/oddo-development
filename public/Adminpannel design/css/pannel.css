@@ -185,6 +185,62 @@
 }   
 
 /****** Policies page end *******/
+/****** Photos page start *******/
+.pannel-form .property-photos .drop-box-main #dropBox {
+    min-height: 300px;
+    border: 3px dashed #878996;
+    text-align: center;
+    background: #fff;
+    padding: 3em;
+    margin: auto;
+}
+.pannel-form .property-photos .drop-box-main .imgUploader .button {
+    display: inline-block;
+    padding: .5em 1em;
+    background: #6a78c7;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #6a78c7;
+    color: #fff;
+    transition: .4s;
+}
+.pannel-form .property-photos .drop-box-main .imgUploader .button:hover {
+    background: #6a78c7d9;
+    border-color: #6a78c7d9;
+}
+.pannel-form .property-photos .drop-box-main .imgUploader  #imgUpload {
+    display: none;
+}
+.pannel-form .property-photos .drop-box-main #gallery {
+    text-align: center;
+    margin-top: 1.5em;
+}
+.pannel-form .property-photos .drop-box-main  #gallery div {
+    display: inline-block;
+    margin: .5em 1em;
+}
+.pannel-form .property-photos .drop-box-main  #gallery img {
+    max-height: 150px;
+}
+.pannel-form .property-photos .drop-box-main  #gallery .fName,
+.pannel-form .property-photos .drop-box-main  #gallery .fSize {
+    display: block;
+}
+.pannel-form .property-photos .drop-box-main  #gallery .fName {
+    color: brown;
+}
+.pannel-form .property-photos .drop-box-main  #gallery .fSize {
+    font-size: .8em;
+}
+.pannel-form .property-photos .drop-box-main  #gallery .fType {
+    font-size: .7em;
+}
+.pannel-form .property-photos .photo-description-box{
+    background-color: #f5deb38f;
+    padding: 20px;
+}
+/****** Photos page end *******/
+
 
 
 

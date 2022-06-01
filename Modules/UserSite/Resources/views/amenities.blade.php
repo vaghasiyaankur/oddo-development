@@ -1,0 +1,192 @@
+@extends('user_site.layout.master')
+
+@section('title')
+Add-Layout
+@endsection
+
+@section('content')
+<!------ Pannel Form start ------->
+<section class="pannel-form admin-pannel-main py-5">
+    <div class="container">
+        <div class="admin-pannel-inner">
+            <div class="row">
+                <div class="col-3">
+                    @include('usersite::side-bar')
+                </div>
+                <div class="col-lg-9">
+                    <main class="amenities">
+                        <div class="pannel-heading">
+                            <h2 class=" purple-dark pannel-title">Amenities</h2>
+                            <h5 class="heading-fs-16 purple-dark">You are almost done! We just need a few more details about the extra bed options you provide,pluse any amenities or specific features and services available.</h5>
+                        </div>
+                        <div class="form-info-box">
+                            <form action="" class="form-parking">
+                                <div class="p-form-heading  d-flex">
+                                    <h5>Extra Bed Options</h5>
+                                    <i class="fa-solid fa-circle-exclamation ps-2 mt-1"  data-toggle="tooltip" data-bs-placement="top" title="This are the option for beds that can be added upon request."></i>
+                                </div>
+                                <div class="amenities-title pt-3">
+                                    <label for="" class="form-label label-heading ">Can you provide extra bed?</label>
+                                </div>
+                                <div class="amenities-raido-btn">
+                                    <div class="form-check form-check-inline amenities-radio">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="yes" checked>
+                                        <label class="form-check-label" for="yes">
+                                         Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline amenities-radio">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="no">
+                                        <label class="form-check-label" for="no">
+                                         No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="total-room-layout pt-3">
+                                    <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
+                                    <select class="form-select layout-totalroom  me-3">
+                                        <option selected="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="form-info-box mt-3">
+                            <form action="" class="form-breakfast">
+                                <div class="p-form-heading">
+                                    <h5>Amenities</h5>
+                                    <h6 class="label-heading form-label">Tell us about your amenities</h6>
+                                </div>
+                                <div class="amenities-req border rounded-1">
+                                    <div class="p-form-heading pt-3 px-2">
+                                        <h5>Most Requested by Guests</h5>
+                                    </div>
+                                    <div class="amenities-check-box px-5">
+                                        <div class="form-check py-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Air conditioning
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Bathtub
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Spa tub
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Flat-screen Tv
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Electric kettle
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Balcony
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            View
+                                            </label>
+                                        </div>
+                                        <div class="form-check pb-3 ">
+                                            <input class="form-check-input" type="checkbox">
+                                            <label class="form-check-label para-fs-14 fs-6">
+                                            Terrace
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="amenities-btn another-c-details mt-4">
+                                <a class="btn btn-primary accordion-btn-link another-c-d-btn" type="button">
+                                    Hide all Amenities
+                                </a>
+                                </div>
+                                <div class="amenities-category pt-4 d-none" id="hideshow">
+                                    <div class="p-form-heading pb-3">
+                                        <h5>All amenities by category</h5>
+                                    </div>
+                                    <div class="amenities-accordion">
+                                        <div class="accordion" >
+                                            @foreach($amenities_category as $category)
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" >
+                                                        <button class="accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#amenity_{{$category->id}}"  aria-expanded="false" aria-controls="amenity_{{$category->id}}">
+                                                            <span>{{$category->category}}</span>
+                                                            <span class="ms-auto me-5"> <span class="checkbox_length_{{$category->slug}}">0</span>/{{$category->amenities->count()}} selected</span>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="amenity_{{$category->id}}" class="accordion-collapse collapse amenities-acc-main overflow-auto" >
+                                                        <div class="accordion-body bg-light">
+                                                            @foreach($category->amenities as $amenity)
+                                                                <div class="form-check pb-3 border--bottom amenity-checked">
+                                                                    <label class="form-check-label para-fs-14 fs-6">
+                                                                    <input class="form-check-input checked-amenity-{{$amenity->id}}" type="checkbox" name="{{$category->slug}}">
+                                                                    
+                                                                    {{$amenity->amenities}}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>  
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="another-c-details mt-4">
+                            <a href="javascript:;" class="btn another-c-d-btn w-100">Continue</a>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!------ Pannel Form end ------->
+
+@endsection
+
+@push('css')
+<link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
+@endpush
+
+@push('scripts')
+<script>
+// jjs for hide and show on butoon 
+$(document).ready(function(){
+    $(".accordion-btn-link").click(function(){
+        $("#hideshow").toggleClass('d-none');
+    });
+
+    $(".form-check-input").on('click', function(){
+      var name       = $(this).attr('name');
+      var checkbox   = $(`input[name=${name}]:checked`).length;
+      var set_length = $(`.checkbox_length_${name}`).html(checkbox);
+    });
+
+   
+
+});
+</script>
+@endpush

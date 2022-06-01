@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('category');
             $table->boolean('status')->default(0);
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }
