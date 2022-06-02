@@ -4,6 +4,7 @@ namespace Modules\UserSite\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Routing\Controller;
 use App\Models\PropertyType;
 use App\Models\Country;
@@ -14,6 +15,9 @@ use App\Models\RoomList;
 use App\Models\Facilities;
 use App\Models\Amenities;
 use App\Models\AmenitiesCategory;
+use App\Models\BedType;
+use App\Models\Room;
+use App\Models\HotelBed;
 
 class PropertyController extends Controller
 {
@@ -29,19 +33,12 @@ class PropertyController extends Controller
     }
 
     public function property_submit(Request $request){
-        // dd($request->get('contact_name'));
-        $companyId = $request->id;
+        $id = $request->id;
         $count = $request->count;
-         
-        // $content = $request->contact_name;
-                    
-       
-
-        // dd($content_name);
  
         $Hotel   =   Hotel::updateOrCreate(
                     [
-                     'id' => $companyId
+                        'id' => $id
                     ],
                     [
                         'property_name' => $request->property_name,
@@ -54,36 +51,33 @@ class PropertyController extends Controller
                     ]);  
         
         $hotel_id = Hotel::latest('created_at')->take(1)->first();
+        Session::put('hotel', $hotel_id);
 
+        $contents = json_decode($request->get('contact_name'));
 
-        // $contents = json_decode($request->get('contact_name'));
-        // $hotel_contect =  HotelContact::create([
-        //         'name' =>   $contents[0]->contects,
-        //         'number' =>   $contents[0]->phone,
-        //         'hotels_id' => $hotel_id->id
-        // ]);   
-         
-        // $data = array();
-        // $hotel_contect =  new HotelContact();
-        // foreach($contents as $contect){
-            
-        //             $hotel_contect->name = $contect->contects;
-        //             $hotel_contect->number = $contect->phone;
-        //             // $hotel_contect->number_optinal = $contect['optinal'];
-        //             $hotel_contact->save();
-              
-        //     }
-            // $hotel_contact->save();
-            // dd($hotel_id->id);
+        foreach($contents as $contect){
+            $Hotel   =   HotelContact::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
+                'name' => $contect->contects,
+                'number'   => $contect->phone,
+                'number_optinal' => $contect->optinal,
+                'hotels_id' => $hotel_id->id,
+            ]);  
+        }
 
-                         
-        return Response()->json(["success" => true]);
-
+        return response()->json(['status' => 1, 'redirect_url' => route('layout-form')]);
     }
+
+
+
 
     public function layout_pricing(){
         $room_types = RoomType::active()->get();
-        return view('usersite::layout-pricing', compact('room_types'));
+        $beds = BedType::active()->get();
+        return view('usersite::layout-pricing', compact('room_types', 'beds'));
     }
 
     public function facilities(){
@@ -101,10 +95,49 @@ class PropertyController extends Controller
     }
 
     public function amenities(){
-        // $amenities = Amenities::active()->get();
-        // $amenities_category = AmenitiesCategory::active()->get();
         $amenities_category = AmenitiesCategory::with('amenities')->active()->get();
         return view('usersite::amenities',compact('amenities_category'));
+    }
+
+    public function add_room(Request $request) {
+        $hotel_id = Session::get('hotel')->id;
+        $id = $request->id;
+        $Hotel   =   Room::updateOrCreate(
+            [
+             'id' => $id
+            ],
+            [
+                'smoking_policy'   => $request->smoking_area,
+                'custom_name_room' => $request->custom_name,
+                'number_of_room'   => $request->number_of_room,
+                'guest_stay_room'  => $request->number_of_guest,
+                'room_size'        => $request->room_size,
+                'room_cal_type'    => $request->room_size_feet,
+                'price_room'       => $request->bed_price,
+                'room_list_id'     => $request->room_name_select,
+                'room_type_id'     => $request->room_type,
+                'hotel_id'         => $hotel_id
+            ]);  
+
+        $room_id = Room::latest('created_at')->take(1)->first();
+
+        $beds = json_decode($request->get('bed_size'));
+            foreach($beds as $bed){
+                $Hotel   =   HotelBed::updateOrCreate(
+                    [
+                     'id' => $id
+                    ],
+                    [
+                        'no_of_bed' => $bed->number_of_bed,
+                        'bed_id'   => $bed->bed_size,
+                        'room_id' => $room_id->id,
+                    ]);  
+            }
+
+        $room = Room::get();
+        return response()->json(['status' => 1,  'redirect_url' => route('room-list', ['room' => $room])]);
+
+
     }
    
 }

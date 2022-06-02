@@ -28,12 +28,13 @@ Layout & pricing
                                 </div>
                                 <div class="p-form-select pt-3">
                                     <label for="" class="form-label label-heading">Room type</label>
-                                    <select class="form-select w-50 room_type">
-                                        <option>Please Select</option>
+                                    <select class="form-select w-50 room_type ">
+                                        <option value="">Please Select</option>
                                         @foreach ($room_types as $room_type)
                                         <option value="{{$room_type->id}}">{{$room_type->room_type}}</option>
                                         @endforeach
                                     </select>
+                                    <span id="room_type_error" class="text-danger"></span>
                                 </div>
                                 <div class="layout-room-name d-flex d-none">
                                     <div class="p-form-select pt-3  w-50">
@@ -45,28 +46,28 @@ Layout & pricing
                                             on the website</label>
                                     </div>
                                     <div class="contact-number-inner w-50 ps-4 pt-3">
-                                        <label for="" class="form-label label-heading ">Phone Number</label>
-                                        <input type="tel" class="form-control custom-from-control">
+                                        <label for="" class="form-label label-heading ">Custom name (optional)</label>
+                                        <input type="tel" class="form-control custom-from-control custom_name">
                                         <label for="" class="form-label label-heading">Create an optional, custom name
                                             for your reference.</label>
                                     </div>
                                 </div>
                                 <div class="p-form-select pt-3">
                                     <label for="" class="form-label label-heading">Smoking policy</label>
-                                    <select class="form-select w-50">
-                                        <option selected>N/A</option>
+                                    <select class="form-select w-50 smoking_area">
                                         <option value="n-smoking">Non-smoking</option>
                                         <option value="smoking">smoking</option>
+                                        <option value="b-smoking">I have both smoking and non-smoking options for this room type</option>
                                     </select>
                                 </div>
                                 <div class="total-room-layout pt-3">
                                     <label for="" class="form-label label-heading ">Number of room(of this type)</label>
-                                    <input type="number" class="form-control layout-totalroom">
+                                    <input type="number" class="form-control layout-totalroom number_of_room">
                                 </div>
                             </form>
                         </div>
                         
-                        <div class="form-info-box mt-3">
+                        <div class="form-info-box mt-3 bed_option_div">
                             <form action="" class="form-bedoption">
                                 <div class="p-form-heading">
                                     <h5>Bed Options</h5>
@@ -79,21 +80,22 @@ Layout & pricing
                                         title="Tell us only about the existing room (don't include extra beds)"></i>
                                 </div>
                                 <div id="text-input-add">
+                                    <input type="hidden" class="number-of-select" value="1">
                                     <div class="d-flex align-items-center mb-3 bed_option_1" >
-                                        <select class="form-select w-50" >
-                                            <option selected>N/A</option>
-                                            <option value="twinb">Twin bed(s) / 90-130 cm wide</option>
-                                            <option value="kingb">King bed(s) / 130-130 cm wide</option>
-                                            <option value="queenb">Queen bed(s) / 100-130 cm wide</option>
+                                        <select class="form-select w-50 bed_size bed_size_1" >
+                                            @foreach ($beds as $bed)
+                                                <option value="{{$bed->id}}">{{$bed->bed_type}} / {{$bed->bed_size}}</option>
+                                            @endforeach
                                         </select>
                                         <span class="px-4"><i class="fa-solid fa-xmark"></i></span>
-                                        <select class="form-select c-form-select">
-                                            <option selected>Select the number of Beds</option>
+                                        <select class="form-select c-form-select number_of_bed number_of_bed_1">
+                                            <option  value="">Select the number of Beds</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
-                                        </select>
+                                        </select><br><br>
                                     </div>
+                                    <span id="number_of_bed_error" class="text-danger"></span>
                                 </div>
                                 <div class="pannel-add-another py-3" >
                                     <a href="javascript:;" class="para-fs-14" id="p_add_another"><i class="fa-solid fa-circle-plus purple"></i> <span class="purple">Add another bed</span></a>
@@ -102,9 +104,10 @@ Layout & pricing
                                     <label for="" class="form-label label-heading">How many guests can stay in this
                                         room?</label>
                                     <div class="total-room-layout ">
-                                        <input type="number" class="form-control layout-totalroom d-inline">
+                                        <input type="number" class="form-control layout-totalroom d-inline number_of_guest">
                                         <span class="user-icon ps-2"><i class="fa-solid fa-user purple"></i></span>
                                     </div>
+                                    <span id="number_of_guest_error" class="text-danger"></span>
                                 </div>
                             </form>
                         </div>
@@ -114,12 +117,11 @@ Layout & pricing
                                     <h5>Room Size (Optional)</h5>
                                 </div>
                                 <div class="input-group mb-3 total-room-layout w-50">
-                                    <input type="tel" class="form-control custom-from-control" placeholder="0">
-                                    <select class="form-select ">
+                                    <input type="tel" class="form-control custom-from-control room_size" placeholder="0">
+                                    <select class="form-select room_size_feet">
                                         <option selected>N/A</option>
-                                        <option value="s-meter">square meter</option>
-                                        <option value="meter">meter</option>
-                                        <option value="cm">cm</option>
+                                        <option value="s-meter">square meters</option>
+                                        <option value="s-feet">square feet</option>
                                     </select>
                                 </div>
                             </form>
@@ -137,13 +139,14 @@ Layout & pricing
                                     <div class="input-group flex-nowrap">
                                         <span class="input-group-text para-fs-14" id="addon-wrapping">INR/per
                                             Night</span>
-                                        <input type="text" class="form-control custom-from-control" placeholder="0">
+                                        <input type="text" class="form-control custom-from-control bed_price" placeholder="0" >
                                     </div>
+                                    <span id="bed_price_error" class="text-danger"></span>
                                 </div>
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="{{route('room-list')}}" class="btn another-c-d-btn w-100">Continue</a>
+                            <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue</a>
                         </div>
                     </main>
                 </div>
@@ -182,26 +185,34 @@ Layout & pricing
         $('[data-toggle="tooltip"]').tooltip();
 
         $("#p_add_another").bind("click", function () {
+            var number = $('.number-of-select').val();
+            // var number = $('.contant_count').val();
+            var numbers = parseInt(number)+1;
+            
             $("#text-input-add").append('<div class="d-flex align-items-center mb-3" >' +
-                                            '<select class="form-select w-50" >'+
-                                                '<option selected>N/A</option>'+
-                                                '<option value="twinb">Twin bed(s) / 90-130 cm wide</option>'+
-                                                '<option value="kingb">King bed(s) / 130-130 cm wide</option>'+
-                                                '<option value="queenb">Queen bed(s) / 100-130 cm wide</option>'+
+                                            '<select class="form-select w-50 bed_size_'+numbers+'" >'+
+                                                '@foreach ($beds as $bed)'+
+                                                    '<option value="{{$bed->id}}">{{$bed->bed_type}} / {{$bed->bed_size}}</option>' +
+                                                '@endforeach' +
                                             '</select>'+
                                             '<span class="px-4"><i class="fa-solid fa-xmark"></i></span>'+
-                                            '<select class="form-select c-form-select">'+
-                                                '<option selected>Select the number of Beds</option>'+
+                                            '<select class="form-select c-form-select number_of_bed_'+numbers+'">'+
+                                                '<option value="">Select the number of Beds</option>'+
                                                 '<option value="1">1</option>'+
                                                 '<option value="2">2</option>'+
                                                 '<option value="3">3</option>'+
                                             '</select>'+ '<i class="fa-solid fa-xmark text--red ps-3"></i>'
                                             + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />'+
                                         '</div>');
+                                        var number = $('.number-of-select').val(numbers);
+
         });
 
         $("body").on("click", ".remove", function () {
             $(this).closest("div").remove();
+            var number = $('.number-of-select').val();
+            var numbers = parseInt(number)-1;
+            var number = $('.number-of-select').val(numbers);
         });
 
     
@@ -218,6 +229,12 @@ Layout & pricing
             $('.layout-room-name').addClass('d-none');  
         }
 
+
+        if(room_type == 'Single'){
+            $('.bed_option_div').addClass('d-none');
+        }else{
+            $('.bed_option_div').removeClass('d-none');
+        } 
         $.ajax({
             url:"{{ route('room-lists') }}",
             type:"POST",
@@ -227,7 +244,6 @@ Layout & pricing
             dataType: 'JSON',
             success:function (data) {
                 $('.room_name_select').empty();
-                $('.room_name_select').html('<option>Please Select</option>');
                 $.each(data.roomlist[0].room_lists,function(index,roomlist){+
                     $('.room_name_select').append('<option value="'+roomlist.id+'">'+roomlist.room_name+'</option>');
                 })
@@ -239,6 +255,76 @@ Layout & pricing
         var room_type = $('.room_name_select :selected').text();
         var set_title = $('.room_type_title').html(room_type);
     });
+
+    $(".btn-submit-click").on('click', function(){
+
+        let room_type = $('.room_type option:selected').val();
+        !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
+
+        
+        let number_of_guest = $('.number_of_guest').val();
+        !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) : $(`#number_of_guest_error`).html(``);
+        
+        let bed_price = $('.bed_price').val();
+        !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
+        
+        let custom_name = $('.custom_name').val();
+        let room_name_select = $('.room_name_select').val();
+        let smoking_area = $('.smoking_area').val();
+        let number_of_room = $('.number_of_room').val();
+        let room_size = $('.room_size').val();
+        let room_size_feet = $('.room_size_feet').val();
+        
+        
+        var number = $('.number-of-select').val();
+        
+        let number_of_bed = $('.number_of_bed_'+number+' option:selected').val();
+        !number_of_bed ? $(`#number_of_bed_error`).html(`Select the number of beds`) : $(`#number_of_bed_error`).html(``);
+        
+        let bed_size = $('.bed_size_'+number).val();
+
+        var bed_value        = [];
+            // var phone          = []; 
+            // var optional_phone = [];
+
+            for(i=1; i <= number; i++){
+                bed_value.push({'number_of_bed' : $('.number_of_bed_'+ i).val(), 'bed_size' : $('.bed_size_'+ i).val()});
+            }
+
+
+        formdata = new FormData();
+
+        formdata.append('room_type', room_type);
+        formdata.append('number_of_guest', number_of_guest);
+        formdata.append('bed_price', bed_price);
+        formdata.append('custom_name', custom_name);
+        formdata.append('room_name_select', room_name_select);
+        formdata.append('smoking_area', smoking_area);
+        formdata.append('number_of_room', number_of_room);
+        formdata.append('number', number);
+        formdata.append('bed_size', JSON.stringify(bed_value));
+        formdata.append('room_size', room_size);
+        formdata.append('room_size_feet', room_size_feet);
+
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            url: "{{route('add-room')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (res) {
+                $("input[type=text], input[type=tel]").val("");
+                if (res.redirect_url) {
+                    window.location = res.redirect_url;
+                }
+            },
+        }); 
+
+    });
+
 });
 </script>
 @endpush

@@ -15,17 +15,19 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('smoking_policy');
             $table->string('custom_name_room')->nullable();
-            $table->integer('number_of_room');
-            $table->integer('number_of_bed');
-            $table->string('guest_stay_room');
-            $table->string('room_size');
-            $table->string('room_cal_type');
-            $table->string('price_room');
-            $table->integer('room_list_id')->nullable();
-            $table->integer('bed_type_id')->nullable();
-            $table->integer('room_type_id')->nullable();
+            $table->string('smoking_policy')->nullable();
+            $table->integer('number_of_room')->nullable();
+            $table->string('guest_stay_room')->nullable();
+            $table->string('room_size')->nullable();
+            $table->string('room_cal_type')->nullable();
+            $table->string('price_room')->nullable();
+            $table->integer('room_list_id')->unsigned()->nullable();
+            $table->integer('room_type_id')->unsigned()->nullable();
+            $table->integer('hotel_id')->unsigned()->nullable();
+            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('room_list_id')->references('id')->on('room_lists');
+            $table->foreign('room_type_id')->references('id')->on('room_types');
             $table->timestamps();
         });
     }

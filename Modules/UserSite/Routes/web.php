@@ -11,7 +11,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 Route::controller(PropertyController::class)->group(function(){
     Route::get('property-category', 'category')->name('property-category');
@@ -23,5 +24,5 @@ Route::controller(PropertyController::class)->group(function(){
     Route::post('room-lists', 'room_lists')->name('room-lists');
     Route::view('room-list', 'usersite::room-list')->name('room-list'); 
     Route::get('amenities', 'amenities')->name('amenities');
-
+    Route::post('add-room', 'add_room')->name('add-room');
 });

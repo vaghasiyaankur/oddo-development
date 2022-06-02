@@ -5,7 +5,7 @@
                 <a class="nav-link {{ Request::routeIs('property-form') ? 'active' : '' }}" href="{{route('property-form')}}" >Basic Info</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::routeIs('layout-form', 'layout-pricing-form') ? 'active' : '' }}" href="{{route('layout-pricing-form')}}">Layout & Pricing</a>
+                <a class="nav-link layout-button {{ Request::routeIs('layout-form', 'layout-pricing-form', 'room-list') ? 'active' : '' }}" href="{{route('layout-pricing-form')}}">Layout & Pricing</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::routeIs('facilities-form') ? 'active' : '' }}" href="{{route('facilities-form')}}">Facilities & Services</a>

@@ -189,9 +189,6 @@ Add-Property
 
         $(".btn-submit-click").on('click', function(){
 
-           
-
-
             let property_name = $('.property_name').val();
             !property_name ? $(`#property-name-error`).html(`The Property Name field is required.`) : $(`#property-name-error`).html(``);
 
@@ -228,12 +225,9 @@ Add-Property
             // var optional_phone = [];
 
             for(i=1; i <= number; i++){
-                contant.push({'contects' : $('.contactname_'+ number).val(), 'phone' : $('.phone_'+ number).val(), 'optinal' : $('.optional_'+ number).val()});
-                // phone.push($('.phone_'+ number).val());
-                // optional_phone.push($('.optional_'+ number).val());
+                contant.push({'contects' : $('.contactname_'+ i).val(), 'phone' : $('.phone_'+ i).val(), 'optinal' : $('.optional_'+ i).val()});
             }
 
-            console.log(contant);
             formdata = new FormData();
 
             formdata.append('property_name', property_name);
@@ -261,6 +255,9 @@ Add-Property
                 success: function (res) {
                     $('.spinner-border').hide();
                     $("input[type=text], input[type=tel]").val("");
+                    if (res.redirect_url) {
+                        window.location = res.redirect_url;
+                    }
                 },
             }); 
         });
@@ -298,7 +295,10 @@ Add-Property
         });
         
         $("body").on("click", ".remove", function () {
-            $(this).closest(".remove-p-details").remove();
+            $(this).closest(".remove-p-details").remove();     
+            var number = $('.contant_count').val();
+            var numbers = parseInt(number)-1;
+            var number = $('.contant_count').val(numbers);
         });
 
     });
