@@ -113,6 +113,7 @@ a.filter-btn{
     padding: 8px;
     transition: all 0.5s ease;
     border: 1px solid transparent;
+    box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
 }
 .small-box-wrapper:hover{
     box-shadow: 0px 0px 19px rgb(106 120 199 / 78%);
@@ -155,8 +156,9 @@ header.header .navbar {
     background: white;
     border: 1px solid #ffffff;
     border-radius: 100px;;
-    padding: 11px 43px;
+    padding: 11px 27px;
     color: #393c52;
+    white-space: nowrap;
 }
 /****** Dropdown ******/
 header.header .navbar .dropdown-custom{
@@ -241,7 +243,8 @@ header.header .navbar .dropdown .dropdown-btn{
     color: #fff;
     margin-top: 40px;
 }
-.homepage-swiper.swiper-container:hover .swiper-button-prev, .swiper-container:hover .swiper-button-next {
+.homepage-swiper.swiper-container:hover .swiper-button-prev, 
+.swiper-container:hover .swiper-button-next {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
@@ -352,7 +355,7 @@ header.header .navbar .dropdown .dropdown-btn{
     border-radius: 100px;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
+    font-weight: 800;
 }
 /****** Check-in-out section end *******/
 /******** Travel planning start *******/
@@ -363,9 +366,7 @@ header.header .navbar .dropdown .dropdown-btn{
     color: #393C52;
     margin-bottom: 40px;
     font-family: 'Avenir LT Std';
-
 }
-
 .travel-planning .travel-planning-inner .travel-planning-heading p{
     font-size: 24px;
     line-height: 24px;
@@ -555,9 +556,7 @@ header.header .navbar .dropdown .dropdown-btn{
 
 /******** Travel planning end *******/
 /****** Top cities section start ******/
-/* .s-top-city .container{
-    max-width: 1089px;
-} */
+
 .s-top-city .s-top-city-inner .s-top-city-head h2{
     font-size: 32px;
     line-height: 24px;
@@ -578,7 +577,7 @@ header.header .navbar .dropdown .dropdown-btn{
         margin-top: 118px;
     }
  /* Css for top city slider */
- .s-top-city .s-top-city-inner .s-top-city-main .slick-wrapper {
+.s-top-city .s-top-city-inner .s-top-city-main .slick-wrapper {
     width: 100%;
 
 }
@@ -610,12 +609,8 @@ header.header .navbar .dropdown .dropdown-btn{
     font-size: 50px;
     color: #6A78C7;
 }
-.s-top-city .s-top-city-inner .s-top-city-main .s-city-img-content{
-    min-height: 118px;
-}
-
-  
 /****** Top cities section end *******/
+
 /****** Top hotels section start ******/
 .t-hotels-main .t-hotels-inner .top-hotels-wraper{
     width:100%;
@@ -662,14 +657,12 @@ header.header .navbar .dropdown .dropdown-btn{
 
 /******Hotels Result Page Css *******/
 /****** Hotel Result Check-in-out section start *******/
-/* .hotel-result{
-    background-color: #f5f5f5;
-} */
+
 .hotel-result h5.search-heading{
     font-size: 16px;
     line-height: 32px;
     color: #393C52;
-    font-weight: 400;
+    font-weight: 800;
 }
 .hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option{
     max-width: 134px;
@@ -747,7 +740,7 @@ header.header .navbar .dropdown .dropdown-btn{
 }
 .hotel-result.search-result .search-result-inner .side-content .hotel-result-form .small-heading h6{
     font-style: normal;
-    font-weight: 400;
+    font-weight: 800;
     font-size: 14px;
     line-height: 22px;
     color: #393C52;
@@ -891,7 +884,7 @@ header.header .navbar .dropdown .dropdown-btn{
     font-weight: 900;
 }
 .hotel-result .img-popup-slider .img-swiper .slick-prev:before{
-    content: "\f053";
+    content: "\f104";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
 }
@@ -903,10 +896,6 @@ header.header .navbar .dropdown .dropdown-btn{
   margin: 0 auto;
 }
 /******img slider popup end ********/
-
-
-
-
 
 /****** View360 popup start *******/
 .hotel-result.search-result .modal-body .modal-body-img img{
@@ -978,6 +967,7 @@ header.header .navbar .dropdown .dropdown-btn{
     font-size: 12px;
     line-height: 32px;
     color: #40CC6D;
+    white-space: nowrap;
 }
 .hotel-result.search-result .search-result-inner .result-main-content .price-comparision-main .price-comparison-info .price-comparison-btn{
     background: #40CC6D;
@@ -1100,13 +1090,6 @@ header.header .navbar .dropdown .dropdown-btn{
     border-radius: 8px;
     margin-right: 6px;
 }
- .location-popup .loaction-popup-content-box .location-popup-card-single{
-    width: 100%;
-    max-width: 240px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
  .location-popup .loaction-popup-content-box .location-popup-card-single .card-single-head{
     /* background: #6A78C7; */
     border-radius: 8px 8px 0px 0px;
@@ -1139,6 +1122,7 @@ header.header .navbar .dropdown .dropdown-btn{
     width: 100%;
     max-width: 327px;
     border-radius: 8px;
+    margin: 0 auto  ;
 }
 .hotel-result.search-result .search-result-price-tag .notify-popup-main .notify-popup-inner .notify-popup-soldout{
     position: absolute;
@@ -1177,8 +1161,8 @@ header.header .navbar .dropdown .dropdown-btn{
     padding: 0 50px;
 }
 /******* Notify popup end ********/
-/******* Reviews popup start *******/
 
+/******* Reviews popup start *******/
 .hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup{
     width: 100%;
     max-width: 852px;
@@ -1186,6 +1170,7 @@ header.header .navbar .dropdown .dropdown-btn{
     max-height: 746px;
     background: #FFFFFF;
     border-radius: 8px;
+    margin: 0 auto;
 }
 .hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup .reviews-popup-heading{
     border-bottom: 1px solid #A4A6BA;
@@ -1197,6 +1182,7 @@ header.header .navbar .dropdown .dropdown-btn{
     font-size: 32px;
     line-height: 32px;
     color: #393C52;
+    white-space: nowrap;
 }
 .hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup .reviews-heading P{
     font-weight: 400;
@@ -1239,6 +1225,7 @@ header.header .navbar .dropdown .dropdown-btn{
     font-size: 12px;
     line-height: 22px;
     color: #40CC6D;
+    text-align: center;
 }
 /******* Reviews popup End *******/
 
@@ -1255,6 +1242,7 @@ header.header .navbar .dropdown .dropdown-btn{
     border-radius: 8px;
     width: 100%;
     max-width: 670px;
+    margin: 0 auto;
 }
 .hotel-result.search-result .search-result-inner .side-content .hotel-result-form  .hotel-sort-popup label.form-check-label{
     padding-bottom: 8px;
@@ -1264,11 +1252,12 @@ header.header .navbar .dropdown .dropdown-btn{
     color: #ffff;
     border-radius: 100px;
 }
+.hotel-result.search-result .side-content .mypreferences-popup .hotel-sort-popup .hotels-results-amenities-popup{
+    white-space: nowrap;
+}
 /******* My Preference popup end ********/
 
 /********* Popup design end*********/
-
-
 
 /****** Search result main end *******/
 .hotel-result.search-result .search-result-inner .border-left{
@@ -1278,7 +1267,7 @@ header.header .navbar .dropdown .dropdown-btn{
     width: 100%;
     max-width: 301px;
     height: 100%;
-    min-height: 346px;
+    min-height: 350px;
 }
 .hotel-result.search-result .search-result-inner .search-result-price-tag .price-btn{
     border: none;
@@ -1291,9 +1280,10 @@ header.header .navbar .dropdown .dropdown-btn{
     text-align: center;
     letter-spacing: 0.02em;
     color: #fff;
+    white-space: nowrap;
 }
 .hotel-result.search-result .search-result-inner .search-result-price-tag{
-    margin-top: -30px;
+    margin-top: -22px;
     margin-left: 28%;
 }
 .hotel-result.search-result .search-result-inner .search-result-notify{
@@ -1323,6 +1313,7 @@ header.header .navbar .dropdown .dropdown-btn{
 }
 
 /*************** Search result end **************/
+
 /****** Hotel result footer start ********/
 .footer.hotel-result .footer-icon .icon-inner{
     background: #DADADA;
@@ -1397,6 +1388,189 @@ header.header .navbar .dropdown .dropdown-btn{
         line-height: 24px;
         color: #393C52;
     }
+    /***** Select option with image *******/
+    .explore-city .e-city-dropdown .f-dropdown {
+        --max-scroll: 4;
+        position: relative;
+        z-index: 10;
+      }
+      .explore-city .e-city-dropdown .f-dropdown select {
+        display: none;
+      }
+      .explore-city .e-city-dropdown .f-dropdown > span {
+        cursor: pointer;
+        padding-top: 18px;
+        padding-bottom: 14px;
+        padding-left: 32px;
+        padding-right: 43px;
+        font-weight: 400;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #bbb;
+            background: #fff;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+      .explore-city .e-city-dropdown .f-dropdown > span > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 12px;
+      }
+      .explore-city .e-city-dropdown .f-dropdown > span img {
+        width: 30px;
+        margin-right: 10px;
+      }
+      .explore-city .e-city-dropdown .f-dropdown > span:before, .f-dropdown > span:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 8px;
+        height: 2px;
+        border-radius: 1px;
+        top: 50%;
+        right: 12px;
+        background: #000;
+        transition: all 0.3s ease;
+      }
+      .explore-city .e-city-dropdown .f-dropdown > span:before {
+        margin-right: 4px;
+        transform: scale(0.96, 0.8) rotate(50deg);
+      }
+      .explore-city .e-city-dropdown .f-dropdown > span:after {
+        transform: scale(0.96, 0.8) rotate(-50deg);
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        max-height: calc(var(--max-scroll) * 46px);
+        top: 40px;
+        left: 0;
+        z-index: 1;
+        right: 0;
+        background: #FFF;
+        border: 1px solid #CCC;
+        border-radius: 6px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transform-origin: 0 0;
+        transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.3s cubic-bezier(0.4, 0.6, 0.5, 1.32);
+        transform: translate(0, 5px);
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li {
+        padding: 0;
+        margin: 0;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li a {
+        cursor: pointer;
+        display: block;
+        padding: 8px 12px;
+        color: #000;
+        text-decoration: none;
+        outline: none;
+        position: relative;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li a img {
+        width: 30px;
+        margin-right: 10px;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li a:hover {
+        color: #5C6BC0;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li.active a {
+        color: #FFF;
+        background: #303F9F;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li.active a:before, .f-dropdown ul li.active a:after {
+        --scale: 0.6;
+        content: "";
+        display: block;
+        width: 10px;
+        height: 2px;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        opacity: 0;
+        background: #FFF;
+        transition: all 0.2s ease;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li.active a:before {
+        transform: rotate(45deg) scale(var(--scale));
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li.active a:after {
+        transform: rotate(-45deg) scale(var(--scale));
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li.active a:hover:before, .f-dropdown ul li.active a:hover:after {
+        --scale: 0.9;
+        opacity: 1;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li:first-child a {
+        border-radius: 6px 6px 0 0;
+      }
+      .explore-city .e-city-dropdown .f-dropdown ul li:last-child a {
+        border-radius: 0 0 6px 6px;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.disabled {
+        opacity: 0.7;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.disabled > span {
+        cursor: not-allowed;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.filled > span {
+        color: #000;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.open {
+        z-index: 15;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.open > span {
+        border-color: #AAA;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.open > span:before, .f-dropdown.open > span:after {
+        background: #000;
+      }
+      .explore-city .e-city-dropdown .f-dropdown.open > span:before {
+        transform: scale(0.96, 0.8) rotate(-50deg);
+      }
+      .explore-city .e-city-dropdown .f-dropdown.open > span:after {
+        transform: scale(0.96, 0.8) rotate(50deg);
+      }
+      .explore-city .e-city-dropdown .f-dropdown.open ul {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, 12px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.4, 0.6, 0.5, 1.32);
+      }
+      
+      /* --------------------------- */
+      .explore-city .e-city-dropdown .f-group {
+        max-width: 297px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .explore-city .e-city-dropdown .f-group select {
+        width: 100%;
+      }
+      
+      .explore-city .e-city-dropdown .f-control {
+        font-size: 14px;
+        line-height: 28px;
+        color: #000;
+        display: inline-block;
+        background-color: #ffffff;
+        border: #ccc 1px solid;
+        border-radius: 6px;
+        outline: none;
+        max-width: 297px;
+      }
+
     /******** Explore cities section end ********/
 
 /******* Explore cities page end ********/
@@ -1549,10 +1723,10 @@ header.header .navbar .dropdown .dropdown-btn{
         box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
         border-radius: 12px;
         background: #fff;
-        /* max-width: 240px; */
+        max-width: 240px;
         max-height: 240px;
         padding: 103px 32px;
-        /* margin: 0 auto; */
+        margin: 0 auto;
     }
     .pwm-transport .pwm-trans-card .pwm-trans-card-inner .pwm-trans-card-content p{
         font-weight: 400;
@@ -1774,7 +1948,7 @@ header.header .navbar .dropdown .dropdown-btn{
             font-size: 16px;
             line-height: 32px;
         }
-    /*******pwm-rest-main start ********/
+    /*******pwm-rest-main end ********/
 
 /********* place with map fourth page end ********/
 
@@ -1810,6 +1984,7 @@ header.header .navbar .dropdown .dropdown-btn{
         font-size: 48px;
         line-height: 48px;
         color: #393C52;
+        font-weight: 900;
     }
     /*********h-details-title section end *******/
     /******** h-d-amenities section start *******/

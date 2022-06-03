@@ -35,18 +35,15 @@ Facilities
                                 <div class="p-form-select d-flex justify-content-between">
                                     <select class="form-select w-50 me-3 parking-avaliable">
                                         <option value="no" selected>No</option>
-                                        <option value="paid">yes, paid</option>
-                                        <option value="free">yes, free</option>
+                                        <option value="yes">Yes</option>
                                     </select>
                                     <select class="form-select input-w-20 me-3 d-none parking-type">
-                                        <option selected>Private</option>
-                                        <option value="private">Private</option>
-                                        <option value="personal">persnoal</option>
+                                        <option value="private" selected>Private</option>
+                                        <option value="public">Public</option>
                                     </select>
                                     <select class="form-select input-w-20 d-none parking-site">
-                                        <option selected>Onsite</option>
-                                        <option value="onsite">Onsite</option>
-                                        <option value="double">no,paid</option>
+                                        <option value="on" selected>On site</option>
+                                        <option value="off">Off site</option>
                                     </select>
                                 </div>
                             </form>
@@ -61,10 +58,26 @@ Facilities
                                         guests?</label>
                                 </div>
                                 <div class="p-form-select d-flex">
-                                    <select class="form-select w-50 me-3">
-                                        <option selected>yes, it's included in the price</option>
-                                        <option value="single">yes,free</option>
-                                        <option value="double">no,paid</option>
+                                    <select class="form-select w-50 me-3 brackfast_select">
+                                        <option value="no" selected>no</option>
+                                        <option value="include">yes, it's included in the price</option>
+                                        <option value="optional">yes,it's optional</option>
+                                    </select>
+                                </div>
+                                <div class="input-group pt-3 w-50 d-none breakfast_price_div">
+                                    <label for="" class="form-label label-heading">Price for breakfast (per person, per day including all fees and taxes)</label>
+                                    <div class="input-group flex-nowrap">
+                                        <span class="input-group-text para-fs-14" id="addon-wrapping">INR</span>
+                                        <input type="text" class="form-control custom-from-control price_breakfast" placeholder="0" >
+                                    </div>
+                                    <span id="bed_price_error" class="text-danger"></span>
+                                </div>
+                                <div class="p-form-select pt-3 d-none food_type_div">
+                                    <label for="" class="form-label label-heading">What kind of breakfast is available?</label>
+                                    <select class="form-select w-50 smoking_area food_type_val">
+                                        @foreach ($food_types as $food_type)
+                                            <option value="{{$food_type->id}}">{{$food_type->food_type}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </form>
@@ -78,12 +91,15 @@ Facilities
                                 </div>
                                 <div id="add_languages">
                                     <div class="p-form-select d-flex mb-3">
-                                        <select class="form-select w-25 me-3">
-                                            <option selected>English</option>
-                                            <option value="">Hindi</option>
-                                            <option value="">Russian</option>
+                                        <input type="hidden" class="number-of-select" value="1">
+                                        <select class="form-select w-25 me-3 language language_1" name="language">
+                                            <option value="">Please select</option>
+                                            <option value="english">English</option>
+                                            <option value="hindi">Hindi</option>
+                                            <option value="russian">Russian</option>
                                         </select>
                                     </div>
+                                    <span id="language_error_1" class="text-danger"></span>
                                 </div>
                             </form>
                             <div class="pannel-add-another py-3" >
@@ -102,9 +118,9 @@ Facilities
                                     <div class="facilities-check d-flex flex-wrap align-items-center justify-content-between">
                                         @foreach ($facilities as $facilitate)
                                             <div class="form-check py-3 border--dotted">
-                                                <input class="form-check-input" type="checkbox" value="" checked>
                                                 <label class="form-check-label para-fs-14 fs-6">
-                                                {{$facilitate->facilities_name}}
+                                                    <input class="form-check-input facilities_check" name="facilities_check[]" type="checkbox" value="{{$facilitate->id}}">
+                                                    {{$facilitate->facilities_name}}
                                                 </label>
                                             </div>
                                         @endforeach     
@@ -113,7 +129,7 @@ Facilities
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100">Continue</a>
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 facilities-button">Continue</a>
                         </div>
                     </main>
                 </div>
@@ -157,12 +173,7 @@ Facilities
                 $('.parking-type').addClass('d-none');;
             }
 
-            if(parking == 'paid') {
-                $('.parking-site').removeClass('d-none');
-                $('.parking-type').removeClass('d-none');
-            }
-
-            if(parking == 'free') {
+            if(parking == 'yes') {
                 $('.parking-site').removeClass('d-none');
                 $('.parking-type').removeClass('d-none');
             }
@@ -170,24 +181,91 @@ Facilities
         });
 
         $("#p_add_lan").bind("click", function () {
-            var div = $("<div />");
-            div.html(GetDynamicTextBox(""));
-            $("#add_languages").append(div);
+            var number = $('.number-of-select').val();
+            var numbers = parseInt(number)+1;
+            $("#add_languages").append('<div class="p-form-select d-flex mb-3 align-items-center">' +
+                                            '<select class="form-select w-25 me-3 language language_'+numbers+'" name="language">' +
+                                                '<option value="">Please select</option>' +
+                                                '<option value="english">English</option>' +
+                                                '<option value="hindi">Hindi</option>' +
+                                                '<option value="russian">Russian</option>' +
+                                            '</select>' + 
+                                            '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />' +
+                                        '</div>' +
+                                        '<span id="language_error_'+numbers+'" class="text-danger"></span>');
+
+                                        var number = $('.number-of-select').val(numbers);
+
         });
 
         $("body").on("click", ".remove", function () {
             $(this).closest("div").remove();
+            var number = $('.number-of-select').val();
+            var numbers = parseInt(number)-1;
+            var number = $('.number-of-select').val(numbers);
         });
 
-        function GetDynamicTextBox(value) {
-            return '<div class="p-form-select d-flex mb-3 align-items-center">' +
-                        '<select class="form-select w-25 me-3">' +
-                            '<option selected>English</option>' +
-                            '<option value="">Hindi</option>' +
-                            '<option value="">Russian</option>' +
-                        '</select>' + '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />'
-                    '</div>'
-        }
+        $(document).on('change', '.brackfast_select', function(){
+            var breakfast = $(this).val();
+            if(breakfast == 'no'){
+                $('.breakfast_price_div').addClass('d-none');
+                $('.food_type_div').addClass('d-none');
+            }
+
+            if(breakfast == 'include'){
+                $('.food_type_div').removeClass('d-none');
+            }
+
+            if(breakfast == 'optional'){
+                $('.food_type_div').removeClass('d-none');
+                $('.breakfast_price_div').removeClass('d-none');
+            }
+        });
+
+        $('.facilities-button').on('click', function(){
+            var number = $('.number-of-select').val();
+
+            let language_data = $('.language_'+number+' option:selected').val();
+            !language_data ? $(`#language_error_`+number).html(`Select a language type`) : $(`#language_error_`+number).html(``);
+
+            
+            let parking_avaliable = $('.parking-avaliable').val();
+            let parking_type      = $('.parking-type').val();
+            let parking_site      = $('.parking-site').val();
+            let brackfast_select  = $('.brackfast_select').val();
+            let price_breakfast   = $('.price_breakfast').val();
+            let food_type_val     = $('.food_type_val').val();
+            var language          = $(".language option:selected").map(function(){return $(this).val();}).get();
+            var facilities        = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
+
+            formdata = new FormData();
+
+            formdata.append('parking_avaliable', parking_avaliable);
+            formdata.append('parking_type', parking_type);
+            formdata.append('parking_site', parking_site);
+            formdata.append('brackfast_select', brackfast_select);
+            formdata.append('price_breakfast',price_breakfast);
+            formdata.append('food_type_val', food_type_val);
+            formdata.append('facilities', facilities);
+            formdata.append('language', language);
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "{{route('add-facilities')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (res) {
+                    $("input[type=text], input[type=tel]").val("");
+                    if (res.redirect_url) {
+                        window.location = res.redirect_url;
+                    }
+                },
+            }); 
+        });
         
     });
 </script>

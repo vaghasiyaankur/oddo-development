@@ -18,6 +18,7 @@ use App\Models\AmenitiesCategory;
 use App\Models\BedType;
 use App\Models\Room;
 use App\Models\HotelBed;
+use App\Models\FoodType;
 
 class PropertyController extends Controller
 {
@@ -82,16 +83,24 @@ class PropertyController extends Controller
 
     public function facilities(){
         $facilities = Facilities::active()->get();
-        return view('usersite::facilities', compact('facilities'));
+        $food_types = FoodType::active()->get();
+        return view('usersite::facilities', compact('facilities', 'food_types'));
     }
     
-    public function room_lists(Request $request)
+    public function room_list(Request $request)
     {
         $room_type_id = $request->room_type_id;
         $roomlist = RoomType::where('id',$room_type_id)->with('room_lists')->active()->get();
         return response()->json([
             'roomlist' => $roomlist
         ]);
+    }
+
+    public function room_lists() {
+        $hotel_id = Session::get('hotel')->id;
+        $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get();
+
+        return view('usersite::room-list', compact('rooms'));
     }
 
     public function amenities(){
@@ -133,11 +142,49 @@ class PropertyController extends Controller
                         'room_id' => $room_id->id,
                     ]);  
             }
+        return response()->json(['status' => 1,  'redirect_url' => route('room-list')]);
+    }
 
-        $room = Room::get();
-        return response()->json(['status' => 1,  'redirect_url' => route('room-list', ['room' => $room])]);
+    public function add_facilities(Request $request){
 
+        $lang = explode(",", $request['language']);
+        $language = array_unique($lang);  
 
+        $hotel_id = Session::get('hotel')->id; 
+
+        $Hotel   =   Hotel::updateOrCreate(
+            [
+                'id' => $hotel_id
+            ],
+            [
+                'parking_available'  => $request->parking_avaliable,
+                'parking_type'       => $request->parking_type,
+                'parking_site'       => $request->parking_site,
+                'breakfast'          => $request->brackfast_select,
+                'breakfast_price'    => $request->price_breakfast,
+                'breakfast_type'     => $request->food_type_val,
+                'facilities'         => $request['facilities'],
+                'language'           => $language
+            ]);  
+        
+            return response()->json(['status' => 1,  'redirect_url' => route('amenities')]);
+    }
+
+    public function add_amenities(Request $request){
+
+        $hotel_id = Session::get('hotel')->id; 
+
+        $Hotel   =   Hotel::updateOrCreate(
+            [
+                'id' => $hotel_id
+            ],
+            [
+                'extra_bed'        => $request->extra_bed,
+                'number_extra_bed' => $request->extra_no_of_bed,
+                'amenity_id'       => $request['amenities'],
+            ]);  
+            
+        return response()->json(['status' => 1,  'redirect_url' => route('amenities')]);
     }
    
 }

@@ -45,7 +45,7 @@
     <!------ slick js cdn -------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
 
-    
+    @stack('script-link')
 
   <script>
      //----  clander js checkin check-out  ----//

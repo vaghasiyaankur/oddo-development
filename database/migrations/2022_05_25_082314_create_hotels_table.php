@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('check_out')->nullable();
             $table->string('pet')->nullable();
             $table->string('pet_charge')->nullable();
+            $table->string('amenity_id')->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
             $table->integer('amenities_id')->unsigned()->nullable();

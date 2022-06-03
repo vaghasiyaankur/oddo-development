@@ -30,25 +30,25 @@ Add-Layout
                                 </div>
                                 <div class="amenities-raido-btn">
                                     <div class="form-check form-check-inline amenities-radio">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="yes" checked>
+                                        <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" id="yes" value="yes">
                                         <label class="form-check-label" for="yes">
                                          Yes
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline amenities-radio">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="no">
+                                        <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" value="no" id="no" checked>
                                         <label class="form-check-label" for="no">
                                          No
                                         </label>
                                     </div>
                                 </div>
-                                <div class="total-room-layout pt-3">
+                                <div class="total-room-layout pt-3 d-none number-of-bed">
                                     <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
-                                    <select class="form-select layout-totalroom  me-3">
-                                        <option selected="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4</option>
+                                    <select class="form-select layout-totalroom  me-3 extra_no_of_bed">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
                                     </select>
                                 </div>
                             </form>
@@ -138,7 +138,7 @@ Add-Layout
                                                             @foreach($category->amenities as $amenity)
                                                                 <div class="form-check pb-3 border--bottom amenity-checked">
                                                                     <label class="form-check-label para-fs-14 fs-6">
-                                                                    <input class="form-check-input checked-amenity-{{$amenity->id}}" type="checkbox" name="{{$category->slug}}">
+                                                                    <input class="form-check-input checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}">
                                                                     
                                                                     {{$amenity->amenities}}
                                                                     </label>
@@ -154,7 +154,7 @@ Add-Layout
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100">Continue</a>
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 amenities-button">Continue</a>
                         </div>
                     </main>
                 </div>
@@ -185,7 +185,46 @@ $(document).ready(function(){
       var set_length = $(`.checkbox_length_${name}`).html(checkbox);
     });
 
-   
+    
+    $('.extra-bed').on('click', function(){
+        var extra_bed = $(this).val();
+        if(extra_bed == 'yes'){
+            $('.number-of-bed').removeClass('d-none');
+        }else{
+            $('.number-of-bed').addClass('d-none');
+        }
+    });
+
+    $(document).on('click', '.amenities-button', function(){
+
+        var extra_bed  = $('.extra-bed:checked').val();
+        var extra_no_of_bed = $('.extra_no_of_bed').val();
+        var amenities       = $("input[id='amenities']:checked").map(function(){return $(this).val();}).get();
+
+        formdata = new FormData();
+
+        formdata.append('extra_bed', extra_bed);
+        formdata.append('amenities', amenities);
+        if(extra_bed == 'yes') {
+            formdata.append('extra_no_of_bed', extra_no_of_bed);
+        }
+
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            url: "{{route('add-amenities')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (res) {
+                if (res.redirect_url) {
+                    window.location = res.redirect_url;
+                }
+            },
+        }); 
+    });
 
 });
 </script>

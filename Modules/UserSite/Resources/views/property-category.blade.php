@@ -50,7 +50,7 @@
                                 <p class="m-0">{{$property->description}}</p>
                             </div>
                             <div class="l-mypro-card-btn">
-                                <a href="{{route('property-form', ['slug' => $property->slug])}}" class="btn card-btn">List your Properties</a>
+                                <a href="{{route('property-form')}}" class="btn card-btn">List your Properties</a>
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                                 <p class="m-0">{{$property->description}}</p>
                             </div>
                             <div class="l-mypro-card-btn">
-                                <a href="{{route('property-form', ['slug' => $property->slug])}}" class="btn card-btn">List your Properties</a>
+                                <a href="{{route('property-form')}}" class="btn card-btn">List your Properties</a>
                             </div>
                         </div>
                     </div>

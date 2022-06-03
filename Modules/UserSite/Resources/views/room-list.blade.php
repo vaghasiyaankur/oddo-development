@@ -19,13 +19,16 @@ Add-Layout
                             <h2 class=" purple-dark pannel-title">Layout & Pricing</h2>
                             <h5 class="heading-fs-16 purple-dark">Tell us abourt your first room. After entering all the necessary info,you can fill in the details of your other room.</h5>
                         </div>
+                        @foreach($rooms as $room)
                         <div class="layout-add-room px-4 py-5">
+                            
+                            
                             <div class="add-room-box d-flex justify-content-between align-items-center">
                                 <div class="addroom-left">
-                                    <h5 class="m-0 heading-fs-16 fw-bold">Standard Room With Sea View</h5>
+                                    <h5 class="m-0 heading-fs-16 fw-bold">{{$room['roomlist']->room_name}}</h5>
                                 </div>
                                 <div class="addroom-middle">
-                                    <P class="m-0 para-fs-14">Number of this type: <span class="fw-bold">5</span></P>
+                                    <P class="m-0 para-fs-14">Number of this type: <span class="fw-bold">{{$room->number_of_room}}</span></P>
                                 </div>
                                 <div class="addroom-right">
                                     <div class="addroom-btn">
@@ -34,10 +37,11 @@ Add-Layout
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
+                        @endforeach
                         <div class="another-c-details mt-4 text-end">
                             <a href="{{route('layout-pricing-form')}}" class="btn another-c-d-btn bg-light w-25 btn-outline-dark text-dark py-2">Add Another Room</a>
-                            <a href="javascript:;" class="btn another-c-d-btn w-25 py-2">Continue</a>
+                            <a href="{{route('facilities-form')}}" class="btn another-c-d-btn w-25 py-2">Continue</a>
                         </div>
                     </main>
                 </div>

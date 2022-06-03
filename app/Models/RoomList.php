@@ -13,4 +13,7 @@ class RoomList extends Model
         return $query->where('status', 1);
     }
     
+    public function room(){
+        return $this->hasMany(Room::class, 'room_type_id', 'id');
+    }
 }

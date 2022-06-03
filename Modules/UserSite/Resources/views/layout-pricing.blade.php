@@ -17,8 +17,8 @@ Layout & pricing
                     <main class="layout">
                         <div class="pannel-heading">
                             <h2 class=" purple-dark pannel-title">Layout & Pricing</h2>
-                            <a href="javascipt:;">
-                                <h5 class="heading-fs-16 purple-dark">Back to overview</h5>
+                            <a href="{{route('layout-form')}}">
+                                <h5 class="heading-fs-16 purple-dark" onclick="window.history.back()">Back to overview</h5>
                             </a>
                         </div>
                         <div class="form-info-box">
@@ -186,7 +186,6 @@ Layout & pricing
 
         $("#p_add_another").bind("click", function () {
             var number = $('.number-of-select').val();
-            // var number = $('.contant_count').val();
             var numbers = parseInt(number)+1;
             
             $("#text-input-add").append('<div class="d-flex align-items-center mb-3" >' +

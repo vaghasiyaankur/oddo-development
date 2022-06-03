@@ -21,8 +21,18 @@ Route::controller(PropertyController::class)->group(function(){
     Route::get('facilities-form', 'facilities')->name('facilities-form');
     Route::view('layout-form', 'usersite::add-layout')->name('layout-form');
     Route::get('layout-pricing-form', 'layout_pricing')->name('layout-pricing-form');
-    Route::post('room-lists', 'room_lists')->name('room-lists');
-    Route::view('room-list', 'usersite::room-list')->name('room-list'); 
+    Route::post('room-lists', 'room_list')->name('room-lists');
+    Route::get('room-list', 'room_lists')->name('room-list'); 
     Route::get('amenities', 'amenities')->name('amenities');
-    Route::post('add-room', 'add_room')->name('add-room');
+    Route::post('add-room', 'add_room')->name('add-room'); 
+    Route::post('add-facilities', 'add_facilities')->name('add-facilities');
+    Route::post('add-amenities', 'add_amenities')->name('add-amenities');
+    Route::view('photos', 'usersite::photo')->name('photo');
 });
+
+
+// Route::get('/update-column', function(){
+//     Schema::table('hotels', function (Blueprint $table) {
+//        $table->string('amenity_id')->nullable();
+//     });
+// });

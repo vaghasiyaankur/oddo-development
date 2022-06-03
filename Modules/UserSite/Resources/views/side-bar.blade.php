@@ -11,13 +11,13 @@
                 <a class="nav-link {{ Request::routeIs('facilities-form') ? 'active' : '' }}" href="{{route('facilities-form')}}">Facilities & Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::routeIs('amenities') ? 'active' : '' }}" href="{{route('amenities')}}">Aminities</a>
+                <a class="nav-link {{ Request::routeIs('amenities') ? 'active' : '' }}" href="{{route('amenities')}}">Amenities</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript">Photos</a>
+                <a class="nav-link {{ Request::routeIs('photo') ? 'active' : '' }}" href="{{route('photo')}}">Photos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript">Policies</a>
+                <a class="nav-link " href="javascript">Policies</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="javascript">Payments</a>
