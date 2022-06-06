@@ -34,7 +34,9 @@ Photo
                                                 <input type="file" id="imgUpload" multiple accept="image/*" onchange="filesManager(this.files)">
                                                 <label class="button purple" for="imgUpload">Add Photos</label>
                                             </form>
-                                            <div id="gallery"></div>
+                                        </div> 
+                                        <div class="sortable row" id="gallery">
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -68,121 +70,236 @@ Photo
     </section>
     <!------ Pannel Form end ------->
 
+        <div id="dog-photo-preview" style="display:none;">
+            <div class="dz-preview well dz-image-preview col-lg-4 me-0 ms-0"  id="dz-preview-template">
+                {{-- <div class="main-photo-wrapper">
+                    <div class="main-photo-element main-photo-label-bigger">Main Photo</div>
+                </div> --}}
+                <div class="dz-details me-0 ms-0 border">
+                    <div class="dz-details-inner d-block m-0">
+                        <div class="gallery-img m-0">
+                            <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="">
+                        </div>
+                        <div class="gallery-btn d-block ms-0 me-0 ">
+                            <a href="javascript:;" class="crop-selected-image text-dark"><i class="fa-solid fa-pen"></i> <span> Edit</span>
+                                {{-- <img src="{{bagisto_asset('images/icon/crop.png')}}" style="width: 18px; height: auto;" /> --}}
+                            </a>
+                            <a href="javascript:;" class="dz-remove remove-selected-image text-dark  ps-5" data-dz-remove>
+                                <i class="fa-solid fa-trash-can"></i> <span>close</span> 
+                                {{-- <img src="{{bagisto_asset('images/icon/close.svg')}}" style="width: 18px; height: auto;" /> --}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {{-- <input type="text" class="selected-images-input form_input" placeholder="Picture Title"> --}}
+                <div class="dz-success-mark"><span> </span></div>
+                <div class="dz-error-mark"><span></span></div>
+                <div class="dz-error-message">
+                    <span data-dz-errormessage=""></span>
+                </div>
+            </div>
+            
+        </div>
+
 @endsection
 
 @push('css')
 <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+{{-- <style>
+#dz-preview-template.main-photo-label-bigger:first-child {
+    padding: 2px 12px;
+    font-size: 14px;
+    height: auto;
+}
+.main-photo-element:first-child {
+    max-width: 150px;
+    height: 20px;
+    text-align: center;
+    background: #ff8000;
+    color: #fff;
+    border-radius: 3px;
+    margin: auto;
+    padding: 0px 8px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+</style> --}}
 @endpush
 
 @push('scripts')
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script>
 // jjs for hide and show on butoon 
-$(document).ready(function(){
-        let dropBox = document.getElementById('dropBox');
+// $(document).ready(function(){
+//         let dropBox = document.getElementById('dropBox');
 
-    // modify all of the event types needed for the script so that the browser
-    // doesn't open the image in the browser tab (default behavior)
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
-    dropBox.addEventListener(evt, prevDefault, false);
-    });
-    function prevDefault (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    }
+//     // modify all of the event types needed for the script so that the browser
+//     // doesn't open the image in the browser tab (default behavior)
+//     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+//     dropBox.addEventListener(evt, prevDefault, false);
+//     });
+//     function prevDefault (e) {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     }
 
-    // remove and add the hover class, depending on whether something is being
-    // actively dragged over the box area
-    ['dragenter', 'dragover'].forEach(evt => {
-    dropBox.addEventListener(evt, hover, false);
-    });
-    ['dragleave', 'drop'].forEach(evt => {
-    dropBox.addEventListener(evt, unhover, false);
-    });
-    function hover(e) {
-    dropBox.classList.add('hover');
-    }
-    function unhover(e) {
-    dropBox.classList.remove('hover');
-    }
+//     // remove and add the hover class, depending on whether something is being
+//     // actively dragged over the box area
+//     ['dragenter', 'dragover'].forEach(evt => {
+//     dropBox.addEventListener(evt, hover, false);
+//     });
+//     ['dragleave', 'drop'].forEach(evt => {
+//     dropBox.addEventListener(evt, unhover, false);
+//     });
+//     function hover(e) {
+//     dropBox.classList.add('hover');
+//     }
+//     function unhover(e) {
+//     dropBox.classList.remove('hover');
+//     }
 
-    // the DataTransfer object holds the data being dragged. it's accessible
-    // from the dataTransfer property of drag events. the files property has
-    // a list of all the files being dragged. put it into the filesManager function
-    dropBox.addEventListener('drop', mngDrop, false);
-    function mngDrop(e) {
-    let dataTrans = e.dataTransfer;
-    let files = dataTrans.files;
-    filesManager(files);
-    }
+//     // the DataTransfer object holds the data being dragged. it's accessible
+//     // from the dataTransfer property of drag events. the files property has
+//     // a list of all the files being dragged. put it into the filesManager function
+//     dropBox.addEventListener('drop', mngDrop, false);
+//     function mngDrop(e) {
+//     let dataTrans = e.dataTransfer;
+//     let files = dataTrans.files;
+//     filesManager(files);
+//     }
 
-    // use FormData browser API to create a set of key/value pairs representing
-    // form fields and their values, to send using XMLHttpRequest.send() method.
-    // Uses the same format a form would use with multipart/form-data encoding
-    function upFile(file) {
-    //only allow images to be dropped
-    let imageType = /image.*/;
-    if (file.type.match(imageType)) {
-        let url = 'HTTP/HTTPS URL TO SEND THE DATA TO';
-        // create a FormData object
-        let formData = new FormData();
-        // add a new value to an existing key inside a FormData object or add the
-        // key if it doesn't exist. the filesManager function will loop through
-        // each file and send it here to be added
-        formData.append('file', file);
+//     // use FormData browser API to create a set of key/value pairs representing
+//     // form fields and their values, to send using XMLHttpRequest.send() method.
+//     // Uses the same format a form would use with multipart/form-data encoding
+//     function upFile(file) {
+//     //only allow images to be dropped
+//     let imageType = /image.*/;
+//     if (file.type.match(imageType)) {
+//         let url = 'HTTP/HTTPS URL TO SEND THE DATA TO';
+//         // create a FormData object
+//         let formData = new FormData();
+//         // add a new value to an existing key inside a FormData object or add the
+//         // key if it doesn't exist. the filesManager function will loop through
+//         // each file and send it here to be added
+//         formData.append('file', file);
 
-        // standard file upload fetch setup
-        fetch(url, {
-            method: 'put',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(result => { console.log('Success:', result); })
-        .catch(error => { console.error('Error:', error); });
-    } else {
-        console.error("Only images are allowed!", file);
-    }
-    }
-    // use the FileReader API to get the image data, create an img element, and add
-    // it to the gallery div. The API is asynchronous so onloadend is used to get the
-    // result of the API function
-    function previewFile(file) {
-    // only allow images to be dropped
-    let imageType = /image.*/;
-    if (file.type.match(imageType)) {
-        let fReader = new FileReader();
-        let gallery = document.getElementById('gallery');
-        // reads the contents of the specified Blob. the result attribute of this
-        // with hold a data: URL representing the file's data
-        fReader.readAsDataURL(file);
-        // handler for the loadend event, triggered when the reading operation is
-        // completed (whether success or failure)
-        fReader.onloadend = function() {
-            let wrap = document.createElement('div');
-            let img = document.createElement('img');
-            // set the img src attribute to the file's contents (from read operation)
-            img.src = fReader.result;
-            let imgCapt = document.createElement('p');
-            // the name prop of the file contains the file name, and the size prop
-            // the file size. convert bytes to KB for the file size
-            let fSize = (file.size / 1000) + ' KB';
-            imgCapt.innerHTML = `<span class="fName">${file.name}</span><span class="fSize">${fSize}</span><span class="fType">${file.type}</span>`;
-            gallery.appendChild(wrap).appendChild(img);
-            gallery.appendChild(wrap).appendChild(imgCapt);
-        }
-    } else {
-        console.error("Only images are allowed!", file);
-    }
-    }
+//         // standard file upload fetch setup
+//         fetch(url, {
+//             method: 'put',
+//             body: formData
+//         })
+//         .then(response => response.json())
+//         .then(result => { console.log('Success:', result); })
+//         .catch(error => { console.error('Error:', error); });
+//     } else {
+//         console.error("Only images are allowed!", file);
+//     }
+//     }
+//     // use the FileReader API to get the image data, create an img element, and add
+//     // it to the gallery div. The API is asynchronous so onloadend is used to get the
+//     // result of the API function
+//     function previewFile(file) {
+//     // only allow images to be dropped
+//     let imageType = /image.*/;
+//     if (file.type.match(imageType)) {
+//         let fReader = new FileReader();
+//         let gallery = document.getElementById('gallery');
+//         // reads the contents of the specified Blob. the result attribute of this
+//         // with hold a data: URL representing the file's data
+//         fReader.readAsDataURL(file);
+//         // handler for the loadend event, triggered when the reading operation is
+//         // completed (whether success or failure)
+//         fReader.onloadend = function() {
+//             let wrap = document.createElement('div');
+//             let img = document.createElement('img');
+//             // set the img src attribute to the file's contents (from read operation)
+//             img.src = fReader.result;
+//             let imgCapt = document.createElement('p');
+//             // the name prop of the file contains the file name, and the size prop
+//             // the file size. convert bytes to KB for the file size
+//             let fSize = (file.size / 1000) + ' KB';
+//             imgCapt.innerHTML = `<span class="fName">${file.name}</span><span class="fSize">${fSize}</span><span class="fType">${file.type}</span>`;
+//             gallery.appendChild(wrap).appendChild(img);
+//             gallery.appendChild(wrap).appendChild(imgCapt);
+//         }
+//     } else {
+//         console.error("Only images are allowed!", file);
+//     }
+//     }
 
-    function filesManager(files) {
-    // spread the files array from the DataTransfer.files property into a new
-    // files array here
-    files = [...files];
-    // send each element in the array to both the upFile and previewFile
-    // functions
-    files.forEach(upFile);
-    files.forEach(previewFile);
-    } 
+//     function filesManager(files) {
+//     // spread the files array from the DataTransfer.files property into a new
+//     // files array here
+//     files = [...files];
+//     // send each element in the array to both the upFile and previewFile
+//     // functions
+//     files.forEach(upFile);
+//     files.forEach(previewFile);
+//     } 
+// });
+</script>
+
+<script>
+ 
+
+    var myNewdDropzone = new Dropzone("#dropBox",  {
+    url: '/test',
+    method: 'post',
+    autoProcessQueue: false,
+    autoQueue: false,
+    maxFiles: 100,
+    thumbnailWidth: '500',
+    thumbnailHeight: '500',
+    clickable: true,
+    previewsContainer: "#gallery",
+    previewTemplate: document.querySelector('#dog-photo-preview').innerHTML,
+    init : function() {
+        var myDropzone = this;
+        // myDropzone.on("addedfile", function (file) {
+        //     var reader = new FileReader();
+        //     reader.onload = function(event) {
+        //         // event.target.result contains base64 encoded image
+        //         var base64String = event.target.result;
+        //         var fileName = file.name
+        //         console.log(base64String)
+        //         // handlePictureDropUpload(base64String ,fileName );
+        //     };
+        //     reader.readAsDataURL(file);
+
+        // });
+    },
 });
+$(document).ready(function(){
+ var data = $('.sortable').sortable();
+console.log(data);
+});
+$(document).on('click','.crop-selected-image', function(){
+        console.log($(this).siblings('img'));
+        var files = $(this).siblings('img').attr("src");
+        var addclass = $(this).siblings('img').addClass('temp-img-class');
+
+        console.log(files);
+        var done = function (url) {
+		image.src = url;
+		// $('#album-modal').modal('show');
+	};  
+
+    var done = function (url) {
+		image.src = url;
+		$('#album-modal').modal('show');
+	};
+    done(files);
+	// if (files && files.length > 0) {
+	// 	reader = new FileReader();
+	// 	reader.onload = function (event) {
+	// 		done(reader.result);
+	// 	};
+	// 	reader.readAsDataURL(files[0]);
+	// }
+    });  
 </script>
 @endpush
