@@ -28,6 +28,7 @@ Route::controller(PropertyController::class)->group(function(){
     Route::post('add-facilities', 'add_facilities')->name('add-facilities');
     Route::post('add-amenities', 'add_amenities')->name('add-amenities');
     Route::view('photos', 'usersite::photo')->name('photo');
+    Route::post('save-photos', 'save_photos')->name('save-photos');
 });
 
 

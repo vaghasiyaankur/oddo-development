@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('hotel_photos', function (Blueprint $table) {
+            $table->id();
+            $table->string('main_photo')->nullable();
+            $table->string('photos')->nullable();
+            $table->string('photos_path')->nullable();
+            $table->integer('room_id')->unsigned()->nullable();
+            $table->integer('hotels_id')->unsigned()->nullable();
+
+            $table->foreign('room_id')->references('id')->on('room_types');
+            $table->foreign('hotels_id')->references('id')->on('hotels');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('hotel_photos');
+    }
+};

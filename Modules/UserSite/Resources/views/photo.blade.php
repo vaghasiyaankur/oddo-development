@@ -60,7 +60,7 @@ Photo
                             </div> 
                             
                             <div class="another-c-details mt-4">
-                                <a href="javascript:;" class="btn another-c-d-btn w-100">Continue</a>
+                                <a href="javascript:;" class="btn another-c-d-btn w-100 save-photo-button">Continue</a>
                             </div>
                         </main>
                     </div>
@@ -70,28 +70,23 @@ Photo
     </section>
     <!------ Pannel Form end ------->
 
-        <div id="dog-photo-preview" style="display:none;">
-            <div class="dz-preview well dz-image-preview col-lg-4 me-0 ms-0"  id="dz-preview-template">
-                {{-- <div class="main-photo-wrapper">
-                    <div class="main-photo-element main-photo-label-bigger">Main Photo</div>
-                </div> --}}
+        <div id="hotel-photo-preview" style="display:none;">
+            <div class="dz-preview well dz-image-preview col-lg-4 me-0 ms-0 main-photo-wrapper position-relative"  id="dz-preview-template">
                 <div class="dz-details me-0 ms-0 border">
                     <div class="dz-details-inner d-block m-0">
                         <div class="gallery-img m-0">
                             <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="">
                         </div>
                         <div class="gallery-btn d-block ms-0 me-0 ">
-                            <a href="javascript:;" class="crop-selected-image text-dark"><i class="fa-solid fa-pen"></i> <span> Edit</span>
-                                {{-- <img src="{{bagisto_asset('images/icon/crop.png')}}" style="width: 18px; height: auto;" /> --}}
+                            <a href="javascript:;" class="crop-selected-image text-dark">
+                                <i class="fa-solid fa-pen"></i> <span>Edit</span>
                             </a>
                             <a href="javascript:;" class="dz-remove remove-selected-image text-dark  ps-5" data-dz-remove>
-                                <i class="fa-solid fa-trash-can"></i> <span>close</span> 
-                                {{-- <img src="{{bagisto_asset('images/icon/close.svg')}}" style="width: 18px; height: auto;" /> --}}
+                                <i class="fa-solid fa-trash-can"></i> <span>Delete</span> 
                             </a>
                         </div>
                     </div>
                 </div>
-                {{-- <input type="text" class="selected-images-input form_input" placeholder="Picture Title"> --}}
                 <div class="dz-success-mark"><span> </span></div>
                 <div class="dz-error-mark"><span></span></div>
                 <div class="dz-error-message">
@@ -106,28 +101,28 @@ Photo
 @push('css')
 <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-{{-- <style>
-#dz-preview-template.main-photo-label-bigger:first-child {
-    padding: 2px 12px;
-    font-size: 14px;
-    height: auto;
-}
-.main-photo-element:first-child {
-    max-width: 150px;
-    height: 20px;
-    text-align: center;
-    background: #ff8000;
-    color: #fff;
-    border-radius: 3px;
-    margin: auto;
-    padding: 0px 8px;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 14px;
-}
-</style> --}}
+<style>
+    .main-photo-wrapper:first-child:before{
+        content: "Main Photo";
+        max-width: 150px;
+        height: 20px;
+        text-align: center;
+        background: #6a78c7;
+        color: #fff;
+        border-radius: 3px;
+        margin: auto;
+        padding: 0px 8px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        position: absolute;
+        top: 0;
+        left:0;
+        right: 0;
+    }
+</style>
 @endpush
 
 @push('scripts')
@@ -247,59 +242,56 @@ Photo
  
 
     var myNewdDropzone = new Dropzone("#dropBox",  {
-    url: '/test',
-    method: 'post',
-    autoProcessQueue: false,
-    autoQueue: false,
-    maxFiles: 100,
-    thumbnailWidth: '500',
-    thumbnailHeight: '500',
-    clickable: true,
-    previewsContainer: "#gallery",
-    previewTemplate: document.querySelector('#dog-photo-preview').innerHTML,
-    init : function() {
-        var myDropzone = this;
-        // myDropzone.on("addedfile", function (file) {
-        //     var reader = new FileReader();
-        //     reader.onload = function(event) {
-        //         // event.target.result contains base64 encoded image
-        //         var base64String = event.target.result;
-        //         var fileName = file.name
-        //         console.log(base64String)
-        //         // handlePictureDropUpload(base64String ,fileName );
-        //     };
-        //     reader.readAsDataURL(file);
-
-        // });
-    },
-});
+        url: '/test',
+        method: 'post',
+        autoProcessQueue: false,
+        autoQueue: false,
+        maxFiles: 100,
+        thumbnailWidth: '500',
+        thumbnailHeight: '500',
+        clickable: true,
+        previewsContainer: "#gallery",
+        previewTemplate: document.querySelector('#hotel-photo-preview').innerHTML,
+        init : function() {
+            var myDropzone = this;
+        },
+    });
 $(document).ready(function(){
- var data = $('.sortable').sortable();
-console.log(data);
-});
-$(document).on('click','.crop-selected-image', function(){
-        console.log($(this).siblings('img'));
-        var files = $(this).siblings('img').attr("src");
-        var addclass = $(this).siblings('img').addClass('temp-img-class');
+    var data = $('.sortable').sortable();
 
+    $(document).on('click','.save-photo-button', function(){
+        let files = myNewdDropzone.getAcceptedFiles();
         console.log(files);
-        var done = function (url) {
-		image.src = url;
-		// $('#album-modal').modal('show');
-	};  
+//         var language          = $(files).map(function(){return $(this).val();}).get();
+// console.log(files);
+        formdata = new FormData();
+        // formdata.append('albums[]', files);
 
-    var done = function (url) {
-		image.src = url;
-		$('#album-modal').modal('show');
-	};
-    done(files);
-	// if (files && files.length > 0) {
-	// 	reader = new FileReader();
-	// 	reader.onload = function (event) {
-	// 		done(reader.result);
-	// 	};
-	// 	reader.readAsDataURL(files[0]);
-	// }
-    });  
+        let cropimages = files.filter(function(x,index){
+
+            formdata.append(`cropimages[${index}]`, `${x.dataURL}`);
+        });
+        console.log(formdata);
+        setTimeout(function(){
+                
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            url: "{{route('save-photos')}}",
+            type: "POST",
+            cache : false,
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (res) {
+
+            },
+        });
+    }, 2000);
+    });
+
+});
+
 </script>
 @endpush

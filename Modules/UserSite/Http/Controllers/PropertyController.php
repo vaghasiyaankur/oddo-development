@@ -19,6 +19,7 @@ use App\Models\BedType;
 use App\Models\Room;
 use App\Models\HotelBed;
 use App\Models\FoodType;
+use Modules\UserSite\Entities\HotelPhoto;
 
 class PropertyController extends Controller
 {
@@ -185,6 +186,31 @@ class PropertyController extends Controller
             ]);  
             
         return response()->json(['status' => 1,  'redirect_url' => route('amenities')]);
+    }
+
+    public function save_photos(Request $request)
+    {   
+        // $hotel_id = Session::get('hotel')->id; 
+        // $files =$request->get('file_name'); 
+        // $files = json_decode($request->get('file_name')); 
+        dd($request);
+        // $files =$request->get('files');
+        // dd($files);
+        // // $files = $request->get('file');
+        // $images = [];
+
+        // foreach ($files as $key => $file) {
+        //     $imageName = time().rand(1,99).'.'.$file->extension();  
+        //     $file->move(public_path('images'), $imageName);
+        //     $images[]['name'] = $imageName;
+        // }
+
+        // // foreach ($images as $key => $image) {
+
+        // //     HotelPhoto::create($image);
+        // // }
+        // dd($files);
+        
     }
    
 }
