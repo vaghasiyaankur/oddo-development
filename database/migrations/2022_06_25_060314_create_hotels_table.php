@@ -48,13 +48,13 @@ return new class extends Migration
             $table->integer('food_type_id')->unsigned()->nullable();
             $table->integer('bed_type_id')->unsigned()->nullable();
             $table->integer('hotel_contact_id')->unsigned()->nullable();
-            $table->integer('room_id')->unsigned()->nullable();
+            // $table->integer('room_id')->unsigned()->nullable();
 
             $table->foreign('room_list_id')->references('id')->on('room_lists')->onDelete('cascade');
             $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
             $table->foreign('food_type_id')->references('id')->on('food_types')->onDelete('cascade');
             $table->foreign('bed_type_id')->references('id')->on('bed_types')->onDelete('cascade');
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            // $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->timestamps();
         });
     }
