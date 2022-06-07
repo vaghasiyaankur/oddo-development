@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('country_name');
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->string('slug');
             $table->boolean('status')->default(0); 
             $table->timestamps();
