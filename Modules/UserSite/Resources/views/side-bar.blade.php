@@ -17,7 +17,7 @@
                 <a class="nav-link {{ Request::routeIs('photo') ? 'active' : '' }}" href="{{route('photo')}}">Photos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="javascript">Policies</a>
+                <a class="nav-link {{ Request::routeIs('photo') ? 'active' : '' }}" href="{{route('policy')}}">Policies</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="javascript">Payments</a>

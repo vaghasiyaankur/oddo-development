@@ -29,6 +29,8 @@ Route::controller(PropertyController::class)->group(function(){
     Route::post('add-amenities', 'add_amenities')->name('add-amenities');
     Route::view('photos', 'usersite::photo')->name('photo');
     Route::post('save-photos', 'save_photos')->name('save-photos');
+    Route::view('policy', 'usersite::policies')->name('policy');
+    Route::post('add-policy', 'add_policy')->name('add-policy');
 });
 
 

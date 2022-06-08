@@ -25,14 +25,18 @@ Photo
                                         <h5 class="m-0">Photo Gallery</h5>
                                     </div>
                                     <div class="drop-box-main">
-                                        <div id="dropBox">
+                                        <div id="dropBox" class="position-relative">
                                             <h5 class="m-0 heading-fs-16">Upload at least 1 photo </h5>
                                             <p class="para-fs-14">You"ll also be able to upload more after registration</p>
                                             <p class="m-0 fw-bold">Drag & Drop Your Photos Here...</p>
                                             <span class="d-l-Purple ">or</span> 
+                                            <div class="imguplode-btn imgUploader">
+                                                <a href="javascript" class="button purple">Add Photos</a>
+                                            </div>
                                             <form class="imgUploader mt-2">
-                                                <input type="file" id="imgUpload" multiple accept="image/*" onchange="filesManager(this.files)">
-                                                <label class="button purple" for="imgUpload">Add Photos</label>
+                                                {{-- <input type="file" id="imgUpload" multiple accept="image/*" onClick='add_photo()'> --}}
+                                                {{-- <input type="button" onClick='add_photo()'> --}}
+                                                <label class="uploader-opacity" for="imgUpload">Add Photos</label>
                                             </form>
                                         </div> 
                                         <div class="sortable row" id="gallery">
@@ -122,126 +126,23 @@ Photo
         left:0;
         right: 0;
     }
+    .pannel-form .property-photos .drop-box-main .uploader-opacity{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    }
 </style>
 @endpush
 
 @push('scripts')
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script>
-// jjs for hide and show on butoon 
-// $(document).ready(function(){
-//         let dropBox = document.getElementById('dropBox');
-
-//     // modify all of the event types needed for the script so that the browser
-//     // doesn't open the image in the browser tab (default behavior)
-//     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
-//     dropBox.addEventListener(evt, prevDefault, false);
-//     });
-//     function prevDefault (e) {
-//     e.preventDefault();
-//     e.stopPropagation();
-//     }
-
-//     // remove and add the hover class, depending on whether something is being
-//     // actively dragged over the box area
-//     ['dragenter', 'dragover'].forEach(evt => {
-//     dropBox.addEventListener(evt, hover, false);
-//     });
-//     ['dragleave', 'drop'].forEach(evt => {
-//     dropBox.addEventListener(evt, unhover, false);
-//     });
-//     function hover(e) {
-//     dropBox.classList.add('hover');
-//     }
-//     function unhover(e) {
-//     dropBox.classList.remove('hover');
-//     }
-
-//     // the DataTransfer object holds the data being dragged. it's accessible
-//     // from the dataTransfer property of drag events. the files property has
-//     // a list of all the files being dragged. put it into the filesManager function
-//     dropBox.addEventListener('drop', mngDrop, false);
-//     function mngDrop(e) {
-//     let dataTrans = e.dataTransfer;
-//     let files = dataTrans.files;
-//     filesManager(files);
-//     }
-
-//     // use FormData browser API to create a set of key/value pairs representing
-//     // form fields and their values, to send using XMLHttpRequest.send() method.
-//     // Uses the same format a form would use with multipart/form-data encoding
-//     function upFile(file) {
-//     //only allow images to be dropped
-//     let imageType = /image.*/;
-//     if (file.type.match(imageType)) {
-//         let url = 'HTTP/HTTPS URL TO SEND THE DATA TO';
-//         // create a FormData object
-//         let formData = new FormData();
-//         // add a new value to an existing key inside a FormData object or add the
-//         // key if it doesn't exist. the filesManager function will loop through
-//         // each file and send it here to be added
-//         formData.append('file', file);
-
-//         // standard file upload fetch setup
-//         fetch(url, {
-//             method: 'put',
-//             body: formData
-//         })
-//         .then(response => response.json())
-//         .then(result => { console.log('Success:', result); })
-//         .catch(error => { console.error('Error:', error); });
-//     } else {
-//         console.error("Only images are allowed!", file);
-//     }
-//     }
-//     // use the FileReader API to get the image data, create an img element, and add
-//     // it to the gallery div. The API is asynchronous so onloadend is used to get the
-//     // result of the API function
-//     function previewFile(file) {
-//     // only allow images to be dropped
-//     let imageType = /image.*/;
-//     if (file.type.match(imageType)) {
-//         let fReader = new FileReader();
-//         let gallery = document.getElementById('gallery');
-//         // reads the contents of the specified Blob. the result attribute of this
-//         // with hold a data: URL representing the file's data
-//         fReader.readAsDataURL(file);
-//         // handler for the loadend event, triggered when the reading operation is
-//         // completed (whether success or failure)
-//         fReader.onloadend = function() {
-//             let wrap = document.createElement('div');
-//             let img = document.createElement('img');
-//             // set the img src attribute to the file's contents (from read operation)
-//             img.src = fReader.result;
-//             let imgCapt = document.createElement('p');
-//             // the name prop of the file contains the file name, and the size prop
-//             // the file size. convert bytes to KB for the file size
-//             let fSize = (file.size / 1000) + ' KB';
-//             imgCapt.innerHTML = `<span class="fName">${file.name}</span><span class="fSize">${fSize}</span><span class="fType">${file.type}</span>`;
-//             gallery.appendChild(wrap).appendChild(img);
-//             gallery.appendChild(wrap).appendChild(imgCapt);
-//         }
-//     } else {
-//         console.error("Only images are allowed!", file);
-//     }
-//     }
-
-//     function filesManager(files) {
-//     // spread the files array from the DataTransfer.files property into a new
-//     // files array here
-//     files = [...files];
-//     // send each element in the array to both the upFile and previewFile
-//     // functions
-//     files.forEach(upFile);
-//     files.forEach(previewFile);
-//     } 
-// });
-</script>
-
-<script>
  
 
-    var myNewdDropzone = new Dropzone("#dropBox",  {
+    var myNewdDropzone = new Dropzone(".uploader-opacity",  {
         url: '/test',
         method: 'post',
         autoProcessQueue: false,
@@ -256,22 +157,19 @@ Photo
             var myDropzone = this;
         },
     });
+
+
+
 $(document).ready(function(){
     var data = $('.sortable').sortable();
 
     $(document).on('click','.save-photo-button', function(){
         let files = myNewdDropzone.getAcceptedFiles();
-        console.log(files);
-//         var language          = $(files).map(function(){return $(this).val();}).get();
-// console.log(files);
-        formdata = new FormData();
-        // formdata.append('albums[]', files);
-
-        let cropimages = files.filter(function(x,index){
-
-            formdata.append(`cropimages[${index}]`, `${x.dataURL}`);
-        });
-        console.log(formdata);
+        var formData = new FormData();       
+        for (var i = files.length - 1; i >= 0; i--) {
+            console.log(files[i]);
+            formData.append('files[]', files[i]);
+        }
         setTimeout(function(){
                 
         $.ajax({
@@ -283,7 +181,7 @@ $(document).ready(function(){
             cache : false,
             processData: false,
             contentType: false,
-            data: formdata,
+            data: formData,
             success: function (res) {
 
             },

@@ -13,7 +13,7 @@ use Modules\UserSite\Database\Seeders\PropertyTableSeeder;
 use Modules\UserSite\Database\Seeders\FacilitiesTableSeeder;
 use Modules\UserSite\Database\Seeders\RoomTypeTableSeeder;
 use Modules\UserSite\Database\Seeders\RoomListTableSeeder;
-
+use Modules\UserSite\Database\Seeders\BedTypeTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             FacilitiesTableSeeder::class,
             RoomTypeTableSeeder::class,
             RoomListTableSeeder::class,
+            BedTypeTableSeeder::class,
         ]);
     }
 }

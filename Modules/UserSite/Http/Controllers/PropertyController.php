@@ -193,7 +193,10 @@ class PropertyController extends Controller
         // $hotel_id = Session::get('hotel')->id; 
         // $files =$request->get('file_name'); 
         // $files = json_decode($request->get('file_name')); 
-        dd($request);
+        dd($request->all());
+        foreach($request['files'] as $file){
+            echo $file;
+        }
         // $files =$request->get('files');
         // dd($files);
         // // $files = $request->get('file');
@@ -211,6 +214,10 @@ class PropertyController extends Controller
         // // }
         // dd($files);
         
+    }
+
+    public function add_policy(Request $request){
+        dd($request->toarray());
     }
    
 }
