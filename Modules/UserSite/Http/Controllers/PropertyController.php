@@ -193,7 +193,7 @@ class PropertyController extends Controller
         // $hotel_id = Session::get('hotel')->id; 
         // $files =$request->get('file_name'); 
         // $files = json_decode($request->get('file_name')); 
-        dd($request);
+        dd($request->main);
         // $files =$request->get('files');
         // dd($files);
         // // $files = $request->get('file');
