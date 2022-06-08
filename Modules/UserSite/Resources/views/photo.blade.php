@@ -165,28 +165,54 @@ $(document).ready(function(){
 
     $(document).on('click','.save-photo-button', function(){
         let files = myNewdDropzone.getAcceptedFiles();
+//         var language          = $(files).map(function(){return $(this).val();}).get();
+// console.log(files);
+        // formdata = new FormData();
+        // formdata.append('albums[]', files);
+
+        // let cropimages = files.filter(function(x,index){
+
+        //     formdata.append(`cropimages[${index}]`, `${x.dataURL}`);
+        // });
+        // console.log(formdata);
+        // setTimeout(function(){
         var formData = new FormData();       
-        for (var i = files.length - 1; i >= 0; i--) {
-            console.log(files[i]);
-            formData.append('files[]', files[i]);
-        }
-        setTimeout(function(){
-                
-        $.ajax({
+        files.filter(async (f,i)=> {
+            // formData.append(`files_[${i}]`, `${f.dataURL}`);
+            // return f;
+            var main = 0;
+            if(i == 0){
+                var main = 1;
+            };
+            $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: "{{route('save-photos')}}",
             type: "POST",
-            cache : false,
-            processData: false,
-            contentType: false,
-            data: formData,
+            data: {'url' : f.dataURL, 'main' : main},
             success: function (res) {
-
+                console.log('dsds');
             },
         });
-    }, 2000);
+        });
+        
+        // $.ajax({
+        //     headers: {
+        //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        //     },
+        //     url: "{{route('save-photos')}}",
+        //     type: "POST",
+        //     cache : false,
+        //     processData: false,
+        //     contentType: false,
+        //     timeout: 1000,
+        //     data: formData,
+        //     success: function (res) {
+
+        //     },
+        // });
+    // }, 2000);
     });
 
 });

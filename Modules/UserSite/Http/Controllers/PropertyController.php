@@ -189,14 +189,8 @@ class PropertyController extends Controller
     }
 
     public function save_photos(Request $request)
-    {   
-        // $hotel_id = Session::get('hotel')->id; 
-        // $files =$request->get('file_name'); 
-        // $files = json_decode($request->get('file_name')); 
-        dd($request->all());
-        foreach($request['files'] as $file){
-            echo $file;
-        }
+    {
+        dd($request->main);
         // $files =$request->get('files');
         // dd($files);
         // // $files = $request->get('file');
