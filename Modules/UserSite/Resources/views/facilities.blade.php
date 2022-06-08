@@ -185,7 +185,6 @@ Facilities
             var numbers = parseInt(number)+1;
             $("#add_languages").append('<div class="p-form-select d-flex mb-3 align-items-center">' +
                                             '<select class="form-select w-25 me-3 language language_'+numbers+'" name="language">' +
-                                                '<option value="">Please select</option>' +
                                                 '<option value="english">English</option>' +
                                                 '<option value="hindi">Hindi</option>' +
                                                 '<option value="russian">Russian</option>' +

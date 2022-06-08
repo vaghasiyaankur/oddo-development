@@ -25,10 +25,10 @@ class PropertyTableSeeder extends Seeder
                                 'updated_at' => date("Y-m-d H:i:s"),
                             ],
                             [
-                                'type'             => 'Aparthotel',
-                                'description'      => 'A self-catering apartment with some hotel facilities like a reception desk',
+                                'type'             => 'Guest house',
+                                'description'      => 'Private home with separate living facilities for host and guest',
                                 'status'           => '1',
-                                'slug'             => \Str::slug('Aparthotel'),
+                                'slug'             => \Str::slug('Guest house'),
                                 'created_at' => date("Y-m-d H:i:s"),
                                 'updated_at' => date("Y-m-d H:i:s"),
                             ],
@@ -49,14 +49,6 @@ class PropertyTableSeeder extends Seeder
                                 'updated_at' => date("Y-m-d H:i:s"),
                             ],
                             [
-                                'type'             => 'Capsule hotel',
-                                'description'      => 'Extremely small units or capsules offering cheap and basic overnight accommodation',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Capsule hotel'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
                                 'type'             => 'Farm stay',
                                 'description'      => 'Private farm with simple accommodation',
                                 'status'           => '1',
@@ -64,31 +56,6 @@ class PropertyTableSeeder extends Seeder
                                 'created_at' => date("Y-m-d H:i:s"),
                                 'updated_at' => date("Y-m-d H:i:s"),
                             ],
-                            [
-                                'type'             => 'Bed and breakfast',
-                                'description'      => 'Private home offering overnight stays and breakfast',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Bed and breakfast'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
-                                'type'             => 'Guest house',
-                                'description'      => 'Private home with separate living facilities for host and guest',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Guest house'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
-                                'type'             => 'Country house',
-                                'description'      => 'Private home with simple accommodation in the countryside',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Country house'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                        
                         ];
 
         PropertyType::insert($propertytype);

@@ -20,6 +20,8 @@ use App\Models\Room;
 use App\Models\HotelBed;
 use App\Models\FoodType;
 use Modules\UserSite\Entities\HotelPhoto;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
@@ -148,10 +150,10 @@ class PropertyController extends Controller
 
     public function add_facilities(Request $request){
 
-        $lang = explode(",", $request['language']);
-        $language = array_unique($lang);  
-
-        $hotel_id = Session::get('hotel')->id; 
+        $lang       = explode(",", $request['language']);
+        $language   = array_unique($lang);  
+        $facilities = explode(",", $request['facilities'] );
+        $hotel_id   = Session::get('hotel')->id; 
 
         $Hotel   =   Hotel::updateOrCreate(
             [
@@ -164,7 +166,7 @@ class PropertyController extends Controller
                 'breakfast'          => $request->brackfast_select,
                 'breakfast_price'    => $request->price_breakfast,
                 'breakfast_type'     => $request->food_type_val,
-                'facilities'         => $request['facilities'],
+                'facilities'         => $facilities,
                 'language'           => $language
             ]);  
         
@@ -190,28 +192,40 @@ class PropertyController extends Controller
 
     public function save_photos(Request $request)
     {
-        dd($request->main);
-        // $files =$request->get('files');
-        // dd($files);
-        // // $files = $request->get('file');
-        // $images = [];
+        $image_64 = $request->url;
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+        $image = str_replace($replace, '', $image_64);     
+        $image = str_replace(' ', '+', $image); 
+        $imageName = Str::random(10).'.'.$extension;
+        $img =base64_decode($image);
+        Storage::disk('public')->put($imageName, base64_decode($image));
 
-        // foreach ($files as $key => $file) {
-        //     $imageName = time().rand(1,99).'.'.$file->extension();  
-        //     $file->move(public_path('images'), $imageName);
-        //     $images[]['name'] = $imageName;
-        // }
+        $hotel_id = Session::get('hotel')->id;
 
-        // // foreach ($images as $key => $image) {
-
-        // //     HotelPhoto::create($image);
-        // // }
-        // dd($files);
+        $hotelphoto = new HotelPhoto();
+        $hotelphoto->main_photo = $request->main;
+        $hotelphoto->photos     = $imageName;
+        $hotelphoto->hotels_id  = $hotel_id;
+        $hotelphoto->save();
         
     }
 
     public function add_policy(Request $request){
-        dd($request->toarray());
+        $hotel_id = Session::get('hotel')->id; 
+
+        $Hotel   =   Hotel::updateOrCreate(
+            [
+                'id' => $hotel_id
+            ],
+            [
+                'cancel_booking' => $request->cancel_select,
+                'pay_type'        => $request->guest_pay,
+                'check_in'       => $request->check_in,
+                'check_out' => $request->check_out,
+            ]);  
+
+            return response()->json(['status' => 1,  'redirect_url' => route('home')]);
     }
    
 }

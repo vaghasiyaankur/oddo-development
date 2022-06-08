@@ -36,11 +36,10 @@ return new class extends Migration
             $table->string('number_extra_bed')->nullable();
             $table->string('guest_extra_bed')->nullable();
             $table->string('photo_gallry')->nullable();
-            $table->string('policy')->nullable();
+            $table->string('cancel_booking')->nullable();
+            $table->string('pay_type')->nullable();
             $table->string('check_in')->nullable();
             $table->string('check_out')->nullable();
-            $table->string('pet')->nullable();
-            $table->string('pet_charge')->nullable();
             $table->string('amenity_id')->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
