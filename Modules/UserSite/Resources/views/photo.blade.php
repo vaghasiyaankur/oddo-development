@@ -147,7 +147,9 @@ Photo
         method: 'post',
         autoProcessQueue: false,
         autoQueue: false,
+        maxFilesize:30,
         maxFiles: 100,
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",  
         thumbnailWidth: '500',
         thumbnailHeight: '500',
         clickable: true,
@@ -158,34 +160,32 @@ Photo
         },
     });
 
-    
-    
-    
-    
-    $(document).ready(function(){
-          
+    $(document).ready(function(){      
+
     var data = $('.sortable').sortable();
 
     $(document).on('click','.save-photo-button', function(){
         let files = myNewdDropzone.getAcceptedFiles();
-
         var formData = new FormData();       
         files.filter(async (f,i)=> {
             var main = 0;
-            if(i == 0){
+            var mainSrc = $(".image--preview--show:first").attr("alt");
+            if(mainSrc == f.upload.filename){
                 var main = 1;
             };
             $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            url: "{{route('save-photos')}}",
-            type: "POST",
-            data: {'url' : f.dataURL, 'main' : main},
-            success: function (res) {
-                console.log('dsds');
-            },
-        });
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "{{route('save-photos')}}",
+                type: "POST",
+                data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc},
+                success: function (res) {
+                    if (res.redirect_url) {
+                        window.location = res.redirect_url;
+                    }
+                },
+            });
         });
         
     });

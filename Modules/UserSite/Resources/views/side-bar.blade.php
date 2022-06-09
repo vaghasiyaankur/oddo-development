@@ -2,7 +2,7 @@
     <div class="side-content-list">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link {{ Request::routeIs('property-form') ? 'active' : '' }}" href="{{route('property-form')}}" >Basic Info</a>
+                <a class="nav-link {{ Request::routeIs('basic-info') ? 'active' : '' }}" href="{{route('basic-info')}}" >Basic Info</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link layout-button {{ Request::routeIs('layout-form', 'layout-pricing-form', 'room-list') ? 'active' : '' }}" href="{{route('layout-pricing-form')}}">Layout & Pricing</a>

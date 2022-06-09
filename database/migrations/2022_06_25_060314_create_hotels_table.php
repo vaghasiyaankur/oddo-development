@@ -41,13 +41,18 @@ return new class extends Migration
             $table->string('check_in')->nullable();
             $table->string('check_out')->nullable();
             $table->string('amenity_id')->nullable();
+            $table->string('bathroom_private')->nullable();
+            $table->string('bathroom_item')->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
             $table->integer('amenities_id')->unsigned()->nullable();
             $table->integer('food_type_id')->unsigned()->nullable();
             $table->integer('bed_type_id')->unsigned()->nullable();
             $table->integer('hotel_contact_id')->unsigned()->nullable();
+            $table->integer('property_id')->unsigned()->nullable();
             // $table->integer('room_id')->unsigned()->nullable();
+
+            $table->foreign('property_id')->references('id')->on('property_types')->onDelete('cascade');
 
             $table->foreign('room_list_id')->references('id')->on('room_lists')->onDelete('cascade');
             $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');

@@ -119,13 +119,57 @@ Layout & pricing
                                 <div class="input-group mb-3 total-room-layout w-50">
                                     <input type="tel" class="form-control custom-from-control room_size" placeholder="0">
                                     <select class="form-select room_size_feet">
-                                        <option selected>N/A</option>
                                         <option value="s-meter">square meters</option>
                                         <option value="s-feet">square feet</option>
                                     </select>
                                 </div>
                             </form>
                         </div>
+                        @if($hotel->propertytype->type == 'Guest house')
+                            <div class="form-info-box mt-3">
+                                <form action="" class="form-bathroom-part">
+                                    <div class="p-form-heading  d-flex">
+                                        <h5>Bathroom Details</h5>
+                                    </div>
+                                    <div class="bathroom-title pt-3">
+                                        <label for="" class="form-label label-heading ">Is the bathroom private?</label>
+                                    </div>
+                                    <div class="amenities-raido-btn">
+                                        <div class="form-check form-check-inline amenities-radio">
+                                            <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes">
+                                            <label class="form-check-label" for="yes">
+                                            Yes    
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline amenities-radio">
+                                            <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" value="no" id="no" checked>
+                                            <label class="form-check-label" for="no">
+                                            No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-form-heading d-flex">
+                                        <div class="bathroom-second-title pt-3">
+                                            <label for="" class="form-label label-heading ">Which bathroom items are avaliable in this room?</label>
+                                        </div>
+                                    </div>
+                                    <div class="bathroom-item-list ">      
+                                        <div class="bathroom-item-check d-flex flex-wrap align-items-center justify-content-between">
+                                            <input type="hidden" name="property_type" class="property_type" value="{{$hotel->propertytype->type}}">
+                                            @foreach ($bathrooms as $bathroom)
+                                                <div class="form-check py-3 border--dotted">
+                                                    <label class="form-check-label para-fs-14 fs-6">
+                                                        <input class="form-check-input" name="bathroom_item" type="checkbox" value="{{$bathroom->id}}">
+                                                        {{$bathroom->item}}
+                                                    </label>
+                                                </div>
+                                            @endforeach     
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
                         <div class="form-info-box mt-3">
                             <form action="" class="form-priceper-night">
                                 <div class="p-form-heading d-flex">
@@ -169,6 +213,11 @@ Layout & pricing
         margin-top: 4px;
         border: 3px solid currentColor;
         border-right-color: transparent;
+    }
+
+    .form-check{
+        flex: 0 0 48%;
+        max-width: 48%;
     }
 </style>
 @endpush
@@ -267,18 +316,22 @@ Layout & pricing
         let bed_price = $('.bed_price').val();
         !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
         
-        let custom_name = $('.custom_name').val();
-        let room_name_select = $('.room_name_select').val();
-        let smoking_area = $('.smoking_area').val();
-        let number_of_room = $('.number_of_room').val();
-        let room_size = $('.room_size').val();
-        let room_size_feet = $('.room_size_feet').val();
+        let number_of_bed = $('.number_of_bed_'+number+' option:selected').val();
+        !number_of_bed ? $(`#number_of_bed_error`).html(`Select the number of beds`) : $(`#number_of_bed_error`).html(``);
         
+        let custom_name         = $('.custom_name').val();
+        let room_name_select    = $('.room_name_select').val();
+        let smoking_area        = $('.smoking_area').val();
+        let number_of_room      = $('.number_of_room').val();
+        let room_size           = $('.room_size').val();
+        let room_size_feet      = $('.room_size_feet').val();
+        let bathroom_private    = $("input[name='bathroom_private']:checked").val();
+        let bathroom_item       = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
+
+        let property_type       = $('.property_type').val(); 
         
         var number = $('.number-of-select').val();
         
-        let number_of_bed = $('.number_of_bed_'+number+' option:selected').val();
-        !number_of_bed ? $(`#number_of_bed_error`).html(`Select the number of beds`) : $(`#number_of_bed_error`).html(``);
         
         let bed_size = $('.bed_size_'+number).val();
 
@@ -289,7 +342,7 @@ Layout & pricing
             for(i=1; i <= number; i++){
                 bed_value.push({'number_of_bed' : $('.number_of_bed_'+ i).val(), 'bed_size' : $('.bed_size_'+ i).val()});
             }
-
+            // property_type
 
         formdata = new FormData();
 
@@ -304,7 +357,10 @@ Layout & pricing
         formdata.append('bed_size', JSON.stringify(bed_value));
         formdata.append('room_size', room_size);
         formdata.append('room_size_feet', room_size_feet);
-
+        if(property_type == 'guest house') {
+            formdata.append('bathroom_private',bathroom_private);
+            formdata.append('bathroom_item',bathroom_item);
+        }
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

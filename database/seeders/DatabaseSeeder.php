@@ -14,6 +14,7 @@ use Modules\UserSite\Database\Seeders\FacilitiesTableSeeder;
 use Modules\UserSite\Database\Seeders\RoomTypeTableSeeder;
 use Modules\UserSite\Database\Seeders\RoomListTableSeeder;
 use Modules\UserSite\Database\Seeders\BedTypeTableSeeder;
+use Modules\UserSite\Database\Seeders\BathroomItemTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
             RoomTypeTableSeeder::class,
             RoomListTableSeeder::class,
             BedTypeTableSeeder::class,
+            BathroomItemTableSeeder::class,
         ]);
     }
 }

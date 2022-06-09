@@ -33,19 +33,21 @@ Add-Property
                                    
                             </div>
                             <span id="property-name-error" class="text-danger"></span>
-                            <div class="p-form-select pt-3">
-                                <label for="" class="form-label label-heading">Star rating</label>
-                                <select class="form-select c-form-select star_rating" name="star_rating"
-                                    aria-label="Default select example">
-                                    <option value="N/A" selected>N/A</option>
-                                    <option value="1">1 Star</option>
-                                    <option value="2">2 Star</option>
-                                    <option value="3">3 Star</option>
-                                    <option value="4">4 Star</option>
-                                    <option value="5">5 Star</option>
-                                </select>
-                            </div>
+                            @if($hotel->propertytype->type == 'Hotel')
+                                <div class="p-form-select pt-3">
+                                    <label for="" class="form-label label-heading">Star rating</label>
+                                    <select class="form-select c-form-select star_rating" name="star_rating"
+                                        aria-label="Default select example">
+                                        <option value="N/A" selected>N/A</option>
+                                        <option value="1">1 Star</option>
+                                        <option value="2">2 Star</option>
+                                        <option value="3">3 Star</option>
+                                        <option value="4">4 Star</option>
+                                        <option value="5">5 Star</option>
+                                    </select>
+                                </div>
                             <span id="star_rating-error" class="text-danger"></span>
+                            @endif
                         </form>
                     </div>
                     <div class="form-info-box mt-3">
@@ -102,10 +104,6 @@ Add-Property
                                             <div class="p-l-dropdwon mb-3">
                                                 <label for="" class="form-label">Country/Region</label>
                                                 <select class="form-select country" name="country">
-                                                    {{-- <option selected>India</option>
-                                                    <option value="usa">USA</option>
-                                                    <option value="uk">UK</option>
-                                                    <option value="ru">Russia</option> --}}
                                                     @foreach($countrys as $country)
                                                     <option>{{$country->country_name}}</option>
                                                     @endforeach
@@ -217,6 +215,10 @@ Add-Property
 
             let zipcode = $('.zipcode').val();
             !zipcode ? $(`#zipcode-error`).html(`The Zipcode field is required.`) : $(`#zipcode-error`).html(``);
+
+            if (!property_name) {
+                return;
+            }
 
             var number = $('.contant_count').val();
 

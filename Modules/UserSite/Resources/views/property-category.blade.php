@@ -50,92 +50,12 @@
                                 <p class="m-0">{{$property->description}}</p>
                             </div>
                             <div class="l-mypro-card-btn">
-                                <a href="{{route('property-form')}}" class="btn card-btn">List your Properties</a>
+                                <a href="javascript:;" class="btn card-btn button-property" data-property='{{$property->id}}'>List your Properties</a>
                             </div>
                         </div>
                     </div>
                     @endif
                 @endforeach
-                    {{-- <div class="col-lg-2 col-md-4 col-sm-6 col-12 border-right ">
-                        <div class="l-mypro-card text-center">
-                            <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
-                            </div>
-                            <div class="l-mypro-card-heading">
-                                <h5 class="l-mypro-card-head fw-bold pt-3">Home</h5>
-                            </div>
-                            <div class="l-mypro-card-content">
-                                <p class="m-0">properties like apartments, vacation, Home, villas etc</p>
-                            </div>
-                            <div class="l-mypro-card-btn">
-                                <a href="javascript:;" class="btn card-btn">List your Properties</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12 border-right ">
-                        <div class="l-mypro-card text-center">
-                            <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
-                            </div>
-                            <div class="l-mypro-card-heading">
-                                <h5 class="l-mypro-card-head fw-bold pt-3">Home</h5>
-                            </div>
-                            <div class="l-mypro-card-content">
-                                <p class="m-0">properties like apartments, vacation, Home, villas etc</p>
-                            </div>
-                            <div class="l-mypro-card-btn">
-                                <a href="javascript:;" class="btn card-btn">List your Properties</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12 border-right ">
-                        <div class="l-mypro-card text-center">
-                            <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
-                            </div>
-                            <div class="l-mypro-card-heading">
-                                <h5 class="l-mypro-card-head fw-bold pt-3">Home</h5>
-                            </div>
-                            <div class="l-mypro-card-content">
-                                <p class="m-0">properties like apartments, vacation, Home, villas etc</p>
-                            </div>
-                            <div class="l-mypro-card-btn">
-                                <a href="javascript:;" class="btn card-btn">List your Properties</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12 border-right ">
-                        <div class="l-mypro-card text-center">
-                            <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
-                            </div>
-                            <div class="l-mypro-card-heading">
-                                <h5 class="l-mypro-card-head fw-bold pt-3">Home</h5>
-                            </div>
-                            <div class="l-mypro-card-content">
-                                <p class="m-0">properties like apartments, vacation, Home, villas etc</p>
-                            </div>
-                            <div class="l-mypro-card-btn">
-                                <a href="javascript:;" class="btn card-btn">List your Properties</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12 ">
-                        <div class="l-mypro-card text-center">
-                            <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
-                            </div>
-                            <div class="l-mypro-card-heading">
-                                <h5 class="l-mypro-card-head fw-bold pt-3">Home</h5>
-                            </div>
-                            <div class="l-mypro-card-content">
-                                <p class="m-0">properties like apartments, vacation, Home, villas etc</p>
-                            </div>
-                            <div class="l-mypro-card-btn">
-                                <a href="javascript:;" class="btn card-btn">List your Properties</a>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>  
 
@@ -156,7 +76,7 @@
                                 <p class="m-0">{{$property->description}}</p>
                             </div>
                             <div class="l-mypro-card-btn">
-                                <a href="{{route('property-form')}}" class="btn card-btn">List your Properties</a>
+                                <a href="javascript:;" class="btn card-btn">List your Properties</a>
                             </div>
                         </div>
                     </div>
@@ -176,6 +96,34 @@
 @endpush
 
 @push('scripts')
-    <!------- Custom JS Link -----  -->
-    <script src="{{asset('assets/js/custom.js')}}"></script>
+<!------- Custom JS Link -----  -->
+<script src="{{asset('assets/js/custom.js')}}"></script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '.button-property', function(){
+            var property = $(this).attr('data-property');
+            formdata = new FormData();
+
+            formdata.append('property', property);
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "{{route('add-property')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (res) {
+                    if (res.redirect_url) {
+                        window.location = res.redirect_url;
+                    }
+                },
+            }); 
+        });
+
+        
+    });
+</script>
 @endpush

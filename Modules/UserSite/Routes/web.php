@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Schema;
 
 Route::controller(PropertyController::class)->group(function(){
     Route::get('property-category', 'category')->name('property-category');
-    Route::get('property-form', 'property_form')->name('property-form');
+    Route::get('basic-info', 'basicInfo')->name('basic-info');
+    Route::post('add-property', 'add_property')->name('add-property');
     Route::post('add-property-form', 'property_submit')->name('add-property-form');
     Route::get('facilities-form', 'facilities')->name('facilities-form');
     Route::view('layout-form', 'usersite::add-layout')->name('layout-form');
