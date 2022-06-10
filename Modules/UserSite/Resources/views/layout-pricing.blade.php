@@ -17,8 +17,8 @@ Layout & pricing
                     <main class="layout">
                         <div class="pannel-heading">
                             <h2 class=" purple-dark pannel-title">Layout & Pricing</h2>
-                            <a href="{{route('layout-form')}}">
-                                <h5 class="heading-fs-16 purple-dark" onclick="window.history.back()">Back to overview</h5>
+                            <a href="{{ $rooms ? route('room-list') : route('layout-form')}}">
+                                <h5 class="heading-fs-16 purple-dark">Back to overview</h5>
                             </a>
                         </div>
                         <div class="form-info-box">
@@ -31,7 +31,7 @@ Layout & pricing
                                     <select class="form-select w-50 room_type ">
                                         <option value="">Please Select</option>
                                         @foreach ($room_types as $room_type)
-                                        <option value="{{$room_type->id}}">{{$room_type->room_type}}</option>
+                                            <option value="{{$room_type->id}}">{{$room_type->room_type}}</option>
                                         @endforeach
                                     </select>
                                     <span id="room_type_error" class="text-danger"></span>
@@ -81,8 +81,8 @@ Layout & pricing
                                 </div>
                                 <div id="text-input-add">
                                     <input type="hidden" class="number-of-select" value="1">
-                                    <div class="d-flex align-items-center mb-3 bed_option_1" >
-                                        <select class="form-select w-50 bed_size bed_size_1" >
+                                    <div class="d-flex align-items-center mb-3 bed_option_1 bed-option-div" >
+                                        <select class="form-select w-50 bed_size bed_size_1 select-bed" >
                                             @foreach ($beds as $bed)
                                                 <option value="{{$bed->id}}">{{$bed->bed_type}} / {{$bed->bed_size}}</option>
                                             @endforeach
@@ -190,7 +190,11 @@ Layout & pricing
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue</a>
+                            <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue
+                                <div class="spinner-border" role="status" style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </a>
                         </div>
                     </main>
                 </div>
@@ -237,14 +241,14 @@ Layout & pricing
             var number = $('.number-of-select').val();
             var numbers = parseInt(number)+1;
             
-            $("#text-input-add").append('<div class="d-flex align-items-center mb-3" >' +
-                                            '<select class="form-select w-50 bed_size_'+numbers+'" >'+
+            $("#text-input-add").append('<div class="d-flex align-items-center mb-3 bed-option-div" >' +
+                                            '<select class="form-select w-50 bed_size_'+numbers+' select-bed" >'+
                                                 '@foreach ($beds as $bed)'+
                                                     '<option value="{{$bed->id}}">{{$bed->bed_type}} / {{$bed->bed_size}}</option>' +
                                                 '@endforeach' +
                                             '</select>'+
                                             '<span class="px-4"><i class="fa-solid fa-xmark"></i></span>'+
-                                            '<select class="form-select c-form-select number_of_bed_'+numbers+'">'+
+                                            '<select class="form-select c-form-select number_of_bed number_of_bed_'+numbers+'">'+
                                                 '<option value="">Select the number of Beds</option>'+
                                                 '<option value="1">1</option>'+
                                                 '<option value="2">2</option>'+
@@ -272,7 +276,6 @@ Layout & pricing
 
         if(room_type != 'Please Select'){
             $('.layout-room-name').removeClass('d-none');
-            // $('.room_name_id').val(room_type_id);
         }else{
             $('.layout-room-name').addClass('d-none');  
         }
@@ -292,7 +295,7 @@ Layout & pricing
             dataType: 'JSON',
             success:function (data) {
                 $('.room_name_select').empty();
-                $.each(data.roomlist[0].room_lists,function(index,roomlist){+
+                $.each(data.roomlist[0].room_lists,function(index,roomlist){
                     $('.room_name_select').append('<option value="'+roomlist.id+'">'+roomlist.room_name+'</option>');
                 })
             }
@@ -316,8 +319,20 @@ Layout & pricing
         let bed_price = $('.bed_price').val();
         !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
         
-        let number_of_bed = $('.number_of_bed_'+number+' option:selected').val();
-        !number_of_bed ? $(`#number_of_bed_error`).html(`Select the number of beds`) : $(`#number_of_bed_error`).html(``);
+        // let number_of_bed = $('.number_of_bed_'+number+' option:selected').val();
+        // !number_of_bed ? $(`#number_of_bed_error`).html(`Select the number of beds`) : $(`#number_of_bed_error`).html(``);
+
+        var BedDetail  = $(".bed-option-div").map(function(){return {
+            bed   : $(this).children('.select-bed').val(),
+            bedNo : $(this).children('.number_of_bed').val()
+        }}).get();
+
+        console.log(BedDetail);
+
+
+        if (!room_type || !bed_price) {
+            return;
+        }
         
         let custom_name         = $('.custom_name').val();
         let room_name_select    = $('.room_name_select').val();
@@ -330,18 +345,18 @@ Layout & pricing
 
         let property_type       = $('.property_type').val(); 
         
-        var number = $('.number-of-select').val();
+        // var number = $('.number-of-select').val();
         
         
-        let bed_size = $('.bed_size_'+number).val();
+        // let bed_size = $('.bed_size_'+number).val();
 
-        var bed_value        = [];
+        // var bed_value        = [];
             // var phone          = []; 
             // var optional_phone = [];
 
-            for(i=1; i <= number; i++){
-                bed_value.push({'number_of_bed' : $('.number_of_bed_'+ i).val(), 'bed_size' : $('.bed_size_'+ i).val()});
-            }
+            // for(i=1; i <= number; i++){
+            //     bed_value.push({'number_of_bed' : $('.number_of_bed_'+ i).val(), 'bed_size' : $('.bed_size_'+ i).val()});
+            // }
             // property_type
 
         formdata = new FormData();
@@ -353,14 +368,16 @@ Layout & pricing
         formdata.append('room_name_select', room_name_select);
         formdata.append('smoking_area', smoking_area);
         formdata.append('number_of_room', number_of_room);
-        formdata.append('number', number);
-        formdata.append('bed_size', JSON.stringify(bed_value));
+        formdata.append('BedDetail', JSON.stringify(BedDetail));
         formdata.append('room_size', room_size);
         formdata.append('room_size_feet', room_size_feet);
         if(property_type == 'guest house') {
             formdata.append('bathroom_private',bathroom_private);
             formdata.append('bathroom_item',bathroom_item);
         }
+
+        $('.spinner-border').show();
+        
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

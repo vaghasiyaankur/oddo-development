@@ -87,7 +87,11 @@ Layout & pricing
                             </div>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 button-policy">Continue</a>
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 button-policy">Continue
+                                <div class="spinner-border" role="status" style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </a>
                         </div>
                     </main>
                 </div>
@@ -104,6 +108,14 @@ Layout & pricing
 <!------- Timepiker css Link------->
 <link rel="stylesheet" href="{{asset('assets/css/timepiker.css')}}">
 <style>
+    .spinner-border {
+        float: right;
+        width: 20px;
+        height: 20px;
+        margin-top: 4px;
+        border: 3px solid currentColor;
+        border-right-color: transparent;
+    }
 </style>
 @endpush
 
@@ -126,6 +138,10 @@ $(document).ready(function(){
         let check_out = $('.check_out').val();
         !check_out ? $(`#check_out_error`).html(`Select a room type`) : $(`#check_out_error`).html(``);
 
+        if (!check_in || !check_out) {
+                return;
+        }
+
         let cancel_select = $('.cancel-select option:selected').val();
         let guest_pay = $('.guest-pay option:selected').val();
 
@@ -136,6 +152,7 @@ $(document).ready(function(){
         formdata.append('check_in', check_in);
         formdata.append('check_out', check_out);
 
+        $('.spinner-border').show();    
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

@@ -64,7 +64,11 @@ Photo
                             </div> 
                             
                             <div class="another-c-details mt-4">
-                                <a href="javascript:;" class="btn another-c-d-btn w-100 save-photo-button">Continue</a>
+                                <a href="javascript:;" class="btn another-c-d-btn w-100 save-photo-button">Continue
+                                    <div class="spinner-border" role="status" style="display: none;">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </a>
                             </div>
                         </main>
                     </div>
@@ -134,6 +138,15 @@ Photo
     left: 0;
     opacity: 0;
     }
+
+    .spinner-border {
+        float: right;
+        width: 20px;
+        height: 20px;
+        margin-top: 4px;
+        border: 3px solid currentColor;
+        border-right-color: transparent;
+    }
 </style>
 @endpush
 
@@ -166,13 +179,15 @@ Photo
 
     $(document).on('click','.save-photo-button', function(){
         let files = myNewdDropzone.getAcceptedFiles();
-        var formData = new FormData();       
+        var formData = new FormData();  
+             
         files.filter(async (f,i)=> {
             var main = 0;
             var mainSrc = $(".image--preview--show:first").attr("alt");
             if(mainSrc == f.upload.filename){
                 var main = 1;
             };
+
             $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

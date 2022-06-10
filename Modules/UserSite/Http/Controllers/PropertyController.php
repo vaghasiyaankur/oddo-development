@@ -27,19 +27,18 @@ use Illuminate\Support\Str;
 class PropertyController extends Controller
 {
 
-    public function category(){
+    public function category() {
         $propertys = PropertyType::active()->get();
         return view('usersite::property-category', compact('propertys'));
     }
 
-    public function basicInfo(){
+    public function basicInfo() {
         $countrys = Country::active()->get();
         $hotel = Hotel::with('propertytype')->latest('created_at')->first();
         return view('usersite::BasicInfo', compact('countrys', 'hotel'));
     }
 
-    public function add_property(Request $request)
-    {
+    public function add_property(Request $request) {
         $hotel              = new Hotel();
         $hotel->property_id = $request->property;
         $hotel->save();
@@ -50,7 +49,7 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('basic-info')]);
     }
 
-    public function property_submit(Request $request){
+    public function property_submit(Request $request) {
         $hotel_id = Session::get('hotel')->id;
         $count    = $request->count;
  
@@ -64,36 +63,38 @@ class PropertyController extends Controller
             'pos_code'      => $request->zipcode
         ]);  
 
-        $contents = json_decode($request->get('contact_name'));
+        $contents = json_decode($request->get('contactDetail'));
         $contact_id = $request->contact_id;
         foreach($contents as $contect){
             $Hotel   =   HotelContact::updateOrCreate([ 'id' => $contact_id ], [
-                'name' => $contect->contects,
+                'name' => $contect->name,
                 'number'   => $contect->phone,
-                'number_optinal' => $contect->optinal,
+                'number_optinal' => $contect->phoneOptional,
                 'hotels_id' => $hotel_id,
             ]);  
         }
         return response()->json(['redirect_url' => route('layout-form')]);
     }
 
-    public function layout_pricing(){
+    public function layout_pricing() {
         $room_types = RoomType::active()->get();
         $beds       = BedType::active()->get();
         $bathrooms  = BathroomItem::active()->get();
-        $hotel = Hotel::with('propertytype')->latest('created_at')->first();
 
-        return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel'));
+        $hotel = Hotel::with('propertytype')->latest('created_at')->first();
+        $hotel_id = Session::get('hotel')->id;
+        $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get('id');
+
+        return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms'));
     }
 
-    public function facilities(){
+    public function facilities() {
         $facilities = Facilities::active()->get();
         $food_types = FoodType::active()->get();
         return view('usersite::facilities', compact('facilities', 'food_types'));
     }
     
-    public function room_list(Request $request)
-    {
+    public function room_list(Request $request) {
         $room_type_id = $request->room_type_id;
         $roomlist = RoomType::where('id',$room_type_id)->with('room_lists')->active()->get();
         return response()->json([ 'roomlist' => $roomlist ]);
@@ -106,15 +107,14 @@ class PropertyController extends Controller
         return view('usersite::room-list', compact('rooms'));
     }
 
-    public function amenities(){
+    public function amenities() {
         $amenities_category = AmenitiesCategory::with('amenities')->active()->get();
         return view('usersite::amenities',compact('amenities_category'));
     }
 
     public function add_room(Request $request) {
         $hotel_id = Session::get('hotel')->id;
-        $id = $request->id;
-        $Hotel = Room::updateOrCreate([ 'id' => $id ],[
+        $Hotel = Room::updateOrCreate([ 'id' => $hotel_id ],[
             'smoking_policy'   => $request->smoking_area,
             'custom_name_room' => $request->custom_name,
             'number_of_room'   => $request->number_of_room,
@@ -126,21 +126,23 @@ class PropertyController extends Controller
             'room_type_id'     => $request->room_type,
             'hotel_id'         => $hotel_id
         ]);  
-
+        
         $room_id = Room::latest('created_at')->take(1)->first();
+        
+        $id = 1;
+        $beds = json_decode($request->get('BedDetail'));
 
-        $beds = json_decode($request->get('bed_size'));
         foreach($beds as $bed) {
             $Hotel   =   HotelBed::updateOrCreate([ 'id' => $id ],[
-                'no_of_bed' => $bed->number_of_bed,
-                'bed_id'    => $bed->bed_size,
+                'no_of_bed' => $bed->bedNo,
+                'bed_id'    => $bed->bed,
                 'room_id'   => $room_id->id,
             ]);  
         }
         return response()->json(['redirect_url' => route('room-list')]);
     }
 
-    public function add_facilities(Request $request){
+    public function add_facilities(Request $request) {
 
         $lang       = explode(",", $request['language']);
         $language   = array_unique($lang);  
@@ -152,7 +154,6 @@ class PropertyController extends Controller
             'parking_type'       => $request->parking_type,
             'parking_site'       => $request->parking_site,
             'breakfast'          => $request->brackfast_select,
-            'breakfast_price'    => $request->price_breakfast,
             'breakfast_type'     => $request->food_type_val,
             'facilities'         => $facilities,
             'language'           => $language
@@ -161,7 +162,7 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('amenities')]);
     }
 
-    public function add_amenities(Request $request){
+    public function add_amenities(Request $request) {
 
         $hotel_id = Session::get('hotel')->id; 
 
@@ -174,8 +175,7 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('photo')]);
     }
 
-    public function save_photos(Request $request)
-    {
+    public function save_photos(Request $request) {
         $image_64 = $request->url;
         $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
         $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
@@ -196,7 +196,7 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('policy')]);
     }
 
-    public function add_policy(Request $request){
+    public function add_policy(Request $request) {
         $hotel_id = Session::get('hotel')->id; 
 
         $Hotel = Hotel::updateOrCreate([ 'id' => $hotel_id ],[

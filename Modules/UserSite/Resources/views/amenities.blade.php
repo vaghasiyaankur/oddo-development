@@ -115,11 +115,14 @@ Add-Layout
                                     </div>
                                 </div>
                                 <div class="amenities-btn another-c-details mt-4">
-                                <a class="btn btn-primary accordion-btn-link another-c-d-btn" type="button">
+                                <a class="btn btn-primary accordion-btn-link another-c-d-btn d-none" type="button">
                                     Hide all Amenities
                                 </a>
+                                <a class="btn btn-primary show-button another-c-d-btn" type="button">
+                                    Show all Amenities
+                                </a>
                                 </div>
-                                <div class="amenities-category pt-4 d-none" id="hideshow">
+                                <div class="amenities-category pt-4" id="hideshow">
                                     <div class="p-form-heading pb-3">
                                         <h5>All amenities by category</h5>
                                     </div>
@@ -154,7 +157,11 @@ Add-Layout
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 amenities-button">Continue</a>
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 amenities-button">Continue
+                                <div class="spinner-border" role="status" style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </a>
                         </div>
                     </main>
                 </div>
@@ -169,6 +176,17 @@ Add-Layout
 
 @push('css')
 <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
+
+<style>
+    .spinner-border {
+        float: right;
+        width: 20px;
+        height: 20px;
+        margin-top: 4px;
+        border: 3px solid currentColor;
+        border-right-color: transparent;
+    }
+</style>s
 @endpush
 
 @push('scripts')
@@ -176,7 +194,15 @@ Add-Layout
 // jjs for hide and show on butoon 
 $(document).ready(function(){
     $(".accordion-btn-link").click(function(){
-        $("#hideshow").toggleClass('d-none');
+        $("#hideshow").removeClass('d-none');
+        $(this).addClass('d-none');
+        $(".show-button").removeClass('d-none');
+    });
+
+    $(".show-button").click(function(){
+        $("#hideshow").addClass('d-none');
+        $(this).addClass('d-none');
+        $(".accordion-btn-link").removeClass('d-none');
     });
 
     $(".form-check-input").on('click', function(){
@@ -209,6 +235,8 @@ $(document).ready(function(){
             formdata.append('extra_no_of_bed', extra_no_of_bed);
         }
 
+
+        $('.spinner-border').show();
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

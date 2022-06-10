@@ -60,17 +60,8 @@ Facilities
                                 <div class="p-form-select d-flex">
                                     <select class="form-select w-50 me-3 brackfast_select">
                                         <option value="no" selected>no</option>
-                                        <option value="include">yes, it's included in the price</option>
                                         <option value="optional">yes,it's optional</option>
                                     </select>
-                                </div>
-                                <div class="input-group pt-3 w-50 d-none breakfast_price_div">
-                                    <label for="" class="form-label label-heading">Price for breakfast (per person, per day including all fees and taxes)</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text para-fs-14" id="addon-wrapping">INR</span>
-                                        <input type="text" class="form-control custom-from-control price_breakfast" placeholder="0" >
-                                    </div>
-                                    <span id="bed_price_error" class="text-danger"></span>
                                 </div>
                                 <div class="p-form-select pt-3 d-none food_type_div">
                                     <label for="" class="form-label label-heading">What kind of breakfast is available?</label>
@@ -129,7 +120,11 @@ Facilities
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 facilities-button">Continue</a>
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 facilities-button">Continue
+                                <div class="spinner-border" role="status" style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </a>
                         </div>
                     </main>
                 </div>
@@ -211,43 +206,42 @@ Facilities
                 $('.food_type_div').addClass('d-none');
             }
 
-            if(breakfast == 'include'){
-                $('.food_type_div').removeClass('d-none');
-            }
-
             if(breakfast == 'optional'){
                 $('.food_type_div').removeClass('d-none');
-                $('.breakfast_price_div').removeClass('d-none');
             }
         });
 
         $('.facilities-button').on('click', function(){
             var number = $('.number-of-select').val();
 
-            let language_data = $('.language_'+number+' option:selected').val();
-            !language_data ? $(`#language_error_`+number).html(`Select a language type`) : $(`#language_error_`+number).html(``);
+            let languageSelect = $('.language option:selected').val();
+            !languageSelect ? $(`#language_error_1`).html(`Select a language type`) : $(`#language_error_1`).html(``);
+
+            if (!languageSelect) {
+                return;
+            }
 
             
             let parking_avaliable = $('.parking-avaliable').val();
             let parking_type      = $('.parking-type').val();
             let parking_site      = $('.parking-site').val();
             let brackfast_select  = $('.brackfast_select').val();
-            let price_breakfast   = $('.price_breakfast').val();
             let food_type_val     = $('.food_type_val').val();
-            var language          = $(".language option:selected").map(function(){return $(this).val();}).get();
+            var language          = $('.language option:selected').map(function(){return $(this).val();}).get();
             var facilities        = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
 
             formdata = new FormData();
 
             formdata.append('parking_avaliable', parking_avaliable);
-            formdata.append('parking_type', parking_type);
-            formdata.append('parking_site', parking_site);
+            if(parking_avaliable == 'yes'){
+                formdata.append('parking_type', parking_type);
+                formdata.append('parking_site', parking_site); }
             formdata.append('brackfast_select', brackfast_select);
-            formdata.append('price_breakfast',price_breakfast);
-            formdata.append('food_type_val', food_type_val);
+            if(brackfast_select == 'optional'){
+                formdata.append('food_type_val', food_type_val); }
             formdata.append('facilities', facilities);
             formdata.append('language', language);
-
+            $('.spinner-border').show();
             $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -264,8 +258,7 @@ Facilities
                     }
                 },
             }); 
-        });
-        
+        }); 
     });
 </script>
 @endpush
