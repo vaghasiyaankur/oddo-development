@@ -171,23 +171,120 @@ Layout & pricing
                             </div>
                         @endif
                         <div class="form-info-box mt-3">
-                            <form action="" class="form-priceper-night">
-                                <div class="p-form-heading d-flex">
-                                    <h5>Base price per night</h5>
-                                    <i class="fa-solid fa-circle-exclamation ps-2 mt-1" data-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        title="This is lowest price we automatically apply to this room for all date. Before your property goes live,you can set seasonal pricing on your property dashboard."></i>
+                            <div class="row justify-content-between">
+                                <div class="col-lg-6">
+                                    <form action="" class="form-priceper-night">
+                                        <div class="p-form-heading d-flex">
+                                            <h5>Base price per night</h5>
+                                            <i class="fa-solid fa-circle-exclamation ps-2 mt-1" data-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="This is lowest price we automatically apply to this room for all date. Before your property goes live,you can set seasonal pricing on your property dashboard."></i>
+                                        </div>
+                                        <div class="input-group mb-3 total-room-layout w-50">
+                                            <label for="" class="form-label label-heading">Price for <span class="total_person">1</span> person</label>
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text para-fs-14" id="addon-wrapping">INR/per
+                                                    Night</span>
+                                                <input type="text" class="form-control custom-from-control bed_price" placeholder="0" >
+                                            </div>
+                                            <span id="bed_price_error" class="text-danger"></span>
+                                                    
+                                               
+                                                    <div class="total-room-layout pt-3 d-none number-of-bed">
+                                                        <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
+                                                        <select class="form-select layout-totalroom  me-3 extra_no_of_bed">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+                                        </div>
+                                        <div class="amenities-title pt-3">
+                                            <label for="" class="form-label label-heading ">Do you offer a lower rate when there are less than 6 guests?</label>
+                                        </div>
+                                        <div class="amenities-raido-btn">
+                                            <div class="form-check form-check-inline amenities-radio">
+                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" id="yes" value="yes">
+                                                <label class="form-check-label" for="yes">
+                                                 Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline amenities-radio">
+                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" value="no" id="no" checked>
+                                                <label class="form-check-label" for="no">
+                                                 No
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="discount-div d-none">
+                                            <div class="amenities-title pt-3 dicount-label-div">
+                                                <label for="" class="form-label label-heading ">How much discount do you offer?</label>
+                                            </div>
+                                            <div class="input-group mb-3 discount-div ">                                            
+                                                <div class="w-50 d-flex">
+                                                    <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button">
+                                                    <select class="form-select c-form-select discountType" style="border-radius: 0px" name="discount-type" aria-label="Default select example">
+                                                        <option value="percentage">%</option>
+                                                        <option value="cash">INR</option>
+                                                    </select>
+                                                </div>
+                                                <span class="ps-2 lh-3">per guest</span>
+                                            </div>
+                                            
+                                            <div class="p-form-select pt-3 price_wrapper ">
+                                                <label for="" class="form-label label-heading">What is the minimum occupancy you are willing to offer a discount for?   </label>
+                                                <select class="form-select c-form-select star_rating" name="star_rating" aria-label="Default select example">
+                                                    <option value="N/A" selected="">N/A</option>
+                                                    <option value="1">1 Star</option>
+                                                    <option value="2">2 Star</option>
+                                                    <option value="3">3 Star</option>
+                                                    <option value="4">4 Star</option>
+                                                    <option value="5">5 Star</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="input-group mb-3 total-room-layout w-25">
-                                    <label for="" class="form-label label-heading">Price for 1 person</label>
-                                    <div class="input-group flex-nowrap">
-                                        <span class="input-group-text para-fs-14" id="addon-wrapping">INR/per
-                                            Night</span>
-                                        <input type="text" class="form-control custom-from-control bed_price" placeholder="0" >
+                                <div class="col-md-6 price-summary-main ">
+                                    <div class="price-summary">
+                                        <h4 class="mt-3 price-summary-head fw-bold">Price summary for: dsfdsf</h4>
+                                        <div class="row justify-content-between">
+                                            <div class="col-6">
+                                                <p class="mb-1">Number of guests</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="mb-1">Price</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span></p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="mb-1 text-success">Rs.200</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="mb-1"><i class="fa-solid fa-user"></i> X 6</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="mb-1 text-success">Rs.200</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="mb-1"><i class="fa-solid fa-user"></i> X 6</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="mb-1 text-success">Rs.200</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <span id="bed_price_error" class="text-danger"></span>
                                 </div>
-                            </form>
+                            </div>
+                            
                         </div>
                         <div class="another-c-details mt-4">
                             <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue
@@ -223,6 +320,18 @@ Layout & pricing
         flex: 0 0 48%;
         max-width: 48%;
     }
+    .price-summary{
+        background: #e6e6e6;
+        padding: 4px 16px;
+    }
+    .price-summary-head{
+        font-size: 20px;
+        line-height: 24px
+    }
+    .price-summary-main{
+        width: 100%;
+        max-width: 400px;
+    }
 </style>
 @endpush
 
@@ -235,6 +344,45 @@ Layout & pricing
     });
 
     $(document).ready(function(){
+
+        $(document).on('keyup', '.number_of_guest', function(){
+            var value = $(this).val();
+            
+            $('.total_person').text(value);
+            $('.number-person').text(value);
+
+            if (!value) {
+                $('.total_person').text('0');    
+                $('.number-person').text('0'); 
+            }  
+        });
+        
+        $(document).on('focusout', '.discountValue', function(){
+            var discountValue = $('.discountValue').val();
+            var noOfPerson = $('.number_of_guest').val();
+            var total = $('.bed_price').val();
+            var discountType  = $('.discountType').val();
+            
+            for(i=0; i < noOfPerson; i++){
+                var dec  = (discountValue / 100).toFixed(2);
+                var mult = total * dec * i;
+                var discount = total - mult;
+                var cash = total - discountValue * i;
+                console.log(i,cash);
+            }
+
+        });
+
+        $(document).on('click', '.offer-check', function(){
+            var offer = $(this).val();
+            if(offer == 'yes'){
+                $(".discount-div").removeClass('d-none');
+            }else{
+                $(".discount-div").addClass('d-none');
+            }
+        });
+
+
         $('[data-toggle="tooltip"]').tooltip();
 
         $("#p_add_another").bind("click", function () {
