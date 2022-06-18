@@ -1,4 +1,4 @@
-<aside class="side-content">
+<aside class="side-content position-sticky top-0">
     <div class="side-content-list">
         <ul class="nav flex-column">
             <li class="nav-item">

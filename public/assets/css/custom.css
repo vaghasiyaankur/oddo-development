@@ -1,3 +1,5 @@
+
+
 *{
     margin: 0;
     padding: 0;
@@ -86,7 +88,7 @@ a.filter-btn{
     border-radius: 100px;
     font-weight: 400;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 22px;
 }
 .form-check-input[type=checkbox]{
@@ -121,7 +123,7 @@ a.filter-btn{
     transition: all 0.5s ease;
 }
 h5.heading-fs-16{
-    font-weight: 400;
+    font-weight: 800;
     font-size: 16px;
     line-height: 32px;
 }
@@ -164,7 +166,7 @@ header.header .navbar {
 header.header .navbar .dropdown-custom{
     border: none;
     border-radius: 16px;
-    width: 280px;
+    width: 180px;
     height: 206px;
 }
 header.header .navbar .dropdown-custom .dropdown-item{
@@ -175,8 +177,10 @@ header.header .navbar .dropdown-custom .dropdown-item{
     line-height: 32px;
 }
 header.header .navbar .dropdown-custom .dropdown-item.active, 
-header.header .navbar .dropdown-custom .dropdown-item:active{
+header.header .navbar .dropdown-custom .dropdown-item:hover{
     background-color: #e9ecef;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
     /******Logo design *******/
 header.header .navbar a.navbar-brand{
@@ -302,8 +306,8 @@ header.header .navbar .dropdown .dropdown-btn{
    }
 }
 /****** Landing page section end ********/
-/****** Check-in-out section start *******/
 
+/****** Check-in-out section start *******/
 .check-in-out{
     padding: 80px 0;
 }
@@ -311,8 +315,6 @@ header.header .navbar .dropdown .dropdown-btn{
     border: 1px solid #6A78C7;
     border-radius: 12px;
     padding: 32px 24px 36px;
-    /* max-width: 1030px; */
-    margin: 0 auto;
 }
 .check-in-out .check-in-out-inner .check-in-out-form .search-input{
     border:1px solid #878996;
@@ -357,6 +359,24 @@ header.header .navbar .dropdown .dropdown-btn{
     line-height: 24px;
     font-weight: 800;
 }
+  /* Css for select2  */
+  .check-in-out .check-in-out-inner .select2{
+    width: 100% !important;
+  }
+  .check-in-out .check-in-out-inner .select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 38px;
+  }
+  .check-in-out .check-in-out-inner .select2-container .select2-selection--single{
+    height: 38px;
+  }
+  .check-in-out .check-in-out-inner .select2-container--default .select2-selection--single{
+    border: 1px solid #878996;
+    border-radius: 5px;
+  }
+  .check-in-out .check-in-out-inner .select2-container--default .select2-selection--single .select2-selection__rendered{
+    color: #6A78C7;
+    line-height: 35px;
+  }
 /****** Check-in-out section end *******/
 /******** Travel planning start *******/
 .travel-planning .travel-planning-inner .travel-planning-heading h1{
@@ -593,10 +613,10 @@ header.header .navbar .dropdown .dropdown-btn{
     border-radius: 20px;
     margin-top: 20px;
 }
-.s-top-city .s-top-city-inner .s-top-city-main  .slick-next{
+.s-top-city .s-top-city-inner .s-top-city-main .slick-next{
     position: absolute;
     top: 47%;
-    right: -2%;
+    right: -19px;
     cursor: pointer;
     font-size: 50px;
     color: #6A78C7;
@@ -608,6 +628,22 @@ header.header .navbar .dropdown .dropdown-btn{
     cursor: pointer;
     font-size: 50px;
     color: #6A78C7;
+}
+.s-top-city .s-top-city-inner .s-top-city-main .slick-prev:before{
+    content: "";
+}
+.s-top-city .s-top-city-inner .s-top-city-main .slick-next:before{
+    content: "";
+}
+.s-top-city .s-top-city-inner .s-top-city-main .slick-prev::after{
+    content: '\f104' !important;
+    font-family: "Font Awesome 5 Free"; 
+	font-weight: 900;
+}
+.s-top-city .s-top-city-inner .s-top-city-main .slick-next::after{
+    content: '\f105' !important;
+    font-family: "Font Awesome 5 Free"; 
+	font-weight: 900;
 }
 /****** Top cities section end *******/
 
@@ -688,6 +724,25 @@ header.header .navbar .dropdown .dropdown-btn{
     padding: 6px 10px;
 }
 /****** Hotel Result Check-in-out section end *******/
+/********** Weather Section Start **********/
+.weather-main .weather-swiper .swiper-button-prev:after,
+.weather-main .weather-swiper .swiper-button-next:after {
+  font-size: 20px;
+  color: #878996;
+}
+
+.weather-main .weather-swiper .swiper-button-prev,
+.weather-main .weather-swiper .swiper-button-next {
+    background-image: none;
+}
+
+.weather-main .weather-inner .weather-swiper .swiper-slide:hover,
+.weather-main .weather-inner .weather-swiper .swiper-slide.active {
+  background-color: #87899646;
+  border-radius: 5PX;
+}
+/********** Weather Section End **********/
+
 /*************** Search result Start **************/
     /******search result side bar start******/
 .hotel-result.search-result .search-result-inner .hotel-result-form .search-input{
@@ -771,7 +826,7 @@ header.header .navbar .dropdown .dropdown-btn{
 }
 /******search result side bar end ******/
 
-
+ 
 /****** Search result main start *******/
 .hotel-result.search-result main.result-main-content{
     border: 2px solid #6A78C7;
@@ -891,8 +946,6 @@ header.header .navbar .dropdown .dropdown-btn{
 .hotel-result .img-popup-slider .img-swiper{
   width: 100%;
   max-width: 857px;
-  /* height: 100%;
-  max-height: 857px; */
   margin: 0 auto;
 }
 /******img slider popup end ********/
@@ -1585,7 +1638,7 @@ header.header .navbar .dropdown .dropdown-btn{
         margin: 0 auto;
     }
     .pwm-hero h2{
-        font-weight: 400;
+        font-weight: 500;
         font-size: 64px;
         line-height: 64px;
         color: #F8F8FA;
@@ -1593,10 +1646,14 @@ header.header .navbar .dropdown .dropdown-btn{
     .pwm-gmap{
         border: 5px solid #fff;
         border-radius: 16px;
+        box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
     }
     .hero-logo span.logo-text{
         font-size: 20px;
         line-height: 32px;
+        color: #F8F8FA;
+        font-weight: 800;
+        letter-spacing: 2px;
     }
     /********* Pwm hero section start ********/
     .pwm-hero .pwm-hero-inner .pwm-hero-wraper{
@@ -1610,6 +1667,8 @@ header.header .navbar .dropdown .dropdown-btn{
         width: 100% !important;
         border-radius: 12px;
         box-shadow:0px 0px 19px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        min-height: 333px;
     }
     /********* Pwm hero section end ********/
     /******* pwm map section start *********/
@@ -1617,8 +1676,6 @@ header.header .navbar .dropdown .dropdown-btn{
         position: absolute;
         top: 29%;
         right: 5%;
-    }
-    .pwm-map .pwm-map-inner .pwm-map-far-box {
         width: 100%;
         max-width: 207px;
         height: 100%;
@@ -1627,11 +1684,11 @@ header.header .navbar .dropdown .dropdown-btn{
         border-radius: 8px;
         box-shadow: 0px 25px 54px rgb(106 120 199 / 35%);
         border: 1px solid #E6E8F5;
-        /* padding: 11px 24px; */
     }
     .pwm-map .pwm-map-inner .pwm-map-far-box .far-box-top{
         padding: 11px 24px;
         border-bottom: 1px solid #E6E8F5;
+        white-space: nowrap;
     }
     .pwm-map .pwm-map-inner .pwm-far-box-inner{
         padding: 15px 24px 13px;
@@ -1641,7 +1698,7 @@ header.header .navbar .dropdown .dropdown-btn{
         border-color: #0d6efd;
     }
     .pwm-map .pwm-map-inner .pwm-heading h2{
-        font-weight: 400;
+        font-weight: 800;
         font-size: 24px;
         line-height: 24px;
         color: #878996;
@@ -1662,7 +1719,7 @@ header.header .navbar .dropdown .dropdown-btn{
         border: 1px solid #2F80ED;
     }
     .pwm-accordion .pwm-accordion-inner .pwm-accordion-title .pwm-accordion-text .accordion-text{
-        font-weight: 400;
+        font-weight: 800;
         font-size: 24px;
         line-height: 24px;
     }
@@ -1707,7 +1764,7 @@ header.header .navbar .dropdown .dropdown-btn{
         box-shadow: 0px 0px 8px #2d9cdb;
     }
     .pwm-transport-heading h2{
-        font-weight: 400;
+        font-weight: 800;
         font-size: 32px;
         line-height: 32px;
         color: #393C52;
@@ -1757,6 +1814,7 @@ header.header .navbar .dropdown .dropdown-btn{
         box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
         border: none;
+        /* margin: 0 auto; */
     }
     .pwm-card-body{
         padding: 13px 24px 26px 23px;
@@ -1785,30 +1843,24 @@ header.header .navbar .dropdown .dropdown-btn{
         border-radius: 8px;
         background-color: #fff;
     }
-    .pwm-museums .pwm-museums-inner .city-tab-popup-main  .tab-popup-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .pwm-museums .pwm-museums-inner .city-tab-popup-main  .slick-next:before{
+    .pwm-museums .pwm-museums-inner .city-tab-popup-main .slick-next:before{
         content: "\f061";
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
     }
-    .pwm-museums .pwm-museums-inner .city-tab-popup-main  .slick-prev::before{
+  .pwm-museums .pwm-museums-inner .city-tab-popup-main .slick-prev::before{
         content: "\f060";
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
     }
-    .pwm-museums .pwm-museums-inner .city-tab-popup-main  .slick-prev{
+    .pwm-museums .pwm-museums-inner .city-tab-popup-main .slick-prev{
         z-index: 99 !important;
         left: 15px;
     }
-    .pwm-museums .pwm-museums-inner .city-tab-popup-main  .slick-next{
+    .pwm-museums .pwm-museums-inner .city-tab-popup-main .slick-next{
         right: 15px;
     }
-    .pwm-museums .pwm-museums-inner .city-tab-popup-main  .city-tab-logo-text{
+    .pwm-museums .pwm-museums-inner .city-tab-popup-main .city-tab-logo-text{
         z-index:10;
         top: 28px;
         left: 24px;
@@ -1887,67 +1939,25 @@ header.header .navbar .dropdown .dropdown-btn{
         border: 1px solid #6FCF97;
         box-shadow: 0px 0px 8px #6FCF97;
     }
-    /* / ------------ SUB TITLE SWIPER ---------- / */
-    .pwm-rest-main .pwm-title-swiper .sub-category p {
-        margin-bottom: 0px;
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-container {
-        position: relative;
-        width: 100%;
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-container > .swiper-slide__content {
-        position: absolute;
-        top: 0;
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-slide {
-        width: 190px !important;
-        display: flex;
-        font-size: 21px;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        transition: all 200ms linear;
-        transform: scale(0.8);
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-slide.swiper-slide-active {
-        transform: scale(0.8);
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-slide__content {
-        height: 300px;
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-button-next {
-            right: -47px;
-            top: 9px;
-            background-size: 10px;
-            left: auto;
-            transform: translateX(0px);
-        }
-        .pwm-rest-main .pwm-title-swiper .swiper-button-prev {
-            left: auto;
-            top: 9px;
-            background-size: 10px;
-            right: 24px;
-        }
-        .pwm-rest-main .pwm-title-swiper [class^="swiper-button-"]{
-            width: 8%;
-            opacity: 1;
-            visibility: visible;
-        }
-        .pwm-rest-main .pwm-title-swiper  .swiper-container-3d .swiper-slide-shadow-right{
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
-        }
-        .pwm-rest-main .pwm-title-swiper  .swiper-container-3d .swiper-slide-shadow-left{
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
-        }
-        .pwm-rest-main .pwm-title-swiper .form-check-input:checked{
-            background-color: #6FCF97;
-            border-color: #6FCF97;
-        }
-        .pwm-rest-main .pwm-title-swiper label.form-check-label,
-        .pwm-rest-main .pwm-rest-price  label.form-check-label{
-            font-size: 16px;
-            line-height: 32px;
-        }
+    /* / ------------ SUB TITLE SWIPER START---------- / */
+    .pwm-rest-main .pwm-museums-inner .pwm-title-swiper .swiper-button-next{
+        right: 0;
+        left: auto;
+    }
+    .pwm-rest-main .pwm-museums-inner .pwm-title-swiper .swiper-button-prev{
+        right: 45px;
+        left: auto;
+    }
+    .pwm-rest-main .pwm-museums-inner .pwm-title-swiper .swiper-button-next:after, .swiper-button-prev:after{
+        color: #B0BEC5;
+        font-size: 18px;
+    }
+    .pwm-rest-main .pwm-museums-inner .pwm-title-swiper .swiper-button-next, 
+    .pwm-rest-main .pwm-museums-inner .pwm-title-swiper .swiper-button-prev{
+        top: 30%;
+    }
+    /* / ------------ SUB TITLE SWIPER END---------- / */
+    
     /*******pwm-rest-main end ********/
 
 /********* place with map fourth page end ********/
@@ -2047,8 +2057,9 @@ header.header .navbar .dropdown .dropdown-btn{
     }
     .hotel-policies .h-policies-main .policies-extra .policies-text{
         border: 1px solid #6A78C7;
-        padding: 17px 44px;
+        padding: 17px;
         border-radius: 5px;
+        text-align: center;
     }
     .hotel-policies .h-policies-main .policies-extra a,
     .hotel-policies .h-policies-main{
@@ -2061,6 +2072,11 @@ header.header .navbar .dropdown .dropdown-btn{
         background-color: #F8F8FA;
         padding-top: 50px;
         padding-bottom: 90px;
+    }
+    .hotel-room .hotel-room-inner .hotel-room-heading h5{
+        font-size: 20px;
+        line-height: 24px;
+        color: #393C52;
     }
     .hotel-room .hotel-room-inner .room-card-main{
         background-color: #fff;
@@ -2079,6 +2095,10 @@ header.header .navbar .dropdown .dropdown-btn{
     }
     .hotel-room .hotel-room-inner .room-card-main .room-single-card .single-card-price img{
         vertical-align: sub;
+    }
+    section.hotel-room .room-card-main .single-card-img img{
+        min-height: 230px;
+        object-fit: cover;
     }
 
     /********** Hotel Room section end *********/

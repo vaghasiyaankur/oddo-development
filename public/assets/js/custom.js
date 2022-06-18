@@ -1,3 +1,5 @@
+// Main Url
+let base_url = $('#base_url').val();
 // Hide navbar when scroll
 $(document).ready(function () {
   $(document).scroll(function () {

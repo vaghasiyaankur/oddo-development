@@ -1,4 +1,7 @@
 {
     "User": true,
-    "UserSite": true
+    "UserSite": true,
+    "Frontend": true,
+    "Test": true,
+    "Testing": true
 }

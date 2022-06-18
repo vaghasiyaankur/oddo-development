@@ -33,7 +33,7 @@ Add-Property
                                    
                             </div>
                             <span id="property-name-error" class="text-danger"></span>
-                            @if($hotel->propertytype->type == 'Hotel')
+                            @if(@$hotel->propertytype->type == 'Hotel')
                                 <div class="p-form-select pt-3">
                                     <label for="" class="form-label label-heading">Star rating</label>
                                     <select class="form-select c-form-select star_rating" name="star_rating"
@@ -66,12 +66,12 @@ Add-Property
                                     <div class="contact-number pt-3">
                                         <div class="contact-number-main d-flex">
                                             <div class="contact-number-inner phone-div">
-                                                <label for="" class="form-label label-heading ">Phone Number</label>
-                                                <input type="tel" name="phone_1"  class="form-control custom-from-control phone_1 phoneNumber">
+                                                <label for="phone_1" class="form-label label-heading ">Phone Number</label>
+                                                <input type="tel" name="phone_1" id="phone_1" class="form-control custom-from-control phone_1 phoneNumber" />
                                             </div>
                                             <div class="contact-number-inner margin--left phone-optional-div">
-                                                <label for="" class="form-label label-heading ">Alternative Phone Number(Optional)</label>
-                                                <input type="tel"  name="optional_1" class="form-control custom-from-control optional_1 phoneOptinal">
+                                                <label for="optional_1" class="form-label label-heading ">Alternative Phone Number(Optional)</label>
+                                                <input type="tel"  name="optional_1" id="optional_1" class="form-control custom-from-control optional_1 phoneOptinal" />
                                             </div>
                                         </div>
                                     </div>

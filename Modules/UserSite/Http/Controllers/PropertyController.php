@@ -70,7 +70,7 @@ class PropertyController extends Controller
                 'name' => $contect->name,
                 'number'   => $contect->phone,
                 'number_optinal' => $contect->phoneOptional,
-                'hotels_id' => $hotel_id,
+                'hotel_id' => $hotel_id,
             ]);  
         }
         return response()->json(['redirect_url' => route('layout-form')]);
@@ -183,14 +183,14 @@ class PropertyController extends Controller
         $image = str_replace(' ', '+', $image); 
         $imageName = 'Img_'.Str::random(10).'.'.$extension;
         $img =base64_decode($image);
-        Storage::disk('public')->put('Hotel'.'/'.$imageName, base64_decode($image));
+        Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
 
         $hotel_id = Session::get('hotel')->id;
 
         $hotelphoto = new HotelPhoto();
         $hotelphoto->main_photo = $request->main;
-        $hotelphoto->photos     = $imageName;
-        $hotelphoto->hotels_id  = $hotel_id;
+        $hotelphoto->photos     = 'hotel/'.$imageName;
+        $hotelphoto->hotel_id  = $hotel_id;
         $hotelphoto->save();
 
         return response()->json(['redirect_url' => route('policy')]);
@@ -206,7 +206,7 @@ class PropertyController extends Controller
             'check_out'      => $request->check_out,
         ]);  
 
-        return response()->json(['redirect_url' => route('home')]);
+        return response()->json(['redirect_url' => route('home.index')]);
     }
    
 }

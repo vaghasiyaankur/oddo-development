@@ -9,6 +9,6 @@ class HotelContact extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'number', 'number_optinal', 'hotels_id'];
+    protected $fillable = ['name', 'number', 'number_optinal', 'hotel_id'];
 
 }

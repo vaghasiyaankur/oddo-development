@@ -62,6 +62,16 @@
     font-size: 14px;
     line-height: 22px;
 }
+.l-p-myproperties .l-p-myproperties-card .property-type{
+    border-right: 1px solid #A4A6BA;    
+    flex: 0 0 20%;
+    max-width: 20%;
+    width: 100%;
+    padding: 0 15px;
+}
+.l-p-myproperties .l-p-myproperties-card .property-type:last-child{
+    border-right: none;
+}
 /******** list properties content end **********/
 /******** pannel second page start ********/
 .admin-pannel-main .admin-pannel-inner .side-content .nav-item .nav-link{

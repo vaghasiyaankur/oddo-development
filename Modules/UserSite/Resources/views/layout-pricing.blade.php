@@ -125,7 +125,7 @@ Layout & pricing
                                 </div>
                             </form>
                         </div>
-                        @if($hotel->propertytype->type == 'Guest house')
+                        @if(@$hotel->propertytype->type == 'Guest house')
                             <div class="form-info-box mt-3">
                                 <form action="" class="form-bathroom-part">
                                     <div class="p-form-heading  d-flex">
@@ -156,7 +156,7 @@ Layout & pricing
                                     </div>
                                     <div class="bathroom-item-list ">      
                                         <div class="bathroom-item-check d-flex flex-wrap align-items-center justify-content-between">
-                                            <input type="hidden" name="property_type" class="property_type" value="{{$hotel->propertytype->type}}">
+                                            <input type="hidden" name="property_type" class="property_type" value="{{@$hotel->propertytype->type}}">
                                             @foreach ($bathrooms as $bathroom)
                                                 <div class="form-check py-3 border--dotted">
                                                     <label class="form-check-label para-fs-14 fs-6">

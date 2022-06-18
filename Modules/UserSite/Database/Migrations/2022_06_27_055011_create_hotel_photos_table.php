@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('photos')->nullable();
             $table->string('photos_path')->nullable();
             $table->integer('room_id')->unsigned()->nullable();
-            $table->integer('hotels_id')->unsigned()->nullable();
-
+            $table->integer('hotel_id')->unsigned()->nullable();
             $table->foreign('room_id')->references('id')->on('room_types');
-            $table->foreign('hotels_id')->references('id')->on('hotels');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
 
             $table->timestamps();
         });

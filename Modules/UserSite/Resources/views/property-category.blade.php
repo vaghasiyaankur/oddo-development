@@ -35,10 +35,10 @@
                 <h5 class="heading-fs-16 d-l-Purple" >To get started, select the type of property you want to list</h5>
             </div>
             <div class="l-p-myproperties-card">
-                <div class="row">
+                <div class="d-flex flex-wrap">
                 @foreach($propertys as $no => $property)
                     @if($no <= 5)
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12 border-right ">
+                    <div class="border-right property-type">
                         <div class="l-mypro-card text-center">
                             <div class="l-mypro-card-logo">
                                 <img src="../assets/images/icons/house.png">

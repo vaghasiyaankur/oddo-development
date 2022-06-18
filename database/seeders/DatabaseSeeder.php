@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use Modules\UserSite\Database\Seeders\CountrySeederTableSeeder;
+use Modules\UserSite\Database\Seeders\CountryTableSeeder;
+use Modules\UserSite\Database\Seeders\CityTableSeeder;
+use Modules\UserSite\Database\Seeders\PartnerTableSeeder;
 use Modules\UserSite\Database\Seeders\AmenitiesCategoryTableSeeder;
 use Modules\UserSite\Database\Seeders\FoodTypeTableSeeder;
 use Modules\UserSite\Database\Seeders\AmenitiesTableSeeder;
@@ -26,7 +28,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            CountrySeederTableSeeder::class,
+            CountryTableSeeder::class,
+            CityTableSeeder::class,
+            PartnerTableSeeder::class,
             AmenitiesCategoryTableSeeder::class,
             AmenitiesTableSeeder::class,
             FoodTypeTableSeeder::class,

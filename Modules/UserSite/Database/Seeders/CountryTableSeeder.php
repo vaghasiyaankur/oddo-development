@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
 
-class CountrySeederTableSeeder extends Seeder
+class CountryTableSeeder extends Seeder
 {
 
     protected $model = Country::class;
@@ -20,16 +20,18 @@ class CountrySeederTableSeeder extends Seeder
     public function run()
     {
         $countries = [
-            'India',
             'USA',
-            'Germany',
-            'Hong Kong'
+            'Italy',
+            'Japan',
+            'Maxico',
+            'Spain',
+            'Thailand',
         ];
 
         foreach ($countries as $country) {
             Country::create([
                 'country_name' => $country,
-                'slug'         => \Str::slug($country),
+                'icon'         => 'country/icon/'.\Str::slug($country).'.png',
                 'status'       => '1',
             ]);
         }

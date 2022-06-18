@@ -241,7 +241,7 @@ Facilities
                 formdata.append('food_type_val', food_type_val); }
             formdata.append('facilities', facilities);
             formdata.append('language', language);
-            $('.spinner-border').show();
+            $('.spinner-border').show();    
             $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

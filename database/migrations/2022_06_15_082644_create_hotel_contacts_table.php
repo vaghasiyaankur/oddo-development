@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('hotel_contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->boolean('status')->default(0);
+            $table->string('number');
+            $table->string('number_optinal')->nullable();
+            $table->integer('hotel_id')->unsigned()->nullable();
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('hotel_contacts');
     }
 };
