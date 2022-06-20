@@ -223,7 +223,7 @@ Layout & pricing
                                             </div>
                                             <div class="input-group mb-3 discount-div ">                                            
                                                 <div class="w-50 d-flex">
-                                                    <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button">
+                                                    <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button" value="0">
                                                     <select class="form-select c-form-select discountType" style="border-radius: 0px" name="discount-type" aria-label="Default select example">
                                                         <option value="percentage">%</option>
                                                         <option value="cash">INR</option>
@@ -232,15 +232,15 @@ Layout & pricing
                                                 <span class="ps-2 lh-3">per guest</span>
                                             </div>
                                             
-                                            <div class="p-form-select pt-3 price_wrapper ">
+                                            <div class="p-form-select pt-3 price_wrapper offer-person-div">
                                                 <label for="" class="form-label label-heading">What is the minimum occupancy you are willing to offer a discount for?   </label>
-                                                <select class="form-select c-form-select star_rating" name="star_rating" aria-label="Default select example">
-                                                    <option value="N/A" selected="">N/A</option>
+                                                <select class="form-select c-form-select star_rating offer-person-select" name="star_rating" aria-label="Default select example">
+                                                    {{-- <option value="N/A" selected="">N/A</option>
                                                     <option value="1">1 Star</option>
                                                     <option value="2">2 Star</option>
                                                     <option value="3">3 Star</option>
                                                     <option value="4">4 Star</option>
-                                                    <option value="5">5 Star</option>
+                                                    <option value="5">5 Star</option> --}}
                                                 </select>
                                             </div>
                                         </div>
@@ -257,15 +257,18 @@ Layout & pricing
                                                 <p class="mb-1">Price</p>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-6">
                                                 <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span></p>
                                             </div>
                                             <div class="col-6">
                                                 <p class="mb-1 text-success">Rs.200</p>
                                             </div>
+                                        </div> --}}
+                                        <div class="price-discount-div">
+
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-6">
                                                 <p class="mb-1"><i class="fa-solid fa-user"></i> X 6</p>
                                             </div>
@@ -280,7 +283,7 @@ Layout & pricing
                                             <div class="col-6">
                                                 <p class="mb-1 text-success">Rs.200</p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -349,29 +352,81 @@ Layout & pricing
             var value = $(this).val();
             
             $('.total_person').text(value);
-            $('.number-person').text(value);
+            // $('.number-person').text(value);
 
             if (!value) {
                 $('.total_person').text('0');    
                 $('.number-person').text('0'); 
-            }  
+            } 
+
+            var OfferCheck = $('.offer-check:checked').val();
+            if(OfferCheck == 'yes')  {
+                RoomDiscount();  
+            }       
+
         });
         
         $(document).on('focusout', '.discountValue', function(){
+            RoomDiscount();   
+        });
+
+        $(document).on('focusout', '.discountType', function(){
+            RoomDiscount();   
+        });
+
+        $(document).on('focusout', '.bed_price', function(){
+            RoomDiscount();   
+        });
+
+        $(document).on('change', '.star_rating', function(){
+            var name = $('.star_rating').find(":selected").text();
+            RoomDiscount(name);
+        });
+
+
+        function RoomDiscount(name){
+            $(".price-discount-div").empty();
+            $(".offer-person-select").empty();
             var discountValue = $('.discountValue').val();
             var noOfPerson = $('.number_of_guest').val();
             var total = $('.bed_price').val();
             var discountType  = $('.discountType').val();
-            
-            for(i=0; i < noOfPerson; i++){
+            var j = noOfPerson;
+            console.log(name);
+
+            for(i=0; i < noOfPerson; i++) {
                 var dec  = (discountValue / 100).toFixed(2);
                 var mult = total * dec * i;
-                var discount = total - mult;
-                var cash = total - discountValue * i;
-                console.log(i,cash);
-            }
+                
+                if(discountType == 'percentage'){
+                    var amount = total - mult;
+                }else {
+                    var amount = total - discountValue * i;
+                }
+                
+                if (j < name) { break; }
+                    $(".price-discount-div").append('<div class="row">' +
+                                                '<div class="col-6">' +
+                                                   ' <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span>'+j+'</p>' +
+                                                '</div>' + 
+                                                '<div class="col-6">' +
+                                                   '<p class="mb-1 '+  (amount <= 0 ? 'text-danger': 'text-success')  +'">Rs.'+ amount +'</p>' +
+                                                '</div>' +
+                                            '</div>');
 
-        });
+                                           
+                                            
+                if(i != 0){
+                    var dadi = '';
+                    if(i == name){
+                        var name = 'selected';
+                    }
+                    $('.offer-person-select').append('<option value="'+ i +'"'+name+'> '+ i +'</option>');
+                }
+                j--;
+            }
+        }
+
 
         $(document).on('click', '.offer-check', function(){
             var offer = $(this).val();
@@ -379,6 +434,20 @@ Layout & pricing
                 $(".discount-div").removeClass('d-none');
             }else{
                 $(".discount-div").addClass('d-none');
+
+                var noOfPerson = $('.number_of_guest').val();
+                var total = $('.bed_price').val();
+
+                $(".price-discount-div").empty();
+                
+                $(".price-discount-div").append('<div class="row">' +
+                                            '<div class="col-6">' +
+                                               ' <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span>'+noOfPerson+'</p>' +
+                                            '</div>' + 
+                                            '<div class="col-6">' +
+                                               '<p class="mb-1 text-success">Rs.'+ total +'</p>' +
+                                            '</div>' +
+                                        '</div>');
             }
         });
 
@@ -404,6 +473,7 @@ Layout & pricing
                                             '</select>'+ '<i class="fa-solid fa-xmark text--red ps-3"></i>'
                                             + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />'+
                                         '</div>');
+
                                         var number = $('.number-of-select').val(numbers);
 
         });

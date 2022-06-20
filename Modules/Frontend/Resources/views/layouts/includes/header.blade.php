@@ -40,7 +40,7 @@
             <li><a class="dropdown-item" href="#">Order History</a></li>
             <li><a class="dropdown-item" href="#">Upcoming Trips</a></li>
             <li><a class="dropdown-item " href="#"><span class="text--red">Logout</span> </a></li>
-          </ul>swiper-logo text-center
+          </ul>
         </div>
       </div>
     </div>
