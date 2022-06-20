@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('amenity_id')->nullable();
             $table->string('bathroom_private')->nullable();
             $table->string('bathroom_item')->nullable();
+            $table->string('slug')->nullable();
             $table->integer('city_id')->unsigned()->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
             $table->integer('amenities_id')->unsigned()->nullable();

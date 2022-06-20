@@ -3,16 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\HotelPhoto;
 
 class Hotel extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $table = 'hotels';
 
-    protected $fillable = ['property_name', 'star_rating', 'street_addess', 'address_line', 'country', 'city', 'pos_code', 'parking_available', 'reservation', 'parking_site', 'parking_type', 'price_parking', 'price_parking', 'breakfast', 'breakfast_price', 'breakfast_type', 'language', 'facilities', 'extra_bed', 'number_extra_bed', 'guest_extra_bed','amenity_id', 'pay_type', 'cancel_booking', 'check_in', 'check_out', 'property_id', 'bathroom_private', 'bathroom_item'];
+    protected $guarded = ['id'];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'street_addess'
+            ]
+        ];
+    }
+    
 
     public function propertytype()
     {
