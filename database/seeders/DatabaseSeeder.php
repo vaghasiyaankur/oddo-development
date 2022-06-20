@@ -17,6 +17,10 @@ use Modules\UserSite\Database\Seeders\RoomTypeTableSeeder;
 use Modules\UserSite\Database\Seeders\RoomListTableSeeder;
 use Modules\UserSite\Database\Seeders\BedTypeTableSeeder;
 use Modules\UserSite\Database\Seeders\BathroomItemTableSeeder;
+use Modules\UserSite\Database\Seeders\HotelTableSeeder;
+use Modules\UserSite\Database\Seeders\HotelContactTableSeeder;
+use Modules\UserSite\Database\Seeders\HotelRoomTableSeeder;
+use Modules\UserSite\Database\Seeders\HotelPhotoTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -40,6 +44,10 @@ class DatabaseSeeder extends Seeder
             RoomListTableSeeder::class,
             BedTypeTableSeeder::class,
             BathroomItemTableSeeder::class,
+            HotelTableSeeder::class,
+            HotelContactTableSeeder::class,
+            HotelRoomTableSeeder::class,
+            HotelPhotoTableSeeder::class,
         ]);
     }
 }
