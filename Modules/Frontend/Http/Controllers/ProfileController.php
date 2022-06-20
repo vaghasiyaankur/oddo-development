@@ -5,9 +5,8 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\City;
 
-class PlannerController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class PlannerController extends Controller
      */
     public function index()
     {
-        $cities = City::get();
-        return view('frontend::planner.index', compact('cities'));
+        return view('frontend::profile.index');
     }
 
     /**

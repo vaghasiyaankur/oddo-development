@@ -22,12 +22,9 @@
                 <div class="e-city-dropdown my-3">
                     <div class="f-group">
                         <select class="f-control f-dropdown" placeholder="Please choose ">
-                            <option value="1" data-image="assets\images\icons\city-s.png">Spain</option>
-                            <option value="2" selected="selected" data-image="assets\images\icons\city-s.png">Madrid,
-                                Spain</option>
-                            <option value="3" data-image="assets\images\icons\city-s.png">Malaga,Spain</option>
-                            <option value="4" data-image="assets\images\icons\city-s.png">Valencia</option>
-                            <option value="5" data-image="assets\images\icons\city-s.png">Valencia</option>
+                            @foreach ($cities as $city)
+                            <option value="{{ $loop->iteration }}" data-image="{{asset('storage/'.@$city->country->icon)}}">{{ $city->name.','.$city->country->country_name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

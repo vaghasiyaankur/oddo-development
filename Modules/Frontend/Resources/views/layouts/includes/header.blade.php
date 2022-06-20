@@ -24,7 +24,7 @@
             </a>
           </li>
           <li class="nav-item ps-lg-3">
-            <a class="nav-link" href="#">Seaved</a>
+            <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
           </li>
         </ul>
         <div class="list-properties pe-5">
@@ -36,11 +36,11 @@
             Hi, Daniela!
           </button>
           <ul class="dropdown-menu dropdown-custom" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item active" href="#">My Account</a></li>
-            <li><a class="dropdown-item" href="#">Order History</a></li>
-            <li><a class="dropdown-item" href="#">Upcoming Trips</a></li>
+            <li><a class="dropdown-item active" href="{{ route('myaccount.index') }}">My Account</a></li>
+            <li><a class="dropdown-item" href="{{ route('orderhistory.index') }}">Order History</a></li>
+            <li><a class="dropdown-item" href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
             <li><a class="dropdown-item " href="#"><span class="text--red">Logout</span> </a></li>
-          </ul>swiper-logo text-center
+          </ul>
         </div>
       </div>
     </div>
