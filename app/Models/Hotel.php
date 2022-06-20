@@ -19,12 +19,11 @@ class Hotel extends Model
     {
         return [
             'slug' => [
-                'source' => 'street_addess'
+                'source' => 'property_name'
             ]
         ];
     }
     
-
     public function propertytype()
     {
         return $this->belongsTo(PropertyType::class, 'property_id');

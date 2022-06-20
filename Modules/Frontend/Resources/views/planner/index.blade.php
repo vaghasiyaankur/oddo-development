@@ -1,7 +1,7 @@
 @extends('frontend::layouts.master')
 
 @section('title')
-    planner
+    Planner
 @endsection
 
 
@@ -23,7 +23,7 @@
                         class="ms-2" alt="">
                 </div>
                 <div class="exploer-btn- d-flex justify-content-between align-items-center mt-2 mt-sm-0">
-                    <a href="check-out.html" class="e_btn cart__btn"><span>Go to Checkout <img
+                    <a href="{{ route('checkout.index') }}" class="e_btn cart__btn"><span>Go to Checkout <img
                                 src="{{ asset('assets/images/icons/planer-cart.png') }}" class="mb-1 ms-1" alt=""></span></a>
                 </div>
             </div>
@@ -42,18 +42,20 @@
                                             src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png"
                                             width="10" height="10" class="down" /></div>
                                     <ul>
-                                        <li class="input-option" data-value="1">
-                                            <img src="{{ asset('assets/images/icons/city-s.png') }}" width="20" height="20" /><span
-                                                class="ps-3">Barcelona, Spain</span>
+                                        @foreach ($cities as $city)
+                                        <li class="input-option" data-value="{{ $loop->iteration }}">
+                                            <img src="{{asset('storage/'.@$city->country->icon)}}" width="20" height="20" /><span
+                                                class="ps-3">{{ $city->name.','.$city->country->country_name }}</span>
                                         </li>
-                                        <li class="input-option" data-value="2">
+                                        @endforeach
+                                        {{-- <li class="input-option" data-value="2">
                                             <img src="{{ asset('assets/images/icons/city-s.png') }}" alt="" width="20"
                                                 height="20" /><span class="ps-3"></span> Madrid, Spain
                                         </li>
                                         <li class="input-option" data-value="3">
                                             <img src="{{ asset('assets/images/icons/city-s.png') }}" alt="" width="20"
                                                 height="20" /><span class="ps-3"></span> Barcelona, Spain
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                     <input type="hidden" class="option" name="namesubmit" value="" />
                                 </div>

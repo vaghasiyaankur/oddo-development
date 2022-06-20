@@ -22,7 +22,7 @@ class HotelPhotoTableSeeder extends Seeder
         $HotelPhoto = [
             [
                 'main_photo'  => '1',
-                'photos'      => 'Hotel/nav-img1.png',
+                'photos'      => 'Hotel/hotel-1.jpg',
                 'photos_path' => Null,
                 'room_id'     => '1',
                 'hotel_id'    => '1',
@@ -30,7 +30,7 @@ class HotelPhotoTableSeeder extends Seeder
                 'updated_at'  => date("Y-m-d H:i:s"),
             ],[
                 'main_photo'  => '0',
-                'photos'      => 'Hotel/nav-img2.png',
+                'photos'      => 'Hotel/hotel-2.jpg',
                 'photos_path' => Null,
                 'room_id'     => '1',
                 'hotel_id'    => '1',
@@ -38,7 +38,7 @@ class HotelPhotoTableSeeder extends Seeder
                 'updated_at'  => date("Y-m-d H:i:s"),
             ],[
                 'main_photo'  => '0',
-                'photos'      => 'Hotel/nav-img3.png',
+                'photos'      => 'Hotel/hotel-3.jpg',
                 'photos_path' => Null,
                 'room_id'     => '1',
                 'hotel_id'    => '1',
@@ -46,7 +46,7 @@ class HotelPhotoTableSeeder extends Seeder
                 'updated_at'  => date("Y-m-d H:i:s"),
             ],[
                 'main_photo'  => '1',
-                'photos'      => 'Hotel/nav-img4.png',
+                'photos'      => 'Hotel/hotel-4.jpg',
                 'photos_path' => Null,
                 'room_id'     => '2',
                 'hotel_id'    => '2',
@@ -54,7 +54,7 @@ class HotelPhotoTableSeeder extends Seeder
                 'updated_at'  => date("Y-m-d H:i:s"),
             ],[
                 'main_photo'  => '0',
-                'photos'      => 'Hotel/nav-img5.png',
+                'photos'      => 'Hotel/hotel-5.jpg',
                 'photos_path' => Null,
                 'room_id'     => '2',
                 'hotel_id'    => '2',
@@ -62,7 +62,7 @@ class HotelPhotoTableSeeder extends Seeder
                 'updated_at'  => date("Y-m-d H:i:s"),
             ],[
                 'main_photo'  => '0',
-                'photos'      => 'Hotel/nav-img6.png',
+                'photos'      => 'Hotel/hotel-6.jpg',
                 'photos_path' => Null,
                 'room_id'     => '2',
                 'hotel_id'    => '2',

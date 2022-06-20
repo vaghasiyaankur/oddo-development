@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\City;
 
-class PlannerController extends Controller
+class SavedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class PlannerController extends Controller
     public function index()
     {
         $cities = City::get();
-        return view('frontend::planner.index', compact('cities'));
+        return view('frontend::saved.index', compact('cities'));
     }
 
     /**

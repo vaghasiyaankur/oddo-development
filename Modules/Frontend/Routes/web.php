@@ -30,3 +30,19 @@ Route::get('/search', 'SearchController@index')->name('search.index');
 
 /* Planner Page */
 Route::get('/planner', 'PlannerController@index')->name('planner.index');
+
+/* Saved Page */
+Route::get('/saved', 'SavedController@index')->name('saved.index');
+
+/* Profile Page */
+Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
+
+/* Order Histrory Page */
+Route::get('/order-history', 'OrderHistoryController@index')->name('orderhistory.index');
+
+/* Upcoming Trip Page */
+Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrips.index');
+
+/* Checkout Page */
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+
