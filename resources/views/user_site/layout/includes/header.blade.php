@@ -9,16 +9,16 @@
       <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
         <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('hotel.index')}}">Hotels </a>
+            <a class="nav-link active" aria-current="page" href="{{ route('hotel.index') }}">Hotels </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cities</a>
+            <a class="nav-link" href="{{ route('city.index') }}">Cities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('search.index')}}">Search</a>
+            <a class="nav-link" href="{{ route('search.index') }}">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link position-relative" href="#">Planner
+            <a class="nav-link position-relative" href="{{ route('planner.index') }}">Planner
               <span
                 class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
             </a>

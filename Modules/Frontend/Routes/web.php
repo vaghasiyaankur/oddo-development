@@ -26,3 +26,7 @@ Route::get('/city', 'CityController@index')->name('city.index');
 
 /* Search Page */
 Route::get('/search', 'SearchController@index')->name('search.index');
+
+
+/* Planner Page */
+Route::get('/planner', 'PlannerController@index')->name('planner.index');

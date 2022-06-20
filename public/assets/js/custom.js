@@ -1,16 +1,16 @@
 // Main Url
 let base_url = $('#base_url').val();
 // Hide navbar when scroll
-$(document).ready(function () {
-  $(document).scroll(function () {
-      $('.navbar-collapse').collapse('hide');
-  });
-});
+// $(document).ready(function () {
+//   $(document).scroll(function () {
+//       $('.navbar-collapse').collapse('hide');
+//   });
+// });
 
 // hide navbar when click outside 
-$(document).on('click', function () {
-  $('.collapse').collapse('hide');
-});
+// $(document).on('click', function () {
+//   $('.collapse').collapse('hide');
+// });
 
 // js for top city slider (index.html)
 $('#slick1').slick({

@@ -13,6 +13,8 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
    <!------- Font Family Link ------->
    <link rel="stylesheet" href="{{asset('assets/fonts/stylesheet.css') }}"> 
+   <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
    <!-------- Slick css cdn ------->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
@@ -28,6 +30,8 @@
   <!-------- Custom CSS Link -------->
   <link rel="stylesheet" href="{{asset('assets/css/custom.css') }}">
   <link rel="stylesheet" href="{{asset('assets/css/reponsive.css') }}">
+  <link rel="stylesheet" href="{{asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{asset('assets/css/style-responsive.css') }}">
 
   @stack('css')
 
@@ -50,7 +54,9 @@
 
 
 <!-------Jquery Cdn Link ------->
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!------- Bootstrap JS Link ------->
 <script src="{{asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 <!------- Swiper js cdn------->

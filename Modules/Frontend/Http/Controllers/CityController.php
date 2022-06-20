@@ -5,6 +5,7 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\City;
 
 class CityController extends Controller
 {
@@ -14,7 +15,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        return view('frontend::city.index');
+        $cities = City::get();
+        return view('frontend::city.index', compact('cities'));
     }
 
     /**
