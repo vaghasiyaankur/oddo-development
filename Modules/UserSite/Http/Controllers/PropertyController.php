@@ -28,15 +28,8 @@ class PropertyController extends Controller
 {
 
     public function category() {
-        // $url = 'https://source.unsplash.com/random/1200x800?hotel';
-        // dd(file_get_contents($url));
-        // Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
-        // dd($img);
-        // $contents = base64_encode(file_get_contents($url));
-        
-        // Storage::disk('public')->put('hotel/test.jpg', $contents);
-        // $propertys = PropertyType::active()->get();
-        // return view('usersite::property-category', compact('propertys'));
+        $propertys = PropertyType::active()->get();
+        return view('usersite::property-category', compact('propertys'));
     }
 
     public function basicInfo() {
