@@ -362,25 +362,29 @@ Layout & pricing
             var OfferCheck = $('.offer-check:checked').val();
             if(OfferCheck == 'yes')  {
                 RoomDiscount();  
+                selected();
             }       
-
         });
         
         $(document).on('focusout', '.discountValue', function(){
-            RoomDiscount();   
+            RoomDiscount();  
+            selected(); 
         });
 
         $(document).on('focusout', '.discountType', function(){
-            RoomDiscount();   
+            RoomDiscount(); 
+            selected();   
         });
 
         $(document).on('focusout', '.bed_price', function(){
-            RoomDiscount();   
+            RoomDiscount();  
+            selected(name);  
         });
 
         $(document).on('change', '.star_rating', function(){
             var name = $('.star_rating').find(":selected").text();
             RoomDiscount(name);
+            selected(name); 
         });
 
 
@@ -392,7 +396,6 @@ Layout & pricing
             var total = $('.bed_price').val();
             var discountType  = $('.discountType').val();
             var j = noOfPerson;
-            console.log(name);
 
             for(i=0; i < noOfPerson; i++) {
                 var dec  = (discountValue / 100).toFixed(2);
@@ -416,14 +419,30 @@ Layout & pricing
 
                                            
                                             
-                if(i != 0){
-                    var dadi = '';
-                    if(i == name){
-                        var name = 'selected';
-                    }
-                    $('.offer-person-select').append('<option value="'+ i +'"'+name+'> '+ i +'</option>');
-                }
+                // if(i != 0){
+                //     var selected = '';
+                //     if(i == name){
+                //         var selected = 'selected';
+                //     }
+                //     // $('.offer-person-select').append('<option value="'+ i +'"'+selected+'> '+ i +'</option>');
+                // }
                 j--;
+            }
+        }
+
+
+        function selected(name){
+            var noOfPerson = $('.number_of_guest').val();
+
+            for(i=0; i < noOfPerson; i++) {
+                if(i != 0){
+                    var selected = '';
+                    if(i == name){
+                        var selected = 'selected';
+                    }
+                    $('.offer-person-select').append('<option value="'+ i +'"'+selected+'> '+ i +'</option>');
+                    // $('.offer-person-select').append('<option value="'+ i +'"> '+ i +'</option>');
+                }
             }
         }
 
@@ -431,6 +450,8 @@ Layout & pricing
         $(document).on('click', '.offer-check', function(){
             var offer = $(this).val();
             if(offer == 'yes'){
+                RoomDiscount();  
+                selected();  
                 $(".discount-div").removeClass('d-none');
             }else{
                 $(".discount-div").addClass('d-none');
@@ -552,14 +573,18 @@ Layout & pricing
             return;
         }
         
-        let custom_name         = $('.custom_name').val();
-        let room_name_select    = $('.room_name_select').val();
-        let smoking_area        = $('.smoking_area').val();
-        let number_of_room      = $('.number_of_room').val();
-        let room_size           = $('.room_size').val();
-        let room_size_feet      = $('.room_size_feet').val();
-        let bathroom_private    = $("input[name='bathroom_private']:checked").val();
-        let bathroom_item       = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
+        let custom_name      = $('.custom_name').val();
+        let room_name_select = $('.room_name_select').val();
+        let smoking_area     = $('.smoking_area').val();
+        let number_of_room   = $('.number_of_room').val();
+        let room_size        = $('.room_size').val();
+        let room_size_feet   = $('.room_size_feet').val();
+        let bathroom_private = $("input[name='bathroom_private']:checked").val();
+        let bathroom_item    = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
+        let discountValue    = $('.discountValue').val();
+        let discountType     = $('.discountType').val();
+        let personDis        = $('.offer-person-select').val();
+        let checked          = $('.offer-check:checked').val();
 
         let property_type       = $('.property_type').val(); 
         
@@ -589,6 +614,11 @@ Layout & pricing
         formdata.append('BedDetail', JSON.stringify(BedDetail));
         formdata.append('room_size', room_size);
         formdata.append('room_size_feet', room_size_feet);
+        if(checked == 'yes'){
+            formdata.append('discountValue', discountValue);
+            formdata.append('discountType', discountType);
+            formdata.append('personDis', personDis);
+        }
         if(property_type == 'guest house') {
             formdata.append('bathroom_private',bathroom_private);
             formdata.append('bathroom_item',bathroom_item);

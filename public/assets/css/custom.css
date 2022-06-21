@@ -252,7 +252,10 @@ header.header .navbar .dropdown .dropdown-btn{
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
+    background-image: none;
+    color: #B0BEC5;
 }
+
 .homepage-swiper .swiper-slide {
     background-position: center;
     background-size: cover;

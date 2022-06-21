@@ -53,6 +53,6 @@ class HotelRoomTableSeeder extends Seeder
            
         ];
 
-        Room::insert($Room);
+        // Room::insert($Room);
     }
 }

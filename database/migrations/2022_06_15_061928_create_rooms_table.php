@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('room_size')->nullable();
             $table->string('room_cal_type')->nullable();
             $table->string('price_room')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('discount_type')->nullable();
+            $table->string('min_person_discount')->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
             $table->integer('room_type_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();

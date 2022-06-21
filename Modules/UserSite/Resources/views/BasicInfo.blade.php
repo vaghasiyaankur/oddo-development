@@ -107,19 +107,31 @@ Add-Property
                                             <div class="p-l-dropdwon mb-3">
                                                 <label for="" class="form-label">Country/Region</label>
                                                 <select class="form-select country" name="country">
-                                                    @foreach($countrys as $country)
-                                                    <option>{{$country->country_name}}</option>
+                                                    @foreach($countries as $country)
+                                                        <option value="{{$country->id}}">{{$country->country_name}}</option>
                                                     @endforeach
                                                     <span id="country-error" class="text-danger"></span>
                                                 </select>
                                             </div>
 
-                                            <div class="mb-3">
+                                            <div class="p-l-dropdwon mb-3">
+                                                <label for="" class="form-label">Country/Region</label>
+                                                <select class="form-select city" name="city">
+                                                    @foreach($countries as $country)
+                                                        @foreach($country->cities as $cities)
+                                                            <option value="{{$cities->id}}">{{$cities->name}}</option>
+                                                        @endforeach
+                                                    @endforeach
+                                                    <span id="city-error" class="text-danger"></span>
+                                                </select>
+                                            </div>
+
+                                            {{-- <div class="mb-3">
                                                 <label class="form-label">City</label>
                                                 <input class="form-control custom-from-control city" type="text"
                                                     name="city" placeholder="eg.Mumbai">
                                                     <span id="city-error" class="text-danger"></span>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="mb-3">
                                                 <label class="form-label">Zip Code</label>
@@ -187,6 +199,12 @@ Add-Property
     });
 
     $(document).ready(function(){
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
 
         $(".btn-submit-click").on('click', function(){
             let property_name = $('.property_name').val();
@@ -244,9 +262,9 @@ Add-Property
 
             $('.spinner-border').show();
             $.ajax({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                },
+                // headers: {
+                //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                // },
                 url: "{{route('add-property-form')}}",
                 type: "POST",
                 processData: false,
@@ -295,6 +313,22 @@ Add-Property
             $(this).closest(".remove-p-details").remove();     
         });
 
+        $('.country').on('change',function() {     
+            var country = $(this).val();
+            $.ajax({  
+                url:"{{ route('cities') }}",
+                type:"POST",
+                data: {
+                    country: country
+                },
+                success:function (data) {
+                    $('.city').empty();
+                    $.each(data.cities[0].cities,function(index,cities){  
+                        $('.city').append('<option value="'+cities.id+'">'+cities.name+'</option>');
+                    })
+                }
+            });
+        });
     });
 
 </script>
