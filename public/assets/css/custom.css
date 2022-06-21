@@ -1322,7 +1322,7 @@ header.header .navbar .dropdown .dropdown-btn{
 .hotel-result.search-result .search-result-inner .result-main-content .result-main-img img.img-wrapper{
     width: 100%;
     max-width: 301px;
-    height: 100%;
+    height: 350px;
     min-height: 350px;
 }
 .hotel-result.search-result .search-result-inner .search-result-price-tag .price-btn{

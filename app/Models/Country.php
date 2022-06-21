@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\City;
+use App\Models\Hotel;
 
 class Country extends Model
 {
@@ -32,4 +33,9 @@ class Country extends Model
     {
         return $this->hasMany(City::class);
     }
+
+    public function hotel(){
+        return $this->hasOne(Hotel::class);
+    }
+
 }

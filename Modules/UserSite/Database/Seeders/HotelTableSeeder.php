@@ -84,7 +84,7 @@ class HotelTableSeeder extends Seeder
                 $roomEntry = Room::create($room);
 
                 $photo = [
-                        'main_photo'  => rand(1,7),
+                        'main_photo'  => '1',
                         'photos'      => 'hotels/'.$k.$key.'.jpg',
                         'photos_path' => Null,
                         'room_id'     => $roomEntry->id,

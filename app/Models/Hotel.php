@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\HotelPhoto;
+use App\Models\City;
+use App\Models\Country;
 
 class Hotel extends Model
 {
@@ -48,6 +50,14 @@ class Hotel extends Model
     {
         // return $this->facilities['facilities'] = json_decode($value);
         return $this->photos()->where('main_photo', 1);
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class, 'country_id');
     }
 
 }

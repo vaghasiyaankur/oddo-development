@@ -1,7 +1,7 @@
 <div class="col-lg-9 position-relative">
   @if(count($hotels))
-    @foreach ($hotels as $hotel)
-    <main class="result-main-content">
+    @foreach ($hotels as $key => $hotel)
+    <main class="result-main-content {{ $key == 0 ? '': ' mt-4'}}">
       <div class="result-main-inner">
         <div class="row">
           <div class="col-md-4">
@@ -47,7 +47,7 @@
                 <h2 class="middle-content-heading pt-4 mb-1">{{ @$hotel->property_name }}</h2>
                 <div class="middle-content-location">
                   <p class="mb-1"><img src="{{ asset('assets/images/icons/search-h-loaction.png') }}"><span
-                      class="loaction-text">{{@$hotel->city}} {{@$hotel->country ? ','.$hotel->country : ''}}</span></p>
+                      class="loaction-text">{{@$hotel->city->name}} {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}</span></p>
                   <p class="loaction-text mb-3">{{ @$hotel->street_addess }}</p>
                 </div>
                 <div class="middle-content-review">

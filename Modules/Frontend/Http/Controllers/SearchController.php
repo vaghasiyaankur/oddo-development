@@ -27,8 +27,14 @@ class SearchController extends Controller
             // $hotels = Hotel::WhereIn('country','like', '%'.$search.'%')->orWhereIn('city','like', '%'.$search.'%')->get();
             $hotels = Hotel::where(function($query) use($search){
                 foreach($search as $s) {
-                    $query->orWhere('country', 'LIKE', "%$s%")
-                          ->orWhere('city', 'LIKE', "%$s%");
+                    // $query->orWhere('country_id', 'LIKE', "%$s%")
+                    //       ->orWhere('city_id', 'LIKE', "%$s%");
+                    $query->orWhereHas('country', function ($query2) use($s){
+                        $query2->where('country_name', 'like', '%'.$s.'%');
+                    });
+                    $query->orWhereHas('city', function ($query2) use($s){
+                        $query2->where('name', 'like', '%'.$s.'%');
+                    });
                 }
             })->get();
         }else{

@@ -183,7 +183,7 @@ search
         <div class="row">
           <div class="col-lg-3">
             <aside class="side-content">
-              <span class="side-text">Viewing 350 results</span>
+              <span class="side-text">Viewing {{count($hotels)}} results</span>
               <form action="javascript:;" class="hotel-result-form">
                 <div class="hotels-result-search">
                   <h5 class="search-heading">Search</h5>
