@@ -85,9 +85,10 @@
                             <!------ Icons ------>
                             <div class="p-a-icon mt-2">
                                 <div class="p-a-icon-img mt-3">
-                                    <a href="javascript:;" type="button" data-bs-toggle="collapse"
+                                    {{-- <a href="javascript:;" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
-                                        class="click-down-arrow"><img src="{{ asset('assets/images/icons/down-arrow.png') }}"></a>
+                                        class="click-down-arrow"><img src="{{ asset('assets/images/icons/down-arrow.png') }}"></a> --}}
+                                        <a href="javascript:;"  type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"><img src="{{ asset('assets/images/icons/down-arrow.png') }}"></a>
                                     <a href="#"><img src="{{ asset('assets/images/icons/remove-b.png') }}"></a>
                                     <a href="#"><img src="{{ asset('assets/images/icons/menuicon.png') }}"></a>
                                 </div>
@@ -95,8 +96,10 @@
                         </div>
                     </div>
                     <!------- Collapse inner ------>
-                    <div id="collapseOne" class="accordion-collapse collapse show p-acording-wrapper"
-                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    {{-- <div id="collapseOne" class="accordion-collapse collapse show p-acording-wrapper"
+                        aria-labelledby="headingOne" data-bs-parent="#accordionExample"> --}}
+
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show p-acording-wrapper" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body p-a-body">
                             <div class="p-a-tablink ">
                                 <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
@@ -945,8 +948,15 @@
         </div>
     </section>
 
+    
+
     <!------------PLANNER SECTION END-------------->
 @endsection
+
+@push('links')
+    
+@endpush
+
 @push('script')
 <script>
     // planner-accordion swiper js
