@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('star_rating')->nullable();
             $table->string('street_addess')->nullable();
             $table->string('address_line')->nullable();
-            $table->string('country')->nullable();
-            $table->string('city')->nullable();
             $table->string('pos_code')->nullable();
             $table->string('parking_available')->nullable();
             $table->string('reservation')->nullable();
@@ -44,17 +42,20 @@ return new class extends Migration
             $table->string('bathroom_private')->nullable();
             $table->string('bathroom_item')->nullable();
             $table->string('slug')->nullable();
+            $table->boolean('status')->default(0);
             $table->integer('city_id')->unsigned()->nullable();
+            $table->integer('country_id')->unsigned()->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
             $table->integer('amenities_id')->unsigned()->nullable();
             $table->integer('food_type_id')->unsigned()->nullable();
             $table->integer('bed_type_id')->unsigned()->nullable();
             $table->integer('hotel_contact_id')->unsigned()->nullable();
             $table->integer('property_id')->unsigned()->nullable();
+
             // $table->integer('room_id')->unsigned()->nullable();
-
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('property_id')->references('id')->on('property_types')->onDelete('cascade');
-
             $table->foreign('room_list_id')->references('id')->on('room_lists')->onDelete('cascade');
             $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
             $table->foreign('food_type_id')->references('id')->on('food_types')->onDelete('cascade');

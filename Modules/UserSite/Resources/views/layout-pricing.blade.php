@@ -223,7 +223,7 @@ Layout & pricing
                                             </div>
                                             <div class="input-group mb-3 discount-div ">                                            
                                                 <div class="w-50 d-flex">
-                                                    <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button">
+                                                    <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button" value="0">
                                                     <select class="form-select c-form-select discountType" style="border-radius: 0px" name="discount-type" aria-label="Default select example">
                                                         <option value="percentage">%</option>
                                                         <option value="cash">INR</option>
@@ -232,15 +232,15 @@ Layout & pricing
                                                 <span class="ps-2 lh-3">per guest</span>
                                             </div>
                                             
-                                            <div class="p-form-select pt-3 price_wrapper ">
+                                            <div class="p-form-select pt-3 price_wrapper offer-person-div">
                                                 <label for="" class="form-label label-heading">What is the minimum occupancy you are willing to offer a discount for?   </label>
-                                                <select class="form-select c-form-select star_rating" name="star_rating" aria-label="Default select example">
-                                                    <option value="N/A" selected="">N/A</option>
+                                                <select class="form-select c-form-select star_rating offer-person-select" name="star_rating" aria-label="Default select example">
+                                                    {{-- <option value="N/A" selected="">N/A</option>
                                                     <option value="1">1 Star</option>
                                                     <option value="2">2 Star</option>
                                                     <option value="3">3 Star</option>
                                                     <option value="4">4 Star</option>
-                                                    <option value="5">5 Star</option>
+                                                    <option value="5">5 Star</option> --}}
                                                 </select>
                                             </div>
                                         </div>
@@ -257,15 +257,18 @@ Layout & pricing
                                                 <p class="mb-1">Price</p>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-6">
                                                 <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span></p>
                                             </div>
                                             <div class="col-6">
                                                 <p class="mb-1 text-success">Rs.200</p>
                                             </div>
+                                        </div> --}}
+                                        <div class="price-discount-div">
+
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-6">
                                                 <p class="mb-1"><i class="fa-solid fa-user"></i> X 6</p>
                                             </div>
@@ -280,7 +283,7 @@ Layout & pricing
                                             <div class="col-6">
                                                 <p class="mb-1 text-success">Rs.200</p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -349,36 +352,123 @@ Layout & pricing
             var value = $(this).val();
             
             $('.total_person').text(value);
-            $('.number-person').text(value);
+            // $('.number-person').text(value);
 
             if (!value) {
                 $('.total_person').text('0');    
                 $('.number-person').text('0'); 
-            }  
+            } 
+
+            var OfferCheck = $('.offer-check:checked').val();
+            if(OfferCheck == 'yes')  {
+                RoomDiscount();  
+                selected();
+            }       
         });
         
         $(document).on('focusout', '.discountValue', function(){
+            RoomDiscount();  
+            selected(); 
+        });
+
+        $(document).on('focusout', '.discountType', function(){
+            RoomDiscount(); 
+            selected();   
+        });
+
+        $(document).on('focusout', '.bed_price', function(){
+            RoomDiscount();  
+            selected(name);  
+        });
+
+        $(document).on('change', '.star_rating', function(){
+            var name = $('.star_rating').find(":selected").text();
+            RoomDiscount(name);
+            selected(name); 
+        });
+
+
+        function RoomDiscount(name){
+            $(".price-discount-div").empty();
+            $(".offer-person-select").empty();
             var discountValue = $('.discountValue').val();
             var noOfPerson = $('.number_of_guest').val();
             var total = $('.bed_price').val();
             var discountType  = $('.discountType').val();
-            
-            for(i=0; i < noOfPerson; i++){
+            var j = noOfPerson;
+
+            for(i=0; i < noOfPerson; i++) {
                 var dec  = (discountValue / 100).toFixed(2);
                 var mult = total * dec * i;
-                var discount = total - mult;
-                var cash = total - discountValue * i;
-                console.log(i,cash);
-            }
+                
+                if(discountType == 'percentage'){
+                    var amount = total - mult;
+                }else {
+                    var amount = total - discountValue * i;
+                }
+                
+                if (j < name) { break; }
+                    $(".price-discount-div").append('<div class="row">' +
+                                                '<div class="col-6">' +
+                                                   ' <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span>'+j+'</p>' +
+                                                '</div>' + 
+                                                '<div class="col-6">' +
+                                                   '<p class="mb-1 '+  (amount <= 0 ? 'text-danger': 'text-success')  +'">Rs.'+ amount +'</p>' +
+                                                '</div>' +
+                                            '</div>');
 
-        });
+                                           
+                                            
+                // if(i != 0){
+                //     var selected = '';
+                //     if(i == name){
+                //         var selected = 'selected';
+                //     }
+                //     // $('.offer-person-select').append('<option value="'+ i +'"'+selected+'> '+ i +'</option>');
+                // }
+                j--;
+            }
+        }
+
+
+        function selected(name){
+            var noOfPerson = $('.number_of_guest').val();
+
+            for(i=0; i < noOfPerson; i++) {
+                if(i != 0){
+                    var selected = '';
+                    if(i == name){
+                        var selected = 'selected';
+                    }
+                    $('.offer-person-select').append('<option value="'+ i +'"'+selected+'> '+ i +'</option>');
+                    // $('.offer-person-select').append('<option value="'+ i +'"> '+ i +'</option>');
+                }
+            }
+        }
+
 
         $(document).on('click', '.offer-check', function(){
             var offer = $(this).val();
             if(offer == 'yes'){
+                RoomDiscount();  
+                selected();  
                 $(".discount-div").removeClass('d-none');
             }else{
                 $(".discount-div").addClass('d-none');
+
+                var noOfPerson = $('.number_of_guest').val();
+                var total = $('.bed_price').val();
+
+                $(".price-discount-div").empty();
+                
+                $(".price-discount-div").append('<div class="row">' +
+                                            '<div class="col-6">' +
+                                               ' <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span>'+noOfPerson+'</p>' +
+                                            '</div>' + 
+                                            '<div class="col-6">' +
+                                               '<p class="mb-1 text-success">Rs.'+ total +'</p>' +
+                                            '</div>' +
+                                        '</div>');
             }
         });
 
@@ -404,6 +494,7 @@ Layout & pricing
                                             '</select>'+ '<i class="fa-solid fa-xmark text--red ps-3"></i>'
                                             + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />'+
                                         '</div>');
+
                                         var number = $('.number-of-select').val(numbers);
 
         });
@@ -482,14 +573,18 @@ Layout & pricing
             return;
         }
         
-        let custom_name         = $('.custom_name').val();
-        let room_name_select    = $('.room_name_select').val();
-        let smoking_area        = $('.smoking_area').val();
-        let number_of_room      = $('.number_of_room').val();
-        let room_size           = $('.room_size').val();
-        let room_size_feet      = $('.room_size_feet').val();
-        let bathroom_private    = $("input[name='bathroom_private']:checked").val();
-        let bathroom_item       = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
+        let custom_name      = $('.custom_name').val();
+        let room_name_select = $('.room_name_select').val();
+        let smoking_area     = $('.smoking_area').val();
+        let number_of_room   = $('.number_of_room').val();
+        let room_size        = $('.room_size').val();
+        let room_size_feet   = $('.room_size_feet').val();
+        let bathroom_private = $("input[name='bathroom_private']:checked").val();
+        let bathroom_item    = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
+        let discountValue    = $('.discountValue').val();
+        let discountType     = $('.discountType').val();
+        let personDis        = $('.offer-person-select').val();
+        let checked          = $('.offer-check:checked').val();
 
         let property_type       = $('.property_type').val(); 
         
@@ -519,6 +614,11 @@ Layout & pricing
         formdata.append('BedDetail', JSON.stringify(BedDetail));
         formdata.append('room_size', room_size);
         formdata.append('room_size_feet', room_size_feet);
+        if(checked == 'yes'){
+            formdata.append('discountValue', discountValue);
+            formdata.append('discountType', discountType);
+            formdata.append('personDis', personDis);
+        }
         if(property_type == 'guest house') {
             formdata.append('bathroom_private',bathroom_private);
             formdata.append('bathroom_item',bathroom_item);

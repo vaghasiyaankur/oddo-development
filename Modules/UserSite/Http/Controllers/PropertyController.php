@@ -28,14 +28,27 @@ class PropertyController extends Controller
 {
 
     public function category() {
-        $propertys = PropertyType::active()->get();
-        return view('usersite::property-category', compact('propertys'));
+        // $url = 'https://source.unsplash.com/random/1200x800?hotel';
+        // dd(file_get_contents($url));
+        // Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
+        // dd($img);
+        // $contents = base64_encode(file_get_contents($url));
+        
+        // Storage::disk('public')->put('hotel/test.jpg', $contents);
+        // $propertys = PropertyType::active()->get();
+        // return view('usersite::property-category', compact('propertys'));
     }
 
     public function basicInfo() {
-        $countrys = Country::active()->get();
+        $countries = Country::with('cities')->active()->get();
         $hotel = Hotel::with('propertytype')->latest('created_at')->first();
-        return view('usersite::BasicInfo', compact('countrys', 'hotel'));
+        return view('usersite::BasicInfo', compact('countries', 'hotel'));
+    }
+
+    public function cities(Request $request){
+        $country = $request->country;
+        $cities = Country::where('id',$country)->with('cities')->active()->get();
+        return response()->json(['cities' => $cities]);
     }
 
     public function add_property(Request $request) {
@@ -58,8 +71,8 @@ class PropertyController extends Controller
             'star_rating'   => $request->star_rating,
             'street_addess' => $request->address,
             'address_line'  => $request->address_line,
-            'country'       => $request->country,
-            'city'          => $request->city,
+            'country_id'    => $request->country,
+            'city_id'       => $request->city,
             'pos_code'      => $request->zipcode
         ]);  
 
@@ -124,6 +137,9 @@ class PropertyController extends Controller
             'price_room'       => $request->bed_price,
             'room_list_id'     => $request->room_name_select,
             'room_type_id'     => $request->room_type,
+            'discount'         => $request->discountValue,
+            'discount_type'    => $request->discountType,
+            'min_person_discount' => $request->personDis,
             'hotel_id'         => $hotel_id
         ]);  
         

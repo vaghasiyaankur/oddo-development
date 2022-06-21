@@ -72,7 +72,7 @@ class HotelPhotoTableSeeder extends Seeder
            
         ];
 
-        HotelPhoto::insert($HotelPhoto);
+        // HotelPhoto::insert($HotelPhoto);
         // Model::unguard();
 
         // $this->call("OthersTableSeeder");

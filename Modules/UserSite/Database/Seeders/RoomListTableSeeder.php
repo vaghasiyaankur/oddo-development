@@ -99,7 +99,7 @@ class RoomListTableSeeder extends Seeder
             
         ];
 
-        RoomList::insert($RoomList);
+        // RoomList::insert($RoomList);
         
     }
 }
