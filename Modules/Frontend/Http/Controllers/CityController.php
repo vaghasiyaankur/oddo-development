@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\City;
+use App\Models\PropertyType;
 
 class CityController extends Controller
 {
@@ -77,5 +78,16 @@ class CityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Explore cities
+     */
+    public function explore()
+    {
+        $slug = request()->slug;
+        $city = City::where('slug', $slug)->first();
+        $properties = PropertyType::get();
+        return view('frontend::city.explore', compact('city' , 'properties'));
     }
 }

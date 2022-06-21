@@ -23,6 +23,8 @@ Route::get('/hotel', 'HotelController@index')->name('hotel.index');
 
 /* City Page */
 Route::get('/city', 'CityController@index')->name('city.index');
+Route::get('/explore/city/{slug}', 'CityController@explore')->name('city.explore');
+
 
 /* Search Page */
 Route::get('/search', 'SearchController@index')->name('search.index');

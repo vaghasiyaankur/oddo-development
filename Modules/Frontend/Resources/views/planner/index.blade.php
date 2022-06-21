@@ -306,7 +306,7 @@
                                                             Madrid</span>
                                                         <div
                                                             class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
-                                                            <a href="javascript:;" class="e_btn">Explore</a>
+                                                            <a href="javascript:;" class="e_btn">Top Citiesa>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
                                                                         src="{{ asset('assets/images/icons/pwm-white-pluse.png') }}"
