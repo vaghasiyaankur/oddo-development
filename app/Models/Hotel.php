@@ -60,4 +60,10 @@ class Hotel extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
+    public function room(){
+        return $this->hasOne(Room::class);
+    }
+
+        
+
 }

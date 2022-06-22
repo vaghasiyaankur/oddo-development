@@ -10,6 +10,69 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.3/swiper-bundle.css" />
 
     <style>
+        /*  */
+    .bed-selector {
+      position: relative;
+      top: 12px;
+    }
+
+    .bed-selector .room {
+      background: #FFFFFF;
+      box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
+      border-radius: 8px;
+      height: 111px;
+      width: 180px;
+    }
+
+    .bed-selector .room .title-container {
+      display: flex;
+      align-items: center;
+      background: #E6E8F5;
+      border-radius: 8px 8px 0px 0px;
+    }
+
+    .bed-selector .room .title-container .check {
+      margin-right: 20px;
+    }
+
+    .bed-selector .dropdown-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      /* height: 150px; */
+      padding: 12px;
+    }
+
+    .bed-selector .dropdown-container .column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bed-selector .dropdown-container .column .label {
+      font-size: 14px;
+    }
+
+    .bed-selector .dropdown,
+    .bed-selector .default-dropdown {
+      width: 40px;
+      height: 25px;
+      margin: 10px auto;
+    }
+    .bed-selector .select-div {
+      padding: 6px 10px;
+      width: 130px;
+      border: 1px solid #aaa;
+    }
+    .bed-selector .option-none {
+      display: none;
+    }
+    .bed-selector .select-option {
+      position: absolute;
+      z-index: 9999;
+    }
+
+    /*  */
         /* Css for select2  */
         section.check-in-out .check-in-out-bottom .select2 {
             width: 100% !important;
@@ -156,7 +219,7 @@
                     </div>
                     <div class="check-in-out-bottom">
                         <div class="row align-items-center">
-                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                            {{-- <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 <label>Guests</label>
                                 @php
                                     $selectGuest = explode(',', request()->guest);
@@ -197,6 +260,77 @@
                                     <option value="3" data-icon="fa-bed"
                                         {{ in_array('3', $selectBed) ? 'selected' : '' }}>3</option>
                                 </select>
+                            </div> --}}
+                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                                <label>Guests</label>
+                                <select class="select2-icon " name="icon" multiple="multiple">
+                                    <option value="fa-user-group" data-icon="fa-user-group">2</option>
+                                    <option value="fa-user" data-icon="fa-user">1</option>
+                                    <option value="fa-users" data-icon="fa-users">3</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                                <label>Room</label>
+                                <select class="select2-icon" multiple="multiple">
+                                    <option value="king">1 King</option>
+                                    <option value="queen">2 Queen</option>
+                                    <option value="twin">3 Twin</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                                <div class="bed-selector">
+                                    <div class="select-div d-flex justify-content-between align-items-center">
+                                        <i class="fa-solid fa-car" style="color: #6A78C7;"></i>
+                                        <span style="color: #6A78C7;">king</span>
+                                        <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i>
+                                    </div>
+                                    <div class="select-option option-none">
+                                        <div class="room">
+                                            <div class="title-container">
+                                                <h5 class="title" style="margin:10px;">Room 1</h5>
+                                            </div>
+                                            <section class="dropdown-container">
+                                                <div class="dropdown-inner">
+                                                    <input type="checkbox">
+                                                    <label for="">1 King</label>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <input type="checkbox">
+                                                    <label for="">2 Twin</label>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <input type="checkbox">
+                                                    <label for="">2 Queen</label>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="room">
+                                            <div class="title-container">
+                                                <h5 class="title" style="margin:10px;">Room 1</h5>
+                                            </div>
+                                            <section class="dropdown-container">
+                                                <div class="dropdown-inner">
+                                                    <input type="checkbox">
+                                                    <label for="">1 King</label>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <input type="checkbox">
+                                                    <label for="">2 Twin</label>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <input type="checkbox">
+                                                    <label for="">2 Queen</label>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <label>Bed</label>
+                                <select class="select2-icon" name="icon" multiple="multiple">
+                                <option value="fa-bed" data-icon="fa-bed">2</option>
+                                <option value="fa-bed" data-icon="fa-bed">1</option>
+                                <option value="fa-bed" data-icon="fa-bed">3</option>
+                                </select> -->
                             </div>
                             <div class="col-lg-2 mt-4 col-md-3 col-sm-6 col-6 text-lg-center">
                                 <div class="check-in-out-icon">
@@ -569,6 +703,15 @@
             window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
 
+        });
+    </script>
+
+    <!-- custom-selector js -->
+    <script>
+        $(document).ready(function () {
+        $(".select-div").click(function () {
+            $(".select-option").toggleClass("option-none");
+        });
         });
     </script>
 @endpush

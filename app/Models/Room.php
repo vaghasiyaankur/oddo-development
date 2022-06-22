@@ -11,7 +11,11 @@ class Room extends Model
     protected $guarded = ['id'];
 
     public function Roomlist(){
-        return $this->belongsTo(RoomList::class, 'room_type_id');
+        return $this->belongsTo(RoomList::class, 'room_list_id');
+    }
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class, 'hotel_id');
     }
 
 }

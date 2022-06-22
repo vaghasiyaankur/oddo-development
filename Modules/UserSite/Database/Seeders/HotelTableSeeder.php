@@ -70,7 +70,7 @@ class HotelTableSeeder extends Seeder
                         'custom_name_room' => $faker->name,
                         'smoking_policy'   => array_rand(['b-smoking','smoking']),
                         'number_of_room'   => rand(1,7),
-                        'guest_stay_room'  => Null,
+                        'guest_stay_room'  => rand(1,7),
                         'room_size'        => rand(1200,1300),
                         'room_cal_type'    => array_rand(['s-feet','s-meter']),
                         'price_room'       => rand(1200,1300),

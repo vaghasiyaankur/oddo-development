@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cities = City::get();
+        $cities = City::where('featured',1)->get();
         $partners = Partner::get();
         return view('frontend::home.index',compact('cities','partners'));
     }
