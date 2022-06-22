@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-    <title>odda / @yield('title')</title>
-    <!------- Bootstrap CSS Link------->  
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-    <!------- Fontawsomee cdn link ------->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
-    <!------- Font Family Link ------->
-    <link rel="stylesheet" href="{{asset('assets/fonts/stylesheet.css')}}">
-    <!-------- Custom CSS Link -------->
-    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/reponsive.css')}}">
-    @stack('links')
-    @stack('css')
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
+  <title>odda / @yield('title')</title>
+  <!------- Bootstrap CSS Link------->  
+  <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+  <!------- Fontawsomee cdn link ------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+  <!------- Font Family Link ------->
+  <link rel="stylesheet" href="{{asset('assets/fonts/stylesheet.css')}}">
+  <!-------- Custom CSS Link -------->
+  <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/reponsive.css')}}">
+  @stack('links')
+  @stack('css')
 </head>
 <body>
+  <!------- Main Url For javascript  -------->
+  <input type="hidden" value="{{URL::to('')}}" id="base_url">
+
     <!------- Header start  -------->
-    @include('user_site.layout.includes.header')
+    @include('layout::user.includes.header')
     <!------- Header End ------->
 
     @yield('content')
 
     <!-------- Footer start -------->
-    @include('user_site.layout.includes.footer')
+    @include('layout::user.includes.footer')
     <!-------- Footer end -------->
 
 

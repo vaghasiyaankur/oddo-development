@@ -3,5 +3,6 @@
     "UserSite": true,
     "Frontend": true,
     "Test": true,
-    "Testing": true
+    "Testing": true,
+    "Layout": true
 }

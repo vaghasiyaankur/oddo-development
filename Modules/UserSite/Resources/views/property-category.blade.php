@@ -1,4 +1,4 @@
-@extends('user_site.layout.master')
+@extends('layout::user.UserSite.master')
 
 @section('title')
     Property-Category
