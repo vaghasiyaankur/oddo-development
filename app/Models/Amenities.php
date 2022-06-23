@@ -22,6 +22,10 @@ class Amenities extends Model
     public function amenitiescategory(){
         return $this->belongsTo(AmenitiesCategory::class, 'amenities_category_id');
     }
+
+    public function hotel(){
+        return $this->hasOne(Hotel::class);
+    }
     
     public function scopeActive($query) {
         return $query->where('status', 1);

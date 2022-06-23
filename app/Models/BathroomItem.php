@@ -11,4 +11,8 @@ class BathroomItem extends Model
     public function scopeActive($query) {
         return $query->where('status', 1);
     }
+
+    public function hotel() {
+        return $this->hasOne(Hotel::class);
+    }
 }

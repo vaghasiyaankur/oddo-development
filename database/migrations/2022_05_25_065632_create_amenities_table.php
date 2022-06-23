@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('amenities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('amenities');
+            $table->string('icon')->nullable();
             $table->boolean('status')->default(0);
+            $table->string('slug')->nullable();
+            $table->boolean('featured')->default(0);
             $table->integer('amenities_category_id')->unsigned()->nullable();
             $table->foreign('amenities_category_id')->references('id')->on('amenities_categories')->onDelete('cascade');
-            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

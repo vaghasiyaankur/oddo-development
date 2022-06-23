@@ -6,11 +6,11 @@
         <div class="row">
           <div class="col-md-4">
             <div class="result-main-img result-swpier-img overflow-hidden">
-              <div class="swiper-s-img"><a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
+              <div class="swiper-s-img"><a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$key}}"><img
                     src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper"></a>
               </div>
               <!------- img slider popup start -------->
-              <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
+              <div class="modal fade img-popup-slider" id="image_{{$key}}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                   <div class="modal-content">

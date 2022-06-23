@@ -125,7 +125,6 @@ Layout & pricing
                                 </div>
                             </form>
                         </div>
-                        @if(@$hotel->propertytype->type == 'Guest house')
                             <div class="form-info-box mt-3">
                                 <form action="" class="form-bathroom-part">
                                     <div class="p-form-heading  d-flex">
@@ -169,7 +168,6 @@ Layout & pricing
                                     </div>
                                 </form>
                             </div>
-                        @endif
                         <div class="form-info-box mt-3">
                             <div class="row justify-content-between">
                                 <div class="col-lg-6">
@@ -614,15 +612,14 @@ Layout & pricing
         formdata.append('BedDetail', JSON.stringify(BedDetail));
         formdata.append('room_size', room_size);
         formdata.append('room_size_feet', room_size_feet);
+        formdata.append('bathroom_private',bathroom_private);
+        formdata.append('bathroom_item',bathroom_item);
         if(checked == 'yes'){
             formdata.append('discountValue', discountValue);
             formdata.append('discountType', discountType);
             formdata.append('personDis', personDis);
         }
-        if(property_type == 'guest house') {
-            formdata.append('bathroom_private',bathroom_private);
-            formdata.append('bathroom_item',bathroom_item);
-        }
+       
 
         $('.spinner-border').show();
         
@@ -646,5 +643,5 @@ Layout & pricing
     });
 
 });
-</script>
+</script> 
 @endpush

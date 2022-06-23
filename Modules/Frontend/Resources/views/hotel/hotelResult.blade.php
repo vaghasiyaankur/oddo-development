@@ -6,11 +6,11 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="result-main-img result-swpier-img overflow-hidden">
-                          <div class="swiper-s-img"><a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
+                          <div class="swiper-s-img"><a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$key}} "><img
                                 src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper"></a>
                           </div>
                           <!------- img slider popup start -------->
-                          <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
+                          <div class="modal fade img-popup-slider" id="image_{{$key}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                               <div class="modal-content">
@@ -22,47 +22,15 @@
                                 <div class="modal-body display-flex-items py-sm-5">
                                   <div class="img-swiper">
                                     <div class="slider slider-single mb-5">
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      {{-- <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div>
-                                      <div class="slider-single-img"><img src="{{asset('assets/images/img-popup-bg.png')}}" alt=""></div> --}}
+                                      @foreach($hotel->photos as $photo)
+                                        <div class="slider-single-img"><img src="{{asset('storage/'.@$photo->photos)}}" alt="" style="width: 857px; height: 551px;"></div>
+                                      @endforeach
                                     </div>
                                     <div class="slider slider-nav">
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img1.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img2.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img3.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img4.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img5.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img6.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img7.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img8.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img9.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img10.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img11.png" class="me-2" alt="">
-                                      </div>
-                                      <div class="slder-nav-img"><img src="assets/images/nav-img12.png" class="me-2" alt="">
-                                      </div>
+                                      @foreach($hotel->photos as $photo)
+                                        <div class="slder-nav-img"><img src="{{asset('storage/'.@$photo->photos)}}" class="me-2" alt="" style="width: 72px; height: 72px;">
+                                        </div>
+                                      @endforeach
                                     </div>
                                   </div>
                                 </div>

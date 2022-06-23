@@ -6,7 +6,6 @@
 
 
 @push('css')
-{{-- <link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css"> --}}
 @endpush
 
 
@@ -309,7 +308,7 @@
                                                             Madrid</span>
                                                         <div
                                                             class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
-                                                            <a href="javascript:;" class="e_btn">Top Citiesa>
+                                                            <a href="javascript:;" class="e_btn">Top Cities</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
                                                                         src="{{ asset('assets/images/icons/pwm-white-pluse.png') }}"
@@ -958,6 +957,10 @@
 @endpush
 
 @push('script')
+
+<!--------SLICK CDN JS--------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 <script>
     // planner-accordion swiper js
     $('.p-a-swpier').slick({
@@ -994,6 +997,7 @@
     });
 </script>
 <script>
+    
     $('.modal').on('shown.bs.modal', function (e) {
         $('.slider-single').slick('setPosition');
         $('.swiper').addClass('open');

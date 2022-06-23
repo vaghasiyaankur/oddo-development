@@ -891,16 +891,17 @@ hotel
                                             All Amenities
                                         </label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                            checked>
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Free Wi-Fi
-                                        </label>
-                                        <span class="amenities-icon"><img
-                                                src="{{asset('assets/images/icons/amenties-1.png')}}" alt=""></span>
-                                    </div>
-                                    <div class="form-check">
+                                    @foreach($amenities as $amenity)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                {{@$amenity->amenities}}
+                                            </label>
+                                            <span class="amenities-icon"><img
+                                                    src="{{asset('storage/'.@$amenity->icon)}}" alt="" width="13px" height="13px"></span>
+                                        </div>
+                                    @endforeach
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Elevator
@@ -933,7 +934,7 @@ hotel
                                         </label>
                                         <span class="amenities-icon"><img
                                                 src="{{asset('assets/images/icons/amenities-5.png')}}" alt=""></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="hotels-result-filter-btn text-center pb-4">
                                     <button class="btn bg-purple filter-btn">Filter</button>

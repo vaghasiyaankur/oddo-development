@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Hotel;
+use App\Models\Amenities;
 
 class HotelController extends Controller
 {
@@ -33,13 +34,18 @@ class HotelController extends Controller
                         $query2->where('name', 'like', '%'.$s.'%');
                     });
                 }
-            })->whereHas('room', function ($query)  {
-                $query->where('guest_stay_room', request()->guest);
-           })->get();
+            })->get();
         }else{
             $hotels = Hotel::get();
         }
-        return view('frontend::hotel.index', compact('hotels'));
+
+        $amenities = Amenities::where('featured',1)->active()->get();
+        return view('frontend::hotel.index', compact('hotels', 'amenities'));
+    }
+
+    public function hotelDetail(){
+        $hotels = Hotel::where('id',1)->get();
+        return view('frontend::hotel.hotelDetails', compact('hotels'));
     }
 
 

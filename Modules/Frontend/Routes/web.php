@@ -21,6 +21,9 @@ Route::get('/', 'HomeController@index')->name('home.index');
 /* Hotel Page */
 Route::get('/hotel', 'HotelController@index')->name('hotel.index');
 
+/* Hotel Details */
+Route::get('/hotel-detail','HotelController@hotelDetail')->name('hotel.detail');
+
 /* City Page */
 Route::get('/city', 'CityController@index')->name('city.index');
 Route::get('/explore/city/{slug}', 'CityController@explore')->name('city.explore');
@@ -47,4 +50,6 @@ Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrip
 
 /* Checkout Page */
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+
+
 

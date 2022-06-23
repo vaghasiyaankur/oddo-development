@@ -38,7 +38,7 @@ Add-Layout
                                     <div class="form-check form-check-inline amenities-radio">
                                         <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" value="no" id="no" checked>
                                         <label class="form-check-label" for="no">
-                                         No
+                  zcc                       No
                                         </label>
                                     </div>
                                 </div>
@@ -64,54 +64,16 @@ Add-Layout
                                         <h5>Most Requested by Guests</h5>
                                     </div>
                                     <div class="amenities-check-box px-5">
-                                        <div class="form-check py-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Air conditioning
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Bathtub
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Spa tub
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Flat-screen Tv
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Electric kettle
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Balcony
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            View
-                                            </label>
-                                        </div>
-                                        <div class="form-check pb-3 ">
-                                            <input class="form-check-input" type="checkbox">
-                                            <label class="form-check-label para-fs-14 fs-6">
-                                            Terrace
-                                            </label>
-                                        </div>
+                                        @foreach($amenities_category as $category)
+                                            @foreach($category->amenitiesFeatured as $amenity)
+                                                <div class="form-check py-3 ">
+                                                    <input class="form-check-input top_aminity" type="checkbox" value="{{@$amenity->id}}">
+                                                    <label class="form-check-label para-fs-14 fs-6">
+                                                        {{@$amenity->amenities}}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="amenities-btn another-c-details mt-4">
@@ -141,8 +103,8 @@ Add-Layout
                                                             @foreach($category->amenities as $amenity)
                                                                 <div class="form-check pb-3 border--bottom amenity-checked">
                                                                     <label class="form-check-label para-fs-14 fs-6">
-                                                                    <input class="form-check-input checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}">
-                                                                    
+                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}">
+                                
                                                                     {{$amenity->amenities}}
                                                                     </label>
                                                                 </div>
@@ -186,17 +148,36 @@ Add-Layout
         border: 3px solid currentColor;
         border-right-color: transparent;
     }
-</style>s
+</style>
 @endpush
 
 @push('scripts')
 <script>
 // jjs for hide and show on butoon 
 $(document).ready(function(){
+
+    $('.top_aminity').on('change', function(){
+        $('#amenities[value="' + this.value + '"]').prop('checked', this.checked);
+        var name = $('#amenities[value="' + this.value + '"]').attr('name');
+        checkCal(name);
+    });
+
+    $(".check-amenity").on('click', function(){
+        $('.top_aminity[value="' + this.value + '"]').prop('checked', this.checked);
+        var name = $(this).attr('name');
+        checkCal(name);
+    });
+
+    function checkCal(name){
+        var checkbox   = $(`input[name=${name}]:checked`).length;
+        var set_length = $(`.checkbox_length_${name}`).html(checkbox);
+    }
+
     $(".accordion-btn-link").click(function(){
         $("#hideshow").removeClass('d-none');
         $(this).addClass('d-none');
         $(".show-button").removeClass('d-none');
+        
     });
 
     $(".show-button").click(function(){
@@ -204,13 +185,6 @@ $(document).ready(function(){
         $(this).addClass('d-none');
         $(".accordion-btn-link").removeClass('d-none');
     });
-
-    $(".form-check-input").on('click', function(){
-      var name       = $(this).attr('name');
-      var checkbox   = $(`input[name=${name}]:checked`).length;
-      var set_length = $(`.checkbox_length_${name}`).html(checkbox);
-    });
-
     
     $('.extra-bed').on('click', function(){
         var extra_bed = $(this).val();

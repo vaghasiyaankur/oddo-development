@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\HotelPhoto;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\amenities;
 
 class Hotel extends Model
 {
@@ -64,6 +65,14 @@ class Hotel extends Model
         return $this->hasOne(Room::class);
     }
 
-        
+    public function amenity(){
+        return $this->belongsTo(amenities::class, 'amenity_id');
+    }
+
+    public function bathroom(){
+        // $bathroom = explode(',',$this->bathroom_item);
+        // $b = BathroomItem::whereIn('id', $bathroom)->get();
+        // return $b;
+    }
 
 }

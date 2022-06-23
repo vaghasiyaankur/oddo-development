@@ -286,10 +286,6 @@ hotel
             <h5 class="heading-fs-16  purple-dark">Amenities</h5>
             <div class="amenities-card d-flex flex-wrap">
                 <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-1.png') }} " class="pe-3">
-                    <span class="para-fs-14">Air Conditioning</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
                     <img src="{{ asset('assets/images/icons/h-d-a-2.png') }} " class="pe-3">
                     <span class="para-fs-14">Pool</span>
                 </div>
@@ -330,9 +326,9 @@ hotel
                     <span class="para-fs-14">Spa</span>
                 </div>
             </div>
-            <div class="amenities-link ">
+            {{-- <div class="amenities-link ">
                 <a href="#" class="amenities-d-link purple">See all Amenities details</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -659,7 +655,7 @@ hotel
             @foreach ($hotels as $hotel)
                 <div class="room-card-main mb-3">
                     <div class="row">
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="room-single-card p-3">
                                 <div class="single-card-img">
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"> <img
@@ -755,8 +751,8 @@ hotel
                                     <!------- img slider popup end -------->
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
+                        </div> --}}
+                        <div class="col-lg-9">
                             <div class="room-single-card  p-3">
                                 <div class="card-heading d-flex justify-content-between align-items-center">
                                     <div class="single-main-head">
@@ -769,7 +765,20 @@ hotel
                                 </div>
                                 <div class="h-room-info-main">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-4">
+                                            <h5 class="para-fs-14">Overview</h5>
+                                            <div class="room-overview">
+                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room1.png') }}"><span
+                                                        class="para-fs-14 ps-3">Smoking</span> </p>
+                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room2.png') }}"><span
+                                                        class="para-fs-14 ps-3">100 square meter</span> </p>
+                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room3.png') }}"><span
+                                                        class="para-fs-14 ps-3">number of bed</span> </p>
+                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room3.png') }}"><span
+                                                            class="para-fs-14 ps-3">Single bed / 90 - 100 meter</span> </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
                                             <h5 class="para-fs-14">Overview</h5>
                                             <div class="room-overview">
                                                 <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room1.png') }}"><span
@@ -780,11 +789,10 @@ hotel
                                                         class="para-fs-14 ps-3">2 Adults</span> </p>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <h5 class="para-fs-14">Amenities</h5>
+                                        <div class="col-4">
+                                            <h5 class="para-fs-14">In your private bathroom</h5>
                                             <div class="room-overview">
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/search-i-2') }}.png"><span
-                                                        class="para-fs-14 ps-3">Breakfast</span> </p>
+                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/search-i-2') }}.png"><span class="para-fs-14 ps-3"></span> </p>
                                                 <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room4.png') }}"><span
                                                         class="para-fs-14 ps-3">Dinner</span> </p>
                                                 <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room5.png') }}"><span
@@ -815,162 +823,6 @@ hotel
                 </div>
             @endforeach
             {{-- <div class="room-card-main mb-3">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="room-single-card p-3">
-                            <div class="single-card-img">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"> <img
-                                        src="{{ asset('assets/images/room-img2.png') }}" class="img-fluid w-100  img-wrapper"></a>
-                                <!------- img slider popup start -------->
-                                <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-fullscreen modal-dialog-centered"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header justify-content-end">
-                                                <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                                    aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                            </div>
-                                            <div
-                                                class="modal-body d-flex justify-content-center align-items-center">
-                                                <div class="img-swiper">
-                                                    <div class="slider slider-single mb-5">
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        <div class="slider-single-img"><img
-                                                                src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    </div>
-                                                    <div class="slider slider-nav">
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img1.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img2.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img3.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img4.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img5.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img6.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img7.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img8.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img9.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img10.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img11.png') }}" class="me-2"
-                                                                alt=""></div>
-                                                        <div class="slider-nav-img"><img
-                                                                src="{{ asset('assets/images/nav-img12.png') }}" class="me-2"
-                                                                alt=""> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!------- img slider popup end -------->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="room-single-card  p-3">
-                            <div class="card-heading d-flex justify-content-between align-items-center">
-                                <div class="single-main-head">
-                                    <h5 class="purple-dark">Student Room</h5>
-                                </div>
-                                <div class="single-small-title">
-                                    <h5 class="heading-fs-16 purple-dark">
-                                        <img src="{{ asset('assets/images/icons/room-m.png') }}" class="pe-2">12 Nights</p>
-                                </div>
-                            </div>
-                            <div class="h-room-info-main">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h5 class="para-fs-14">Overview</h5>
-                                        <div class="room-overview">
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room1.png') }}"><span
-                                                    class="para-fs-14 ps-3">1 Double Bed</span> </p>
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room2.png') }}"><span
-                                                    class="para-fs-14 ps-3">$450 per night</span> </p>
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room3.png') }}"><span
-                                                    class="para-fs-14 ps-3">2 Adults</span> </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <h5 class="para-fs-14">Amenities</h5>
-                                        <div class="room-overview">
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/search-i-2.p') }}ng"><span
-                                                    class="para-fs-14 ps-3">Breakfast</span> </p>
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room4.png') }}"><span
-                                                    class="para-fs-14 ps-3">Dinner</span> </p>
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room5.png') }}"><span
-                                                    class="para-fs-14 ps-3">Lunch</span> </p>
-                                            <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room6.png') }}"><span
-                                                    class="para-fs-14 ps-3">Hot Tub</span> </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 border--left">
-                        <div class="room-single-card pt-lg-4 pb-4 pt-0 px-4">
-                            <div class="single-card-price">
-                                <p class="para-fs-14"><img src="{{ asset('assets/images/icons/room-ex.png') }}"><span
-                                        class="ps-3">No Refundable</span> </p>
-                                <p class="para-fs-14 pt-4 mb-2"><span class="text--red">2 Rooms Left</span> </p>
-                                <h5 class="purple-dark"><span
-                                        class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>$1,037.00
-                                </h5>
-                                <p class="mb-4 para-fs-14 d-l-Purple">For 12 Nights, Tax. Included</p>
-                                <a href="#" class="t-city-btn bg-purple mt-3">Add Room</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="room-card-main mb-3">
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="room-single-card p-3">

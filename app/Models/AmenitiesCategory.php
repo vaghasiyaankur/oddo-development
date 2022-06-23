@@ -19,7 +19,11 @@ class AmenitiesCategory extends Model
     ];
 
     public function amenities(){
-        return $this->hasMany(Amenities::class, 'amenities_category_id', 'id')->where('status', '1');
+        return $this->hasMany(Amenities::class)->where('status', '1');
+    }
+
+    public function amenitiesFeatured(){
+        return $this->amenities()->where('featured',1);
     }
     
     public function scopeActive($query) {
