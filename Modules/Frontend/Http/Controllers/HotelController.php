@@ -43,9 +43,9 @@ class HotelController extends Controller
         return view('frontend::hotel.index', compact('hotels', 'amenities'));
     }
 
-    public function hotelDetail(){
-        $hotels = Hotel::where('id',1)->get();
-        return view('frontend::hotel.hotelDetails', compact('hotels'));
+    public function hotelDetail($slug){
+        $hotel = Hotel::where('slug',$slug)->first();
+        return view('frontend::hotel.hotelDetails', compact('hotel'));
     }
 
 

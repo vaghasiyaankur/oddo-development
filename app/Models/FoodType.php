@@ -14,6 +14,10 @@ class FoodType extends Model
         return $query->where('status', 1);
     }
 
+    public function hotel(){
+        return $this->hasOne(Hotel::class);
+    }
+
     
 
 }

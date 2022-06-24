@@ -51,6 +51,17 @@ Add-Property
                         </form>
                     </div>
                     <div class="form-info-box mt-3">
+                        <form action="" class="form-name-info">
+                            <div class="p-form-heading">
+                                <h5>Description</h5>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control description" id="" rows="4"></textarea>
+                                <span id="description-error" class="text-danger"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-info-box mt-3">
                         <form action="" class="form-contact-info">
                             <div class="p-form-heading">
                                 <h5>What’s the contact details for this property?</h5>
@@ -236,6 +247,8 @@ Add-Property
             let zipcode = $('.zipcode').val();
             !zipcode ? $(`#zipcode-error`).html(`The Zipcode field is required.`) : $(`#zipcode-error`).html(``);
 
+            let description = $('.description').val();
+            !description ? $(`#description-error`).html(`The description field is required.`) : $(`#description-error`).html(``);
 
             var contactDetail  = $(".contact-div").map(function(){return {
                 name : $(this).children('.contact--name').children('#contactname').val(),
@@ -252,6 +265,7 @@ Add-Property
 
             formdata.append('property_name', property_name);
             formdata.append('star_rating', star_rating);
+            formdata.append('description', description);
             formdata.append('contactDetail', JSON.stringify(contactDetail));
             formdata.append('address', address);
             formdata.append('address_line', address_line);

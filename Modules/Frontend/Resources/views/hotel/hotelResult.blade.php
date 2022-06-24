@@ -43,7 +43,8 @@
                       <div class="col-md-4">
                         <div class="result-main-middle ps-md-0 ps-3 pe-md-0 pe-3">
                           <div class="result-main-middle-content">
-                            <h2 class="middle-content-heading pt-4 mb-1">{{$hotel->property_name}}</h2>
+                            
+                            <a href="{{route('hotel.detail', $hotel->slug)}}"><h2 class="middle-content-heading pt-4 mb-1">{{$hotel->property_name}}</h2></a>
                             <div class="middle-content-location">
                               <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                   class="loaction-text">{{@$hotel->city->name}}, {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}</span></p>
@@ -651,17 +652,19 @@
                               </select>
                             </div>
                             <div class="right-menu-main mb-4">
-                              <div class="right-menu-inner">
+                              <div class="right-menu-inner">  
+                                @foreach ($hotel->facilities() as $facilities)      
                                 <div class="right-menu mb-2">
                                   <div class="right-menu-icon d-flex pb-1">
                                     <div class="right-menu-icon-inner">
-                                      <img src="assets/images/icons/search-i-1.png">
+                                      <img src="{{ asset('storage/'.@$facilities->icon) }}">
                                     </div>
-                                    <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">Fábula
-                                        Taberna</a></div>
+                                    <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">{{@$facilities->facilities_name}}</a>
+                                    </div>
                                   </div>
                                 </div>
-                                <div class="right-menu mb-2">
+                                @endforeach
+                                {{-- <div class="right-menu mb-2">
                                   <div class="right-menu-icon d-flex pb-1">
                                     <div class="right-menu-icon-inner">
                                       <img src="assets/images/icons/search-i-2.png">
@@ -704,7 +707,7 @@
                                     <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p"> Hotel V bar</a>
                                     </div>
                                   </div>
-                                </div>
+                                </div> --}}
                               </div>
                             </div>
                           </div>

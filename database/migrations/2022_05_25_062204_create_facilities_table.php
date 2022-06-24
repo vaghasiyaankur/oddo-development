@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('facilities_name');
+            $table->string('slug')->nullable();
             $table->string('icon')->nullable();
+            $table->string('color')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

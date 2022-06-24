@@ -28,11 +28,12 @@ class BathroomItemTableSeeder extends Seeder
             'Spa bath'  
         ];
 
-        foreach ($items as $item) {
+        foreach ($items as $key => $item) {
             BathroomItem::create([
                 'item' => $item,
-                'slug'         => \Str::slug($item),
-                'status'       => '1',
+                'icon' => 'bathroomItem/item_'.$key.'.png',
+                'slug' => \Str::slug($item),
+                'status' => '1',
             ]);
         }
 

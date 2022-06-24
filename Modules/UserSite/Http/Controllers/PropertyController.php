@@ -61,6 +61,7 @@ class PropertyController extends Controller
  
         $Hotel   =  Hotel::updateOrCreate([ 'id' => $hotel_id ], [
             'property_name' => $request->property_name,
+            'description'   => $request->description,
             'star_rating'   => $request->star_rating,
             'street_addess' => $request->address,
             'address_line'  => $request->address_line,
@@ -120,6 +121,12 @@ class PropertyController extends Controller
 
     public function add_room(Request $request) {
         $hotel_id = Session::get('hotel')->id;
+
+        $hotel = Hotel::updateOrCreate([ 'id' => $hotel_id ],[
+            'bathroom_private' => $request->bathroom_private,
+            'bathroom_item'    => $request->bathroom_item,
+        ]);
+
         $Hotel = Room::updateOrCreate([ 'id' => $hotel_id ],[
             'smoking_policy'   => $request->smoking_area,
             'custom_name_room' => $request->custom_name,
@@ -153,10 +160,10 @@ class PropertyController extends Controller
 
     public function add_facilities(Request $request) {
 
-        $lang       = explode(",", $request['language']);
-        $language   = array_unique($lang);  
-        $facilities = explode(",", $request['facilities'] );
-        $hotel_id   = Session::get('hotel')->id; 
+        $lang = explode(",", $request['language']);
+        $language = join(",", array_unique($lang));
+        $facilities = $request['facilities'];
+        $hotel_id = Session::get('hotel')->id; 
 
         $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
             'parking_available'  => $request->parking_avaliable,
@@ -164,7 +171,7 @@ class PropertyController extends Controller
             'parking_site'       => $request->parking_site,
             'breakfast'          => $request->brackfast_select,
             'breakfast_type'     => $request->food_type_val,
-            'facilities'         => $facilities,
+            'facilities_id'      => $facilities,
             'language'           => $language
         ]);  
         
@@ -192,13 +199,13 @@ class PropertyController extends Controller
         $image = str_replace(' ', '+', $image); 
         $imageName = 'Img_'.Str::random(10).'.'.$extension;
         $img =base64_decode($image);
-        Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
+        Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
 
         $hotel_id = Session::get('hotel')->id;
 
         $hotelphoto = new HotelPhoto();
         $hotelphoto->main_photo = $request->main;
-        $hotelphoto->photos     = 'hotel/'.$imageName;
+        $hotelphoto->photos     = 'hotels/'.$imageName;
         $hotelphoto->hotel_id  = $hotel_id;
         $hotelphoto->save();
 

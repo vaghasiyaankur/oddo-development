@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('item')->nullable();
             $table->string('slug')->nullable();
+            $table->string('icon')->nullable();
             $table->boolean('status')->default(0); 
             $table->timestamps();
         });

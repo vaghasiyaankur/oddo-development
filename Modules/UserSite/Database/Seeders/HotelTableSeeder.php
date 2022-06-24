@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\PropertyType;
 use App\Models\RoomList;
 use App\Models\Room;
+use App\Models\HotelBed;
 use App\Models\HotelPhoto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,27 +28,38 @@ class HotelTableSeeder extends Seeder
         
         $propertyTypes = PropertyType::get();
         $cities = City::get();
-        
+
+        $parking = ['yes','no'];
+        $parkingSite = ['on','off'];
+        $parkingType = ['private','pubic'];
+        $breakfast = ['yes','no'];
+        $language = ["english","hindi","Russian"];
+        $cancel = ['1','2','3','7','14'];
+        $payType = ['first_night','full_stay'];
+        $smokingPolicy =  ['n-smoking','smoking', 'b-smoking'];
+        $roomCalType = ['s-feet','s-meter'];
+
         foreach($propertyTypes as $k => $type){
-            foreach($cities as $key => $city){
+            foreach($cities as $key => $city){ 
                 $hotel = [
                         'property_name'  => $faker->name,
                         'star_rating' => rand(1,5),
+                        'description' => $faker->text,
                         'street_addess' => $faker->address,
                         'country_id' => $city->country->id,
                         'city_id' => $city->id,
                         'pos_code' => rand(111111, 999999),
-                        'parking_available' => array_rand(['yes','no']),
-                        'parking_site' => array_rand(['on','off']),
-                        'parking_type' =>  array_rand(['private','pubic']),
-                        'breakfast'  => array_rand(['optional','no']),
+                        'parking_available' => $parking[array_rand($parking)],
+                        'parking_site' => $parkingSite[array_rand($parkingSite)],
+                        'parking_type' => $parkingType[array_rand($parkingType)],
+                        'breakfast'  => $breakfast[array_rand($breakfast)],
                         'breakfast_type' => rand(1,5),
-                        'language' => array_rand(["english","hindi","Russian"]),
-                        'facilities' => rand(1,7),
-                        'extra_bed' => array_rand(['yes','no']),
+                        'language' => $language[array_rand($language)],
+                        'facilities_id' => rand(1,7),
+                        'extra_bed' => $parking[array_rand($parking)],
                         'number_extra_bed' => Null,
-                        'cancel_booking' => array_rand(['1','2','3','7','14']),
-                        'pay_type' => array_rand(['first_night','full_stay  ']),
+                        'cancel_booking' => $cancel[array_rand($cancel)],
+                        'pay_type' => $payType[array_rand($payType)],
                         'check_in' => '12:00 AM',
                         'check_out' => '12:00 AM',
                         'amenity_id' => rand(1,13),
@@ -68,11 +80,11 @@ class HotelTableSeeder extends Seeder
                 $room = 
                     [
                         'custom_name_room' => $faker->name,
-                        'smoking_policy'   => array_rand(['b-smoking','smoking']),
+                        'smoking_policy'   => $smokingPolicy[array_rand($smokingPolicy)],
                         'number_of_room'   => rand(1,7),
                         'guest_stay_room'  => rand(1,7),
                         'room_size'        => rand(1200,1300),
-                        'room_cal_type'    => array_rand(['s-feet','s-meter']),
+                        'room_cal_type'    => $roomCalType[array_rand($roomCalType)],
                         'price_room'       => rand(1200,1300),
                         'room_list_id'     => $roomListEntry->id,
                         'room_type_id'     => $roomListEntry->room_type_id,
@@ -83,6 +95,14 @@ class HotelTableSeeder extends Seeder
 
                 $roomEntry = Room::create($room);
 
+                $bed = [
+                        'no_of_bed' => rand(1,3),
+                        'bed_id'    => rand(1,4),
+                        'room_id'   => $roomEntry->id,
+                ];
+
+                $bedEntry = HotelBed::create($bed);
+
                 $photo = [
                         'main_photo'  => '1',
                         'photos'      => 'hotels/'.$k.$key.'.jpg',
@@ -90,6 +110,7 @@ class HotelTableSeeder extends Seeder
                         'room_id'     => $roomEntry->id,
                         'hotel_id'    => $hotelEntry->id,
                 ];   
+
                 
                 $photoEntry = HotelPhoto::create($photo);
 

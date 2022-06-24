@@ -7,6 +7,21 @@ hotel
 @push('css')
 <!------- Slick theme css  ------->
 <link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+<style>
+.small-box-single-img {
+    background-color: #6A78C7;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+ /* #changed {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+} */
+</style>
 @endpush
 
 @section('content')
@@ -15,7 +30,7 @@ hotel
     <div class="container">
         <div class="h-details-title-box">
             <div class="h-details-heading">
-                <h2>Holiday Inn Madrid</h2>
+                <h2>Holiday Inn {{@$hotel->city->name}}</h2>
             </div>
             <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-3">
                 <div class="h-rating">
@@ -25,10 +40,10 @@ hotel
                     <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
                     <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
                     <span class="h-rating-location para-fs-14"><img src="{{asset('assets/images/icons/loaction-purple.png') }}"
-                            class="me-3 ms-5">Madrid, Spain. 1,36 km to the center</span>
+                            class="me-3 ms-5">{{@$hotel->city->name}} {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}. 1.36 km to the center</span>
                 </div>
                 <div class="h-rating-btn mt-md-0 mt-3">
-                    <a href="hotelsresult.html" class="btn reserve-btn bg-purple para-d-l-p">Reserve a Room</a>
+                    <a href="#hotel-room" class="btn reserve-btn bg-purple para-d-l-p">Reserve a Room</a>
                 </div>
             </div>
         </div>
@@ -46,7 +61,7 @@ hotel
                         <div class="gallery-single-img">
                             <div class="swiper-s-img">
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
-                                        src="assets/images/h-details-1.png" class="img-fluid img-wrapper"></a>
+                                        src="{{asset('assets/images/h-details-1.png')}}" class="img-fluid img-wrapper"></a>
                             </div>
                             <!------- img slider popup start -------->
                             <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
@@ -285,11 +300,13 @@ hotel
         <div class="h-d-amenities-inner border--bottom">
             <h5 class="heading-fs-16  purple-dark">Amenities</h5>
             <div class="amenities-card d-flex flex-wrap">
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-2.png') }} " class="pe-3">
-                    <span class="para-fs-14">Pool</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
+                    @foreach ($hotel->amenity() as $amenity)     
+                        <div class="amenities-single-card me-2 mb-3">
+                            <img src="{{ asset('storage/'.@$amenity->icon) }}" class="pe-3">
+                            <span class="para-fs-14">{{@$amenity->amenities}}</span>
+                        </div>
+                    @endforeach
+                {{-- <div class="amenities-single-card me-2 mb-3">
                     <img src="{{ asset('assets/images/icons/h-d--a3.png') }} " class="pe-3">
                     <span class="para-fs-14">Gym</span>
                 </div>
@@ -324,7 +341,7 @@ hotel
                 <div class="amenities-single-card me-2 mb-3">
                     <img src="{{ asset('assets/images/icons/h-d-a-5.png') }}" class="pe-3">
                     <span class="para-fs-14">Spa</span>
-                </div>
+                </div> --}}
             </div>
             {{-- <div class="amenities-link ">
                 <a href="#" class="amenities-d-link purple">See all Amenities details</a>
@@ -350,15 +367,22 @@ hotel
                 </div>
             </div>
             <div class="h-d-nearby-loaction overflow-auto">
-                <div class="small-box-main d-flex mb-3">
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img ">
-                            <img src="{{ asset('assets/images/icons/location-popup-1.png') }}">
+                <div class="small-box-main d-flex mb-3" >
+                    {{-- <div class="div" style="background: black; width: 30%; height:30%">
+                        <div id="changed"></div>
+                    </div> --}}
+                    
+                    @foreach ($hotel->facilities() as $facility)    
+                        <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
+                            <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
+                                {{-- <div id="changed" style='background-image: url("{{ asset('storage/'.@$facility->icon) }}");'></div> --}}
+                                <img id="changed" src="{{ asset('storage/'.@$facility->icon) }}">
+                            </div>
+                            <div class="small-box-text ps-2 pe-3">
+                                <span>{{@$facility->facilities_name}}</span>
+                            </div>
                         </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span>Museums</span>
-                        </div>
-                    </div>
+                    @endforeach
                     <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
                         <div class="small-box-single-img">
                             <img src="{{ asset('assets/images/icons/location-popup-2.png') }}">
@@ -367,7 +391,7 @@ hotel
                             <span>Plazas</span>
                         </div>
                     </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
+                    {{-- <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
                         <div class="small-box-single-img">
                             <img src="{{ asset('assets/images/icons/location-popup-3.png') }}">
                         </div>
@@ -422,7 +446,7 @@ hotel
                         <div class="small-box-text ps-2 pe-3">
                             <span> Markets </span>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="nearby-location-main">
                     <div class="location-popup nearby-loaction">
@@ -565,8 +589,9 @@ hotel
                                 <div class="timepicker_div ">
                                     <img src="{{ asset('assets/images/icons/cal-icon.png') }}" class="pe-2">
                                     <span class="check-text text--green">check-in-time</span>
-                                    <input type="text" class="form-control timepicker text-center"
-                                        placeholder=" Time">
+                                    <span class="form-control  text-center">{{@$hotel->check_in}}</span>
+                                    {{-- <input type="text" class="form-control timepicker text-center"
+                                        placeholder=" Time"> --}}
                                 </div>
                             </div>
                         </div>
@@ -575,8 +600,9 @@ hotel
                                 <div class="timepicker_div ">
                                     <img src="{{ asset('assets/images/icons/check-close.png') }}" class="pe-2">
                                     <span class="check-text text--red">check-in-out</span>
-                                    <input type="text" class="form-control timepicker text-center"
-                                        placeholder=" Time">
+                                    <span class="form-control  text-center">{{@$hotel->check_out}}</span>
+                                    {{-- <input type="text" class="form-control timepicker text-center"
+                                        placeholder=" Time"> --}}
                                 </div>
                             </div>
                         </div>
@@ -607,37 +633,6 @@ hotel
 
                 </div>
             </div>
-            <!-- <div class="h-policies-inner d-flex flex-wrap">
-                <div class="h-checkInOut-main d-flex flex-wrap">
-                    <div class="h-check-in-out border-green me-xl-3 me-2 mb-4 mb-lg-0">
-                        <div class="timepicker_div ">
-                            <img src="assets/images/icons/cal-icon.png" class="pe-2">
-                            <span class="check-text text--green">check-in-time</span>
-                            <input type="text" class="form-control timepicker text-center" placeholder=" Time">
-                        </div>
-                    </div>
-                    <div class="h-check-in-out border-red me-xl-5 me-3 mb-4 mb-lg-0">
-                        <div class="timepicker_div ">
-                            <img src="assets/images/icons/check-close.png" class="pe-2">
-                            <span class="check-text text--red">check-in-out</span>
-                            <input type="text" class="form-control timepicker text-center" placeholder=" Time">
-                        </div>
-                    </div>
-                </div>
-                <div class="h-policies-extra d-flex align-items-end flex-wrap">
-                    <div class="policies-extra ms-xl-5 ms-lg-3 ms-0 me-2 ">
-                        <h5 class="para-fs-14 pb-2">Extras</h5>
-                        <p class="policies-text m-0"><a href="javascript:;" class=" purple">Extra Bed</a></p>
-                    </div>
-                    <div class="policies-extra me-2 mt-2 mt-sm-0">
-                        <p class="policies-text m-0"><a href="javascript:;" class="  purple">Valet Parking</a></p>
-                    </div>
-                    <div class="policies-extra me-2 mt-md-0 mt-2">
-                        <p class="policies-text m-0"><a href="javascript:;" class="  purple">Pet Allowed <span
-                                    class="ps-2 purple">$45</span></a></p>
-                    </div>
-                </div>
-            </div> -->
             <div class="policies-link pt-4 pb-3">
                 <a href="#" class="purple">See all Policies details</a>
             </div>
@@ -646,13 +641,12 @@ hotel
 </section>
 <!------- hotel-policies section end -------->
 <!-------- Hotel Room section start -------->
-<section class="hotel-room">
+<section class="hotel-room" id="hotel-room">
     <div class="container">
         <div class="hotel-room-inner">
             <div class="hotel-room-heading pb-4">
                 <h5>Pick your room for <span class="purple">Orlando, Florida</span></h5>
             </div>
-            @foreach ($hotels as $hotel)
                 <div class="room-card-main mb-3">
                     <div class="row">
                         {{-- <div class="col-lg-3">
@@ -756,7 +750,7 @@ hotel
                             <div class="room-single-card  p-3">
                                 <div class="card-heading d-flex justify-content-between align-items-center">
                                     <div class="single-main-head">
-                                        <h5 class="purple-dark">{{@$hotel->property_name}}</h5>
+                                        <h5 class="purple-dark">{{@$hotel->room->roomtype->room_type}}, {{@$hotel->room->roomlist->room_name}}</h5>
                                     </div>
                                     <div class="single-small-title">
                                         <h5 class="heading-fs-16 purple-dark">
@@ -768,37 +762,47 @@ hotel
                                         <div class="col-4">
                                             <h5 class="para-fs-14">Overview</h5>
                                             <div class="room-overview">
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room1.png') }}"><span
-                                                        class="para-fs-14 ps-3">Smoking</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room2.png') }}"><span
-                                                        class="para-fs-14 ps-3">100 square meter</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room3.png') }}"><span
-                                                        class="para-fs-14 ps-3">number of bed</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room3.png') }}"><span
-                                                            class="para-fs-14 ps-3">Single bed / 90 - 100 meter</span> </p>
+                                                <p class="mb-2 {{@$hotel->room->smoking_policy == 'n-smoking'  ? '' : 'd-none'}}">
+                                                    <img src="{{ asset('assets/images/icons/no-smoking.png') }}">
+                                                    <span class="para-fs-14 ps-3">Smoking restricted</span>
+                                                </p>
+                                                <p class="mb-2 {{@$hotel->room->room_size  ? '' : 'd-none'}}">
+                                                    <img src="{{ asset('assets/images/icons/h-room2.png') }}">
+                                                    <span class="para-fs-14 ps-3">{{@$hotel->room->room_size}} {{@$hotel->room->room_cal_type}}</span>
+                                                </p>
+                                                <p class="mb-2">
+                                                    <img src="{{ asset('assets/images/icons/bed.png') }}">
+                                                    <span class="para-fs-14 ps-3">{{@$hotel->room->bed->no_of_bed}} number of bed</span>
+                                                </p>
+                                                <p class="mb-2">
+                                                    <img src="{{ asset('assets/images/icons/bed.png') }}">
+                                                    <span class="para-fs-14 ps-3">{{@$hotel->room->bed->bedType->bed_type}} / {{@$hotel->room->bed->bedType->bed_size}}</span>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <h5 class="para-fs-14">Overview</h5>
                                             <div class="room-overview">
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room1.png') }}"><span
-                                                        class="para-fs-14 ps-3">{{@$hotel->room->number_of_room}} {{@$hotel->room->Roomlist->room_name}}</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room2.png') }}"><span
-                                                        class="para-fs-14 ps-3">$450 per night</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room3.png') }}"><span
-                                                        class="para-fs-14 ps-3">2 Adults</span> </p>
+                                                <p class="mb-2 {{@$hotel->parking_available == 'yes'  ? '' : 'd-none'}}">
+                                                    <img src="{{ asset('assets/images/icons/parking-sign.png') }}">
+                                                    <span class="para-fs-14 ps-3">parking</span>
+                                                </p>
+                                                <p class="mb-2">
+                                                    <img src="{{ asset('assets/images/icons/english-breakfast.png') }}">
+                                                    <span class="para-fs-14 ps-3">Breakfast :- {{@$hotel->breakfast}}{{@$hotel->breakfast == 'yes'  ? ', '.$hotel->foodType->food_type  : ''}}  </span>
+                                                </p>
+                                                <p class="mb-2">
+                                                    <img src="{{ asset('assets/images/icons/bed.png') }}">
+                                                    <span class="para-fs-14 ps-3">Extra bed :-  {{@$hotel->extra_bed}}, Extra bed provided  </span>
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-4 {{@$hotel->bathroom_item  ? '' : 'd-none'}}">
                                             <h5 class="para-fs-14">In your private bathroom</h5>
                                             <div class="room-overview">
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/search-i-2') }}.png"><span class="para-fs-14 ps-3"></span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room4.png') }}"><span
-                                                        class="para-fs-14 ps-3">Dinner</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room5.png') }}"><span
-                                                        class="para-fs-14 ps-3">Lunch</span> </p>
-                                                <p class="mb-2"><img src="{{ asset('assets/images/icons/h-room6.png') }}"><span
-                                                        class="para-fs-14 ps-3">Hot Tub</span> </p>
+                                                @foreach ($hotel->bathroom() as $item)
+                                                    <p class="mb-2"><img src="{{asset('storage/'.@$item->icon)}}"><span class="para-fs-14 ps-3">{{$item->item}}</span> </p>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -811,8 +815,12 @@ hotel
                                     <p class="para-fs-14"><img src="{{ asset('assets/images/icons/right.png') }}"><span
                                             class="text--green ps-3">Free Cancel</span> </p>
                                     <p class="para-fs-14 pt-4 mb-2"><span class="text--red">2 Rooms Left</span> </p>
-                                    <h5 class="purple-dark"><span
-                                            class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>$2,134.00
+                                    <h5 class="purple-dark">
+                                        <span class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>
+                                        @php
+                                           $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $hotel->room->price_room);
+                                        @endphp     
+                                        {{$price}}
                                     </h5>
                                     <p class="mb-4 para-fs-14 d-l-Purple">For 12 Nights, Tax. Included</p>
                                     <a href="#" class="t-city-btn bg-purple mt-3">Add Room</a>
@@ -821,7 +829,6 @@ hotel
                         </div>
                     </div>
                 </div>
-            @endforeach
             {{-- <div class="room-card-main mb-3">
                 <div class="row">
                     <div class="col-lg-3">
@@ -1064,5 +1071,10 @@ hotel
         $('.slider-nav').slick('setPosition');
         $('.swiper').addClass('open');
     })
+
+    var element = document.getElementById("changed");
+    var filter = 'invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%)';
+    element.style['-webkit-filter'] = filter;
+    element.style['filter'] = filter;
 </script>
 @endpush

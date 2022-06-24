@@ -893,12 +893,12 @@ hotel
                                     </div>
                                     @foreach($amenities as $amenity)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                            <input class="form-check-input ps-2" type="checkbox" value="" id="flexCheckChecked">
+                                            <label class="form-check-label " for="flexCheckDefault">
                                                 {{@$amenity->amenities}}
                                             </label>
                                             <span class="amenities-icon"><img
-                                                    src="{{asset('storage/'.@$amenity->icon)}}" alt="" width="13px" height="13px"></span>
+                                                    src="{{asset('storage/'.@$amenity->icon)}}" alt=""></span>
                                         </div>
                                     @endforeach
                                     {{-- <div class="form-check">

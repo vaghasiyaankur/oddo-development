@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('property_name')->nullable();
             $table->string('star_rating')->nullable();
+            $table->text('description')->nullable();
             $table->string('street_addess')->nullable();
             $table->string('address_line')->nullable();
             $table->string('pos_code')->nullable();
@@ -29,7 +30,7 @@ return new class extends Migration
             $table->string('breakfast_price')->nullable();
             $table->string('breakfast_type')->nullable();
             $table->string('language')->nullable();
-            $table->string('facilities')->nullable();
+            $table->string('facilities_id')->nullable();
             $table->string('extra_bed')->nullable();
             $table->string('number_extra_bed')->nullable();
             $table->string('guest_extra_bed')->nullable();

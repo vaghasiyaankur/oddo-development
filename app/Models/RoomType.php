@@ -14,6 +14,10 @@ class RoomType extends Model
         return $query->where('status', 1);
     }
 
+    public function room(){
+        return $this->hasOne(Room::class);
+    }
+
     public function room_lists(){
         return $this->hasMany('App\Models\RoomList', 'room_type_id')->where('status',1);
     }

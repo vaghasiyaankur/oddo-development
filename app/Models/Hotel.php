@@ -66,13 +66,24 @@ class Hotel extends Model
     }
 
     public function amenity(){
-        return $this->belongsTo(amenities::class, 'amenity_id');
+        $amenity_id = explode(',',$this->amenity_id);
+        return Amenities::whereIn('id', $amenity_id)->get();
+        // return $this->belongsTo(amenities::class, 'amenity_id');
     }
 
     public function bathroom(){
-        // $bathroom = explode(',',$this->bathroom_item);
-        // $b = BathroomItem::whereIn('id', $bathroom)->get();
-        // return $b;
+        $bathroom = explode(',',$this->bathroom_item);
+        return BathroomItem::whereIn('id', $bathroom)->get();
+    }
+
+    public function foodType(){
+        return $this->belongsTo(FoodType::class, 'breakfast_type');
+    }
+
+    public function facilities(){
+        $facilities = explode(',',$this->facilities_id);
+        // dd($facilities);
+        return Facilities::whereIn('id', $facilities)->get();
     }
 
 }

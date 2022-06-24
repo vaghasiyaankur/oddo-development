@@ -2009,9 +2009,9 @@ header.header .navbar .dropdown .dropdown-btn{
     .h-d-amenities .h-d-amenities-inner .amenities-card .amenities-single-card img{
         vertical-align: sub;
     }
-    .h-d-amenities .h-d-amenities-inner .amenities-card{
+    /* .h-d-amenities .h-d-amenities-inner .amenities-card{
         max-width: 1030px;
-    }
+    } */
     /******** h-d-amenities section end *******/
 
     /******** h-details-n-b section start *******/

@@ -5,6 +5,7 @@ namespace Modules\UserSite\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Facilities;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FacilitiesTableSeeder extends Seeder
 {
@@ -15,6 +16,8 @@ class FacilitiesTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = \Faker\Factory::create();
+
         $Facilities = [
             '24-hour front desk',
             'Bar',
@@ -26,10 +29,15 @@ class FacilitiesTableSeeder extends Seeder
             'Sauna'
         ];
 
-        foreach ($Facilities as $fac) {
+        $color = ['#6A78C7','#219653', '#6FCF97', '#9B51E0', '#2d9cdb', 'f2994a'];
+
+        foreach ($Facilities as $key => $fac) {
             Facilities::create([
                 'facilities_name' => $fac,
-                'status'       => '1',
+                'icon' => 'facilities/icon_'.$key.'.png',
+                'color' => $color[array_rand($color)],
+                'description' => $faker->text,
+                'status' => '1',
             ]);
         }
     }

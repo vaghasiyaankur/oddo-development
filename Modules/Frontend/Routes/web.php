@@ -22,7 +22,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/hotel', 'HotelController@index')->name('hotel.index');
 
 /* Hotel Details */
-Route::get('/hotel-detail','HotelController@hotelDetail')->name('hotel.detail');
+Route::get('/hotel-detail/{slug}','HotelController@hotelDetail')->name('hotel.detail');
 
 /* City Page */
 Route::get('/city', 'CityController@index')->name('city.index');

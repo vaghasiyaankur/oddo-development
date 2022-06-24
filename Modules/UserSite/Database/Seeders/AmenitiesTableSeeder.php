@@ -30,7 +30,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Toilet paper',
                             'slug'                  => \Str::slug('Toilet paper'),
-                            'icon'                  => 'amenities/amenities-1.png',
+                            'icon'                  => 'amenities/toilet-paper.png',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '1'
@@ -39,7 +39,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Bath',
                             'slug'                  => \Str::slug('Bath'),
-                            'icon'                  => 'amenities/amenities-4.png',
+                            'icon'                  => 'amenities/bath.png',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '1'
@@ -98,7 +98,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Sofa bed',
                             'slug'                  => \Str::slug('Sofa bed'),
-                            'icon'                  => 'amenities/couch.png',
+                            'icon'                  => 'amenities/sofa-bed.png',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '4'

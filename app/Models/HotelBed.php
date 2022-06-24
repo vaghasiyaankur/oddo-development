@@ -9,5 +9,13 @@ class HotelBed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'no_of_bed', 'bed_id', 'room_id'];
+    protected $guarded = ['id'];
+
+    public function room(){
+        return $this->belongsTo(Room::class, 'room_id');
+    }
+
+    public function bedType(){
+        return $this->belongsTo(BedType::class, 'bed_id');
+    }
 }
