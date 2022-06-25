@@ -40,8 +40,6 @@ return new class extends Migration
             $table->string('check_in')->nullable();
             $table->string('check_out')->nullable();
             $table->string('amenity_id')->nullable();
-            $table->string('bathroom_private')->nullable();
-            $table->string('bathroom_item')->nullable();
             $table->string('slug')->nullable();
             $table->boolean('status')->default(0);
             $table->integer('city_id')->unsigned()->nullable();

@@ -121,12 +121,6 @@ class PropertyController extends Controller
 
     public function add_room(Request $request) {
         $hotel_id = Session::get('hotel')->id;
-
-        $hotel = Hotel::updateOrCreate([ 'id' => $hotel_id ],[
-            'bathroom_private' => $request->bathroom_private,
-            'bathroom_item'    => $request->bathroom_item,
-        ]);
-
         $Hotel = Room::updateOrCreate([ 'id' => $hotel_id ],[
             'smoking_policy'   => $request->smoking_area,
             'custom_name_room' => $request->custom_name,
@@ -134,6 +128,8 @@ class PropertyController extends Controller
             'guest_stay_room'  => $request->number_of_guest,
             'room_size'        => $request->room_size,
             'room_cal_type'    => $request->room_size_feet,
+            'bathroom_private' => $request->bathroom_private,
+            'bathroom_item'    => $request->bathroom_item,
             'price_room'       => $request->bed_price,
             'room_list_id'     => $request->room_name_select,
             'room_type_id'     => $request->room_type,

@@ -71,11 +71,6 @@ class Hotel extends Model
         // return $this->belongsTo(amenities::class, 'amenity_id');
     }
 
-    public function bathroom(){
-        $bathroom = explode(',',$this->bathroom_item);
-        return BathroomItem::whereIn('id', $bathroom)->get();
-    }
-
     public function foodType(){
         return $this->belongsTo(FoodType::class, 'breakfast_type');
     }

@@ -29,7 +29,7 @@ class FacilitiesTableSeeder extends Seeder
             'Sauna'
         ];
 
-        $color = ['#6A78C7','#219653', '#6FCF97', '#9B51E0', '#2d9cdb', 'f2994a'];
+        $color = ['#6A78C7','#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
 
         foreach ($Facilities as $key => $fac) {
             Facilities::create([

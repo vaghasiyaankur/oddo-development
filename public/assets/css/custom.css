@@ -726,6 +726,13 @@ header.header .navbar .dropdown .dropdown-btn{
     background-color: #fff;
     padding: 6px 10px;
 }
+.calendar.left {
+    border: none;
+}
+
+.calendar.right {
+    border: none;
+}
 /****** Hotel Result Check-in-out section end *******/
 /********** Weather Section Start **********/
 .weather-main .weather-swiper .swiper-button-prev:after,
@@ -1137,7 +1144,7 @@ header.header .navbar .dropdown .dropdown-btn{
     color: #393C52;
 }
  .location-popup .loaction-popup-content-box .location-popup-card-single{
-    width: 100%;
+    /* width: 100%; */
     min-width: 240px;
     height: 100%;
     min-height: 272px;
@@ -1163,6 +1170,7 @@ header.header .navbar .dropdown .dropdown-btn{
     font-size: 14px;
     line-height: 18px;
     color: #393C52;
+    text-align: justify;
 }
 .location-popup .loaction-popup-content-box .location-popup-card-single .card-head-text{
     font-size: 14px;
@@ -2023,6 +2031,7 @@ header.header .navbar .dropdown .dropdown-btn{
     }
     .h-details-n-b .h-d-near-by-inner .nearby-location-main .nearby-single-card .nearby-card-content{
         max-height: 200px;
+        max-width: 240px;
     }
     .h-details-n-b .h-d-near-by-inner .nearby-location-main .nearby-content-box{
         margin-top: 0px;

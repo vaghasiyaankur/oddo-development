@@ -13,6 +13,6 @@ class BathroomItem extends Model
     }
 
     public function hotel() {
-        return $this->hasOne(Hotel::class);
+        return $this->hasOne(Room::class);
     }
 }

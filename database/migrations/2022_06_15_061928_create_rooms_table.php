@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('discount')->nullable();
             $table->string('discount_type')->nullable();
             $table->string('min_person_discount')->nullable();
+            $table->string('bathroom_private')->nullable();
+            $table->string('bathroom_item')->nullable();
             $table->integer('room_list_id')->unsigned()->nullable();
             $table->integer('room_type_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();

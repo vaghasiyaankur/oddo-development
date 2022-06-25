@@ -29,7 +29,7 @@ class HotelTableSeeder extends Seeder
         $propertyTypes = PropertyType::get();
         $cities = City::get();
 
-        $parking = ['yes','no'];
+        $value = ['yes','no'];
         $parkingSite = ['on','off'];
         $parkingType = ['private','pubic'];
         $breakfast = ['yes','no'];
@@ -49,14 +49,14 @@ class HotelTableSeeder extends Seeder
                         'country_id' => $city->country->id,
                         'city_id' => $city->id,
                         'pos_code' => rand(111111, 999999),
-                        'parking_available' => $parking[array_rand($parking)],
+                        'parking_available' => $value[array_rand($value)],
                         'parking_site' => $parkingSite[array_rand($parkingSite)],
                         'parking_type' => $parkingType[array_rand($parkingType)],
                         'breakfast'  => $breakfast[array_rand($breakfast)],
                         'breakfast_type' => rand(1,5),
                         'language' => $language[array_rand($language)],
                         'facilities_id' => rand(1,7),
-                        'extra_bed' => $parking[array_rand($parking)],
+                        'extra_bed' => $value[array_rand($value)],
                         'number_extra_bed' => Null,
                         'cancel_booking' => $cancel[array_rand($cancel)],
                         'pay_type' => $payType[array_rand($payType)],
@@ -85,6 +85,8 @@ class HotelTableSeeder extends Seeder
                         'guest_stay_room'  => rand(1,7),
                         'room_size'        => rand(1200,1300),
                         'room_cal_type'    => $roomCalType[array_rand($roomCalType)],
+                        'bathroom_private' => $value[array_rand($value)],
+                        'bathroom_item'    => rand(1,10),
                         'price_room'       => rand(1200,1300),
                         'room_list_id'     => $roomListEntry->id,
                         'room_type_id'     => $roomListEntry->room_type_id,

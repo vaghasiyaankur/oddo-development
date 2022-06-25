@@ -16,11 +16,10 @@ hotel
     text-align: center;
 }
 
- /* #changed {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-} */
+ #img-icon {
+    -webkit-filter : invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    filter : invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
 </style>
 @endpush
 
@@ -35,10 +34,13 @@ hotel
             <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-3">
                 <div class="h-rating">
                     <span class="rating-text bg-green ">9/10</span>
+                    @for($i = 0; $i < 5; $i++)
+                        <span><img src="{{ @$hotel->star_rating > $i ? ''.asset('assets/images/icons/start.png') : '' }}"></span>
+                    @endfor
+                    {{-- <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
                     <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
                     <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
-                    <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
-                    <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
+                    <span><img src="{{asset('assets/images/icons/start.png') }}"></span> --}}
                     <span class="h-rating-location para-fs-14"><img src="{{asset('assets/images/icons/loaction-purple.png') }}"
                             class="me-3 ms-5">{{@$hotel->city->name}} {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}. 1.36 km to the center</span>
                 </div>
@@ -368,85 +370,17 @@ hotel
             </div>
             <div class="h-d-nearby-loaction overflow-auto">
                 <div class="small-box-main d-flex mb-3" >
-                    {{-- <div class="div" style="background: black; width: 30%; height:30%">
-                        <div id="changed"></div>
-                    </div> --}}
                     
                     @foreach ($hotel->facilities() as $facility)    
                         <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
                             <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
-                                {{-- <div id="changed" style='background-image: url("{{ asset('storage/'.@$facility->icon) }}");'></div> --}}
-                                <img id="changed" src="{{ asset('storage/'.@$facility->icon) }}">
+                                <img id="img-icon" src="{{ asset('storage/'.@$facility->icon) }}">
                             </div>
                             <div class="small-box-text ps-2 pe-3">
                                 <span>{{@$facility->facilities_name}}</span>
                             </div>
                         </div>
                     @endforeach
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-2.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span>Plazas</span>
-                        </div>
-                    </div>
-                    {{-- <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-3.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Parks </span>
-                        </div>
-                    </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-4.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Markets </span>
-                        </div>
-                    </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/locaion-5.png') }}"/>
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Cathedrals </span>
-                        </div>
-                    </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-6.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Restaurants </span>
-                        </div>
-                    </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-7.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Transportation </span>
-                        </div>
-                    </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-7.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Transportation </span>
-                        </div>
-                    </div>
-                    <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                        <div class="small-box-single-img">
-                            <img src="{{ asset('assets/images/icons/location-popup-4.png') }}">
-                        </div>
-                        <div class="small-box-text ps-2 pe-3">
-                            <span> Markets </span>
-                        </div>
-                    </div> --}}
                 </div>
                 <div class="nearby-location-main">
                     <div class="location-popup nearby-loaction">
@@ -484,23 +418,26 @@ hotel
                             <div class="loaction-popup-content-box nearby-content-box">
                                 <div class="loaction-popup-box-main  position-relative">
                                     <div class="loaction-popup-card d-flex mb-4">
-                                        <div class="location-popup-card-single nearby-single-card ms-3 mt-4">
-                                            <div class="card-single-head d-flex align-items-center bg-purple">
-                                                <div class="card-head-img pe-3"><img
-                                                        src="{{ asset('assets/images/icons/locationpopup-card1.png') }}"></div>
-                                                <div class="card-head-text">Museums</div>
+                                        @foreach ($hotel->facilities() as $key => $facility) 
+                                            <div class="location-popup-card-single nearby-single-card {{ $key == 0 ? 'ms-1': ''}} mt-4">
+                                                <div class="card-single-head d-flex align-items-center" style="background: {{@$facility->color;}}">
+                                                    <div class="card-head-img pe-3 lh-1"><img id="img-icon"
+                                                            src="{{ asset('storage/'.@$facility->icon) }}" class="mb-1"></div>
+                                                    <div class="card-head-text">{{@$facility->facilities_name}}</div>
+                                                </div>
+                                                <div class="card-content nearby-card-content">
+                                                    <p class="mb-2">{{@$facility->description}}</p>
+                                                    {{-- <p class="mb-2">Museo del Prado </p>
+                                                    <p class="mb-2">Thyssen-Bornemisza Museum</p>
+                                                    <p class="mb-2">Museo Nacional Centro de Arte </p>
+                                                    <p class="mb-2">Atocha Headquarters (Sabatini and Nouvel buildings)
+                                                    </p>
+                                                    <p class="mb-2">Palacio de Velázquez (Retiro Park) </p>
+                                                    <p class="mb-2">Palacio de Cristal (Retiro Park) </p> --}}
+                                                </div>
                                             </div>
-                                            <div class="card-content nearby-card-content">
-                                                <p class="mb-2">Museo del Prado </p>
-                                                <p class="mb-2">Thyssen-Bornemisza Museum</p>
-                                                <p class="mb-2">Museo Nacional Centro de Arte </p>
-                                                <p class="mb-2">Atocha Headquarters (Sabatini and Nouvel buildings)
-                                                </p>
-                                                <p class="mb-2">Palacio de Velázquez (Retiro Park) </p>
-                                                <p class="mb-2">Palacio de Cristal (Retiro Park) </p>
-                                            </div>
-                                        </div>
-                                        <div class="location-popup-card-single nearby-single-card mt-4">
+                                        @endforeach
+                                        {{-- <div class="location-popup-card-single nearby-single-card mt-4">
                                             <div class="card-single-head d-flex align-items-center bg-green">
                                                 <div class="card-head-img pe-3"><img
                                                         src="{{ asset('assets/images/icons/locationpopup-card2.png') }}"></div>
@@ -564,7 +501,8 @@ hotel
                                                 <p class="mb-2">Museum of Geology (UCM)</p>
                                                 <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
                                             </div>
-                                        </div>
+                                        </div> --}}
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -797,11 +735,11 @@ hotel
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="col-4 {{@$hotel->bathroom_item  ? '' : 'd-none'}}">
+                                        <div class="col-4 {{@$hotel->room->bathroom_item  ? '' : 'd-none'}}">
                                             <h5 class="para-fs-14">In your private bathroom</h5>
                                             <div class="room-overview">
-                                                @foreach ($hotel->bathroom() as $item)
-                                                    <p class="mb-2"><img src="{{asset('storage/'.@$item->icon)}}"><span class="para-fs-14 ps-3">{{$item->item}}</span> </p>
+                                                @foreach ($hotel->room->bathroom() as $item)
+                                                    <p class="mb-2"><img src="{{asset('storage/'.@$item->icon)}}"><span class="para-fs-14 ps-3">{{@$item->item}}</span> </p>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -1063,18 +1001,15 @@ hotel
             },
         ],
     });
+
     $('.modal').on('shown.bs.modal', function (e) {
         $('.slider-single').slick('setPosition');
         $('.swiper').addClass('open');
-    })
+    });
+
     $('.modal').on('shown.bs.modal', function (e) {
         $('.slider-nav').slick('setPosition');
         $('.swiper').addClass('open');
-    })
-
-    var element = document.getElementById("changed");
-    var filter = 'invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%)';
-    element.style['-webkit-filter'] = filter;
-    element.style['filter'] = filter;
+    });
 </script>
 @endpush

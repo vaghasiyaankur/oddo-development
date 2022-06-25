@@ -9,11 +9,6 @@ hotel
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.3/swiper-bundle.css" />
 <style>
     /*  */
-    .bed-selector {
-        position: relative;
-        top: 12px;
-    }
-
     .bed-selector .room {
         background: #FFFFFF;
         box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
@@ -61,7 +56,8 @@ hotel
     .bed-selector .select-div {
         padding: 6px 10px;
         width: 130px;
-        border: 1px solid #aaa;
+        border: 1px solid #878996;
+        border-radius: 5px
     }
 
     .bed-selector .option-none {
@@ -125,7 +121,7 @@ hotel
         vertical-align: middle;
     }
 
-    .select2-results__option:before {
+    /* .select2-results__option:before {
         content: "";
         display: inline-block;
         position: relative;
@@ -146,7 +142,7 @@ hotel
         border: 0;
         display: inline-block;
         padding-left: 3px;
-    }
+    } */
 </style>
 @endpush
 
@@ -198,28 +194,32 @@ hotel
                 </div>
                 <div class="check-in-out-bottom">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             <label>Guests</label>
-                            <select class="select2-icon " name="guest" multiple="multiple">
-                                <option value="2" data-icon="fa-user-group">2</option>
-                                <option value="1" data-icon="fa-user">1</option>
-                                <option value="3" data-icon="fa-users">3</option>
-                            </select>
+                            <select class="form-control js-example-tags">
+                                <option selected="selected">1</option>
+                                <option>2</option>
+                                <option>3</option>                                
+                            </select>   
                         </div>
-                        <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                        <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
                             <label>Room</label>
-                            <select class="select2-icon" multiple="multiple">
-                                <option value="king">1 King</option>
-                                <option value="queen">2 Queen</option>
-                                <option value="twin">3 Twin</option>
-                            </select>
+                                <select class="form-control js-example-tags">
+                                    <option selected="selected">1</option>
+                                    <option>2</option>
+                                    <option>3</option>                                
+                                </select>                                                            
                         </div>
+                         
+                       
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
-                            <div class="bed-selector">
+                            <label>Beds</label>
+                            <div class="bed-selector ">
                                 <div class="select-div d-flex justify-content-between align-items-center">
-                                    <i class="fa-solid fa-car" style="color: #6A78C7;"></i>
-                                    <span style="color: #6A78C7;">king</span>
-                                    <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i>
+                                    <i class="fa-solid fa-car" style="color: #878996"></i>
+                                    <span style="color: #878996">king</span>
+                                    <i class="fa-solid fa-caret-down" style="color: #878996"></i>
+                                    {{-- <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i> --}}
                                 </div>
                                 <div class="select-option option-none">
                                     <div class="room">
@@ -1100,9 +1100,15 @@ $(document).on('click', '#SubmitSearch', function(){
 <!-- custom-selector js -->
 <script>
     $(document).ready(function () {
-      $(".select-div").click(function () {
+      $(document).on('click', '.select-div', function () {
         $(".select-option").toggleClass("option-none");
       });
+
+     $(".js-example-tags").select2({
+  tags: true
+});
+
+
     });
 </script>
 @endpush

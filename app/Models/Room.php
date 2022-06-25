@@ -26,4 +26,9 @@ class Room extends Model
         return $this->hasOne(HotelBed::class);
     }
 
+    public function bathroom(){
+        $bathroom = explode(',',$this->bathroom_item);
+        return BathroomItem::whereIn('id', $bathroom)->get();
+    }
+
 }
