@@ -170,7 +170,7 @@ hotel
                                 <div
                                     class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
                                     <div class="check-text-label pt-4 pe-xl-4 pe-lg-3">
-                                        <label class="check-inout mt-2">Check-In </label>
+                                        <label class="check-inout mt-2">Check-In</label>
                                         <div class="input--text d-flex align-items-center">
                                             <img src="assets/images/icons/cal-1.png" class="px-2">
                                             <input type="text" class="input--control ps-xl-2"
@@ -196,15 +196,15 @@ hotel
                     <div class="row align-items-center">
                          <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             <label>Guests</label>
-                            <select class="form-control js-example-tags">
-                                <option selected="selected">1</option>
+                            <select class="form-control js-example-tags select_guest" name="guest">
+                                <option>1</option>
                                 <option>2</option>
                                 <option>3</option>                                
                             </select>   
                         </div>
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
                             <label>Room</label>
-                                <select class="form-control js-example-tags">
+                                <select class="form-control  select_room" name="room">
                                     <option selected="selected">1</option>
                                     <option>2</option>
                                     <option>3</option>                                
@@ -1104,10 +1104,9 @@ $(document).on('click', '#SubmitSearch', function(){
         $(".select-option").toggleClass("option-none");
       });
 
-     $(".js-example-tags").select2({
-  tags: true
-});
-
+        $(".js-example-tags").select2({
+            tags: true
+        });
 
     });
 </script>

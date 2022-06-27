@@ -4,5 +4,6 @@
     "Frontend": true,
     "Test": true,
     "Testing": true,
-    "Layout": true
+    "Layout": true,
+    "Admin": true
 }

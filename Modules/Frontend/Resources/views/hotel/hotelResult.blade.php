@@ -44,7 +44,7 @@
                         <div class="result-main-middle ps-md-0 ps-3 pe-md-0 pe-3">
                           <div class="result-main-middle-content">
                             
-                            <a href="{{route('hotel.detail', $hotel->slug)}}"><h2 class="middle-content-heading pt-4 mb-1">{{$hotel->property_name}}</h2></a>
+                            <a href="{{ route('hotel.detail', @$hotel->slug) }}"><h2 class="middle-content-heading pt-4 mb-1">{{$hotel->property_name}}</h2></a>
                             <div class="middle-content-location">
                               <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                   class="loaction-text">{{@$hotel->city->name}}, {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}</span></p>

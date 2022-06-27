@@ -17,14 +17,14 @@ class HotelController extends Controller
     public function index()
     {
         // dd( request()->guest);
-        $search = explode(', ' , request()->search);
+        $search = explode(',' , request()->search);
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
-        $guest = explode(',' , request()->guest);
-        $room = explode(',' , request()->room);
+        $guest =  request()->guest;
+        $room = request()->room;
         $bed = explode(',' , request()->bed);
-
-        if($search){
+        
+        if(count($search) != 1){
              $hotels = Hotel::where(function($query) use($search){
                 foreach($search as $s) {
                     $query->orWhereHas('country', function ($query2) use($s){
@@ -34,7 +34,10 @@ class HotelController extends Controller
                         $query2->where('name', 'like', '%'.$s.'%');
                     });
                 }
+            })->WhereHas('room' , function($query){
+                $query->where('guest_stay_room', request()->guest);
             })->get();
+            // dd($hotels);
         }else{
             $hotels = Hotel::get();
         }
@@ -43,8 +46,9 @@ class HotelController extends Controller
         return view('frontend::hotel.index', compact('hotels', 'amenities'));
     }
 
-    public function hotelDetail($slug){
-        $hotel = Hotel::where('slug',$slug)->first();
+    public function hotelDetail(){
+        $slug = request()->slug;
+        $hotel = Hotel::where('slug', $slug)->first();
         return view('frontend::hotel.hotelDetails', compact('hotel'));
     }
 

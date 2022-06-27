@@ -41,3 +41,5 @@ Route::controller(PropertyController::class)->group(function(){
 //        $table->string('amenity_id')->nullable();
 //     });
 // });
+
+Route::view('/view', 'usersite::user.view');
