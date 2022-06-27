@@ -43,7 +43,6 @@
                       <div class="col-md-4">
                         <div class="result-main-middle ps-md-0 ps-3 pe-md-0 pe-3">
                           <div class="result-main-middle-content">
-                            
                             <a href="{{ route('hotel.detail', @$hotel->slug) }}"><h2 class="middle-content-heading pt-4 mb-1">{{$hotel->property_name}}</h2></a>
                             <div class="middle-content-location">
                               <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
@@ -662,55 +661,11 @@
                                     <div class="right-menu-icon-inner">
                                       <img src="{{ asset('storage/'.@$facilities->icon) }}">
                                     </div>
-                                    <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">{{@$facilities->facilities_name}}</a>
+                                    <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p">{{@$facilities->facilities_name}}</a>
                                     </div>
                                   </div>
                                 </div>
                                 @endforeach
-                                {{-- <div class="right-menu mb-2">
-                                  <div class="right-menu-icon d-flex pb-1">
-                                    <div class="right-menu-icon-inner">
-                                      <img src="assets/images/icons/search-i-2.png">
-                                    </div>
-                                    <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">El Albero</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="right-menu mb-2">
-                                  <div class="right-menu-icon d-flex pb-1">
-                                    <div class="right-menu-icon-inner">
-                                      <img src="assets/images/icons/search-i-3.png">
-                                    </div>
-                                    <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">LePaste</a></div>
-                                  </div>
-                                </div>
-                                <div class="right-menu mb-2">
-                                  <div class="right-menu-icon d-flex pb-1">
-                                    <div class="right-menu-icon-inner">
-                                      <img src="assets/images/icons/search-i-4.png">
-                                    </div>
-                                    <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p"> Pf Changs</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="right-menu mb-2">
-                                  <div class="right-menu-icon d-flex pb-1">
-                                    <div class="right-menu-icon-inner">
-                                      <img src="assets/images/icons/search-i-5.png">
-                                    </div>
-                                    <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p"> ATM Gran Via</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="right-menu mb-2">
-                                  <div class="right-menu-icon d-flex pb-1">
-                                    <div class="right-menu-icon-inner">
-                                      <img src="assets/images/icons/search-i-6.png">
-                                    </div>
-                                    <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p"> Hotel V bar</a>
-                                    </div>
-                                  </div>
-                                </div> --}}
                               </div>
                             </div>
                           </div>
@@ -1423,7 +1378,7 @@
                                 <div class="right-menu-icon-inner">
                                   <img src="assets/images/icons/search-i-1.png">
                                 </div>
-                                <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">Fábula
+                                <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p">Fábula
                                     Taberna</a></div>
                               </div>
                             </div>
@@ -1432,7 +1387,7 @@
                                 <div class="right-menu-icon-inner">
                                   <img src="assets/images/icons/search-i-2.png">
                                 </div>
-                                <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">El Albero</a>
+                                <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p">El Albero</a>
                                 </div>
                               </div>
                             </div>
@@ -1441,7 +1396,7 @@
                                 <div class="right-menu-icon-inner">
                                   <img src="assets/images/icons/search-i-3.png">
                                 </div>
-                                <div class="right-menu-text"><a href="javascript;:" class="para-d-l-p">LePaste</a></div>
+                                <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p">LePaste</a></div>
                               </div>
                             </div>
                             <div class="right-menu mb-2">
