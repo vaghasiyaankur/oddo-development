@@ -16,19 +16,18 @@ class SearchController extends Controller
     public function index()
     {
         // dd(request()->all());
-        $search = explode(', ' , request()->search);
+        $search = explode(',' , request()->search);
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
         $guest = explode(',' , request()->guest);
         $room = explode(',' , request()->room);
         $bed = explode(',' , request()->bed);
+        // dd(count($search));
+        if (count($search) != 1) {
 
-        if($search){
             // $hotels = Hotel::WhereIn('country','like', '%'.$search.'%')->orWhereIn('city','like', '%'.$search.'%')->get();
             $hotels = Hotel::where(function($query) use($search){
                 foreach($search as $s) {
-                    // $query->orWhere('country_id', 'LIKE', "%$s%")
-                    //       ->orWhere('city_id', 'LIKE', "%$s%");
                     $query->orWhereHas('country', function ($query2) use($s){
                         $query2->where('country_name', 'like', '%'.$s.'%');
                     });
