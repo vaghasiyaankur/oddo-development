@@ -13,4 +13,6 @@
 
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index');
+    Route::view('/page', 'admin::page');
+    
 });
