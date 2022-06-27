@@ -3,7 +3,11 @@
 @section('title')
 Add-Layout
 @endsection
-
+<style>
+    section.pannel-form.admin-pannel-main {
+    min-height: calc(100vh - 472px);
+}
+</style>
 @section('content')
 <!------ Pannel Form start ------->
 <section class="pannel-form admin-pannel-main py-5">
