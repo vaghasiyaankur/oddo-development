@@ -15,20 +15,72 @@ Add-Layout
         <div class="container">
             <div class="row py-4">
                 @include('usersite::user.sidebar.sidebar')
-                <div class="col-lg-10 col-md-10 col-12 right-side-content">
-                    <div id="tabs">
-                        <div class="col-xs-12 ">
-                            <div class="dog-title-text">
-                                <h1 class="dog-title-text"></h1>
+                    <div class="col-lg-10 col-md-10 col-12 right-side-content">
+                        <div id="tabs">
+                            <div class="col-xs-12 ">
+                                <!-- <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <div class="share-section mb-5">
+                                            <div class="drag-section justify-content-between pb-4">
+                                                <div class="d-flex align-items-center dog-image-name">
+                                                    <img src="https://dev.idratherbewithmydog.net//storage/dogProfile/Xxxlo8hWhH.png" alt="" class="drag-image">
+                                                    <span>
+                                                         <h2 class="bog-subtitle-text">0</h2>
+                                                    </span>
+                                                </div>
+                                                <div class="upload-delete-button-step">
+                                                    <a href="https://dev.idratherbewithmydog.net/user/dogsite/32/albums" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Albums</a>
+                                                    <a href="https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
+                                                    <a href="https://dev.idratherbewithmydog.net/user/dogsite/32/edit" class="green-button-step py-2 d-flex align-items-center me-2 px-3">Edit Site</a>
+                                                    <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center" data-toggle="modal" data-target="#delete-account" id="p-delete-account" data-type="dogsite" data-href="https://dev.idratherbewithmydog.net/user/remove-dog-site/32">Delete</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="social-media mt-4 d-flex">
+                                                <div class="social-text mb-0 mr-3">
+                                                    <div class="dog-text">Share with:</div>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <div class="share-with-your-friend social_back">
+                                                        <ul class="share-this mb-0"> 
+                                                            <li class="share-social-icon mr-2 share-button">
+                                                                <a href="javascript:;" class="share-icon-text">
+                                                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/share.svg" alt=""><span class="share-span">ShareThis</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="share-social-icon mr-2 position-relative">
+                                                                <a href="javascript:;" class="share-anchor" data-url="https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32" id="dogsite-paste-32" onclick="copyToClipboard('#dogsite-paste-32')">
+                                                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/copy.svg" alt="">
+                                                                </a>
+                                                                <p class="copied-tooltip">Copied</p>
+                                                            </li>
+                                                            <li class="share-social-icon mr-2">
+                                                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32" class="share-anchor" target="_blank">
+                                                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/facebook-icon.svg" alt="">
+                                                                </a>
+                                                            </li>
+                                                            <li class="share-social-icon mr-2">
+                                                                <a href="https://twitter.com/intent/tweet?text=Default+share+text&amp;url=https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32" class="share-anchor" target="_blank">
+                                                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/twitter-icon.svg" alt="">
+                                                                </a>
+                                                            </li>
+                                                            
+                                                                <li class="share-social-icon mr-2">
+                                                                    <a href="https://wa.me/?text=https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32" class="share-anchor" target="_blank">
+                                                                        <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/whatsapp.svg" alt="">
+                                                                    </a>
+                                                                </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"></div>
+                                </div> -->
                             </div>
-                            <!-- <div class="acount-center">
-                                <h2 class="main-content bog-subtitle-text mb-3  ">A Free Webs ite Just For Your Dog(s)!</h2>
-                                <p class="similar-text-comune capture-text">Capture and memorialize every precious moment you spend together.</p>
-                                <a href="account-dog-site-step-1.html" class="green-button">Start Now</a>
-                            </div> -->
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
