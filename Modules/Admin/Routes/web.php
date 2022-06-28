@@ -12,7 +12,7 @@
 */
 
 Route::prefix('admin')->group(function() {
-    Route::get('/', 'AdminController@index');
-    Route::view('/page', 'admin::page');
-    
+    Route::view('/amenity', 'admin::amenity');
+    Route::view('/location', 'admin::location');
+    Route::view('/amenity-types', 'admin::amenity-type');
 });
