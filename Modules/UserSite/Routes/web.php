@@ -42,4 +42,8 @@ Route::controller(PropertyController::class)->group(function(){
 //     });
 // });
 
-Route::view('/view', 'usersite::user.view');
+Route::prefix('user')->group(function() {
+    Route::view('/view', 'usersite::user.view');
+    Route::view('/calender', 'usersite::user.calender');
+    
+});

@@ -1,0 +1,38 @@
+.account-content .left-sidebar-main {
+    flex: 0 0 23%;
+    max-width: 23%;
+    width: 100%;
+    padding-right: 35px;
+}
+.left-sidebar-main .sidebar-inner {
+    background: #E5EBF1;
+    padding: 32px 32px 32px 39px;
+    border-radius: 16px;
+}
+
+.left-sidebar-main .sidebar-inner ul {
+        list-style-type: none;
+}
+.left-sidebar-main .sidebar-inner ul li {
+    padding-bottom: 24px;
+}
+.left-sidebar-main .sidebar-inner ul li.active a {
+    opacity: 1;
+}
+.left-sidebar-main .sidebar-inner ul li a {
+    letter-spacing: -0.01em;
+    color: #385774;
+    opacity: 0.6;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+}
+.logout {
+    padding-bottom: 0 !important;
+}
+.account-content .right-side-content {
+    flex: 0 0 77%;
+    max-width: 77%;
+    width: 100%;
+    padding-left: 36px;
+}
