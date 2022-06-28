@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/style.css') }}">
+
+    <!-- App favicon -->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/favicon.ico') }}">
+
+    <!-- Layout config Js -->
+    <script src="{{ asset('assets/Admin/assets/js/layout.js') }}"></script>
+    <!-- Bootstrap Css -->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/bootstrap.min.css') }}">
+    <!-- Icons Css -->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/icons.min.css') }}">
+    <!-- App Css-->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/app.min.css') }}">
+    <!-- custom Css-->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/custom.min.css') }}">
+
+    {{--  --}}
+    <link rel="stylesheet" href="{{ url('https://use.fontawesome.com/releases/v5.13.0/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url('https://itsjavi.com/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css') }}">
+
+
+    <style>
+        .edit-box {
+            opacity: 0;
+            transition: all 0.5S ease;
+            transform: translateY(50px);
+        }
+
+        .edit-data-box:hover .edit-box {
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex align-items-center">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box horizontal-logo">
+                        <a href="index.html" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="assets/images/logo-sm.png" alt="" height="22">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{ asset('assets/Admin/assets/images/logo-dark.png') }}" alt=""
+                                    height="17">
+                            </span>
+                        </a>
+
+                        <a href="index.html" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="assets/images/logo-sm.png" alt="" height="22">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="assets/images/logo-light.png" alt="" height="17">
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
+                        id="topnav-hamburger-icon">
+                        <span class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+
+                    <!-- Back Button Pos Link-->
+                    <div class="navbar-header-links">
+                        <button type="button" class="btn btn-success px-5">Back</button>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center">
+
+                    <div class="dropdown d-md-none topbar-head-dropdown header-item">
+                        <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                            id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="bx bx-search fs-22"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-search-dropdown">
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                            aria-label="Recipient's username">
+                                        <button class="btn btn-primary" type="submit"><i
+                                                class="mdi mdi-magnify"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="dropdown topbar-head-dropdown ms-1 header-item">
+                        <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class='bx bx-bell fs-22'></i>
+                            <span
+                                class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">3<span
+                                    class="visually-hidden">unread messages</span></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-notifications-dropdown">
+
+                            <div class="dropdown-head bg-primary bg-pattern rounded-top">
+                                <div class="p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0 fs-16 fw-semibold text-white"> Notifications </h6>
+                                        </div>
+                                        <div class="col-auto dropdown-tabs">
+                                            <span class="badge badge-soft-light fs-13"> 4 New</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="px-2 pt-2">
+                                    <ul class="nav nav-tabs dropdown-tabs nav-tabs-custom" data-dropdown-tabs="true"
+                                        id="notificationItemsTab" role="tablist">
+                                        <li class="nav-item waves-effect waves-light">
+                                            <a class="nav-link active" data-bs-toggle="tab" href="#all-noti-tab"
+                                                role="tab" aria-selected="true">
+                                                All (4)
+                                            </a>
+                                        </li>
+                                        <li class="nav-item waves-effect waves-light">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#messages-tab"
+                                                role="tab" aria-selected="false">
+                                                Messages
+                                            </a>
+                                        </li>
+                                        <li class="nav-item waves-effect waves-light">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#alerts-tab"
+                                                role="tab" aria-selected="false">
+                                                Alerts
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-content" id="notificationItemsTabContent">
+                                <div class="tab-pane fade show active py-2 ps-2" id="all-noti-tab" role="tabpanel">
+                                    <div data-simplebar style="max-height: 300px;" class="pe-2">
+                                        <div
+                                            class="text-reset notification-item d-block dropdown-item position-relative">
+                                            <div class="d-flex">
+                                                <div class="avatar-xs me-3">
+                                                    <span
+                                                        class="avatar-title bg-soft-info text-info rounded-circle fs-16">
+                                                        <i class="bx bx-badge-check"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-2 lh-base">Your <b>Elite</b> author
+                                                            Graphic
+                                                            Optimization <span class="text-secondary">reward</span>
+                                                            is
+                                                            ready!
+                                                        </h6>
+                                                    </a>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> Just 30 sec
+                                                            ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="all-notification-check01">
+                                                        <label class="form-check-label"
+                                                            for="all-notification-check01"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="text-reset notification-item d-block dropdown-item position-relative active">
+                                            <div class="d-flex">
+                                                <img src="assets/images/users/avatar-2.jpg"
+                                                    class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
+                                                    </a>
+                                                    <div class="fs-13 text-muted">
+                                                        <p class="mb-1">Answered to your comment on the cash flow
+                                                            forecast's
+                                                            graph 🔔.</p>
+                                                    </div>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 48 min
+                                                            ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="all-notification-check02" checked>
+                                                        <label class="form-check-label"
+                                                            for="all-notification-check02"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="text-reset notification-item d-block dropdown-item position-relative">
+                                            <div class="d-flex">
+                                                <div class="avatar-xs me-3">
+                                                    <span
+                                                        class="avatar-title bg-soft-danger text-danger rounded-circle fs-16">
+                                                        <i class='bx bx-message-square-dots'></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-2 fs-13 lh-base">You have received <b
+                                                                class="text-success">20</b> new messages in the
+                                                            conversation
+                                                        </h6>
+                                                    </a>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 2 hrs ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="all-notification-check03">
+                                                        <label class="form-check-label"
+                                                            for="all-notification-check03"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="text-reset notification-item d-block dropdown-item position-relative">
+                                            <div class="d-flex">
+                                                <img src="assets/images/users/avatar-8.jpg"
+                                                    class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
+                                                    </a>
+                                                    <div class="fs-13 text-muted">
+                                                        <p class="mb-1">We talked about a project on linkedin.</p>
+                                                    </div>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 4 hrs ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="all-notification-check04">
+                                                        <label class="form-check-label"
+                                                            for="all-notification-check04"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="my-3 text-center">
+                                            <button type="button"
+                                                class="btn btn-soft-success waves-effect waves-light">View
+                                                All Notifications <i
+                                                    class="ri-arrow-right-line align-middle"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade py-2 ps-2" id="messages-tab" role="tabpanel"
+                                    aria-labelledby="messages-tab">
+                                    <div data-simplebar style="max-height: 300px;" class="pe-2">
+                                        <div class="text-reset notification-item d-block dropdown-item">
+                                            <div class="d-flex">
+                                                <img src="assets/images/users/avatar-3.jpg"
+                                                    class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">James Lemire</h6>
+                                                    </a>
+                                                    <div class="fs-13 text-muted">
+                                                        <p class="mb-1">We talked about a project on linkedin.</p>
+                                                    </div>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 30 min
+                                                            ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="messages-notification-check01">
+                                                        <label class="form-check-label"
+                                                            for="messages-notification-check01"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-reset notification-item d-block dropdown-item">
+                                            <div class="d-flex">
+                                                <img src="assets/images/users/avatar-2.jpg"
+                                                    class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
+                                                    </a>
+                                                    <div class="fs-13 text-muted">
+                                                        <p class="mb-1">Answered to your comment on the cash flow
+                                                            forecast's
+                                                            graph 🔔.</p>
+                                                    </div>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 2 hrs ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="messages-notification-check02">
+                                                        <label class="form-check-label"
+                                                            for="messages-notification-check02"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-reset notification-item d-block dropdown-item">
+                                            <div class="d-flex">
+                                                <img src="assets/images/users/avatar-6.jpg"
+                                                    class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kenneth Brown</h6>
+                                                    </a>
+                                                    <div class="fs-13 text-muted">
+                                                        <p class="mb-1">Mentionned you in his comment on 📃 invoice
+                                                            #12501.
+                                                        </p>
+                                                    </div>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 10 hrs
+                                                            ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="messages-notification-check03">
+                                                        <label class="form-check-label"
+                                                            for="messages-notification-check03"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-reset notification-item d-block dropdown-item">
+                                            <div class="d-flex">
+                                                <img src="assets/images/users/avatar-8.jpg"
+                                                    class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                <div class="flex-1">
+                                                    <a href="#!" class="stretched-link">
+                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
+                                                    </a>
+                                                    <div class="fs-13 text-muted">
+                                                        <p class="mb-1">We talked about a project on linkedin.</p>
+                                                    </div>
+                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                                                        <span><i class="mdi mdi-clock-outline"></i> 3 days
+                                                            ago</span>
+                                                    </p>
+                                                </div>
+                                                <div class="px-2 fs-15">
+                                                    <div class="form-check notification-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="messages-notification-check04">
+                                                        <label class="form-check-label"
+                                                            for="messages-notification-check04"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="my-3 text-center">
+                                            <button type="button"
+                                                class="btn btn-soft-success waves-effect waves-light">View
+                                                All Messages <i class="ri-arrow-right-line align-middle"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade p-4" id="alerts-tab" role="tabpanel"
+                                    aria-labelledby="alerts-tab">
+                                    <div class="w-25 w-sm-50 pt-3 mx-auto">
+                                        <img src="assets/images/svg/bell.svg" class="img-fluid" alt="user-pic">
+                                    </div>
+                                    <div class="text-center pb-5 mt-2">
+                                        <h6 class="fs-18 fw-semibold lh-base">Hey! You have no any notifications
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown ms-sm-3 header-item topbar-user">
+                        <button type="button" class="btn" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="d-flex align-items-center">
+                                <img class="rounded-circle header-profile-user"
+                                    src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
+                                    alt="Header Avatar">
+                                <span class="text-start ms-xl-2">
+                                    <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna
+                                        Adame</span>
+                                    <span
+                                        class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                </span>
+                            </span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <h6 class="dropdown-header">Welcome Anna!</h6>
+                            <a class="dropdown-item" href="pages-profile.html"><i
+                                    class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle">Profile</span></a>
+                            <a class="dropdown-item" href="apps-chat.html"><i
+                                    class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
+                                <span class="align-middle">Messages</span></a>
+                            <a class="dropdown-item" href="apps-tasks-kanban.html"><i
+                                    class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i>
+                                <span class="align-middle">Taskboard</span></a>
+                            <a class="dropdown-item" href="pages-faqs.html"><i
+                                    class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle">Help</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="pages-profile.html"><i
+                                    class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle">Balance : <b>$5971.67</b></span></a>
+                            <a class="dropdown-item" href="pages-profile-settings.html"><span
+                                    class="badge bg-soft-success text-success mt-1 float-end">New</span><i
+                                    class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle">Settings</span></a>
+                            <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
+                                    class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle">Lock screen</span></a>
+                            <a class="dropdown-item" href="auth-logout-basic.html"><i
+                                    class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle" data-key="t-logout">Logout</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ========== App Menu ========== -->
+        <div class="app-menu navbar-menu">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <!-- Dark Logo-->
+                <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                    </span>
+                </a>
+                <!-- Light Logo-->
+                <a href="index.html" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-light.png" alt="" height="17">
+                    </span>
+                </a>
+                <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+                    id="vertical-hover">
+                    <i class="ri-record-circle-line"></i>
+                </button>
+            </div>
+
+            <div id="scrollbar">
+                <div class="container-fluid m-0 ps-2">
+                    <div id="two-column-menu">
+                    </div>
+                    <ul class="navbar-nav" id="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link menu-link ps-0" href="dashboard.html">
+                                <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+                            </a>
+                        </li> <!-- end Dashboard Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{ url('admin/page') }}">
+
+                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Orders</span>
+                            </a>
+                        </li>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Orders</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Product</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarLayouts">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="product.html" target="_blank" class="nav-link"
+                                            data-key="t-horizontal">Product</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="product-stock-limit.html" target="_blank" class="nav-link"
+                                            data-key="t-detached">Stock limit products</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> <!-- end Dashboard Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="bank-info.html"><i class="ri-layout-3-line"></i>My
+                                Bank info</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="myshope-info.html">
+                                <i class="ri-rocket-line"></i> <span data-key="t-landing">My Shope</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="landing.html">
+                                <i class="ri-rocket-line"></i> <span data-key="t-landing">Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="landing.html">
+                                <i class="ri-rocket-line"></i> <span data-key="t-landing">Logout</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card" id="orderList">
+                            <div class="card-header  border-0">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-5">
+                                        <h5 class="card-title mb-0">Amenity</h5>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="search-box">
+                                            <input type="text" class="form-control search"
+                                                placeholder="Search for order ID, customer, status or something...">
+                                            <i class="ri-search-line search-icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 ps-0">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Amenity Types
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-md p-4">
+                                                <form>
+                                                    <div class="mb-2">
+                                                        <label class="form-label" for="exampleDropdownFormtext">Amenity Name</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleDropdownFormtext"
+                                                            placeholder="">
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <div class="form-group">
+                                                            <label>Default</label>
+                                                            <input class="form-control icp icp-auto" value="fas fa-anchor" type="text"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <div class="form-check custom-checkbox">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="rememberdropdownCheck">
+                                                            <label class="form-check-label"
+                                                                for="rememberdropdownCheck">Remember me</label>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body border border-dashed border-end-0 border-start-0">
+                                <div class="categories-main">
+                                    <div class="row">
+                                        <div class="col-sm-2 mb-2">
+                                            <div class="card card-body edit-data-box position-reletive px-2">
+                                              <div class=" edit-box">
+                                                <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2" style="right:-26px;top: 13px;"><i class="ri-pencil-line" style="font-size: 13px;"></i></span>
+                                              </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt=""
+                                                            class="avatar-sm rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="card-title fw-bold">Amenity type name</h5>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 mb-2">
+                                            <div class="card card-body edit-data-box position-reletive px-2">
+                                              <div class=" edit-box">
+                                                <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2" style="right:-26px;top: 13px;"><i class="ri-pencil-line" style="font-size: 13px;"></i></span>
+                                              </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt=""
+                                                            class="avatar-sm rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="card-title fw-bold">Amenity type name</h5>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 mb-2">
+                                            <div class="card card-body edit-data-box position-reletive px-2">
+                                              <div class=" edit-box">
+                                                <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2" style="right:-26px;top: 13px;"><i class="ri-pencil-line" style="font-size: 13px;"></i></span>
+                                              </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt=""
+                                                            class="avatar-sm rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="card-title fw-bold">Amenity type name</h5>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 mb-2">
+                                            <div class="card card-body edit-data-box position-reletive px-2">
+                                              <div class=" edit-box">
+                                                <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2" style="right:-26px;top: 13px;"><i class="ri-pencil-line" style="font-size: 13px;"></i></span>
+                                              </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt=""
+                                                            class="avatar-sm rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="card-title fw-bold">Amenity type name</h5>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 mb-2">
+                                            <div class="card card-body edit-data-box position-reletive px-2">
+                                              <div class=" edit-box">
+                                                <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2" style="right:-26px;top: 13px;"><i class="ri-pencil-line" style="font-size: 13px;"></i></span>
+                                              </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt=""
+                                                            class="avatar-sm rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="card-title fw-bold">Amenity type name</h5>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 mb-2">
+                                            <div class="card card-body edit-data-box position-reletive px-2">
+                                              <div class=" edit-box">
+                                                <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2" style="right:-26px;top: 13px;"><i class="ri-pencil-line" style="font-size: 13px;"></i></span>
+                                              </div>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt=""
+                                                            class="avatar-sm rounded-circle">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-2">
+                                                        <h5 class="card-title fw-bold">Amenity type name</h5>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © Velzon.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Themesbrand
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <script>
+        $('.icp-auto').iconpicker();
+    </script>
+
+    <!-- JAVASCRIPT -->
+    <!-- jquery Cdn Link -------->
+    <script src="{{ asset('assets/Admin/assets/js/jquery.min.js') }}"></script>
+    <!-- -----Owl js cdn Link ------>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!----- Bootstrap cdn Link ------->
+    <script src="{{ asset('assets/Admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('assets/Admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
+
+    <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
+
+    <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script>
+
+    <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+
+    <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script>
+
+    <script src="{{ asset('assets/Admin/js/form-input-spin.init.js') }}"></script>
+
+    <!-- input step init -->
+    <script src="{{ asset('assets/Admin/assets/js/form-input-spin.init.js') }}"></script>
+    <!-- ecommerce cart js -->
+    <script src="{{ asset('assets/Admin/js/ecommerce-cart.init.js') }}"></script>
+    <!-- App js -->
+    <!-- <script src="assets/js/app.js"></script> -->
+
+    <!-- icon picker js -->
+    <script src="{{ url('https://itsjavi.com/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js') }}"></script>
+</body>
+
+</html>

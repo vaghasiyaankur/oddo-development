@@ -3,7 +3,11 @@
 @section('title')
     Property-Category
 @endsection
-
+<style>
+    section.l-p-myproperties {
+    min-height: calc(100vh - 492px);
+}
+</style>
 @section('content')
      <!------ list-properties nav start------->
     <section class="l-p-navbar">
