@@ -495,8 +495,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="bank-info.html"><i class="ri-layout-3-line"></i>My
-                                Bank info</span>
+                            <a class="nav-link menu-link" href="{{ url('admin/facilities') }}"><i class="ri-layout-3-line"></i>Facilities</span>
                             </a>
                         </li>
                         <li class="nav-item">

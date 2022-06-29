@@ -15,4 +15,5 @@ Route::prefix('admin')->group(function() {
     Route::view('/amenity', 'admin::amenity');
     Route::view('/location', 'admin::location');
     Route::view('/amenity-types', 'admin::amenity-type');
+    Route::view('/facilities', 'admin::facilities');
 });
