@@ -320,7 +320,7 @@ Add-Layout
                </div>
                   <div class="model-last-button text-end mt-4">
                      <a href="javascript:;" class="py-2 px-4 btn btn-success" id="edit-price-btn" data-id="0"
-                           data-type="create">Save</a>
+                           data-type="create" data-bs-dismiss="modal">Save</a>
                   </div>
             </div>
         </div>
@@ -518,12 +518,17 @@ $(document).ready(function(){
 
    $(document).on('click', '#edit-price-btn', function(){
       var price = $('#priceInput').val();
-      var datePrice = $('#value-edit').val();
+      var dateValue = $('#value-edit').val();
       var hotel = $('input[name="showPrice"]:checked').val();
-      console.log(hotel);
-      var date = $('.price_'+datePrice).text('$ '+price);
+      var date = $('.price_'+dateValue).text('$ '+price);
       if(hotel == 'close'){
-         var close = $('.price_'+datePrice).text('Close');
+         var close = $('.price_'+dateValue).html('<p class="text-danger">Close</p>');
+      }else{
+         if(price != ''){
+            var date = $('.price_'+dateValue).text('$ '+price);
+         }else{
+            var date = $('.price_'+dateValue).text('$ 400');
+         }
       }
    });
 
@@ -531,6 +536,8 @@ $(document).ready(function(){
       var hotel = $('input[name="showPrice"]:checked').val();
       if(hotel == 'close'){
          $('.price-input').hide();
+      }else{
+         $('.price-input').show();
       }
    });
 });
