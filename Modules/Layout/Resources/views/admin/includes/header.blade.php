@@ -499,8 +499,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="myshope-info.html">
-                                <i class="ri-rocket-line"></i> <span data-key="t-landing">My Shope</span>
+                            <a class="nav-link menu-link" href="{{ url('admin/property') }}">
+                                <i class="ri-rocket-line"></i> <span data-key="t-landing">Properties</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -513,7 +513,6 @@
                                 <i class="ri-rocket-line"></i> <span data-key="t-landing">Logout</span>
                             </a>
                         </li>
-
                     </ul>
                 </div>
                 <!-- Sidebar -->

@@ -1,61 +1,13 @@
 @extends('layout::admin.master')
 
 @push('css')
-    <!-- 'classic'color picker css theme -->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/classic.min.css') }}" />
-    <!-- 'monolith' theme -->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/monolith.min.css') }}" />
-    <!-- 'nano' theme -->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/nano.min.css') }}" />
-
-
-    <!-- quill css -->
-    <link href="{{ asset('assets/Admin/assets/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/Admin/assets/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/Admin/assets/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+    <!-- dropzone css -->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/dropzone/dropzone.css') }}" type="text/css" />
     <style>
-        .amenity-type-select .iconpicker-dropdown ul {
-            left: -21px !important;
-            max-width: 237px !important;
-            overflow: auto;
-            border-radius: 10px;
-            height: 100%;
-            min-height: 146px;
-        }
-
-        .modal-select-icon .iconpicker-dropdown ul {
-            width: 100%;
-            max-width: 459px !important;
-            border-radius: 10px;
-            overflow: auto;
-            padding-top: 6px;
-            height: 100%;
-            min-height: 109px;
-        }
-
-        /* width */
-        .iconpicker-dropdown ul::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        /* Track */
-        .iconpicker-dropdown ul::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 10px;
-        }
-
-        /* Handle */
-        .iconpicker-dropdown ul::-webkit-scrollbar-thumb {
-            background: #0ab39c;
-            border-radius: 10px;
-        }
-
-        .pcr-app.visible {
-            left: 730.594px !important;
-        }
-
-        .ck-editor__editable {
-            min-height: 111px !important;
+        .Upload--img .dropzone {
+            min-height: 132px;
+            padding: 13px 17px;
+            border: 2px dashed #e9ebec;
         }
     </style>
 @endpush
@@ -68,12 +20,12 @@
                     <div class="card-header  border-0">
                         <div class="row d-flex align-items-center">
                             <div class="col-lg-5">
-                                <h5 class="card-title mb-0 ms-3">Facilities</h5>
+                                <h5 class="card-title mb-0 ms-3">Properties</h5>
                             </div>
                             <div class="col-lg-6">
                                 <div class="search-box">
                                     <input type="text" class="form-control search"
-                                        placeholder="Search for Amenity status or something...">
+                                        placeholder="Search for properties status or something...">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
                             </div>
@@ -81,7 +33,7 @@
                                 <div class="btn-group">
                                     <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
                                         data-bs-target="#exampleModalgrid"><i class="ri-add-line align-bottom me-1"></i> Add
-                                        Facilities</a>
+                                        Property</a>
                                 </div>
                             </div>
                         </div>
@@ -95,10 +47,9 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">SL</th>
-                                                    <th scope="col">Facilities-Name</th>
-                                                    <th scope="col">Icon</th>
-                                                    <th scope="col">Color</th>
+                                                    <th scope="col">Property-Type</th>
                                                     <th scope="col">Description</th>
+                                                    <th scope="col">Image</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
@@ -106,15 +57,20 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"><a href="#" class="fw-medium">#1</a></th>
-                                                    <td>Bar</td>
-                                                    <td><i class=" ri-goblet-line fs-4"></i></td>
-                                                    <td>#6A78C7</td>
+                                                    <td>Farm House</td>
                                                     <td>
                                                         <button tabindex="0"
                                                             class="btn btn-soft-success waves-effect waves-light"
                                                             data-bs-toggle="popover" data-bs-trigger="focus" title=""
-                                                            data-bs-content="And here's some amazing content. It's very engaging. Right?"
+                                                            data-bs-content="And here's some amazing content. It's very engaging amazing content. Right?"
                                                             data-bs-original-title="">View Description</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
+                                                            <a href="javascript:;"><img
+                                                                src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                alt="" class="img-fluid d-block"></a>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-check form-switch">
@@ -132,15 +88,20 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row"><a href="#" class="fw-medium">#2</a></th>
-                                                    <td>Fittness Center</td>
-                                                    <td><i class=" ri-community-fill fs-4"></i></td>
-                                                    <td>#000</td>
+                                                    <td>Fittness Room</td>
                                                     <td>
                                                         <button tabindex="0"
                                                             class="btn btn-soft-success waves-effect waves-light"
                                                             data-bs-toggle="popover" data-bs-trigger="focus" title=""
                                                             data-bs-content="And here's some amazing content. It's very engaging. Right?"
                                                             data-bs-original-title="">View Description</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
+                                                            <a href="javascript:;"><img
+                                                                src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                alt="" class="img-fluid d-block"></a>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-check form-switch">
@@ -158,16 +119,20 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row"><a href="#" class="fw-medium">#3</a></th>
-                                                    <td>Free Wifi</td>
-                                                    <td><i class="ri-wifi-line fs-4"></i></td>
-                                                    <td>#c7c6C7</td>
+                                                    <td>Hotle</td>
                                                     <td>
                                                         <button tabindex="0"
                                                             class="btn btn-soft-success waves-effect waves-light"
-                                                            data-bs-toggle="popover" data-bs-trigger="focus"
-                                                            title=""
+                                                            data-bs-toggle="popover" data-bs-trigger="focus" title=""
                                                             data-bs-content="And here's some amazing content. It's very engaging. Right?"
                                                             data-bs-original-title="">View Description</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
+                                                            <a href="javascript:;"><img
+                                                                src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                alt="" class="img-fluid d-block"></a>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-check form-switch">
@@ -185,9 +150,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row"><a href="#" class="fw-medium">#4</a></th>
-                                                    <td>Free Parking</td>
-                                                    <td><i class=" ri-parking-fill fs-4"></i></td>
-                                                    <td>#6A78C7</td>
+                                                    <td>Apartment</td>
                                                     <td>
                                                         <button tabindex="0"
                                                             class="btn btn-soft-success waves-effect waves-light"
@@ -195,6 +158,13 @@
                                                             title=""
                                                             data-bs-content="And here's some amazing content. It's very amazing content engaging. Right?"
                                                             data-bs-original-title="">View Description</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
+                                                            <a href="javascript:;"><img
+                                                                    src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                    alt="" class="img-fluid d-block"></a>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-check form-switch">
@@ -212,6 +182,10 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        {{-- FOR EMPTY TABLE --}}
+                                        {{-- <div class="empty-table w-100 text-center py-5">
+                                            <div class="h5">No Data Found</div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -231,38 +205,84 @@
             <div class="modal-dialog modal-dialog-top">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalgridLabel">Funtionality Edit Modals</h5>
+                        <h5 class="modal-title" id="exampleModalgridLabel">Property Edit Details</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="mb-2">
-                                <label class="form-label" for="exampleDropdownFormtext"> Name</label>
-                                <input type="text" class="form-control" id="exampleDropdownFormtext" placeholder="">
-                            </div>
-                            <div class="modal-select-icon mb-2">
-                                <label> Icon</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text h-100 selectedIcon"></span>
-                                    </div>
-                                    <input type="text" class="form-control iconPicker" placeholder="Search Your Icon">
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="color--picker-input d-flex align-items-center">
-                                    <div class="picker-title">
-                                        <h5 class="fs-13 mb-0 me-3">Color :</h5>
-                                    </div>
-                                    <div class="classic-colorpicker"></div>
+                            <div class="mb-3">
+                                <label for="autoCompleteCars" class="">Enter Name </label>
+                                <div class="location-box">
+                                    <input type="text" class="form-control" id="exampleDropdownFormtext"
+                                        placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <div class="ckeditor-classic"></div>
+                                <label>Upload Your Image</label>
+                                <div class="Upload--img">
+                                    <div class="dropzone">
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple="multiple">
+                                        </div>
+                                        <div class="dz-message needsclick m-0">
+                                            <div class="mb-1">
+                                                <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
+                                            </div>
+
+                                            <h5>Drop files here or click to upload.</h5>
+                                        </div>
+                                    </div>
+
+                                    <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                        <li class="mt-2" id="dropzone-preview-list">
+                                            <!-- This is used as the file preview template -->
+                                            <div class="border rounded">
+                                                <div class="d-flex p-2 align-items-center">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div class="avatar-sm bg-light rounded">
+                                                            <img data-dz-thumbnail class="img-fluid rounded d-block"
+                                                                src="#" alt="Dropzone-Image" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <div class="pt-1">
+                                                            <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
+                                                            <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                            <strong class="error text-danger"
+                                                                data-dz-errormessage></strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-shrink-0 ms-3">
+                                                        <button data-dz-remove
+                                                            class="btn btn-sm btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- end dropzon-preview -->
+                                </div>
                             </div>
-                            <div class="mb-2">
-                                <div class="form-check custom-checkbox d-flex justify-content-end align-items-center">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea5" class="form-label">Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="active-deactive-input">
+                                    <div class="form-check form-check-inline form-radio-success me-1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="WithoutinlineRadio1" value="option1">
+                                        <label class="form-check-label" for="WithoutinlineRadio1">Active</label>
+                                    </div>
+                                    <div class="form-check form-check-inline form-radio-danger">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="WithoutinlineRadio2" value="option2"checked="">
+                                        <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
+                                    </div>
+                                </div>
+
+                                <div class="Submit--btn">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -276,44 +296,13 @@
 
 
 @push('scripts')
-    <!-- Modern colorpicker bundle -->
-    <script src="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/pickr.min.js') }}"></script>
+    <!-- dropzone min -->
+    <script src="{{ asset('assets/Admin/assets/libs/dropzone/dropzone-min.js') }}"></script>
 
-    <!-- init form-pickers js -->
-    <script src="{{ asset('assets/Admin/assets/js/pages/form-pickers.init.js') }}"></script>
+    <script src="{{ asset('assets/Admin/assets/js/pages/form-file-upload.init.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-    <!-- ckeditor -->
-    <script src="{{ asset('assets/Admin/assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
-
-    <!-- init js -->
-    <script src="{{ asset('assets/Admin/assets/js/pages/form-editor.init.js') }}"></script>
-    <!-- quill js -->
-    <script src="{{ asset('assets/Admin/assets/libs/quill/quill.min.js') }}"></script>
-
-
     <script>
-        (async () => {
-            const response = await fetch(
-                'https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconsets/bootstrap5.json')
-            const result = await response.json()
-
-
-            const iconpicker = new Iconpicker(document.querySelector(".iconPicker"), {
-                icons: result,
-                showSelectedIn: document.querySelector(".selectedIcon"),
-                searchable: true,
-                selectedClass: "selected",
-                containerClass: "my-picker",
-                hideOnSelect: false,
-                fade: true,
-                defaultValue: 'bi-search',
-                // valueFormat: val => `bi ${val}`
-            });
-
-            iconpicker.set() // Set as empty
-            // iconpicker.set('bi-alarm') // Reset with a value
-        })();
         $(document).ready(function() {
             $('[data-bs-toggle="popover"]').popover();
         });
