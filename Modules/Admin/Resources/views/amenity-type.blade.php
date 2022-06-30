@@ -16,7 +16,7 @@
                                 <input type="email" class="form-control" id="exampleDropdownFormEmail"
                                     placeholder="Enter Amenity Type">
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </form>
                     </div>
                 </div>
