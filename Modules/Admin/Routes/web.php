@@ -17,4 +17,15 @@ Route::prefix('admin')->group(function() {
     Route::view('/amenity-types', 'admin::amenity-type');
     Route::view('/facilities', 'admin::facilities');
     Route::view('/property', 'admin::property');
+
+    Route::controller(AmenityCategoryController::class)->group(function(){
+        Route::get('/amenity-category', 'amenityCategory')->name('amenity.category');
+        Route::post('/add-amenity-category', 'addAmenityCategory')->name('add.amenitycategory');
+        Route::get('/amenity-category-getlist', 'getList')->name('amenitycategory.list');
+        Route::post('/update-amenity-category/{id}', 'updateAmenityCategory')->name('update.amenitycategory');
+        Route::post('/amenity-status', 'amenityStatus')->name('status.amenity');
+        Route::post('/delete-amenity/{id}', 'deleteAmenityCategory')->name('delete.amenitycategory');
+    });
+
+
 });

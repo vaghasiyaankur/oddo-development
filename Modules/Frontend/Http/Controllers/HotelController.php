@@ -16,7 +16,6 @@ class HotelController extends Controller
      */
     public function index()
     {
-        // dd( request()->guest);
         $search = explode(',' , request()->search);
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
@@ -36,10 +35,9 @@ class HotelController extends Controller
                 }
             })->WhereHas('room' , function($query){
                 $query->where('guest_stay_room', request()->guest);
-            })->get();
-            // dd($hotels);
+            })->active()->get();
         }else{
-            $hotels = Hotel::get();
+            $hotels = Hotel::active()->get();
         }
 
         $amenities = Amenities::where('featured',1)->active()->get();

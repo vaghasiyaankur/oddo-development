@@ -26,6 +26,10 @@ class Hotel extends Model
             ]
         ];
     }
+
+    public function scopeActive($query) {
+        return $query->where('status', 1);
+    }
     
     public function propertytype()
     {
@@ -49,7 +53,6 @@ class Hotel extends Model
 
     public function mainPhoto()
     {
-        // return $this->facilities['facilities'] = json_decode($value);
         return $this->photos()->where('main_photo', 1);
     }
 
@@ -77,7 +80,6 @@ class Hotel extends Model
 
     public function facilities(){
         $facilities = explode(',',$this->facilities_id);
-        // dd($facilities);
         return Facilities::whereIn('id', $facilities)->get();
     }
 

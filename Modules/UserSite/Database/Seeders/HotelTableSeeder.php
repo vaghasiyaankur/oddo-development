@@ -64,6 +64,7 @@ class HotelTableSeeder extends Seeder
                         'check_out' => '12:00 AM',
                         'amenity_id' => rand(1,13),
                         'property_id' => $type->id,   
+                        'status' => 1,
                 ];
 
                 $hotelEntry = Hotel::create($hotel);

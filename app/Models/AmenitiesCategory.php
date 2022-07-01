@@ -4,19 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class AmenitiesCategory extends Model
 {
-    use HasFactory;
-    protected $guarded = [];
+    use HasFactory, Sluggable;
 
     protected $table = 'amenities_categories';
 
-    protected $fillable = [
-        'id',
-        'category',
-        'status'
-    ];
+    protected $guarded = ['id'];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'category'
+            ]
+        ];
+    }
 
     public function amenities(){
         return $this->hasMany(Amenities::class)->where('status', '1');

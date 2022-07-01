@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>odda / @yield('title')</title>
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/style.css') }}">
 
     <!-- App favicon -->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/images/favicon.ico') }}">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/Admin/assets/js/layout.js') }}"></script>
@@ -69,15 +70,13 @@
 
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
-    <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script>
-
-    <script src="{{ asset('assets/Admin/js/form-input-spin.init.js') }}"></script>
+    {{-- <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script> --}}
 
     <!-- input step init -->
     <script src="{{ asset('assets/Admin/assets/js/form-input-spin.init.js') }}"></script>
 
     <!-- ecommerce cart js -->
-    <script src="{{ asset('assets/Admin/js/ecommerce-cart.init.js') }}"></script>
+    {{-- <script src="{{ asset('assets/Admin/js/pages/ecommerce-cart.init.js') }}"></script> --}}
 
     <!-- icon picker js -->
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
