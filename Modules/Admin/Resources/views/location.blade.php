@@ -32,22 +32,22 @@
                 <div class="card" id="orderList">
                     <div class="card-header  border-0">
                         <div class="row d-flex align-items-center">
-                            <div class="col-lg-5">
-                                <h5 class="card-title mb-0 ms-3">Location</h5>
+                            <div class="col-sm-4">
+                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Location</h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="search-box">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for Location, Country , status or something...">
-                                    <i class="ri-search-line search-icon"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 ps-0">
-                                <div class="live-preview">
-                                    <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalgrid">
-                                        Location Details
-                                    </button>
+                            <div class="col-sm-8">
+                                <div class="d-flex align-items-center justify-content-evenly">
+                                    <div class="search-box w-100">
+                                        <input type="text" class="form-control search"
+                                            placeholder="Search for Location, Country , status or something...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                    <div class="live-preview ms-4">
+                                        <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalgrid">
+                                            Location Details
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -58,11 +58,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                            class=" position-absolute translate-middle badge p-2"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                            style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
-                                                style="font-size: 13px;"></i></span>
+                                            <span class=" position-absolute translate-middle badge p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black" style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -95,16 +94,15 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                            class=" position-absolute translate-middle badge p-2"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                            style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
-                                                style="font-size: 13px;"></i></span>
+                                            <span class=" position-absolute translate-middle badge p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black" style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
                                                 <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-12.jpg') }}"
                                                     alt="">
                                                 <div class="gallery-overlay">
                                                     <h5 class="overlay-caption">New York</h5>
@@ -132,10 +130,46 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black" style="font-size: 13px;"></i></span>
+                                        </div>
+                                        <div class="gallery-container">
+                                            <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
+                                                <img class="gallery-img img-fluid mx-auto"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-7.jpg') }}"
+                                                    alt="">
+                                                <div class="gallery-overlay">
+                                                    <h5 class="overlay-caption">New York</h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="box-content">
+                                            <div class="d-flex align-items-center mt-2">
+                                                <div class="flex-grow-1 text-muted"><a href=""
+                                                        class="text-body text-truncate">10 listed Disended</a></div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="d-flex gap-3">
+                                                        <label for="">Feature</label>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                role="switch" id="SwitchCheck3" checked="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-xl-2 col-lg-4 col-sm-6">
+                                    <div class="gallery-box edit-data-box card">
+                                        <div class="edit-box">
+                                            <span class=" position-absolute translate-middle badge p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black"
                                                     style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
@@ -169,16 +203,16 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black"
                                                     style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
                                                 <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-2.jpg') }}"
                                                     alt="">
                                                 <div class="gallery-overlay">
                                                     <h5 class="overlay-caption">New York</h5>
@@ -206,16 +240,16 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black"
                                                     style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
                                                 <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-12.jpg') }}"
                                                     alt="">
                                                 <div class="gallery-overlay">
                                                     <h5 class="overlay-caption">New York</h5>
@@ -243,16 +277,16 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black"
                                                     style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
                                                 <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-3.jpg') }}"
                                                     alt="">
                                                 <div class="gallery-overlay">
                                                     <h5 class="overlay-caption">New York</h5>
@@ -280,16 +314,16 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black"
                                                     style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
                                                 <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-7.jpg') }}"
                                                     alt="">
                                                 <div class="gallery-overlay">
                                                     <h5 class="overlay-caption">New York</h5>
@@ -317,53 +351,16 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
+                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
+                                                    class=" ri-pencil-fill text-black"
                                                     style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
                                                 <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
-                                                    alt="">
-                                                <div class="gallery-overlay">
-                                                    <h5 class="overlay-caption">New York</h5>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="box-content">
-                                            <div class="d-flex align-items-center mt-2">
-                                                <div class="flex-grow-1 text-muted"><a href=""
-                                                        class="text-body text-truncate">10 listed Disended</a></div>
-                                                <div class="flex-shrink-0">
-                                                    <div class="d-flex gap-3">
-                                                        <label for="">Feature</label>
-                                                        <div class="form-check form-switch form-switch-success ms-1">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="SwitchCheck3" checked="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-xl-2 col-lg-4 col-sm-6">
-                                    <div class="gallery-box edit-data-box card">
-                                        <div class="edit-box">
-                                             <span
-                                                class=" position-absolute translate-middle badge p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
-                                        </div>
-                                        <div class="gallery-container">
-                                            <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
-                                                <img class="gallery-img img-fluid mx-auto"
-                                                    src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-9.jpg') }}"
                                                     alt="">
                                                 <div class="gallery-overlay">
                                                     <h5 class="overlay-caption">New York</h5>

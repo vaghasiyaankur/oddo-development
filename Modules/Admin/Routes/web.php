@@ -27,5 +27,4 @@ Route::prefix('admin')->group(function() {
         Route::post('/delete-amenity/{id}', 'deleteAmenityCategory')->name('delete.amenitycategory');
     });
 
-
 });

@@ -67,21 +67,21 @@
                 <div class="card" id="orderList">
                     <div class="card-header  border-0">
                         <div class="row d-flex align-items-center">
-                            <div class="col-lg-5">
-                                <h5 class="card-title mb-0 ms-3">Facilities</h5>
+                            <div class=" col-sm-4">
+                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Facilities</h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="search-box">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for Amenity status or something...">
-                                    <i class="ri-search-line search-icon"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 ps-0">
-                                <div class="btn-group">
-                                    <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalgrid"><i class="ri-add-line align-bottom me-1"></i> Add
-                                        Facilities</a>
+                            <div class=" col-sm-8">
+                                <div class="d-flex align-items-center justify-content-evenly">
+                                    <div class="search-box w-100">
+                                        <input type="text" class="form-control search"
+                                            placeholder="Search for Amenity status or something...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                    <div class="btn-group ms-4">
+                                        <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalgrid"><i class="ri-add-line align-bottom me-1"></i>
+                                            Add Facilities</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                         <table class="table align-middle mb-0 ">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">SL</th>
+                                                    <th scope="col">No</th>
                                                     <th scope="col">Facilities-Name</th>
                                                     <th scope="col">Icon</th>
                                                     <th scope="col">Color</th>

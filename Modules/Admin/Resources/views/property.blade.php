@@ -19,22 +19,22 @@
                 <div class="card" id="orderList">
                     <div class="card-header  border-0">
                         <div class="row d-flex align-items-center">
-                            <div class="col-lg-5">
-                                <h5 class="card-title mb-0 ms-3">Properties</h5>
+                            <div class="col-sm-4">
+                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Properties</h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="search-box">
+                            <div class=" col-sm-8">
+                                <div class="d-flex align-items-center justify-content-evenly ">
+                                <div class="search-box w-100">
                                     <input type="text" class="form-control search"
                                         placeholder="Search for properties status or something...">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
-                            </div>
-                            <div class="col-lg-1 ps-0">
-                                <div class="btn-group">
+                                <div class="btn-group ms-4">
                                     <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
                                         data-bs-target="#exampleModalgrid"><i class="ri-add-line align-bottom me-1"></i> Add
                                         Property</a>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                         <table class="table align-middle mb-0 ">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">SL</th>
+                                                    <th scope="col">No</th>
                                                     <th scope="col">Property-Type</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Image</th>
@@ -183,9 +183,11 @@
                                             </tbody>
                                         </table>
                                         {{-- FOR EMPTY TABLE --}}
+
                                         {{-- <div class="empty-table w-100 text-center py-5">
-                                            <div class="h5">No Data Found</div>
-                                        </div> --}}
+                                            <div class="h4">No records has been added yet.</div>
+                                            <h6>Add a new record by simpley clicking the button on top right side.</h6>
+                                        </div>  --}}
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +204,7 @@
     <div class="live-preview">
         <div class="modal fade" id="exampleModalgrid" tabindex="-1" aria-labelledby="exampleModalgridLabel"
             style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-top">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalgridLabel">Property Edit Details</h5>

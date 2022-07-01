@@ -61,51 +61,52 @@
             <div class="col-lg-12">
                 <div class="card" id="orderList">
                     <div class="card-header  border-0">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-lg-5">
-                                <h5 class="card-title mb-0 ms-3">Amenity</h5>
+                        <div class="row align-items-center">
+                            <div class=" col-sm-4">
+                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Amenity</h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="search-box">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for Amenity status or something...">
-                                    <i class="ri-search-line search-icon"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 ps-0">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success amenity-button">
-                                        Amenity Types <i class=" ri-arrow-down-s-line"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-md p-4  option-select"
-                                        style="top: 45px;left: -98px;">
-                                        <form>
-                                            <div class="mb-2">
-                                                <label class="form-label" for="exampleDropdownFormtext">Amenity Name</label>
-                                                <input type="text" class="form-control" id="exampleDropdownFormtext"
-                                                    placeholder="Enter Amenity Name">
-                                            </div>
-                                            <div class="amenity-type-select mb-2">
-                                                <label>Amenities Icon</label>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text h-100 selected-icon"></span>
+                            <div class=" col-sm-8">
+                                <div class="d-flex align-items-center justify-content-evenly">
+                                    <div class="search-box w-100">
+                                        <input type="text" class="form-control search"
+                                            placeholder="Search for Amenity status or something...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                    <div class="btn-group d-flex justify-content-end ms-4">
+                                        <button type="button" class="btn btn-success amenity-button text-nowrap">
+                                            Amenity Types <i class=" ri-arrow-down-s-line"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-md p-4  option-select"
+                                            style="top: 45px;left: -98px;">
+                                            <form>
+                                                <div class="mb-2">
+                                                    <label class="form-label" for="exampleDropdownFormtext">Amenity
+                                                        Name</label>
+                                                    <input type="text" class="form-control" id="exampleDropdownFormtext"
+                                                        placeholder="Enter Amenity Name">
+                                                </div>
+                                                <div class="amenity-type-select mb-2">
+                                                    <label>Amenities Icon</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text h-100 selected-icon"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control iconpicker"
+                                                            placeholder="Search Your Icon">
                                                     </div>
-                                                    <input type="text" class="form-control iconpicker"
-                                                        placeholder="Search Your Icon">
                                                 </div>
-                                            </div>
-                                            <div class="mb-2">
-                                                <div class="form-check custom-checkbox">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="rememberdropdownCheck">
-                                                    <label class="form-check-label" for="rememberdropdownCheck">Remember
-                                                        me</label>
+                                                <div class="mb-2">
+                                                    <div class="form-check custom-checkbox">
+                                                        <input type="checkbox" class="form-check-input"
+                                                            id="rememberdropdownCheck">
+                                                        <label class="form-check-label" for="rememberdropdownCheck">Remember
+                                                            me</label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <a href="javascript:;"><button type="submit" class="btn btn-primary">Sign
-                                                    in</button></a>
-                                        </form>
+                                                <a href="javascript:;"><button type="submit" class="btn btn-primary">Sign
+                                                        in</button></a>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +115,7 @@
                     <div class="card-body border border border-end-0 border-start-0">
                         <div class="categories-main">
                             <div class="row">
-                                <div class="col-sm-2 mb-2 mb-4">
+                                <div class="col-md-2 mb-2 mb-4">
                                     <div class="card card-body edit-data-box position-reletive px-2">
                                         <div class=" edit-box">
                                             <span
@@ -125,20 +126,20 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-8.jpg') }}"
                                                     alt="" class="avatar-sm rounded-circle">
                                             </div>
                                             <div class="flex-grow-1 ms-2">
                                                 <h5 class="card-title">Amenity type name</h5>
                                                 <div class="form-check form-switch form-switch-success ms-1">
                                                     <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
+                                                        id="SwitchCheck3">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2 mb-2 mb-4">
+                                <div class="col-md-2 mb-2 mb-4">
                                     <div class="card card-body edit-data-box position-reletive px-2">
                                         <div class="edit-box">
                                             <span
@@ -149,7 +150,7 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-7.jpg') }}"
                                                     alt="" class="avatar-sm rounded-circle">
                                             </div>
                                             <div class="flex-grow-1 ms-2">
@@ -162,7 +163,127 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2 mb-2 mb-4">
+                                <div class="col-md-2 mb-2 mb-4">
+                                    <div class="card card-body edit-data-box position-reletive px-2">
+                                        <div class=" edit-box">
+                                            <span
+                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
+                                                    style="font-size: 13px;"></i></span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-6.jpg') }}"
+                                                    alt="" class="avatar-sm rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1 ms-2">
+                                                <h5 class="card-title">Amenity type name</h5>
+                                                <div class="form-check form-switch form-switch-success ms-1">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="SwitchCheck3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-2 mb-4">
+                                    <div class="card card-body edit-data-box position-reletive px-2">
+                                        <div class=" edit-box">
+                                            <span
+                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
+                                                    style="font-size: 13px;"></i></span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-5.jpg') }}"
+                                                    alt="" class="avatar-sm rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1 ms-2">
+                                                <h5 class="card-title">Amenity type name</h5>
+                                                <div class="form-check form-switch form-switch-success ms-1">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="SwitchCheck3" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-2 mb-4">
+                                    <div class="card card-body edit-data-box position-reletive px-2">
+                                        <div class=" edit-box">
+                                            <span
+                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
+                                                    style="font-size: 13px;"></i></span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-4.jpg') }}"
+                                                    alt="" class="avatar-sm rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1 ms-2">
+                                                <h5 class="card-title">Amenity type name</h5>
+                                                <div class="form-check form-switch form-switch-success ms-1">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="SwitchCheck3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-2 mb-4">
+                                    <div class="card card-body edit-data-box position-reletive px-2">
+                                        <div class=" edit-box">
+                                            <span
+                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
+                                                    style="font-size: 13px;"></i></span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-3.jpg') }}"
+                                                    alt="" class="avatar-sm rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1 ms-2">
+                                                <h5 class="card-title">Amenity type name</h5>
+                                                <div class="form-check form-switch form-switch-success ms-1">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="SwitchCheck3" checked="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-2 mb-4">
+                                    <div class="card card-body edit-data-box position-reletive px-2">
+                                        <div class=" edit-box">
+                                            <span
+                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
+                                                    style="font-size: 13px;"></i></span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-2.jpg') }}"
+                                                    alt="" class="avatar-sm rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1 ms-2">
+                                                <h5 class="card-title">Amenity type name</h5>
+                                                <div class="form-check form-switch form-switch-success ms-1">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="SwitchCheck3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 mb-2 mb-4">
                                     <div class="card card-body edit-data-box position-reletive px-2">
                                         <div class=" edit-box">
                                             <span
@@ -180,13 +301,13 @@
                                                 <h5 class="card-title">Amenity type name</h5>
                                                 <div class="form-check form-switch form-switch-success ms-1">
                                                     <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
+                                                        id="SwitchCheck3">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2 mb-2 mb-4">
+                                <div class="col-md-2 mb-2 mb-4">
                                     <div class="card card-body edit-data-box position-reletive px-2">
                                         <div class=" edit-box">
                                             <span
@@ -204,133 +325,13 @@
                                                 <h5 class="card-title">Amenity type name</h5>
                                                 <div class="form-check form-switch form-switch-success ms-1">
                                                     <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
+                                                        id="SwitchCheck3">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2 mb-2 mb-4">
-                                    <div class="card card-body edit-data-box position-reletive px-2">
-                                        <div class=" edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
-                                                    style="font-size: 13px;"></i></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
-                                                    alt="" class="avatar-sm rounded-circle">
-                                            </div>
-                                            <div class="flex-grow-1 ms-2">
-                                                <h5 class="card-title">Amenity type name</h5>
-                                                <div class="form-check form-switch form-switch-success ms-1">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 mb-2 mb-4">
-                                    <div class="card card-body edit-data-box position-reletive px-2">
-                                        <div class=" edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
-                                                    style="font-size: 13px;"></i></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
-                                                    alt="" class="avatar-sm rounded-circle">
-                                            </div>
-                                            <div class="flex-grow-1 ms-2">
-                                                <h5 class="card-title">Amenity type name</h5>
-                                                <div class="form-check form-switch form-switch-success ms-1">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 mb-2 mb-4">
-                                    <div class="card card-body edit-data-box position-reletive px-2">
-                                        <div class=" edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
-                                                    style="font-size: 13px;"></i></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
-                                                    alt="" class="avatar-sm rounded-circle">
-                                            </div>
-                                            <div class="flex-grow-1 ms-2">
-                                                <h5 class="card-title">Amenity type name</h5>
-                                                <div class="form-check form-switch form-switch-success ms-1">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 mb-2 mb-4">
-                                    <div class="card card-body edit-data-box position-reletive px-2">
-                                        <div class=" edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
-                                                    style="font-size: 13px;"></i></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
-                                                    alt="" class="avatar-sm rounded-circle">
-                                            </div>
-                                            <div class="flex-grow-1 ms-2">
-                                                <h5 class="card-title">Amenity type name</h5>
-                                                <div class="form-check form-switch form-switch-success ms-1">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 mb-2 mb-4">
-                                    <div class="card card-body edit-data-box position-reletive px-2">
-                                        <div class=" edit-box">
-                                            <span
-                                                class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-26px;top: 13px;"><i class="ri-pencil-line"
-                                                    style="font-size: 13px;"></i></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0">
-                                                <img src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
-                                                    alt="" class="avatar-sm rounded-circle">
-                                            </div>
-                                            <div class="flex-grow-1 ms-2">
-                                                <h5 class="card-title">Amenity type name</h5>
-                                                <div class="form-check form-switch form-switch-success ms-1">
-                                                    <input class="form-check-input" type="checkbox" role="switch"
-                                                        id="SwitchCheck3" checked="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 mb-2 mb-4">
+                                <div class="col-md-2 mb-2 mb-4">
                                     <div class="card card-body edit-data-box position-reletive px-2">
                                         <div class="edit-box">
                                             <span
