@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\AmenitiesCategory;
 
 class AmenityController extends Controller
 {
@@ -14,7 +15,8 @@ class AmenityController extends Controller
      */
     public function index()
     {
-        return view('admin::index');
+        $amenityCategories = AmenitiesCategory::active()->get();
+        return view('admin::Amenity.index', compact('amenityCategories'));
     }
 
     /**

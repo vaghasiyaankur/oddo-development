@@ -34,7 +34,7 @@ class PropertyController extends Controller
 
     public function basicInfo() {
         $countries = Country::with('cities')->active()->get();
-        $hotel = Hotel::with('propertytype')->latest('created_at')->first();
+        $hotel = Hotel::with('propertytype')->latest()->first();
         return view('usersite::BasicInfo', compact('countries', 'hotel'));
     }
 

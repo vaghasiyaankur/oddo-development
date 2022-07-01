@@ -96,11 +96,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <div class="form-check custom-checkbox">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="rememberdropdownCheck">
-                                                        <label class="form-check-label" for="rememberdropdownCheck">Remember
-                                                            me</label>
+                                                    <div class="active-deactive-input">
+                                                        <div class="form-check form-check-inline form-radio-success me-1">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="WithoutinlineRadio1" value="option1" checked="">
+                                                            <label class="form-check-label" for="WithoutinlineRadio1">Active</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline form-radio-danger">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="WithoutinlineRadio2" value="option2">
+                                                            <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <a href="javascript:;"><button type="submit" class="btn btn-primary">Sign
@@ -390,9 +394,19 @@
                                     <input type="text" class="form-control iconPicker" placeholder="Search Your Icon">
                                 </div>
                             </div>
-                            <div class="mb-2">
-                                <div class="form-check custom-checkbox d-flex justify-content-end align-items-center">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="active-deactive-input">
+                                    <div class="form-check form-check-inline form-radio-success me-1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="WithoutinlineRadio1" value="option1" checked="">
+                                        <label class="form-check-label" for="WithoutinlineRadio1">Active</label>
+                                    </div>
+                                    <div class="form-check form-check-inline form-radio-danger">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="WithoutinlineRadio2" value="option2">
+                                        <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
+                                    </div>
+                                </div>
+                                <div class="Submit--btn">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>

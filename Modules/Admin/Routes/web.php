@@ -12,7 +12,7 @@
 */
 
 Route::prefix('admin')->group(function() {
-    Route::view('/amenity', 'admin::amenity');
+    Route::view('/amenity-view', 'admin::amenity');
     Route::view('/location', 'admin::location');
     Route::view('/amenity-types', 'admin::amenity-type');
     Route::view('/facilities', 'admin::facilities');
@@ -25,6 +25,10 @@ Route::prefix('admin')->group(function() {
         Route::post('/update-amenity-category/{id}', 'updateAmenityCategory')->name('update.amenitycategory');
         Route::post('/amenity-status', 'amenityStatus')->name('status.amenity');
         Route::post('/delete-amenity/{id}', 'deleteAmenityCategory')->name('delete.amenitycategory');
+    });
+
+    Route::controller(AmenityController::class)->group(function(){
+        Route::get('/amenity', 'index')->name('amenity.index');
     });
 
 });
