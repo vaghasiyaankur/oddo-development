@@ -12,9 +12,9 @@
 */
 
 Route::prefix('admin')->group(function() {
-    Route::view('/amenity', 'admin::amenity');
-    Route::view('/location', 'admin::location');
-    Route::view('/amenity-types', 'admin::amenity-type');
-    Route::view('/facilities', 'admin::facilities');
-    Route::view('/property', 'admin::property');
+    Route::view('/amenity', 'admin::amenity')->name('amenity');
+    Route::view('/location', 'admin::location')->name('location');
+    Route::view('/amenity-types', 'admin::amenity-type')->name('amenity-types');
+    Route::view('/facilities', 'admin::facilities')->name('facilities');
+    Route::view('/property', 'admin::property')->name('property');
 });
