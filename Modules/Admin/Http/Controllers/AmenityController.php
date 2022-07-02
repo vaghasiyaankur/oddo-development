@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\AmenitiesCategory;
+use App\Models\Amenities;
+use Modules\UserActivityLog\Traits\LogActivity;
 
 class AmenityController extends Controller
 {
@@ -16,7 +18,8 @@ class AmenityController extends Controller
     public function index()
     {
         $amenityCategories = AmenitiesCategory::active()->get();
-        return view('admin::Amenity.index', compact('amenityCategories'));
+        $amenities = Amenities::get();
+        return view('admin::Amenity.index', compact('amenityCategories', 'amenities'));
     }
 
     /**
@@ -35,7 +38,18 @@ class AmenityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{   
+            $amenity = new Amenities();
+            $amenity->amenities = $request->amenityName;
+            $amenity->icon = $request->amenityIcon;
+            $amenity->status = $request->status;
+            $amenity->amenities_category_id = $request->amenityCategory;
+            $amenity->save();
+
+            return response()->json(["message" => "Amenity Inserted Successfully"], 200);
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        }
     }
 
     /**
@@ -66,7 +80,17 @@ class AmenityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $amenity = Amenities::updateOrCreate([ 'id' => $id ], [
+                'amenities' => $request->amenityName,
+                'icon' => $request->amenityIcon,
+                'status' => $request->status,
+                'amenities_category_id' => $request->amenityCategory
+            ]);
+            return response()->json(["message" => "Amenity updated Successfully"], 200);
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        }
     }
 
     /**
@@ -77,5 +101,27 @@ class AmenityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function amenityList()
+    {
+        $data['amenities'] = Amenities::get();
+        return view('admin::Amenity.amenity_list', $data);
+    }
+
+    public function amenityStatus(Request $request) {
+       $featured = $request->featured;
+       $id     = $request->id;
+       if($featured == '1'){
+           $amenity   =  Amenities::updateOrCreate([ 'id' => $id ], [
+               'featured' => 0
+           ]);
+           return response()->json(["message" => "Units updated Successfully"], 200);
+       }else{
+           $amenity   =  Amenities::updateOrCreate([ 'id' => $id ], [
+               'featured' => 1
+           ]);
+           return response()->json(["message" => "Units updated Successfully"], 200);
+       }
     }
 }

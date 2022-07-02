@@ -6,13 +6,18 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\AmenitiesCategory;
+use Modules\UserActivityLog\Traits\LogActivity;
 
 class AmenityCategoryController extends Controller
 {
     public function amenityCategory()
-    {
-        $amenityCategories = AmenitiesCategory::get();
-        return view('admin::amenityCategory.index', compact('amenityCategories'));
+    {   
+        try {
+            $amenityCategories = AmenitiesCategory::get();
+            return view('admin::amenityCategory.index', compact('amenityCategories'));
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        } 
     }
 
     public function addAmenityCategory(Request $request) {
@@ -23,6 +28,7 @@ class AmenityCategoryController extends Controller
             
             return response()->json([ 'amenityCategories' => $amenityCategories ]);
         }catch(\Exception $e){
+            LogActivity::errorLog($e->getMessage());
             return response()->json(["message" => "Something Went Wrong"], 503);
         } 
     }
@@ -38,13 +44,13 @@ class AmenityCategoryController extends Controller
             $amenityCategories   =  AmenitiesCategory::updateOrCreate([ 'id' => $id ], [
                 'category' => $request->category
             ]);
-            return response()->json(["message" => "Units updated Successfully"], 200);
+            return response()->json(["message" => "Amenity-Category updated Successfully"], 200);
         } catch (\Exception $e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
     }
 
-    public function amenityStatus(Request $request){
+    public function amenityCategoryStatus(Request $request){
         $status = $request->status;
         $id     = $request->id;
         if($status == '1'){

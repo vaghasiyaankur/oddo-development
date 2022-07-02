@@ -77,7 +77,7 @@ $(document).ready(function(){
         formdata.append('id', id);
 
         $.ajax({
-            url: "{{route('status.amenity')}}",
+            url: "{{route('status.amenityCategory')}}",
             type: "POST",
             processData: false,
             contentType: false,

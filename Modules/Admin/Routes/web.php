@@ -23,12 +23,16 @@ Route::prefix('admin')->group(function() {
         Route::post('/add-amenity-category', 'addAmenityCategory')->name('add.amenitycategory');
         Route::get('/amenity-category-getlist', 'getList')->name('amenitycategory.list');
         Route::post('/update-amenity-category/{id}', 'updateAmenityCategory')->name('update.amenitycategory');
-        Route::post('/amenity-status', 'amenityStatus')->name('status.amenity');
+        Route::post('/amenity-status', 'amenityCategoryStatus')->name('status.amenityCategory');
         Route::post('/delete-amenity/{id}', 'deleteAmenityCategory')->name('delete.amenitycategory');
     });
 
     Route::controller(AmenityController::class)->group(function(){
         Route::get('/amenity', 'index')->name('amenity.index');
+        Route::get('/amenity-list', 'amenityList')->name('amenity.list');
+        Route::post('/add-amenity', 'store')->name('add.amenity');
+        Route::post('/update-amenity/{id}', 'update')->name('update.amenity');
+        Route::post('/status-amenity', 'amenityStatus')->name('status.amenity');
     });
 
 });
