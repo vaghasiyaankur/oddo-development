@@ -24,7 +24,7 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
                                    </div>
                                    @if($amenity->status == 0)
                                     <div class="deactive--status">
-                                        <i class="ri-forbid-line fs-5 text-danger"></i>
+                                        <i class="bx bx-block fs-5 text-danger"></i>
                                     </div>
                                    @endif
                                 </div>
@@ -37,18 +37,18 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
                                         style="font-size: 13px;"></i></span> --}}
                                 <div class="dropdown"><button
                                         class="btn btn-white bg-success btn-sm dropdown position-absolute translate-middle rounded-pill"
-                                        style="right:-22px;top:-3px;" type="button" data-bs-toggle="dropdown"
+                                        style="right:-22px;top:-10px;" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false"><i class="ri-more-fill text-white"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-end p-0" style="border-radius:8px;min-width: 4rem;">
                                         <li>
-                                            <a class="dropdown-item" style="padding: 0.35rem 0.75rem;"
-                                                href="javascript:;"><i
+                                            <a class="dropdown-item amenityEdit" style="padding: 0.35rem 0.75rem;"
+                                                href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModalgrid" data-value="{{ $amenity }}"><i
                                                     class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" style="padding: 0.35rem 0.75rem;"
+                                            <a class="dropdown-item text-danger" style="padding: 0.35rem 0.75rem;"
                                                 href="javascript:;"><i
-                                                    class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                    class="ri-delete-bin-fill align-bottom me-2 text-danger"></i>
                                                 Delete</a>
                                         </li>
                                     </ul>

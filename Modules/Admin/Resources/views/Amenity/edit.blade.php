@@ -22,7 +22,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text h-100 selectedIcon"></span>
                                 </div>
-                                <input type="text" class="form-control iconPicker selectedIcon" id="AmenityIcon" placeholder="Search Your Icon">
+                                <input type="text" class="form-control iconPicker selectedIcon" id="amenityIcon" placeholder="Search Your Icon">
                             </div>
                             <span class="text-danger" id="amenityIcon-edit-error"></span>
                         </div>

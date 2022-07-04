@@ -54,7 +54,7 @@
             left: 730.594px !important;
         }
 
-        .ck-editor__editable {
+        .ck_editer_input .ck-editor .ck-editor__editable {
             min-height: 111px !important;
         }
     </style>
@@ -257,7 +257,7 @@
                                     <div class="classic-colorpicker"></div>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 ck_editer_input">
                                 <div class="ckeditor-classic"></div>
                             </div>
                             <div class="mb-2">
@@ -305,7 +305,7 @@
                 searchable: true,
                 selectedClass: "selected",
                 containerClass: "my-picker",
-                hideOnSelect: false,
+                hideOnSelect: true,
                 fade: true,
                 defaultValue: 'bi-search',
                 // valueFormat: val => `bi ${val}`
