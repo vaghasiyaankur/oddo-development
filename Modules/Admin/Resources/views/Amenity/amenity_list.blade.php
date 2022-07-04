@@ -5,7 +5,7 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
     <div class="categories-main">
         <div class="row amenity-list">
             @foreach ($amenities as $amenity)
-                <div class="col-md-2 mb-2 mb-4">
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-2 mb-4">
                     <div class="card card-body edit-data-box position-reletive px-2">
                         <div class="d-flex align-items-center">
                             <div class="amenity-card--logo flex-shrink-0">
