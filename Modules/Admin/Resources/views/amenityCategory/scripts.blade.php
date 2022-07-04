@@ -94,7 +94,7 @@ $(document).ready(function(){
         formdata = new FormData();
         formdata.append('id', id);
         $.ajax({
-            url: baseUrl + "/admin/delete-amenity/" + id,
+            url: baseUrl + "/admin/delete-amenity-category/" + id,
             type: "POST",
             processData: false,
             contentType: false,

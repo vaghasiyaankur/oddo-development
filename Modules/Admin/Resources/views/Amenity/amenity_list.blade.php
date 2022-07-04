@@ -9,7 +9,7 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
                     <div class="card card-body edit-data-box position-reletive px-2">
                         <div class="d-flex align-items-center">
                             <div class="amenity-card--logo flex-shrink-0">
-                                <div class="avatar-sm rounded-circle"
+                                <div class="avatar-sm rounded-circle div-icon"
                                     style="background: {{ $color[array_rand($color)] }}">
                                     <i class="{{$amenity->icon}}"></i>
                                 </div>
@@ -46,8 +46,8 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
                                                     class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-danger" style="padding: 0.35rem 0.75rem;"
-                                                href="javascript:;"><i
+                                            <a class="dropdown-item text-danger amenityDelete" style="padding: 0.35rem 0.75rem;"
+                                                href="javascript:;" data-value="{{ $amenity->id }}"><i
                                                     class="ri-delete-bin-fill align-bottom me-2 text-danger"></i>
                                                 Delete</a>
                                         </li>

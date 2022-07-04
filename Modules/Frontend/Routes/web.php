@@ -11,8 +11,8 @@
 |
 */
 
-// Route::prefix('frontend')->group(function() {
-// });
+Route::prefix('frontend')->group(function() {
+});
 
 /* Home Page */
 Route::get('/', 'HomeController@index')->name('home.index');

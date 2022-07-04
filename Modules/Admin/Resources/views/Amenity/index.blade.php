@@ -106,9 +106,12 @@ Amenity
         </div>
     </div>
     <!-- End Page-content -->
-    <!--Amenity edit Modal start -->
-    @include('admin::Amenity.edit')
+    <!--Amenity create Modal start -->
     @include('admin::Amenity.create')
+    <!--Amenity create Modal end -->
+
+     <!--Amenity edit Modal start -->
+    @include('admin::Amenity.edit')
     <!--Amenity edit Modal end -->
 @endsection
 

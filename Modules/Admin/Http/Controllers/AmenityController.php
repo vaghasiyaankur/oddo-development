@@ -100,7 +100,12 @@ class AmenityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $result = Amenities::where('id',$id)->delete();
+            return response()->json(["message" => "Units updated Successfully"], 200);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+        }
     }
 
     public function amenityList()
@@ -109,7 +114,7 @@ class AmenityController extends Controller
         return view('admin::Amenity.amenity_list', $data);
     }
 
-    public function amenityStatus(Request $request) {
+    public function featureAmenity(Request $request) {
        $featured = $request->featured;
        $id     = $request->id;
        if($featured == '1'){
@@ -124,4 +129,5 @@ class AmenityController extends Controller
            return response()->json(["message" => "Units updated Successfully"], 200);
        }
     }
+
 }

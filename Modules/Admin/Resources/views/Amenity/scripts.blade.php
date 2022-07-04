@@ -1,8 +1,7 @@
 <script>
     var baseUrl = $('#base_url').val();
     
-    $(document).ready(function(){
-        
+    $(document).ready(function(){ 
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -13,7 +12,6 @@
             const response = await fetch(
                 'https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconsets/bootstrap5.json')
             const result = await response.json()
-
 
             const iconpicker = new Iconpicker(document.querySelector(".iconpicker"), {
                 icons: result,
@@ -36,7 +34,6 @@
                 const response = await fetch(
                     'https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconsets/bootstrap5.json')
                 const result = await response.json()
-
 
                 const iconpicker = new Iconpicker(document.querySelector(".iconPicker"), {
                     icons: result,
@@ -98,7 +95,6 @@
 
 
         $(document).on('click', '.amenityEdit', function(){
-
             let amenity = $(this).data("value");
             $(".edit_id").val(amenity.id);
             $("#amenityName").val(amenity.amenities);
@@ -117,7 +113,6 @@
         });
 
         $(document).on('click', '.edit-amenity', function(){
-
             let amenityName = $('#amenityName').val();
             !amenityName ? $(`#amenityName-edit-error`).html(`The Amenity field is required.`) : $(`#amenityName-error`).html(``);
             
@@ -155,7 +150,6 @@
 
         $(document).on('change', '.featured', function(){
             let amenity = $(this).data("value");
-
             let featured = amenity.featured;
             let id     = amenity.id;
 
@@ -164,7 +158,24 @@
             formdata.append('id', id);
 
             $.ajax({
-                url: "{{route('status.amenity')}}",
+                url: "{{route('featured.amenity')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (res) { 
+                    amenityList();
+                },
+            }); 
+        });
+
+        $(document).on('click', '.amenityDelete', function(){
+            let id = $(this).data('value');
+            console.log(id);
+            formdata = new FormData();
+            formdata.append('id', id);
+            $.ajax({
+                url: baseUrl + "/admin/delete-amenity/" + id,
                 type: "POST",
                 processData: false,
                 contentType: false,
@@ -176,14 +187,14 @@
         });
 
         function amenityList() {
-        $.ajax({
-            url: "{{route('amenity.list')}}",
-            type: "GET",
-            dataType: "HTML",
-            success: function (response) {
-                $(".amenity-list").html(response);
-            }
-        });
-    }
+            $.ajax({
+                url: "{{route('amenity.list')}}",
+                type: "GET",
+                dataType: "HTML",
+                success: function (response) {
+                    $(".amenity-list").html(response);
+                }
+            });
+        }
     });
 </script>
