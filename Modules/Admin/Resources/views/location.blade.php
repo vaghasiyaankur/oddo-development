@@ -58,10 +58,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black" style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -94,10 +94,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black" style="font-size: 13px;"></i></span>
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                            style="right:-8px;top: 42px;z-index:111;"><i
+                                                class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -130,10 +130,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black" style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -166,11 +166,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -203,11 +202,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -240,11 +238,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -277,11 +274,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -314,11 +310,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
@@ -351,11 +346,10 @@
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
                                     <div class="gallery-box edit-data-box card">
                                         <div class="edit-box">
-                                            <span class=" position-absolute translate-middle badge p-2"
+                                            <span class=" position-absolute translate-middle badge rounded-pill bg-success p-2"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
-                                                style="right:-14px;top: 36px;z-index:111;background-color:#f3f6f9;"><i
-                                                    class=" ri-pencil-fill text-black"
-                                                    style="font-size: 13px;"></i></span>
+                                                style="right:-8px;top: 42px;z-index:111;"><i
+                                                    class=" ri-pencil-fill " style="font-size: 13px;"></i></span>
                                         </div>
                                         <div class="gallery-container">
                                             <a class="image-popup" href="assets/images/small/img-1.jpg" title="">
