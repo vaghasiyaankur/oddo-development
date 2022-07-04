@@ -1,5 +1,9 @@
 @extends('layout::admin.master')
 
+@section('title')
+Amenity
+@endsection
+
 @push('css')
     <style>
         .edit-box {
@@ -57,6 +61,15 @@
             background-color: #0ab39c !important;
             color: #fff;
         }
+
+        .amenity-card--logo .avatar-sm{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            background: #0ab39cbf;
+            color: #fff;
+        }
     </style>
 @endpush
 
@@ -78,13 +91,9 @@
                                         <i class="ri-search-line search-icon"></i>
                                     </div>
                                     <div class="btn-group d-flex justify-content-end ms-4">
-                                        <button type="button" class="btn btn-success  text-nowrap"  data-bs-toggle="modal" data-bs-target="#exampleModalgrid2">
-                                            Amenity Types <i class=" ri-arrow-down-s-line"></i>
+                                        <button type="button" class="btn btn-success  text-nowrap rounded-1"  data-bs-toggle="modal" data-bs-target="#exampleModalgrid2"><i class=" ri-add-line align-bottom me-1"></i>
+                                            Amenity 
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-md p-4  option-select"
-                                            style="top: 45px;left: -98px;">
-                                           
-                                        </div>
                                     </div>
                                 </div>
                             </div>
