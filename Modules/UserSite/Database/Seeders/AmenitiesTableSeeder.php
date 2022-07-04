@@ -21,7 +21,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Bidet',
                             'slug'                  => \Str::slug('Bidet'),
-                            'icon'                  => 'amenities/Bidet.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '1'
@@ -30,7 +30,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Toilet paper',
                             'slug'                  => \Str::slug('Toilet paper'),
-                            'icon'                  => 'amenities/toilet-paper.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '1'
@@ -39,7 +39,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Bath',
                             'slug'                  => \Str::slug('Bath'),
-                            'icon'                  => 'amenities/bath.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '1'
@@ -48,7 +48,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Dining area',
                             'slug'                  => \Str::slug('Dining area'),
-                            'icon'                  => 'amenities/restaurant.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '2'
@@ -56,7 +56,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Dining table',
                             'slug'                  => \Str::slug('Dining table'),
-                            'icon'                  => 'amenities/outside.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '2'
@@ -64,7 +64,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Barbecue',
                             'slug'                  => \Str::slug('Barbecue'),
-                            'icon'                  => 'amenities/barbecue.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '2'
@@ -73,7 +73,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Computer',
                             'slug'                  => \Str::slug('Computer'),
-                            'icon'                  => 'amenities/laptop.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '3'
@@ -81,7 +81,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Game console',
                             'slug'                  => \Str::slug('Game console'),
-                            'icon'                  => 'amenities/console.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '3'
@@ -89,7 +89,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Laptop',
                             'slug'                  => \Str::slug('Laptop'),
-                            'icon'                  => 'amenities/laptop.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '3'
@@ -98,7 +98,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Sofa bed',
                             'slug'                  => \Str::slug('Sofa bed'),
-                            'icon'                  => 'amenities/sofa-bed.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '4'
@@ -106,7 +106,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Air conditioning',
                             'slug'                  => \Str::slug('Air conditioning'),
-                            'icon'                  => 'amenities/air-conditioner.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '1',
                             'amenities_category_id' => '4'
@@ -114,7 +114,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Wardrobe or closet',
                             'slug'                  => \Str::slug('Wardrobe or closet'),
-                            'icon'                  => 'amenities/wardrobe.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '4'
@@ -122,7 +122,7 @@ class AmenitiesTableSeeder extends Seeder
                         [
                             'amenities'             => 'Carpeted',
                             'slug'                  => \Str::slug('Carpeted'),
-                            'icon'                  => 'amenities/carpet.png',
+                            'icon'                  => 'bi-search',
                             'status'                => '1',
                             'featured'              => '0',
                             'amenities_category_id' => '4'

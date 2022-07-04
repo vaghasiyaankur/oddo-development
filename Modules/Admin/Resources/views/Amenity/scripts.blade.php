@@ -21,7 +21,7 @@
                 searchable: true,
                 selectedClass: "selected",
                 containerClass: "my-picker",
-                hideOnSelect: false,
+                hideOnSelect: true,
                 fade: true,
                 defaultValue: 'bi-search',
                 // valueFormat: val => `bi ${val}`
@@ -31,8 +31,8 @@
             // iconpicker.set('bi-search') // Reset with a value
         })();
 
-        function iconPickerEdit(){
-                (async () => {
+        function  iconPickerEdit(iconSelect){
+            (async () => {
                 const response = await fetch(
                     'https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconsets/bootstrap5.json')
                 const result = await response.json()
@@ -44,18 +44,18 @@
                     searchable: true,
                     selectedClass: "selected",
                     containerClass: "my-picker",
-                    hideOnSelect: false,
+                    hideOnSelect: true,
                     fade: true,
-                    defaultValue: 'bi-search',
+                    defaultValue: iconSelect,
                     // valueFormat: val => `bi ${val}`
                 });
 
-                iconpicker.set() // Set as empty
+                iconpicker.set(iconSelect) // Set as empty
                 // iconpicker.set('bi-alarm') // Reset with a value
             })();
         }
         
-        iconPickerEdit();
+
 
         // $(document).on('click', '.amenity-button', function() {
         //     $('.option-select').toggleClass('show');
@@ -102,7 +102,6 @@
             let amenity = $(this).data("value");
             $(".edit_id").val(amenity.id);
             $("#amenityName").val(amenity.amenities);
-            $("#amenityIcon").val(amenity.icon);
             $("#amenityCategory option[value='"+amenity.amenities_category_id+"']").attr('selected',true);
             if(amenity.status == 1){
                 $('#status_active').prop("checked", true);
@@ -111,6 +110,9 @@
                 $('#status_active').prop("checked", false);
                 $('#status_deactive').prop("checked", true);
             }
+
+            var iconSelect = amenity.icon;
+            iconPickerEdit(iconSelect);
 
         });
 

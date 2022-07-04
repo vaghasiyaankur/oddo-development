@@ -5,8 +5,14 @@ hotel
 @endsection
 
 @push('css')
+
 <!------- Slick theme css  ------->
 <link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 .small-box-single-img {
     background-color: #6A78C7;
@@ -304,7 +310,8 @@ hotel
             <div class="amenities-card d-flex flex-wrap">
                     @foreach ($hotel->amenity() as $amenity)     
                         <div class="amenities-single-card me-2 mb-3">
-                            <img src="{{ asset('storage/'.@$amenity->icon) }}" class="pe-3">
+                            {{-- <img src="{{ asset('storage/'.@$amenity->icon) }}" class="pe-3"> --}}
+                            <i class="{{$amenity->icon}} pe-3"></i>
                             <span class="para-fs-14">{{@$amenity->amenities}}</span>
                         </div>
                     @endforeach
@@ -930,12 +937,17 @@ hotel
 @endsection
 
 @push('script')
+
+    <!-- icon picker js -->
+    <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
+
 <!------ script for time piker -------->
 <script>
     $(document).ready(function () {
         $('.timepicker').mdtimepicker();
     });
 </script>
+
 <!-------- image popup slider image js------>
 <script>
     $('.slider-single').slick({
