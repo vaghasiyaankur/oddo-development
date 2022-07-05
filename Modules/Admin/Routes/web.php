@@ -37,6 +37,12 @@ Route::prefix('admin')->group(function() {
 
     Route::controller(FacilitiesController::class)->group(function(){
         Route::get('/facilities', 'index')->name('facilities.index');
+        Route::get('/facilities-list', 'facilitiesList')->name('facilities.list');
+        Route::post('/add-facility', 'store')->name('add.facility');
+        Route::post('/update-facility/{id}', 'update')->name('update.facility');
+        Route::post('/status-facility', 'statusFacility')->name('status.facility');
+        Route::post('/delete-facility/{id}', 'destroy')->name('delete.facility');
+        
     });
 
 });

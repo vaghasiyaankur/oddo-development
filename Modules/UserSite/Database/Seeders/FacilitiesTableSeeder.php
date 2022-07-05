@@ -34,7 +34,7 @@ class FacilitiesTableSeeder extends Seeder
         foreach ($Facilities as $key => $fac) {
             Facilities::create([
                 'facilities_name' => $fac,
-                'icon' => 'facilities/icon_'.$key.'.png',
+                'icon' => 'bi-search',
                 'color' => $color[array_rand($color)],
                 'description' => $faker->text,
                 'status' => '1',
