@@ -4,11 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class RoomType extends Model
 {
-    use HasFactory;
-    protected $guarded = [];
+    use HasFactory,Sluggable;
+
+    protected $table = 'room_types';
+
+    protected $guarded = ['id'];
+    
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'room_type'
+            ]
+        ];
+    }
     
     public function scopeActive($query) {
         return $query->where('status', 1);

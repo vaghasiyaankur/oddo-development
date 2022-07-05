@@ -113,7 +113,6 @@ $(document).ready(function(){
             dataType: "HTML",
             success: function (response) {
                 $(".amenityCategoryTable").html(response);
-                CRMTableThreeReactive();
             }
         });
     }

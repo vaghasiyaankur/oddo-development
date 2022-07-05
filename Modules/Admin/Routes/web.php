@@ -15,7 +15,7 @@ Route::prefix('admin')->group(function() {
     Route::view('/location', 'admin::location');
     Route::view('/amenity-types', 'admin::amenity-type');
     // Route::view('/facilities', 'admin::facilities');
-    Route::view('/property', 'admin::property');
+    Route::view('/property', 'admin::property')->name('property');
 
     Route::controller(AmenityCategoryController::class)->group(function(){
         Route::get('/amenity-category', 'amenityCategory')->name('amenity.category');
@@ -41,8 +41,23 @@ Route::prefix('admin')->group(function() {
         Route::post('/add-facility', 'store')->name('add.facility');
         Route::post('/update-facility/{id}', 'update')->name('update.facility');
         Route::post('/status-facility', 'statusFacility')->name('status.facility');
-        Route::post('/delete-facility/{id}', 'destroy')->name('delete.facility');
-        
+        Route::post('/delete-facility/{id}', 'destroy')->name('delete.facility');  
     });
+
+    Route::controller(RoomController::class)->group(function(){
+        Route::get('/room', 'index')->name('room.index');     
+    });
+
+    Route::controller(RoomTypeController::class)->group(function(){
+        Route::get('/room-type', 'index')->name('roomType.index');
+        Route::get('/room-type-list', 'roomTypeList')->name('roomtype.list');
+        Route::post('/add-room-type', 'store')->name('add.roomtype');  
+        // Route::post('/update-roomtype/{id}', 'update')->name('update.roomtype');
+        // Route::post('/delete-roomtype/{id}', 'destroy')->name('delete.roomtype');  
+        Route::post('/status-roomtype', 'statusRoomType')->name('status.roomtype');
+    });
+
+    
+
 
 });

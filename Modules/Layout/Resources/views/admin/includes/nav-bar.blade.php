@@ -30,6 +30,26 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="sidebarApps">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room</span>
+                </a>
+                <div class="collapse menu-dropdown" id="sidebarApps">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{ route('roomType.index') }}">
+                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room Type</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link " href="{{ route('room.index') }}">
+                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu-link" href="{{ url('admin/location') }}">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Location</span>
                 </a>
