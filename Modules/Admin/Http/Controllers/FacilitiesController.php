@@ -35,7 +35,13 @@ class FacilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faclity = new Facilities();
+        $faclity->facilities_name = $request->faclityName;
+        $faclity->icon = $request->faclityIcon;
+        $faclity->color = $request->facilityColor;
+        $faclity->description = $request->facilityDescription;
+        $faclity->save();
+        return response()->json(["message" => "Facility created Successfully"]);
     }
 
     /**
@@ -65,8 +71,18 @@ class FacilitiesController extends Controller
      * @return Renderable
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        try{
+            $amenity = Facilities::where('id', $id)->update([
+                'facilities_name' => $request->editFaclityName,
+                'color' => $request->editFacilityColor,
+                'icon' => $request->editFaclityIcon,
+                'description' => $request->editFacilityDescription
+            ]);
+            return response()->json(["message" => "facility updated Successfully"], 200);
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        }
     }
 
     /**
@@ -76,6 +92,29 @@ class FacilitiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $result = Facilities::where('id',$id)->delete();
+            return response()->json(["message" => "facility deleted Successfully"], 200);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+        }
+    }
+
+    public function facilitiesList(){
+        $data['facilities'] = Facilities::get();
+        return view('admin::facilities.facilities_list', $data);
+    }
+
+    public function statusFacility(Request $request){
+        $status = $request->status;
+        $id     = $request->id;
+
+        if($status == '1'){
+            $facility = Facilities::where('id', $id)->update([ 'status' => 0 ]);
+            return response()->json(["message" => "facility status updated Successfully"], 200);
+        }else{
+            $facility = Facilities::where('id', $id)->update([ 'status' => 1 ]);
+            return response()->json(["message" => "facility status updated Successfully"], 200);
+        }
     }
 }
