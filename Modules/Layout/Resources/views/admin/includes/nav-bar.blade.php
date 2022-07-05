@@ -10,14 +10,14 @@
             </li> <!-- end Dashboard Menu -->
             
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse"
+                <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenity.category']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="sidebarApps">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity</span>
                 </a>
                 <div class="collapse menu-dropdown" id="sidebarApps">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ url('admin/amenity') }}">
+                            <a class="nav-link menu-link " href="{{ url('admin/amenity') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity</span>
                             </a>
                         </li>
@@ -35,11 +35,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="{{ url('admin/facilities') }}"><i class="ri-layout-3-line"></i>Facilities</span>
+                <a class="nav-link menu-link {{ Request::routeIs('facilities.index') ? 'active' : '' }}" href="{{ url('admin/facilities') }}"><i class="ri-layout-3-line"></i>Facilities</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="{{ url('admin/property') }}">
+                <a class="nav-link menu-link {{ Request::routeIs('property') ? 'active' : '' }}" href="{{ url('admin/property') }}">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Properties</span>
                 </a>
             </li>

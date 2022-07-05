@@ -47,7 +47,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
-                                                    <th scope="col">Property-Type</th>
+                                                    <th scope="col" class="text-nowrap">Property-Type</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Image</th>
                                                     <th scope="col">Status</th>

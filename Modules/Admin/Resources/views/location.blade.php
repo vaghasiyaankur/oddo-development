@@ -1,6 +1,9 @@
 @extends('layout::admin.master')
 
 @push('css')
+    <!-- Sweet Alert css-->
+    <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
     <!-- dropzone css -->
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/dropzone/dropzone.css') }}" type="text/css" />
 
@@ -52,7 +55,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body border border-end-0 border-start-0 border-bottom-0">
+                    <div class="card-body border border-end-0 border-start-0 border-bottom-0">                                            
+                        <button type="button" class="btn btn-primary btn-sm" id="sa-close">Click me</button>
+                        
                         <div class="gallery-light">
                             <div class="row">
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
@@ -264,7 +269,7 @@
                                                 <img class="gallery-img img-fluid mx-auto"
                                                     src="{{ asset('assets/Admin/assets/images/small/img-1.jpg') }}"
                                                     alt="">
-                                                    <div class="gallery-overlay d-flex justify-content-between">
+                                                <div class="gallery-overlay d-flex justify-content-between">
                                                     <h5 class="overlay-caption mb-1">New York</h5>
                                                 </div>
                                             </a>
@@ -319,7 +324,7 @@
                                                 <img class="gallery-img img-fluid mx-auto"
                                                     src="{{ asset('assets/Admin/assets/images/small/img-2.jpg') }}"
                                                     alt="">
-                                                    <div class="gallery-overlay d-flex justify-content-between">
+                                                <div class="gallery-overlay d-flex justify-content-between">
                                                     <h5 class="overlay-caption mb-1">New York</h5>
                                                 </div>
                                             </a>
@@ -374,7 +379,7 @@
                                                 <img class="gallery-img img-fluid mx-auto"
                                                     src="{{ asset('assets/Admin/assets/images/small/img-12.jpg') }}"
                                                     alt="">
-                                                    <div class="gallery-overlay d-flex justify-content-between">
+                                                <div class="gallery-overlay d-flex justify-content-between">
                                                     <h5 class="overlay-caption mb-1">New York</h5>
                                                 </div>
                                             </a>
@@ -429,7 +434,7 @@
                                                 <img class="gallery-img img-fluid mx-auto"
                                                     src="{{ asset('assets/Admin/assets/images/small/img-3.jpg') }}"
                                                     alt="">
-                                                    <div class="gallery-overlay d-flex justify-content-between">
+                                                <div class="gallery-overlay d-flex justify-content-between">
                                                     <h5 class="overlay-caption mb-1">New York</h5>
                                                 </div>
                                             </a>
@@ -484,7 +489,7 @@
                                                 <img class="gallery-img img-fluid mx-auto"
                                                     src="{{ asset('assets/Admin/assets/images/small/img-7.jpg') }}"
                                                     alt="">
-                                                    <div class="gallery-overlay d-flex justify-content-between">
+                                                <div class="gallery-overlay d-flex justify-content-between">
                                                     <h5 class="overlay-caption mb-1">New York</h5>
                                                 </div>
                                             </a>
@@ -539,7 +544,7 @@
                                                 <img class="gallery-img img-fluid mx-auto"
                                                     src="{{ asset('assets/Admin/assets/images/small/img-9.jpg') }}"
                                                     alt="">
-                                                    <div class="gallery-overlay d-flex justify-content-between">
+                                                <div class="gallery-overlay d-flex justify-content-between">
                                                     <h5 class="overlay-caption mb-1">New York</h5>
                                                     <div class="deactive--status">
                                                         <i class="bx bx-block fs-5 text-danger"></i>
@@ -574,6 +579,7 @@
             <!--end col-->
         </div>
     </div>
+
     <!-- End Page-content -->
     <!-- location details fill modal start -->
     <div class="modal fade" id="exampleModalgrid" tabindex="-1" aria-labelledby="exampleModalgridLabel"
@@ -663,8 +669,39 @@
 @endsection
 
 @push('scripts')
+    <!-- Sweet Alerts js -->
+    <script src="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
     <!-- dropzone min -->
     <script src="{{ asset('assets/Admin/assets/libs/dropzone/dropzone-min.js') }}"></script>
 
     <script src="{{ asset('assets/Admin/assets/js/pages/form-file-upload.init.js') }}"></script>
+  <script>
+     document.getElementById("sa-close").addEventListener("click", function () {
+        var t;
+        Swal.fire({
+            position: "top-end",
+            title: "Auto close alert!",
+            html: "I will close in <strong></strong> seconds.",
+            timer: 2e3,
+            timerProgressBar: !0,
+            showCloseButton: !0,
+            didOpen: function () {
+                Swal.showLoading(),
+                    (t = setInterval(function () {
+                        var t = Swal.getHtmlContainer();
+                        !t ||
+                            ((t = t.querySelector("b")) &&
+                                (t.textContent = Swal.getTimerLeft()));
+                    }, 100));
+            },
+            onClose: function () {
+                clearInterval(t);
+            },
+        }).then(function (t) {
+            t.dismiss === Swal.DismissReason.timer &&
+                console.log("I was closed by the timer");
+        });
+    })
+  </script>
 @endpush
