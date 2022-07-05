@@ -2,7 +2,8 @@
 
 @push('css')
     <!-- Sweet Alert css-->
-    <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
 
     <!-- dropzone css -->
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/dropzone/dropzone.css') }}" type="text/css" />
@@ -55,9 +56,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body border border-end-0 border-start-0 border-bottom-0">                                            
-                        <button type="button" class="btn btn-primary btn-sm" id="sa-close">Click me</button>
-                        
+                    <div class="card-body border border-end-0 border-start-0 border-bottom-0">
+                        <button class="btn btn-primary second btn-sm">Animated Toast</button>
+                        <button type="button" class="btn btn-primary third btn-sm">Click me</button>
+
                         <div class="gallery-light">
                             <div class="row">
                                 <div class="col-xl-2 col-lg-4 col-sm-6">
@@ -670,38 +672,39 @@
 
 @push('scripts')
     <!-- Sweet Alerts js -->
-    <script src="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    {{-- <script src="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> --}}
+    
     <!-- dropzone min -->
     <script src="{{ asset('assets/Admin/assets/libs/dropzone/dropzone-min.js') }}"></script>
 
     <script src="{{ asset('assets/Admin/assets/js/pages/form-file-upload.init.js') }}"></script>
-  <script>
-     document.getElementById("sa-close").addEventListener("click", function () {
-        var t;
-        Swal.fire({
-            position: "top-end",
-            title: "Auto close alert!",
-            html: "I will close in <strong></strong> seconds.",
-            timer: 2e3,
-            timerProgressBar: !0,
-            showCloseButton: !0,
-            didOpen: function () {
-                Swal.showLoading(),
-                    (t = setInterval(function () {
-                        var t = Swal.getHtmlContainer();
-                        !t ||
-                            ((t = t.querySelector("b")) &&
-                                (t.textContent = Swal.getTimerLeft()));
-                    }, 100));
-            },
-            onClose: function () {
-                clearInterval(t);
-            },
-        }).then(function (t) {
-            t.dismiss === Swal.DismissReason.timer &&
-                console.log("I was closed by the timer");
+    <script>
+        var toastMixin = Swal.mixin({
+            toast: true,
+            icon: 'success',
+            title: 'General Title',
+            animation: false,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
         });
-    })
-  </script>
+        document.querySelector(".second").addEventListener('click', function() {
+            toastMixin.fire({
+                animation: true,
+                title: 'Signed in Successfully'
+            });
+        });
+        document.querySelector(".third").addEventListener('click', function() {
+            toastMixin.fire({
+                title: 'Wrong Password',
+                icon: 'error'
+            });
+        });
+    </script>
 @endpush
