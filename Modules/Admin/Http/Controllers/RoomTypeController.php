@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\RoomType;
+use App\Models\RoomList;
 
 class RoomTypeController extends Controller
 {
@@ -15,7 +16,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomTypes = RoomType::get();
+        $roomTypes = RoomType::paginate(10);
         return view('admin::roomType.index', compact('roomTypes'));
     }
 
@@ -34,15 +35,21 @@ class RoomTypeController extends Controller
      * @return Renderable
      */
     public function store(Request $request)
-    {
-        // try {
+    {   
+        $validated   = $request->validate([
+            'roomtype'  => 'required|unique:room_types,room_type',
+        ], [ 
+            'roomtype.unique' => 'This room type already exists.' 
+        ]);
+
+        try {
             $roomtype   =  new RoomType();
             $roomtype->room_type = $request->roomtype;
             $roomtype->save();
-            return response()->json(["message" => "room-type inserted Successfully"], 200);
-        // }catch(\Exception $e){
-        //     return response()->json(["message" => "Something Went Wrong"], 503);
-        // } 
+            return response()->json(["success" => "room-type inserted Successfully"], 200);
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        } 
     }
 
     /**
@@ -73,7 +80,20 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated   = $request->validate([
+            'roomtype'  => 'required|unique:room_types,room_type,'.$id.',id',
+        ], [ 
+            'roomtype.unique' => 'This roomList already exists.' 
+        ]);
+        
+        try{
+            $roomType   =  RoomType::updateOrCreate([ 'id' => $id ], [
+                'room_type' => $request->roomtype
+            ]);
+            return response()->json(["message" => "Room Type updated Successfully"], 200);
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        }
     }
 
     /**
@@ -83,11 +103,21 @@ class RoomTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $roomListCount = RoomList::where('room_type_id',$id)->count();
+            if($roomListCount != 0){
+                return response()->json(["warning" => "room type not deleted"], 200);
+            }else{
+                $roomType = RoomType::where('id',$id)->delete();
+                return response()->json(["danger" => "room type deleted Successfully"], 200);
+            }
+        }catch(\Exception $e){
+            return response()->json(["message" => "Something Went Wrong"], 503);
+        } 
     }
 
     public function roomTypeList() {
-        $data['roomTypes'] = RoomType::get();
+        $data['roomTypes'] = RoomType::paginate(10);
         return view('admin::roomType.roomType_list', $data);
     }
 

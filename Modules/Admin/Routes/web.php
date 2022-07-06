@@ -43,21 +43,22 @@ Route::prefix('admin')->group(function() {
         Route::post('/status-facility', 'statusFacility')->name('status.facility');
         Route::post('/delete-facility/{id}', 'destroy')->name('delete.facility');  
     });
-
-    Route::controller(RoomController::class)->group(function(){
-        Route::get('/room', 'index')->name('room.index');     
-    });
-
+ 
     Route::controller(RoomTypeController::class)->group(function(){
         Route::get('/room-type', 'index')->name('roomType.index');
         Route::get('/room-type-list', 'roomTypeList')->name('roomtype.list');
         Route::post('/add-room-type', 'store')->name('add.roomtype');  
-        // Route::post('/update-roomtype/{id}', 'update')->name('update.roomtype');
-        // Route::post('/delete-roomtype/{id}', 'destroy')->name('delete.roomtype');  
+        Route::post('/update-roomtype/{id}', 'update')->name('update.roomtype');
+        Route::post('/delete-roomtype/{id}', 'destroy')->name('delete.roomtype');  
         Route::post('/status-roomtype', 'statusRoomType')->name('status.roomtype');
     });
 
-    
-
-
+    Route::controller(RoomController::class)->group(function(){
+        Route::get('/room', 'index')->name('room.index');   
+        Route::get('/room-list', 'roomList')->name('room.list');
+        Route::post('/add-room', 'store')->name('add.room');
+        Route::post('/update-room/{id}', 'update')->name('update.room');  
+        Route::post('/delete-room/{id}', 'destroy')->name('delete.room');  
+        Route::post('/status-room', 'statusRoom')->name('status.room');
+    });
 });

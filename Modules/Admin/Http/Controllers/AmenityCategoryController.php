@@ -13,7 +13,8 @@ class AmenityCategoryController extends Controller
     public function amenityCategory()
     {   
         try {
-            $amenityCategories = AmenitiesCategory::get();
+            $amenityCategories = AmenitiesCategory::paginate(10);
+            $amenityCategories->setPath('amenity-category');
             return view('admin::amenityCategory.index', compact('amenityCategories'));
         }catch(\Exception $e){
             return response()->json(["message" => "Something Went Wrong"], 503);
@@ -21,30 +22,41 @@ class AmenityCategoryController extends Controller
     }
 
     public function addAmenityCategory(Request $request) {
+        $validated   = $request->validate([
+            'amenityCategory'  => 'required|unique:amenities_categories,category',
+        ], [ 
+            'amenityCategory.unique' => 'this Amenity category already exists.' 
+        ]);
+
         try {
             $amenityCategories   =  new AmenitiesCategory();
             $amenityCategories->category = $request->amenityCategory;
             $amenityCategories->save();
-            
-            return response()->json([ 'amenityCategories' => $amenityCategories ]);
+
+            return response()->json(["success" => "Amenity-Category inserted Successfully"], 200);
         }catch(\Exception $e){
-            LogActivity::errorLog($e->getMessage());
             return response()->json(["message" => "Something Went Wrong"], 503);
         } 
     }
 
     public function getList(){
-        $data['amenityCategories'] = AmenitiesCategory::get();
+        $data['amenityCategories'] = AmenitiesCategory::paginate(10);
         return view('admin::amenityCategory.category_list', $data);
     }
 
     public function updateAmenityCategory(Request $request, $id)
-    {
+    {       
+        $validated   = $request->validate([
+            'category'  => 'required|unique:amenities_categories,category,'.$id.',id',
+        ], [ 
+            'category.unique' => 'this Amenity category already exists.' 
+        ]);
+
         try {
-            $amenityCategories   =  AmenitiesCategory::updateOrCreate([ 'id' => $id ], [
+            $amenityCategories = AmenitiesCategory::updateOrCreate([ 'id' => $id ], [
                 'category' => $request->category
             ]);
-            return response()->json(["message" => "Amenity-Category updated Successfully"], 200);
+            return response()->json(["success" => "Amenity-Category updated Successfully"], 200);
         } catch (\Exception $e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
@@ -69,7 +81,7 @@ class AmenityCategoryController extends Controller
     public function deleteAmenityCategory($id) {
         try {
             $result = AmenitiesCategory::where('id',$id)->delete();
-            return response()->json(["message" => "Units updated Successfully"], 200);
+            return response()->json(["danger" => "Amenity Deleted Successfully"], 200);  
         } catch (\Exception $e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }

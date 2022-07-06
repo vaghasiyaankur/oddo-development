@@ -22,3 +22,8 @@
   .edit-data-box .edit-box .dropdown .dropdown-item:hover{
    border-radius: 8px;
    }
+
+  .page-item.active .page-link{
+    background-color: #0ab39c !important;
+    border-color: #0ab39c !important;
+  }

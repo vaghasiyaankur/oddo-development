@@ -27,13 +27,55 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (res) { 
-                    $(".roomType").trigger("reset");
+                success: function (response) { 
+                    $(".roomTypeForm").trigger("reset");
                     roomTypeList();
-                },
+                    toastMixin.fire({ title: response.success, icon: 'success' });
+                }, error:function (response) {
+                    $('#roomType-error').text(response.responseJSON.errors.roomtype);
+                }
             }); 
         });
 
+        // edit roomType
+        $(document).on('click', '.edit-roomType', function(){
+            let roomtype = $(this).data("value");
+            $('.edit_div').show();
+            $('.edit_div').removeClass("d-none");
+            $('.create_div').hide();
+            $(".edit-roomType").val(roomtype.room_type);
+            $(".edit_id").val(roomtype.id);
+        });
+
+        $(document).on('click', '.room-type-update', function(){
+            let id = $(".edit_id").val();
+            let roomtype = $('.edit-roomType').val();
+            !roomtype ? $(`#edit-roomType-error`).html(`The room type field is required.`) : $(`#edit-roomType-error`).html(``);
+
+            
+
+            formdata = new FormData();
+            formdata.append('id', id);
+            formdata.append('roomtype', roomtype);
+
+            $.ajax({
+                url: baseUrl + "/admin/update-roomtype/" + id,
+                data: formdata,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $(".editRoomTypeForm").trigger("reset");
+                    $('.edit_div').hide();
+                    $('.create_div').show();
+                    roomTypeList();
+                }, error:function (response) {
+                    $('#edit-roomType-error').text(response.responseJSON.errors.roomtype);
+                }
+            });
+        });
+
+        // roomType status on / off
         $(document).on('change', '.roomTypeStatus', function(){
             let roomtype = $(this).data("value");
 
@@ -56,24 +98,28 @@
             }); 
         });
 
-        // $(document).on('click', '.delete-roomType', function(){
-        //     let id = $(this).data('value');
+        // delete roomType
+        $(document).on('click', '.delete-roomType', function(){
+            let id = $(this).data('value');
         
-        //     formdata = new FormData();
-        //     formdata.append('id', id);
-        //     $.ajax({
-        //         url: baseUrl + "/admin/delete-roomtype/" + id,
-        //         type: "POST",
-        //         processData: false,
-        //         contentType: false,
-        //         data: formdata,
-        //         success: function (res) { 
-        //             roomTypeList();
-        //         },
-        //     }); 
-        // });
-
-
+            formdata = new FormData();
+            formdata.append('id', id);
+            $.ajax({
+                url: baseUrl + "/admin/delete-roomtype/" + id,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (res) { 
+                    roomTypeList();
+                    if(res.danger){
+                        toastMixin.fire({ title: res.danger, icon: 'error' });
+                    }else{
+                        toastMixin.fire({ title: res.warning, icon: 'warning' });
+                    }
+                },
+            }); 
+        });
 
         // room type list
         function roomTypeList(){

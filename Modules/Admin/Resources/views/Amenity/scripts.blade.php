@@ -85,11 +85,15 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (res) { 
+                success: function (response) {
+                    toastMixin.fire({ title: response.success, icon: 'success' });
                     $(".modal").modal("hide");
                     $(".amenityForm").trigger("reset");
+                    $('#amenityName-error').text();
                     amenityList();
-                },
+                }, error:function (response) {
+                    $('#amenityName-error').text(response.responseJSON.errors.amenityName);
+                }
             }); 
         });
 
@@ -143,7 +147,11 @@
                 success: function (response) {
                     $(".modal").modal("hide");
                     $(".updateAmenityForm").trigger("reset");
+                    $('#amenityName-edit-error').html('');
                     amenityList();
+                    toastMixin.fire({ title: response.success, icon: 'success' });
+                }, error:function (response) {
+                    $('#amenityName-edit-error').html(response.responseJSON.errors.amenityName);
                 }
             });
         });
@@ -180,8 +188,9 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (res) { 
+                success: function (response) { 
                     amenityList();
+                    toastMixin.fire({ title: response.danger, icon: 'error' });
                 },
             }); 
         });

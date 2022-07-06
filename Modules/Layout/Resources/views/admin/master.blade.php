@@ -32,6 +32,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <!-- Sweet Alert css-->
+    {{-- <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
+
     @stack('css')
     
 </head>
@@ -56,20 +60,27 @@
 
     <!-- JAVASCRIPT -->
 
+
     <!-- jquery Cdn Link -------->
     <script src="{{ asset('assets/Admin/assets/js/jquery.min.js') }}"></script>
 
+    
     <!----- Bootstrap cdn Link ------->
     <script src="{{ asset('assets/Admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+    
     <script src="{{ asset('assets/Admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
-
+    
     <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
 
     <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script>
-
+    
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    
+    <!-- Sweet Alerts js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
+    <script src="{{ asset('assets/Admin/assets/js/custom.js') }}"></script>
+    
     {{-- <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script> --}}
 
     <!-- input step init -->
