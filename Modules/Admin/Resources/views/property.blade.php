@@ -9,6 +9,13 @@
             padding: 13px 17px;
             border: 2px dashed #e9ebec;
         }
+
+        .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #0ab39c;
+            border-color: #03a690;
+            }
     </style>
 @endpush
 
@@ -24,17 +31,18 @@
                             </div>
                             <div class=" col-sm-8">
                                 <div class="d-flex align-items-center justify-content-evenly ">
-                                <div class="search-box w-100">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for properties status or something...">
-                                    <i class="ri-search-line search-icon"></i>
+                                    <div class="search-box w-100">
+                                        <input type="text" class="form-control search"
+                                            placeholder="Search for properties status or something...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                    <div class="btn-group ms-4">
+                                        <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalgrid"><i class="ri-add-line align-bottom me-1"></i>
+                                            Add
+                                            Property</a>
+                                    </div>
                                 </div>
-                                <div class="btn-group ms-4">
-                                    <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalgrid"><i class="ri-add-line align-bottom me-1"></i> Add
-                                        Property</a>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -68,8 +76,8 @@
                                                     <td>
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <a href="javascript:;"><img
-                                                                src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
-                                                                alt="" class="img-fluid d-block"></a>
+                                                                    src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                    alt="" class="img-fluid d-block"></a>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -99,8 +107,8 @@
                                                     <td>
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <a href="javascript:;"><img
-                                                                src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
-                                                                alt="" class="img-fluid d-block"></a>
+                                                                    src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                    alt="" class="img-fluid d-block"></a>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -123,15 +131,16 @@
                                                     <td>
                                                         <button tabindex="0"
                                                             class="btn btn-soft-success waves-effect waves-light"
-                                                            data-bs-toggle="popover" data-bs-trigger="focus" title=""
+                                                            data-bs-toggle="popover" data-bs-trigger="focus"
+                                                            title=""
                                                             data-bs-content="And here's some amazing content. It's very engaging. Right?"
                                                             data-bs-original-title="">View Description</button>
                                                     </td>
                                                     <td>
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <a href="javascript:;"><img
-                                                                src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
-                                                                alt="" class="img-fluid d-block"></a>
+                                                                    src="{{ asset('assets/Admin/assets/images/products/img-1.png') }}"
+                                                                    alt="" class="img-fluid d-block"></a>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -182,12 +191,35 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div class="table-footer align-items-center pt-2 justify-content-between d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="text-muted">Showing <span class="fw-semibold">1</span> of
+                                                    <span class="fw-semibold">2</span> Results
+                                                </div>
+                                            </div>
+                                            <ul class="pagination pagination-separated pagination-sm mb-0">
+                                                <li class="page-item ">
+                                                    <a href="#" class="page-link">←</a>
+                                                </li>
+                                                <li class="page-item active">
+                                                    <a href="#" class="page-link">1</a>
+                                                </li>
+                                                <li class="page-item ">
+                                                    <a href="#" class="page-link">2</a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a href="#" class="page-link">→</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                         {{-- FOR EMPTY TABLE --}}
 
                                         {{-- <div class="empty-table w-100 text-center py-5">
-                                            <div class="h4">No records has been added yet.</div>
+                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
+                                            </lord-icon>
+                                            <h4>No records has been added yet.</h4>
                                             <h6>Add a new record by simpley clicking the button on top right side.</h6>
-                                        </div>  --}}
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

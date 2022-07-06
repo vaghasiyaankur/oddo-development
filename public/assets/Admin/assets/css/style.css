@@ -14,7 +14,7 @@
     color: #0ab39c !important;
   } */
 
-  .active{
+  .navbar-nav .active{
     color: #0ab39c !important;
     border-bottom: 3px solid #0ab39c;
   } 
