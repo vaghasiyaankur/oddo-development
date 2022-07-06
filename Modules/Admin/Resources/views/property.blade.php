@@ -15,7 +15,37 @@
             color: #fff;
             background-color: #0ab39c;
             border-color: #03a690;
+        }
+
+        /* ********************* */
+       .page-content .hide {
+            display: none;
+        }
+        @keyframes placeHolderShimmer {
+            0% {
+                background: #ececec;
             }
+
+            30% {
+                background: #F7F7F7;
+            }
+
+            50% {
+                background: #ececec;
+            }
+
+            80% {
+                background: #F7F7F7;
+            }
+
+            100% {
+                background: #ececec;
+            }
+        }
+
+        .table-row-loader .loading-animation {
+            animation: placeHolderShimmer 3s infinite;
+        }
     </style>
 @endpush
 
@@ -63,7 +93,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <tr class="js-table-row-load-1 hide">
                                                     <th scope="row"><a href="#" class="fw-medium">#1</a></th>
                                                     <td>Farm House</td>
                                                     <td>
@@ -94,7 +124,7 @@
                                                                 class="ri-delete-bin-line"></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="js-table-row-load-1 hide">
                                                     <th scope="row"><a href="#" class="fw-medium">#2</a></th>
                                                     <td>Fittness Room</td>
                                                     <td>
@@ -125,7 +155,7 @@
                                                                 class="ri-delete-bin-line"></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="js-table-row-load-1 hide">
                                                     <th scope="row"><a href="#" class="fw-medium">#3</a></th>
                                                     <td>Hotle</td>
                                                     <td>
@@ -157,9 +187,9 @@
                                                                 class="ri-delete-bin-line"></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="js-table-row-load-1 hide">
                                                     <th scope="row"><a href="#" class="fw-medium">#4</a></th>
-                                                    <td>Apartment</td>
+                                                    <td>NEW ADDED</td>
                                                     <td>
                                                         <button tabindex="0"
                                                             class="btn btn-soft-success waves-effect waves-light"
@@ -189,8 +219,98 @@
                                                                 class="ri-delete-bin-line"></i></a>
                                                     </td>
                                                 </tr>
+                                                <tr class="js-table-row-loader">
+                                                    <td colspan="6" class="p-0">
+                                                        <div class="table-row-loader d-flex py-2 border-bottom">
+                                                            <div class="flex-shrink-1 m-3 p-2 loading-animation ">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-row-loader d-flex py-2 border-bottom">
+                                                            <div class="flex-shrink-1 m-3 p-2 loading-animation ">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-row-loader d-flex py-2 border-bottom">
+                                                            <div class="flex-shrink-1 m-3 p-2 loading-animation ">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-row-loader d-flex py-2 ">
+                                                            <div class="flex-shrink-1  m-3 p-2 loading-animation ">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                            <div
+                                                                class="flex-grow-1 m-3 p-2 loading-animation">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
+
+                                        {{-- FOR EMPTY TABLE --}}
+                                        {{-- <div class="empty-table w-100 text-center py-5">
+                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                                colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
+                                            </lord-icon>
+                                            <h4>No records has been added yet.</h4>
+                                            <h6>Add a new record by simpley clicking the button on top right side.</h6>
+                                        </div> --}}
+
                                         <div class="table-footer align-items-center pt-2 justify-content-between d-flex">
                                             <div class="flex-shrink-0">
                                                 <div class="text-muted">Showing <span class="fw-semibold">1</span> of
@@ -212,14 +332,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        {{-- FOR EMPTY TABLE --}}
-
-                                        {{-- <div class="empty-table w-100 text-center py-5">
-                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
-                                            </lord-icon>
-                                            <h4>No records has been added yet.</h4>
-                                            <h6>Add a new record by simpley clicking the button on top right side.</h6>
-                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -336,6 +448,19 @@
     <script src="{{ asset('assets/Admin/assets/js/pages/form-file-upload.init.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script>
+        setTimeout(function() {
+            $('.js-table-row-load-1').show();
+        },  600);
+
+        setTimeout(function() {
+            $('.js-table-row-load-2').show();
+        }, 900);
+
+        setTimeout(function() {
+            $('.js-table-row-loader').hide();
+        }, 600);
+    </script>
     <script>
         $(document).ready(function() {
             $('[data-bs-toggle="popover"]').popover();
