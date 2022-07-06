@@ -38,6 +38,12 @@ class AmenityController extends Controller
      */
     public function store(Request $request)
     {
+        $validated   = $request->validate([
+            'amenityName'  => 'required|unique:amenities,amenities',
+        ], [ 
+            'amenityName.unique' => 'This Amenity already exists.' 
+        ]);
+
         try{   
             $amenity = new Amenities();
             $amenity->amenities = $request->amenityName;
@@ -46,7 +52,7 @@ class AmenityController extends Controller
             $amenity->amenities_category_id = $request->amenityCategory;
             $amenity->save();
 
-            return response()->json(["message" => "Amenity Inserted Successfully"], 200);
+            return response()->json(["success" => "Amenity Inserted Successfully"], 200);
         }catch(\Exception $e){
             return response()->json(["message" => "Something Went Wrong"], 503);
         }
@@ -80,6 +86,12 @@ class AmenityController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated   = $request->validate([
+            'amenityName'  => 'required|unique:amenities,amenities,'.$id.',id',
+        ], [ 
+            'amenityName.unique' => 'This Amenity already exists.' 
+        ]);
+        
         try{
             $amenity = Amenities::updateOrCreate([ 'id' => $id ], [
                 'amenities' => $request->amenityName,
@@ -87,7 +99,7 @@ class AmenityController extends Controller
                 'status' => $request->status,
                 'amenities_category_id' => $request->amenityCategory
             ]);
-            return response()->json(["message" => "Amenity updated Successfully"], 200);
+            return response()->json(["success" => "Amenity updated Successfully"], 200);
         }catch(\Exception $e){
             return response()->json(["message" => "Something Went Wrong"], 503);
         }
@@ -102,7 +114,7 @@ class AmenityController extends Controller
     {
         try {
             $result = Amenities::where('id',$id)->delete();
-            return response()->json(["message" => "Units updated Successfully"], 200);
+            return response()->json(["danger" => "Amenity deleted Successfully"], 200);
         } catch (\Exception $e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
@@ -117,17 +129,17 @@ class AmenityController extends Controller
     public function featureAmenity(Request $request) {
        $featured = $request->featured;
        $id     = $request->id;
-       if($featured == '1'){
-           $amenity   =  Amenities::updateOrCreate([ 'id' => $id ], [
-               'featured' => 0
-           ]);
-           return response()->json(["message" => "Units updated Successfully"], 200);
-       }else{
-           $amenity   =  Amenities::updateOrCreate([ 'id' => $id ], [
-               'featured' => 1
-           ]);
-           return response()->json(["message" => "Units updated Successfully"], 200);
-       }
+        if($featured == '1'){
+            $amenity   =  Amenities::updateOrCreate([ 'id' => $id ], [
+                'featured' => 0
+            ]);
+            return response()->json(["message" => "Units updated Successfully"], 200);
+        }else{
+            $amenity   =  Amenities::updateOrCreate([ 'id' => $id ], [
+                'featured' => 1
+            ]);
+            return response()->json(["message" => "Units updated Successfully"], 200);
+        }
     }
 
 }

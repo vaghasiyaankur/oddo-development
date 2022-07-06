@@ -31,11 +31,13 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (res) { 
+            success: function (response) { 
                 $(".roomForm").trigger("reset");
                 roomList();
-                toastMixin.fire({ title: res.success, icon: 'success' });
-            },
+                toastMixin.fire({ title: response.success, icon: 'success' });
+            }, error:function (response) {
+                $('#roomName-error').text(response.responseJSON.errors.roomName);
+            }
         }); 
     });
 
@@ -77,6 +79,8 @@ $(document).ready(function(){
                 $(".editRoomForm").trigger("reset");
                 roomList();
                 toastMixin.fire({ title: res.success, icon: 'success' });
+            }, error:function (response) {
+                $('#editRoomName-error').text(response.responseJSON.errors.editRoomName);
             }
         });
     });
@@ -127,18 +131,16 @@ $(document).ready(function(){
         }); 
     });
 
-
-
     // room List
     function roomList(){
-            $.ajax({
-                url: "{{route('room.list')}}",
-                type: "GET",
-                dataType: "HTML",
-                success: function (response) {
-                    $(".roomTypeTable").html(response);
-                }
-            });
-        }
+        $.ajax({
+            url: "{{route('room.list')}}",
+            type: "GET",
+            dataType: "HTML",
+            success: function (response) {
+                $(".roomTypeTable").html(response);
+            }
+        });
+    }
 });
 </script>

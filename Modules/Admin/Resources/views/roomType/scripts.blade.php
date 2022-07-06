@@ -27,11 +27,13 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (res) { 
+                success: function (response) { 
                     $(".roomTypeForm").trigger("reset");
                     roomTypeList();
-                    toastMixin.fire({ title: res.success, icon: 'success' });
-                },
+                    toastMixin.fire({ title: response.success, icon: 'success' });
+                }, error:function (response) {
+                    $('#roomType-error').text(response.responseJSON.errors.roomtype);
+                }
             }); 
         });
 
@@ -48,6 +50,9 @@
         $(document).on('click', '.room-type-update', function(){
             let id = $(".edit_id").val();
             let roomtype = $('.edit-roomType').val();
+            !roomtype ? $(`#edit-roomType-error`).html(`The room type field is required.`) : $(`#edit-roomType-error`).html(``);
+
+            
 
             formdata = new FormData();
             formdata.append('id', id);
@@ -64,6 +69,8 @@
                     $('.edit_div').hide();
                     $('.create_div').show();
                     roomTypeList();
+                }, error:function (response) {
+                    $('#edit-roomType-error').text(response.responseJSON.errors.roomtype);
                 }
             });
         });

@@ -15,7 +15,7 @@ class FacilitiesController extends Controller
      */
     public function index()
     {
-        $facilities = Facilities::get();
+        $facilities = Facilities::paginate(10);
         return view('admin::facilities.index', compact('facilities'));
     }
 
@@ -35,13 +35,24 @@ class FacilitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $faclity = new Facilities();
-        $faclity->facilities_name = $request->faclityName;
-        $faclity->icon = $request->faclityIcon;
-        $faclity->color = $request->facilityColor;
-        $faclity->description = $request->facilityDescription;
-        $faclity->save();
-        return response()->json(["message" => "Facility created Successfully"]);
+        $validated   = $request->validate([
+            'faclityName'  => 'required|unique:facilities,facilities_name',
+        ], [ 
+            'faclityName.unique' => 'This facilitey already exists.' 
+        ]);
+
+        try{
+            $faclity = new Facilities();
+            $faclity->facilities_name = $request->faclityName;
+            $faclity->icon = $request->faclityIcon;
+            $faclity->color = $request->facilityColor;
+            $faclity->description = $request->facilityDescription;
+            $faclity->save();
+
+            return response()->json(["success" => "Facility created Successfully"], 200);
+        }catch(\Exception $e){
+                return response()->json(["message" => "Something Went Wrong"], 503);
+            }
     }
 
     /**
@@ -72,6 +83,12 @@ class FacilitiesController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        $validated   = $request->validate([
+            'editFaclityName'  => 'required|unique:facilities,facilities_name,'.$id.',id',
+        ], [ 
+            'editFaclityName.unique' => 'This facilitey already exists.' 
+        ]);
+
         try{
             $facility   =  Facilities::updateOrCreate([ 'id' => $id ], [
                 'facilities_name' => $request->editFaclityName,
@@ -80,7 +97,7 @@ class FacilitiesController extends Controller
                 'description' => $request->editFacilityDescription
             ]);
 
-            return response()->json(["message" => "facility updated Successfully"], 200);
+            return response()->json(["success" => "facility updated Successfully"], 200);
         }catch(\Exception $e){
             return response()->json(["message" => "Something Went Wrong"], 503);
         }
@@ -95,14 +112,14 @@ class FacilitiesController extends Controller
     {
         try {
             $result = Facilities::where('id',$id)->delete();
-            return response()->json(["message" => "facility deleted Successfully"], 200);
+            return response()->json(["danger" => "facility deleted Successfully"], 200);
         } catch (\Exception $e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
     }
 
     public function facilitiesList(){
-        $data['facilities'] = Facilities::get();
+        $data['facilities'] = Facilities::paginate(10);
         return view('admin::facilities.facilities_list', $data);
     }
 

@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-2">
                             <div class="form-check custom-checkbox d-flex justify-content-end align-items-center">
-                                <button type="submit" class="btn btn-success editFacilitySubmit">Submit</button>
+                                <button type="submit" class="btn btn-success editFacilitySubmit">Update</button>
                             </div>
                         </div>
                     </form>

@@ -16,7 +16,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomTypes = RoomType::get();
+        $roomTypes = RoomType::paginate(10);
         return view('admin::roomType.index', compact('roomTypes'));
     }
 
@@ -35,7 +35,13 @@ class RoomTypeController extends Controller
      * @return Renderable
      */
     public function store(Request $request)
-    {
+    {   
+        $validated   = $request->validate([
+            'roomtype'  => 'required|unique:room_types,room_type',
+        ], [ 
+            'roomtype.unique' => 'This room type already exists.' 
+        ]);
+
         try {
             $roomtype   =  new RoomType();
             $roomtype->room_type = $request->roomtype;
@@ -74,6 +80,12 @@ class RoomTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated   = $request->validate([
+            'roomtype'  => 'required|unique:room_types,room_type,'.$id.',id',
+        ], [ 
+            'roomtype.unique' => 'This roomList already exists.' 
+        ]);
+        
         try{
             $roomType   =  RoomType::updateOrCreate([ 'id' => $id ], [
                 'room_type' => $request->roomtype
@@ -105,7 +117,7 @@ class RoomTypeController extends Controller
     }
 
     public function roomTypeList() {
-        $data['roomTypes'] = RoomType::get();
+        $data['roomTypes'] = RoomType::paginate(10);
         return view('admin::roomType.roomType_list', $data);
     }
 

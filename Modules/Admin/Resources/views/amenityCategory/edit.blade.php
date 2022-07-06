@@ -7,7 +7,7 @@
                 <label class="form-label" for="amenitycateogry">Edit Amenity Category</label>
                 <input type="text" class="form-control amenityCategory category" id="amenitycateogry"
                     placeholder="Enter Amenity Category" value="">
-                <span class="text-danger" id="amenityCategory-error"></span>
+                <span class="text-danger" id="editAmenityCategory-error"></span>
             </div>
             <button class="btn btn-success amenity-category-update">Update</button>
         </form>

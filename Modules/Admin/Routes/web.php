@@ -60,6 +60,5 @@ Route::prefix('admin')->group(function() {
         Route::post('/update-room/{id}', 'update')->name('update.room');  
         Route::post('/delete-room/{id}', 'destroy')->name('delete.room');  
         Route::post('/status-room', 'statusRoom')->name('status.room');
-        
     });
 });

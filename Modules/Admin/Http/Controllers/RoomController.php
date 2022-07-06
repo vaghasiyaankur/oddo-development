@@ -18,7 +18,7 @@ class RoomController extends Controller
     public function index()
     {
         $roomTypes = RoomType::get();
-        $roomLists = RoomList::get();
+        $roomLists = RoomList::paginate(10);
         return view('admin::room.index', compact('roomLists', 'roomTypes'));
     }
 
@@ -38,6 +38,12 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $validated   = $request->validate([
+            'roomName'  => 'required|unique:room_lists,room_name',
+        ], [ 
+            'roomName.unique' => 'This roomList already exists.' 
+        ]);
+
         try {
             $roomList = new RoomList();
             $roomList->room_name = $request->roomName;
@@ -77,6 +83,12 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated   = $request->validate([
+            'editRoomName'  => 'required|unique:room_lists,room_name,'.$id.',id',
+        ], [ 
+            'editRoomName.unique' => 'This roomList already exists.' 
+        ]);
+
         try{
             $roomType   =  RoomList::updateOrCreate([ 'id' => $id ], [
                 'room_name' => $request->editRoomName,
@@ -96,7 +108,6 @@ class RoomController extends Controller
     public function destroy($id)
     {
         try {
-
             $room = Room::where('room_list_id',$id)->count();
             if($room != 0){
                 return response()->json(["warning" => "room not deleted"], 200);
@@ -111,7 +122,7 @@ class RoomController extends Controller
 
     public function roomList()
     {
-        $data['roomLists'] = RoomList::get();
+        $data['roomLists'] = RoomList::paginate(10);
         return view('admin::room.room_list', $data);
     }
 

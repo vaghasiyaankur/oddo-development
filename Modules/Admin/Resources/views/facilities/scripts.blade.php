@@ -50,12 +50,13 @@
             // iconpicker.set('bi-alarm') // Reset with a value
         })();
     }
+
     let theEditor;
     ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
         theEditor = editor;
     }).catch(error => {
         console.error(error);
-    });
+    }); 
 
     function getDataFromTheEditor() {
         return theEditor.getData();
@@ -178,10 +179,13 @@ $(document).ready(function() {
             contentType: false,
             data: formdata,
             success: function (res) { 
+                toastMixin.fire({ title: res.success, icon: 'success' });
                 $(".createFaclityForm").trigger("reset");
                 $("#facilityCreate").modal("hide");
                 facilitiesList();
-            },
+            }, error:function (response) {
+                $('#faclityName-error').text(response.responseJSON.errors.faclityName);
+            }
         }); 
     });
     
@@ -232,6 +236,9 @@ $(document).ready(function() {
                 $(".modalEdit").modal("hide");
                 $(".editFaclityForm").trigger("reset");
                 facilitiesList();
+                toastMixin.fire({ title: response.success, icon: 'success' });
+            }, error:function (response) {
+                $('#editfaclinityName-error').text(response.responseJSON.errors.editFaclityName);
             }
         });
     });
@@ -258,20 +265,21 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.deleteFacility', function(){
-            let id = $(this).data('value');
-            console.log(id);
-            formdata = new FormData();
-            formdata.append('id', id);
-            $.ajax({
-                url: baseUrl + "/admin/delete-facility/" + id,
-                type: "POST",
-                processData: false,
-                contentType: false,
-                data: formdata,
-                success: function (res) { 
-                    facilitiesList();
-                },
-            }); 
+        let id = $(this).data('value');
+        console.log(id);
+        formdata = new FormData();
+        formdata.append('id', id);
+        $.ajax({
+            url: baseUrl + "/admin/delete-facility/" + id,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                facilitiesList();
+                toastMixin.fire({ title: response.danger, icon: 'error' });
+            },
+        }); 
     });
 
     // facilities Table
@@ -285,6 +293,5 @@ $(document).ready(function() {
             }
         });
     }
-
 });
 </script>
