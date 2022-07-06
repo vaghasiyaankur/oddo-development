@@ -73,12 +73,13 @@ class FacilitiesController extends Controller
     public function update(Request $request, $id)
     {   
         try{
-            $amenity = Facilities::where('id', $id)->update([
+            $facility   =  Facilities::updateOrCreate([ 'id' => $id ], [
                 'facilities_name' => $request->editFaclityName,
                 'color' => $request->editFacilityColor,
                 'icon' => $request->editFaclityIcon,
                 'description' => $request->editFacilityDescription
             ]);
+
             return response()->json(["message" => "facility updated Successfully"], 200);
         }catch(\Exception $e){
             return response()->json(["message" => "Something Went Wrong"], 503);

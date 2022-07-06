@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\RoomList;
 
 class RoomType extends Model
 {
-    use HasFactory,Sluggable;
+    use HasFactory, Sluggable;
 
     protected $table = 'room_types';
 
@@ -33,5 +34,9 @@ class RoomType extends Model
 
     public function room_lists(){
         return $this->hasMany('App\Models\RoomList', 'room_type_id')->where('status',1);
+    }
+
+    public function room_list(){
+        return $this->hasMany(RoomList::class);
     }
 }
