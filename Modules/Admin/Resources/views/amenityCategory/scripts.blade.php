@@ -1,6 +1,7 @@
 <script>
-var baseUrl = $('#base_url').val();
-$(document).ready(function(){
+    $(document).ready(function(){
+    
+        var baseUrl = $('#base_url').val();
 
     $.ajaxSetup({
         headers: {

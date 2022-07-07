@@ -27,7 +27,8 @@ class PropertyTableSeeder extends Seeder
         foreach ($propertyTypes as  list($name, $description)) {
             PropertyType::create([
                 'type' => $name,
-                'description' => $description
+                'description' => $description,
+                'status' => 1
             ]);
         }
     }

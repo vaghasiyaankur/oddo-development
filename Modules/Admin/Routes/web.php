@@ -12,7 +12,7 @@
 */
 Route::prefix('admin')->group(function() {
     Route::view('/amenity-view', 'admin::amenity');
-    Route::view('/location', 'admin::location');
+    Route::view('/location-old', 'admin::location');
     Route::view('/amenity-types', 'admin::amenity-type');
     // Route::view('/facilities', 'admin::facilities');
     Route::view('/property', 'admin::property')->name('property');
@@ -60,5 +60,9 @@ Route::prefix('admin')->group(function() {
         Route::post('/update-room/{id}', 'update')->name('update.room');  
         Route::post('/delete-room/{id}', 'destroy')->name('delete.room');  
         Route::post('/status-room', 'statusRoom')->name('status.room');
+    });
+
+    Route::controller(LocationController::class)->group(function(){
+        Route::get('/location', 'index')->name('location.index');  
     });
 });
