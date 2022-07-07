@@ -8,25 +8,43 @@
             <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody class="tbody">
+    <tbody class="tbody table__body">
         @if(count($amenityCategories))
 
             @foreach ($amenityCategories as $key => $amenityCategory)
             <tr class="tr_{{$amenityCategory->id}}">
-                <th scope="row"><a href="#" class="fw-medium">{{$key+1}}</a></th>
-                <td>{{$amenityCategory->category}}</td>
+                <th scope="row">
+                    <div class="loadingShow td-2">
+                        <span></span>
+                    </div>
+                    <div class="loadingHide">{{$key+1}}</div>
+                </th>
                 <td>
-                    <div class="form-check form-switch">
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="loadingHide">{{$amenityCategory->category}}</div>
+                </td>
+                <td>
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="form-check form-switch loadingHide">
                         <input class="form-check-input amenityCategoryStatus" data-value="{{$amenityCategory}}"
                             type="checkbox" role="switch" id="SwitchCheck1" {{ $amenityCategory->status == 1 ? 'checked':
                         ''}} >
-                    </div>
+                    </div>    
                 </td>
                 <td>
-                    <a href="javascript:void(0);" class="link-success fs-17 pe-3 edit-amenityCategory"
-                        data-value="{{$amenityCategory}}"><i class="ri-edit-2-line"></i></a>
-                    <a href="javascript:void(0);" class="link-danger fs-17 delete-amenityCategory"
-                        data-value="{{$amenityCategory->id}}"><i class="ri-delete-bin-line"></i></a>
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="loadingHide">
+                        <a href="javascript:void(0);" class="link-success fs-17 pe-3 edit-amenityCategory"
+                            data-value="{{$amenityCategory}}"><i class="ri-edit-2-line"></i></a>
+                        <a href="javascript:void(0);" class="link-danger fs-17 delete-amenityCategory"
+                            data-value="{{$amenityCategory->id}}"><i class="ri-delete-bin-line"></i></a>
+                    </div>
                 </td>
             </tr>
             @endforeach

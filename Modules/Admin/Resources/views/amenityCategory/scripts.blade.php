@@ -15,6 +15,10 @@ $(document).ready(function(){
         if (!amenityCategory) {
             return;
         }
+        
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
         formdata = new FormData();
         formdata.append('amenityCategory', amenityCategory);
 
@@ -28,7 +32,13 @@ $(document).ready(function(){
                 $(".amenityCategoryForm").trigger("reset");
                 CategoryList();
                 toastMixin.fire({ title: response.success, icon: 'success' });
+                setTimeout(function() {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
+                },  1500);
             }, error:function (response) {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
                 $('#amenityCategory-error').text(response.responseJSON.errors.amenityCategory);
             }
         }); 
@@ -54,6 +64,9 @@ $(document).ready(function(){
         formdata.append('id', id);
         formdata.append('category', category);
 
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
         $.ajax({
             url: baseUrl + "/admin/update-amenity-category/" + id,
             data: formdata,
@@ -67,6 +80,10 @@ $(document).ready(function(){
                 $('.create_div').show();
                 CategoryList();
                 toastMixin.fire({ title: response.success, icon: 'success' });
+                setTimeout(function() {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
+                },  1500);
             }, error:function (response) {
                 $('#editAmenityCategory-error').text(response.responseJSON.errors.category);
             }

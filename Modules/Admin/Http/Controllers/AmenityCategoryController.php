@@ -13,7 +13,7 @@ class AmenityCategoryController extends Controller
     public function amenityCategory()
     {   
         try {
-            $amenityCategories = AmenitiesCategory::paginate(10);
+            $amenityCategories = AmenitiesCategory::latest()->paginate(10);
             $amenityCategories->setPath('amenity-category');
             return view('admin::amenityCategory.index', compact('amenityCategories'));
         }catch(\Exception $e){
@@ -40,7 +40,7 @@ class AmenityCategoryController extends Controller
     }
 
     public function getList(){
-        $data['amenityCategories'] = AmenitiesCategory::paginate(10);
+        $data['amenityCategories'] = AmenitiesCategory::latest()->paginate(10);
         return view('admin::amenityCategory.category_list', $data);
     }
 
