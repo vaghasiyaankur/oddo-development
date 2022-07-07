@@ -8,6 +8,10 @@
     <!-- dropzone css -->
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/dropzone/dropzone.css') }}" type="text/css" />
 
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/filepond/filepond.min.css') }}" type="text/css" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/Admin/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
+
     <style>
         .Upload--img .dropzone {
             min-height: 132px;
@@ -25,6 +29,53 @@
             opacity: 1;
             transform: translateY(-20px);
             z-index: 111;
+        }
+
+        /* animation loading */
+
+        @-webkit-keyframes moving-gradient {
+            0% {
+                background-position: -250px 0;
+            }
+
+            100% {
+                background-position: 250px 0;
+            }
+        }
+
+        .gallery-light span {
+            display: block;
+        }
+
+        .gallery-light .td-1 {
+            width: 100%;
+        }
+
+        .gallery-light .td-1 span {
+            background-color: rgba(0, 0, 0, 0.15);
+            min-height: 180px;
+            background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
+            background-size: 500px 100px;
+            animation-name: moving-gradient;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .gallery-light .td-3 {
+            width: 129px;
+        }
+
+        .gallery-light .td-3 span {
+            height: 16px;
+            background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
+            background-size: 500px 100px;
+            animation-name: moving-gradient;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
         }
     </style>
 @endpush
@@ -572,6 +623,73 @@
                                     </div>
                                 </div>
                                 <!--end col-->
+                                    {{-- Animation Location Box --}}
+                                <div class="col-xl-2 col-lg-4 col-sm-6">
+                                    <div class="gallery-box edit-data-box card">
+                                        <div class="edit-box d-none">
+                                            <div class="dropdown"><button
+                                                    class="btn btn-white bg-success btn-sm dropdown position-absolute translate-middle rounded-pill"
+                                                    style="right:-8px;top: 42px;z-index:111;" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                        class="ri-more-fill text-white"></i></button>
+                                                <ul class="dropdown-menu dropdown-menu-end p-0"
+                                                    style="border-radius:8px;min-width: 4rem;">
+                                                    <li>
+                                                        <a class="dropdown-item amenityEdit"
+                                                            style="padding: 0.35rem 0.75rem;" href="javascript:;"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModalgrid"
+                                                            data-value=""><i
+                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item text-danger"
+                                                            style="padding: 0.35rem 0.75rem;" href="javascript:;"><i
+                                                                class="ri-delete-bin-fill align-bottom me-2 text-danger"></i>
+                                                            Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="gallery-container">
+                                            <div class="loadingShow td-1">
+                                                <span></span>
+                                            </div>
+                                            <a class="image-popup d-none" href="assets/images/small/img-1.jpg"
+                                                title="">
+                                                <img class="gallery-img img-fluid mx-auto"
+                                                    src="{{ asset('assets/Admin/assets/images/small/img-7.jpg') }}"
+                                                    alt="">
+                                                <div class="gallery-overlay d-flex justify-content-between">
+                                                    <h5 class="overlay-caption mb-1">New York</h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="box-content">
+                                            <div class="d-flex align-items-center mt-2">
+                                                <div class="flex-grow-1 text-muted">
+                                                    <div class="loadingShow td-3">
+                                                        <span></span>
+                                                    </div>
+                                                    <a href="" class="text-body text-truncate d-none">10 listed
+                                                        Disended</a>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="loadingShow td-3">
+                                                        <span></span>
+                                                    </div>
+                                                    <div class="d-flex gap-3 d-none">
+                                                        <label class="mb-0" for="">Feature</label>
+                                                        <div class="form-check form-switch form-switch-success ms-1">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                role="switch" id="SwitchCheck3" checked="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!--end row-->
                         </div>
@@ -674,7 +792,21 @@
     <!-- Sweet Alerts js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
     {{-- <script src="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> --}}
-    
+
+    <!-- filepond js -->
+    <script src="{{ asset('assets/Admin/assets/libs/filepond/filepond.min.js') }}"></script>
+    <script
+        src="{{ asset('assets/Admin/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/Admin/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/Admin/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') }}">
+    </script>
+    <script src="{{ asset('assets/Admin/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js') }}">
+    </script>
+
     <!-- dropzone min -->
     <script src="{{ asset('assets/Admin/assets/libs/dropzone/dropzone-min.js') }}"></script>
 
@@ -705,6 +837,14 @@
                 title: 'Wrong Password',
                 icon: 'error'
             });
+        });
+
+        $(document).ready(function() {
+
+            setTimeout(function() {
+                $('.loadingShow span').css('display', 'block');
+                $('.loadingHide').addClass('d-none');
+            }, 3500);
         });
     </script>
 @endpush

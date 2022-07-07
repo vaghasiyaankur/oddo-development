@@ -109,7 +109,7 @@
 </header>
 
         <!-- ========== App Menu ========== -->
-        <div class="app-menu navbar-menu">
+        <div class="app-menu navbar-menu" style="z-index: 1002;">
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Dark Logo-->
