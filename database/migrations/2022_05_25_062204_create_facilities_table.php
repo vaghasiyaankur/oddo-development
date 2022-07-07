@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('facilities_name');
             $table->string('slug')->nullable();
             $table->string('icon')->nullable();

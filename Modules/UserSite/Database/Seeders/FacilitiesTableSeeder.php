@@ -18,24 +18,22 @@ class FacilitiesTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        $Facilities = [
-            '24-hour front desk',
-            'Bar',
-            'Fitness center',
-            'Free WiFi',
-            'Garden',
-            'Restaurant',
-            'Room service',
-            'Sauna'
+        $facilities = [
+            ['24-hour front desk', '#6A78C7'],
+            ['Bar', '#219653'],
+            ['Fitness center', '#6FCF97'],
+            ['Free WiFi', '#9B51E0'],
+            ['Garden', '#2d9cdb'],
+            ['Restaurant', '#f2994a'],
+            ['Room service', '#ade1fb'],
+            ['Sauna', '#7fa1c0'],
         ];
 
-        $color = ['#6A78C7','#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
-
-        foreach ($Facilities as $key => $fac) {
+        foreach ($facilities as  list($name, $color)) {
             Facilities::create([
-                'facilities_name' => $fac,
+                'facilities_name' => $name,
                 'icon' => 'bi-search',
-                'color' => $color[array_rand($color)],
+                'color' => $color,
                 'description' => $faker->text,
                 'status' => '1',
             ]);

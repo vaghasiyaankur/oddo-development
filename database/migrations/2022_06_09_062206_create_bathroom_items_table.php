@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('bathroom_items', function (Blueprint $table) {
             $table->id();
             $table->string('item')->nullable();
+            $table->integer('UUID')->unique()->nullable();
             $table->string('slug')->nullable();
             $table->string('icon')->nullable();
             $table->boolean('status')->default(0); 

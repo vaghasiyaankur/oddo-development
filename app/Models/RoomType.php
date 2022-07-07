@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\RoomList;
+use App\Traits\Uuids;
 
 class RoomType extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Uuids;
 
     protected $table = 'room_types';
 

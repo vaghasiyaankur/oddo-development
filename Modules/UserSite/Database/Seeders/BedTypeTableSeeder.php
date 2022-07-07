@@ -15,42 +15,20 @@ class BedTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-
-
-      
-        $BedType = [
-            [
-                'bed_type'   => 'Single bed',
-                'bed_size'   => '90-130 cm wide',
-                'status'     => '1',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'bed_type'   => ' Double bed',
-                'bed_size'   => '131-150 cm wide',
-                'status'     => '1',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'bed_type'   => 'Large bed (King size)',
-                'bed_size'   => '151-180 cm wide',
-                'status'     => '1',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'bed_type'   => 'Extra-large double bed (Super-king size)',
-                'bed_size'   => '181-210 cm wide',
-                'status'     => '1',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
+        $bedTypes = [
+            ['Single bed', '90-130 cm wide'],
+            ['Double bed', '131-150 cm wide'],
+            ['Large bed (King size)', '151-180 cm wide'],
+            ['Extra-large double bed (Super-king size)', '181-210 cm wide'],
         ];
 
-        BedType::insert($BedType);
+        foreach ($bedTypes as  list($bed_type, $bed_size)) {
+            BedType::create([
+                'bed_type' => $bed_type,
+                'bed_size' => $bed_size,
+                'status' => '1'
+            ]);
+        }
     }
 }

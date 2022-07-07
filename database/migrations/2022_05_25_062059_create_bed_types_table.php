@@ -17,7 +17,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('bed_type');
             $table->string('bed_size');
+            $table->integer('UUID')->unique()->nullable();
             $table->boolean('status')->default(0);
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

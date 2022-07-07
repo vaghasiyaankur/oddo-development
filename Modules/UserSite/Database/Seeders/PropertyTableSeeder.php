@@ -15,49 +15,20 @@ class PropertyTableSeeder extends Seeder
      */
     public function run()
     {
-        $propertytype = [
-                            [
-                                'type'             => 'Hotel',
-                                'description'      => 'Accommodation for travellers often offering restaurants, meeting rooms and other guest services',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Hotel'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
-                                'type'             => 'Guest house',
-                                'description'      => 'Private home with separate living facilities for host and guest',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Guest house'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
-                                'type'             => 'Homestay',
-                                'description'      => 'A shared home where the guest has a private room and the host lives and is on site. ',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Homestay'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
-                                'type'             => 'Hostel',
-                                'description'      => 'Budget accommodation with mostly dorm-style bedding and a social atmosphere',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Hostel'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                            [
-                                'type'             => 'Farm stay',
-                                'description'      => 'Private farm with simple accommodation',
-                                'status'           => '1',
-                                'slug'             => \Str::slug('Farm stay'),
-                                'created_at' => date("Y-m-d H:i:s"),
-                                'updated_at' => date("Y-m-d H:i:s"),
-                            ],
-                        ];
 
-        PropertyType::insert($propertytype);
+        $propertyTypes = [
+            ['Hotel', 'Accommodation for travellers often offering restaurants, meeting rooms and other guest services'],
+            ['Guest house', 'Private home with separate living facilities for host and guest'],
+            ['Homestay', 'A shared home where the guest has a private room and the host lives and is on site. '],
+            ['Hostel', 'Budget accommodation with mostly dorm-style bedding and a social atmosphere'],
+            ['Farm stay', 'Private farm with simple accommodation'],
+        ];
+
+        foreach ($propertyTypes as  list($name, $description)) {
+            PropertyType::create([
+                'type' => $name,
+                'description' => $description
+            ]);
+        }
     }
 }

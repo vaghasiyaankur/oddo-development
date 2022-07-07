@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Uuids;
 
 class Facilities extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Uuids;
 
     protected $table = 'facilities';
 

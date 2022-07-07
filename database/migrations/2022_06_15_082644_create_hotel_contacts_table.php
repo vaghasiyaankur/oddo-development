@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('hotel_contacts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('name');
             $table->string('number');
             $table->string('number_optinal')->nullable();

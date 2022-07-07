@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('name');
             $table->string('background_image')->nullable();
             $table->boolean('featured')->nullable();

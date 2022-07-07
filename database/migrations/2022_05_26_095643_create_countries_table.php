@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('country_name');
             $table->string('icon')->nullable();
             $table->string('slug');
+            $table->integer('UUID')->unique()->nullable();
             $table->boolean('status')->default(0); 
             $table->timestamps();
         });

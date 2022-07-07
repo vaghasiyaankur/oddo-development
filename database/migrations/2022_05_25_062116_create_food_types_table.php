@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('food_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('food_type');
             $table->string('slug')->nullable();
             $table->boolean('status')->default(0);

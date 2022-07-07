@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('property_name')->nullable();
             $table->string('star_rating')->nullable();
             $table->text('description')->nullable();

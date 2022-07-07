@@ -9,10 +9,11 @@ use App\Models\HotelPhoto;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\amenities;
+use App\Traits\Uuids;
 
 class Hotel extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Uuids;
 
     protected $table = 'hotels';
 

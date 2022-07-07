@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('description');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->nullable();
             $table->boolean('status')->default(0);

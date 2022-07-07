@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 return new class extends Migration
 {
     /**
@@ -15,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('hotel_photos', function (Blueprint $table) {
             $table->id();
+            $table->integer('UUID')->unique()->nullable();
             $table->string('main_photo')->nullable();
             $table->string('photos')->nullable();
             $table->string('photos_path')->nullable();

@@ -4,11 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use App\Traits\Uuids;
 
 class PropertyType extends Model
 {
-    use HasFactory;
-    protected $table = 'property_types';
+    use HasFactory, Sluggable, Uuids;
+
+    protected $guarded = ['id'];
+    
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'type'
+            ]
+        ];
+    }
 
     public function scopeActive($query) {
         return $query->where('status', 1);

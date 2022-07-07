@@ -7,10 +7,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
 use App\Models\Hotel;
+use App\Traits\Uuids;
 
 class City extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Uuids;
 
     protected $table = 'cities';
 

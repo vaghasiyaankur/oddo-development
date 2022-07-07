@@ -37,8 +37,5 @@ class CityTableSeeder extends Seeder
                 'status' => 1,
             ]);
         }
-
-
-        // $this->call("OthersTableSeeder");
     }
 }

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\RoomType;
+use App\Traits\Uuids;
 
 class RoomList extends Model
 {
-    use HasFactory,Sluggable;
+    use HasFactory, Sluggable, Uuids;
 
     protected $guarded = ['id'];
     

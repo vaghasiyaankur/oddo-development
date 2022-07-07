@@ -17,119 +17,32 @@ class AmenitiesTableSeeder extends Seeder
     public function run()
     {
 
-        $amenities = [
-                        [
-                            'amenities'             => 'Bidet',
-                            'slug'                  => \Str::slug('Bidet'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '1',
-                            'amenities_category_id' => '1'
-                        ],
+        $Amenities = array();
+        $Amenities[1][1] = "Bidet";
+        $Amenities[1][2] = "Toilet paper";
+        $Amenities[1][3] = "Bath";
+        $Amenities[2][1] = "Dining area";
+        $Amenities[2][2] = "Dining table";
+        $Amenities[2][3] = "Barbecue";
+        $Amenities[3][1] = "Computer";
+        $Amenities[3][2] = "Game console";
+        $Amenities[3][3] = "Laptop";
+        $Amenities[4][1] = "Sofa bed";
+        $Amenities[4][2] = "Air conditioning";
+        $Amenities[4][3] = "Wardrobe or closet";
+        $Amenities[4][4] = "Carpeted";
 
-                        [
-                            'amenities'             => 'Toilet paper',
-                            'slug'                  => \Str::slug('Toilet paper'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '1'
-                        ],
+        foreach ($Amenities as $key => $amenity) {
+            foreach ($amenity as $v2) {
+                Amenities::create([
+                    'amenities' => $v2,
+                    'icon' => 'bi-search',
+                    'status' => '1',
+                    'featured' => rand(0,1),
+                    'amenities_category_id' => $key
+                ]);
+            }
+        }     
 
-                        [
-                            'amenities'             => 'Bath',
-                            'slug'                  => \Str::slug('Bath'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '1'
-                        ],
-                        //  Food & drink
-                        [
-                            'amenities'             => 'Dining area',
-                            'slug'                  => \Str::slug('Dining area'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '1',
-                            'amenities_category_id' => '2'
-                        ],
-                        [
-                            'amenities'             => 'Dining table',
-                            'slug'                  => \Str::slug('Dining table'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '1',
-                            'amenities_category_id' => '2'
-                        ],
-                        [
-                            'amenities'             => 'Barbecue',
-                            'slug'                  => \Str::slug('Barbecue'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '2'
-                        ],
-                        // Media & technology
-                        [
-                            'amenities'             => 'Computer',
-                            'slug'                  => \Str::slug('Computer'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '1',
-                            'amenities_category_id' => '3'
-                        ],
-                        [
-                            'amenities'             => 'Game console',
-                            'slug'                  => \Str::slug('Game console'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '3'
-                        ],
-                        [
-                            'amenities'             => 'Laptop',
-                            'slug'                  => \Str::slug('Laptop'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '3'
-                        ],
-                        // Room amenities
-                        [
-                            'amenities'             => 'Sofa bed',
-                            'slug'                  => \Str::slug('Sofa bed'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '1',
-                            'amenities_category_id' => '4'
-                        ],
-                        [
-                            'amenities'             => 'Air conditioning',
-                            'slug'                  => \Str::slug('Air conditioning'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '1',
-                            'amenities_category_id' => '4'
-                        ],
-                        [
-                            'amenities'             => 'Wardrobe or closet',
-                            'slug'                  => \Str::slug('Wardrobe or closet'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '4'
-                        ],
-                        [
-                            'amenities'             => 'Carpeted',
-                            'slug'                  => \Str::slug('Carpeted'),
-                            'icon'                  => 'bi-search',
-                            'status'                => '1',
-                            'featured'              => '0',
-                            'amenities_category_id' => '4'
-                        ],
-
-                    ];
-
-                    Amenities::insert($amenities);
     }
 }

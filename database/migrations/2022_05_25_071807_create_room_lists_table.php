@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('room_lists', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('UUID')->unique()->nullable();
             $table->string('room_name');
             $table->boolean('status')->default(0);
             $table->string('slug');
