@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\Hotel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File; 
 
 
 class LocationController extends Controller
@@ -107,13 +108,21 @@ class LocationController extends Controller
     public function destroy($uuid)
     {
         try {
-            $id =  City::where('UUID',$uuid)->first('id');
-            $hotel = Hotel::where('city_id',$id->id)->count();
+            $city =  City::where('UUID',$uuid)->first();
+            $hotel = Hotel::where('city_id',$city->id)->count();
             if($hotel != 0){
                 return response()->json(["warning" => "Location not deleted"], 200);
             }else{
-                $location = City::where('UUID',$uuid)->delete();
+
+                $location = City::where('UUID',$uuid)->first();
+                $image_path = public_path('storage/'.$location->background_image);
+                if (File::exists($image_path)) {
+                    unlink($image_path);
+                }
+                $location->delete();
+                
                 return response()->json(["danger" => "location deleted Successfully"], 200);
+
             }
         } catch (\Exception $e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);

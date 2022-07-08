@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
+                    {{-- <div class="d-flex justify-content-between align-items-center">
                         <div class="active-deactive-input">
                             <div class="form-check form-check-inline form-radio-success me-1">
                                 <input class="form-check-input editStatus status_active" type="radio" name="inlineRadioOptions"
@@ -63,7 +63,7 @@
                                     id="WithoutinlineRadio2" value="0">
                                 <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="Submit--btn">
                             <button type="submit" class="btn btn-success locationSubmit">Submit</button>
                         </div>

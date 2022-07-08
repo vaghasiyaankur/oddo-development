@@ -11,7 +11,7 @@
                 <ul class="dropdown-menu dropdown-menu-end p-0" style="border-radius:8px;min-width: 4rem;">
                     <li>
                         <a class="dropdown-item location-Edit" style="padding: 0.35rem 0.75rem;" href="javascript:;"
-                            data-bs-toggle="modal" data-bs-target="#editLocation" data-value="{{$city}}">
+                            data-bs-toggle="modal" data-bs-target="#createLocation" data-value="{{$city}}">
                             <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                             Edit</a>
                     </li>
@@ -24,6 +24,10 @@
             </div>
         </div>
         <div class="gallery-container">
+            <div class="loadingShow td-1">
+                <span></span>
+            </div>
+            <div class="loadingHide">
                 <img class="gallery-img img-fluid mx-auto"
                     src="{{asset('storage/'.@$city->background_image)}}" alt="" >
                 <div class="gallery-overlay d-flex justify-content-between">
@@ -33,14 +37,22 @@
                         <i class="bx bx-block fs-5 text-danger"></i>
                     </div>
                 </div>
+            </div>
         </div>
         <div class="box-content">
             <div class="d-flex align-items-center justify-content-between flex-wrap mt-2">
-                <div class="flex-grow-1 text-muted"><a href="" class="text-body text-truncate">10 listed
+                <div class="flex-grow-1 text-muted">
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <a href="" class="text-body text-truncate loadingHide">10 listed
                         Disended</a>
                 </div>
                 <div class="flex-shrink-0">
-                    <div class="d-flex gap-3">
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="d-flex gap-3 loadingHide">
                         <label class="mb-0" for="">Feature</label>
                         <div class="form-check form-switch form-switch-success ms-1">
                             <input class="form-check-input featured" type="checkbox" role="switch" id="SwitchCheck3" {{ $city->featured == 1 ? 'checked':
@@ -64,6 +76,7 @@
     <h6>Add a new record by simpley clicking the button on top right side.</h6>
 </div>
 @endif
+
 {{-- Animation Location Box --}}
 <div class="col-xl-2 col-lg-4 col-sm-6">
     <div class="gallery-box edit-data-box card">
