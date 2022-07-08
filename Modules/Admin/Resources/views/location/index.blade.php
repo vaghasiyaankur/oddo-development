@@ -3,8 +3,6 @@
 @push('css')
 <!-- dropzone css -->
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-
-
     <style>
         .Upload--img .dropzone {
             min-height: 132px;
@@ -71,9 +69,9 @@
                                     </div>
                                     <div class="live-preview ms-4">
                                         <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalgrid"><i
+                                            data-bs-target="#createLocation"><i
                                                 class=" ri-add-line align-bottom me-1"></i>
-                                            Location Details
+                                            Add Location
                                         </button>
                                     </div>
                                 </div>
