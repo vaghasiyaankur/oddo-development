@@ -63,6 +63,11 @@ Route::prefix('admin')->group(function() {
     });
 
     Route::controller(LocationController::class)->group(function(){
-        Route::get('/location', 'index')->name('location.index');  
+        Route::get('/location', 'index')->name('location.index'); 
+        Route::get('/location-list', 'locationList')->name('location.list');
+        Route::post('/add-location', 'store')->name('add.location'); 
+        Route::post('/featured-location', 'featuredLocation')->name('featured.location');
+        Route::post('/delete-location/{id}', 'destroy')->name('delete.location');
+        
     });
 });

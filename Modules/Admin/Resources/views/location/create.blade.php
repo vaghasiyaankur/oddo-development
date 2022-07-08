@@ -1,5 +1,5 @@
     <!-- location details fill modal start -->
-    <div class="modal fade" id="exampleModalgrid" tabindex="-1" aria-labelledby="exampleModalgridLabel"
+    <div class="modal fade" id="createLocation" tabindex="-1" aria-labelledby="exampleModalgridLabel"
         aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -18,6 +18,14 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label>Country</label>
+                            <select class="form-select mb-3 country" aria-label="Default select example" name="">
+                                @foreach($countries as $country)
+                                    <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label>Upload Your Image</label>
                             <div class="Upload--img">
                                 <div class="dropzone">
@@ -34,6 +42,8 @@
                                             </div> 
                                     </div> 
                                 </div>
+                                <span class="text-danger" id="image-error"></span>
+                                
                                 <div id="gallery">
                                     <ul class="mb-0" id="dropzone-preview"  style="display: none">
                                         <li class="mt-2 list-unstyled" id="dropzone-preview-list " style=" list-style:none !important; ">
@@ -67,18 +77,18 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="active-deactive-input">
                                 <div class="form-check form-check-inline form-radio-success me-1">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="WithoutinlineRadio1" value="option1" checked>
+                                    <input class="form-check-input status" type="radio" name="inlineRadioOptions"
+                                        id="WithoutinlineRadio1" value="1" checked>
                                     <label class="form-check-label" for="WithoutinlineRadio1">Active</label>
                                 </div>
                                 <div class="form-check form-check-inline form-radio-danger">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="WithoutinlineRadio2" value="option2">
+                                    <input class="form-check-input status" type="radio" name="inlineRadioOptions"
+                                        id="WithoutinlineRadio2" value="0">
                                     <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
                                 </div>
                             </div>
                             <div class="Submit--btn">
-                                <button type="submit" class="btn btn-primary locationSubmit">Submit</button>
+                                <button type="submit" class="btn btn-success locationSubmit">Submit</button>
                             </div>
                         </div>
                     </form>

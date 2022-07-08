@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('UUID')->unique()->nullable();
             $table->string('name');
             $table->string('background_image')->nullable();
-            $table->boolean('featured')->nullable();
+            $table->boolean('featured')->default(0)->nullable();
             $table->integer('country_id')->unsigned()->nullable();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->string('slug');

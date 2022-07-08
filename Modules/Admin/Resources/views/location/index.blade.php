@@ -2,12 +2,16 @@
 
 @push('css')
 <!-- dropzone css -->
-{{-- <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/dropzone/dropzone.css') }}" type="text/css" /> --}}
-{{-- <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" /> --}}
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
 <style>
     .Upload--img .dropzone {
+        min-height: 132px;
+        padding: 13px 17px;
+        border: 2px dashed #e9ebec;
+    }
+
+    .Upload--img .editDropzone {
         min-height: 132px;
         padding: 13px 17px;
         border: 2px dashed #e9ebec;
@@ -25,9 +29,25 @@
         z-index: 111;
     }
 
+    #editGallery  li#dropzone-preview-list {
+        list-style: none;
+    }
+
     #gallery li#dropzone-preview-list {
         list-style: none;
     }
+
+    .gallery-box .gallery-img {
+        object-fit: cover;
+        width: 100%;
+        min-height: 180px;
+        max-height: 180px;
+    }
+
+    .editDropzone .dz-message {
+    text-align: center;
+    margin: 2em 0;
+}
 </style>
 @endpush
 
@@ -50,8 +70,8 @@
                                 </div>
                                 <div class="live-preview ms-4">
                                     <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalgrid"><i class=" ri-add-line align-bottom me-1"></i>
-                                        Location Details
+                                        data-bs-target="#createLocation"><i class=" ri-add-line align-bottom me-1"></i>
+                                        Add Location
                                     </button>
                                 </div>
                             </div>
@@ -60,7 +80,7 @@
                 </div>
                 <div class="card-body border border-end-0 border-start-0 border-bottom-0">
                     <div class="gallery-light">
-                        <div class="row">
+                        <div class="row city_list">
                         @include('admin::location.locationList')
                         </div>
                         <!--end row-->
@@ -88,9 +108,6 @@
 
 @push('scripts')
     <!-- dropzone min -->
-    {{-- <script src="{{ asset('assets/Admin/assets/libs/dropzone/dropzone-min.js') }}"></script> --}}
-    {{-- <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script> --}}
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    {{-- <script src="{{ asset('assets/Admin/assets/js/pages/form-file-upload.init.js') }}"></script> --}}
     @include('admin::location.scripts')
 @endpush
