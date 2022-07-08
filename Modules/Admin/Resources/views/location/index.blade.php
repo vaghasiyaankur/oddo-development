@@ -4,12 +4,14 @@
 <!-- dropzone css -->
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
-<style>
-    .Upload--img .dropzone {
-        min-height: 132px;
-        padding: 13px 17px;
-        border: 2px dashed #e9ebec;
-    }
+
+    <style>
+        .Upload--img .dropzone {
+            min-height: 132px;
+            padding: 13px 17px;
+            border: 2px dashed #e9ebec;
+        }
+
 
     .Upload--img .editDropzone {
         min-height: 132px;
@@ -50,29 +52,30 @@
 }
 </style>
 @endpush
-
 @section('content')
-<div class="page-content">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card" id="orderList">
-                <div class="card-header  border-0">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-sm-4">
-                            <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Location</h5>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="d-flex align-items-center justify-content-evenly">
-                                <div class="search-box w-100">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for Location, Country , status or something...">
-                                    <i class="ri-search-line search-icon"></i>
-                                </div>
-                                <div class="live-preview ms-4">
-                                    <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                        data-bs-target="#createLocation"><i class=" ri-add-line align-bottom me-1"></i>
-                                        Add Location
-                                    </button>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" id="orderList">
+                    <div class="card-header  border-0">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-sm-4">
+                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Location</h5>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="d-flex align-items-center justify-content-evenly">
+                                    <div class="search-box w-100">
+                                        <input type="text" class="form-control search"
+                                            placeholder="Search for Location, Country , status or something...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                    <div class="live-preview ms-4">
+                                        <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModalgrid"><i
+                                                class=" ri-add-line align-bottom me-1"></i>
+                                            Location Details
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -81,28 +84,26 @@
                 <div class="card-body border border-end-0 border-start-0 border-bottom-0">
                     <div class="gallery-light">
                         <div class="row city_list">
-                        @include('admin::location.locationList')
+                            @include('admin::location.locationList')
                         </div>
-                        <!--end row-->
                     </div>
                 </div>
             </div>
+            <!--end col-->
         </div>
-        <!--end col-->
     </div>
-</div>
 
 
 
-<!-- End Page-content -->
+    <!-- End Page-content -->
 
-<!--facility create Modal start -->
-@include('admin::location.create')
-<!--facility create Modal end -->
+    <!--facility create Modal start -->
+    @include('admin::location.create')
+    <!--facility create Modal end -->
 
-<!--facility edit Modal start -->
-@include('admin::location.edit')
-<!--facility edit Modal end -->
+    <!--facility edit Modal start -->
+    @include('admin::location.edit')
+    <!--facility edit Modal end -->
 @endsection
 
 
