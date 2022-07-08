@@ -1,29 +1,95 @@
-/* .nav-item::before{
-    content: "";
-    position: absolute;
-    display: block;
-    width: 0;
-    height: 3px;
-    background: #0ab39c !important;
-    border-radius: 5px;
-    transition: all 0.5s ease-in-out;
-    top: 47px;
-  }
-  .nav-item:hover::before {
-    width: 100%;
-    color: #0ab39c !important;
-  } */
-
-  .navbar-nav .active{
+.navbar-nav .active {
     color: #0ab39c !important;
     border-bottom: 3px solid #0ab39c;
-  } 
-  .edit-data-box .edit-box .dropdown .dropdown-item:focus,
-  .edit-data-box .edit-box .dropdown .dropdown-item:hover{
-   border-radius: 8px;
-   }
+}
+.edit-data-box .edit-box .dropdown .dropdown-item:focus,
+.edit-data-box .edit-box .dropdown .dropdown-item:hover {
+    border-radius: 8px;
+}
 
-  .page-item.active .page-link{
+.page-item.active .page-link {
     background-color: #0ab39c !important;
     border-color: #0ab39c !important;
-  }
+}
+
+/* ADMIN-LOCATION PAGE LOADING ANIMATION CSS START */
+
+/* animation loading */
+
+@keyframes moving-gradient {
+    0% {
+        background-position: -250px 0;
+    }
+
+    100% {
+        background-position: 250px 0;
+    }
+}
+
+.gallery-light span {
+    display: block;
+}
+
+.gallery-light .td-1 {
+    width: 100%;
+}
+
+.gallery-light .td-1 span {
+    background-color: rgba(0, 0, 0, 0.15);
+    min-height: 180px;
+    background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
+    background-size: 500px 100px;
+    animation-name: moving-gradient;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.gallery-light .td-3 {
+    width: 129px;
+}
+
+.gallery-light .td-3 span {
+    height: 16px;
+    background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
+    background-size: 500px 100px;
+    animation-name: moving-gradient;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@media screen and (min-width: 2200px) {
+    .gallery-light .td-1 span {
+        min-height: 230px;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+    .gallery-light .td-1 span {
+        min-height: 105px;
+    }
+    .gallery-light .td-3 {
+        width: 82px;
+    }
+}
+@media screen and (min-width: 800px) and (max-width: 992px) {
+    .gallery-light .td-1 span {
+        min-height: 233px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .gallery-light .td-1 span {
+        min-height: 180px;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 650px) {
+    .gallery-light .td-3 {
+        width: 105px;
+    }
+}
+
+
+/* ADMIN-LOCATION PAGE LOADING ANIMATION CSS END  */
