@@ -47,7 +47,8 @@
 }
 
 .gallery-light .td-3 {
-    width: 129px;
+    /* width: 129px; */
+    width: 100px;
 }
 
 .gallery-light .td-3 span {

@@ -86,7 +86,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        return view('admin::edit');
+        // $city = City::where('UUID',$id)->first();
+        // $countries = Country::get();
+        // return view('admin::location.edit', compact('city', 'countries'));
     }
 
     /**
@@ -97,7 +99,40 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->toarray());
+        $validated   = $request->validate([
+            'name'  => 'required|unique:cities,name,'.$id.',UUID',
+            'image' => 'required',
+            'file' => 'required_if:image,==,1'
+        ], [ 
+            'name.unique' => 'This city already exists.',
+            'file.required_if' => 'This image field required',
+        ]);
+        $city = City::where('UUID',$id)->first();
+        $imageName = $city->background_image;
+        if($request->file){
+            $image_64 = $request->file;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+            $image = str_replace($replace, '', $image_64);     
+            $image = str_replace(' ', '+', $image); 
+            $imageName = 'city/Img_'.Str::random(10).'.'.$extension;
+            $img =base64_decode($image);
+            Storage::disk('public')->put($imageName, base64_decode($image));
+
+            $image_path = public_path('storage/'.$city->background_image);
+            if (File::exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+
+        $city->name = $request->name;
+        $city->country_id = $request->country;
+        $city->status = $request->status;
+        $city->background_image = $imageName;
+        $city->update();
+
+        return response()->json(["success" => "city updated Successfully"], 200);
     }
 
     /**

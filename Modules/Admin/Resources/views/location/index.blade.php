@@ -46,9 +46,15 @@
     }
 
     .editDropzone .dz-message {
-    text-align: center;
-    margin: 2em 0;
-}
+        text-align: center;
+        margin: 2em 0;
+    }
+    .imageSet {
+        object-fit: cover;
+        width: 100%;
+        min-height: 50px;
+        max-height: 50px;
+    }
 </style>
 @endpush
 @section('content')
@@ -101,9 +107,9 @@
     @include('admin::location.create')
     <!--location create Modal end -->
 
-    {{-- <!--location edit Modal start -->
+    <!--location edit Modal start -->
     @include('admin::location.edit')
-    <!--location edit Modal end --> --}}
+    <!--location edit Modal end -->
 @endsection
 
 

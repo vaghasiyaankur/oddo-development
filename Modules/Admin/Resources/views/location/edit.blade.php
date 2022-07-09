@@ -9,6 +9,7 @@
             </div>
             <div class="modal-body">
                 <form class="locationForm" method="post" action="javascript:void(0)">
+                    <input type="hidden" style="display: none;" class="edit_id" value="0">
                     <div class="mb-3">
                         <label for="autoCompleteCars" class="">Enter City </label>
                         <div class="location-box">
@@ -42,16 +43,40 @@
                                         </div> 
                                 </div> 
                             </div>
-                            <span class="text-danger" id="image-error"></span>
+                            <span class="text-danger" id="Editimage-error"></span>
                             
                             <div id="editGallery">
-                                <ul class="mb-0" id="edit-dropzone-preview"  style="">
+                                <ul class="mb-0" id="edit-dropzone-preview"  style="display:none">
+                                    <li class="mt-2 list-unstyled" id="dropzone-preview-list " style=" list-style:none !important; ">
+                                        <!-- This is used as the file preview template -->
+                                        <div class="border rounded">
+                                            <div class="d-flex p-2 align-items-center">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar-sm bg-light rounded">
+                                                        <img data-dz-thumbnail class="img-fluid rounded d-block"
+                                                            src="#" alt="Dropzone-Image" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="pt-1">
+                                                        <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
+                                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                        <strong class="error text-danger" data-dz-errormessage></strong>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-3">
+                                                    <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <!-- end dropzon-preview -->
                             </div>
+                            <div id="imagePreview"></div>
                         </div>
                     </div>
-                    {{-- <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center">
                         <div class="active-deactive-input">
                             <div class="form-check form-check-inline form-radio-success me-1">
                                 <input class="form-check-input editStatus status_active" type="radio" name="inlineRadioOptions"
@@ -63,9 +88,9 @@
                                     id="WithoutinlineRadio2" value="0">
                                 <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="Submit--btn">
-                            <button type="submit" class="btn btn-success locationSubmit">Submit</button>
+                            <button type="submit" class="btn btn-success updateLocation">Update</button>
                         </div>
                     </div>
                 </form>

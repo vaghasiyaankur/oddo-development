@@ -68,5 +68,10 @@ Route::prefix('admin')->group(function() {
         Route::post('/add-location', 'store')->name('add.location'); 
         Route::post('/featured-location', 'featuredLocation')->name('featured.location');
         Route::post('/delete-location/{id}', 'destroy')->name('delete.location');
+        Route::get('location/edit-location/{id}', 'edit')->name('edit.location');
+        Route::post('/update-location/{id}', 'update')->name('update.location');
+        
     });
+
+
 });

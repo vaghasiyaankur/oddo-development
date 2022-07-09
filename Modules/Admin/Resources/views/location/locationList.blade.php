@@ -10,8 +10,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end p-0" style="border-radius:8px;min-width: 4rem;">
                     <li>
-                        <a class="dropdown-item location-Edit" style="padding: 0.35rem 0.75rem;" href="javascript:;"
-                            data-bs-toggle="modal" data-bs-target="#createLocation" data-value="{{$city}}">
+                        <a class="dropdown-item location-Edit" style="padding: 0.35rem 0.75rem;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#editLocation" data-value="{{$city}}">
                             <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                             Edit</a>
                     </li>
@@ -136,4 +135,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>  
