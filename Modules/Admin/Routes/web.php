@@ -68,10 +68,21 @@ Route::prefix('admin')->group(function() {
         Route::post('/add-location', 'store')->name('add.location'); 
         Route::post('/featured-location', 'featuredLocation')->name('featured.location');
         Route::post('/delete-location/{id}', 'destroy')->name('delete.location');
-        Route::get('location/edit-location/{id}', 'edit')->name('edit.location');
         Route::post('/update-location/{id}', 'update')->name('update.location');
-        
     });
 
+    
+    Route::controller(BathroomItemController::class)->group(function(){
+        Route::get('/bathroom', 'index')->name('bathroomitem.index');
+        Route::get('/bathroom-list', 'bathroomList')->name('bathroom.list');
+        Route::post('/add-bathroom', 'store')->name('add.bathroom');
+        Route::post('/update-bathroom/{id}', 'update')->name('update.bathroom');
+        Route::post('/status-bathroom', 'statusBathRoom')->name('status.bathroom');
+        Route::post('/delete-bathroom/{id}', 'destroy')->name('delete.bathroom');
+    });
+
+    // Route::controller(BedtypesController::class)->group(function(){
+
+    // });
 
 });

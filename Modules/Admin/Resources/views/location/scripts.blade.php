@@ -146,6 +146,7 @@
             }); 
         });
 
+        // edit location
         $(document).on('click', '.location-Edit', function(){
             
             // myNewdDropzone.removeAllFiles(true);
@@ -190,13 +191,14 @@
                                         </div>  
                                     </li>`);
         });
-
+        
+        // delete Image
         $(document).on('click', '.deleteImage', function(){
             $('.deleteValue').val(1);
             $('#imagePreview').hide();
         });
 
-
+        // update location
         $(document).on('click', '.updateLocation', function(){
             let id = $('.edit_id').val();
             let cityName = $('.EditcityName').val();

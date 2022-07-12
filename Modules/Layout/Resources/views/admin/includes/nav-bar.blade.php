@@ -64,6 +64,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link menu-link" href="{{ url('admin/bathroom') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Bathroom Item</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu-link" href="landing.html">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Reports</span>
                 </a>

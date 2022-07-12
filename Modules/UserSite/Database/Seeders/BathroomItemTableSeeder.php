@@ -31,8 +31,7 @@ class BathroomItemTableSeeder extends Seeder
         foreach ($items as $key => $item) {
             BathroomItem::create([
                 'item' => $item,
-                'icon' => 'bathroomItem/item_'.$key.'.png',
-                'slug' => \Str::slug($item),
+                'icon' => 'bi-search',
                 'status' => '1',
             ]);
         }
