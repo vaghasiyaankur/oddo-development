@@ -21,6 +21,9 @@ $(document).ready(function(){
             return;
         }
 
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
         formdata = new FormData();
         formdata.append('roomName', roomName);
         formdata.append('roomType', roomType);
@@ -60,6 +63,9 @@ $(document).ready(function(){
         let edtiRoomType = $('#edtiRoomType').val();
         let id = $('.edit_id').val();
 
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
         if (!editRoomName) {
             return;
         }
@@ -88,7 +94,10 @@ $(document).ready(function(){
     // delete RoomType
     $(document).on('click', '.delete-room', function(){
         let id = $(this).data('value');
-        console.log(id);
+
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+        
         formdata = new FormData();
         formdata.append('id', id);
         $.ajax({
@@ -138,6 +147,10 @@ $(document).ready(function(){
             type: "GET",
             dataType: "HTML",
             success: function (response) {
+                setTimeout(function() {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
+                },  1500);
                 $(".roomTypeTable").html(response);
             }
         });

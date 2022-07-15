@@ -2,7 +2,7 @@
 @foreach ($cities as $city)
 <div class="col-xl-2 col-lg-4 col-sm-6">
     <div class="gallery-box edit-data-box card">
-        <div class="edit-box">
+        <div class="edit-box loadingHide">
             <div class="dropdown">
                 <button  class="btn btn-white bg-success btn-sm dropdown position-absolute translate-middle rounded-pill"
                     style="right:-8px;top: 42px;z-index:111;" type="button" data-bs-toggle="dropdown"

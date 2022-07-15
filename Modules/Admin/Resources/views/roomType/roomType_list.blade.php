@@ -7,21 +7,39 @@
             <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody class="tbody">
+    <tbody class="tbody table__body">
         @if(count($roomTypes))
             @foreach ($roomTypes as $key => $roomtype)    
             <tr class="tr_{{$roomtype->id}}">
-                <th scope="row"><a href="#" class="fw-medium">{{$key+1}}</a></th>
-                <td>{{$roomtype->room_type}}</td>
+                <th scope="row">
+                    <div class="loadingShow td-2">
+                        <span></span>
+                    </div>
+                    <div class="loadingHide">{{$key+1}}</div>
+                </th>
                 <td>
-                    <div class="form-check form-switch">
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="loadingHide">{{$roomtype->room_type}}</div>
+                </td>
+                <td>
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="form-check form-switch loadingHide">
                         <input class="form-check-input roomTypeStatus" data-value="{{$roomtype}}" type="checkbox" role="switch"
                             id="SwitchCheck1" {{ $roomtype->status == 1 ? 'checked': ''}} >
                     </div>
                 </td>
                 <td>
-                    <a href="javascript:void(0);" class="link-success fs-17 pe-3 edit-roomType" data-value="{{$roomtype}}"><i class="ri-edit-2-line"></i></a>
-                    <a href="javascript:void(0);" class="link-danger fs-17 delete-roomType" data-value="{{$roomtype->id}}"><i class="ri-delete-bin-line"></i></a>
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="loadingHide">
+                        <a href="javascript:void(0);" class="link-success fs-17 pe-3 edit-roomType" data-value="{{$roomtype}}"><i class="ri-edit-2-line"></i></a>
+                        <a href="javascript:void(0);" class="link-danger fs-17 delete-roomType" data-value="{{$roomtype->id}}"><i class="ri-delete-bin-line"></i></a>
+                    </div>
                 </td>
             </tr>
             @endforeach

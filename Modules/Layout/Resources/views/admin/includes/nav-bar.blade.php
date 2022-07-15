@@ -10,19 +10,19 @@
             </li> <!-- end Dashboard Menu -->
             
             <li class="nav-item">
-                <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenity.category']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
+                <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenityCategory.index']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="sidebarApps">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity</span>
                 </a>
                 <div class="collapse menu-dropdown" id="sidebarApps">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link menu-link " href="{{ url('admin/amenity') }}">
+                            <a class="nav-link menu-link " href="{{ route('amenity.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('amenity.category') }}">
+                            <a class="nav-link menu-link" href="{{ route('amenityCategory.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity category</span>
                             </a>
                         </li>
@@ -30,7 +30,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse"
+                <a class="nav-link menu-link {{ Request::routeIs(['roomType.index', 'room.index']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="sidebarApps">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room</span>
                 </a>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link " href="{{ route('room.index') }}">
+                            <a class="nav-link menu-link" href="{{ route('room.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room</span>
                             </a>
                         </li>
@@ -50,12 +50,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="{{ url('admin/location') }}">
+                <a class="nav-link menu-link {{ Request::routeIs('location.index') ? 'active' : '' }}" href="{{ route('location.index') }}">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Location</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link {{ Request::routeIs('facilities.index') ? 'active' : '' }}" href="{{ url('admin/facilities') }}"><i class="ri-layout-3-line"></i>Facilities</span>
+                <a class="nav-link menu-link {{ Request::routeIs('facilities.index') ? 'active' : '' }}" href="{{ route('facilities.index') }}"><i class="ri-layout-3-line"></i>Facilities</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -64,8 +64,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="{{ url('admin/bathroom') }}">
+                <a class="nav-link menu-link {{ Request::routeIs('bathroomitem.index') ? 'active' : '' }}" href="{{ route('bathroomitem.index') }}">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Bathroom Item</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link menu-link {{ Request::routeIs('bed.index') ? 'active' : '' }}" href="{{ route('bed.index') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Bed</span>
                 </a>
             </li>
             <li class="nav-item">

@@ -18,6 +18,10 @@
             if (!roomtype) {
                 return;
             }
+
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+
             formdata = new FormData();
             formdata.append('roomtype', roomtype);
 
@@ -32,6 +36,10 @@
                     roomTypeList();
                     toastMixin.fire({ title: response.success, icon: 'success' });
                 }, error:function (response) {
+                    setTimeout(function() {
+                        $('.loadingShow span').css('display', 'none');
+                        $('.loadingHide').removeClass('d-none');
+                    },  100);
                     $('#roomType-error').text(response.responseJSON.errors.roomtype);
                 }
             }); 
@@ -52,7 +60,8 @@
             let roomtype = $('.edit-roomType').val();
             !roomtype ? $(`#edit-roomType-error`).html(`The room type field is required.`) : $(`#edit-roomType-error`).html(``);
 
-            
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
 
             formdata = new FormData();
             formdata.append('id', id);
@@ -70,6 +79,10 @@
                     $('.create_div').show();
                     roomTypeList();
                 }, error:function (response) {
+                    setTimeout(function() {
+                        $('.loadingShow span').css('display', 'none');
+                        $('.loadingHide').removeClass('d-none');
+                    },  100);
                     $('#edit-roomType-error').text(response.responseJSON.errors.roomtype);
                 }
             });
@@ -101,6 +114,10 @@
         // delete roomType
         $(document).on('click', '.delete-roomType', function(){
             let id = $(this).data('value');
+
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+            
         
             formdata = new FormData();
             formdata.append('id', id);
@@ -128,6 +145,10 @@
                 type: "GET",
                 dataType: "HTML",
                 success: function (response) {
+                    setTimeout(function() {
+                        $('.loadingShow span').css('display', 'none');
+                        $('.loadingHide').removeClass('d-none');
+                    },  1500);
                     $(".roomTypeTable").html(response);
                 }
             });

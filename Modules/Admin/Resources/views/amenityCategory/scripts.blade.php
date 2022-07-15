@@ -60,6 +60,9 @@
         let category = $('.category').val();
         !category ? $(`#editAmenityCategory-error`).html(`The Amenitycategory field is required.`) : $(`#editAmenityCategory-error  `).html(``);
 
+        if (!category) {
+            return;
+        }
         
         formdata = new FormData();
         formdata.append('id', id);
@@ -116,6 +119,9 @@
     $(document).on("click", ".delete-amenityCategory", function () {
         let id = $(this).data('value');
         
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+        
         formdata = new FormData();
         formdata.append('id', id);
         $.ajax({
@@ -138,6 +144,10 @@
             type: "GET",
             dataType: "HTML",
             success: function (response) {
+                setTimeout(function() {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
+                },  1500);
                 $(".amenityCategoryTable").html(response);
             }
         });

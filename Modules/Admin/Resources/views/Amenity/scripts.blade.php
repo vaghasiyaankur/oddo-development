@@ -69,6 +69,9 @@
             
             var status = $('input[name="status"]:checked').val();
 
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+
             if (!amenityName || !amenityIcon) {
                 return;
             }
