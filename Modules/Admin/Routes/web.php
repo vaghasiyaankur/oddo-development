@@ -97,4 +97,13 @@ Route::prefix('admin')->group(function() {
         Route::post('/update-bed/{id}', 'update')->name('update.bedtype');
     });
 
+    // foodType
+    Route::controller(FoodTyeController::class)->group(function(){
+        Route::get('/food', 'index')->name('food.index');
+        Route::get('/food-list', 'foodList')->name('food.list');
+        Route::post('/add-food', 'store')->name('add.food');
+        Route::post('/status-food', 'statusFood')->name('status.food'); 
+        Route::post('/delete-food/{id}', 'destroy')->name('delete.food');
+        Route::post('/update-food/{id}', 'update')->name('update.food');
+    });
 });

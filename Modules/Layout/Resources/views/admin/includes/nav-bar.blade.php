@@ -55,12 +55,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link {{ Request::routeIs('facilities.index') ? 'active' : '' }}" href="{{ route('facilities.index') }}"><i class="ri-layout-3-line"></i>Facilities</span>
+                <a class="nav-link menu-link {{ Request::routeIs('facilities.index') ? 'active' : '' }}" href="{{ route('facilities.index') }}"><i class="ri-apps-2-line"></i>Facilities</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link {{ Request::routeIs('property') ? 'active' : '' }}" href="{{ url('admin/property') }}">
-                    <i class="ri-rocket-line"></i> <span data-key="t-landing">Properties</span>
+                <a class="nav-link menu-link {{ Request::routeIs('food.index') ? 'active' : '' }}" href="{{ route('food.index') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-landing">Food</span>
                 </a>
             </li>
             <li class="nav-item">

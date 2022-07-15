@@ -89,12 +89,16 @@
                 contentType: false,
                 data: formdata,
                 success: function (response) {
-                    toastMixin.fire({ title: response.success, icon: 'success' });
                     $(".modal").modal("hide");
                     $(".amenityForm").trigger("reset");
+                    toastMixin.fire({ title: response.success, icon: 'success' });
                     $('#amenityName-error').text();
                     amenityList();
                 }, error:function (response) {
+                    setTimeout(function() {
+                        $('.loadingShow span').css('display', 'none');
+                        $('.loadingHide').removeClass('d-none');
+                    },  1500);
                     $('#amenityName-error').text(response.responseJSON.errors.amenityName);
                 }
             }); 
@@ -133,6 +137,9 @@
             if (!amenityName || !amenityIcon) {
                 return;
             }
+
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
 
             formdata = new FormData();
             formdata.append('id', id);
@@ -182,9 +189,13 @@
 
         $(document).on('click', '.amenityDelete', function(){
             let id = $(this).data('value');
-            console.log(id);
+            
             formdata = new FormData();
             formdata.append('id', id);
+
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+
             $.ajax({
                 url: baseUrl + "/admin/delete-amenity/" + id,
                 type: "POST",
@@ -204,6 +215,10 @@
                 type: "GET",
                 dataType: "HTML",
                 success: function (response) {
+                    setTimeout(function() {
+                        $('.loadingShow span').css('display', 'none');
+                        $('.loadingHide').removeClass('d-none');
+                    },  1500);
                     $(".amenity-list").html(response);
                 }
             });

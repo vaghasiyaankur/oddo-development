@@ -24,8 +24,8 @@
             </button>
 
             <!-- Back Button Pos Link-->
-            <div class="navbar-header-links">
-                <button type="button" class="btn btn-success px-5" onclick="javascript:window.history.back();"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            <div class="navbar-header-links fs-4">
+                <button type="button" class="btn btn-success px-4 fs-5" onclick="javascript:window.history.back();"><i class="fa fa-angle-double-left me-2" aria-hidden="true"></i>
                      Back</button>
             </div>
         </div>

@@ -81,18 +81,17 @@ Amenity
             }
         }
 
-         span {
-            display: block;
+        .amenity-list span {
+            display: none;
         }
 
-         .td-2 {
-            width: 40px;
+        .amenity-list .load-1 {
+            width: 50%;
         }
 
-         .td-2 span {
+        .amenity-list .load-1 span {
             background-color: rgba(0, 0, 0, 0.15);
-            width: 40px;
-            height: 21px;
+            min-height: 20px;
             background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
             background-size: 500px 100px;
             animation-name: moving-gradient;
@@ -102,12 +101,31 @@ Amenity
             animation-fill-mode: forwards;
         }
 
-         .td-3 {
-            max-width: 400px;
+        .amenity-list .load-2 {
+            width: 50%;
         }
 
-         .td-3 span {
-            height: 16px;
+        .amenity-list .load-2 span {
+            background-color: rgba(0, 0, 0, 0.15);
+            min-height: 11px;
+            background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
+            background-size: 500px 100px;
+            animation-name: moving-gradient;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        .amenity-list .load-3 {
+            / width: 129px; /
+            width: 57px;
+        }
+
+        .amenity-list .load-3 span {
+            height: 47px;
+            width: 52px;
+            border-radius: 50%;
             background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
             background-size: 500px 100px;
             animation-name: moving-gradient;
