@@ -21,6 +21,7 @@ use Modules\UserSite\Database\Seeders\HotelTableSeeder;
 use Modules\UserSite\Database\Seeders\HotelContactTableSeeder;
 use Modules\UserSite\Database\Seeders\HotelRoomTableSeeder;
 use Modules\UserSite\Database\Seeders\HotelPhotoTableSeeder;
+use Database\Seeders\UserTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            UserTableSeeder::class,
             CountryTableSeeder::class,
             CityTableSeeder::class,
             PartnerTableSeeder::class,

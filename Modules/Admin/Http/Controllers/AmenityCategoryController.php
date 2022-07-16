@@ -10,6 +10,11 @@ use Modules\UserActivityLog\Traits\LogActivity;
 
 class AmenityCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function amenityCategory()
     {   
         try {

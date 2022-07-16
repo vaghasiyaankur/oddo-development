@@ -79,7 +79,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="landing.html">
+                <a class="nav-link menu-link" href="{{ route('admin.logout') }}">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Logout</span>
                 </a>
             </li>
