@@ -10,29 +10,62 @@
             <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table__body">
         @if(count($facilities))
             @foreach ($facilities as $key => $facility)
                 <tr>
-                    <th scope="row"><a href="#" class="fw-medium">{{$key+1}}</a></th>
-                    <td>{{$facility->facilities_name}}</td>
-                    <td><i class=" {{$facility->icon}} fs-4"></i></td>
-                    <td>{{$facility->color}}</td>
+                    <th scope="row">
+                        <div class="loadingShow td-2">
+                            <span></span>
+                        </div>
+                        <div class="loadingHide">{{$key+1}}</div>
+                    </th>
                     <td>
-                        <button tabindex="0" class="btn btn-soft-success waves-effect waves-light" data-bs-toggle="popover"
-                            data-bs-trigger="focus" title=""
-                            data-bs-content="{{ strip_tags($facility->description) }}"
-                            data-bs-original-title="">View Description</button>
+                        <div class="loadingShow td-3">
+                            <span></span>
+                        </div>
+                        <div class="loadingHide">{{$facility->facilities_name}}</div>
                     </td>
                     <td>
-                        <div class="form-check form-switch">
+                        <div class="loadingShow td-3">
+                            <span></span>
+                        </div>
+                        <div class="loadingHide"><i class=" {{$facility->icon}} fs-4"></i></div>
+                    </td>
+                    <td>
+                        <div class="loadingShow td-3">
+                            <span></span>
+                        </div>
+                        <div class="loadingHide">{{$facility->color}}</div>
+                    </td>
+                    <td>
+                        <div class="loadingShow td-3">
+                            <span></span>
+                        </div>
+                        <div class="loadingHide">
+                            <button tabindex="0" class="btn btn-soft-success waves-effect waves-light" data-bs-toggle="popover"
+                                data-bs-trigger="focus" title=""
+                                data-bs-content="{{ strip_tags($facility->description) }}"
+                                data-bs-original-title="">View Description</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="loadingShow td-3">
+                            <span></span>
+                        </div>
+                        <div class="form-check form-switch loadingHide">
                             <input class="form-check-input status" type="checkbox" role="switch" id="SwitchCheck1" {{ $facility->status == 1 ? 'checked': ''}} data-value="{{ $facility }}">
                         </div>
                     </td>
                     <td>
-                        <a href="javascript:void(0);" class="link-success fs-17 pe-3 editFacility" data-bs-toggle="modal"
-                            data-bs-target="#exampleModalgrid" data-value="{{ $facility }}"><i class="ri-edit-2-line"></i></a>
-                        <a href="javascript:void(0);" class="link-danger fs-17 deleteFacility" data-value="{{$facility->id}}"><i class="ri-delete-bin-line"></i></a>
+                        <div class="loadingShow td-3">
+                            <span></span>
+                        </div>
+                        <div class="loadingHide">
+                            <a href="javascript:void(0);" class="link-success fs-17 pe-3 editFacility" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalgrid" data-value="{{ $facility }}"><i class="ri-edit-2-line"></i></a>
+                            <a href="javascript:void(0);" class="link-danger fs-17 deleteFacility" data-value="{{$facility->id}}"><i class="ri-delete-bin-line"></i></a>
+                        </div>
                     </td>
                 </tr>
             @endforeach

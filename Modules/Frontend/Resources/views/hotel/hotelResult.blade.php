@@ -659,7 +659,7 @@
                                 <div class="right-menu mb-2">
                                   <div class="right-menu-icon d-flex pb-1">
                                     <div class="right-menu-icon-inner">
-                                      <img src="{{ asset('storage/'.@$facilities->icon) }}">
+                                      <i class="{{ @$facilities->icon }}"></i>
                                     </div>
                                     <div class="right-menu-text"><a href="javascript:;" class="para-d-l-p">{{@$facilities->facilities_name}}</a>
                                     </div>

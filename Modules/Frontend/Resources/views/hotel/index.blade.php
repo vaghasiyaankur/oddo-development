@@ -204,11 +204,11 @@ hotel
                         </div>
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
                             <label>Room</label>
-                                <select class="form-control  select_room" name="room">
-                                    <option selected="selected">1</option>
-                                    <option>2</option>
-                                    <option>3</option>                                
-                                </select>                                                            
+                            <select class="form-control js-example-tags select_guest" name="guest">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>                                
+                            </select>                                                           
                         </div>
                          
                        
@@ -280,7 +280,7 @@ hotel
 </section>
 <!-------Hotel Result Check-in-out section end ------->
 <!-------  Map Section star-------->
-<section class="hotel-result g-map-main">
+{{-- <section class="hotel-result g-map-main">
     <div class="container ">
         <div class="g-map-inner position-relative">
             <div class="g-map overflow-hidden">
@@ -290,7 +290,7 @@ hotel
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!------- Map Section end-------->
 <!-------Weather Section Start ---------->
 <section class="weather-main check-in-out pb-0 pt-3">
@@ -383,10 +383,10 @@ hotel
                                     <i class="fa-solid fa-magnifying-glass ps-2"></i>
                                     <input type="text" class="form-control" placeholder="Search by name">
                                 </div>
-                                <div class="input-group align-items-center search-input mt-2">
+                                {{-- <div class="input-group align-items-center search-input mt-2">
                                     <i class="fa-solid fa-magnifying-glass ps-2"></i>
                                     <input type="text" class="form-control" placeholder="Search by proximity">
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="hotels-result-sort pt-4">
                                 <h5 class="search-heading ">Sort By</h5>
@@ -714,11 +714,11 @@ hotel
                                         Guess Review
                                     </label>
                                 </div>
-                                <div class="custom-filter mb-lg-0 mb-4">
+                                {{-- <div class="custom-filter mb-lg-0 mb-4">
                                     <a href="#"><img src="{{asset('assets/images/icons/h-s-pluse.png')}}" alt=""></a>
                                     <span class="custom-filter-text ps-2 purple"> Add Custom Filter</span>
                                     </label>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="hotels-filter result-mobile-view">
                                 <div class="hotels-result-top-filter pt-4">
