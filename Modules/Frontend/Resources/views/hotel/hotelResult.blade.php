@@ -46,7 +46,7 @@
                             <a href="{{ route('hotel.detail', @$hotel->slug) }}"><h2 class="middle-content-heading pt-4 mb-1">{{$hotel->property_name}}</h2></a>
                             <div class="middle-content-location">
                               <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
-                                  class="loaction-text">{{@$hotel->city->name}}, {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}</span></p>
+                                  class="loaction-text">{{@$hotel->city->name }}{{@$hotel->country_id ? ', '.$hotel->country->country_name : ''}}</span></p>
                               <p class="loaction-text mb-3">{{ @$hotel->street_addess }}, {{ @$hotel->pos_code }}</p>
                             </div>
                             <div class="middle-content-review">
@@ -432,196 +432,84 @@
                                 </div>
                                 <!-------- Price comparision popup end -------->
                               </div>
-                              <div class="middle-content-box-inner me-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#locationPopup"><img
-                                    src="assets/images/icons/search-h-loaction.png"></a>
-                                <!-------- Location popup start -------->
-                                <div class="modal fade location-popup-main" id="locationPopup" data-bs-backdrop="static"
-                                  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                  aria-hidden="true">
-                                  <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                                    <div class="modal-content">
-                                      <div class="modal-header justify-content-end">
-                                        <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                          aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                      </div>
-                                      <div class="modal-body py-sm-5">
-                                        <div class="location-popup overflow-hidden">
-                                          <div class="location-popup-inner">
-                                            <div class="location-popup-locat position-relative">
-                                              <div class="loaction-popup-gmap">
-                                                <iframe
-                                                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788790.9018211137!2d-3.794533563867567!3d39.44188449494803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1651900367722!5m2!1sen!2sin"
-                                                  width="1030" height="381" style="border:0;" allowfullscreen=""
-                                                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                              </div>
-                                              <div class="location-popup-hilton">
-                                                <img src="assets/images/icons/location-popup-L.png" alt="">
-                                              </div>
-                                              <div class="loaction-dist-radius">
-                                                <div class="dist-radius-innner">
-                                                  <div class="dist-radius-content">
-                                                    <h5 class="mt-4 text-center">Distance Radius</h5>
-                                                    <div class="dist-radius-total">
-                                                      <p class="m-0">1.5</p>
-                                                    </div>
-                                                    <div class="dist-radius-mile-text text-center">
-                                                      <p>Miles</p>
-                                                    </div>
-                                                    <div class="dist-radius-rang pe-3 ps-3">
-                                                      <input type="range" class="form-range" id="customRange1">
-                                                    </div>
-                                                    <div class="dist-radius-mile d-flex justify-content-between">
-                                                      <span>0.5mi</span><span>5mi</span>
+                              <a href="#" data-bs-toggle="modal" data-bs-target="#facilities_{{$key}}">
+                                <div class="middle-content-box-inner me-2">
+                                  <img
+                                      src="assets/images/icons/search-h-loaction.png">
+                                </div>
+                              </a>
+                                  <!-------- Location popup start -------->
+                                  <div class="modal fade location-popup-main" id="facilities_{{$key}}" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                                      <div class="modal-content">
+                                        <div class="modal-header justify-content-end">
+                                          <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                            aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                                        </div>
+                                        <div class="modal-body py-sm-5">
+                                          <div class="location-popup overflow-hidden">
+                                            <div class="location-popup-inner">
+                                              <div class="location-popup-locat position-relative">
+                                                <div class="loaction-popup-gmap">
+                                                  <iframe
+                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788790.9018211137!2d-3.794533563867567!3d39.44188449494803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1651900367722!5m2!1sen!2sin"
+                                                    width="1030" height="381" style="border:0;" allowfullscreen=""
+                                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                </div>
+                                                <div class="location-popup-hilton">
+                                                  <img src="assets/images/icons/location-popup-L.png" alt="">
+                                                </div>
+                                                <div class="loaction-dist-radius">
+                                                  <div class="dist-radius-innner">
+                                                    <div class="dist-radius-content">
+                                                      <h5 class="mt-4 text-center">Distance Radius</h5>
+                                                      <div class="dist-radius-total">
+                                                        <p class="m-0">1.5</p>
+                                                      </div>
+                                                      <div class="dist-radius-mile-text text-center">
+                                                        <p>Miles</p>
+                                                      </div>
+                                                      <div class="dist-radius-rang pe-3 ps-3">
+                                                        <input type="range" class="form-range" id="customRange1">
+                                                      </div>
+                                                      <div class="dist-radius-mile d-flex justify-content-between">
+                                                        <span>0.5mi</span><span>5mi</span>
+                                                      </div>
                                                     </div>
                                                   </div>
                                                 </div>
                                               </div>
-                                            </div>
-                                            <div class="loaction-popup-content-box">
-                                              <div class="loaction-popup-box-main  position-relative">
-                                                <div class="small-box-main d-flex">
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center ms-3 me-2">
-                                                    <div class="small-box-single-img ">
-                                                      <img src="assets/images/icons/location-popup-1.png">
+                                              <div class="loaction-popup-content-box">
+                                                <div class="loaction-popup-box-main  position-relative">
+                                                  <div class="small-box-main d-flex">
+                                                    @foreach ($hotel->facilities() as $facilities)      
+                                                    <div
+                                                      class="small-box-wrapper d-flex jstify-content-between align-items-center ms-3 me-2" >
+                                                      <div class="small-box-single-img " style="background-color: {{@$facilities->color}} !important;">
+                                                        <i id="img-icon" class="{{ @$facilities->icon }}"></i>
+                                                      </div>
+                                                      <div class="small-box-text ps-2 pe-3">
+                                                        <span>{{@$facilities->facilities_name}}</span>
+                                                      </div>
                                                     </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span>Museums</span>
-                                                    </div>
+                                                    @endforeach
                                                   </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/location-popup-2.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span>Plazas</span>
-                                                    </div>
-                                                  </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/location-popup-3.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span> Parks </span>
-                                                    </div>
-                                                  </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/location-popup-4.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span> Markets </span>
-                                                    </div>
-                                                  </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/locaion-5.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span> Cathedrals </span>
-                                                    </div>
-                                                  </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/location-popup-6.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span> Restaurants </span>
-                                                    </div>
-                                                  </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/location-popup-7.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span> Transportation </span>
-                                                    </div>
-                                                  </div>
-                                                  <div
-                                                    class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                                    <div class="small-box-single-img">
-                                                      <img src="assets/images/icons/location-popup-7.png">
-                                                    </div>
-                                                    <div class="small-box-text ps-2 pe-3">
-                                                      <span> Transportation </span>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                <div class="loaction-popup-card d-flex mb-4">
-                                                  <div class="location-popup-card-single ms-3 mt-4">
-                                                    <div class="card-single-head d-flex align-items-center bg-purple">
-                                                      <div class="card-head-img pe-3"><img
-                                                          src="assets/images/icons/locationpopup-card1.png"></div>
-                                                      <div class="card-head-text">Museums</div>
-                                                    </div>
-                                                    <div class="card-content">
-                                                      <p class="mb-2">Museo del Prado </p>
-                                                      <p class="mb-2">Thyssen-Bornemisza Museum</p>
-                                                      <p class="mb-2">Museo Nacional Centro de Arte </p>
-                                                      <p class="mb-2">Atocha Headquarters (Sabatini and Nouvel buildings)
-                                                      </p>
-                                                      <p class="mb-2">Palacio de Velázquez (Retiro Park) </p>
-                                                      <p class="mb-2">Palacio de Cristal (Retiro Park) </p>
-                                                    </div>
-                                                  </div>
-                                                  <div class="location-popup-card-single mt-4">
-                                                    <div class="card-single-head d-flex align-items-center bg-green">
-                                                      <div class="card-head-img pe-3"><img
-                                                          src="assets/images/icons/locationpopup-card2.png"></div>
-                                                      <div class="card-head-text">Parks</div>
-                                                    </div>
-                                                    <div class="card-content">
-                                                      <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                      <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                      <p class="mb-2">Museum of Geology (UCM)</p>
-                                                      <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                                    </div>
-                                                  </div>
-                                                  <div class="location-popup-card-single mt-4">
-                                                    <div class="card-single-head d-flex align-items-center bg-green-two">
-                                                      <div class="card-head-img pe-3"><img
-                                                          src="assets/images/icons/locationpopup-card3.png"></div>
-                                                      <div class="card-head-text">Markets</div>
-                                                    </div>
-                                                    <div class="card-content">
-                                                      <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                      <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                      <p class="mb-2">Museum of Geology (UCM)</p>
-                                                      <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                                    </div>
-                                                  </div>
-                                                  <div class="location-popup-card-single mt-4">
-                                                    <div class="card-single-head d-flex align-items-center bg-purple-2">
-                                                      <div class="card-head-img pe-3"><img
-                                                          src="assets/images/icons/locationpopup-card4.png"></div>
-                                                      <div class="card-head-text">Beaches</div>
-                                                    </div>
-                                                    <div class="card-content">
-                                                      <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                      <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                      <p class="mb-2">Museum of Geology (UCM)</p>
-                                                      <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                                    </div>
-                                                  </div>
-                                                  <div class="location-popup-card-single mt-4">
-                                                    <div class="card-single-head d-flex align-items-center bg-purple-2">
-                                                      <div class="card-head-img pe-3"><img
-                                                          src="assets/images/icons/locationpopup-card4.png"></div>
-                                                      <div class="card-head-text">Beaches</div>
-                                                    </div>
-                                                    <div class="card-content">
-                                                      <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                      <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                      <p class="mb-2">Museum of Geology (UCM)</p>
-                                                      <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                                    </div>
+                                                  <div class="loaction-popup-card d-flex mb-4">
+                                                    @foreach ($hotel->facilities() as $facilities)    
+                                                      <div class="location-popup-card-single ms-3 mt-4">
+                                                        <div class="card-single-head d-flex align-items-center bg-purple"  style="background-color: {{@$facilities->color}} !important;
+                                                          color: white;">
+                                                          <div class="card-head-img pe-3"><i id="img-icon" class="{{ @$facilities->icon }}"></i></div>
+                                                          <div class="card-head-text">{{@$facilities->facilities_name}}</div>
+                                                        </div>
+                                                        <div class="card-content" style="max-height: 200px;
+                                                        max-width: 240px;">
+                                                          <p class="mb-2">{{$facilities->description}}</p>
+                                                        </div>
+                                                      </div>
+                                                    @endforeach
                                                   </div>
                                                 </div>
                                               </div>
@@ -631,9 +519,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <!-------- Location popup end -------->
-                              </div>
+                                  <!-------- Location popup end -------->
                             </div>
                             <div class="middle-content-bottom">
                               <p class="m-0">12 Nights, {{@$hotel->room->guest_stay_room}} Guests, 2 Rooms, 3 Beds</p>

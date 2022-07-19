@@ -104,8 +104,8 @@
         }
 
         .select2-container--open .select2-dropdown--above {
-            width: 211px !important;
-            height: 200px !important;
+            max-width: 211px !important;
+            max-height: 200px !important;
             border: 1px solid #878996;
             top: 0px !important;
         }
@@ -122,32 +122,7 @@
         .select2-results__option {
             padding-right: 20px;
             vertical-align: middle;
-        }
-
-        .select2-results__option:before {
-            content: "";
-            display: inline-block;
-            position: relative;
-            height: 20px;
-            width: 20px;
-            border: 2px solid #e9e9e9;
-            border-radius: 4px;
-            background-color: #fff;
-            margin-right: 20px;
-            vertical-align: middle;
-        }
-
-        .select2-results__option[aria-selected=true]:before {
-            font-family: fontAwesome;
-            content: "\f00c";
-            color: #fff;
-            background-color: #f77750;
-            border: 0;
-            display: inline-block;
-            padding-left: 3px;
-        }
-
-        
+        }      
     </style>
 @endpush
 
@@ -273,7 +248,7 @@
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
                                 <label>Room</label>
-                                <select class="form-control js-example-tags select_guest" name="guest">
+                                <select class="form-control js-example-tags select_room" name="room">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>                                
@@ -286,53 +261,28 @@
                                         <span style="color: #6A78C7;">king</span>
                                         <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i>
                                     </div>
-                                    <div class="select-option option-none">
+                                    <div class="select-option select-room option-none">
                                         <div class="room">
                                             <div class="title-container">
                                                 <h5 class="title" style="margin:10px;">Room 1</h5>
                                             </div>
                                             <section class="dropdown-container">
                                                 <div class="dropdown-inner">
-                                                    <input type="checkbox">
-                                                    <label for="">1 King</label>
+                                                    <input type="checkbox" id="king_1">
+                                                    <label for="king_1">1 King</label>
                                                 </div>
                                                 <div class="dropdown-inner">
-                                                    <input type="checkbox">
-                                                    <label for="">2 Twin</label>
+                                                    <input type="checkbox" id="twin_1">
+                                                    <label for="twin_1">2 Twin</label>
                                                 </div>
                                                 <div class="dropdown-inner">
-                                                    <input type="checkbox">
-                                                    <label for="">2 Queen</label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="room">
-                                            <div class="title-container">
-                                                <h5 class="title" style="margin:10px;">Room 1</h5>
-                                            </div>
-                                            <section class="dropdown-container">
-                                                <div class="dropdown-inner">
-                                                    <input type="checkbox">
-                                                    <label for="">1 King</label>
-                                                </div>
-                                                <div class="dropdown-inner">
-                                                    <input type="checkbox">
-                                                    <label for="">2 Twin</label>
-                                                </div>
-                                                <div class="dropdown-inner">
-                                                    <input type="checkbox">
-                                                    <label for="">2 Queen</label>
+                                                    <input type="checkbox" id="queen_1">
+                                                    <label for="queen_1">2 Queen</label>
                                                 </div>
                                             </section>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <label>Bed</label>
-                                <select class="select2-icon" name="icon" multiple="multiple">
-                                <option value="fa-bed" data-icon="fa-bed">2</option>
-                                <option value="fa-bed" data-icon="fa-bed">1</option>
-                                <option value="fa-bed" data-icon="fa-bed">3</option>
-                                </select> -->
                             </div>
                             <div class="col-lg-2 mt-4 col-md-3 col-sm-6 col-6 text-lg-center">
                                 <div class="check-in-out-icon">
@@ -391,7 +341,7 @@
         <div class="travel-planning-inner">
             <div class="travel-planning-heading text-center">
                 <h1>A one stop shop for <span class="purple"> travel</span></h1>
-                <p class="pb-sm-5">Travel planning and booking made easy</p>
+                <p class="pb-sm-3">Travel planning and booking made easy</p>
             </div>
             <!------- pagination start -------->
             <div class="pagination-main pt-3">
@@ -711,9 +661,48 @@
     <!-- custom-selector js -->
     <script>
         $(document).ready(function () {
-        $(".select-div").click(function () {
-            $(".select-option").toggleClass("option-none");
-        });
+            $(".select-div").click(function () {
+                $('.select-room').html('');
+                var index = $('.select_room').val();
+                for (var i = 1; i <= index; i++) {
+                    $number = i;
+                    addRoom($number);
+                }
+                $(".select-room").toggleClass("option-none");
+            });
+
+            $(".js-example-tags").select2({
+                tags: true
+            });
+
+            $(document).on("click", function(event){
+                var $trigger = $(".bed-selector");
+                if($trigger !== event.target && !$trigger.has(event.target).length){
+                    $(".select-room").addClass("option-none");
+                }            
+            });
+
+            function addRoom($number){
+                $room = $(`<div class="room"><div class="title-container">
+                                <h5 class="title" style="margin:10px;">Room `+ $number +`</h5>
+                            </div>
+                            <section class="dropdown-container">
+                                <div class="dropdown-inner">
+                                    <input type="checkbox" id="king_`+ $number+`">
+                                    <label for="king_`+ $number+`">1 King</label>
+                                </div>
+                                <div class="dropdown-inner">
+                                    <input type="checkbox" id="twin_`+ $number+`">
+                                    <label for="twin_`+ $number+`">2 Twin</label>
+                                </div>
+                                <div class="dropdown-inner">
+                                    <input type="checkbox" id="queen_`+ $number+`">
+                                    <label for="queen_`+ $number+`">2 Queen</label>
+                                </div>
+                            </section>
+                        </div>`);
+                $('.select-room').append($room);
+            }
         });
     </script>
 @endpush

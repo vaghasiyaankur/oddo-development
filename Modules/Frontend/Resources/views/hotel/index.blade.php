@@ -101,8 +101,8 @@ hotel
     }
 
     .select2-container--open .select2-dropdown--above {
-        width: 211px !important;
-        height: 200px !important;
+        max-width: 211px !important;
+        max-height: 200px !important;
         border: 1px solid #878996;
         top: 0px !important;
     }
@@ -121,28 +121,15 @@ hotel
         vertical-align: middle;
     }
 
-    /* .select2-results__option:before {
-        content: "";
-        display: inline-block;
-        position: relative;
-        height: 20px;
-        width: 20px;
-        border: 2px solid #e9e9e9;
-        border-radius: 4px;
-        background-color: #fff;
-        margin-right: 20px;
-        vertical-align: middle;
+    .modal-body .small-box-main  .small-box-single-img {
+        border-radius: 7px;
+        color: white;
+        margin: 0;
+        height: 35px;
+        width: 35px;
+        text-align: center;
+        padding: 5px;
     }
-
-    .select2-results__option[aria-selected=true]:before {
-        font-family: fontAwesome;
-        content: "\f00c";
-        color: #fff;
-        background-color: #f77750;
-        border: 0;
-        display: inline-block;
-        padding-left: 3px;
-    } */
 </style>
 @endpush
 
@@ -204,7 +191,7 @@ hotel
                         </div>
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
                             <label>Room</label>
-                            <select class="form-control js-example-tags select_guest" name="guest">
+                            <select class="form-control js-example-tags select_room" name="room">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>                                
@@ -221,23 +208,23 @@ hotel
                                     <i class="fa-solid fa-caret-down" style="color: #878996"></i>
                                     {{-- <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i> --}}
                                 </div>
-                                <div class="select-option option-none">
+                                <div class="select-option select-room option-none">
                                     <div class="room">
                                         <div class="title-container">
                                             <h5 class="title" style="margin:10px;">Room 1</h5>
                                         </div>
                                         <section class="dropdown-container">
                                             <div class="dropdown-inner">
-                                                <input type="checkbox">
-                                                <label for="">1 King</label>
+                                                <input type="checkbox" id="king_1">
+                                                <label for="king_1">1 King</label>
                                             </div>
                                             <div class="dropdown-inner">
-                                                <input type="checkbox">
-                                                <label for="">2 Twin</label>
+                                                <input type="checkbox" id="twin_1">
+                                                <label for="twin_1">2 Twin</label>
                                             </div>
                                             <div class="dropdown-inner">
-                                                <input type="checkbox">
-                                                <label for="">2 Queen</label>
+                                                <input type="checkbox" id="queen_1">
+                                                <label for="queen_1">2 Queen</label>
                                             </div>
                                         </section>
                                     </div>
@@ -897,44 +884,11 @@ hotel
                                             <label class="form-check-label " for="flexCheckDefault">
                                                 {{@$amenity->amenities}}
                                             </label>
-                                            <span class="amenities-icon"><img
-                                                    src="{{asset('storage/'.@$amenity->icon)}}" alt=""></span>
+                                            <span class="amenities-icon">
+                                                <i class="{{@$amenity->icon}}"></i>
+                                            </span>
                                         </div>
                                     @endforeach
-                                    {{-- <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Elevator
-                                        </label>
-                                        <span class="amenities-icon"><img
-                                                src="{{asset('assets/images/icons/amenities-2.png')}}" alt=""></span>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                            checked>
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Breakfast
-                                        </label>
-                                        <span class="amenities-icon"><img
-                                                src="{{asset('assets/images/icons/amenities-3.png')}}" alt=""></span>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Pool
-                                        </label>
-                                        <span class="amenities-icon"><img
-                                                src="{{asset('assets/images/icons/amenities-4.png')}}" alt=""></span>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                            checked>
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Bar
-                                        </label>
-                                        <span class="amenities-icon"><img
-                                                src="{{asset('assets/images/icons/amenities-5.png')}}" alt=""></span>
-                                    </div> --}}
                                 </div>
                                 <div class="hotels-result-filter-btn text-center pb-4">
                                     <button class="btn bg-purple filter-btn">Filter</button>
@@ -1100,13 +1054,48 @@ $(document).on('click', '#SubmitSearch', function(){
 <!-- custom-selector js -->
 <script>
     $(document).ready(function () {
-      $(document).on('click', '.select-div', function () {
-        $(".select-option").toggleClass("option-none");
-      });
+        $(document).on('click', '.select-div', function () {
+            $('.select-room').html('');
+            var index = $('.select_room').val();
+            for (var i = 1; i <= index; i++) {
+                $number = i;
+                addRoom($number);
+            }
+            $(".select-option").toggleClass("option-none");
+        });
 
         $(".js-example-tags").select2({
             tags: true
         });
+
+        $(document).on("click", function(event){
+            var $trigger = $(".bed-selector");
+            if($trigger !== event.target && !$trigger.has(event.target).length){
+                $(".select-room").addClass("option-none");
+            }            
+        });
+
+        function addRoom($number){
+            $room = $(`<div class="room"><div class="title-container">
+                            <h5 class="title" style="margin:10px;">Room `+ $number +`</h5>
+                        </div>
+                        <section class="dropdown-container">
+                            <div class="dropdown-inner">
+                                <input type="checkbox" id="king_`+ $number+`">
+                                <label for="king_`+ $number+`">1 King</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input type="checkbox" id="twin_`+ $number+`">
+                                <label for="twin_`+ $number+`">2 Twin</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input type="checkbox" id="queen_`+ $number+`">
+                                <label for="queen_`+ $number+`">2 Queen</label>
+                            </div>
+                        </section>
+                    </div>`);
+            $('.select-room').append($room);
+        }
 
     });
 </script>
