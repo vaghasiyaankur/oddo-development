@@ -166,6 +166,9 @@ $(document).ready(function() {
             return;
         }
 
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
         formdata = new FormData();
         formdata.append('faclityName', faclityName);
         formdata.append('faclityIcon', faclityIcon);
@@ -219,6 +222,10 @@ $(document).ready(function() {
         if (!editFaclityName|| !editFaclityIcon|| !editFacilityColor|| !editFacilityDescription) {
             return;
         }
+
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
         formdata = new FormData();
         formdata.append('id', id);
         formdata.append('editFaclityName', editFaclityName);
@@ -266,7 +273,10 @@ $(document).ready(function() {
 
     $(document).on('click', '.deleteFacility', function(){
         let id = $(this).data('value');
-        console.log(id);
+
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+        
         formdata = new FormData();
         formdata.append('id', id);
         $.ajax({
@@ -289,6 +299,10 @@ $(document).ready(function() {
             type: "GET",
             dataType: "HTML",
             success: function (response) {
+                setTimeout(function() {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
+                },  1500);
                 $(".facilitiesTable").html(response);
             }
         });

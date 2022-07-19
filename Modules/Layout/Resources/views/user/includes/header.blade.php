@@ -40,7 +40,7 @@
             data-bs-toggle="dropdown" aria-expanded="false">
             Hi, Daniela!
           </button>
-          <ul class="dropdown-menu dropdown-custom" aria-labelledby="dropdownMenuButton1">
+          <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item active" href="{{ route('myaccount.index') }}">My Account</a></li>
             <li><a class="dropdown-item" href="{{ route('orderhistory.index') }}">Order History</a></li>
             <li><a class="dropdown-item" href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>

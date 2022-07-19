@@ -146,6 +146,8 @@
             display: inline-block;
             padding-left: 3px;
         }
+
+        
     </style>
 @endpush
 
@@ -263,19 +265,19 @@
                             </div> --}}
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 <label>Guests</label>
-                                <select class="select2-icon " name="icon" multiple="multiple">
-                                    <option value="fa-user-group" data-icon="fa-user-group">2</option>
-                                    <option value="fa-user" data-icon="fa-user">1</option>
-                                    <option value="fa-users" data-icon="fa-users">3</option>
-                                </select>
+                                <select class="form-control js-example-tags select_guest" name="guest">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>                                
+                                </select>   
                             </div>
-                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
                                 <label>Room</label>
-                                <select class="select2-icon" multiple="multiple">
-                                    <option value="king">1 King</option>
-                                    <option value="queen">2 Queen</option>
-                                    <option value="twin">3 Twin</option>
-                                </select>
+                                <select class="form-control js-example-tags select_guest" name="guest">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>                                
+                                </select>                                                           
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 <div class="bed-selector">

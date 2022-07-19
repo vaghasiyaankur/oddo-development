@@ -36,6 +36,8 @@ Route::controller(PropertyController::class)->group(function(){
 });
 
 
+
+
 // Route::get('/update-column', function(){
 //     Schema::table('hotels', function (Blueprint $table) {
 //        $table->string('amenity_id')->nullable();

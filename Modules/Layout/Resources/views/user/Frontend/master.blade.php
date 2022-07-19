@@ -10,6 +10,7 @@
     <!------- Bootstrap CSS Link------->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
+<<<<<<< HEAD
     <!------- Fontawsomee cdn link ------->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
@@ -41,6 +42,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style-responsive.css') }}">
 
+    
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     @stack('css')
     <style>
         .log_in_modal_ .btn-close {
@@ -67,7 +73,7 @@
             border-color: #6A78C7;
         }
     </style>
-
+    
 </head>
 
 <body>
@@ -111,8 +117,10 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <!------- Timepiker js link ---------->
     <script src="{{ asset('assets/js/timepiker.js') }}"></script>
+    <!-- icon picker js -->
+    <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
 
-    @stack('script')
+@stack('script')
 
 </body>
 

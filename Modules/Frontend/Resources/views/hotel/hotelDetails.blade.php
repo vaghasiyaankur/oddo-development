@@ -381,7 +381,7 @@ hotel
                     @foreach ($hotel->facilities() as $facility)    
                         <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
                             <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
-                                <img id="img-icon" src="{{ asset('storage/'.@$facility->icon) }}">
+                                <i id="img-icon" class="{{ @$facility->icon }}"></i>
                             </div>
                             <div class="small-box-text ps-2 pe-3">
                                 <span>{{@$facility->facilities_name}}</span>
@@ -428,8 +428,8 @@ hotel
                                         @foreach ($hotel->facilities() as $key => $facility) 
                                             <div class="location-popup-card-single nearby-single-card {{ $key == 0 ? 'ms-1': ''}} mt-4">
                                                 <div class="card-single-head d-flex align-items-center" style="background: {{@$facility->color;}}">
-                                                    <div class="card-head-img pe-3 lh-1"><img id="img-icon"
-                                                            src="{{ asset('storage/'.@$facility->icon) }}" class="mb-1"></div>
+                                                    <div class="card-head-img pe-3 lh-1">
+                                                        <i id="img-icon" class="mb-1 {{ @$facility->icon }}"> </i></div>
                                                     <div class="card-head-text">{{@$facility->facilities_name}}</div>
                                                 </div>
                                                 <div class="card-content nearby-card-content">
@@ -746,7 +746,7 @@ hotel
                                             <h5 class="para-fs-14">In your private bathroom</h5>
                                             <div class="room-overview">
                                                 @foreach ($hotel->room->bathroom() as $item)
-                                                    <p class="mb-2"><img src="{{asset('storage/'.@$item->icon)}}"><span class="para-fs-14 ps-3">{{@$item->item}}</span> </p>
+                                                    <p class="mb-2"><i class="{{@$item->icon}}"></i><span class="para-fs-14 ps-3">{{@$item->item}}</span> </p>
                                                 @endforeach
                                             </div>
                                         </div>
