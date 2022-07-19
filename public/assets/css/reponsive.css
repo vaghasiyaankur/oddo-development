@@ -87,6 +87,18 @@
     }
     
 }
+
+@media screen and (max-width:992px) {
+    .travel-planning .travel-info-main{
+        display: none;
+    }
+
+    .travel-planning .pagination-main{
+        margin-bottom: 70px;
+    }
+}
+
+
 @media screen and (max-width:576px) {
     .t-hotels-main .t-hotels-inner .top-hotels-wraper .top-hotels-card .top-hotels-card-inner{
         max-height: 156px;

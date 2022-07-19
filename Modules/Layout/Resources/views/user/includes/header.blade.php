@@ -30,6 +30,11 @@
         <div class="list-properties pe-5">
           <a href="{{route('property-category')}}" class="list-properties-btn btn">list-properties</a>
         </div>
+        <div class="list-properties pe-3">
+          <button type="button" class="list-properties-btn btn" data-bs-toggle="modal" data-bs-target="#Log_in_modal">
+            Login
+          </button>
+        </div>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle dropdown-btn" type="button" id="dropdownMenuButton1"
             data-bs-toggle="dropdown" aria-expanded="false">

@@ -52,4 +52,8 @@ Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrip
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 
 
+Route::view('/login', 'frontend::auth.login');
+
+Route::view('/register', 'frontend::auth.register');
+
 
