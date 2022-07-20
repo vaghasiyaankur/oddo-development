@@ -5,14 +5,14 @@
 @endsection
 <style>
     section.l-p-myproperties {
-    min-height: calc(100vh - 492px);
+    min-height: calc(100vh - 473px);
 }
 </style>
 @section('content')
      <!------ list-properties nav start------->
-    <section class="l-p-navbar">
+    {{-- <section class="l-p-navbar">
         <div class="container">
-                {{-- <div class="l-p-nav-list d-flex">
+                <div class="l-p-nav-list d-flex">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link rounded-pill" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
@@ -27,12 +27,12 @@
                             <button class="nav-link rounded-pill" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Balnace</button>
                         </li>
                     </ul>
-                </div> --}}
+                </div>
         </div>
-    </section>
+    </section> --}}
     <!------ list-properties nav end------->
     <!------- list properties content start------->
-    <section class="l-p-myproperties pb-5">
+    <section class="l-p-myproperties py-5">
         <div class="container">
             <div class="myproperties-heading">
                 <h4>List Your Property and start welcoming guests in no time!</h4>

@@ -29,18 +29,18 @@ Add-Layout
                                     <label for="" class="form-label label-heading ">Can you provide extra bed?</label>
                                 </div>
                                 <div class="amenities-raido-btn">
+                                    <label class="form-check-label" for="yes">
                                     <div class="form-check form-check-inline amenities-radio">
                                         <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" id="yes" value="yes">
-                                        <label class="form-check-label" for="yes">
                                          Yes
-                                        </label>
-                                    </div>
+                                        </div>
+                                    </label>
+                                    <label class="form-check-label" for="no">
                                     <div class="form-check form-check-inline amenities-radio">
                                         <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" value="no" id="no" checked>
-                                        <label class="form-check-label" for="no">
-                  zcc                       No
-                                        </label>
+                                        No
                                     </div>
+                                </label>
                                 </div>
                                 <div class="total-room-layout pt-3 d-none number-of-bed">
                                     <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
@@ -67,8 +67,8 @@ Add-Layout
                                         @foreach($amenities_category as $category)
                                             @foreach($category->amenitiesFeatured as $amenity)
                                                 <div class="form-check py-3 ">
-                                                    <input class="form-check-input top_aminity" type="checkbox" value="{{@$amenity->id}}">
                                                     <label class="form-check-label para-fs-14 fs-6">
+                                                        <input class="form-check-input top_aminity" type="checkbox" value="{{@$amenity->id}}">
                                                         {{@$amenity->amenities}}
                                                     </label>
                                                 </div>
@@ -99,9 +99,9 @@ Add-Layout
                                                         </button>
                                                     </h2>
                                                     <div id="amenity_{{$category->id}}" class="accordion-collapse collapse amenities-acc-main overflow-auto" >
-                                                        <div class="accordion-body bg-light">
+                                                        <div class="accordion-body bg-light py-2">
                                                             @foreach($category->amenities as $amenity)
-                                                                <div class="form-check pb-3 border--bottom amenity-checked">
+                                                                <div class="form-check py-2 border--bottom amenity-checked">
                                                                     <label class="form-check-label para-fs-14 fs-6">
                                                                     <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}">
                                 

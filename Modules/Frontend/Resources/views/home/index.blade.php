@@ -148,7 +148,7 @@
     </section>
     <!------- homepage-swiper section end ------->
     <!------- Check-in-out section start ------->
-    <section class="check-in-out hotel-result py-3">
+    <section class="check-in-out hotel-result">
         <div class="container">
             <div class="check-in-out-inner">
                 <h4>Hotels</h4>
@@ -367,10 +367,11 @@
                         </li>
                     </div>
                     <div class="list-group-main text-center">
-                        <li class="list-group-item pagination-list purple"><a href="#"
-                                class="purple text-decoration-none">
-                                3</a></li>
-                        <span><a href="#" class="pagination-text text-decoration-none"> Book</a></span>
+                        <li class="list-group-item pagination-list purple">
+                            <a href="#" class="purple text-decoration-none"> 3</a></li>
+                        <span>
+                            <a href="#" class="pagination-text text-decoration-none"> Book</a>
+                        </span>
                     </div>
                 </ul>
             </div>

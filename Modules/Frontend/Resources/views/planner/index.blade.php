@@ -301,13 +301,13 @@
                                                             class="position-absolute p-lb" alt="">
                                                     </div>
                                                     <div class="box-content">
-                                                        <h5 class="p-contnt-title mb-2">El Quijote</h5>
+                                                        <h5 class="p-contnt-title">El Quijote</h5>
                                                         <span class="d-l-Purple mb-3 "><img
                                                                 src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt=""
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Top Cities</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -327,14 +327,14 @@
                                                         <img src="{{ asset('assets/images/icons/p-card-s2.png') }}"
                                                             class="position-absolute p-lb" alt="">
                                                     </div>
-                                                    <div class="box-content">
-                                                        <h5 class="p-contnt-title mb-4 pb-2">Super Plaza</h5>
+                                                    <div class="box-content"> 
+                                                        <h5 class="p-contnt-title">Super Plaza</h5>
                                                         <span class="d-l-Purple mb-3 "><img
                                                                 src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt=""
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn"
                                                                 style="background: #EB5757;">Explore</a>
                                                             <div class="d-flex">
@@ -356,13 +356,13 @@
                                                             class="position-absolute p-lb" alt="">
                                                     </div>
                                                     <div class="box-content">
-                                                        <h5 class="p-contnt-title mb-4 pb-2">Mega Market</h5>
+                                                        <h5 class="p-contnt-title">Mega Market</h5>
                                                         <span class="d-l-Purple mb-3 "><img
                                                                 src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt=""
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn"
                                                                 style="background: #27AE60;">Explore</a>
                                                             <div class="d-flex">
@@ -390,7 +390,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn"
                                                                 style="background: #27AE60;">Explore</a>
                                                             <div class="d-flex">
@@ -412,13 +412,13 @@
                                                             class="position-absolute p-lb" alt="">
                                                     </div>
                                                     <div class="box-content">
-                                                        <h5 class="p-contnt-title mb-4 pb-2">Quijote Museum</h5>
+                                                        <h5 class="p-contnt-title">Quijote Museum</h5>
                                                         <span class="d-l-Purple mb-3 "><img
                                                                 src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt=""
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -445,7 +445,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -472,7 +472,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Madrid</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -508,7 +508,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -535,7 +535,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -562,7 +562,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -589,7 +589,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -625,7 +625,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -652,7 +652,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -679,7 +679,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img
@@ -706,7 +706,7 @@
                                                                 class="mb-2 me-2 d-inline">
                                                             Barcelona</span>
                                                         <div
-                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-2">
+                                                            class="exploer-btn- d-flex justify-content-between align-items-center mt-auto">
                                                             <a href="javascript:;" class="e_btn">Explore</a>
                                                             <div class="d-flex">
                                                                 <a href="javascript:;"><img

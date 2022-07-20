@@ -1,46 +1,137 @@
-@media screen and (max-width:991px) {
-    .s-top-city .container{
-        max-width:720px;
+@media screen and (max-width: 991px) {
+    .s-top-city .container {
+        max-width: 720px;
     }
-    .check-in-out .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option{
+    .check-in-out
+        .check-in-out-inner
+        .check-in-out-form
+        .check-in-out-bottom
+        .select-option {
         max-width: 100%;
-    }   
-    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev{
+    }
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev {
         left: -4%;
     }
-    .s-top-city .s-top-city-inner .s-top-city-main  .slick-next{
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-next {
         right: -4%;
     }
-    .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .check-inout{
+    .hotel-result.check-in-out
+        .check-in-out-form
+        .custom-calender-piker
+        .check-text-label
+        .check-inout {
         top: -7%;
     }
-    .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .check-inout.check-out-label{
+    .hotel-result.check-in-out
+        .check-in-out-form
+        .custom-calender-piker
+        .check-text-label
+        .check-inout.check-out-label {
         top: 45%;
     }
-}
-@media screen and (max-width:767px) {
-    .travel-planning .travel-planning-inner .travel-planning-heading h1{
+    .hotel-result.search-result
+        .side-content
+        .hotels-filter.result-mobile-view {
+        max-height: 550px;
+        margin-bottom: 50px;
+        overflow-y: scroll;
+    }
+    .homepage-swiper.swiper-container {
+        height: 50vw;
+    }
+    .location-popup-hilton {
+        display: none;
+    }
+    .hotel-result .img-popup-slider .img-swiper button.slick-next.slick-arrow {
+        right: 0;
+    }
+    .hotel-result .img-popup-slider .img-swiper button.slick-prev.slick-arrow {
+        left: 0;
+        z-index: 99;
+    }
+    .pwd-search-input {
+        max-width: 300px;
+        padding: 12px 20px;
+    }
+    .pwm-hero h2 {
+        font-size: 44px;
+        line-height: 44px;
+    }
+    .hero-logo span.logo-text {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .pwm-museums .pwm-museums-inner .city-tab-popup-main .tab-side-content {
+        padding: 53px 32px 23px;
+    }
+    .hotel-policies .h-policies-main .h-check-in-out {
+        max-width: 240px;
+    }
+    .hotel-room .hotel-room-inner .room-card-main .border--left {
+        border: none;
+    }
+    .pwm-museums {
+        padding-bottom: 90px;
+    }
+
+    .travel-planning .travel-planning-inner .travel-planning-heading h1 {
         font-size: 43px;
         line-height: 25px;
         margin-bottom: 31px;
     }
-    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev{
+}
+@media screen and (max-width: 767px) {
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev {
         left: 4%;
     }
-    .s-top-city .s-top-city-inner .s-top-city-main  .slick-next{
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-next {
         right: 4%;
     }
-    .t-hotels-main .t-hotels-inner .top-hotels-wraper{
+    .t-hotels-main .t-hotels-inner .top-hotels-wraper {
         margin-top: -63px;
     }
-    .t-hotels-main .t-hotels-inner .top-hotels-wraper .top-hotels-card .top-hotels-card-inner{
+    .t-hotels-main
+        .t-hotels-inner
+        .top-hotels-wraper
+        .top-hotels-card
+        .top-hotels-card-inner {
         max-height: 180px;
         padding: 60px 50px;
     }
-    
+
+    .hotel-result.search-result .search-result-inner .border-left {
+        border: none;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .result-main-img
+        img.img-wrapper {
+        max-width: 100%;
+        height: 50vh;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .middle-content-box
+        .price-comparision-main
+        .price-comparison {
+        padding: 37px 50px 40px;
+    }
+    .hotel-result.search-result
+        .side-content
+        .mypreferences-popup
+        .hotel-sort-popup {
+        padding: 22px;
+    }
+    .h-details-title .h-details-title-box .h-details-heading h2 {
+        font-size: 32px;
+        line-height: 32px;
+    }
 }
-@media screen and (max-width:1399px) {
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon{
+
+@media screen and (max-width: 1399px) {
+    /* .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon{
         right: -15px;
         top: 7px;
     }
@@ -58,59 +149,405 @@
     .travel-planning .travel-info-main .travel-info-inner .travel-info-bank{
         top: 56px;
         left: 29%;
-    }
+    } */
 }
-@media screen and (max-width:1240px) {
-    .homepage-swiper .swiper-slide .content p.title{
+@media screen and (max-width: 1240px) {
+    .homepage-swiper .swiper-slide .content p.title {
         font-size: 43px;
         margin-top: 30px;
     }
 }
-@media screen and (min-width:1044px) and (max-width:1240px) {
-    
-}
-@media screen and (max-width:1199px) {
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest{
-        top: 26%;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag{
-        top: 8px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-bank{
-        top: 76px; 
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-car{
-        top: 46px;
-    }
-    .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .input--text{
-        padding: 6px 0;
-    }
-    
-}
 
-@media screen and (max-width:992px) {
-    .travel-planning .travel-info-main{
+@media screen and (max-width: 992px) {
+    .travel-planning .travel-info-main {
         display: none;
     }
-
-    .travel-planning .pagination-main{
+    .travel-planning .pagination-main {
         margin-bottom: 70px;
     }
 }
 
-
-@media screen and (max-width:576px) {
-    .t-hotels-main .t-hotels-inner .top-hotels-wraper .top-hotels-card .top-hotels-card-inner{
-        max-height: 156px;
-        padding: 37px 37px;
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .explore-city .s-top-city-main .t-city-card-img img {
+        max-width: 280px;
+        /* display: none; */
     }
-  
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon {
+        top: 26px;
+    }
+    .travel-planning .travel-info-main .coming--pill {
+        top: -1px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest {
+        top: 38px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag {
+        top: -15px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-tree {
+        left: 44%;
+        top: -14px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-car {
+        top: 10px;
+    }
 }
-@media screen and (max-width:420px){
-    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev{
-        display: none !important;
+@media screen and (min-width: 1199px) and (max-width: 1399px) {
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon {
+        top: 11px;
     }
-    .s-top-city .s-top-city-inner .s-top-city-main .slick-next{
-        display: none !important;
+    .travel-planning .travel-info-main .coming--pill {
+        top: -17px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-tree {
+        top: -16px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest {
+        top: 2%;
+        right: 17%;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag {
+        top: 40px;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-bank {
+        top: 29px;
+        left: 30%;
+    }
+    .travel-planning .travel-info-main .travel-info-inner .travel-info-car {
+        top: 28px;
+    }
+    .hotel-result.check-in-out
+        .check-in-out-form
+        .custom-calender-piker
+        .check-text-label
+        .input--text {
+        padding: 6px 0;
+    }
+    .pwm-card-body {
+        padding: 13px;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 655px) {
+    section.explore-city.s-top-city .s-top-city-main .t-city-card-img img {
+        width: 280px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .t-hotels-main
+        .t-hotels-inner
+        .top-hotels-wraper
+        .top-hotels-card
+        .top-hotels-card-inner {
+        max-height: 134px;
+        padding: 26px 37px;
+        max-width: 206px;
+    }
+    .check-in-out {
+        padding: 45px 0;
+    }
+    .travel-planning .travel-planning-inner .travel-planning-heading h1 {
+        font-size: 27px;
+        line-height: 25px;
+        margin-bottom: 16px;
+    }
+    .travel-planning .travel-planning-inner .travel-planning-heading p {
+        font-size: 17px;
+        line-height: 12px;
+    }
+    .pagination-main .list-group-main .pagination-list {
+        width: 70px;
+        height: 70px;
+        box-shadow: 0px 2.23711px 12.7421px rgb(107 120 199 / 15%);
+    }
+    .homepage-swiper.swiper-container {
+        height: 100vw;
+    }
+
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .price-comparision-main
+        .price-comparison
+        .price-comparison-heading
+        .comparison-title
+        h3 {
+        font-size: 22px;
+        line-height: 19px;
+        white-space: nowrap;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .middle-content-box
+        .price-comparision-main
+        .price-comparison {
+        padding: 37px 14px 40px;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .price-comparision-main
+        .price-comparison
+        .price-comparison-heading
+        .comparison-text
+        .location-popup
+        .loaction-dist-radius {
+        top: 120px;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .price-comparision-main
+        .price-comparison-wrapper {
+        padding: 32px 12px;
+    }
+    .display-flex-items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hotel-result.search-result
+        .result-main-middle
+        .middle-content-review
+        .reviews-popup-main
+        .reviews-popup
+        .reviews-popup-heading {
+        padding: 17px;
+    }
+    .hotel-result.search-result
+        .result-main-middle
+        .middle-content-review
+        .reviews-popup-main
+        .popup-content-main {
+        padding: 17px;
+    }
+    .hotel-result.search-result
+        .result-main-middle
+        .middle-content-review
+        .reviews-popup-main
+        .reviews-popup
+        .reviews-heading
+        h4 {
+        font-size: 26px;
+        line-height: 26px;
+    }
+    .pwm-accordion .pwm-accordion-inner .pwm-accordion-title {
+        padding: 25px 15px;
+    }
+    .m-view-img {
+        max-width: 30px;
+    }
+    .t-hotels-main .t-hotels-inner .top-hotels-wraper {
+        margin-top: -43px;
+    }
+    .pwm-transport-heading h2 {
+        font-size: 26px;
+        line-height: 26px;
+    }
+    .pwm-museums .pwm-museums-inner .city-tab-popup-main .tab-side-content {
+        padding: 23px 32px;
+    }
+    .pwm-museums
+        .pwm-museums-inner
+        .city-tab-popup-main
+        .tab-side-content
+        .city-tab-input {
+        padding: 13px 20px;
+        max-width: 240px;
+    }
+    .pwm-transport .pwm-trans-card .pwm-trans-card-inner {
+        max-width: 100%;
+        min-height: 159px;
+        padding: 32px;
+    }
+    .hotel-policies .h-policies-main .h-check-in-out {
+        padding: 7px;
+    }
+}
+@media screen and (max-width: 520px) {
+    section.h-details-title
+        .h-title-box-inner
+        .h-rating
+        span.h-rating-location {
+        display: block;
+        margin-top: 10px;
+        width: 100%;
+    }
+    section.h-details-title
+        .h-title-box-inner
+        .h-rating
+        span.h-rating-location
+        img {
+        margin-left: 0px !important;
+    }
+    .h-details-title .h-details-title-box {
+        padding: 24px;
+    }
+    section.h-details-title .h-title-box-inner .h-rating-btn {
+        display: block;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .price-comparision-main
+        .price-comparison-wrapper {
+        padding: 32px 12px;
+    }
+    .pwm-accordion
+        .pwm-accordion-inner
+        .pwm-accordion-title
+        .pwm-accordion-text
+        .accordion-text {
+        font-size: 15px;
+        line-height: 18px;
+    }
+    .hotel-room {
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+    .reserve-btn {
+        padding: 7px 16px;
+    }
+    .hotel-room .room-card-main .h-room-info-main .room-overview p {
+        white-space: nowrap;
+    }
+}
+@media screen and (max-width: 420px) {
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-prev {
+        left: 10%;
+        z-index: 99;
+    }
+    .s-top-city .s-top-city-inner .s-top-city-main .slick-next {
+        right: 10%;
+    }
+    .explore-city .explore-city-map-img img {
+        width: 200px;
+    }
+    .hotel-result.search-result .search-result-inner .search-result-price-tag {
+        margin-left: 20%;
+    }
+    .hotel-result.search-result .search-result-inner .search-result-notify {
+        margin-left: 29%;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .search-result-price-tag
+        .price-btn {
+        padding: 10px 25px;
+    }
+    .pwm-map .pwm-map-inner .pwm-heading h2 {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    section.h-deatils-gallery.hotel-result .h-gallery--flex {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center !important;
+    }
+}
+@media screen and (max-width: 380px) {
+    section.explore-city .explore-city-check {
+        flex-direction: column;
+        align-items: flex-start !important;
+        margin-left: 20px !important;
+    }
+    section.explore-city .explore-city-check select.form-select {
+        margin: 0;
+    }
+    .travel-planning .travel-planning-inner .travel-planning-heading h1 {
+        font-size: 22px;
+        line-height: 14px;
+    }
+    .travel-planning .travel-planning-inner .travel-planning-heading p {
+        font-size: 15px;
+        line-height: 7px;
+    }
+    .pagination-main .list-group-main .pagination-list {
+        width: 45px;
+        height: 45px;
+    }
+    .pagination-main .list-group-main a.pagination-text {
+        font-size: 18px;
+        line-height: 30px;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .middle-content-box
+        .price-comparision-main
+        .price-comparison {
+        padding: 37px 8px 40px;
+    }
+    .hotel-result.search-result
+        .search-result-inner
+        .result-main-content
+        .price-comparision-main
+        .price-comparison
+        .price-comparison-heading
+        .comparison-title
+        h3 {
+        font-size: 18px;
+        line-height: 13px;
+        margin-right: 10px;
+    }
+    .pwd-search-input {
+        max-width: 250px;
+    }
+    .pwm-accordion .pwm-accordion-inner .rest-accordion .rest-accordion-body {
+        padding: 20px;
+    }
+    .pwm-map .pwm-map-inner .pwm-heading h2 {
+        font-size: 16px;
+    }
+    .pwm-card-inner {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .pwm-museums-check {
+        flex-direction: column;
+        width: 100%;
+    }
+    .h-details-title .h-details-title-box {
+        padding: 15px;
+    }
+    .h-details-title .h-details-title-box .h-details-heading h2 {
+        font-size: 25px;
+        line-height: 25px;
+    }
+    .hotel-room .hotel-room-inner .hotel-room-heading h5 {
+        font-size: 16px;
+        line-height: 10px;
+    }
+    .pwm-transport-heading h2 {
+        font-size: 22px;
+        line-height: 22px;
+    }
+    .s-top-city .s-top-city-inner .s-top-city-head h2 {
+        font-size: 26px;
+        line-height: 13px;
+    }
+    .pagination-main .list-group-main .pagination-list a {
+        font-size: 23px;
+        line-height: 37px;
+    }
+}
+@media screen and (max-width: 320px) {
+    section.explore-city .explore-city-check {
+        margin-left: 0px !important;
+    }
+}
+@media screen and (max-width: 280px) {
+    .h-details-title .h-details-title-box .h-details-heading h2 {
+        font-size: 23px;
+    }
+    section.h-details-title
+        .h-title-box-inner
+        .h-rating
+        span.h-rating-location
+        img {
+        margin-right: 5px !important;
     }
 }
