@@ -87,6 +87,7 @@
     @yield('content')
     @include('frontend::auth.login')
     @include('frontend::auth.register')
+    @include('frontend::auth.forget')
     <!-------- Footer start -------->
     @include('layout::user.includes.footer')
     <!-------- Footer end -------->
@@ -121,7 +122,8 @@
 
     <!-- password-addon init -->
     <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
-
+    
+    <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
 
 

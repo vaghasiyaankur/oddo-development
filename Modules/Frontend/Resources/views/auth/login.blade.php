@@ -25,7 +25,7 @@
                                             </div>
                                             <div class="mb-4">
                                                 <div class="float-end">
-                                                    <a href="javascript;:" class="text-muted ">Forgot password?</a>
+                                                    <a href="javascript:;" class="text-muted" data-bs-toggle="modal" data-bs-target="#forget_password_modal" data-bs-dismiss="modal">Forgot password?</a>
                                                 </div>
                                                 <label class="form-label " for="password-input">Password <span class="text-danger">*</span></label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
