@@ -116,7 +116,6 @@ search
 
   .select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 1px solid #aaa;
-    ;
   }
 
   .select2-search--dropdown {

@@ -674,20 +674,20 @@ header.header .navbar .dropdown .dropdown-btn{
 /****** Footer Start  *******/
 .footer{
     background: linear-gradient(180deg, #F8F8FA 0%, #EEF1F7 100%);
-    padding-top: 40px;
-    padding-bottom: 26px;
+    padding-top: 25px;
+    padding-bottom: 10px;
 }
 .footer .footer-main .nav a.nav-link{
     color: #878996;
     font-size: 14px;
-    line-height: 22px;
+    line-height: 11px;
 }
 .footer .footer-main .nav a.nav-link:hover{
     color: #6A78C7;
 }
 .footer .footer-main .footer-link h5{
     font-size: 16px;
-    line-height: 32px;
+    line-height: 10px;
     font-weight: 400;
 }
 .footer .footer-main .footer-copyright p{

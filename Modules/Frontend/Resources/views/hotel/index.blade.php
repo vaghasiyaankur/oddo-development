@@ -912,6 +912,9 @@ hotel
 
 @push('script')
 
+<!------- loading icon link -------->
+<script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+
 <!-------- Google Place Search -------->
 <script type='text/javascript'
     src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>

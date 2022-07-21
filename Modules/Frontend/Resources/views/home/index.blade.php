@@ -298,9 +298,9 @@
                             </div>
                             <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                        checked>
                                     <label class="form-check-label" for="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                        >
                                         Things to do
                                     </label>
                                 </div>
@@ -319,9 +319,9 @@
                             </div>
                             <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
                                 <div class="form-check ">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                    <label class="form-check-label" for="flexCheckChecked1">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1"
                                         checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
                                         Transportation
                                     </label>
                                 </div>

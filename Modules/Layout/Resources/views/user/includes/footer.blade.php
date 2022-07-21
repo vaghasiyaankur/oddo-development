@@ -15,7 +15,7 @@
                           <div class="icon-inner me-2"><i class="fa-brands fa-linkedin text-white"></i></div>
                       </div>
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3">
+                  <div class="col-lg-2 col-md-6">
                       <div class="footer-link">
                           <h5 class="purple">Products</h5>
                           <ul class="nav flex-column">
@@ -31,7 +31,7 @@
                           </ul>
                       </div>
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3">
+                  <div class="col-lg-2 col-md-6">
                       <div class="footer-link">
                           <h5 class="purple">Customers</h5>
                           <ul class="nav flex-column">
@@ -44,7 +44,7 @@
                           </ul>
                       </div>
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3">
+                  <div class="col-lg-2 col-md-6">
                       <div class="footer-link">
                           <h5 class="purple">Company</h5>
                           <ul class="nav flex-column">
@@ -67,9 +67,9 @@
                                   <a class="nav-link ps-0" href="#">Terms of Use</a>
                               </li>
                           </ul>
-                      </div>
+                      </div> 
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3">
+                  <div class="col-lg-2 col-md-6">
                       <div class="footer-link">
                           <h5 class="purple">Resources</h5>
                           <ul class="nav flex-column">
@@ -79,7 +79,7 @@
                               <li class="nav-item">
                                   <a class="nav-link ps-0" href="#"> Contact</a>
                               </li>
-                              <h5 class="text-black">Legal</h5>
+                              <h5 class="text-black mt-2">Legal</h5>
                               <li class="nav-item">
                                   <a class="nav-link ps-0" href="#">Privacy & Terms</a>
                               </li>

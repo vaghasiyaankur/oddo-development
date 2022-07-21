@@ -5,7 +5,7 @@
 @endsection
 <style>
     section.l-p-myproperties {
-    min-height: calc(100vh - 473px);
+    min-height: calc(100vh - 337px);
 }
 </style>
 @section('content')
@@ -32,7 +32,7 @@
     </section> --}}
     <!------ list-properties nav end------->
     <!------- list properties content start------->
-    <section class="l-p-myproperties py-5">
+    <section class="l-p-myproperties py-5 d-flex align-items-center">
         <div class="container">
             <div class="myproperties-heading">
                 <h4>List Your Property and start welcoming guests in no time!</h4>
