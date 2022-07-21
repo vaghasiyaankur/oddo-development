@@ -41,9 +41,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style-responsive.css') }}">
 
     
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Icons Css -->
+    <link href="{{ asset('assets/Admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     @stack('css')
     <style>
@@ -84,7 +85,7 @@
     <!------- Header End ------->
 
     @yield('content')
-    @include('frontend::auth.login2')
+    @include('frontend::auth.login')
     @include('frontend::auth.register')
     <!-------- Footer start -------->
     @include('layout::user.includes.footer')
@@ -117,6 +118,13 @@
     <script src="{{ asset('assets/js/timepiker.js') }}"></script>
     <!-- icon picker js -->
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
+
+    <!-- password-addon init -->
+    <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
+
+
+
+
 
 @stack('script')
 

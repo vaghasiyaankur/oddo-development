@@ -15,12 +15,13 @@
                                         <p class="text-muted">Login to continue to Odda.</p>
                                     </div>
                                     <div class="p-2 mt-4">
-                                        <form action="" method="POST">
+                                        <form class="loginForm" action="{{route('user.login')}}" method="POST">
                                             @csrf
                                             <div class="mb-4">
-                                                <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                                                <input type="text" name="email" class="form-control "
-                                                    id="username" placeholder="Enter your username">
+                                                <label for="email" class="form-label">email <span class="text-danger">*</span></label>
+                                                <input type="text" name="email" class="form-control email"
+                                                    id="email" placeholder="Enter your email">
+                                                <span class="text-danger" id="email-error"></span>
                                             </div>
                                             <div class="mb-4">
                                                 <div class="float-end">
@@ -28,20 +29,21 @@
                                                 </div>
                                                 <label class="form-label " for="password-input">Password <span class="text-danger">*</span></label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
-                                                    <input type="password" name="password" class="form-control pe-5 "
+                                                    <input type="password" name="password" class="form-control pe-5 password"
                                                         placeholder="Enter your password" id="password-input">
                                                     <button
                                                         class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
                                                         type="button" id="password-addon"><i
                                                             class="ri-eye-fill align-middle"></i></button>
                                                 </div>
+                                                <span class="text-danger" id="password-error"></span>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
                                                 <label class="form-check-label text-muted" for="auth-remember-check">Remember me</label>
                                             </div>
                                             <div class="mt-4">
-                                                <button class="btn log_in_btn w-100" type="submit">Log In</button>
+                                                <button class="btn log_in_btn w-100 submitLogin" type="submit">Log In</button>
                                             </div>
                                             <div class="mt-4 text-center">
                                                 <p class="mb-0">Don't have an account ? <a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#register_modal" style="color: #5867ba;"> Sign-In </a> </p>

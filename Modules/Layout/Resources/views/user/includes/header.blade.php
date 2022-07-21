@@ -30,23 +30,28 @@
         <div class="list-properties pe-5">
           <a href="{{route('property-category')}}" class="list-properties-btn btn">list-properties</a>
         </div>
+        @if(!auth()->check())
         <div class="list-properties pe-3">
           <button type="button" class="list-properties-btn btn" data-bs-toggle="modal" data-bs-target="#Log_in_modal">
             Login
           </button>
         </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle dropdown-btn" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Hi, Daniela!
-          </button>
-          <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item active" href="{{ route('myaccount.index') }}">My Account</a></li>
-            <li><a class="dropdown-item" href="{{ route('orderhistory.index') }}">Order History</a></li>
-            <li><a class="dropdown-item" href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
-            <li><a class="dropdown-item " href="#"><span class="text--red">Logout</span> </a></li>
-          </ul>
-        </div>
+        @endif
+
+        @if(auth()->check() && auth()->user()->type == 'user')
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle dropdown-btn" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Hi, Daniela!
+            </button>
+            <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item active" href="{{ route('myaccount.index') }}">My Account</a></li>
+              <li><a class="dropdown-item" href="{{ route('orderhistory.index') }}">Order History</a></li>
+              <li><a class="dropdown-item" href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
+              <li><a class="dropdown-item " href="{{ route('logout.index') }}"><span class="text--red">Logout</span> </a></li>
+            </ul>
+          </div>
+        @endif
       </div>
     </div>
   </nav>

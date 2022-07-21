@@ -19,8 +19,14 @@ class UserAccess
         if(auth()->user()->type == $userType){
             return $next($request);
         }
-          
-        return redirect()->route('admin.index');
+        
+        if(auth()->user() && $userType == 'admin'){
+            return redirect()->route('home.index');
+        }
+
+        if(auth()->user() && $userType == 'user'){
+            return redirect()->route('admin.index');
+        }
         /* return response()->view('errors.check-permission'); */
     }
 }

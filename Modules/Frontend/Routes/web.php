@@ -39,8 +39,6 @@ Route::get('/planner', 'PlannerController@index')->name('planner.index');
 /* Saved Page */
 Route::get('/saved', 'SavedController@index')->name('saved.index');
 
-/* Profile Page */
-Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
 
 /* Order Histrory Page */
 Route::get('/order-history', 'OrderHistoryController@index')->name('orderhistory.index');
@@ -56,4 +54,14 @@ Route::view('/login', 'frontend::auth.login');
 
 Route::view('/register', 'frontend::auth.register');
 
+Route::post('user/login', 'Auth\LoginController@login')->name('user.login');
+Route::get('user/logout', 'Auth\LoginController@logout')->name('logout.index');
+Route::post('user/register', 'Auth\RegisterController@store')->name('user.register');
+
+
+Route::middleware(['auth', 'user-access:user'])->group(function(){
+//     /* Profile Page */
+    Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
+    
+});
 

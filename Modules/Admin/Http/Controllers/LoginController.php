@@ -56,10 +56,10 @@ class LoginController extends Controller
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('amenity.index');
             }else{
-                return redirect()->route('login');
+                return redirect()->route('admin.index');
             }
         }else{
-            return redirect()->route('login')
+            return redirect()->route('admin.index')
                 ->with('error','Email-Address And Password Are Wrong.');
         }
           
