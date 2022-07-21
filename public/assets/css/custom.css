@@ -319,8 +319,6 @@ header.header .navbar .dropdown .dropdown-btn{
     border: 1px solid #6A78C7;
     border-radius: 12px;
     padding: 32px 24px 36px;
-    margin-top: 85px;
-    margin-bottom: 75px
 }
 .check-in-out .check-in-out-inner .check-in-out-form .search-input{
     border:1px solid #878996;
@@ -440,7 +438,7 @@ header.header .navbar .dropdown .dropdown-btn{
 /******* Travel info start *******/
 .travel-planning .travel-info-main .travel-info-inner{
     background-image: url(../images/icons/travel-line.png);
-    height: 33vh;
+    height: 32vh;
     width: 100%;
     background-repeat: no-repeat;
     background-position: 16px 21px;
@@ -599,6 +597,7 @@ header.header .navbar .dropdown .dropdown-btn{
     }
 .s-top-city .s-top-city-inner .t-city-card-img img{
         border-radius: 20px;
+        object-fit: cover;
     }
 .s-top-city .s-top-city-inner .s-top-city-main .t-city-card-button{
         margin-top: 118px;
@@ -666,8 +665,10 @@ header.header .navbar .dropdown .dropdown-btn{
     max-width: 240px;
     height: 100vh;
     max-height: 240px;
-    padding: 80px 66px;
-    border-radius: 14px
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /****** Top hotels section end ******/
 /****** Footer Start  *******/
@@ -849,7 +850,7 @@ header.header .navbar .dropdown .dropdown-btn{
     background-color: #fff;
 }
 .hotel-result.search-result main.border-semidark{
-    border: 1px solid #A4A6BA;
+    border: 1px solid #6a78c7;
 }
 .hotel-result.search-result .result-main-content .result-main-middle h2.middle-content-heading{
     font-weight: 400;
@@ -1336,6 +1337,7 @@ header.header .navbar .dropdown .dropdown-btn{
     max-width: 301px;
     height: 350px;
     min-height: 350px;
+    object-fit: cover;
 }
 .hotel-result.search-result .search-result-inner .search-result-price-tag .price-btn{
     border: none;
@@ -1376,7 +1378,7 @@ header.header .navbar .dropdown .dropdown-btn{
 }
 .hotel-result.search-result .search-result-inner .result-main-content .result-right-content .right-menu-main{
     height: 100%;
-    max-height: 224px;
+    max-height: 260px;
     overflow-y: auto;
 }
 
@@ -1749,6 +1751,9 @@ header.header .navbar .dropdown .dropdown-btn{
         font-size: 12px;
         line-height: 22px;
     }
+    .pwm-accordion .card.card-body.rest-accordion-body::-webkit-scrollbar{
+        display: none;
+    }
     .pwm-accordion .pwm-accordion-inner .rest-accordion .rest-accordion-body{
         border: 1px solid #E6E8F5;
         border-radius: 12px;
@@ -1984,7 +1989,7 @@ header.header .navbar .dropdown .dropdown-btn{
             border-radius: 100px;
             color: #EEF1F7;
         }
-        .border--bottom{
+        .border--bottom:not(:last-child){
             border-bottom: 1px solid #E6E8F5;
             padding-bottom: 25px;
         }

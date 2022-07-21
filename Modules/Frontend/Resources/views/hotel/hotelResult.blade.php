@@ -528,7 +528,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-4 border-left mb-4">
+                      <div class="col-md-4 border-left">
                         <div class="result-right-content mt-3 ps-3 pe-3 overflow-auto">
                           <div class="result-right-inner">
                             <div class="right-select">
@@ -1246,7 +1246,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4 border-left mb-4">
+                  <div class="col-md-4 border-left">
                     <div class="result-right-content mt-3 ps-3 pe-3">
                       <div class="result-right-inner">
                         <div class="right-select">

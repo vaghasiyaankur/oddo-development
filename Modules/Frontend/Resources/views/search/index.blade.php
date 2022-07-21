@@ -63,7 +63,8 @@ search
   .bed-selector .select-div {
     padding: 6px 10px;
     width: 130px;
-    border: 1px solid #aaa;
+    border: 1px solid #878996;
+    border-radius: 5px;
   }
 
   .bed-selector .option-none {
@@ -127,7 +128,7 @@ search
     vertical-align: middle;
   }
 
-  .select2-results__option:before {
+  /* .select2-results__option:before {
     content: "";
     display: inline-block;
     position: relative;
@@ -148,7 +149,9 @@ search
     border: 0;
     display: inline-block;
     padding-left: 3px;
-  }
+  } */
+
+  
 </style>
 @endpush
 
@@ -236,75 +239,77 @@ search
             </div> --}}
             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
               <label>Guests</label>
-              @php
-                $selectGuest = explode(',',request()->guest);
-              @endphp
-              <select class="select2-icon " name="guest" multiple="multiple">
-                <option value="2" data-icon="fa-user-group" {{ in_array('2', $selectGuest) ? 'selected' : '' }}>2</option>
-                <option value="1" data-icon="fa-user" {{ in_array('1', $selectGuest) ? 'selected' : '' }}>1</option>
-                <option value="3" data-icon="fa-users" {{ in_array('3', $selectGuest) ? 'selected' : '' }}>3</option>
-              </select>
-            </div>
-            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+              <select class="form-control js-example-tags select_guest" name="guest">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>                                
+              </select>   
+          </div>
+          <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
               <label>Room</label>
-              @php
-                $selectRoom = explode(',',request()->room);
-              @endphp
-              <select class="select2-icon" name="room" multiple="multiple">
-                <option value="1" {{ in_array('1', $selectRoom) ? 'selected' : '' }}>1 King</option>
-                <option value="2" {{ in_array('2', $selectRoom) ? 'selected' : '' }}>2 Queen</option>
-                <option value="3" {{ in_array('3', $selectRoom) ? 'selected' : '' }}>3 Twin</option>
-              </select>
-            </div>
-            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
-              <div class="bed-selector">
+              <select class="form-control js-example-tags select_room" name="room">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>                                
+              </select>                                                           
+          </div>
+          <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+            <label>Bed</label>
+            <div class="bed-selector" style="top:0;">
                 <div class="select-div d-flex justify-content-between align-items-center">
-                  <i class="fa-solid fa-car" style="color: #6A78C7;"></i>
-                  <span style="color: #6A78C7;">king</span>
-                  <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i>
+                    <i class="fa-solid fa-car" style="color: #6A78C7;"></i>
+                    <span style="color: #6A78C7;">king</span>
+                    <i class="fa-solid fa-caret-down" style="color: #6A78C7;"></i>
+                    {{-- <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i> --}}
                 </div>
-                <div class="select-option option-none">
-                  <div class="room">
-                    <div class="title-container">
-                      <h5 class="title" style="margin:10px;">Room 1</h5>
+                <div class="select-option select-room option-none">
+                    <div class="room">
+                        <div class="title-container">
+                            <h5 class="title" style="margin:10px;">Room 1</h5>
+                        </div>
+                        <section class="dropdown-container">
+                            <div class="dropdown-inner">
+                                <input type="checkbox" id="king_1">
+                                <label for="king_1">1 King</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input type="checkbox" id="twin_1">
+                                <label for="twin_1">2 Twin</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input type="checkbox" id="queen_1">
+                                <label for="queen_1">2 Queen</label>
+                            </div>
+                        </section>
                     </div>
-                    <section class="dropdown-container">
-                      <div class="dropdown-inner">
-                        <input type="checkbox">
-                        <label for="">1 King</label>
-                      </div>
-                      <div class="dropdown-inner">
-                        <input type="checkbox">
-                        <label for="">2 Twin</label>
-                      </div>
-                      <div class="dropdown-inner">
-                        <input type="checkbox">
-                        <label for="">2 Queen</label>
-                      </div>
-                    </section>
-                  </div>
-                  <div class="room">
-                    <div class="title-container">
-                      <h5 class="title" style="margin:10px;">Room 1</h5>
+                    <div class="room">
+                        <div class="title-container">
+                            <h5 class="title" style="margin:10px;">Room 1</h5>
+                        </div>
+                        <section class="dropdown-container">
+                            <div class="dropdown-inner">
+                                <input type="checkbox">
+                                <label for="">1 King</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input type="checkbox">
+                                <label for="">2 Twin</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input type="checkbox">
+                                <label for="">2 Queen</label>
+                            </div>
+                        </section>
                     </div>
-                    <section class="dropdown-container">
-                      <div class="dropdown-inner">
-                        <input type="checkbox">
-                        <label for="">1 King</label>
-                      </div>
-                      <div class="dropdown-inner">
-                        <input type="checkbox">
-                        <label for="">2 Twin</label>
-                      </div>
-                      <div class="dropdown-inner">
-                        <input type="checkbox">
-                        <label for="">2 Queen</label>
-                      </div>
-                    </section>
-                  </div>
                 </div>
-              </div>
             </div>
+            <!-- <label>Bed</label>
+            <select class="select2-icon" name="icon" multiple="multiple">
+            <option value="fa-bed" data-icon="fa-bed">2</option>
+            <option value="fa-bed" data-icon="fa-bed">1</option>
+            <option value="fa-bed" data-icon="fa-bed">3</option>
+            </select> -->
+        </div>
             <div class="check-in-out-btn mt-3 text-xl-end text-center col-lg-3">
               <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
             </div>
@@ -928,6 +933,10 @@ search
 <!-------- Swiper Cdn Link -------->
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
+{{-- <script src="{{ asset('admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>   --}}
+<script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+
+
 <!-------- Google Place Search -------->
 <script type='text/javascript'
   src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
@@ -1066,11 +1075,52 @@ search
 </script>
 
 <!-- custom-selector js -->
+
 <script>
   $(document).ready(function () {
-    $(".select-div").click(function () {
-      $(".select-option").toggleClass("option-none");
-    });
+      $(document).on('click', '.select-div', function () {
+          $('.select-room').html('');
+          var index = $('.select_room').val();
+          for (var i = 1; i <= index; i++) {
+              $number = i;
+              addRoom($number);
+          }
+          $(".select-option").toggleClass("option-none");
+      });
+
+      $(".js-example-tags").select2({
+          tags: true
+      });
+
+      $(document).on("click", function(event){
+          var $trigger = $(".bed-selector");
+          if($trigger !== event.target && !$trigger.has(event.target).length){
+              $(".select-room").addClass("option-none");
+          }            
+      });
+
+      function addRoom($number){
+          $room = $(`<div class="room"><div class="title-container">
+                          <h5 class="title" style="margin:10px;">Room `+ $number +`</h5>
+                      </div>
+                      <section class="dropdown-container">
+                          <div class="dropdown-inner">
+                              <input type="checkbox" id="king_`+ $number+`">
+                              <label for="king_`+ $number+`">1 King</label>
+                          </div>
+                          <div class="dropdown-inner">
+                              <input type="checkbox" id="twin_`+ $number+`">
+                              <label for="twin_`+ $number+`">2 Twin</label>
+                          </div>
+                          <div class="dropdown-inner">
+                              <input type="checkbox" id="queen_`+ $number+`">
+                              <label for="queen_`+ $number+`">2 Queen</label>
+                          </div>
+                      </section>
+                  </div>`);
+          $('.select-room').append($room);
+      }
+
   });
 </script>
 @endpush

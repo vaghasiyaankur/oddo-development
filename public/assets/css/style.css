@@ -1266,7 +1266,10 @@
   line-height: 22px;
 }
 .box-content {
-  min-height: 158px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 169px;
   padding-left: 25px;
   padding-top: 16px;
   padding-right: 12px;
@@ -1277,6 +1280,8 @@
   font-size: 20px;
   line-height: 24px;
   color: #393c52;
+  /* min-height: 48px;
+  max-height: 78px; */
 }
 .p-lb {
   left: 16px;

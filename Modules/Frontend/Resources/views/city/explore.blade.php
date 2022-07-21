@@ -40,7 +40,7 @@
             <div class="small-box-main pwm-small-box">
                 <div class="row">
                     @foreach($properties as $property)
-                    <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class=" col-lg-3 col-md-4 col-sm-6">
                         <div class="small-box-wrapper d-flex jstify-content-between align-items-center  mb-2">
                             <div class="small-box-single-img ">
                                 <img src="{{ asset('assets/images/icons/location-popup-'.$loop->iteration.'.png') }}">
@@ -78,20 +78,20 @@
                     <div class="pwm-far-box-inner">
                         <div class="far-check-box">
                             <div class="form-check mb-2 ">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label para-fs-14" for="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" checked>
+                                <label class="form-check-label para-fs-14" for="flexCheckDefault1">
                                     1 hour away
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label para-fs-14" for="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                                <label class="form-check-label para-fs-14" for="flexCheckDefault2">
                                     2-3 hours away
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label para-fs-14" for="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                                <label class="form-check-label para-fs-14" for="flexCheckDefault3">
                                     3+ hours away
                                 </label>
                             </div>
@@ -259,7 +259,7 @@
                 <!----- Restaurants Accordion end ------->
             </div>
             <div class="pwm-accordion-inner">
-                <div class="pwm-accordion-title d-md-flex justify-content-between align-items-center mt-2 mb-2">
+                <div class="pwm-accordion-title d-md-flex justify-content-between align-items-center my-2">
                     <div class="pwm-accordion-text d-flex align-items-center">
                         <div class="accordion-text d-l-Purple pe-4">
                             <span>Rascafria</span>
@@ -409,7 +409,7 @@
                 <!----- Restaurants Accordion end ------->
             </div>
             <div class="pwm-accordion-inner">
-                <div class="pwm-accordion-title d-md-flex justify-content-between align-items-center mt-2 mb-2">
+                <div class="pwm-accordion-title d-md-flex justify-content-between align-items-center my-2">
                     <div class="pwm-accordion-text d-flex align-items-center">
                         <div class="accordion-text d-l-Purple pe-4">
                             <span>El Escorial</span>
@@ -559,7 +559,7 @@
                 <!----- Restaurants Accordion end ------->
             </div>
             <div class="pwm-accordion-inner">
-                <div class="pwm-accordion-title d-md-flex justify-content-between align-items-center mt-2 mb-2">
+                <div class="pwm-accordion-title d-md-flex justify-content-between align-items-center my-2">
                     <div class="pwm-accordion-text d-flex align-items-center">
                         <div class="accordion-text text-primary pe-sm-4 pe-2">
                             <span>Alcalá de Henares</span>

@@ -22,7 +22,7 @@ Photo
                             <div class="form-info-box mt-3">
                                 <div class="photos-dropbox">
                                     <div class="dropbox-title">
-                                        <h5 class="m-0">Photo Gallery</h5>
+                                        <h5 class="mb-3">Photo Gallery</h5>
                                     </div>
                                     <div class="drop-box-main">
                                         <div id="dropBox" class="position-relative">

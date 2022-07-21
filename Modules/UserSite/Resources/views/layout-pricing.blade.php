@@ -135,15 +135,14 @@ Layout & pricing
                                     </div>
                                     <div class="amenities-raido-btn">
                                         <div class="form-check form-check-inline amenities-radio">
-                                            <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes">
                                             <label class="form-check-label" for="yes">
+                                            <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes">
                                             Yes    
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline amenities-radio">
-                                            <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" value="no" id="no" checked>
                                             <label class="form-check-label" for="no">
-                                            No
+                                                <input class="form-check-input bathroom_private" type="radio" name="bathroom_private"  id="no" checked> No
                                             </label>
                                         </div>
                                     </div>
@@ -203,14 +202,14 @@ Layout & pricing
                                         </div>
                                         <div class="amenities-raido-btn">
                                             <div class="form-check form-check-inline amenities-radio">
-                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" id="yes" value="yes">
                                                 <label class="form-check-label" for="yes">
+                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" id="yes" value="yes">
                                                  Yes
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline amenities-radio">
-                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" value="no" id="no" checked>
                                                 <label class="form-check-label" for="no">
+                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" value="no" id="no" checked>
                                                  No
                                                 </label>
                                             </div>
