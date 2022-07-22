@@ -31,7 +31,7 @@
           <a href="{{route('property-category')}}" class="list-properties-btn btn">list-properties</a>
         </div>
         @if(!auth()->check())
-        <div class="list-properties pe-3">
+        <div class="list-properties pe-3 mt-3 mt-lg-0">
           <button type="button" class="list-properties-btn btn" data-bs-toggle="modal" data-bs-target="#Log_in_modal">
             Login
           </button>
