@@ -58,8 +58,8 @@
 
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Welcome Back !</h5>
-                                    <p class="text-muted">Sign in to continue to Odda.</p>
+                                    <h4 class="text-primary">Welcome Back !</h4>
+                                    <p class="text-muted">Reset Your Password to continue to Odda.</p>
                                 </div>
                                 <div id="expired-div"></div>
                                
@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100 changePasswordBtn">Change Password</button>
+                                            <button class="btn btn-success w-100 changePasswordBtn" style="border: none;background-color: #6A78C7;">Change Password</button>
                                         </div>
                                     </form>
                                 </div>
@@ -155,6 +155,7 @@
                     data: formdata,
                     success: function (response) {
                         $(".updatePasswordForm").trigger("reset");
+                        window.location.href = '/';
                     }, error:function (response) {
                         if(response.responseJSON.errors){
                             $('#newPassword-error').text(response.responseJSON.errors.newPassword);

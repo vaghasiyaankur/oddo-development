@@ -1538,3 +1538,39 @@
   color: #393c52;
 }
 /* =====================PLANNER SECTION PAGE End===================== */
+
+
+.log_in_modal_ button.btn-twiter{ 
+  background-color: #299cdb;
+  border: none;
+  color: #fff;
+}
+.log_in_modal_ button.btn-fb{ 
+  background-color: #405189;
+  border: none;
+  color: #fff;
+}
+.log_in_modal_ button.btn-google{ 
+  background-color: #f06548;
+  border: none;
+  color: #fff;
+}
+.log_in_modal_ button.btn-git{ 
+  background-color: #212529;
+  border: none;
+  color: #fff;
+}
+
+.log_in_modal_ button.btn-fb:hover.btn-fb{
+ background-color: #364574;
+}
+.log_in_modal_ button.btn-google:hover.btn-google{
+  background-color: #cc563d;
+ }
+ .log_in_modal_ button.btn-git
+ :hover.btn-git{
+  background-color: #1c1f23;
+ }
+ .log_in_modal_ button.btn-twiter:hover.btn-twiter{
+  background-color: #2385ba;
+ }
