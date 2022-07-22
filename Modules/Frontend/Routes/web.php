@@ -57,6 +57,9 @@ Route::view('/register', 'frontend::auth.register');
 Route::post('user/login', 'Auth\LoginController@login')->name('user.login');
 Route::get('user/logout', 'Auth\LoginController@logout')->name('logout.index');
 Route::post('user/register', 'Auth\RegisterController@store')->name('user.register');
+Route::post('user/forget-password', 'Auth\ForgetPasswordController@forgetpassword')->name('user.forget-password');
+Route::get('/reset-password/{token}', 'Auth\ResetPasswordController@getPassword')->name('user.resetPassword');
+Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword')->name('user.updatePassword');
 
 
 Route::middleware(['auth', 'user-access:user'])->group(function(){
