@@ -13,28 +13,28 @@
                                     <div class="text-center mt-2 ">
                                         <h5 class="text-dark fs-4">Create New Account</h5>
                                     </div>
-                                    <div class="p-2 mt-4">
+                                    <div class="p-2 mt-3">
                                         <form action="javascript:;" method="POST" class="signUpForm">
                                             @csrf
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label for="userName" class="form-label">Username <span class="text-danger">*</span></label>
                                                 <input type="text" name="username" class="form-control name"
                                                     id="userName" placeholder="Enter your username">
                                                 <span class="text-danger" id="name-error"></span>
                                             </div>
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label for="E-mail" class="form-label">Email <span class="text-danger">*</span></label>
                                                 <input type="email" name="email" class="form-control useremail"
                                                     id="E-mail" placeholder="Enter your email">
                                                     <span class="text-danger" id="useremail-error"></span>
                                             </div>
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="password" class="form-control userpassword"
                                                     id="password" placeholder="Enter password">
                                                     <span class="text-danger" id="userpassword-error"></span>
                                             </div>
-                                            <div class="mb-4">
+                                            <div class="mb-3">
                                                 <label class="form-label" for="password-input">Re-Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="RePassword" class="form-control userrepassword"
                                                 id="username" placeholder="Enter re-password">
@@ -44,6 +44,20 @@
                                                 <button class="btn log_in_btn w-100 signup">Sign Up</button>
                                             </div>
                                             <div class="mt-4 text-center">
+                                                <div class="signin-other-title">
+                                                    <h6 class="mb-3 title text-muted">Create account with</h6>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-icon btn-fb"><i class="ri-facebook-fill fs-16"></i></button>
+
+                                                    <button type="button" class="btn btn-icon btn-google"><i class="ri-google-fill fs-16"></i></button>
+
+                                                    <button type="button" class="btn btn-icon btn-git"><i class="ri-github-fill fs-16"></i></button>
+
+                                                    <button type="button" class="btn btn-icon btn-twiter"><i class="ri-twitter-fill fs-16"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3 text-center">
                                                 <p class="mb-0">Already have an account ? <a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#Log_in_modal" style="color: #5867ba;"> Login </a> </p>
                                             </div>
                                         </form>
@@ -107,11 +121,12 @@
                     $('#name-error').text('');
                     $('#userpassword-error').text('');
                     $('#useremail-error').text('');
+                    toastMixin.fire({ title: response.success, icon: 'success' });
                 }, error:function (response) {
                     $('#name-error').text(response.responseJSON.errors.username);
                     $('#userpassword-error').text(response.responseJSON.errors.password);
                     $('#useremail-error').text(response.responseJSON.errors.email);
-
+                    $('#userrepassword-error').text(response.responseJSON.errors.RePassword);
                 }
             }); 
         }); 

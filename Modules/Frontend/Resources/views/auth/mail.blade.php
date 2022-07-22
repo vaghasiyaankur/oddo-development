@@ -51,7 +51,7 @@
 
 <body style="background-color: #f4f4f5;">
     <table cellpadding="0" cellspacing="0"
-        style="width: 100%; height: 100%; background-color: #f4f4f5; text-align: center;">
+        style="width: 100%; height: 100%; background-color: #f4f4f5; text-align: center;padding:50px 0; ">
         <tbody>
             <tr>
                 <td style="text-align: center;">
@@ -61,21 +61,17 @@
                             <tr>
                                 <td>
                                     <table align="center" cellpadding="0" cellspacing="0" class="page-center"
-                                        style="text-align: left; padding-bottom: 88px; width: 100%; padding-left: 120px; padding-right: 120px;">
+                                        style="text-align:center;padding-top: 33px;padding-bottom: 54px; width: 100%; padding-left: 75px; padding-right: 75px;">
                                         <tbody>
                                             <tr>
-                                                <td style="padding-top: 24px;">
-                                                    <img src="https://d1pgqke3goo8l6.cloudfront.net/wRMe5oiRRqYamUFBvXEw_logo.png"
-                                                        style="width: 56px;">
-                                                </td>
+                                                <td style="color: #6a78c7;font-family: ui-monospace;font-size: 40px;font-style: normal;font-weight: 600;line-height: 40px;text-decoration: none;text-align: center;">Odda</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2"
-                                                    style="padding-top: 72px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 48px; font-smoothing: always; font-style: normal; font-weight: 600; letter-spacing: -2.6px; line-height: 52px; mso-line-height-rule: exactly; text-decoration: none;">
-                                                    Reset your password</td>
+                                                    style="padding-top: 22px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-size: 28px; font-smoothing: always; font-style: normal; font-weight: 600; line-height: 40px; mso-line-height-rule: exactly; text-decoration: none;text-align: center;">You have requested to reset your password</td>
                                             </tr>
                                             <tr>
-                                                <td style="padding-top: 48px; padding-bottom: 48px;">
+                                                <td style="padding-top: 17px; padding-bottom: 20px;">
                                                     <table cellpadding="0" cellspacing="0" style="width: 100%">
                                                         <tbody>
                                                             <tr>
@@ -91,19 +87,19 @@
                                                 <td
                                                     style="-ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;">
                                                     You're receiving this e-mail because you requested a password reset
-                                                    for your Postmates account.
+                                                    for your Odda account.
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td
-                                                    style="padding-top: 24px; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;">
+                                                    style="padding-top: 24px;padding-bottom:34px; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;">
                                                     Please tap the button below to choose a new password.
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <a data-click-track-id="37" href="{{ route('user.resetPassword', ['token' => $token]) }}"
-                                                        style="margin-top: 36px; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 12px; font-smoothing: always; font-style: normal; font-weight: 600; letter-spacing: 0.7px; line-height: 48px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 220px; background-color: #00cc99; border-radius: 28px; display: block; text-align: center; text-transform: uppercase"
+                                                        style="margin:0 auto; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 12px; font-smoothing: always; font-style: normal; font-weight: 600; letter-spacing: 0.7px; line-height: 48px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 220px; background-color: #6a78c7; border-radius: 28px; display: block; text-align: center; text-transform: uppercase"
                                                         target="_blank">
                                                         Reset Password
                                                     </a>
