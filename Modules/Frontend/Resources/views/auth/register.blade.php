@@ -51,7 +51,9 @@
                                                     <button type="button" class="btn btn-icon btn-fb"><i class="ri-facebook-fill fs-16"></i></button>
 
                                                     <button type="button" class="btn btn-icon btn-google"><i class="ri-google-fill fs-16"></i></button>
-
+                                                    <a href="{{ route('auth.google') }}" class="btn btn-icon btn-google">
+                                                        <i class="ri-google-fill fs-16"></i>
+                                                    </a>
                                                     <button type="button" class="btn btn-icon btn-git"><i class="ri-github-fill fs-16"></i></button>
 
                                                     <button type="button" class="btn btn-icon btn-twiter"><i class="ri-twitter-fill fs-16"></i></button>
