@@ -61,6 +61,11 @@ Route::post('user/forget-password', 'Auth\ForgetPasswordController@forgetpasswor
 Route::get('/reset-password/{token}', 'Auth\ResetPasswordController@getPassword')->name('user.resetPassword');
 Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword')->name('user.updatePassword');
 
+// google socialite 
+Route::controller(Auth\Socialite\GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
 
 Route::middleware(['auth', 'user-access:user'])->group(function(){
 //     /* Profile Page */
