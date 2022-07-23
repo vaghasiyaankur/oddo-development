@@ -1,7 +1,8 @@
 <div class="col-lg-9 position-relative">
             @if(count($hotels))
-              @foreach($hotels as $key => $hotel)     
-                <main class="result-main-content  {{ $key == 0 ? '': ' mt-4'}}">
+              @foreach($hotels as $key => $hotel) 
+
+                <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000" class="result-main-content  {{ $key == 0 ? '': ' mt-4'}}">
                   <div class="result-main-inner">
                     <div class="row">
                       <div class="col-md-4">
@@ -532,7 +533,7 @@
                         <div class="result-right-content mt-3 ps-3 pe-3 overflow-auto">
                           <div class="result-right-inner">
                             <div class="right-select">
-                              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                              <select class="form-select form-select-lg mb-3 fs-6" aria-label=".form-select-lg example">
                                 <option selected>What’s nearby</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -560,13 +561,13 @@
                     </div>
                   </div>
                 </main>
-                <div class="search-result-price-tag position-relative ">
+                <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0" class="search-result-price-tag position-relative ">
                   <button class="price-btn">{{@$hotel->room->price_room}} for 1 Nights</button>
                 </div>
               @endforeach
               @else
               {{-- No data found box --}}
-                <main class="result-main-content border-semidark mt-4">
+                <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000" class="result-main-content border-semidark mt-4">
                   <div class="result-main-inner d-flex align-items-center justify-content-center"
                   style="width: 966px;height: 345px;">
                   <div class="empty-table w-100 text-center py-5">
@@ -580,7 +581,7 @@
                 </main>
             @endif
             <!----- notify me ----->
-            <main class="result-main-content border-semidark mt-4">
+            <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000" class="result-main-content border-semidark mt-4">
               <div class="result-main-inner">
                 <div class="row">
                   <div class="col-md-4">
@@ -1256,7 +1257,7 @@
                     <div class="result-right-content mt-3 ps-3 pe-3">
                       <div class="result-right-inner">
                         <div class="right-select">
-                          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                          <select class="form-select form-select-lg mb-3 fs-6" aria-label=".form-select-lg example">
                             <option selected>What’s nearby</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -1326,7 +1327,7 @@
                 </div>
               </div>
             </main>
-            <div class="search-result-price-tag search-result-notify position-relative">
+            <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0" class="search-result-price-tag search-result-notify position-relative">
               <button class="price-btn notify-btn" data-bs-toggle="modal" data-bs-target="#notify-popup">Notify
                 Me</button>
               <!-------- Notify popup sart -------->

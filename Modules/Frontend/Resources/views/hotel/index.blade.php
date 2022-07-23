@@ -5,8 +5,13 @@ hotel
 @endsection
 
 @push('css')
-<!-------- Swiper Css Cdn --------->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.3/swiper-bundle.css" />
+
+    <!-- aos css -->
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/aos/aos.css') }}" />
+
+    <!-------- Swiper Css Cdn --------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.3/swiper-bundle.css" />
+
 <style>
     /*  */
     .bed-selector .room {
@@ -109,7 +114,6 @@ hotel
 
     .select2-container--default.select2-container--focus .select2-selection--multiple {
         border: 1px solid #aaa;
-        ;
     }
 
     .select2-search--dropdown {
@@ -911,6 +915,13 @@ hotel
 @endsection
 
 @push('script')
+
+    
+    <!-- aos js -->
+    <script src="{{ asset('assets/Admin/assets/libs/aos/aos.js') }}"></script>
+
+   <!-- animation init -->
+   <script src="{{ asset('assets/Admin/assets/js/pages/animation-aos.init.js') }}"></script>
 
 <!------- loading icon link -------->
 <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
