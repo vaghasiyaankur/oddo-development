@@ -57,7 +57,7 @@ class RegisterController extends Controller
         $user->type = 0;
         $user->save();
 
-        return redirect()->route('home.index');
+        return response()->json(["success" => "account created successfully."], 200);  
           
     }
 

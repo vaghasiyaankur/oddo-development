@@ -46,6 +46,9 @@
     <!-- Icons Css -->
     <link href="{{ asset('assets/Admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- Sweet Alert css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
+    
     @stack('css')
     <style>
         .log_in_modal_ .btn-close {
@@ -125,9 +128,10 @@
     
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
+    <!-- Sweet Alerts js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
-
-
+    <script src="{{ asset('assets/Admin/assets/js/custom.js') }}"></script>
 @stack('script')
 
 </body>

@@ -1,15 +1,16 @@
 <?php
 
-namespace Modules\Frontend\Http\Controllers\Auth;
+namespace Modules\Frontend\Http\Controllers\Auth\Socialite;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use DB;
+use Laravel\Socialite\Facades\Socialite;
+use Exception;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
-class ResetPasswordController extends Controller
+class GoogleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,32 +81,37 @@ class ResetPasswordController extends Controller
         //
     }
 
-    public function getPassword($token)
+    public function redirectToGoogle()
     {
-        return view('frontend::auth.resetPassword', ['token' => $token]);
+        return Socialite::driver('google')->redirect();
     }
 
-    public function updatePassword(Request $request)
+    public function handleGoogleCallback()
     {
-        $request->validate([
-            'newPassword' => 'required|min:6',
-            'confirmPassword' => 'required||same:newPassword',
-            
-        ]);
+        try {
+            $user = Socialite::driver('google')->user();
+            $finduser = User::where('google_id', $user->id)->first();
+            if($finduser){
+         
+                Auth::login($finduser);
         
-        $updatePassword = DB::table('password_resets')
-        ->where('token', $request->token)
-        ->first();
-      
-        if(!$updatePassword){
-            return response()->json(["error" => "Your password reset link expired."], 403);  
+                return redirect()->intended('/');
+         
+            }else{
+                $newUser = User::updateOrCreate(['email' => $user->email],[
+                        'name' => $user->name,
+                        'google_id'=> $user->id,
+                        'type' => 0,
+                        'password' => encrypt('123456dummy')
+                    ]);
+         
+                Auth::login($newUser);
+        
+                return redirect()->intended('/');
+            }
+        
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
-      
-        $user = User::where('email', $updatePassword->email)
-                      ->update(['password' => Hash::make($request->newPassword)]);
-      
-        DB::table('password_resets')->where(['email'=> $updatePassword->email])->delete();
-      
-        return response()->json(["success" => "We have e-mailed your password reset link!"], 200);  
     }
 }
