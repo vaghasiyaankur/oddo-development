@@ -6,7 +6,26 @@
 
 
 @push('css')
+<style>
+   .account-section .account-detail i{
+    position: absolute;
+    right: 37px;
+    top: 36px;
+    color: #00000099;
+}
+.account-section .acc_btn_ .account_submit_btn{
+    color: #fff;
+    background-color: #6A78C7;
+    border-radius: 8px;
+    padding: 5px 24px;
+    font-weight: 500;
+    font-size: 18px;
+}
 
+.form-control:disabled, .form-control[readonly]{
+    background-color: white;
+}
+</style>
 @endpush
 
 
@@ -15,22 +34,27 @@
     <section class="account-section">
         <div class="container">
             <h2 class="account-title text-center">Account Settings</h2>
-            <div class="account-detail mx-auto">
-                <div class="account-form">
-                    <label for="exampleInputtext1" class="label-text">Name</label>
-                    <input type="text" class="form-control inpute-text border-0 border-bottom rounded-0 p-0"
-                        id="exampleInputPassword1" value="David">
-                </div>
-                <div class="account-form">
-                    <label for="exampleInputtext1" class="label-text">Lastname</label>
-                    <input type="text" class="form-control inpute-text border-0 border-bottom rounded-0 p-0"
-                        id="exampleInputPassword1" value="Nehorai">
-                </div>
-                <div class="account-form">
-                    <label for="exampleInputtext1" class="label-text">Email</label>
-                    <input type="text" class="form-control inpute-text border-0 border-bottom rounded-0 p-0"
-                        id="exampleInputPassword1" value="dnehorai@aol.com">
-                </div>
+            <div class="account-detail mx-auto position-relative">
+                <i class="fa-solid fa-pen-to-square editUser"></i>
+                <form class="updateUserForm">
+                    <div class="account-form">
+                        <label for="exampleInputtext1" class="label-text">Name</label>
+                        <input type="text" class="userInput form-control name inpute-text border-0 border-bottom rounded-0 p-0"
+                            id="exampleInputPassword1" value="{{$user->name}}" readonly>
+                        <span class="text-danger" id="name-error"></span>
+                    </div>
+                    <div class="account-form">
+                        <label for="exampleInputtext1" class="label-text">Lastname</label>
+                        <input type="text" class="userInput form-control lastName inpute-text border-0 border-bottom rounded-0 p-0"
+                            id="exampleInputPassword1" value="{{$user->last_name}}" readonly>
+                        <span class="text-danger" id="lastName-error"></span>
+                    </div>
+                    <div class="account-form">
+                        <label for="exampleInputtext1" class="label-text">Email</label>
+                        <input type="text" class="userInput form-control inpute-text border-0 border-bottom rounded-0 p-0"
+                            id="exampleInputPassword1" value="{{$user->email}}" readonly>
+                    </div>
+                </form>
                 <div class="payment-title d-flex flex-wrap align-items-center justify-content-between py-3">
                     <h6>Payment Methods</h6>
                     <a href="javascript:;" class="text-decoration-none">New Payment method</a>
@@ -71,14 +95,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="payment-title d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+                <div class="payment-title d-flex flex-wrap align-items-center justify-content-md-between mt-3">
                     <!-- <h6 class="m-0">Password</h6> -->
-                    <div class="mt-2">
+                    {{-- <div class="mt-2">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" style="border: 1px solid #e6e8f5;" id="exampleInputPassword1">
-                      </div>
-                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#account_change_password"
+                      </div> --}}
+                    <div class="edit_password_ d-none">
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#account_change_password"
                         class="text-decoration-none align-self-start">Change Password </a>
+                    </div>
+                    <div class="acc_btn_ d-none" >
+                        <button type="button" class="account_submit_btn btn btn-light">Submit</button>
+                    </div>
+
                     <!------ CHANGE PASSWORD MODAL ------->
                     <div class="modal fade" id="account_change_password" data-bs-backdrop="static"
                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
@@ -246,6 +276,65 @@
 
     $('select.f-dropdown').mySelectDropdown();
 
+</script>
+
+<script>
+$(document).ready(function(){
+
+    var baseUrl = $('#base_url').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+    $(document).on('click', '.editUser', function(){
+        $('.inpute-text').attr('readonly', false);
+        $('.acc_btn_').removeClass('d-none');
+        $('.edit_password_').removeClass('d-none');
+        $(this).hide();
+    });  
+    
+    $(document).on('click', '.account_submit_btn',function(){
+        let name = $('.name').val();
+        !name ? $(`#name-error`).html(`The name field is required.`) : $(`#name-error`).html(``);
+
+        let lastName = $('.lastName').val();
+        !lastName ? $(`#lastName-error`).html(`The lastName field is required.`) : $(`#lastName-error`).html(``);
+
+        // let email = $('.email').val();
+        // !email ? $(`#email-error`).html(`The email field is required.`) : $(`#email-error`).html(``);
+
+        if (!name || !lastName) {
+            return;
+        }
+        
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+
+        formdata = new FormData();
+        formdata.append('name', name);
+        formdata.append('lastName', lastName);
+
+
+        $.ajax({
+            url: "{{route('update.user')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                $('.acc_btn_').addClass('d-none');
+                $('.edit_password_').addClass('d-none');
+                $('.editUser').show();
+                $('.inpute-text').attr('readonly', true);
+            }, error:function (response) {
+                // $('#item-error').text(response.responseJSON.errors.item);
+            }
+        }); 
+    });
+});
 </script>
 
 @endpush

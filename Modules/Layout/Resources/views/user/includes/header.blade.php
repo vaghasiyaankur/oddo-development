@@ -27,9 +27,30 @@
             <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
           </li>
         </ul>
-        <div class="list-properties pe-5">
-          <a href="{{route('property-category')}}" class="list-properties-btn btn">list-properties</a>
-        </div>
+
+        @php  
+          if(auth()->check()) {
+            $authId = auth()->user()->id;
+            $property = App\Models\Hotel::where('user_id', $authId)->count();
+          }
+        @endphp
+
+        @if(!auth()->check() || $property == 0)
+          @if(!auth()->check())
+            <div class="list-properties pe-5">
+              <a href="javascript:;" class="list-properties-btn btn" data-bs-toggle="modal" data-bs-target="#Log_in_modal">List Your Property</a>
+            </div> 
+          @else
+            <div class="list-properties pe-5">
+              <a href="{{route('property-category')}}" class="list-properties-btn btn">List Your Property</a>
+            </div>
+          @endif
+        @else
+          <div class="list-properties pe-5">
+            <a href="{{route('user.view')}}" class="list-properties-btn btn">My Property</a>
+          </div>
+        @endif
+
         @if(!auth()->check())
         <div class="list-properties pe-3 mt-3 mt-lg-0">
           <button type="button" class="list-properties-btn btn" data-bs-toggle="modal" data-bs-target="#Log_in_modal">
@@ -42,7 +63,7 @@
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle dropdown-btn" type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
-              Hi, Daniela!
+              Hi, {{auth()->user()->name}}
             </button>
             <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item active" href="{{ route('myaccount.index') }}">My Account</a></li>

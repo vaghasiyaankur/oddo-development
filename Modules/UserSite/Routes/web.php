@@ -45,7 +45,11 @@ Route::controller(PropertyController::class)->group(function(){
 // });
 
 Route::prefix('user')->group(function() {
-    Route::view('/view', 'usersite::user.view')->name('view');
-    Route::view('/calender', 'usersite::user.calender')->name('calender');
-    
+    Route::middleware(['auth', 'user-access:user'])->group(function(){
+        Route::controller(UserController::class)->group(function(){
+            Route::get('/home', 'index')->name('user.view');
+        });
+
+        Route::view('/calender', 'usersite::user.calender')->name('calender');
+    });
 });

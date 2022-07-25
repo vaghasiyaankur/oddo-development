@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Frontend\Http\Controllers;
+namespace Modules\UserSite\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\User;
+use App\Models\Hotel;
 
-class ProfileController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $user = User::where('id', $id)->first();
-        return view('frontend::profile.index', compact('user'));
+        $userId = auth()->user()->id;
+        $hotels = Hotel::where('user_id',$userId)->get(); 
+        return view('usersite::user.view', compact('hotels'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('testing::create');
+        return view('usersite::create');
     }
 
     /**
@@ -46,7 +46,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        return view('testing::show');
+        return view('usersite::show');
     }
 
     /**
@@ -56,7 +56,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        return view('testing::edit');
+        return view('usersite::edit');
     }
 
     /**
@@ -65,15 +65,9 @@ class ProfileController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $userId = auth()->user()->id;
-
-        $user = User::updateOrCreate([ 'id' => $userId ], [
-            'name' => $request->name,
-            'last_name' => $request->lastName,
-        ]);
-        return response()->json(["success" => "user updated Successfully"], 200);
+        //
     }
 
     /**

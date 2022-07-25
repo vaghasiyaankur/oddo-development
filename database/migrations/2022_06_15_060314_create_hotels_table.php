@@ -51,8 +51,8 @@ return new class extends Migration
             $table->integer('bed_type_id')->unsigned()->nullable();
             $table->integer('hotel_contact_id')->unsigned()->nullable();
             $table->integer('property_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
 
-            // $table->integer('room_id')->unsigned()->nullable();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('property_id')->references('id')->on('property_types')->onDelete('cascade');
@@ -60,7 +60,6 @@ return new class extends Migration
             $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
             $table->foreign('food_type_id')->references('id')->on('food_types')->onDelete('cascade');
             $table->foreign('bed_type_id')->references('id')->on('bed_types')->onDelete('cascade');
-            // $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->timestamps();
         });
     }
