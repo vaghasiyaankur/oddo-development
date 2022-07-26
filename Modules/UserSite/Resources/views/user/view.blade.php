@@ -34,13 +34,9 @@ Add-Layout
                                                 class="white-button-step px-3 py-2 d-flex align-items-center me-2">Albums</a>
                                             <a href="javascript:;"
                                                 class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
-                                            <a href="javascript:;"
-                                                class="green-button-step py-2 d-flex align-items-center me-2 px-3">Edit Site</a>
-                                            <a href="javascript:;"
-                                                class="white-button-step px-3 py-2 d-flex align-items-center"
-                                                data-toggle="modal" data-target="#delete-account" id="p-delete-account"
-                                                data-type="dogsite"
-                                                data-href="javascript:;">Delete</a>
+                                            {{-- <a href="{{route('edit.proeprty', ['id' => $hotel->UUID])}}"
+                                                class="green-button-step py-2 d-flex align-items-center me-2 px-3">Edit Property</a> --}}
+                                            <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center propertyDelete" data-value="{{ $hotel->UUID }}">Delete</a>
                                         </div>
                                     </div>
 
@@ -109,5 +105,33 @@ Add-Layout
 
 
 @push('scripts')
+<script>
+$(document).ready(function(){
+    var baseUrl = $('#base_url').val();
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).on('click', '.propertyDelete', function(){
+        let id = $(this).data('value');
+         
+        formdata = new FormData();
+        formdata.append('id', id);
+
+        $.ajax({
+            url: baseUrl + "/user/propertyDelete/" + id,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (response) { 
+                console.log(response);
+            },
+        }); 
+
+    });
+});
+</script>
 @endpush

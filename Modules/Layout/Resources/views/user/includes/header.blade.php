@@ -66,11 +66,11 @@
               Hi, {{auth()->user()->name}}
             </button>
             <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item active" href="{{ route('myaccount.index') }}">My Account</a></li>
-              <li><a class="dropdown-item" href="{{ route('orderhistory.index') }}">Order History</a></li>
-              <li><a class="dropdown-item" href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
-              <li><a class="dropdown-item " href="{{ route('logout.index') }}"><span class="text--red">Logout</span> </a></li>
-            </ul>
+              <li><a class="dropdown-item {{ Request::routeIs('myaccount.index') ? 'active' : '' }}" href="{{ route('myaccount.index') }}">My Account</a></li>
+              <li><a class="dropdown-item {{ Request::routeIs('orderhistory.index') ? 'active' : '' }}" href="{{ route('orderhistory.index') }}">Order History</a></li>
+              <li><a class="dropdown-item {{ Request::routeIs('upcomingtrips.index') ? 'active' : '' }}" href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
+              <li><a class="dropdown-item {{ Request::routeIs('logout.index') ? 'active' : '' }}" href="{{ route('logout.index') }}"><span class="text--red">Logout</span> </a></li>
+            </ul> 
           </div>
         @endif
       </div>

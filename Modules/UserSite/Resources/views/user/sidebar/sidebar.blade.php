@@ -5,7 +5,7 @@
             </li>
             <li class="{{ Request::routeIs('calender') ? 'active' : '' }}"><a href="{{route('calender')}}">Calender &
                     Pricing</a></li>
-            <li><a href="#">Payment</a></li>
+            <li class="{{ Request::routeIs('property-category') ? 'active' : '' }}"><a href="{{route('property-category')}}">Add Property</a></li>
             <li><a href="#">Security</a></li>
             <li><a href="#">Dog site</a></li>
             <li><a href="#">Dogistry</a></li>

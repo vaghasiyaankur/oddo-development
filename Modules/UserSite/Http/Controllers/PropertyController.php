@@ -23,6 +23,7 @@ use App\Models\BathroomItem;
 use Modules\UserSite\Entities\HotelPhoto;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File; 
 
 class PropertyController extends Controller
 {
@@ -221,6 +222,36 @@ class PropertyController extends Controller
         ]);  
 
         return response()->json(['redirect_url' => route('home.index')]);
+    }
+
+    // public function editProperty($id)
+    // {
+    //     $countries = Country::with('cities')->active()->get();
+    //     $hotel = Hotel::where('UUID',$id)->with('propertytype')->latest()->first();
+    //     return view('usersite::BasicInfo', compact('countries', 'hotel'));
+    // }
+
+    public function deleteProperty($id)
+    {
+        $hotel = Hotel::where('UUID',$id)->first();
+        $room = Room::where('hotel_id',$hotel->id)->first();
+        $hotelPhotos = HotelPhoto::where('hotel_id', $hotel->id)->get();
+        foreach($hotelPhotos as $hotelphoto) {
+            $image_path = public_path('storage/'.$hotelphoto->photos);
+            if (File::exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+        try {
+            $roomBeds = HotelBed::where('room_id', $room->id)->delete();
+            $hotelContact = HotelContact::where('hotel_id', $hotel->id)->delete();
+            $hotelPhotosDelete = HotelPhoto::where('hotel_id', $hotel->id)->delete();
+            $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
+            $hotelDelete = Hotel::where('UUID',$id)->delete();
+            return response()->json(["danger" => "property deleted Successfully"], 200);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+        }
     }
    
 }

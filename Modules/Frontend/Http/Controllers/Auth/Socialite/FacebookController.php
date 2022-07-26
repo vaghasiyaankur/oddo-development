@@ -31,7 +31,7 @@ class FacebookController extends Controller
                         'last_name' => $userName[1],
                         'facebook_id'=> $user->id,
                         'type' => '0',
-                        'password' => encrypt('123456dummy')
+                        'password' => encrypt('Demo@12345')
                     ]);
                 Auth::login($newUser);
                 return redirect()->intended('/');
