@@ -256,4 +256,32 @@
 } 
 
 
+/* RESPONSIVE CSS START */
+@media screen and (max-width:1192px) {
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        flex: 0 0 33%;
+        max-width: 33%;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+}
 
+@media screen and (max-width:576px) {
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        flex: 0 0 100%;
+        max-width: 100%;
+        /* margin-top: 20px;
+        padding-bottom: 20px; */
+        border-right: none !important;
+        border-bottom: 1px solid grey;
+    }
+}

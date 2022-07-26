@@ -1,7 +1,10 @@
 <div class="col-lg-9 position-relative">
             @if(count($hotels))
               @foreach($hotels as $key => $hotel) 
-
+              {{-- loader --}}
+                {{-- <div class="loading_spiner_">
+                  <div class="spinner mx-auto"></div>
+                </div> --}}
                 <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000" class="result-main-content  {{ $key == 0 ? '': ' mt-4'}}">
                   <div class="result-main-inner">
                     <div class="row">
@@ -567,6 +570,9 @@
               @endforeach
               @else
               {{-- No data found box --}}
+              {{-- <div class="loading_spiner_">
+                  <div class="spinner mx-auto"></div>
+                </div> --}}
                 <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000" class="result-main-content border-semidark mt-4">
                   <div class="result-main-inner d-flex align-items-center justify-content-center"
                   style="width: 966px;height: 345px;">
@@ -581,6 +587,9 @@
                 </main>
             @endif
             <!----- notify me ----->
+            {{-- <div class="loading_spiner_">
+                  <div class="spinner mx-auto"></div>
+                </div> --}}
             <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000" class="result-main-content border-semidark mt-4">
               <div class="result-main-inner">
                 <div class="row">
@@ -640,12 +649,12 @@
                                   </div>
                                   <div class="slider-nav-img"><img src="assets/images/nav-img9.png" class="me-2" alt="">
                                   </div>
-                                  <div class="slider-nav-img"><img src="assets/images/nav-img10.png" class="me-2"
-                                      alt=""></div>
-                                  <div class="slider-nav-img"><img src="assets/images/nav-img11.png" class="me-2"
-                                      alt=""></div>
-                                  <div class="slider-nav-img"><img src="assets/images/nav-img12.png" class="me-2"
-                                      alt=""> </div>
+                                  <div class="slider-nav-img"><img src="assets/images/nav-img10.png" class="me-2" alt="">
+                                  </div>
+                                  <div class="slider-nav-img"><img src="assets/images/nav-img11.png" class="me-2" alt="">
+                                  </div>
+                                  <div class="slider-nav-img"><img src="assets/images/nav-img12.png" class="me-2" alt="">
+                                  </div>
                                 </div>
                               </div>
                             </div>
