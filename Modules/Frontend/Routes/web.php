@@ -75,5 +75,6 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
     /* Profile Page */
     Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
     Route::post('/update-user', 'ProfileController@update')->name('update.user');
+    Route::post('/change-password', 'ProfileController@changePassword')->name('change.password');
 });
 

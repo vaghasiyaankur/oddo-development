@@ -111,23 +111,25 @@ class LoginController extends Controller
 
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required'
         ], [
             'email.required' => 'The Email field is required.',
             'email.email' => 'please enter a valid email address',
-            'password' => 'The Password field is required.'
+            'password.required' => 'The Password field is required.'
         ]);
+
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->type == 'user') {
-                return redirect()->route('home.index');
+                return response()->json(["success" => "login successfully."], 200);  
             }else{
-                return redirect()->route('home.index');
+                return response()->json(["error" => "account created successfully."], 403);  
             }
         }else{
-            return redirect()->route('home.index')
-                ->with('error','Email-Address And Password Are Wrong.');
+            return response()->json(["error" => "Email-Address And Password Are Wrong."], 403);  
+            // return redirect()->route('home.index')
+            //     ->with('error','Email-Address And Password Are Wrong.');
         }
     }
 

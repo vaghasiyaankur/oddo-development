@@ -45,8 +45,10 @@ class PropertyController extends Controller
     }
 
     public function add_property(Request $request) {
+        $userId = auth()->user()->id;
         $hotel              = new Hotel();
         $hotel->property_id = $request->property;
+        $hotel->user_id = $userId;
         $hotel->save();
 
         $hotel_id = Hotel::latest('created_at')->take(1)->first();

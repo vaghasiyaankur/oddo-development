@@ -51,8 +51,9 @@
                     </div>
                     <div class="account-form">
                         <label for="exampleInputtext1" class="label-text">Email</label>
-                        <input type="text" class="userInput form-control inpute-text border-0 border-bottom rounded-0 p-0"
+                        <input type="text" class="userInput form-control inpute-text border-0 border-bottom rounded-0 p-0 email"
                             id="exampleInputPassword1" value="{{$user->email}}" readonly>
+                        <span class="text-danger" id="email-error"></span>
                     </div>
                 </form>
                 <div class="payment-title d-flex flex-wrap align-items-center justify-content-between py-3">
@@ -111,36 +112,44 @@
 
                     <!------ CHANGE PASSWORD MODAL ------->
                     <div class="modal fade" id="account_change_password" data-bs-backdrop="static"
-                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                        style="display: none;" aria-hidden="true">
-                        <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header justify-content-end">
-                                    <button type="button" class="modal-close" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
-                                <div class="modal-body d-flex align-items-center justify-content-center">
+                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                    style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-end">
+                                <button type="button" class="modal-close" data-bs-dismiss="modal"
+                                    aria-label="Close" style="z-index: 99;">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body d-flex align-items-center justify-content-center">
                                     <div class="modal-body-form text-center">
                                         <div class="modal-title mx-auto">
                                             <h5>Change Your Password</h5>
                                         </div>
+                                        <div id="expired-div">
+                                        </div>
                                         <div class="modal-form">
-                                            <div class="mb-4">
-                                                <p class="m-0 text-start">Old Password</p>
-                                                <input type="password" class="form-control" id="exampleInputPassword1">
-                                            </div>
-                                            <div class="mb-4">
-                                                <p class="m-0 text-start">New Password</p>
-                                                <input type="password" class="form-control" id="exampleInputPassword1">
-                                            </div>
-                                            <div class="mb-4">
-                                                <p class="m-0 text-start">Confirm New Password</p>
-                                                <input type="password" class="form-control" id="exampleInputPassword1">
-                                            </div>
-                                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#succesful_password"><button class="account-pass-btn">Change my
-                                                    Password</button></a>
+                                            <form class="changePasswordForm" action="javascript:;">
+                                                <div class="mb-4">
+                                                    <p class="m-0 text-start">Old Password</p>
+                                                    <input type="password" class="form-control oldPassword" id="exampleInputPassword1">
+                                                    <span class="text-danger" id="oldPassword-error"></span>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <p class="m-0 text-start">New Password</p>
+                                                    <input type="password" class="form-control newPassword" id="exampleInputPassword1">
+                                                    <span class="text-danger" id="newPassword-error"></span>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <p class="m-0 text-start">Confirm New Password</p>
+                                                    <input type="password" class="form-control confirmPassword" id="exampleInputPassword1">
+                                                    <span class="text-danger" id="confirmPassword-error"></span>
+                                                </div>
+                                            </form>
+                                            {{-- <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#succesful_password"><button class="account-pass-btn">Change my
+                                                    Password</button></a> --}}
+                                            <a href="javascript:;"><button class="account-pass-btn ">Change My Password</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +165,7 @@
                             <div class="modal-content">
                                 <div class="modal-header justify-content-end">
                                     <button type="button" class="modal-close" data-bs-dismiss="modal"
-                                        aria-label="Close">
+                                        aria-label="Close" style="z-index: 99;">
                                         <i class="fa-solid fa-xmark"></i>
                                     </button>
                                 </div>
@@ -169,7 +178,7 @@
                                             <p class="sp-title">Succesful Password Reset!</p>
                                             <p class="sp-pere">You can now use your new password to log in to your account.</p>
                                         </div>
-                                        <a href="javascript:;"><button class="account-pass-btn">Login</button></a>
+                                        <a href="{{ route('home.index') }}"><button class=" resetLoginButton">Login</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -182,102 +191,6 @@
     </section>
 @endsection
 @push('script')
-
-
-<!-------Select option with image  --------->
-<script>
-    (function ($) {
-        $.fn.mySelectDropdown = function (options) {
-            return this.each(function () {
-                var $this = $(this);
-
-                $this.each(function () {
-                    var dropdown = $("<div />").addClass("f-dropdown selectDropdown");
-
-                    if ($(this).is(':disabled'))
-                        dropdown.addClass('disabled');
-
-                    $(this).wrap(dropdown);
-
-                    var label = $("<span />").append($("<span />")
-                        .text($(this).attr("placeholder"))).insertAfter($(this));
-                    var list = $("<ul />");
-
-                    $(this)
-                        .find("option")
-                        .each(function () {
-                            var image = $(this).data('image');
-                            if (image) {
-                                list.append($("<li />").append(
-                                    $("<a />").attr('data-val', $(this).val())
-                                        .html(
-                                            $("<span />").append($(this).text())
-                                        ).prepend('<img src="' + image + '">')
-                                ));
-                            } else if ($(this).val() != '') {
-                                list.append($("<li />").append(
-                                    $("<a />").attr('data-val', $(this).val())
-                                        .html(
-                                            $("<span />").append($(this).text())
-                                        )
-                                ));
-                            }
-                        });
-
-                    list.insertAfter($(this));
-
-                    if ($(this).find("option:selected").length > 0 && $(this).find("option:selected").val() != '') {
-                        list.find('li a[data-val="' + $(this).find("option:selected").val() + '"]').parent().addClass("active");
-                        $(this).parent().addClass("filled");
-                        label.html(list.find("li.active a").html());
-                    }
-                });
-
-                if (!$(this).is(':disabled')) {
-                    $(this).parent().on("click", "ul li a", function (e) {
-                        e.preventDefault();
-                        var dropdown = $(this).parent().parent().parent();
-                        var active = $(this).parent().hasClass("active");
-                        var label = active
-                            ? $('<span />').text(dropdown.find("select").attr("placeholder"))
-                            : $(this).html();
-
-                        dropdown.find("option").prop("selected", false);
-                        dropdown.find("ul li").removeClass("active");
-
-                        dropdown.toggleClass("filled", !active);
-                        dropdown.children("span").html(label);
-
-                        if (!active) {
-                            dropdown
-                                .find('option[value="' + $(this).attr('data-val') + '"]')
-                                .prop("selected", true);
-                            $(this).parent().addClass("active");
-                        }
-
-                        dropdown.removeClass("open");
-                    });
-
-                    $this.parent().on("click", "> span", function (e) {
-                        var self = $(this).parent();
-                        self.toggleClass("open");
-                    });
-
-                    $(document).on("click touchstart", function (e) {
-                        var dropdown = $this.parent();
-                        if (dropdown !== e.target && !dropdown.has(e.target).length) {
-                            dropdown.removeClass("open");
-                        }
-                    });
-                }
-            });
-        };
-    })(jQuery);
-
-    $('select.f-dropdown').mySelectDropdown();
-
-</script>
-
 <script>
 $(document).ready(function(){
 
@@ -303,20 +216,17 @@ $(document).ready(function(){
         let lastName = $('.lastName').val();
         !lastName ? $(`#lastName-error`).html(`The lastName field is required.`) : $(`#lastName-error`).html(``);
 
-        // let email = $('.email').val();
-        // !email ? $(`#email-error`).html(`The email field is required.`) : $(`#email-error`).html(``);
+        let email = $('.email').val();
+        !email ? $(`#email-error`).html(`The email field is required.`) : $(`#email-error`).html(``);
 
-        if (!name || !lastName) {
+        if (!name || !lastName|| !email) {
             return;
         }
-        
-        $('.loadingShow span').css('display', 'block');
-        $('.loadingHide').addClass('d-none');
 
         formdata = new FormData();
         formdata.append('name', name);
         formdata.append('lastName', lastName);
-
+        formdata.append('email', email);
 
         $.ajax({
             url: "{{route('update.user')}}",
@@ -330,10 +240,56 @@ $(document).ready(function(){
                 $('.editUser').show();
                 $('.inpute-text').attr('readonly', true);
             }, error:function (response) {
-                // $('#item-error').text(response.responseJSON.errors.item);
+                $('#email-error').text(response.responseJSON.errors.email);
             }
         }); 
     });
+
+    $(document).on('click', '.account-pass-btn',function(){
+        let oldPassword = $('.oldPassword').val();
+        !oldPassword ? $(`#oldPassword-error`).html(`The old password field is required.`) : $(`#oldPassword-error`).html(``);
+
+        let newPassword = $('.newPassword').val();
+        !newPassword ? $(`#newPassword-error`).html(`The new password field is required.`) : $(`#newPassword-error`).html(``);
+
+        let confirmPassword = $('.confirmPassword').val();
+        !confirmPassword ? $(`#confirmPassword-error`).html(`The confirm password field is required.`) : $(`#confirmPassword-error`).html(``);
+
+        if (!oldPassword || !newPassword|| !confirmPassword) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('oldPassword', oldPassword);
+        formdata.append('newPassword', newPassword);
+        formdata.append('confirmPassword', confirmPassword);
+
+        $.ajax({
+            url: "{{route('change.password')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                $(".changePasswordForm").trigger("reset");
+                $("#succesful_password").modal("toggle");
+            }, error:function (response) {
+                if(response.responseJSON.error){
+                    $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                            <span id="expired-link-error">`+response.responseJSON.error+`</span>
+                                        </div>`);
+                }else {
+                    $('#oldPassword-error').text(response.responseJSON.errors.oldPassword);
+                    $('#newPassword-error').text(response.responseJSON.errors.newPassword);
+                    $('#confirmPassword-error').text(response.responseJSON.errors.confirmPassword);
+                }
+            }
+        }); 
+    });
+
+    // $(document).on('click', '.resetLoginButton', function(){
+    //     $("#Log_in_modal").modal("toggle");
+    // });
 });
 </script>
 

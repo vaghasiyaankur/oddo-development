@@ -153,6 +153,16 @@
   color: #878996;
   margin-bottom: 109px;
 }
+
+.account-section .resetLoginButton {
+  padding: 12px 40px;
+  background: #6a78c7;
+  border-radius: 100px;
+  color: #fff;
+  border: none;
+  white-space: nowrap;
+  margin-top: 35px;
+}
 /****================ACCOUNT SETTING PAGE END======================******/
 
 /***===================== ORDER HISTORY PAGE START =======================***/

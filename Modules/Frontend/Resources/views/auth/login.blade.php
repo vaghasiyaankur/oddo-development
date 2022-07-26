@@ -14,9 +14,9 @@
                                         <h5 class="text-dark fs-4">Welcome Back !</h5>
                                         <p class="text-muted">Login to continue to Odda.</p>
                                     </div>
+                                    <div id="expired-div"></div>
                                     <div class="p-2 mt-4">
-                                        <form class="loginForm" action="{{route('user.login')}}" method="POST">
-                                            @csrf
+                                        <form class="loginForm" action="javscript:;" method="POST">
                                             <div class="mb-4">
                                                 <label for="email" class="form-label">email <span class="text-danger">*</span></label>
                                                 <input type="text" name="email" class="form-control email"
@@ -35,15 +35,18 @@
                                                         class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
                                                         type="button" id="password-addon"><i
                                                             class="ri-eye-fill align-middle"></i></button>
+                                                            <span class="text-danger" id="password-error"></span>
                                                 </div>
-                                                <span class="text-danger" id="password-error"></span>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                                                <input class="form-check-input rememberMe"  type="checkbox" value="1" id="auth-remember-check">
                                                 <label class="form-check-label text-muted" for="auth-remember-check">Remember me</label>
+                                                <br>
+                                                
                                             </div>
+                                            <span class="text-danger" id="rememberme-error"></span>
                                             <div class="mt-4">
-                                                <button class="btn log_in_btn w-100 submitLogin" type="submit">Log In</button>
+                                                <button class="btn log_in_btn w-100 submitLogin">Log In</button>
                                             </div>
                                             <div class="mt-4 text-center">
                                                 <p class="mb-0">Don't have an account ? <a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#register_modal" style="color: #5867ba;"> Sign-In </a> </p>
@@ -62,4 +65,65 @@
     </div>
 </div>
 
+
+@push('script')
+<script>
+var baseUrl = $('#base_url').val();
+
+$(document).ready(function(){ 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).on('click', '.submitLogin', function(){
+        let email = $('.email').val();
+        !email ? $(`#email-error`).html(`The email field is required.`) : $(`#email-error`).html(``);
+        
+        let password = $('.password').val();
+        !password ? $(`#password-error`).html(`The password name field is required.`) : $(`#password-error`).html(``);
+        
+        // let rememberMe = $('.rememberMe').is(':checked');
+        var rememberMe  = $('.rememberMe:checked').val();
+        !rememberMe ? $(`#rememberme-error`).html(`The remember me field is required.`) : $(`#paremembermessword-error`).html(``);
+
+        
+        // !useremail ? $(`#useremail-error`).html(`The email field is required.`) : $(`#useremail-error`).html(``);
+
+        if (!email || !password || !rememberMe) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('email', email);
+        formdata.append('password', password);
+        formdata.append('remember_me', rememberMe);
+
+        $.ajax({
+            url: "{{route('user.login')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                // $(".modal").modal("hide");
+                // $(".loginForm").trigger("reset");
+                window.location.href = '/';
+            }, error:function (response) {
+                if(response.responseJSON.error){
+                    $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                            <span id="expired-link-error">`+response.responseJSON.error+`</span>
+                                        </div>`);
+                }else {
+                    $('#email-error').text(response.responseJSON.errors.email);
+                    $('#password-error').text(response.responseJSON.errors.password);
+                    $('#rememberme-error').text(response.responseJSON.errors.remember_me);
+                }
+            }
+        }); 
+    }); 
+});
+</script>
+@endpush
 

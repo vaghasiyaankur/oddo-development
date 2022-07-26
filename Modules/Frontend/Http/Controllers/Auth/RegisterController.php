@@ -37,8 +37,9 @@ class RegisterController extends Controller
     {
         $request->validate([
             'username' => 'required',
+            'lastName' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required',
+            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'RePassword' => 'required|same:password',
         ], [
             'username.required' => 'The username field is required.', 
@@ -46,12 +47,14 @@ class RegisterController extends Controller
             'email.email' => 'please enter a valid email address',
             'email.unique' => 'EmailId already exists. Kindly use different emailId.',
             'password.required' => 'The Password field is required.',
+            'password.regex' => 'At least 1 letter, a number or symbol, at least 8 characters.',
             'RePassword.required' => 'The Re-Password field is required.',
             'RePassword.same' => 'Please enter the same value again.',
         ]);
 
         $user = new User();
         $user->name = $request->username;
+        $user->last_name = $request->lastName;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->type = 0;

@@ -99,7 +99,8 @@ class GoogleController extends Controller
          
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->name,
+                        'name' => $user->user['given_name'],
+                        'last_name' => $user->user['family_name'],
                         'google_id'=> $user->id,
                         'type' => 0,
                         'password' => encrypt('123456dummy')

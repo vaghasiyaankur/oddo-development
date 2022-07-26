@@ -25,8 +25,10 @@ class FacebookController extends Controller
                 Auth::login($finduser);
                 return redirect()->intended('/');
             }else{
+                $userName = explode(" ", $user->name);
                 $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->name,
+                        'name' => $userName[0],
+                        'last_name' => $userName[1],
                         'facebook_id'=> $user->id,
                         'type' => '0',
                         'password' => encrypt('123456dummy')
