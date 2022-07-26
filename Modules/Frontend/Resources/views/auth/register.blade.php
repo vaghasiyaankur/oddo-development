@@ -17,10 +17,16 @@
                                         <form action="javascript:;" method="POST" class="signUpForm">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="userName" class="form-label">Username <span class="text-danger">*</span></label>
-                                                <input type="text" name="username" class="form-control name"
-                                                    id="userName" placeholder="Enter your username">
+                                                <label for="name" class="form-label">name<span class="text-danger">*</span></label>
+                                                <input type="text" name="name" class="form-control name"
+                                                    id="name" placeholder="Enter your name">
                                                 <span class="text-danger" id="name-error"></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                                <input type="text" name="lastName" class="form-control lastName"
+                                                    id="lastName" placeholder="Enter your lastName">
+                                                <span class="text-danger" id="lastName-error"></span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="E-mail" class="form-label">Email <span class="text-danger">*</span></label>
@@ -48,15 +54,17 @@
                                                     <h6 class="mb-3 title text-muted">Create account with</h6>
                                                 </div>
                                                 <div>
-                                                    <button type="button" class="btn btn-icon btn-fb"><i class="ri-facebook-fill fs-16"></i></button>
+                                                    <a href="{{ route('auth.facebook') }}" class="btn btn-icon btn-fb">
+                                                        <i class="ri-facebook-fill fs-16"></i>
+                                                    </a>
 
                                                     <a href="{{ route('auth.google') }}" class="btn btn-icon btn-google">
                                                         <i class="ri-google-fill fs-16"></i>
                                                     </a>
-                                                    
-                                                    <button type="button" class="btn btn-icon btn-git"><i class="ri-github-fill fs-16"></i></button>
 
-                                                    <button type="button" class="btn btn-icon btn-twiter"><i class="ri-twitter-fill fs-16"></i></button>
+                                                    <a href="{{ route('auth.twitter') }}" class="btn btn-icon btn-twiter">
+                                                        <i class="ri-twitter-fill fs-16"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="mt-3 text-center">
@@ -90,6 +98,9 @@
         $(document).on('click', '.signup', function(){
             let name = $('.name').val();
             !name ? $(`#name-error`).html(`The name field is required.`) : $(`#name-error`).html(``);
+           
+            let lastName = $('.lastName').val();
+            !lastName ? $(`#lastName-error`).html(`The last name field is required.`) : $(`#lastName-error`).html(``);
             
             let useremail = $('.useremail').val();
             !useremail ? $(`#useremail-error`).html(`The email field is required.`) : $(`#useremail-error`).html(``);
@@ -100,13 +111,13 @@
             let userrepassword = $('.userrepassword').val();
             !userrepassword ? $(`#userrepassword-error`).html(`The re-password field is required.`) : $(`#userrepassword-error`).html(``);
 
-
-            if (!name || !useremail || !userpassword || !userrepassword) {
+            if (!name || !useremail || !userpassword || !userrepassword || !lastName) {
                 return;
             }
 
             formdata = new FormData();
             formdata.append('username', name);
+            formdata.append('lastName', lastName);
             formdata.append('email', useremail);
             formdata.append('password', userpassword);
             formdata.append('RePassword', userrepassword);

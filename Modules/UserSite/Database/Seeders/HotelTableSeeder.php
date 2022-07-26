@@ -38,6 +38,7 @@ class HotelTableSeeder extends Seeder
         $payType = ['first_night','full_stay'];
         $smokingPolicy =  ['n-smoking','smoking', 'b-smoking'];
         $roomCalType = ['s-feet','s-meter'];
+        $user = [2,3];
 
         foreach($propertyTypes as $k => $type){
             foreach($cities as $key => $city){ 
@@ -65,6 +66,7 @@ class HotelTableSeeder extends Seeder
                         'amenity_id' => rand(1,13),
                         'property_id' => $type->id,   
                         'status' => 1,
+                        'user_id' => $user[array_rand($user)],
                 ];
 
                 $hotelEntry = Hotel::create($hotel);
