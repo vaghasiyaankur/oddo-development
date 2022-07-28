@@ -47,7 +47,7 @@ class PropertyController extends Controller
 
     public function add_property(Request $request) {
         $userId = auth()->user()->id;
-        $hotel              = new Hotel();
+        $hotel = new Hotel();
         $hotel->property_id = $request->property;
         $hotel->user_id = $userId;
         $hotel->save();
@@ -224,34 +224,151 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('home.index')]);
     }
 
-    // public function editProperty($id)
-    // {
-    //     $countries = Country::with('cities')->active()->get();
-    //     $hotel = Hotel::where('UUID',$id)->with('propertytype')->latest()->first();
-    //     return view('usersite::BasicInfo', compact('countries', 'hotel'));
-    // }
-
     public function deleteProperty($id)
     {
         $hotel = Hotel::where('UUID',$id)->first();
         $room = Room::where('hotel_id',$hotel->id)->first();
         $hotelPhotos = HotelPhoto::where('hotel_id', $hotel->id)->get();
+        
+        if($room){
+            if($room->id == null){
+                $roomBeds = HotelBed::where('room_id', $room->id)->delete();
+            }
+            $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
+        }
+
         foreach($hotelPhotos as $hotelphoto) {
             $image_path = public_path('storage/'.$hotelphoto->photos);
             if (File::exists($image_path)) {
                 unlink($image_path);
             }
         }
-        try {
-            $roomBeds = HotelBed::where('room_id', $room->id)->delete();
-            $hotelContact = HotelContact::where('hotel_id', $hotel->id)->delete();
-            $hotelPhotosDelete = HotelPhoto::where('hotel_id', $hotel->id)->delete();
-            $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
-            $hotelDelete = Hotel::where('UUID',$id)->delete();
-            return response()->json(["danger" => "property deleted Successfully"], 200);
-        } catch (\Exception $e) {
-            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+
+        $hotelContact = HotelContact::where('hotel_id', $hotel->id)->delete();
+        $hotelPhotosDelete = HotelPhoto::where('hotel_id', $hotel->id)->delete();
+        $hotelDelete = Hotel::where('UUID',$id)->delete();
+        
+        return response()->json(["danger" => "property deleted Successfully"], 200);  
+    }
+
+    public function editProperty($id)
+    {
+        $userId = auth()->user()->id;
+        $hotelUserId = Hotel::where('UUID',$id)->select('user_id', 'id')->first();
+        if($userId == $hotelUserId->user_id){
+            $countries = Country::with('cities')->active()->get();
+            $hotelDetail = Hotel::where('UUID',$id)->with('propertytype')->first();
+            $hotelContacts = HotelContact::where('hotel_id', $hotelUserId->id)->get();   
+            return view('usersite::BasicInfo', compact('countries', 'hotelDetail', 'hotelContacts'));
+        }else{
+            return redirect()->back();
         }
     }
-   
+
+    public function updateProperty(Request $request)
+    {
+        $hotel_id = $request->hotelId;
+
+        $Hotel   =  Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
+            'property_name' => $request->property_name,
+            'description'   => $request->description,
+            'star_rating'   => $request->star_rating,
+            'street_addess' => $request->address,
+            'address_line'  => $request->address_line,
+            'country_id'    => $request->country,
+            'city_id'       => $request->city,
+            'pos_code'      => $request->zipcode
+        ]);  
+        
+        $hotelId = Hotel::where('UUID', $hotel_id)->select('id')->first();
+        $contacts = json_decode($request->get('contactDetail'));
+
+        if($contacts){
+            foreach($contacts as $contact) {
+                if($contact->id != 0) {
+                    $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact->id ], [
+                        'name' => $contact->name,
+                        'number'   => $contact->phone,
+                        'number_optinal' => $contact->phoneOptional
+                    ]);  
+                }else{
+                    $contact_id = '';
+                    $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact_id ], [
+                        'name' => $contact->name,
+                        'number'   => $contact->phone,
+                        'number_optinal' => $contact->phoneOptional,
+                        'hotel_id' => $hotelId->id
+                    ]);  
+                }
+            }
+        }
+
+        
+        return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotel_id])]);
+    }
+
+    public function editLayout($id)
+    {
+        $room_types = RoomType::active()->get();
+        $beds       = BedType::active()->get();
+        $bathrooms  = BathroomItem::active()->get();
+
+        $hotel = Hotel::where('UUID', $id)->select('id', 'UUID')->first();
+        $hotel_id = $hotel->id;
+        $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get('id');
+        $roomDetail = Room::where('hotel_id', $hotel->id)->first();
+        $hotelBeds = HotelBed::where('room_id', $roomDetail->id)->get();
+        // dd($hotelBeds[0]->bed_id);
+        return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail', 'hotelBeds'));
+    }
+
+    public function updateRoom(Request $request)
+    {
+        $roomId = $request->roomId;
+        $room = Room::updateOrCreate([ 'UUID' => $roomId ],[
+            'smoking_policy'   => $request->smoking_area,
+            'custom_name_room' => $request->custom_name,
+            'number_of_room'   => $request->number_of_room,
+            'guest_stay_room'  => $request->number_of_guest,
+            'room_size'        => $request->room_size,
+            'room_cal_type'    => $request->room_size_feet,
+            'bathroom_private' => $request->bathroom_private,
+            'bathroom_item'    => $request->bathroom_item,
+            'price_room'       => $request->bed_price,
+            'room_list_id'     => $request->room_name_select,
+            'room_type_id'     => $request->room_type,
+            'discount'         => $request->discountValue,
+            'discount_type'    => $request->discountType,
+            'min_person_discount' => $request->personDis
+        ]);  
+        
+        // $room_id = Room::where()->first();   
+        $roomData = Room::where('UUID', $roomId)->select('id')->first(); 
+        if($request->BedDetail){
+            $beds = json_decode($request->get('BedDetail'));
+            foreach($beds as $bed) {
+                if($bed->id != 0) {
+                    $HotelBed = HotelBed::updateOrCreate([ 'room_id' => $roomData->id ],[
+                        'no_of_bed' => $bed->bedNo,
+                        'bed_id'    => $bed->bed,
+                        'room_id' => $roomData->id
+                    ]);  
+                }else{
+                    $id = '';
+                    $HotelBed = HotelBed::updateOrCreate([ 'id' => $id ],[
+                        'no_of_bed' => $bed->bedNo,
+                        'bed_id'    => $bed->bed,
+                        'room_id'   => $roomData->id,
+                    ]);  
+                }
+            }
+        }
+        
+        return response()->json(['redirect_url' => route('edit.facilities')]);
+    }
+
+    public function editFacilities()
+    {
+        dd('hello');
+    }
 }

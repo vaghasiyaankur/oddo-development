@@ -27,8 +27,9 @@ use Illuminate\Support\Facades\Schema;
 
 Route::prefix('user')->group(function() {
     Route::middleware(['auth', 'user-access:user'])->group(function(){
-        Route::controller(UserController::class)->group(function(){
+    Route::controller(UserController::class)->group(function(){
             Route::get('/home', 'index')->name('user.view');
+            Route::get('property-list', 'propertyList')->name('property.List');
         });
 
         Route::view('/calender', 'usersite::user.calender')->name('calender');
@@ -54,9 +55,19 @@ Route::prefix('user')->group(function() {
             Route::view('policy', 'usersite::policies')->name('policy');
             Route::post('add-policy', 'add_policy')->name('add-policy');
 
-
+            
             // edit Property
-            // Route::get('propertyEdit/{id}', 'editProperty')->name('edit.proeprty');
+            Route::get('propertyEdit/{id}', 'editProperty')->name('edit.proeprty');
+            Route::post('update-property-form', 'updateProperty')->name('update-property-form');
+
+            Route::get('edit-layoutPrice/{id}' , 'editLayout')->name('edit.layoutPrice');
+            Route::post('update-room', 'updateRoom')->name('update-room');
+
+            Route::get('edit-facilities', 'editFacilities')->name('edit.facilities');
+            // Route::get('edit-basicInfo/{id}', 'editBasicInfo')->name('edit.basicInfo');
+            // Route::post('basic-info-update', 'updateBasicInfo')->name('updateBasicInfo.property');
+
+            // delete Property
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
         });
     });

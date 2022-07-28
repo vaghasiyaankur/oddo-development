@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $userId = auth()->user()->id;
         $hotels = Hotel::where('user_id',$userId)->get(); 
-        return view('usersite::user.view', compact('hotels'));
+        return view('usersite::home.index', compact('hotels'));
     }
 
     /**
@@ -78,5 +78,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function propertyList()
+    {
+        $userId = auth()->user()->id;
+        $data['hotels'] = Hotel::where('user_id',$userId)->get(); 
+        return view('usersite::home.property', $data);
     }
 }

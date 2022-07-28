@@ -3,11 +3,7 @@
 @section('title')
 Add-Layout
 @endsection
-<style>
-    section.pannel-form.admin-pannel-main {
-    min-height: calc(100vh - 472px);
-}
-</style>
+
 @section('content')
 <!------ Pannel Form start ------->
 <section class="pannel-form admin-pannel-main py-5">
@@ -53,6 +49,11 @@ Add-Layout
 
 @push('css')
 <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
+<style>
+    section.pannel-form.admin-pannel-main {
+        min-height: calc(100vh - 337px);
+    }
+</style>
 @endpush
 
 @push('scripts')
