@@ -36,8 +36,8 @@ Add-Layout
                                 </div>
                                 <div class="addroom-right">
                                     <div class="addroom-btn">
-                                        <a href="javascript:;" class="addroom-link pe-3 purple">Edit</a>
-                                        <a href="javascript:;" class="addroom-link purple">Delete</a>
+                                        <a href="javascript:;" class="addroom-link pe-3 purple editRoom" data-id="{{$room->UUID}}">Edit</a>
+                                        <a href="javascript:;" class="addroom-link purple deleteRoom" data-id="{{$room->UUID}}">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,5 +63,54 @@ Add-Layout
 @endpush
 
 @push('scripts')
+<script>
+    $(document).ready(function(){
+        var baseUrl = $('#base_url').val();
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click', '.deleteRoom', function(){
+            let roomId = $(this).data('id');
+    
+            $.ajax({
+                url: baseUrl + "/user/deleteRoom/" + roomId,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (response) { 
+                    console.log(response.roomCount);
+                    if(response.roomCount == 1){
+                        window.location = 'layout-form';
+                    }else{
+                        window.location = 'room-list';
+                    }   
+                },
+            }); 
+        });
+
+        $(document).on('click', '.editRoom', function(){
+            let roomId = $(this).data('id');
+            alert('hello');
+            
+            $.ajax({
+                url: baseUrl + "user/edit/layout-pricing-form/" + roomId,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (response) { 
+                    console.log(response.roomCount);
+                    if(response.roomCount == 1){
+                        window.location = 'layout-form';
+                    }else{
+                        window.location = 'room-list';
+                    }   
+                },
+            }); 
+        });
+    });
+</script>
 @endpush

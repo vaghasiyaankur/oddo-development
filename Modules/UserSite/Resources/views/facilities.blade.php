@@ -33,17 +33,18 @@ Facilities
                                         guests?</label>
                                 </div>
                                 <div class="p-form-select d-flex justify-content-between">
+                                    <input type="hidden" value="{{ isset($hotelDetail) ? $hotelDetail->UUID : '' }}" class="hotelId">
                                     <select class="form-select w-50 me-3 parking-avaliable">
-                                        <option value="no" selected>No</option>
-                                        <option value="yes">Yes</option>
+                                        <option value="no" {{ isset($hotelDetail) && $hotelDetail->parking_available == 'no' ? 'selected' : '' }}>No</option>
+                                        <option value="yes" {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? 'selected' : '' }}>Yes</option>
                                     </select>
-                                    <select class="form-select input-w-20 me-3 d-none parking-type">
-                                        <option value="private" selected>Private</option>
-                                        <option value="public">Public</option>
+                                    <select class="form-select input-w-20 me-3  {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? '' : 'd-none' }} parking-type">
+                                        <option value="private" {{ isset($hotelDetail) && $hotelDetail->parking_type == 'private' ? 'selected' : '' }}>Private</option>
+                                        <option value="public" {{ isset($hotelDetail) && $hotelDetail->parking_type == 'public' ? 'selected' : '' }}>Public</option>
                                     </select>
-                                    <select class="form-select input-w-20 d-none parking-site">
-                                        <option value="on" selected>On site</option>
-                                        <option value="off">Off site</option>
+                                    <select class="form-select input-w-20 {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? '' : 'd-none' }} parking-site">
+                                        <option value="on"  {{ isset($hotelDetail) && $hotelDetail->parking_site == 'on' ? 'selected' : '' }}>On site</option>
+                                        <option value="off" {{ isset($hotelDetail) && $hotelDetail->parking_site == 'off' ? 'selected' : '' }}>Off site</option>
                                     </select>
                                 </div>
                             </form>
@@ -59,15 +60,15 @@ Facilities
                                 </div>
                                 <div class="p-form-select d-flex">
                                     <select class="form-select w-50 me-3 brackfast_select">
-                                        <option value="no" selected>no</option>
-                                        <option value="optional">yes,it's optional</option>
+                                        <option value="no"  {{ isset($hotelDetail) && $hotelDetail->breakfast == 'no' ? 'selected' : '' }}>no</option>
+                                        <option value="optional" {{ isset($hotelDetail) && $hotelDetail->breakfast == 'optional' ? 'selected' : '' }}>yes,it's optional</option>
                                     </select>
                                 </div>
-                                <div class="p-form-select pt-3 d-none food_type_div">
+                                <div class="p-form-select pt-3  {{ isset($hotelDetail) && $hotelDetail->breakfast == 'optional' ? '' : 'd-none' }} food_type_div">
                                     <label for="" class="form-label label-heading">What kind of breakfast is available?</label>
                                     <select class="form-select w-50 smoking_area food_type_val">
                                         @foreach ($food_types as $food_type)
-                                            <option value="{{$food_type->id}}">{{$food_type->food_type}}</option>
+                                            <option value="{{$food_type->id}}" {{ isset($hotelDetail) && $food_type->id == $hotelDetail->breakfast_type ? 'selected' : '' }}>{{$food_type->food_type}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -81,6 +82,22 @@ Facilities
                                         data-bs-placement="top" title="What languages do you or your staff speak?"></i>
                                 </div>
                                 <div id="add_languages">
+                                    @if(isset($hotelDetail))
+                                        <?php 
+                                            if(isset($hotelDetail)) $languages = explode(',', $hotelDetail->language );
+                                        ?>
+                                        @foreach ($languages as $language)
+                                            <div class="p-form-select d-flex mb-3">
+                                                <input type="hidden" class="number-of-select" value="1">
+                                                <select class="form-select w-25 me-3 language language_1" name="language">
+                                                    <option value="">Please select</option>
+                                                    <option value="english" {{ $language == 'english' ? 'selected' : '' }}>English</option>
+                                                    <option value="hindi" {{ $language == 'hindi' ? 'selected' : '' }}>Hindi</option>
+                                                    <option value="russian" {{ $language == 'russian' ? 'selected' : '' }}>Russian</option>
+                                                </select>
+                                            </div>
+                                        @endforeach
+                                    @else
                                     <div class="p-form-select d-flex mb-3">
                                         <input type="hidden" class="number-of-select" value="1">
                                         <select class="form-select w-25 me-3 language language_1" name="language">
@@ -90,6 +107,7 @@ Facilities
                                             <option value="russian">Russian</option>
                                         </select>
                                     </div>
+                                    @endif
                                     <span id="language_error_1" class="text-danger"></span>
                                 </div>
                             </form>
@@ -105,12 +123,15 @@ Facilities
                                         data-bs-placement="top"
                                         title="Guests look for these facilities the most when they are searching for properties."></i>
                                 </div>
+                                <?php 
+                                    if(isset($hotelDetail)) $facilitites = explode(',', $hotelDetail->facilities_id );
+                                ?>
                                 <div class="facilities-list pt-4">      
                                     <div class="facilities-check d-flex flex-wrap align-items-center justify-content-between">
                                         @foreach ($facilities as $facilitate)
                                             <div class="form-check py-3 border--dotted">
                                                 <label class="form-check-label para-fs-14 fs-6">
-                                                    <input class="form-check-input facilities_check" name="facilities_check[]" type="checkbox" value="{{$facilitate->id}}">
+                                                    <input class="form-check-input facilities_check" name="facilities_check[]" type="checkbox" value="{{$facilitate->id}}" {{  isset($hotelDetail) && in_array($facilitate->id, $facilitites) ? 'checked' : '' }}>
                                                     {{$facilitate->facilities_name}}
                                                 </label>
                                             </div>
@@ -120,11 +141,12 @@ Facilities
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 facilities-button">Continue
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 {{  isset($hotelDetail) ? 'update-facilities-button' : 'facilities-button' }} ">Continue
                                 <div class="spinner-border" role="status" style="display: none;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </a>
+                            
                         </div>
                     </main>
                 </div>
@@ -221,7 +243,6 @@ Facilities
                 return;
             }
 
-            
             let parking_avaliable = $('.parking-avaliable').val();
             let parking_type      = $('.parking-type').val();
             let parking_site      = $('.parking-site').val();
@@ -241,12 +262,65 @@ Facilities
                 formdata.append('food_type_val', food_type_val); }
             formdata.append('facilities', facilities);
             formdata.append('language', language);
+
             $('.spinner-border').show();    
             $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
                 url: "{{route('add-facilities')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (res) {
+                    $("input[type=text], input[type=tel]").val("");
+                    if (res.redirect_url) {
+                        window.location = res.redirect_url;
+                    }
+                },
+            }); 
+        }); 
+
+        $('.update-facilities-button').on('click', function(){
+            var number = $('.number-of-select').val();
+            
+            var hotelId = $('.hotelId').val();
+
+            let languageSelect = $('.language option:selected').val();
+            !languageSelect ? $(`#language_error_1`).html(`Select a language type`) : $(`#language_error_1`).html(``);
+
+            if (!languageSelect) {
+                return;
+            }
+
+            let parking_avaliable = $('.parking-avaliable').val();
+            let parking_type      = $('.parking-type').val();
+            let parking_site      = $('.parking-site').val();
+            let brackfast_select  = $('.brackfast_select').val();
+            let food_type_val     = $('.food_type_val').val();
+            var language          = $('.language option:selected').map(function(){return $(this).val();}).get();
+            var facilities        = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
+
+            formdata = new FormData();
+
+            formdata.append('parking_avaliable', parking_avaliable);
+            if(parking_avaliable == 'yes'){
+                formdata.append('parking_type', parking_type);
+                formdata.append('parking_site', parking_site); }
+            formdata.append('brackfast_select', brackfast_select);
+            if(brackfast_select == 'optional'){
+                formdata.append('food_type_val', food_type_val); }
+            formdata.append('facilities', facilities);
+            formdata.append('language', language);
+            formdata.append('hotelId', hotelId);
+
+            $('.spinner-border').show();    
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "{{route('update.facilities')}}",
                 type: "POST",
                 processData: false,
                 contentType: false,

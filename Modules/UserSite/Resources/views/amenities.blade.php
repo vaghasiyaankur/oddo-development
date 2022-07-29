@@ -29,26 +29,27 @@ Add-Layout
                                     <label for="" class="form-label label-heading ">Can you provide extra bed?</label>
                                 </div>
                                 <div class="amenities-raido-btn">
+                                    <input type="hidden" class="hotelId" value="{{ isset($hotelDetail) ? $hotelDetail->UUID : '' }}">
                                     <label class="form-check-label" for="yes">
                                     <div class="form-check form-check-inline amenities-radio">
-                                        <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" id="yes" value="yes">
+                                        <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" id="yes" value="yes"  {{ isset($hotelDetail) && $hotelDetail->extra_bed == 'yes' ? 'checked' : '' }}>
                                          Yes
                                         </div>
                                     </label>
                                     <label class="form-check-label" for="no">
                                     <div class="form-check form-check-inline amenities-radio">
-                                        <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" value="no" id="no" checked>
+                                        <input class="form-check-input extra-bed" type="radio" name="flexRadioDefault" value="no" id="no"  {{ isset($hotelDetail) && $hotelDetail->extra_bed == 'no' ? 'checked' : '' }}>
                                         No
                                     </div>
                                 </label>
                                 </div>
-                                <div class="total-room-layout pt-3 d-none number-of-bed">
+                                <div class="total-room-layout pt-3 {{ isset($hotelDetail) && $hotelDetail->extra_bed == 'yes' ? '' : 'd-none' }} number-of-bed">
                                     <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
                                     <select class="form-select layout-totalroom  me-3 extra_no_of_bed">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
+                                        <option value="1" {{ isset($hotelDetail) && $hotelDetail->number_extra_bed == '1' ? 'selected' : '' }}>1</option>
+                                        <option value="2" {{ isset($hotelDetail) && $hotelDetail->number_extra_bed == '2' ? 'selected' : '' }}>2</option>
+                                        <option value="3" {{ isset($hotelDetail) && $hotelDetail->number_extra_bed == '3' ? 'selected' : '' }}>3</option>
+                                        <option value="4" {{ isset($hotelDetail) && $hotelDetail->number_extra_bed == '4' ? 'selected' : '' }}>4</option>
                                     </select>
                                 </div>
                             </form>
@@ -64,11 +65,16 @@ Add-Layout
                                         <h5>Most Requested by Guests</h5>
                                     </div>
                                     <div class="amenities-check-box px-5">
+                                        @if(isset($hotelDetail))
+                                            <?php 
+                                                if(isset($hotelDetail)) $amenity_id = explode(',', $hotelDetail->amenity_id );
+                                            ?>
+                                        @endif
                                         @foreach($amenities_category as $category)
                                             @foreach($category->amenitiesFeatured as $amenity)
                                                 <div class="form-check py-3 ">
                                                     <label class="form-check-label para-fs-14 fs-6">
-                                                        <input class="form-check-input top_aminity" type="checkbox" value="{{@$amenity->id}}">
+                                                        <input class="form-check-input top_aminity" type="checkbox" value="{{@$amenity->id}}" {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>
                                                         {{@$amenity->amenities}}
                                                     </label>
                                                 </div>
@@ -93,7 +99,7 @@ Add-Layout
                                             @foreach($amenities_category as $category)
                                                 <div class="accordion-item">
                                                     <h2 class="accordion-header" >
-                                                        <button class="accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#amenity_{{$category->id}}"  aria-expanded="false" aria-controls="amenity_{{$category->id}}">
+                                                        <button class="accordion-button collapsed justify-content-between amenityCategoryDiv" name="{{$category->slug}}" type="button" data-bs-toggle="collapse" data-bs-target="#amenity_{{$category->id}}"  aria-expanded="false" aria-controls="amenity_{{$category->id}}">
                                                             <span>{{$category->category}}</span>
                                                             <span class="ms-auto me-5"> <span class="checkbox_length_{{$category->slug}}">0</span>/{{$category->amenities->count()}} selected</span>
                                                         </button>
@@ -103,7 +109,7 @@ Add-Layout
                                                             @foreach($category->amenities as $amenity)
                                                                 <div class="form-check py-2 border--bottom amenity-checked">
                                                                     <label class="form-check-label para-fs-14 fs-6">
-                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}">
+                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}"  {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>
                                 
                                                                     {{$amenity->amenities}}
                                                                     </label>
@@ -119,7 +125,7 @@ Add-Layout
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 amenities-button">Continue
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 {{  isset($hotelDetail) ? 'update-amenities-button' : 'amenities-button' }} ">Continue
                                 <div class="spinner-border" role="status" style="display: none;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -173,6 +179,11 @@ $(document).ready(function(){
         var set_length = $(`.checkbox_length_${name}`).html(checkbox);
     }
 
+    $('.amenityCategoryDiv').each(function() {  
+        var name  = $(this).attr('name');  
+        checkCal(name);
+    }); 
+
     $(".accordion-btn-link").click(function(){
         $("#hideshow").removeClass('d-none');
         $(this).addClass('d-none');
@@ -209,7 +220,6 @@ $(document).ready(function(){
             formdata.append('extra_no_of_bed', extra_no_of_bed);
         }
 
-
         $('.spinner-border').show();
         $.ajax({
             headers: {
@@ -227,7 +237,41 @@ $(document).ready(function(){
             },
         }); 
     });
+   
+    $(document).on('click', '.update-amenities-button', function(){
 
+        var hotelId = $('.hotelId').val(); 
+        var extra_bed = $('.extra-bed:checked').val();
+        var extra_no_of_bed = $('.extra_no_of_bed').val();
+        var amenities = $("input[id='amenities']:checked").map(function(){return $(this).val();}).get();
+
+
+        formdata = new FormData();
+
+        formdata.append('hotelId', hotelId);
+        formdata.append('extra_bed', extra_bed);
+        formdata.append('amenities', amenities);
+        if(extra_bed == 'yes') {
+            formdata.append('extra_no_of_bed', extra_no_of_bed);
+        }
+
+        $('.spinner-border').show();
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            url: "{{route('update.amenities')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (res) {
+                if (res.redirect_url) {
+                    window.location = res.redirect_url;
+                }
+            },
+        }); 
+    });
 });
 </script>
 @endpush

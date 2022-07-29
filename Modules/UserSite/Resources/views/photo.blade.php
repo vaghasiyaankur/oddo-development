@@ -40,7 +40,32 @@ Photo
                                             </form>
                                         </div> 
                                         <div class="sortable row" id="gallery">
-                                            
+                                            @if(isset($hotelPhotos))
+                                            @foreach ($hotelPhotos as $hotelPhoto)     
+                                                <div class="dz-preview well dz-image-preview col-lg-4 me-0 ms-0 {{ $hotelPhoto->main_photo ? 'main-photo-wrapper': '' }}  position-relative"  id="dz-preview-template">
+                                                    <div class="dz-details me-0 ms-0 border">
+                                                        <div class="dz-details-inner d-block m-0">
+                                                            <div class="gallery-img m-0">
+                                                                <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}">
+                                                            </div>
+                                                            <div class="gallery-btn d-block ms-0 me-0 ">
+                                                                <a href="javascript:;" class="crop-selected-image text-dark ">
+                                                                    <i class="fa-solid fa-pen"></i> <span>Edit</span>
+                                                                </a>
+                                                                <a href="javascript:;" class="dz-remove remove-selected-image text-dark  ps-5 deleteImages" data-id="{{$hotelPhoto->id}}">
+                                                                    <i class="fa-solid fa-trash-can"></i> <span>Delete</span> 
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dz-success-mark"><span> </span></div>
+                                                    <div class="dz-error-mark"><span></span></div>
+                                                    <div class="dz-error-message">
+                                                        <span data-dz-errormessage=""></span>
+                                                    </div>
+                                                </div>
+                                            @endforeach 
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -100,9 +125,10 @@ Photo
                 <div class="dz-error-message">
                     <span data-dz-errormessage=""></span>
                 </div>
-            </div>
-            
+            </div>   
         </div>
+
+   
 
 @endsection
 
@@ -153,8 +179,6 @@ Photo
 @push('scripts')
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script>
- 
-
     var myNewdDropzone = new Dropzone(".uploader-opacity",  {
         url: '/test',
         method: 'post',
@@ -173,7 +197,7 @@ Photo
         },
     });
 
-    $(document).ready(function(){      
+    $(document).ready(function(){    
 
     var data = $('.sortable').sortable();
 
@@ -201,10 +225,8 @@ Photo
                     }
                 },
             });
-        });
-        
+        }); 
     });
-
 });
 
 </script>
