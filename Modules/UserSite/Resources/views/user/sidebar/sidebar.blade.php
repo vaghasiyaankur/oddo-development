@@ -12,7 +12,7 @@
             <li><a href="#">PawLibs</a></li>
             <li><a href="#">Orders</a></li>
             <li class="pb-5"><a href="#">My Pawpoints</a></li>
-            <li class="logout mt-5 mb-3"><a href="#">Log Out</a></li>
+            {{-- <li class="logout mt-5 mb-3"><a href="#">Log Out</a></li> --}}
         </ul>
     </div>
 </div>
