@@ -52,7 +52,7 @@
 
 @section('content')
     <div class="page-content px-4">
-        <div class="row">
+        <div class="row pt-3">
             <div class="col-lg-4">
                 <div class="create_div">
                     @include('admin::roomType.create')

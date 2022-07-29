@@ -173,6 +173,7 @@ header.header .navbar .dropdown-custom .dropdown-item {
     color: #393c52;
     font-style: 14px;
     line-height: 32px;
+    text-align: center;
 }
 header.header .navbar .dropdown-custom .dropdown-item.active,
 header.header .navbar .dropdown-custom .dropdown-item:hover {
@@ -213,7 +214,7 @@ header.header .navbar .dropdown .dropdown-btn {
     padding-top: 11px;
     padding-bottom: 11px;
     padding-left: 23px;
-    padding-right: 43px;
+    padding-right: 23px;
     font-weight: 400;
     border: none;
     box-shadow: none;
