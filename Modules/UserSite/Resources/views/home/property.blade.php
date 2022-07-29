@@ -2,14 +2,14 @@
 <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="share-section mb-5">
-            <div class="drag-section justify-content-between pb-4">
-                <div class="d-flex align-items-center">
+            <div class="drag-section justify-content-between flex-wrap">
+                <div class="d-flex align-items-center mb-3 mb-lg-0">
                     <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" alt="" class="drag-image">
                     <span>
                         <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>
                     </span>
                 </div>
-                <div class="upload-delete-button-step">
+                <div class="upload-delete-button-step d-flex justify-content-between flex-wrap">
                     <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Albums</a>
                     <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
                     <a href="{{route('edit.proeprty', ['id' => $hotel->UUID])}}"
@@ -74,7 +74,7 @@
 @empty
 {{-- FOR EMPTY TABLE --}}
 <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
-    class="result-main-content border-semidark mt-4">
+    class="d-flex justify-content-center align-items-center result-main-content border-semidark mt-4" style="    overflow: hidden;">
     <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
         <div class="empty-table w-100 text-center py-5">
             <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
@@ -83,8 +83,8 @@
             <h4>No records has been added yet.</h4>
             <h6>Add a new Property by simpley clicking the button.</h6>
             <div class="another-c-details mt-4">
-                <a href="{{route('property-category')}}" class="btn another-c-d-btn w-25"
-                    style="background-color: #6A78C7 !important; color: white;">Add Property</a>
+                <a href="{{route('property-category')}}" class="btn another-c-d-btn"
+                    style="background-color: #6A78C7 !important; color: white;white-space:nowrap;">Add Property</a>
             </div>
         </div>
     </div>

@@ -85,7 +85,7 @@
         <div class="offcanvas offcanvas-start pb-4" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel" style="overflow:auto;top:4px;">
             <div class="d-flex align-items-center py-4 mb-3" style="background: #EEF1F7;">
                 <button type="button" class="btn-close text-reset responsive_close_btn" data-bs-dismiss="offcanvas" aria-label="Close"
-                    style="position: absolute;right:17px;top: 32px;"></button>
+                    style="position: absolute;right:17px;top: 32px;box-shadow: none;"></button>
                 <a class="navbar-brand ps-3" href="{{ route('home.index') }}">Odda</a>
             </div>
             <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
@@ -141,12 +141,12 @@
             @endif
 
             @if (auth()->check() && auth()->user()->type == 'user')
-                <div class="w-100 dropdown pe-lg-3 mt-auto mt-lg-0 mx-auto">
-                    <button class="btn btn-secondary dropdown-toggle dropdown-btn" type="button"
+                <div class="w-100 dropdown pe-lg-3 mt-auto mt-lg-0 px-2 mx-auto">
+                    <button class="d-flex align-items-center justify-content-center w-100 btn btn-secondary dropdown-toggle dropdown-btn" type="button"
                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         Hi, {{ auth()->user()->name }}
                     </button>
-                    <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
+                    <ul class="w-100 dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
                         <li>
                             <a class="dropdown-item {{ Request::routeIs('myaccount.index') ? 'active' : '' }}"
                                 href="{{ route('myaccount.index') }}">My Account
@@ -184,6 +184,13 @@
 
         // $(document).on('click', '.responsive_close_btn', function(){
         //     $('.responsive_btn').removeClass('d-none');
+        // });
+
+        // $(document).on("click", function(event) {
+        //     var $trigger = $(".offcanvas-start");
+        //     if ($trigger !== event.target && !$trigger.has(event.target).length) {
+        //         $(".offcanvas-start").toggleClass("show");
+        //     }
         // });
         
     });

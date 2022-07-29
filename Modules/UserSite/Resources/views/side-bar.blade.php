@@ -1,6 +1,6 @@
 <aside class="side-content position-sticky top-0">
     <div class="side-content-list">
-        <ul class="nav flex-column">
+        <ul class="nav flex-column flex--row">
             <li class="nav-item">
                 <a class="nav-link {{ Request::routeIs('basic-info') ? 'active' : '' }}" href="{{route('basic-info')}}" >Basic Info</a>
             </li>

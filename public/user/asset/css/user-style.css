@@ -132,6 +132,9 @@
     .share-section {
         padding: 20px;
     }
+    .upload-delete-button-step .white-button-step{
+        margin-bottom: 10px;
+    }
 }
 @media screen and (max-width: 768px) {
     .account-content .left-sidebar-main {
@@ -175,8 +178,5 @@
 @media screen and (max-width:468px) {
     .account-content .right-side-content{
         padding:0;
-    }
-    .upload-delete-button-step .white-button-step{
-        margin-bottom: 10px;
     }
 }

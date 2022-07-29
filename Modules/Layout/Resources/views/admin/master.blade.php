@@ -35,7 +35,17 @@
         <!-- Sweet Alert css-->
     {{-- <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
-
+    <style>
+        .submenu_active {
+            color: #0ab39c !important;
+        }
+        .navbar-menu .navbar-nav .nav-link{
+            white-space: nowrap;
+        }
+        .navbar-nav{
+            overflow: auto;
+        }
+    </style>
     @stack('css')
     
 </head>
@@ -91,7 +101,13 @@
 
     <!-- icon picker js -->
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
-    
+    <script>
+        $(document).ready(function(){
+            $(".topnav-hamburger").click(function(){
+                $("body").toggleClass('menu');
+            });
+        });
+    </script>
     @stack('scripts')
 </body>
 

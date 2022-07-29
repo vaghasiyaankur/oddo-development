@@ -1,5 +1,5 @@
 <div id="scrollbar">
-    <div class="container-fluid m-0 ps-2">
+    <div class="m-0 ps-2">
         <div id="two-column-menu">
         </div>
         <ul class="navbar-nav" id="navbar-nav">
@@ -17,12 +17,12 @@
                 <div class="collapse menu-dropdown" id="sidebarApps">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link menu-link " href="{{ route('amenity.index') }}">
+                            <a class="nav-link menu-link {{ Request::routeIs('amenity.index') ? 'submenu_active' : '' }}" href="{{ route('amenity.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('amenityCategory.index') }}">
+                            <a class="nav-link menu-link {{ Request::routeIs('amenityCategory.index') ? 'submenu_active' : '' }}" href="{{ route('amenityCategory.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity category</span>
                             </a>
                         </li>
@@ -37,12 +37,12 @@
                 <div class="collapse menu-dropdown" id="sidebarApps">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('roomType.index') }}">
+                            <a class="nav-link menu-link {{ Request::routeIs('roomType.index') ? 'submenu_active' : '' }}" href="{{ route('roomType.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room Type</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('room.index') }}">
+                            <a class="nav-link menu-link {{ Request::routeIs('room.index') ? 'submenu_active' : '' }}" href="{{ route('room.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room</span>
                             </a>
                         </li>
