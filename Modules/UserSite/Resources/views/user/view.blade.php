@@ -17,26 +17,26 @@ Add-Layout
                 <div id="tabs">
                     <div class="col-xs-12 ">
                         @foreach ($hotels as $hotel)        
-                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="tab-content py-3 px-3 px-sm-0 pt-0 pt-md-3" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
-                                <div class="share-section mb-5">
-                                    <div class="drag-section justify-content-between pb-4">
-                                        <div class="d-flex align-items-center">
+                                <div class="share-section mb-lg-5 mb-4">
+                                    <div class="drag-section justify-content-between flex-wrap">
+                                        <div class="d-flex align-items-center mb-4 mb-lg-0">
                                             <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}"
                                                 alt="" class="drag-image">
                                             <span>
                                                 <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>
                                             </span>
                                         </div>
-                                        <div class="upload-delete-button-step">
+                                        <div class="upload-delete-button-step d-flex justify-content-between align-items-center flex-wrap ">
                                             <a href="javascript:;"
-                                                class="white-button-step px-3 py-2 d-flex align-items-center me-2">Albums</a>
+                                                class="white-button-step px-lg-3 py-lg-2 px-2 py-1 d-flex align-items-center me-2">Albums</a>
                                             <a href="javascript:;"
-                                                class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
+                                                class="white-button-step px-lg-3 py-lg-2 px-2 py-1 d-flex align-items-center me-2">Preview</a>
                                             {{-- <a href="{{route('edit.proeprty', ['id' => $hotel->UUID])}}"
                                                 class="green-button-step py-2 d-flex align-items-center me-2 px-3">Edit Property</a> --}}
-                                            <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center propertyDelete" data-value="{{ $hotel->UUID }}">Delete</a>
+                                            <a href="javascript:;" class="white-button-step px-2 px-lg-3 py-lg-2 px-2 py-1 d-flex align-items-center propertyDelete" data-value="{{ $hotel->UUID }}">Delete</a>
                                         </div>
                                     </div>
 

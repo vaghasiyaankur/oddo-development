@@ -6,13 +6,13 @@
     padding-right: 35px;
 }
 .left-sidebar-main .sidebar-inner {
-    background: #E5EBF1;
+    background: #eef1f7;
     padding: 32px 32px 32px 39px;
     border-radius: 16px;
 }
 
 .left-sidebar-main .sidebar-inner ul {
-        list-style-type: none;
+    list-style-type: none;
 }
 .left-sidebar-main .sidebar-inner ul li {
     padding-bottom: 24px;
@@ -46,7 +46,7 @@
 .drag-section {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #212539;
+    /* border-bottom: 1px solid #212539; */
 }
 .drag-image {
     margin-right: 24px;
@@ -80,9 +80,94 @@
 }
 .green-button-step {
     color: #fff;
-    background-color: #6A78C7;
+    background-color: #6a78c7;
     border-radius: 8px;
     padding: 15px 45px;
     font-weight: 500;
     font-size: 18px;
+}
+.offcanvas_property_btn_ {
+    display: none;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .account-content .left-sidebar-main {
+        padding-right: 0px;
+    }
+    .left-sidebar-main .sidebar-inner {
+        padding: 32px 23px 32px 29px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .left-sidebar-main .sidebar-inner {
+        padding: 32px 20px 32px 20px;
+    }
+    .account-content .left-sidebar-main {
+        padding-right: 0;
+    }
+    .tab-content
+        .tab-pane
+        .share-section
+        .drag-section
+        .upload-delete-button-step {
+        margin-left: 0;
+    }
+    .account-content .left-sidebar-main {
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+    .account-content .right-side-content {
+        flex: 0 0 67%;
+        max-width: 67%;
+    }
+    .share-section {
+        padding: 20px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .account-content .left-sidebar-main {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .account-content .right-side-content {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .share-section {
+        padding: 15px;
+    }
+    .sidebar-inner {
+        padding: 10px 10px 0 !important;
+        min-height: auto;
+        border-radius: 10px;
+        margin-bottom: 25px;
+    }
+    .left-sidebar-main .sidebar-inner ul {
+        display: flex;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        padding-bottom: 10px !important;
+    }
+    .left-sidebar-main .sidebar-inner ul li {
+        padding: 0 23px !important;
+        display: contents;
+    }
+    .left-sidebar-main .sidebar-inner ul li a {
+        padding: 0 15px;
+    }
+    .account-content .left-sidebar-main{
+       padding-right:calc(var(--bs-gutter-x) * .5);
+    }
+    .account-content .right-side-content{
+        padding: 0 36px;
+    }
+}
+@media screen and (max-width:468px) {
+    .account-content .right-side-content{
+        padding:0;
+    }
+    .upload-delete-button-step .white-button-step{
+        margin-bottom: 10px;
+    }
 }

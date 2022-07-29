@@ -1,4 +1,15 @@
 @media screen and (max-width: 991px) {
+    header.header .navbar .navbar-nav .nav-item{
+        padding-right: 0;
+    }
+    .header .list-properties .list-properties-btn{
+        background: #eef1f7;
+        border: 1px solid #eef1f7;
+    }
+    header.header .navbar .dropdown .dropdown-btn{
+        background: #eef1f7;
+        border: 1px solid #eef1f7;
+    }
     .s-top-city .container {
         max-width: 720px;
     }

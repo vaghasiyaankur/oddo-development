@@ -266,12 +266,18 @@
     }
 }
 
-@media screen and (max-width:576px) {
+@media screen and (max-width:768px) {
     .l-p-myproperties .l-p-myproperties-card .property-type{
         flex: 0 0 50%;
         max-width: 50%;
         margin-top: 20px;
         padding-bottom: 20px;
+    }
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        border-right: none;
+    }
+    .l-p-myproperties .l-p-myproperties-card .border-right:nth-child(odd):not(:last-child){
+        border-right: 1px solid #A4A6BA;
     }
 }
 
