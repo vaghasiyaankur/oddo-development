@@ -207,6 +207,11 @@ class PropertyController extends Controller
         $hotelphoto->photos     = 'hotels/'.$imageName;
         $hotelphoto->hotel_id  = $hotel_id;
         $hotelphoto->save();
+        // $Hotel   =   HotelPhoto::updateOrCreate([ 'id' => $hotel_id ], [
+        //     'main_photo'  => $request->main,
+        //     'photos' => 'hotels/'.$imageName,
+        //     'hotel_id' => $hotel_id,
+        // ]);  
 
         return response()->json(['redirect_url' => route('policy')]);
     }
@@ -461,5 +466,9 @@ class PropertyController extends Controller
         $hotelPhotos = HotelPhoto::where('hotel_id', $hotelDetail->id)->get();
         
         return view('usersite::photo',compact('hotelPhotos', 'hotelDetail'));
+    }
+
+    public function updatePhotos(Request $request) {
+        dd($request->toarray());
     }
 }

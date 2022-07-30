@@ -49,7 +49,7 @@ class RegisterController extends Controller
             'password.required' => 'The Password field is required.',
             'password.regex' => 'At least 1 letter, a number or symbol, at least 8 characters.',
             'RePassword.required' => 'The Re-Password field is required.',
-            'RePassword.same' => 'Please enter the same value again.',
+            'RePassword.same' => 'Please enter the same password.',
         ]);
 
         $user = new User();

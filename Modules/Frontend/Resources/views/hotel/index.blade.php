@@ -362,7 +362,7 @@
 </section> --}}
     <!------- Map Section end-------->
     <!-------Weather Section Start ---------->
-    <section class="weather-main check-in-out pb-0 pt-3">
+    {{-- <section class="weather-main check-in-out pb-0 pt-3">
         <div class="container">
             <div class="weather-inner check-in-out-inner py-2">
                 <div class="row align-items-center">
@@ -435,7 +435,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-------Weather Section End ---------->
     <!------- Search result Start ------->
     <section class="hotel-result search-result pt-4 pb-5">

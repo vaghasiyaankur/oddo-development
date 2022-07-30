@@ -72,6 +72,7 @@ Route::prefix('user')->group(function() {
             Route::post('update/amenities', 'updateAmenities')->name('update.amenities');
 
             Route::get('edit/photo/{id}', 'editPhoto')->name('edit.photo');
+            Route::post('update/photos', 'updatePhotos')->name('update-photos');
 
             // delete Property
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');

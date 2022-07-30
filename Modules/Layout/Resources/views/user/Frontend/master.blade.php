@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
     
     @stack('css')
+
     <style>
         .log_in_modal_ .btn-close {
             position: absolute;
@@ -74,6 +75,15 @@
             background-color: #7e8de7;
             border-color: #6A78C7;
         }
+        /* .spinner-border {
+            display: block !important;
+            margin-left: auto;
+            margin-top: -19px;
+            width: 100%;
+            max-width: 18px !important;
+            height: 100%;
+            max-height: 18px !important;
+        } */
     </style>
     
 </head>

@@ -102,6 +102,7 @@
   background: #ffffff;
   border-radius: 12px;
   padding: 58px 114px;
+  position: relative;
 }
 .account-section .modal-title h5 {
   font-weight: 400;
