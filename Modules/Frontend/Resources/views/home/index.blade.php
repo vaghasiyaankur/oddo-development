@@ -505,6 +505,36 @@
         </div>
     </section>
     <!------- Top hotels section end ------->
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-white">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute;right: 13px;top: 13px;z-index:99"></button>
+            <div class="modal-body text-center p-5">
+                <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark">
+                    <span class="swal2-x-mark-line-left"></span>
+                    <span class="swal2-x-mark-line-right"></span>
+                  </span>
+                </div>
+                <div class="mt-3 pt-2">
+                    <h4>Your Registration Token Time is out!</h4>
+                    <p class="text-muted">Please tap the button below to Re-Sign-in in Odda</p>
+                    <!-- Toogle to second dialog -->
+                    <button class="btn btn-warning" data-bs-target="#register_modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="background-color: #6a78c7;border:#6a78c7;color: #fff;">
+                        Sign up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+    
+
 @endsection
 @push('script')
     <!-------- Google Place Search -------->
