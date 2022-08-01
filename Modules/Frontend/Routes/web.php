@@ -15,6 +15,8 @@
 Route::post('user/login', 'Auth\LoginController@login')->name('user.login');
 Route::get('user/logout', 'Auth\LoginController@logout')->name('logout.index');
 Route::post('user/register', 'Auth\RegisterController@store')->name('user.register');
+Route::get('/user/verification/{token}', 'Auth\RegisterController@userVerification')->name('user.verification');
+
 Route::post('user/forget-password', 'Auth\ForgetPasswordController@forgetpassword')->name('user.forget-password');
 Route::get('/reset-password/{token}', 'Auth\ResetPasswordController@getPassword')->name('user.resetPassword');
 Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword')->name('user.updatePassword');

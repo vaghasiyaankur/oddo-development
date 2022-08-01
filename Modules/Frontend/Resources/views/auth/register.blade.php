@@ -13,6 +13,7 @@
                                     <div class="text-center mt-2 ">
                                         <h5 class="text-dark fs-4">Create New Account</h5>
                                     </div>
+                                    <div id="success-div"></div>
                                     <div class="p-2 mt-3">
                                         <form action="javascript:;" method="POST" class="signUpForm">
                                             @csrf
@@ -86,7 +87,9 @@
 
 @push('script')
 <script>
-     var baseUrl = $('#base_url').val();
+    $('#success-div').html('');
+
+    var baseUrl = $('#base_url').val();
     
     $(document).ready(function(){ 
         $.ajaxSetup({
@@ -129,12 +132,14 @@
                 contentType: false,
                 data: formdata,
                 success: function (response) {
-                    $(".modal").modal("hide");
+                    $('#success-div').html(` <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                        <span id="">`+response.success+`</span>
+                                    </div>`);
                     $(".signUpForm").trigger("reset");
                     $('#name-error').text('');
                     $('#userpassword-error').text('');
                     $('#useremail-error').text('');
-                    toastMixin.fire({ title: response.success, icon: 'success' });
+
                 }, error:function (response) {
                     $('#name-error').text(response.responseJSON.errors.username);
                     $('#userpassword-error').text(response.responseJSON.errors.password);
