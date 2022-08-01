@@ -132,8 +132,11 @@
     .share-section {
         padding: 20px;
     }
-    .upload-delete-button-step .white-button-step{
+    .upload-delete-button-step .white-button-step {
+        width: 100%;
+        max-width: 141px;
         margin-bottom: 10px;
+        margin-right: 8px;
     }
 }
 @media screen and (max-width: 768px) {
@@ -168,15 +171,15 @@
     .left-sidebar-main .sidebar-inner ul li a {
         padding: 0 15px;
     }
-    .account-content .left-sidebar-main{
-       padding-right:calc(var(--bs-gutter-x) * .5);
+    .account-content .left-sidebar-main {
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
     }
-    .account-content .right-side-content{
+    .account-content .right-side-content {
         padding: 0 36px;
     }
 }
-@media screen and (max-width:468px) {
-    .account-content .right-side-content{
-        padding:0;
+@media screen and (max-width: 468px) {
+    .account-content .right-side-content {
+        padding: 0;
     }
 }
