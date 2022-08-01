@@ -505,6 +505,9 @@
         </div>
     </section>
     <!------- Top hotels section end ------->
+    @if (session()->get('message'))
+    {{ session()->get('message') }}
+    @endif
 @endsection
 @push('script')
     <!-------- Google Place Search -------->
@@ -528,7 +531,6 @@
             if (!search) {
                 return;
             }
-
 
             window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;

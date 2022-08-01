@@ -119,24 +119,26 @@ class RegisterController extends Controller
         //
     }
 
-    public function userVerification($token)
-    {
+    public function userVerification($token) {
         $UserVerify = UserVerify::where('token', $token)->first();
+
+        if(!$UserVerify) {
+            // return redirect('/')->with('validationfail', 'fail');
+            return redirect()->route('home.index')->with([ 'message' => 'error' ]);
+        }
 
         $findUser = User::find($UserVerify->user_id);
         $findUser->email_verified_at = Carbon::now()->timestamp;
         $findUser->save();
 
         Auth::login($findUser);
-        if(auth()->check())
-        {
+        if(auth()->check()) {
             if (auth()->user()->type == 'user') {
                 UserVerify::where('token', $token)->delete();
                 return redirect('/');
             }
-        }else{
-            dd('here');
+        }else {
+            return redirect('/');
         }
     }
-
 }
