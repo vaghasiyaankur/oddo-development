@@ -100,6 +100,6 @@ class ForgetPasswordController extends Controller
 
         Mail::to($request->forgetEmail)->send(new NotifyMail($token));
         
-        return response()->json(["success" => "We have e-mailed your password reset link!"], 200);  
+        return response()->json(["success" => "We have E-mailed your password reset link!"], 200);  
     }
 }

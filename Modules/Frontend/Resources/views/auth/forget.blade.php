@@ -11,6 +11,8 @@
                             <div class="text-center mt-3">
                                 <h5 class="text-dark mb-3">Forgot Password?</h5>
                                 <p class="text-muted">Reset password with Odda.</p>
+                                <div id="forget-success-div">
+                                </div>
                                 <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop"
                                     colors="primary:#5867ba" class="img-fluid"
                                     style="width: 100%;max-width: 105px;">
@@ -66,6 +68,8 @@ $(document).ready(function(){
                 return;
             }
 
+            $('.spinner-border').show();
+
             formdata = new FormData();
             formdata.append('forgetEmail', forgetEmail);
 
@@ -76,12 +80,15 @@ $(document).ready(function(){
                 contentType: false,
                 data: formdata,
                 success: function (response) {
-                    $(".modal").modal("hide");
+                    $('.spinner-border').hide();
+                    console.log(response.success);
+                    $('#forget-success-div').html(` <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                        <span>`+response.success+`</span>
+                                    </div>`);
                     $(".forgetPasswordForm").trigger("reset");
                     $('#forgetEmail-error').text('');
                 }, error:function (response) {
-                    console.log(response.responseJSON.error);
-                    // $('#forgetEmail-error').text(response.responseJSON.error);
+                    $('.spinner-border').hide();
                     $('#forgetEmail-error').text(response.responseJSON.errors.forgetEmail);
                 }
             }); 

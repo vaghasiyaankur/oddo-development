@@ -48,7 +48,11 @@
                                                 <span class="text-danger" id="userrepassword-error"></span>
                                             </div>
                                             <div class="mt-4">
-                                                <button class="btn log_in_btn w-100 signup">Sign Up</button>
+                                                <button class="btn log_in_btn w-100 signup">Sign Up
+                                                    <div class="spinner-border" role="status" style="display: none;">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </button>
                                             </div>
                                             <div class="mt-4 text-center">
                                                 <div class="signin-other-title">
@@ -118,6 +122,8 @@
                 return;
             }
 
+            $('.spinner-border').show();
+
             formdata = new FormData();
             formdata.append('username', name);
             formdata.append('lastName', lastName);
@@ -132,6 +138,7 @@
                 contentType: false,
                 data: formdata,
                 success: function (response) {
+                    $('.spinner-border').hide();
                     $('#success-div').html(` <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
                                         <span id="">`+response.success+`</span>
                                     </div>`);
@@ -141,6 +148,7 @@
                     $('#useremail-error').text('');
 
                 }, error:function (response) {
+                    $('.spinner-border').hide();
                     $('#name-error').text(response.responseJSON.errors.username);
                     $('#userpassword-error').text(response.responseJSON.errors.password);
                     $('#useremail-error').text(response.responseJSON.errors.email);
