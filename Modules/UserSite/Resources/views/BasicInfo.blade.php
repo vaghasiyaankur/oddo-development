@@ -10,10 +10,10 @@ Add-Property
     <div class="container">
         <div class="admin-pannel-inner">
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3">
                     @include('usersite::side-bar')
                 </div>
-                <div class="col-9">
+                <div class="col-lg-9">
                     <div class="pannel-heading">
                         <h2 class=" purple-dark pannel-title">Welcome</h3>
                             <h5 class="heading-fs-16 purple-dark">Start by telling us your property's name, Contact
@@ -177,7 +177,7 @@ Add-Property
                                     </div>
                                     <div class="col-6">
                                         <div class="p-l-messagebox">
-                                            <div class="p-l-messagebox-inner d-flex">
+                                            <div class="p-l-messagebox-inner d-flex flex-wrap">
                                                 <div class="messagebox-icon">
                                                     <i class="fa-solid fa-envelope-open-text"></i>
                                                 </div>

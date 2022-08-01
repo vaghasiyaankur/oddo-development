@@ -14,7 +14,7 @@ Add-Layout
     <div class="container">
         <div class="admin-pannel-inner">
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3">
                     @include('usersite::side-bar')
                 </div>
                 <div class="col-lg-9">
@@ -51,7 +51,6 @@ Add-Layout
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 <!------ Pannel Form end ------->
