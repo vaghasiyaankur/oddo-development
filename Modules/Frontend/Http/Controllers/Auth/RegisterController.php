@@ -6,7 +6,13 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\User;
+use App\Models\UserVerify;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Mail; 
+use App\Mail\RegisterVerification;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -58,10 +64,18 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->type = 0;
-        $user->save();
+        $user->save(); 
 
-        return response()->json(["success" => "account created successfully."], 200);  
-          
+        $token = Str::random(64);
+
+        UserVerify::create([
+            'user_id' => $user->id, 
+            'token' => $token
+        ]);
+
+        Mail::to($request->email)->send(new RegisterVerification($token));
+
+        return response()->json(["success" => "A verification link has been sent to your email account"], 200);      
     }
 
     /**
@@ -103,6 +117,26 @@ class RegisterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function userVerification($token)
+    {
+        $UserVerify = UserVerify::where('token', $token)->first();
+
+        $findUser = User::find($UserVerify->user_id);
+        $findUser->email_verified_at = Carbon::now()->timestamp;
+        $findUser->save();
+
+        Auth::login($findUser);
+        if(auth()->check())
+        {
+            if (auth()->user()->type == 'user') {
+                UserVerify::where('token', $token)->delete();
+                return redirect('/');
+            }
+        }else{
+            dd('here');
+        }
     }
 
 }

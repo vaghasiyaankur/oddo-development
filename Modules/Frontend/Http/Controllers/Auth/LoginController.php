@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -117,7 +118,10 @@ class LoginController extends Controller
             'email.email' => 'please enter a valid email address',
             'password.required' => 'The Password field is required.'
         ]);
-
+        $user = User::where('email', $input['email'])->first();
+        if($user->email_verified_at == null){
+            return response()->json(["error" => "please verify your account."], 403);  
+        }
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
@@ -128,8 +132,6 @@ class LoginController extends Controller
             }
         }else{
             return response()->json(["error" => "Email-Address And Password Are Wrong."], 403);  
-            // return redirect()->route('home.index')
-            //     ->with('error','Email-Address And Password Are Wrong.');
         }
     }
 
