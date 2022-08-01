@@ -1219,4 +1219,10 @@
 
         });
     </script>
+
+    <script>
+       $(document).ready(function(){
+            $('.loading_spiner_').hide();
+       });
+    </script>
 @endpush

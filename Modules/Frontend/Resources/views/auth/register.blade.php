@@ -142,6 +142,9 @@
                     $('#success-div').html(` <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
                                         <span id="">`+response.success+`</span>
                                     </div>`);
+                    setTimeout(function(){
+                        $('#success-div').html(``); 
+                    }, 4000);
                     $(".signUpForm").trigger("reset");
                     $('#name-error').text('');
                     $('#userpassword-error').text('');

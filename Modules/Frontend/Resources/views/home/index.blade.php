@@ -505,17 +505,9 @@
         </div>
     </section>
     <!------- Top hotels section end ------->
-
-    @if (session()->get('message'))
-    {{ session()->get('message') }}
-    @endif
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
   
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="registerTokenFail" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-white">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute;right: 13px;top: 13px;z-index:99"></button>
@@ -540,6 +532,19 @@
     
 @endsection
 @push('script')
+
+{{-- email token time out --}}
+@if (session()->get('message'))
+    <script>
+        $(document).ready(function(){
+            $('#registerTokenFail').modal('show'); 
+            setTimeout(function(){
+                $('#registerTokenFail').modal('hide')
+            }, 4000);
+        });
+    </script>
+@endif
+
     <!-------- Google Place Search -------->
     <script type='text/javascript'
         src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>

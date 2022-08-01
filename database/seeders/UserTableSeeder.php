@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Carbon\Carbon;
+
   
 class UserTableSeeder extends Seeder
 {
@@ -22,6 +24,7 @@ class UserTableSeeder extends Seeder
                'email'=>'admin@example.com',
                'type'=>1,
                'password'=> bcrypt('Demo@12345'),
+               'email_verified_at' => Carbon::now()->timestamp
             ],
             [
                'name'=>'User',
@@ -29,6 +32,7 @@ class UserTableSeeder extends Seeder
                'email'=>'user@example.com',
                'type'=>0,
                'password'=> bcrypt('Demo@12345'),
+               'email_verified_at' => Carbon::now()->timestamp
             ],
             [
                 'name'=>'jemin',
@@ -36,6 +40,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'jemin@demo.com',
                 'type'=>0,
                 'password'=> bcrypt('Demo@12345'),
+                'email_verified_at' => Carbon::now()->timestamp
              ],
         ];
     

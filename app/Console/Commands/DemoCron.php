@@ -40,14 +40,14 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        \Log::info("Cron is working fine!");
-        
-        $userVerifys = UserVerify::where('created_at', '<', Carbon::now()->subHours(1))->get();
-        \Log::info($userVerify->toarray());
+        $userVerifys = UserVerify::where('created_at', '<', Carbon::now()->subMinute(60))->delete();
 
-        foreach ($userVerifys as $userVerify) {
-            $user = User::where('id', $userVerify->user_id)->delete();
-            $userVerify->delete();
+        $users = User::where('email_verified_at',null)->where('updated_at', '<', Carbon::now()->subMinute(60))->get();
+        foreach ($users as $user) {
+            \Log::info($user->id);
+            if($user->email_verified_at == null){
+                $user = User::where('email_verified_at',null)->where('updated_at', '<', Carbon::now()->subMinute(60))->delete();
+            }
         }
 
         /*

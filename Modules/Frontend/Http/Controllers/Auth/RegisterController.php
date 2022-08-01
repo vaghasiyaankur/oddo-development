@@ -121,8 +121,9 @@ class RegisterController extends Controller
 
     public function userVerification($token) {
         $UserVerify = UserVerify::where('token', $token)->first();
+        $user = UserVerify::where('token', $token)->where('created_at', '<', Carbon::now()->subHours(1))->first();
 
-        if(!$UserVerify) {
+        if(!$UserVerify || $user) {
             // return redirect('/')->with('validationfail', 'fail');
             return redirect()->route('home.index')->with([ 'message' => 'error' ]);
         }
