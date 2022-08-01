@@ -1,7 +1,7 @@
-
 <!-- Modal -->
 <div class="log_in_modal_">
-    <div class="modal login fade" id="Log_in_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal login fade" id="Log_in_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0">
                 <div class="modal-body position-reletive p-0">
@@ -18,38 +18,44 @@
                                     <div class="p-2 mt-4">
                                         <form class="loginForm" action="javscript:;" method="POST">
                                             <div class="mb-4">
-                                                <label for="email" class="form-label">email <span class="text-danger">*</span></label>
-                                                <input type="text" name="email" class="form-control email"
-                                                    id="email" placeholder="Enter your email">
+                                                <label for="email" class="form-label">Email <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" name="email" class="form-control email" id="email"
+                                                    placeholder="Enter your email">
                                                 <span class="text-danger" id="email-error"></span>
                                             </div>
                                             <div class="mb-4">
                                                 <div class="float-end">
-                                                    <a href="javascript:;" class="text-muted" data-bs-toggle="modal" data-bs-target="#forget_password_modal" data-bs-dismiss="modal">Forgot password?</a>
+                                                    <a href="javascript:;" class="text-muted" data-bs-toggle="modal"
+                                                        data-bs-target="#forget_password_modal"
+                                                        data-bs-dismiss="modal">Forgot password?</a>
                                                 </div>
-                                                <label class="form-label " for="password-input">Password <span class="text-danger">*</span></label>
+                                                <label class="form-label " for="password-input">Password <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
-                                                    <input type="password" name="password" class="form-control pe-5 password"
+                                                    <input type="password" name="password"
+                                                        class="form-control pe-5 password"
                                                         placeholder="Enter your password" id="password-input">
                                                     <button
                                                         class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
                                                         type="button" id="password-addon"><i
                                                             class="ri-eye-fill align-middle"></i></button>
-                                                            <span class="text-danger" id="password-error"></span>
+                                                    <span class="text-danger" id="password-error"></span>
                                                 </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input rememberMe"  type="checkbox" value="1" id="auth-remember-check">
-                                                <label class="form-check-label text-muted" for="auth-remember-check">Remember me</label>
-                                                <br>
-                                                
-                                            </div>
-                                            <span class="text-danger" id="rememberme-error"></span>
                                             <div class="mt-4">
-                                                <button class="btn log_in_btn w-100 submitLogin">Log In</button>
+                                                <button class="btn log_in_btn w-100 submitLogin">Log In
+                                                    {{-- <div class="spinner-border" role="status" style="display: none;">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div> --}}
+                                                </button>
                                             </div>
                                             <div class="mt-4 text-center">
-                                                <p class="mb-0">Don't have an account ? <a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#register_modal" style="color: #5867ba;"> Sign-In </a> </p>
+                                                <p class="mb-0">Don't have an account ? <a href="javascript:;"
+                                                        class="fw-semibold text-decoration-underline"
+                                                        data-bs-toggle="modal" data-bs-dismiss="modal"
+                                                        data-bs-target="#register_modal" style="color: #5867ba;"> Sign
+                                                        Up </a> </p>
                                             </div>
                                         </form>
                                     </div>
@@ -68,7 +74,7 @@
 
 @push('script')
 <script>
-var baseUrl = $('#base_url').val();
+    var baseUrl = $('#base_url').val();
 
 $(document).ready(function(){ 
     $.ajaxSetup({
@@ -84,21 +90,16 @@ $(document).ready(function(){
         let password = $('.password').val();
         !password ? $(`#password-error`).html(`The password name field is required.`) : $(`#password-error`).html(``);
         
-        // let rememberMe = $('.rememberMe').is(':checked');
-        var rememberMe  = $('.rememberMe:checked').val();
-        !rememberMe ? $(`#rememberme-error`).html(`The remember me field is required.`) : $(`#paremembermessword-error`).html(``);
 
-        
-        // !useremail ? $(`#useremail-error`).html(`The email field is required.`) : $(`#useremail-error`).html(``);
-
-        if (!email || !password || !rememberMe) {
+        if (!email || !password) {
             return;
         }
 
         formdata = new FormData();
         formdata.append('email', email);
         formdata.append('password', password);
-        formdata.append('remember_me', rememberMe);
+
+        // $('.spinner-border').show();
 
         $.ajax({
             url: "{{route('user.login')}}",
@@ -107,8 +108,7 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
-                // $(".modal").modal("hide");
-                // $(".loginForm").trigger("reset");
+                // $('.spinner-border').hide();
                 window.location.href = '/';
             }, error:function (response) {
                 if(response.responseJSON.error){
@@ -118,7 +118,6 @@ $(document).ready(function(){
                 }else {
                     $('#email-error').text(response.responseJSON.errors.email);
                     $('#password-error').text(response.responseJSON.errors.password);
-                    $('#rememberme-error').text(response.responseJSON.errors.remember_me);
                 }
             }
         }); 
@@ -126,4 +125,3 @@ $(document).ready(function(){
 });
 </script>
 @endpush
-

@@ -28,7 +28,7 @@
                                         <button class="btn w-100 text-white forgetPasswordButton" style="background-color: #5867ba;">Send Reset Link</button>
                                     </div>
                                     <div class="mt-4 text-center">
-                                        <p class="mb-0"><a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#Log_in_modal" data-bs-dismiss="modal" style="color: #5867ba;"> Back to Log-in </a> </p>
+                                        <p class="mb-0"><a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#Log_in_modal" data-bs-dismiss="modal" style="color: #5867ba;"> Back to Log In </a> </p>
                                     </div>
                                 </form><!-- end form -->
                             </div>

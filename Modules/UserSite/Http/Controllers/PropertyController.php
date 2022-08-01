@@ -207,6 +207,11 @@ class PropertyController extends Controller
         $hotelphoto->photos     = 'hotels/'.$imageName;
         $hotelphoto->hotel_id  = $hotel_id;
         $hotelphoto->save();
+        // $Hotel   =   HotelPhoto::updateOrCreate([ 'id' => $hotel_id ], [
+        //     'main_photo'  => $request->main,
+        //     'photos' => 'hotels/'.$imageName,
+        //     'hotel_id' => $hotel_id,
+        // ]);  
 
         return response()->json(['redirect_url' => route('policy')]);
     }
@@ -227,15 +232,26 @@ class PropertyController extends Controller
     public function deleteProperty($id)
     {
         $hotel = Hotel::where('UUID',$id)->first();
-        $room = Room::where('hotel_id',$hotel->id)->first();
+        $rooms = Room::where('hotel_id',$hotel->id)->get();
         $hotelPhotos = HotelPhoto::where('hotel_id', $hotel->id)->get();
-        
-        if($room){
-            if($room->id == null){
-                $roomBeds = HotelBed::where('room_id', $room->id)->delete();
+        if($rooms){
+            foreach($rooms as $room) {
+                if($room->id != null) {
+                    $hotelBedDelete = HotelBed::where('room_id', $room->id)->delete();
+                }
             }
-            $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
         }
+        $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
+
+        // if($room){
+        //     if($room->id != null) {
+        //         $roomBed = HotelBed::where('room_id', $room->id)->select('room_id')->first();
+        //         if($room->id == $roomBed->room_id) {
+        //             $hotelBedDelete = HotelBed::where('room_id', $room->id)->delete();
+        //         }
+        //     }
+        //     $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
+        // }
 
         foreach($hotelPhotos as $hotelphoto) {
             $image_path = public_path('storage/'.$hotelphoto->photos);
@@ -249,6 +265,16 @@ class PropertyController extends Controller
         $hotelDelete = Hotel::where('UUID',$id)->delete();
         
         return response()->json(["danger" => "property deleted Successfully"], 200);  
+    }
+
+    public function deleteRoom($id)
+    {
+        $room = Room::where('UUID', $id)->select('id', 'UUID', 'hotel_id')->first();
+        $roomCount = Room::where('hotel_id', $room->hotel_id)->count();
+        $roomBed = HotelBed::where('room_id', $room->id)->delete();
+        $room = Room::where('UUID', $id)->delete();
+
+        return response()->json(["success" => "room deleted Successfully", 'roomCount' => $roomCount], 200); 
     }
 
     public function editProperty($id)
@@ -303,11 +329,25 @@ class PropertyController extends Controller
             }
         }
 
-        
-        return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotel_id])]);
+        $roomCount = Room::where('hotel_id', $hotelId->id)->count();
+
+        if($roomCount == 1){
+            return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotel_id])]);
+        }else{
+            return response()->json(['redirect_url' => route('edit.layout', ['id' => $hotel_id])]);
+        }
     }
 
     public function editLayout($id)
+    {
+        $hotel = Hotel::where('UUID', $id)->select('id')->first();
+        $rooms = Room::with('roomlist')->where('hotel_id', $hotel->id)->get();
+
+        $hotel_id = $hotel->id;
+        return view('usersite::room-list', compact('rooms', 'hotel_id'));        
+    }
+
+    public function editLayoutPrice($id)
     {
         $room_types = RoomType::active()->get();
         $beds       = BedType::active()->get();
@@ -364,11 +404,71 @@ class PropertyController extends Controller
             }
         }
         
-        return response()->json(['redirect_url' => route('edit.facilities')]);
+        $hotel = $request->hotelId;
+        
+        return response()->json(['redirect_url' => route('edit.facilities', ['id' => $hotel])]);
     }
 
-    public function editFacilities()
+    public function editFacilities($id)
     {
-        dd('hello');
+
+        $facilities = Facilities::active()->get();
+        $food_types = FoodType::active()->get();
+
+        $hotelDetail = Hotel::where('UUID', $id)->first();
+        return view('usersite::facilities', compact('facilities', 'food_types', 'hotelDetail'));
+
+    }
+
+    public function updateFacilities(Request $request)
+    {
+        $lang = explode(",", $request['language']);
+        $language = join(",", array_unique($lang));
+        $facilities = $request['facilities']; 
+
+        $hotelId = $request->hotelId;
+
+        $Hotel = Hotel::updateOrCreate([ 'UUID' => $hotelId ], [
+            'parking_available' => $request->parking_avaliable,
+            'parking_type' => $request->parking_type,
+            'parking_site' => $request->parking_site,
+            'breakfast' => $request->brackfast_select,
+            'breakfast_type' => $request->food_type_val,
+            'facilities_id' => $facilities,
+            'language' => $language
+        ]);  
+        
+        return response()->json(['redirect_url' => route('edit.amenities', ['id' => $hotelId])]);
+    }
+
+    public function editAmenities($id) {
+        
+        $amenities_category = AmenitiesCategory::with('amenities')->active()->get();
+        $hotelDetail = Hotel::where('UUID', $id)->first();
+       
+        return view('usersite::amenities',compact('amenities_category', 'hotelDetail'));
+    }
+
+    public function updateAmenities(Request $request) {
+        $hotelId = $request->hotelId; 
+
+        $Hotel   =   Hotel::updateOrCreate([ 'UUID' => $hotelId ], [
+            'extra_bed'        => $request->extra_bed,
+            'number_extra_bed' => $request->extra_no_of_bed,
+            'amenity_id'       => $request['amenities'],
+        ]);  
+            
+        return response()->json(['redirect_url' => route('edit.photo', ['id' => $hotelId])]);
+    }
+
+    public function editPhoto($id) {
+        $hotelDetail = Hotel::where('UUID', $id)->first();
+        $hotelPhotos = HotelPhoto::where('hotel_id', $hotelDetail->id)->get();
+        
+        return view('usersite::photo',compact('hotelPhotos', 'hotelDetail'));
+    }
+
+    public function updatePhotos(Request $request) {
+        dd($request->toarray());
     }
 }

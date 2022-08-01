@@ -57,18 +57,26 @@ Route::prefix('user')->group(function() {
 
             
             // edit Property
-            Route::get('propertyEdit/{id}', 'editProperty')->name('edit.proeprty');
+            Route::get('edit/basic-info/{id}', 'editProperty')->name('edit.proeprty');
             Route::post('update-property-form', 'updateProperty')->name('update-property-form');
 
-            Route::get('edit-layoutPrice/{id}' , 'editLayout')->name('edit.layoutPrice');
+
+            Route::get('edit/layout-list/{id}', 'editLayout')->name('edit.layout');
+            Route::get('edit/layout-pricing-form/{id}' , 'editLayoutPrice')->name('edit.layoutPrice');
             Route::post('update-room', 'updateRoom')->name('update-room');
 
-            Route::get('edit-facilities', 'editFacilities')->name('edit.facilities');
-            // Route::get('edit-basicInfo/{id}', 'editBasicInfo')->name('edit.basicInfo');
-            // Route::post('basic-info-update', 'updateBasicInfo')->name('updateBasicInfo.property');
+            Route::get('edit/facilities/{id}', 'editFacilities')->name('edit.facilities');
+            Route::post('update/facilities', 'updateFacilities')->name('update.facilities');
+
+            Route::get('edit/amenities/{id}', 'editAmenities')->name('edit.amenities');
+            Route::post('update/amenities', 'updateAmenities')->name('update.amenities');
+
+            Route::get('edit/photo/{id}', 'editPhoto')->name('edit.photo');
+            Route::post('update/photos', 'updatePhotos')->name('update-photos');
 
             // delete Property
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
+            Route::post('deleteRoom/{id}', 'deleteRoom')->name('delete.room');
         });
     });
 });

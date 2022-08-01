@@ -39,8 +39,34 @@ Photo
                                                 <label class="uploader-opacity" for="imgUpload">Add Photos</label>
                                             </form>
                                         </div> 
+                                        <input type="hidden" class="hotelId" value="{{$hotelDetail->UUID}}">
                                         <div class="sortable row" id="gallery">
-                                            
+                                            @if(isset($hotelPhotos))
+                                                @foreach ($hotelPhotos as $hotelPhoto)     
+                                                    <div class="dz-preview well dz-image-preview col-lg-4 me-0 ms-0 {{ $hotelPhoto->main_photo ? 'main-photo-wrapper': '' }}  position-relative"  id="dz-preview-template">
+                                                        <div class="dz-details me-0 ms-0 border">
+                                                            <div class="dz-details-inner d-block m-0">
+                                                                <div class="gallery-img m-0">
+                                                                    <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}">
+                                                                </div>
+                                                                <div class="gallery-btn d-block ms-0 me-0 ">
+                                                                    <a href="javascript:;" class="crop-selected-image text-dark ">
+                                                                        <i class="fa-solid fa-pen"></i> <span>Edit</span>
+                                                                    </a>
+                                                                    <a href="javascript:;" class="dz-remove remove-selected-image text-dark  ps-5 deleteImages deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->id}}">
+                                                                        <i class="fa-solid fa-trash-can"></i> <span>Delete</span> 
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dz-success-mark"><span> </span></div>
+                                                        <div class="dz-error-mark"><span></span></div>
+                                                        <div class="dz-error-message">
+                                                            <span data-dz-errormessage=""></span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach 
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +90,7 @@ Photo
                             </div> 
                             
                             <div class="another-c-details mt-4">
-                                <a href="javascript:;" class="btn another-c-d-btn w-100 save-photo-button">Continue
+                                <a href="javascript:;" class="btn another-c-d-btn w-100  {{  isset($hotelPhotos) ? 'update-photo-button' : 'save-photo-button' }}">Continue
                                     <div class="spinner-border" role="status" style="display: none;">
                                         <span class="sr-only">Loading...</span>
                                     </div>
@@ -100,9 +126,10 @@ Photo
                 <div class="dz-error-message">
                     <span data-dz-errormessage=""></span>
                 </div>
-            </div>
-            
+            </div>   
         </div>
+
+   
 
 @endsection
 
@@ -153,7 +180,15 @@ Photo
 @push('scripts')
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script>
- 
+    function deleteImage(){
+        var image =  JSON.parse(localStorage.getItem("deleteImage"));
+
+        $.each(image, function(key,val) {
+            $('.deleteImage_'+key).parents('.dz-image-preview').hide();
+        });
+    }
+
+    deleteImage();
 
     var myNewdDropzone = new Dropzone(".uploader-opacity",  {
         url: '/test',
@@ -173,7 +208,7 @@ Photo
         },
     });
 
-    $(document).ready(function(){      
+    $(document).ready(function(){    
 
     var data = $('.sortable').sortable();
 
@@ -201,10 +236,61 @@ Photo
                     }
                 },
             });
-        });
-        
+        }); 
     });
 
+    if (localStorage.getItem("deleteImage") === null) {
+        localStorage.setItem('deleteImage', JSON.stringify({}));
+    }
+
+    $(document).on('click', '.deleteImages', function(){
+        if (localStorage.getItem("deleteImage") === null) {
+            localStorage.setItem('deleteImage', JSON.stringify({}));
+        }
+    
+        var id = $(this).data('id');
+
+        var obj = JSON.parse(localStorage.getItem("deleteImage"));
+        var number = id;
+        if(number in obj){
+            // console.log(obj);
+        } else {
+            obj[number] = id;
+        }
+
+        localStorage.setItem('deleteImage', JSON.stringify(obj));
+        $(this).parents('.dz-image-preview').hide();
+    });
+
+    // $(document).on('click', '.update-photo-button', function(){
+    //     var hotelId = $('.hotelId').val();
+    //     let files = myNewdDropzone.getAcceptedFiles();
+    //     var deleteImage = JSON.parse(localStorage.getItem("deleteImage"));
+
+    //     var formData = new FormData();  
+            
+    //     files.filter(async (f,i)=> {
+    //         var main = 0;
+    //         var mainSrc = $(".image--preview--show:first").attr("alt");
+    //         if(mainSrc == f.upload.filename){
+    //             var main = 1;
+    //         };
+
+    //         $.ajax({
+    //             headers: {
+    //                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    //             },
+    //             url: "{{route('update-photos')}}",
+    //             type: "POST",
+    //             data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc, 'hotelId' : hotelId, 'deleteImage' : deleteImage},
+    //             success: function (res) {
+    //                 if (res.redirect_url) {
+    //                     window.location = res.redirect_url;
+    //                 }
+    //             },
+    //         });
+    //     }); 
+    // });
 });
 
 </script>

@@ -25,6 +25,17 @@
 .form-control:disabled, .form-control[readonly]{
     background-color: white;
 }
+
+.modal-body-form button.modal-close {
+    position: absolute;
+    top: 15px;
+    right: -15px;
+}
+
+i.fa-solid.fa-xmark.closeEdit {
+    font-size: 21px;
+}
+
 </style>
 @endpush
 
@@ -36,6 +47,7 @@
             <h2 class="account-title text-center">Account Settings</h2>
             <div class="account-detail mx-auto position-relative">
                 <i class="fa-solid fa-pen-to-square editUser"></i>
+                <i class="fa-solid fa-xmark closeEdit" style="display: none"></i>
                 <form class="updateUserForm">
                     <div class="account-form">
                         <label for="exampleInputtext1" class="label-text">Name</label>
@@ -117,15 +129,19 @@
                     <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header justify-content-end">
-                                <button type="button" class="modal-close" data-bs-dismiss="modal"
+                                {{-- <button type="button" class="modal-close" data-bs-dismiss="modal"
                                     aria-label="Close" style="z-index: 99;">
                                     <i class="fa-solid fa-xmark"></i>
-                                </button>
+                                </button> --}}
                             </div>
                             <div class="modal-body d-flex align-items-center justify-content-center">
                                     <div class="modal-body-form text-center">
                                         <div class="modal-title mx-auto">
                                             <h5>Change Your Password</h5>
+                                            <button type="button" class="modal-close" data-bs-dismiss="modal"
+                                                aria-label="Close" style="z-index: 99;">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </button>
                                         </div>
                                         <div id="expired-div">
                                         </div>
@@ -203,10 +219,16 @@ $(document).ready(function(){
         });
 
     $(document).on('click', '.editUser', function(){
+        $('.closeEdit').show();
         $('.inpute-text').attr('readonly', false);
         $('.acc_btn_').removeClass('d-none');
         $('.edit_password_').removeClass('d-none');
         $(this).hide();
+    });  
+
+    $(document).on('click', '.closeEdit', function(){
+        $(this).hide();
+        $('.editUser').show();        
     });  
     
     $(document).on('click', '.account_submit_btn',function(){
@@ -239,6 +261,7 @@ $(document).ready(function(){
                 $('.edit_password_').addClass('d-none');
                 $('.editUser').show();
                 $('.inpute-text').attr('readonly', true);
+                $('.closeEdit').hide();
             }, error:function (response) {
                 $('#email-error').text(response.responseJSON.errors.email);
             }

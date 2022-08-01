@@ -28,8 +28,9 @@ Layout & pricing
                                 </div>
                                 <div class="p-form-select pt-3">
                                     <label for="" class="form-label label-heading">Room type</label>
+                                    <input type="hidden" class="hotelId" value="{{ isset($hotel) ? $hotel->UUID : '' }}">
                                     <input type="hidden" class="roomId" value="{{ isset($roomDetail) ? $roomDetail->UUID : '' }}">
-                                    <input type="hidden" class="hotelId" value="{{ isset($roomDetail) ? $roomDetail->hotel_id : '' }}">
+                                    {{-- <input type="hidden" class="hotelId" value="{{ isset($roomDetail) ? $roomDetail->hotel_id : '' }}"> --}}
                                     <select class="form-select w-50 room_type ">
                                         <option value="">Please Select</option>
                                         @foreach ($room_types as $room_type)
@@ -157,13 +158,13 @@ Layout & pricing
                                         <label for="" class="form-label label-heading ">Is the bathroom private?</label>
                                     </div>
                                     <div class="amenities-raido-btn">
-                                        <div class="form-check form-check-inline amenities-radio">
+                                        <div class="form-check form-check-inline bathroom-radio">
                                             <label class="form-check-label" for="yes">
                                             <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes"  {{ isset($roomDetail) && $roomDetail->bathroom_private == 'yes'  ? 'checked' : '' }}>
                                             Yes    
                                             </label>
                                         </div>
-                                        <div class="form-check form-check-inline amenities-radio">
+                                        <div class="form-check form-check-inline bathroom-radio">
                                             <label class="form-check-label" for="no">
                                                 <input class="form-check-input bathroom_private" type="radio" name="bathroom_private"  id="no" value="no" {{ isset($roomDetail) && $roomDetail->bathroom_private == 'no'  ? 'checked' : '' }} > No
                                             </label>
@@ -338,6 +339,12 @@ Layout & pricing
         width: 100%;
         max-width: 400px;
     }
+
+    .pannel-form .form-info-box .amenities-raido-btn .bathroom-radio {
+    border: 1px solid #878996;
+    padding: 8px 40px;
+    border-radius: 5px;
+}
 </style>
 @endpush
 
@@ -441,8 +448,6 @@ Layout & pricing
                 }
             }
         }
-
-        
 
         $(document).on('click', '.offer-check', function(){
             var offer = $(this).val();

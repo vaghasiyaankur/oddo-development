@@ -448,7 +448,6 @@
             </div>
         </div>
     </section>
-    check-out.html
 @endsection
 @push('script')
 
