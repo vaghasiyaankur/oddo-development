@@ -75,22 +75,20 @@
             background-color: #7e8de7;
             border-color: #6A78C7;
         }
-        /* .spinner-border {
-            display: block !important;
-            margin-left: auto;
-            margin-top: -19px;
-            width: 100%;
-            max-width: 18px !important;
-            height: 100%;
-            max-height: 18px !important;
-        } */
+  
+        .log_in_modal_ .spinner-border{
+            margin-top: 3px;
+            float: right;
+            width: 18px !important;
+            height: 18px !important;
+        }
     </style>
     
 </head>
 
 <body>
 
-    <!------- Main Url For javascript  -------->
+    <!------- Main Url For javascript  ------->
     <input type="hidden" value="{{ URL::to('') }}" id="base_url">
 
     <!------- Header start  -------->
@@ -107,42 +105,62 @@
 
 
     <!-------Jquery Cdn Link ------->
+
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <!------- Bootstrap JS Link ------->
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
     <!------- Swiper js cdn------->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
+
     <!------ slick js cdn -------->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+
     <!-------- select2 js link ------->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <!------Moment js cdn ------->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
+
     <!------Datepiker js cdn ------->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
+    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script>
+
     <!------- Custom JS Link -----  -->
+
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
     <!------- Timepiker js link ---------->
+
     <script src="{{ asset('assets/js/timepiker.js') }}"></script>
+
     <!-- icon picker js -->
+
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
 
     <!-- password-addon init -->
+
     <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
     
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
     <!-- Sweet Alerts js -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
     <script src="{{ asset('assets/Admin/assets/js/custom.js') }}"></script>
+
 @stack('script')
 
 </body>

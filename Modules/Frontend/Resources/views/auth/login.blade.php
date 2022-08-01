@@ -45,9 +45,9 @@
                                             </div>
                                             <div class="mt-4">
                                                 <button class="btn log_in_btn w-100 submitLogin">Log In
-                                                    {{-- <div class="spinner-border" role="status" style="display: none;">
+                                                    <div class="spinner-border" role="status" style="display: none;">
                                                         <span class="sr-only">Loading...</span>
-                                                    </div> --}}
+                                                    </div>
                                                 </button>
                                             </div>
                                             <div class="mt-4 text-center">

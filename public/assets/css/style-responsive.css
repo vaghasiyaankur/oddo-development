@@ -364,3 +364,10 @@
   }
 }
 /* ========== EXPLORE-ATTRECTION CSS END ========= */
+
+/* ============ navbar ============= */
+@media screen and (min-width:992px){
+  .navbar .offcanvas-start.show{
+    visibility: hidden !important;
+  } 
+}
