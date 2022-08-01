@@ -74,7 +74,7 @@
 
 @push('script')
 <script>
-    var baseUrl = $('#base_url').val();
+var baseUrl = $('#base_url').val();
 
 $(document).ready(function(){ 
     $.ajaxSetup({
@@ -99,7 +99,7 @@ $(document).ready(function(){
         formdata.append('email', email);
         formdata.append('password', password);
 
-        // $('.spinner-border').show();
+        $('.spinner-border').show();
 
         $.ajax({
             url: "{{route('user.login')}}",
@@ -112,10 +112,12 @@ $(document).ready(function(){
                 window.location.href = '/';
             }, error:function (response) {
                 if(response.responseJSON.error){
+                    $('.spinner-border').hide();
                     $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
                                             <span id="expired-link-error">`+response.responseJSON.error+`</span>
                                         </div>`);
                 }else {
+                    $('.spinner-border').hide();
                     $('#email-error').text(response.responseJSON.errors.email);
                     $('#password-error').text(response.responseJSON.errors.password);
                 }
