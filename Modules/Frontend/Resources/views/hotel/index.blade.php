@@ -1252,50 +1252,73 @@
         });
     </script>
 
-    <script>
+<script>
 
-        $(document).ready(function(){
+$(document).ready(function(){
 
-        var baseUrl = $('#base_url').val();
-        var page = 1;
-        infinteLoadMore(page)
-        ;
+    var baseUrl = $('#base_url').val();
+    var page = 1;
+    infinteLoadMore(page);
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-                page++;
-                infinteLoadMore(page)
-        ;
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            page++;
+            infinteLoadMore(page);
+        }
+    });
+
+    function infinteLoadMore(page) {
+        $.ajax({
+            url: baseUrl + "/hotel?page=" + page,
+            datatype: "html",
+            type: "get",
+            // beforeSend: function () {
+            //     $('.auto-load').show();
+            // }
+        })
+        .done(function (response) {
+            if (response.length == 0) {
+                $('.auto-load').html("We don't have more data to display :(");
+                return;
             }
-        });
-        function infinteLoadMore(page)
-        {
-            $.ajax({
-                    url: baseUrl + "/hotel?page=" + page,
-                    datatype: "html",
-                    type: "get",
-                    // beforeSend: function () {
-                    //     $('.auto-load').show();
-                    // }
-                })
-                .done(function (response) {
-                    if (response.length == 0) {
-                        $('.auto-load').html("We don't have more data to display :(");
-                        return;
-                    }
-                    $('.loading_spiner_').hide();
-                    // $('.auto-load').hide();
-                    $(".hotelResultDiv").append(response);
-                    // $("#data-wrapper").append(response);
-                })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
-                    console.log('Server error occured');
-            });
-        } 
-        });
-
-       $(document).ready(function(){
             $('.loading_spiner_').hide();
-       });
-    </script>
+            // $('.auto-load').hide();
+            $(".hotelResultDiv").append(response);
+            // $("#data-wrapper").append(response);
+        })
+        .fail(function (jqXHR, ajaxOptions, thrownError) {
+            console.log('Server error occured');
+        });
+    } 
+
+    $('.loading_spiner_').hide();
+
+    $(document).on('click', '.addWishlist', function(){
+        let hotelId = $(this).data('id');
+
+        if (!hotelId) {
+            return;
+        }
+        
+        formdata = new FormData();
+        formdata.append('hotelId', hotelId);
+
+        $.ajax({
+            url: "{{route('add.wishlist')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                console.log('done');
+            }, error:function (response) {
+                console.log('fail');
+            }
+        }); 
+    });
+});
+
+        
+
+</script>
 @endpush

@@ -53,6 +53,12 @@ Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrip
 /* Checkout Page */
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 
+/* WishList Route  */
+Route::controller(WishlistController::class)->group(function(){
+    Route::post('add-wishlist', 'addWishlist')->name('add.wishlist');
+});
+
+
 // Route::view('/login', 'frontend::auth.login');
 
 // Route::view('/register', 'frontend::auth.register');
@@ -79,4 +85,3 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
     Route::post('/update-user', 'ProfileController@update')->name('update.user');
     Route::post('/change-password', 'ProfileController@changePassword')->name('change.password');
 });
-

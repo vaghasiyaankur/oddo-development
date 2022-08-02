@@ -9,6 +9,7 @@ use App\Models\HotelPhoto;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\amenities;
+use App\Models\Wishlistable;
 use App\Traits\Uuids;
 
 class Hotel extends Model
@@ -84,4 +85,8 @@ class Hotel extends Model
         return Facilities::whereIn('id', $facilities)->get();
     }
 
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlistable::class, 'model_id');
+    }
 }
