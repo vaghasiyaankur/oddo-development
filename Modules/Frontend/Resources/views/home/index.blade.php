@@ -60,9 +60,11 @@
       margin: 10px auto;
     }
     .bed-selector .select-div {
-      padding: 6px 10px;
-      width: 130px;
-      border: 1px solid #aaa;
+        padding: 6px 17px;
+        /* width: 170px; */
+        width: 100%;
+        border: 1px solid #878996;
+        border-radius: 5px;
     }
     .bed-selector .option-none {
       display: none;
@@ -72,7 +74,6 @@
       z-index: 9999;
     }
 
-    /*  */
         /* Css for select2  */
         section.check-in-out .check-in-out-bottom .select2 {
             width: 100% !important;
@@ -112,7 +113,6 @@
 
         .select2-container--default.select2-container--focus .select2-selection--multiple {
             border: 1px solid #aaa;
-            ;
         }
 
         .select2-search--dropdown {
@@ -123,6 +123,19 @@
             padding-right: 20px;
             vertical-align: middle;
         }      
+
+        .dropdown-inner .form-check-input:checked {
+            border-color: #6A78C7;
+            background-color:#6A78C7 !important;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected]{
+            background-color: #6a78c7;
+            color: white;
+        }
+        .t-city-card-button .btn:hover{
+            background-color: #5971f3;
+            color: #fff;
+        }
     </style>
 @endpush
 
@@ -171,7 +184,7 @@
                                 <form action="javascript: void(0);">
                                     <div
                                         class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
-                                        <div class="check-text-label pt-4 pe-xl-4 pe-lg-3">
+                                        <div class="check-text-label pt-4 pe-xl-4 pe-lg-3 mb-3 mb-lg-0">
                                             <label class="check-inout mt-2">Check-In </label>
                                             <div class="input--text d-flex align-items-center">
                                                 <img src="assets/images/icons/cal-1.png" class="px-2">
@@ -238,96 +251,107 @@
                                         {{ in_array('3', $selectBed) ? 'selected' : '' }}>3</option>
                                 </select>
                             </div> --}}
-                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
-                                <label>Guests</label>
-                                <select class="form-control js-example-tags select_guest" name="guest">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>                                
-                                </select>   
+                            <div class="col-lg-2 col-6 pe-lg-0 mt-2">
+                                <div class="select-option">
+                                    <label>Guests</label>
+                                    <select class="form-control js-example-tags select_guest" name="guest">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>                                
+                                    </select>  
+                                </div> 
                             </div>
-                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">                            
-                                <label>Room</label>
-                                <select class="form-control js-example-tags select_room" name="room">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>                                
-                                </select>                                                           
+                            <div class="col-lg-2 col-6 pe-lg-0 mt-2">                            
+                                <div class="select-option">
+                                    <label>Room</label>
+                                    <select class="form-control js-example-tags select_room" name="room">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>                                
+                                    </select>    
+                                </div>                                                       
                             </div>
-                            <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
-                                <div class="bed-selector">
-                                    <div class="select-div d-flex justify-content-between align-items-center">
-                                        <i class="fa-solid fa-car" style="color: #6A78C7;"></i>
-                                        <span style="color: #6A78C7;">king</span>
-                                        <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i>
-                                    </div>
-                                    <div class="select-option select-room option-none">
-                                        <div class="room">
-                                            <div class="title-container">
-                                                <h5 class="title" style="margin:10px;">Room 1</h5>
+                            <div class="col-lg-2 col-sm-6 pe-lg-0 mt-2">
+                                <div class="select-option">
+                                    <div class="bed-selector">
+                                        <div class="select-div d-flex justify-content-between align-items-center">
+                                            <i class="fa-solid fa-car" style="color: #6A78C7;"></i>
+                                            <span style="color: #6A78C7;">king</span>
+                                            <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i>
+                                        </div>
+                                        <div class="select-option select-room option-none">
+                                            <div class="room">
+                                                <div class="title-container">
+                                                    <h5 class="title" style="margin:10px;">Room 1</h5>
+                                                </div>
+                                                <section class="dropdown-container">
+                                                    <div class="dropdown-inner">
+                                                        <input class="form-check-input" type="checkbox" id="king_1">
+                                                        <label for="king_1">1 King</label>
+                                                    </div>
+                                                    <div class="dropdown-inner">
+                                                        <input type="checkbox" id="twin_1">
+                                                        <label for="twin_1">2 Twin</label>
+                                                    </div>
+                                                    <div class="dropdown-inner">
+                                                        <input type="checkbox" id="queen_1">
+                                                        <label for="queen_1">2 Queen</label>
+                                                    </div>
+                                                </section>
                                             </div>
-                                            <section class="dropdown-container">
-                                                <div class="dropdown-inner">
-                                                    <input type="checkbox" id="king_1">
-                                                    <label for="king_1">1 King</label>
-                                                </div>
-                                                <div class="dropdown-inner">
-                                                    <input type="checkbox" id="twin_1">
-                                                    <label for="twin_1">2 Twin</label>
-                                                </div>
-                                                <div class="dropdown-inner">
-                                                    <input type="checkbox" id="queen_1">
-                                                    <label for="queen_1">2 Queen</label>
-                                                </div>
-                                            </section>
+                                        </div>
+                                    </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 text-lg-center mt-4">
+                                <div class="check-in-out-icon d-flex pt-2 justify-content-lg-end me-xl-5">
+                                    <div class="check-icons-inner">
+                                        <img src="assets/images/icons/check-1.png" class="img-fluid me-1">
+                                        <img src="assets/images/icons/check-2.png" class="img-fluid me-1">
+                                        <img src="assets/images/icons/check-3.png" class="img-fluid me-1">
+                                        <img src="assets/images/icons/check-1.png" class="img-fluid me-1">
+                                    </div>
+                                    {{-- <div class="form-check">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            >
+                                            Things to do
+                                        </label>
+                                    </div> --}}
+                                </div>
+                            </div>
+                                {{-- <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            >
+                                            Things to do
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 mt-4 col-md-3 col-sm-6 col-6 text-lg-center">
+                                    <div class="check-in-out-icon">
+                                        <div class="mb-1 check-icons-inner">
+                                            <img src="assets/images/icons/check-5.png" class="img-fluid">
+                                            <img src="assets/images/icons/check-6.png" class="img-fluid">
+                                        </div>
+                                        <div class="check-icons-inner">
+                                            <img src="assets/images/icons/check-7.png" class="img-fluid">
+                                            <img src="assets/images/icons/check-8.png" class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-2 mt-4 col-md-3 col-sm-6 col-6 text-lg-center">
-                                <div class="check-in-out-icon">
-                                    <div class="mb-1 check-icons-inner">
-                                        <img src="assets/images/icons/check-1.png" class="img-fluid">
-                                        <img src="assets/images/icons/check-2.png" class="img-fluid">
+                                <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
+                                    <div class="form-check ">
+                                        <label class="form-check-label" for="flexCheckChecked1">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1"
+                                            checked>
+                                            Transportation
+                                        </label>
                                     </div>
-                                    <div class="check-icons-inner">
-                                        <img src="assets/images/icons/check-3.png" class="img-fluid">
-                                        <img src="assets/images/icons/check-1.png" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
-                                <div class="form-check">
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                        >
-                                        Things to do
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 mt-4 col-md-3 col-sm-6 col-6 text-lg-center">
-                                <div class="check-in-out-icon">
-                                    <div class="mb-1 check-icons-inner">
-                                        <img src="assets/images/icons/check-5.png" class="img-fluid">
-                                        <img src="assets/images/icons/check-6.png" class="img-fluid">
-                                    </div>
-                                    <div class="check-icons-inner">
-                                        <img src="assets/images/icons/check-7.png" class="img-fluid">
-                                        <img src="assets/images/icons/check-8.png" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
-                                <div class="form-check ">
-                                    <label class="form-check-label" for="flexCheckChecked1">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1"
-                                        checked>
-                                        Transportation
-                                    </label>
-                                </div>
-                            </div>
+                                </div> --}}
                         </div>
-                        <div class="check-in-out-btn mt-5 text-center">
+                        <div class="check-in-out-btn mt-3 text-center">
                             <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
                         </div>
                     </div>
@@ -506,9 +530,9 @@
     </section>
     <!------- Top hotels section end ------->
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
   
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -525,7 +549,7 @@
                     <h4>Your Registration Token Time is out!</h4>
                     <p class="text-muted">Please tap the button below to Re-Sign-in in Odda</p>
                     <!-- Toogle to second dialog -->
-                    <button class="btn btn-warning" data-bs-target="#register_modal" data-bs-toggle="modal" data-bs-dismiss="modal" style="background-color: #6a78c7;border:#6a78c7;color: #fff;">
+                    <button class="btn btn-warning" data-bs-target="#register_modal" data-bs-toggle="modal" data-bs-dismiss="modal"     style="background-color: #6a78c7;border:#6a78c7;color: #fff;">
                         Sign up
                     </button>
                 </div>
@@ -540,7 +564,7 @@
     <!-------- Google Place Search -------->
     <script type='text/javascript'
         src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
-    </script>
+    </script>   
 
     <!-- // Home page slider start -->
     <script>
@@ -719,15 +743,15 @@
                             </div>
                             <section class="dropdown-container">
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" id="king_`+ $number+`">
+                                    <input type="checkbox" class="form-check-input" id="king_`+ $number+`">
                                     <label for="king_`+ $number+`">1 King</label>
                                 </div>
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" id="twin_`+ $number+`">
+                                    <input type="checkbox" class="form-check-input" id="twin_`+ $number+`">
                                     <label for="twin_`+ $number+`">2 Twin</label>
                                 </div>
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" id="queen_`+ $number+`">
+                                    <input type="checkbox" class="form-check-input" id="queen_`+ $number+`">
                                     <label for="queen_`+ $number+`">2 Queen</label>
                                 </div>
                             </section>

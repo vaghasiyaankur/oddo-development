@@ -32,17 +32,17 @@ Facilities
                                     <label for="" class="form-label label-heading">Is parking available for
                                         guests?</label>
                                 </div>
-                                <div class="p-form-select d-flex justify-content-between">
+                                <div class="p-form-select d-flex justify-content-between flex-wrap">
                                     <input type="hidden" value="{{ isset($hotelDetail) ? $hotelDetail->UUID : '' }}" class="hotelId">
                                     <select class="form-select w-50 me-3 parking-avaliable">
                                         <option value="no" {{ isset($hotelDetail) && $hotelDetail->parking_available == 'no' ? 'selected' : '' }}>No</option>
                                         <option value="yes" {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? 'selected' : '' }}>Yes</option>
                                     </select>
-                                    <select class="form-select input-w-20 me-3  {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? '' : 'd-none' }} parking-type">
+                                    <select class="form-select input-w-20 me-3 mt-2 mt-lg-0 {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? '' : 'd-none' }} parking-type">
                                         <option value="private" {{ isset($hotelDetail) && $hotelDetail->parking_type == 'private' ? 'selected' : '' }}>Private</option>
                                         <option value="public" {{ isset($hotelDetail) && $hotelDetail->parking_type == 'public' ? 'selected' : '' }}>Public</option>
                                     </select>
-                                    <select class="form-select input-w-20 {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? '' : 'd-none' }} parking-site">
+                                    <select class="form-select input-w-20 me-3 me-lg-0 mt-2 mt-lg-0 {{ isset($hotelDetail) && $hotelDetail->parking_available == 'yes' ? '' : 'd-none' }} parking-site">
                                         <option value="on"  {{ isset($hotelDetail) && $hotelDetail->parking_site == 'on' ? 'selected' : '' }}>On site</option>
                                         <option value="off" {{ isset($hotelDetail) && $hotelDetail->parking_site == 'off' ? 'selected' : '' }}>Off site</option>
                                     </select>
