@@ -73,7 +73,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-3 text-center">
-                                                <p class="mb-0">Already have an account ? <a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#Log_in_modal" style="color: #5867ba;"> Login </a> </p>
+                                                <p class="mb-0">Already have an account ? <a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#Log_in_modal" style="color: #5867ba;"> Log In </a> </p>
                                             </div>
                                         </form>
                                     </div>

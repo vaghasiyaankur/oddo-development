@@ -9,6 +9,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Carbon\Carbon;
 
 class FacebookController extends Controller
 {
@@ -27,12 +28,17 @@ class FacebookController extends Controller
             }else{
                 $userName = explode(" ", $user->name);
                 $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $userName[0],
-                        'last_name' => $userName[1],
-                        'facebook_id'=> $user->id,
-                        'type' => '0',
-                        'password' => encrypt('Demo@12345')
-                    ]);
+                    'name' => $userName[0],
+                    'last_name' => $userName[1],
+                    'facebook_id'=> $user->id,
+                    'type' => '0',
+                    'password' => encrypt('Demo@12345')
+                ]);
+                
+                $findUser = User::find($newUser->id);
+                $findUser->email_verified_at = Carbon::now()->timestamp;
+                $findUser->save();
+
                 Auth::login($newUser);
                 return redirect()->intended('/');
             }
