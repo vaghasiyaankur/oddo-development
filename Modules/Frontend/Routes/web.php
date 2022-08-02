@@ -68,10 +68,10 @@ Route::controller(Auth\Socialite\FacebookController::class)->group(function(){
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
 
-Route::controller(Auth\Socialite\TwitterController::class)->group(function(){
-    Route::get('auth/twitter', 'redirectToTwitter')->name('auth.twitter');
-    Route::get('auth/twitter/callback', 'handleTwitterCallback');
-});
+// Route::controller(Auth\Socialite\TwitterController::class)->group(function(){
+//     Route::get('auth/twitter', 'redirectToTwitter')->name('auth.twitter');
+//     Route::get('auth/twitter/callback', 'handleTwitterCallback');
+// });
 
 Route::middleware(['auth', 'user-access:user'])->group(function(){
     /* Profile Page */

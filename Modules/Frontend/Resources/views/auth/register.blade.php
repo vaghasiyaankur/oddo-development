@@ -67,9 +67,9 @@
                                                         <i class="ri-google-fill fs-16"></i>
                                                     </a>
 
-                                                    <a href="{{ route('auth.twitter') }}" class="btn btn-icon btn-twiter">
+                                                    {{-- <a href="{{ route('auth.twitter') }}" class="btn btn-icon btn-twiter">
                                                         <i class="ri-twitter-fill fs-16"></i>
-                                                    </a>
+                                                    </a> --}}
                                                 </div>
                                             </div>
                                             <div class="mt-3 text-center">
