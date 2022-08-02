@@ -1253,6 +1253,7 @@
     </script>
 
     <script>
+
         $(document).ready(function(){
 
         var baseUrl = $('#base_url').val();
@@ -1292,5 +1293,9 @@
             });
         } 
         });
+
+       $(document).ready(function(){
+            $('.loading_spiner_').hide();
+       });
     </script>
 @endpush

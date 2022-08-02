@@ -9,6 +9,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Carbon\Carbon;
 
 class TwitterController extends Controller
 {
@@ -37,11 +38,15 @@ class TwitterController extends Controller
          
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->name,
-                        'twitter_id'=> $user->id,
-                        'type' => 0,
-                        'password' => encrypt('123456dummy')
-                    ]);
+                    'name' => $user->name,
+                    'twitter_id'=> $user->id,
+                    'type' => 0,
+                    'password' => encrypt('123456dummy')
+                ]);
+
+                $findUser = User::find($newUser->id);
+                $findUser->email_verified_at = Carbon::now()->timestamp;
+                $findUser->save();
         
                 Auth::login($newUser);
         

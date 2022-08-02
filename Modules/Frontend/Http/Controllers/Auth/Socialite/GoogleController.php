@@ -9,6 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class GoogleController extends Controller
 {
@@ -92,25 +93,26 @@ class GoogleController extends Controller
             $user = Socialite::driver('google')->user();
             $finduser = User::where('google_id', $user->id)->first();
             if($finduser){
-         
+
                 Auth::login($finduser);
-        
-                return redirect()->intended('/');
-         
+                return redirect()->intended('/');         
             }else{
+
                 $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->user['given_name'],
-                        'last_name' => $user->user['family_name'],
-                        'google_id'=> $user->id,
-                        'type' => 0,
-                        'password' => encrypt('Demo@12345')
-                    ]);
+                    'name' => $user->user['given_name'],
+                    'last_name' => $user->user['family_name'],
+                    'google_id'=> $user->id,
+                    'type' => 0,
+                    'password' => encrypt('Demo@12345')
+                ]);
+
+                $findUser = User::find($newUser->id);
+                $findUser->email_verified_at = Carbon::now()->timestamp;
+                $findUser->save();
          
                 Auth::login($newUser);
-        
                 return redirect()->intended('/');
             }
-        
         } catch (Exception $e) {
             dd($e->getMessage());
         }

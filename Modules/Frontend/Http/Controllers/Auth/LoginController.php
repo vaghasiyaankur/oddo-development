@@ -128,7 +128,7 @@ class LoginController extends Controller
             if (auth()->user()->type == 'user') {
                 return response()->json(["success" => "login successfully."], 200);  
             }else{
-                return response()->json(["error" => "account created successfully."], 403);  
+                return response()->json(["error" => "Email-Address And Password Are Wrong."], 403);  
             }
         }else{
             return response()->json(["error" => "Email-Address And Password Are Wrong."], 403);  
