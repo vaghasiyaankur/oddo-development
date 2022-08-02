@@ -371,3 +371,8 @@
     visibility: hidden !important;
   } 
 }
+@media screen and (max-width:575px) {
+  .check-in-out-form .check-in-out-icon .check-icons-inner{
+    display: none;
+  }
+}

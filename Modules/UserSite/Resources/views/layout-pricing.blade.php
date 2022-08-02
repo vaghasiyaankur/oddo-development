@@ -31,7 +31,7 @@ Layout & pricing
                                     <input type="hidden" class="hotelId" value="{{ isset($hotel) ? $hotel->UUID : '' }}">
                                     <input type="hidden" class="roomId" value="{{ isset($roomDetail) ? $roomDetail->UUID : '' }}">
                                     {{-- <input type="hidden" class="hotelId" value="{{ isset($roomDetail) ? $roomDetail->hotel_id : '' }}"> --}}
-                                    <select class="form-select w-50 room_type ">
+                                    <select class="form-select w-md-50 room_type ">
                                         <option value="">Please Select</option>
                                         @foreach ($room_types as $room_type)
                                             <option value="{{$room_type->id}}" {{ isset($roomDetail) && $room_type->id == $roomDetail->room_type_id ? 'selected' : '' }}>{{$room_type->room_type}}</option>
@@ -57,7 +57,7 @@ Layout & pricing
                                 </div>
                                 <div class="p-form-select pt-3">
                                     <label for="" class="form-label label-heading">Smoking policy</label>
-                                    <select class="form-select w-50 smoking_area" >
+                                    <select class="form-select w-md-50 smoking_area" >
                                         <option value="n-smoking" {{ isset($roomDetail) && $roomDetail->smoking_policy == 'n-smoking' ? 'selected' : '' }} >Non-smoking</option>
                                         <option value="smoking" {{ isset($roomDetail) && $roomDetail->smoking_policy == 'smoking' ? 'selected' : '' }} >smoking</option>
                                         <option value="b-smoking" {{ isset($roomDetail) && $roomDetail->smoking_policy == 'b-smoking' ? 'selected' : '' }} >I have both smoking and non-smoking options for this room type</option>
@@ -267,7 +267,7 @@ Layout & pricing
                                     </form>
                                 </div>
                                 <div class="col-md-6 price-summary-main ">
-                                    <div class="price-summary">
+                                    <div class="price-summary mt-3 mt-lg-0">
                                         <h4 class="mt-3 price-summary-head fw-bold">Price summary for: dsfdsf</h4>
                                         <div class="row justify-content-between">
                                             <div class="col-6">

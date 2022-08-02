@@ -212,6 +212,36 @@
             text-align: center;
             padding: 5px;
         }
+        .result-main-inner .result-main-img .swiper-s-img .wishlist_icon_{
+            position: absolute;
+            top: -33px;
+            left: 17px;
+            font-size: 15px;
+            color: #fff;
+            background-color: #6a78c7;
+            width: 100%;
+            max-width: 30px;
+            height: 100%;
+            max-height: 30px;
+            border-radius: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s;
+
+        }
+        .result-main-inner .result-main-img .swiper-s-img .wishlist_icon_.active{
+            color: #ff0000e6;
+            background-color: #fff;
+        }
+        .result-main-inner:hover .wishlist_icon_{
+            top: 14px !important;
+            box-shadow: 1px 1px 3px #000000de;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected]{
+            background-color: #6a78c7;
+            color: white;
+        }
     </style>
 @endpush
 
@@ -297,15 +327,15 @@
                                             </div>
                                             <section class="dropdown-container">
                                                 <div class="dropdown-inner">
-                                                    <input type="checkbox" id="king_1">
+                                                    <input class="form-check-input" type="checkbox" id="king_1">
                                                     <label for="king_1">1 King</label>
                                                 </div>
                                                 <div class="dropdown-inner">
-                                                    <input type="checkbox" id="twin_1">
+                                                    <input class="form-check-input" type="checkbox" id="twin_1">
                                                     <label for="twin_1">2 Twin</label>
                                                 </div>
                                                 <div class="dropdown-inner">
-                                                    <input type="checkbox" id="queen_1">
+                                                    <input class="form-check-input" type="checkbox" id="queen_1">
                                                     <label for="queen_1">2 Queen</label>
                                                 </div>
                                             </section>
@@ -1010,7 +1040,9 @@
                     </div>
 
                     <!-------- Search Hotel Result -------->
-                    @include('frontend::hotel.hotelResult')
+                    <div class="col-lg-9 position-relative hotelResultDiv">
+                        @include('frontend::hotel.hotelResult')
+                    </div>
                     <!-------- Search Hotel Result end -------->
 
                 </div>
@@ -1201,15 +1233,15 @@
                         </div>
                         <section class="dropdown-container">
                             <div class="dropdown-inner">
-                                <input type="checkbox" id="king_` + $number + `">
+                                <input class="form-check-input" type="checkbox" id="king_` + $number + `">
                                 <label for="king_` + $number + `">1 King</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input type="checkbox" id="twin_` + $number + `">
+                                <input class="form-check-input" type="checkbox" id="twin_` + $number + `">
                                 <label for="twin_` + $number + `">2 Twin</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input type="checkbox" id="queen_` + $number + `">
+                                <input class="form-check-input" type="checkbox" id="queen_` + $number + `">
                                 <label for="queen_` + $number + `">2 Queen</label>
                             </div>
                         </section>
@@ -1221,6 +1253,47 @@
     </script>
 
     <script>
+
+        $(document).ready(function(){
+
+        var baseUrl = $('#base_url').val();
+        var page = 1;
+        infinteLoadMore(page)
+        ;
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                page++;
+                infinteLoadMore(page)
+        ;
+            }
+        });
+        function infinteLoadMore(page)
+        {
+            $.ajax({
+                    url: baseUrl + "/hotel?page=" + page,
+                    datatype: "html",
+                    type: "get",
+                    // beforeSend: function () {
+                    //     $('.auto-load').show();
+                    // }
+                })
+                .done(function (response) {
+                    if (response.length == 0) {
+                        $('.auto-load').html("We don't have more data to display :(");
+                        return;
+                    }
+                    $('.loading_spiner_').hide();
+                    // $('.auto-load').hide();
+                    $(".hotelResultDiv").append(response);
+                    // $("#data-wrapper").append(response);
+                })
+                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                    console.log('Server error occured');
+            });
+        } 
+        });
+
        $(document).ready(function(){
             $('.loading_spiner_').hide();
        });

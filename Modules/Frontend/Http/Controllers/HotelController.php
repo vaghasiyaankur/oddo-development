@@ -14,7 +14,7 @@ class HotelController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $search = explode(',' , request()->search);
         $checkIn = request()->checkIn;
@@ -37,7 +37,13 @@ class HotelController extends Controller
                 $query->where('guest_stay_room', request()->guest);
             })->active()->get();
         }else{
-            $hotels = Hotel::active()->get();
+            $hotels = Hotel::active()->latest()->paginate(4);
+            $hotels = Hotel::active()->latest()->paginate(4);
+            $artilces = '';
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                return $html;
+            }
         }
 
         $amenities = Amenities::where('featured',1)->active()->get();

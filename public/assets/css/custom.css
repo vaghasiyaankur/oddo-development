@@ -780,7 +780,7 @@ header.header .navbar .dropdown .dropdown-btn {
     .check-in-out-form
     .check-in-out-bottom
     .select-option {
-    max-width: 134px;
+    max-width: 182px;
 }
 .hotel-result.g-map-main .g-map-inner .g-map {
     border: 5px solid #fff;
@@ -1702,6 +1702,7 @@ header.header .navbar .dropdown .dropdown-btn {
     height: 350px;
     min-height: 350px;
     object-fit: cover;
+    border-radius: 5px 0 0 5px;
 }
 .hotel-result.search-result
     .search-result-inner
