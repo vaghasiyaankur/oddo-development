@@ -116,6 +116,9 @@ $(document).ready(function(){
                     $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
                                             <span id="expired-link-error">`+response.responseJSON.error+`</span>
                                         </div>`);
+                    setTimeout(function(){
+                        $('#expired-div').html(``); 
+                    }, 4000);
                 }else {
                     $('.spinner-border').hide();
                     $('#email-error').text(response.responseJSON.errors.email);

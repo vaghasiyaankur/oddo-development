@@ -90,4 +90,17 @@ class WishlistController extends Controller
         }
         return response()->json(["success" => "wishlist add Successfully"], 200);
     }
+
+    public function removeWishlist(Request $request)
+    {
+        try {
+            $id = auth()->user()->id;
+            $user = User::find($id);
+            $hotel = Hotel::where('UUID',$request->hotelId)->first();
+            $user->unwish($hotel);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+        }
+        return response()->json(["success" => "wishlist remove Successfully"], 200);
+    }
 }

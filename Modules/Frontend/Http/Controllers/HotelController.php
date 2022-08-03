@@ -37,9 +37,7 @@ class HotelController extends Controller
                 $query->where('guest_stay_room', request()->guest);
             })->active()->get();
         }else{
-            $hotels = Hotel::active()->latest()->paginate(4);
-            $hotels = Hotel::active()->latest()->paginate(4);
-            $artilces = '';
+            $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
                 return $html;

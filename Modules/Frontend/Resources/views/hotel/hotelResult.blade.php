@@ -1,11 +1,11 @@
-
+  {{-- loader --}}
+  <div class="loading_spiner_" style="display: none">
+    <div class="spinner mx-auto"></div>
+  </div>
   @if(count($hotels))
   @foreach($hotels as $key => $hotel)
 
-  {{-- loader --}}
-  {{-- <div class="loading_spiner_">
-    <div class="spinner mx-auto"></div>
-  </div> --}}
+
   <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500"
     class="result-main-content mt-4">
     <div class="result-main-inner">
@@ -13,10 +13,10 @@
         <div class="col-md-4">
           <div class="result-main-img result-swpier-img overflow-hidden">
             <div class="swiper-s-img position-relative">
-              @auth    
-                
-              <a href="javascript:;" class="wishlist_icon_  {{$wishlist->user_id ? 'addWishlist' : 'removeWishlist active'}}" data-id='{{$hotel->UUID}}'><i class="fa-solid fa-heart"></i></a>
+              @auth   
+                <a href="javascript:;" class="wishlist_icon_ {{$hotel->wishlistData($hotel->id) ? "removeWishlist active" : "addWishlist"}} " data-id='{{$hotel->UUID}}'><i class="fa-solid fa-heart"></i></a>
               @endauth
+              
               <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$key}} ">
                 <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper">
               </a>
@@ -1401,3 +1401,5 @@
     </div>
     <!-------- Notify popup end -------->
   </div> --}}
+
+  <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
