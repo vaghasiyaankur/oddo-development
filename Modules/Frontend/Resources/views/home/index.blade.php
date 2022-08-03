@@ -303,21 +303,19 @@
                                     </div>
                               </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 text-lg-center mt-4">
-                                <div class="check-in-out-icon d-flex pt-2 justify-content-lg-end me-xl-5">
-                                    <div class="check-icons-inner">
+                            <div class="col-lg-3 col-6 text-lg-center mt-4">
+                                <div class="check-in-out-icon d-flex pt-2 justify-content-center align-items-center">
+                                    <div class="check-icons-inner ms-lg-4">
                                         <img src="assets/images/icons/check-1.png" class="img-fluid me-1">
                                         <img src="assets/images/icons/check-2.png" class="img-fluid me-1">
                                         <img src="assets/images/icons/check-3.png" class="img-fluid me-1">
                                         <img src="assets/images/icons/check-1.png" class="img-fluid me-1">
                                     </div>
-                                    {{-- <div class="form-check">
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                            >
-                                            Things to do
-                                        </label>
-                                    </div> --}}
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-12 mt-4">
+                                <div class="check-in-out-btn text-center me-lg-3 mx-auto">
+                                    <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
                                 </div>
                             </div>
                                 {{-- <div class="col-lg-1 mt-4 col-md-3 col-sm-6 col-6 ps-0 white-space">
@@ -350,9 +348,6 @@
                                         </label>
                                     </div>
                                 </div> --}}
-                        </div>
-                        <div class="check-in-out-btn mt-3 text-center">
-                            <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
                         </div>
                     </div>
                 </div>
@@ -449,8 +444,9 @@
     <section class="s-top-city">
         <div class="container">
             <div class="s-top-city-inner ">
-                <div class="s-top-city-head text-center mb-sm-5 mb-3">
-                    <h2>Top Cities in Spain <img src="assets/images/icons/Spain.png" class="img-fluid m-view-img mb-2">
+                <div class="s-top-city-head text-center mb-sm-5 mb-3 {{ count($cities) ? '' : 'd-none'}}">
+                    <h2>Top Cities
+                         {{-- <img src="assets/images/icons/Spain.png" class="img-fluid m-view-img mb-2"> --}}
                     </h2>
                 </div>
                 <div class="s-top-city-main">
