@@ -2,6 +2,8 @@
   <div class="loading_spiner_" style="display: none">
     <div class="spinner mx-auto"></div>
   </div>
+  <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
+  
   @if(count($hotels))
   @foreach($hotels as $key => $hotel)
 
@@ -17,12 +19,12 @@
                 <a href="javascript:;" class="wishlist_icon_ {{$hotel->wishlistData($hotel->id) ? "removeWishlist active" : "addWishlist"}} " data-id='{{$hotel->UUID}}'><i class="fa-solid fa-heart"></i></a>
               @endauth
               
-              <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$key}} ">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$hotel->UUID}} ">
                 <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper">
               </a>
             </div>
             <!------- img slider popup start -------->
-            <div class="modal fade img-popup-slider" id="image_{{$key}}" tabindex="-1" role="dialog"
+            <div class="modal fade img-popup-slider" id="image_{{$hotel->UUID}}" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -581,8 +583,8 @@
   {{-- No data found box --}}
   {{-- <div class="loading_spiner_">
     <div class="spinner mx-auto"></div>
-  </div> --}}
-  {{-- <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
+  </div>
+  <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
     class="result-main-content border-semidark mt-4">
     <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
       <div class="empty-table w-100 text-center py-5">
@@ -1401,5 +1403,3 @@
     </div>
     <!-------- Notify popup end -------->
   </div> --}}
-
-  <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">

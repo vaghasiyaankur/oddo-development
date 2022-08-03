@@ -8,17 +8,21 @@ use Illuminate\Routing\Controller;
 use App\Models\User;
 use App\Models\Hotel;
 use App\Models\Wishlistable;
+
 class SavedController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {
+    public function index() {
         $id = auth()->user()->id;
         $user = User::find($id);
-        $wishlists = $user->wishlists();
+        $wish = Wishlistable::where('user_id', $id)->count();
+        $wishlists = [];
+        if($wish){
+            $wishlists = $user->wishlists();
+        }
         return view('frontend::saved.index', compact('wishlists'));
     }
 
@@ -94,8 +98,12 @@ class SavedController extends Controller
     {
         $id = auth()->user()->id;
         $user = User::find($id);
-        $wishlists = $user->wishlists();
-        $data['wishlists'] =$user->wishlists();
+        $wish = Wishlistable::where('user_id', $id)->count();
+        if($wish){
+            $data['wishlists'] = $user->wishlists();
+            return view('frontend::saved.wishlist', $data);
+        }
+        $data['wishlists'] = [];
         return view('frontend::saved.wishlist', $data);
     }
 }

@@ -23,9 +23,11 @@
                                 class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
                         </a>
                     </li>
-                    <li class="nav-item ps-lg-3">
-                        <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
-                    </li>
+                    @auth
+                        <li class="nav-item ps-lg-3">
+                            <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
+                        </li>
+                    @endauth
                 </ul>
 
                 @php
@@ -103,9 +105,11 @@
                         <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
                     </a>
                 </li>
-                <li class="nav-item ps-lg-3">
-                    <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
-                </li>
+                @auth    
+                    <li class="nav-item ps-lg-3">
+                        <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
+                    </li>
+                @endauth
             </ul>
 
             @php

@@ -378,95 +378,6 @@
         </div>
     </section>
     <!-------Hotel Result Check-in-out section end ------->
-    <!-------  Map Section star-------->
-    {{-- <section class="hotel-result g-map-main">
-    <div class="container ">
-        <div class="g-map-inner position-relative">
-            <div class="g-map overflow-hidden">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d440859.40502705984!2d-1.207392589264925!3d41.65372810770349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1653181050700!5m2!1sen!2sin"
-                    width="100%" height="450" style="border:0;"></iframe>
-            </div>
-        </div>
-    </div>
-</section> --}}
-    <!------- Map Section end-------->
-    <!-------Weather Section Start ---------->
-    {{-- <section class="weather-main check-in-out pb-0 pt-3">
-        <div class="container">
-            <div class="weather-inner check-in-out-inner py-2">
-                <div class="row align-items-center">
-                    <div class="col-2">
-                        <div class="weather-text">
-                            <h5 class="heading-fs-16 purple m-0">Weather in Medrid</h5>
-                            <p class="m-0 para-d-l-p">8/9/2020 - 12/9/2020</p>
-                        </div>
-                    </div>
-                    <div class="col-10">
-                        <div class="weather-swiper">
-                            <div class="swiper mySwiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide text-center">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Mon 8</span> </div>
-                                        <img src="{{ asset('assets/images/we-1.png') }}">
-                                        <div class="para-d-l-p">20 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Tue 9</span> </div>
-                                        <img src="{{ asset('assets/images/we-2.png') }}" alt="">
-                                        <div class="para-d-l-p">29 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Wed 10 </span></div>
-                                        <img src="{{ asset('assets/images/we-3.png') }}" alt="">
-                                        <div class="para-d-l-p">24 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center active">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Thu 11 </span></div>
-                                        <img src="{{ asset('assets/images/we-4.png') }}" alt="">
-                                        <div class="para-d-l-p">33 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center active">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Fri 12 </span></div>
-                                        <img src="{{ asset('assets/images/we-5.png') }}">
-                                        <div class="para-d-l-p">20 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Sat 13 </span></div>
-                                        <img src="{{ asset('assets/images/we-1.png') }}" alt="">
-                                        <div class="para-d-l-p">20 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class="para-fs-14"><span class="purple fw-bold"> Sun 14 </span></div>
-                                        <img src="{{ asset('assets/images/we-2.png') }}" alt="">
-                                        <div class="para-d-l-p">29 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class=" para-fs-14"><span class="purple fw-bold"> Mon 15 </span></div>
-                                        <img src="{{ asset('assets/images/we-3.png') }}">
-                                        <div class="para-d-l-p">20 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class=" para-fs-14"><span class="purple fw-bold">Tue 16 </span> </div>
-                                        <img src="{{ asset('assets/images/we-4.png') }}" alt="">
-                                        <div class="para-d-l-p">20 <sup>&deg;</sup></div>
-                                    </div>
-                                    <div class="swiper-slide text-center">
-                                        <div class="purple"><span class="purple fw-bold">Wed 17 </span></div>
-                                        <img src="{{ asset('assets/images/we-5.png') }}" alt="">
-                                        <div class="para-d-l-p">29 <sup>&deg;</sup></div>
-                                    </div>
-                                </div>
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-------Weather Section End ---------->
     <!------- Search result Start ------->
     <section class="hotel-result search-result pt-4 pb-5">
         <div class="container">
@@ -474,7 +385,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <aside class="side-content">
-                            <span class="side-text">Viewing 350 results</span>
+                            <span class="side-text">Viewing results</span>
                             <form class="hotel-result-form">
                                 <div class="hotels-result-search">
                                     <h5 class="search-heading">Search</h5>
@@ -482,10 +393,6 @@
                                         <i class="fa-solid fa-magnifying-glass ps-2"></i>
                                         <input type="text" class="form-control" placeholder="Search by name">
                                     </div>
-                                    {{-- <div class="input-group align-items-center search-input mt-2">
-                                    <i class="fa-solid fa-magnifying-glass ps-2"></i>
-                                    <input type="text" class="form-control" placeholder="Search by proximity">
-                                </div> --}}
                                 </div>
                                 <div class="hotels-result-sort pt-4">
                                     <h5 class="search-heading ">Sort By</h5>
@@ -968,10 +875,10 @@
                                         </div>
                                     </div>
                                     <div class="hotels-results-neigh pt-4">
-                                        <div class="small-heading ">
+                                        {{-- <div class="small-heading ">
                                             <h6>Neighborhood </h6>
-                                        </div>
-                                        <div class="form-check ">
+                                        </div> --}}
+                                        {{-- <div class="form-check ">
                                             <input class="form-check-input" type="checkbox" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
@@ -1005,7 +912,7 @@
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Overtown
                                             </label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="hotels-results-amenities pt-1">
                                         <div class="small-heading">
@@ -1200,7 +1107,6 @@
 
             window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
-
         });
     </script>
     <!-- custom-selector js -->
@@ -1261,7 +1167,7 @@ $(document).ready(function(){
     infinteLoadMore(page);
 
     $(window).scroll(function () {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        if ($(window).scrollTop() + ($(window).height() + 350) >= $(document).height()) {
             page++;
             var paginate = $('.last_page_value').val();
             if(paginate >= page){
@@ -1270,29 +1176,59 @@ $(document).ready(function(){
         }
     });
 
+    // load hotel Detail
     function infinteLoadMore(page) {
-        $.ajax({
-            url: baseUrl + "/hotel?page=" + page,
-            datatype: "html",
-            type: "get",
-            beforeSend: function () {
-                $('.loading_spiner_').show();
-            }
-        })
-        .done(function (response) {
-            if (response.length == 0) {
-                $('.auto-load').html("We don't have more data to display :(");
-                return;
-            }
-            $('.loading_spiner_').hide();
-            // $('.auto-load').hide();
-            $(".hotelResultDiv").append(response);
-            // $("#data-wrapper").append(response);
-        })
-        .fail(function (jqXHR, ajaxOptions, thrownError) {
-            console.log('Server error occured');
-        });
-    } 
+        var search = $("input[name=search]").val();
+        if(search){
+            $.ajax({
+            
+                url: baseUrl  + "/hotel?page=" + page + "&search=" + search ,
+                datatype: "html",
+                type: "get",
+                beforeSend: function () {
+                    $('.loading_spiner_').show();
+                }
+            })
+            .done(function (response) {
+                if (response.length == 0) {
+                    $('.auto-load').html("We don't have more data to display :(");
+                    return;
+                }
+                $('.loading_spiner_').hide();
+                // $('.auto-load').hide();
+                $(".hotelResultDiv").append(response);
+                // $("#data-wrapper").append(response);
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                console.log('Server error occured');
+            });
+                
+        }else{
+
+            $.ajax({
+                
+                url: baseUrl + "/hotel?page=" + page,
+                datatype: "html",
+                type: "get",
+                beforeSend: function () {
+                    $('.loading_spiner_').show();
+                }
+            })
+            .done(function (response) {
+                if (response.length == 0) {
+                    $('.auto-load').html("We don't have more data to display :(");
+                    return;
+                }
+                $('.loading_spiner_').hide();
+                // $('.auto-load').hide();
+                $(".hotelResultDiv").append(response);
+                // $("#data-wrapper").append(response);
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                console.log('Server error occured');
+            });
+        } 
+    }
 
     $('.loading_spiner_').hide();
 

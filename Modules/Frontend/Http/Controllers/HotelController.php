@@ -16,27 +16,36 @@ class HotelController extends Controller
      */
     public function index(Request $request)
     {
-        $search = explode(',' , request()->search);
+        $search = request()->search;
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
         $guest =  request()->guest;
         $room = request()->room;
         $bed = explode(',' , request()->bed);
         
-        if(count($search) != 1){
-             $hotels = Hotel::where(function($query) use($search){
-                foreach($search as $s) {
-                    $query->orWhereHas('country', function ($query2) use($s){
-                        $query2->where('country_name', 'like', '%'.$s.'%');
-                    });
-                    $query->orWhereHas('city', function ($query2) use($s){
-                        $query2->where('name', 'like', '%'.$s.'%');
-                    });
-                }
-            })->WhereHas('room' , function($query){
-                $query->where('guest_stay_room', request()->guest);
-            })->active()->get();
-        }else{
+        if($search){
+            $hotels = Hotel::whereHas('country', function($q) use($search){
+                $q->where('country_name', 'like', '%' . $search . '%');
+            })->active()->latest()->paginate(2);
+            
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                return $html;
+            }
+            
+            //  $hotels = Hotel::where(function($query) use($search){
+            //     foreach($search as $s) {
+            //         $query->orWhereHas('country', function ($query2) use($s){
+            //             $query2->where('country_name', 'like', '%' . $search . '%');
+            //         });
+            //         $query->orWhereHas('city', function ($query2) use($s){
+            //             $query2->where('name', 'like', '%'.$s.'%');
+            //         });
+            //     }
+            // })->WhereHas('room' , function($query){
+            //     $query->where('guest_stay_room', request()->guest);
+            // })->active()->get();
+        }else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
