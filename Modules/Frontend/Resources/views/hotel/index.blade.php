@@ -1257,7 +1257,7 @@
 $(document).ready(function(){
 
     var baseUrl = $('#base_url').val();
-    var page = 1;
+    var page = 2;
     infinteLoadMore(page);
 
     $(window).scroll(function () {

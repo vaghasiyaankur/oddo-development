@@ -14,7 +14,8 @@
           <div class="result-main-img result-swpier-img overflow-hidden">
             <div class="swiper-s-img position-relative">
               @auth    
-                <a href="javascript:;" class="wishlist_icon_  {{$wishlist->user_id ? 'addWishlist' : 'removeWishlist active'}}" data-id='{{$hotel->UUID}}'><i class="fa-solid fa-heart"></i></a>
+                
+              <a href="javascript:;" class="wishlist_icon_  {{$wishlist->user_id ? 'addWishlist' : 'removeWishlist active'}}" data-id='{{$hotel->UUID}}'><i class="fa-solid fa-heart"></i></a>
               @endauth
               <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$key}} ">
                 <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper">
