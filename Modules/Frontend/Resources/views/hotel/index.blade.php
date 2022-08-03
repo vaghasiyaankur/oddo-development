@@ -1263,7 +1263,10 @@ $(document).ready(function(){
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             page++;
-            infinteLoadMore(page);
+            var paginate = $('.last_page_value').val();
+            if(paginate >= page){
+                infinteLoadMore(page);
+            }
         }
     });
 
@@ -1272,9 +1275,9 @@ $(document).ready(function(){
             url: baseUrl + "/hotel?page=" + page,
             datatype: "html",
             type: "get",
-            // beforeSend: function () {
-            //     $('.auto-load').show();
-            // }
+            beforeSend: function () {
+                $('.loading_spiner_').show();
+            }
         })
         .done(function (response) {
             if (response.length == 0) {
@@ -1296,6 +1299,9 @@ $(document).ready(function(){
     $(document).on('click', '.addWishlist', function(){
         let hotelId = $(this).data('id');
 
+        $(this).addClass('removeWishlist active');
+        $(this).removeClass('addWishlist');
+
         if (!hotelId) {
             return;
         }
@@ -1316,9 +1322,33 @@ $(document).ready(function(){
             }
         }); 
     });
-});
 
+    $(document).on('click', '.removeWishlist', function(){
+        let hotelId = $(this).data('id');
+
+        $(this).removeClass('removeWishlist active');
+        $(this).addClass('addWishlist');
+
+        if (!hotelId) {
+            return;
+        }
         
+        formdata = new FormData();
+        formdata.append('hotelId', hotelId);
 
+        $.ajax({
+            url: "{{route('remove.wishlist')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                console.log('done');
+            }, error:function (response) {
+                console.log('fail');
+            }
+        }); 
+    });
+});
 </script>
 @endpush

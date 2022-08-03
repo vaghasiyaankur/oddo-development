@@ -73,7 +73,6 @@ class Hotel extends Model
     public function amenity(){
         $amenity_id = explode(',',$this->amenity_id);
         return Amenities::whereIn('id', $amenity_id)->get();
-        // return $this->belongsTo(amenities::class, 'amenity_id');
     }
 
     public function foodType(){
@@ -88,5 +87,10 @@ class Hotel extends Model
     public function wishlist()
     {
         return $this->hasMany(Wishlistable::class, 'model_id');
+    }
+
+    public function wishlistData($modal_id){
+        $user = auth()->user()->id;
+        return Wishlistable::where('user_id', $user)->where('model_id', $modal_id)->select('model_id', 'user_id')->first();
     }
 }

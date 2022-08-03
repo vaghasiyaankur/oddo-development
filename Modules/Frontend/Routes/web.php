@@ -42,7 +42,11 @@ Route::get('/search', 'SearchController@index')->name('search.index');
 Route::get('/planner', 'PlannerController@index')->name('planner.index');
 
 /* Saved Page */
-Route::get('/saved', 'SavedController@index')->name('saved.index');
+Route::prefix('saved')->controller(SavedController::class)->group(function(){
+    Route::get('/', 'index')->name('saved.index');
+    Route::post('/remove/wishlist', 'destroy')->name('wishlish.remove');
+    Route::get('wishlist/list', 'wishlistList')->name('wishlist.list');
+});
 
 /* Order Histrory Page */
 Route::get('/order-history', 'OrderHistoryController@index')->name('orderhistory.index');
@@ -56,6 +60,7 @@ Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 /* WishList Route  */
 Route::controller(WishlistController::class)->group(function(){
     Route::post('add-wishlist', 'addWishlist')->name('add.wishlist');
+    Route::post('remove-wishlist', 'removeWishlist')->name('remove.wishlist');
 });
 
 

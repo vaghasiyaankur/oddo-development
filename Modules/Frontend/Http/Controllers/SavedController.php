@@ -5,8 +5,9 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\City;
-
+use App\Models\User;
+use App\Models\Hotel;
+use App\Models\Wishlistable;
 class SavedController extends Controller
 {
     /**
@@ -15,8 +16,10 @@ class SavedController extends Controller
      */
     public function index()
     {
-        $cities = City::get();
-        return view('frontend::saved.index', compact('cities'));
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        $wishlists = $user->wishlists();
+        return view('frontend::saved.index', compact('wishlists'));
     }
 
     /**
@@ -74,8 +77,25 @@ class SavedController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $id = auth()->user()->id;
+            $user = User::find($id);
+            $hotel = Hotel::where('UUID',$request->hotelId)->first();
+            $user->unwish($hotel);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+        }
+        return response()->json(["success" => "wishlist remove Successfully"], 200);
+    }
+
+    public function wishlistList()
+    {
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        $wishlists = $user->wishlists();
+        $data['wishlists'] =$user->wishlists();
+        return view('frontend::saved.wishlist', $data);
     }
 }
