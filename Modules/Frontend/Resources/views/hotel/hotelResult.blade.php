@@ -1,14 +1,9 @@
   {{-- loader --}}
   <div class="loading_spiner_" style="display: none">
     <div class="spinner mx-auto"></div>
-  </div>
-  <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
-  <input type="hidden" class="total_page" value="{{$hotels->total()}}">
-  
-  @if(count($hotels))
+</div>
+ @if(count($hotels))
   @foreach($hotels as $key => $hotel)
-
-
   <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500"
     class="result-main-content mt-4">
     <div class="result-main-inner">

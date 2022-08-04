@@ -11,52 +11,51 @@
                             <div class="card">
                                 <div class="card-body p-4">
                                     <div class="text-center mt-2 ">
-                                        <h5 class="text-dark fs-4">Create New Account</h5>
+                                        <h5 class="text-dark fs-4">Create an Account</h5>
                                     </div>
                                     <div id="success-div"></div>
                                     <div class="p-2 mt-3">
                                         <form action="javascript:;" method="POST" class="signUpForm">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="name" class="form-label">name<span class="text-danger">*</span></label>
+                                                <label for="name" class="form-label">First Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="name" class="form-control name"
-                                                    id="name" placeholder="Enter your name">
+                                                    id="name" placeholder="Enter your First Name">
                                                 <span class="text-danger" id="name-error"></span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
                                                 <input type="text" name="lastName" class="form-control lastName"
-                                                    id="lastName" placeholder="Enter your lastName">
+                                                    id="lastName" placeholder="Enter your Last Name">
                                                 <span class="text-danger" id="lastName-error"></span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="E-mail" class="form-label">Email <span class="text-danger">*</span></label>
                                                 <input type="email" name="email" class="form-control useremail"
-                                                    id="E-mail" placeholder="Enter your email">
+                                                    id="E-mail" placeholder="Enter your Email">
                                                     <span class="text-danger" id="useremail-error"></span>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="password" class="form-control userpassword"
-                                                    id="password" placeholder="Enter password">
+                                                    id="password" placeholder="Enter Password">
                                                     <span class="text-danger" id="userpassword-error"></span>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label" for="password-input">Re-Password <span class="text-danger">*</span></label>
+                                                <label class="form-label" for="password-input">Confirm Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="RePassword" class="form-control userrepassword"
-                                                id="username" placeholder="Enter re-password">
+                                                id="username" placeholder="Enter Confirm Password">
                                                 <span class="text-danger" id="userrepassword-error"></span>
                                             </div>
-                                            <div class="mt-4">
-                                                <button class="btn log_in_btn w-100 signup">Sign Up
-                                                    <div class="spinner-border" role="status" style="display: none;">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                </button>
+                                            <div class="mt-4 position-relative">
+                                                <button class="btn log_in_btn w-100 signup">Sign Up</button>
+                                                <div class="spinner-border" role="status" style="display: none;position: absolute;right: 14px;top:7px;color: #fff;">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
                                             </div>
                                             <div class="mt-4 text-center">
                                                 <div class="signin-other-title">
-                                                    <h6 class="mb-3 title text-muted">Create account with</h6>
+                                                    <h6 class="mb-3 title text-muted">Create Account With</h6>
                                                 </div>
                                                 <div>
                                                     <a href="{{ route('auth.facebook') }}" class="btn btn-icon btn-fb">

@@ -22,7 +22,12 @@ class HotelController extends Controller
         $guest =  request()->guest;
         $room = request()->room;
         $bed = explode(',' , request()->bed);
-        
+         
+        $propertyName = request()->propertyName;
+        $budgetMin = request()->budgetMin;
+        $budgetMax = request()->budgetMax;
+        $starRating = request()->starRating;
+        // dd($starRating);
         if($search){
             $search = str_replace(',', ' ', $search);
 
@@ -39,7 +44,17 @@ class HotelController extends Controller
                 return $html;
             }
 
-        }else {
+        } else if($propertyName) {
+            $hotels = Hotel::with('room')->where('property_name', 'like', '%'.$propertyName.'%')
+            ->where('star_rating', '=' , $starRating)
+            ->whereHas('room', function($query) use($budgetMin, $budgetMax) {
+                $query->whereBetween('price_room', [$budgetMin, $budgetMax]); })
+            ->active()->latest()->paginate(2);
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                return $html;
+            }
+        } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();

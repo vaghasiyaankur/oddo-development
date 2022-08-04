@@ -23,15 +23,15 @@
                                     <div class="mb-4">
                                         <label class="form-label">Email</label>
                                         <input type="email" class="form-control" id="forget-email"
-                                            placeholder="Enter Your Email">
+                                            placeholder="Email">
                                         <span class="text-danger" id="forgetEmail-error"></span>
                                     </div>
-                                    <div class="text-center mt-4">
+                                    <div class="text-center mt-4 position-relative">
                                         <button class="btn w-100 text-white forgetPasswordButton" style="background-color: #5867ba;">Send Reset Link
-                                            <div class="spinner-border" role="status" style="display: none;">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
                                         </button>
+                                        <div class="spinner-border" role="status" style="display: none;position: absolute;right: 14px;top:7px;color: #fff;">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </div>
                                     <div class="mt-4 text-center">
                                         <p class="mb-0"><a href="javascript:;" class="fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#Log_in_modal" data-bs-dismiss="modal" style="color: #5867ba;"> Back to Log In </a> </p>
