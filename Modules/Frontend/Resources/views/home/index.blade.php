@@ -585,10 +585,9 @@
 
             if (!search) {
                 return;
-            }
-
-            window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
-                checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
+            }   
+            var page = 2;
+            window.location.href = baseUrl  + "/hotel?search=" + search + "&guest=" + guest + "&room=" + room;
 
         });
 
@@ -693,27 +692,6 @@
             });
 
         }
-
-
-        $(document).on('click', '#SubmitSearch', function() {
-            var search = $("input[name=search]").val();
-            !search ? $(`.search-error`).html(`Please enter a destination to start searching.`) : $(`.search-error`)
-                .html(``);
-            var checkIn = $("input[name=value_from_start_date]").val();
-            var checkOut = $("input[name=value_from_end_date]").val();
-            var guest = $("select[name=guest]").val();
-            var room = $("select[name=room]").val();
-            var bed = $("select[name=bed]").val();
-
-            if (!search) {
-                return;
-            }
-
-
-            window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
-                checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
-
-        });
     </script>
 
     <!-- custom-selector js -->

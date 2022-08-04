@@ -52,7 +52,8 @@
         /* loading sipner css strat*/
         .loading_spiner_ {
             border-radius: 8px;
-            min-height: 350px;
+            min-height: 57px;
+            padding-top: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -296,17 +297,33 @@
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 <label>Guests</label>
                                 <select class="form-control js-example-tags select_guest" name="guest">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    @php
+                                        $selectGuest = Request()->guest;     
+                                    @endphp
+                                    <option>Select Guest</option>
+                                    <option {{ $selectGuest == '1' ? 'selected' : '' }}>1</option>
+                                    <option {{ $selectGuest == '2' ? 'selected' : '' }}>2</option>
+                                    {{-- <option {{ $selectGuest == '3' ? 'selected' : '' }}>3</option>
+                                    <option {{ $selectGuest == '4' ? 'selected' : '' }}>4</option>
+                                    <option {{ $selectGuest == '5' ? 'selected' : '' }}>5</option>
+                                    <option {{ $selectGuest == '6' ? 'selected' : '' }}>6</option>
+                                    <option {{ $selectGuest == '7' ? 'selected' : '' }}>7</option> --}}
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                                @php
+                                    $selectRoom = Request()->room;     
+                                @endphp
                                 <label>Room</label>
                                 <select class="form-control js-example-tags select_room" name="room">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <option disabled>Select Room</option>
+                                    <option {{ $selectRoom == '1' ? 'selected' : '' }}>1</option>
+                                    <option {{ $selectRoom == '2' ? 'selected' : '' }}>2</option>
+                                    <option {{ $selectRoom == '3' ? 'selected' : '' }}>3</option>
+                                    {{-- <option {{ $selectRoom == '4' ? 'selected' : '' }}>4</option>
+                                    <option {{ $selectRoom == '5' ? 'selected' : '' }}>5</option>
+                                    <option {{ $selectRoom == '6' ? 'selected' : '' }}>6</option>
+                                    <option {{ $selectRoom == '7' ? 'selected' : '' }}>7</option> --}}
                                 </select>
                             </div>
 
@@ -949,6 +966,22 @@
                     <!-------- Search Hotel Result -------->
                     <div class="col-lg-9 position-relative hotelResultDiv">
                         @include('frontend::hotel.hotelResult')
+                        {{-- No data found box --}}
+                        {{-- <div class="loading_spiner_">
+                            <div class="spinner mx-auto"></div>
+                        </div> --}}
+                        <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
+                            class="result-main-content border-semidark mt-4 d-none hotel_empty">
+                            <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
+                            <div class="empty-table w-100 text-center py-5">
+                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
+                                </lord-icon>
+                                <h4>No records has been added yet.</h4>
+                                <h6>Add a new record by simpley clicking the button on right side.</h6>
+                            </div>
+                            </div>
+                        </main>
                     </div>
                     <!-------- Search Hotel Result end -------->
 
@@ -1167,7 +1200,7 @@ $(document).ready(function(){
     infinteLoadMore(page);
 
     $(window).scroll(function () {
-        if ($(window).scrollTop() + ($(window).height() + 350) >= $(document).height()) {
+        if ($(window).scrollTop() + ($(window).height() + 250) >= $(document).height()) {
             page++;
             var paginate = $('.last_page_value').val();
             if(paginate >= page){
@@ -1179,10 +1212,13 @@ $(document).ready(function(){
     // load hotel Detail
     function infinteLoadMore(page) {
         var search = $("input[name=search]").val();
+        var guest = $("select[name=guest]").val();
+        var room = $("select[name=room]").val();
+
         if(search){
             $.ajax({
             
-                url: baseUrl  + "/hotel?page=" + page + "&search=" + search ,
+                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&guest=" + guest + "&room=" + room ,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1190,14 +1226,12 @@ $(document).ready(function(){
                 }
             })
             .done(function (response) {
-                if (response.length == 0) {
-                    $('.auto-load').html("We don't have more data to display :(");
-                    return;
-                }
                 $('.loading_spiner_').hide();
-                // $('.auto-load').hide();
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
+                }
                 $(".hotelResultDiv").append(response);
-                // $("#data-wrapper").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
@@ -1215,14 +1249,13 @@ $(document).ready(function(){
                 }
             })
             .done(function (response) {
-                if (response.length == 0) {
-                    $('.auto-load').html("We don't have more data to display :(");
-                    return;
+                $('.loading_spiner_').hide();
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
                 }
                 $('.loading_spiner_').hide();
-                // $('.auto-load').hide();
                 $(".hotelResultDiv").append(response);
-                // $("#data-wrapper").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');

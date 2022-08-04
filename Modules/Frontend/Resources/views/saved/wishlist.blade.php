@@ -1,6 +1,21 @@
 @if($wishlists == null)
     <input type="hidden" class="hotelCount" value="0">
-
+     {{-- No Data Found For wishlist --}}
+     <div class="check-in-out py-2">
+        <div class="check-in-out-inner">
+            <div class="empty-table w-100 text-center py-4">
+                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                  colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px;">
+                </lord-icon>
+                <h4>No Wishlist has been added yet.</h4>
+                <h6 class="mb-3">Add a Your Wishlist by simpley clicking on the button.</h6>
+                <div class="check-in-out-btn text-center me-lg-3 mx-auto">
+                    <a href="{{ Route('hotel.index') }}" class="btn search-btn purple">Add Your Wishlist</a>
+                </div>
+              </div>
+        </div>
+    </div>
+    {{-- End No Data Found For wishlist --}}
 @else
     @foreach ($wishlists as $items)
         @foreach ($items as $wishlistItems)

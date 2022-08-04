@@ -41,13 +41,6 @@ Route::get('/search', 'SearchController@index')->name('search.index');
 /* Planner Page */
 Route::get('/planner', 'PlannerController@index')->name('planner.index');
 
-/* Saved Page */
-Route::prefix('saved')->controller(SavedController::class)->group(function(){
-    Route::get('/', 'index')->name('saved.index');
-    Route::post('/remove/wishlist', 'destroy')->name('wishlish.remove');
-    Route::get('wishlist/list', 'wishlistList')->name('wishlist.list');
-});
-
 /* Order Histrory Page */
 Route::get('/order-history', 'OrderHistoryController@index')->name('orderhistory.index');
 
@@ -89,4 +82,11 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
     Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
     Route::post('/update-user', 'ProfileController@update')->name('update.user');
     Route::post('/change-password', 'ProfileController@changePassword')->name('change.password');
+
+    /* Saved Page */
+    Route::prefix('saved')->controller(SavedController::class)->group(function(){
+        Route::get('/', 'index')->name('saved.index');
+        Route::post('/remove/wishlist', 'destroy')->name('wishlish.remove');
+        Route::get('wishlist/list', 'wishlistList')->name('wishlist.list');
+    });
 });
