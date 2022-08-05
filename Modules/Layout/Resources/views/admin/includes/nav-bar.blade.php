@@ -8,7 +8,7 @@
                     <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                 </a>
             </li> <!-- end Dashboard Menu -->
-            
+
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenityCategory.index']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="sidebarApps">
@@ -71,6 +71,11 @@
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('bed.index') ? 'active' : '' }}" href="{{ route('bed.index') }}">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Bed</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link menu-link {{ Request::routeIs('property.index') ? 'active' : '' }}" href="{{ route('property.index') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Property</span>
                 </a>
             </li>
             <li class="nav-item">
