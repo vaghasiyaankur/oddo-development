@@ -84,7 +84,7 @@ Add-Property
                                                 <input type="tel" name="phone_1" id="phone_1" class="form-control custom-from-control phone_1 phoneNumber" value="{{$hotelContact->number}}" />
                                             </div>
                                             <div class="contact-number-inner margin--left phone-optional-div">
-                                                <label for="optional_1" class="form-label label-heading ">Alternative Phone Number(Optional)</label>
+                                                <label for="optional_1" class="form-label label-heading " style="white-space: nowrap;">Alternative Phone Number(Optional)</label>   
                                                 <input type="tel"  name="optional_1" id="optional_1" class="form-control custom-from-control optional_1 phoneOptinal" value="{{$hotelContact->number_optinal}}" />
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@ Add-Property
                                                     <input type="tel" name="phone_1" id="phone_1" class="form-control custom-from-control phone_1 phoneNumber" />
                                                 </div>
                                                 <div class="contact-number-inner margin--left phone-optional-div">
-                                                    <label for="optional_1" class="form-label label-heading ">Alternative Phone Number(Optional)</label>
+                                                    <label for="optional_1" class="form-label label-heading " style="white-space: nowrap;">Alternative Phone Number(Optional)</label>
                                                     <input type="tel"  name="optional_1" id="optional_1" class="form-control custom-from-control optional_1 phoneOptinal" />
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@ Add-Property
                             </div>
                             <div class="p-locat-form">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <div class="p-l-inner">
                                             <div class="mb-3">
                                                 <label class="form-label">Street address</label>
@@ -175,7 +175,7 @@ Add-Property
 
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <div class="p-l-messagebox">
                                             <div class="p-l-messagebox-inner d-flex flex-wrap">
                                                 <div class="messagebox-icon">
@@ -346,11 +346,11 @@ Add-Property
                     '<div class="contact-number py-3">' +
                         '<div class="contact-number-main d-flex align-items-center">' +
                             '<div class="contact-number-inner phone-div">' +
-                                '<label for="" class="form-label label-heading ">Phone Number</label>' +
+                                '<label for="" class="form-label label-heading " style="white-space: nowrap;">Phone Number</label>' +
                                 '<input type="tel" name="" class="form-control custom-from-control  phoneNumber">' +
                             '</div>' +
-                            '<div class="contact-number-inner mx-auto phone-optional-div">' +
-                                '<label for="" class="form-label label-heading ">Alternative Phone Number(Optional)</label>' +
+                            '<div class="contact-number-inner margin--left phone-optional-div">' +
+                                '<label for="" class="form-label label-heading "style="white-space: nowrap;">Alternative Phone Number(Optional)</label>' +
                                 ' <input type="tel" name=""  class="form-control custom-from-control phoneOptinal">' +
                             '</div>' + 
                             '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />' + '</div>' +

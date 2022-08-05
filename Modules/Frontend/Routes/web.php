@@ -41,9 +41,6 @@ Route::get('/search', 'SearchController@index')->name('search.index');
 /* Planner Page */
 Route::get('/planner', 'PlannerController@index')->name('planner.index');
 
-/* Saved Page */
-Route::get('/saved', 'SavedController@index')->name('saved.index');
-
 /* Order Histrory Page */
 Route::get('/order-history', 'OrderHistoryController@index')->name('orderhistory.index');
 
@@ -52,6 +49,13 @@ Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrip
 
 /* Checkout Page */
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+
+/* WishList Route  */
+Route::controller(WishlistController::class)->group(function(){
+    Route::post('add-wishlist', 'addWishlist')->name('add.wishlist');
+    Route::post('remove-wishlist', 'removeWishlist')->name('remove.wishlist');
+});
+
 
 // Route::view('/login', 'frontend::auth.login');
 
@@ -68,15 +72,21 @@ Route::controller(Auth\Socialite\FacebookController::class)->group(function(){
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
 
-Route::controller(Auth\Socialite\TwitterController::class)->group(function(){
-    Route::get('auth/twitter', 'redirectToTwitter')->name('auth.twitter');
-    Route::get('auth/twitter/callback', 'handleTwitterCallback');
-});
+// Route::controller(Auth\Socialite\TwitterController::class)->group(function(){
+//     Route::get('auth/twitter', 'redirectToTwitter')->name('auth.twitter');
+//     Route::get('auth/twitter/callback', 'handleTwitterCallback');
+// });
 
 Route::middleware(['auth', 'user-access:user'])->group(function(){
     /* Profile Page */
     Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
     Route::post('/update-user', 'ProfileController@update')->name('update.user');
     Route::post('/change-password', 'ProfileController@changePassword')->name('change.password');
-});
 
+    /* Saved Page */
+    Route::prefix('saved')->controller(SavedController::class)->group(function(){
+        Route::get('/', 'index')->name('saved.index');
+        Route::post('/remove/wishlist', 'destroy')->name('wishlish.remove');
+        Route::get('wishlist/list', 'wishlistList')->name('wishlist.list');
+    });
+});

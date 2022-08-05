@@ -23,9 +23,11 @@
                                 class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
                         </a>
                     </li>
-                    <li class="nav-item ps-lg-3">
-                        <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
-                    </li>
+                    @auth
+                        <li class="nav-item ps-lg-3">
+                            <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
+                        </li>
+                    @endauth
                 </ul>
 
                 @php
@@ -57,7 +59,7 @@
                     <div class="list-properties pe-3 mt-3 mt-lg-0">
                         <button type="button" class="list-properties-btn btn " data-bs-toggle="modal"
                             data-bs-target="#Log_in_modal">
-                            Login
+                            Log In
                         </button>
                     </div>
                 @endif
@@ -103,9 +105,11 @@
                         <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
                     </a>
                 </li>
-                <li class="nav-item ps-lg-3">
-                    <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
-                </li>
+                @auth    
+                    <li class="nav-item ps-lg-3">
+                        <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
+                    </li>
+                @endauth
             </ul>
 
             @php
@@ -136,7 +140,7 @@
             @if (!auth()->check())
                 <div class="list-properties pe-lg-3 mt-3 mt-lg-0 w-100 mt-auto px-2" data-bs-dismiss="offcanvas" aria-label="Close">
                     <button type="button" class="w-100 list-properties-btn btn loginDate" data-bs-toggle="modal"
-                        data-bs-target="#Log_in_modal" >Login</button>
+                        data-bs-target="#Log_in_modal" >Log In</button>
                 </div>
             @endif
 

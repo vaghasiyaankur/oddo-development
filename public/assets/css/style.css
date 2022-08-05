@@ -1217,7 +1217,7 @@
 }
 .saved-section .saved-hotels-details .hotel-wrapper .hotel-box {
   max-width: 328px;
-  min-height: 350px;
+  min-height: 369px;
   background: #ffffff;
   box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
   border-radius: 12px;
@@ -1241,7 +1241,7 @@
   color: #fff;
 }
 .search-result-price__tag.b-1 {
-  margin-top: -23px;
+  margin-top: -16px;
   margin-left: 14%;
 }
 .search-result-price__tag.b-2 {

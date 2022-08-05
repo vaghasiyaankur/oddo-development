@@ -309,7 +309,7 @@ search
             <option value="fa-bed" data-icon="fa-bed">3</option>
             </select> -->
         </div>
-            <div class="check-in-out-btn mt-3 text-xl-end text-center col-lg-3">
+            <div class="check-in-out-btn mt-4 text-xl-end text-center col-lg-3">
               <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
             </div>
           </div>

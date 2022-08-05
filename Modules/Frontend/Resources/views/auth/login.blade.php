@@ -21,21 +21,21 @@
                                                 <label for="email" class="form-label">Email <span
                                                         class="text-danger">*</span></label>
                                                 <input type="text" name="email" class="form-control email" id="email"
-                                                    placeholder="Enter your email">
+                                                    placeholder="Email">
                                                 <span class="text-danger" id="email-error"></span>
                                             </div>
                                             <div class="mb-4">
                                                 <div class="float-end">
                                                     <a href="javascript:;" class="text-muted" data-bs-toggle="modal"
                                                         data-bs-target="#forget_password_modal"
-                                                        data-bs-dismiss="modal">Forgot password?</a>
+                                                        data-bs-dismiss="modal">Forgot Password?</a>
                                                 </div>
                                                 <label class="form-label " for="password-input">Password <span
                                                         class="text-danger">*</span></label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
                                                     <input type="password" name="password"
                                                         class="form-control pe-5 password"
-                                                        placeholder="Enter your password" id="password-input">
+                                                        placeholder="Password" id="password-input">
                                                     <button
                                                         class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
                                                         type="button" id="password-addon"><i
@@ -43,12 +43,12 @@
                                                     <span class="text-danger" id="password-error"></span>
                                                 </div>
                                             </div>
-                                            <div class="mt-4">
+                                            <div class="mt-4 position-relative">
                                                 <button class="btn log_in_btn w-100 submitLogin">Log In
-                                                    <div class="spinner-border" role="status" style="display: none;">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
                                                 </button>
+                                                <div class="spinner-border" role="status" style="display: none;position: absolute;right: 14px;top:7px;color: #fff;">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
                                             </div>
                                             <div class="mt-4 text-center">
                                                 <p class="mb-0">Don't have an account ? <a href="javascript:;"
@@ -116,6 +116,9 @@ $(document).ready(function(){
                     $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
                                             <span id="expired-link-error">`+response.responseJSON.error+`</span>
                                         </div>`);
+                    setTimeout(function(){
+                        $('#expired-div').html(``); 
+                    }, 4000);
                 }else {
                     $('.spinner-border').hide();
                     $('#email-error').text(response.responseJSON.errors.email);

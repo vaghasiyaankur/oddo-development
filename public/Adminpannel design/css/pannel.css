@@ -256,52 +256,14 @@
 } 
 
 
-/* RESPONSIVE CSS START */
+/* ======== RESPONSIVE CSS START ======= */
+
 @media screen and (max-width:1192px) {
     .l-p-myproperties .l-p-myproperties-card .property-type{
         flex: 0 0 33%;
         max-width: 33%;
         margin-top: 20px;
         padding-bottom: 20px;
-    }
-}
-
-@media screen and (max-width:768px) {
-    .l-p-myproperties .l-p-myproperties-card .property-type{
-        flex: 0 0 50%;
-        max-width: 50%;
-        margin-top: 20px;
-        padding-bottom: 20px;
-    }
-    .l-p-myproperties .l-p-myproperties-card .property-type{
-        border-right: none;
-    }
-    .l-p-myproperties .l-p-myproperties-card .border-right:nth-child(odd):not(:last-child){
-        border-right: 1px solid #A4A6BA;
-    }
-}
-
-@media screen and (max-width:450px) {
-    .l-p-myproperties .l-p-myproperties-card .property-type{
-        flex: 0 0 100%;
-        max-width: 100%;
-        /* margin-top: 20px;
-        padding-bottom: 20px; */
-        border-right: none !important;
-        border-bottom: 1px solid grey;
-    }
-}
-
-@media screen and (max-width:578px) {
-    .pannel-form .form-info-box .form-contact-info .margin--left{
-        margin-left: 10px;
-    }
-    .flex--row{
-        flex-direction: row !important;
-    }
-    .admin-pannel-main .admin-pannel-inner .side-content{
-        border-left: none;
-        margin-bottom: 20px;
     }
 }
 
@@ -334,4 +296,83 @@
         border-left: none;
         margin-bottom: 20px;
     }
+    .input-w-20{
+        max-width: 100%;
+        width: 100%;
+    }
+    .admin-pannel-inner .pannel-heading{
+        margin: 12px 6px;
+    }
+    .pannel-heading .pannel-title{
+        font-size: 22px;
+        line-height: 15px;
+    }
+    .pannel-heading h5.heading-fs-16{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .form-info-box .amenities-category .amenities-accordion .accordion-button{
+        padding: 16px 11px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        border-right: none;
+    }
+    .l-p-myproperties .l-p-myproperties-card .border-right:nth-child(odd):not(:last-child){
+        border-right: 1px solid #A4A6BA;
+    }
+    .pannel-form .form-info-box .custom-from-control{
+        max-width: 100%;
+    }
+    .pannel-form .form-info-box .form-contact-info .margin--left{
+        margin-left: 25px;
+    }
+    .pannel-form .form-info-box .total-room-layout .layout-totalroom{
+        max-width: 50%;
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width:578px) {
+    .pannel-form .form-info-box .form-contact-info .margin--left{
+        margin-left: 10px;
+    }
+    .flex--row{
+        flex-direction: row !important;
+    }
+    .admin-pannel-main .admin-pannel-inner .side-content{
+        border-left: none;
+        margin-bottom: 20px;
+    }
+    .pannel-form .form-info-box .form-contact-info .contact-number .contact-number-main {
+        flex-wrap: wrap !important;
+    }
+    .pannel-form .form-info-box .form-contact-info .margin--left{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    .pannel-form .form-info-box .form-contact-info .contact-number .contact-number-main .contact-number-inner .label-heading{
+        white-space:inherit !important;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .l-p-myproperties .l-p-myproperties-card .property-type{
+        flex: 0 0 100%;
+        max-width: 100%;
+        /* margin-top: 20px;
+        padding-bottom: 20px; */
+        border-right: none !important;
+        border-bottom: 1px solid grey;
+    }
+  
 }

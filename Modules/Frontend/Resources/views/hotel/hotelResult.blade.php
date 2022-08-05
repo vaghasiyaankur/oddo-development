@@ -1,21 +1,26 @@
-<div class="col-lg-9 position-relative">
-  @if(count($hotels))
-  @foreach($hotels as $key => $hotel)
   {{-- loader --}}
-  <div class="loading_spiner_">
+  <div class="loading_spiner_" style="display: none">
     <div class="spinner mx-auto"></div>
-  </div>
-  <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
-    class="result-main-content  {{ $key == 0 ? '': ' mt-4'}}">
+</div>
+ @if(count($hotels))
+  @foreach($hotels as $key => $hotel)
+  <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500"
+    class="result-main-content mt-4">
     <div class="result-main-inner">
       <div class="row">
         <div class="col-md-4">
           <div class="result-main-img result-swpier-img overflow-hidden">
-            <div class="swiper-s-img"><a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$key}} "><img
-                  src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper"></a>
+            <div class="swiper-s-img position-relative">
+              @auth   
+                <a href="javascript:;" class="wishlist_icon_ {{$hotel->wishlistData($hotel->id) ? "removeWishlist active" : "addWishlist"}} " data-id='{{$hotel->UUID}}'><i class="fa-solid fa-heart"></i></a>
+              @endauth
+              
+              <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{$hotel->UUID}} ">
+                <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="img-wrapper">
+              </a>
             </div>
             <!------- img slider popup start -------->
-            <div class="modal fade img-popup-slider" id="image_{{$key}}" tabindex="-1" role="dialog"
+            <div class="modal fade img-popup-slider" id="image_{{$hotel->UUID}}" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -28,15 +33,13 @@
                     <div class="img-swiper">
                       <div class="slider slider-single mb-5">
                         @foreach($hotel->photos as $photo)
-                        <div class="slider-single-img"><img src="{{asset('storage/'.@$photo->photos)}}" alt=""
-                            style="width: 857px; height: 551px;"></div>
+                          <div class="slider-single-img"><img src="{{asset('storage/'.@$photo->photos)}}" alt="" style="width: 857px; height: 551px;"></div>
                         @endforeach
                       </div>
                       <div class="slider slider-nav">
                         @foreach($hotel->photos as $photo)
-                        <div class="slder-nav-img"><img src="{{asset('storage/'.@$photo->photos)}}" class="me-2" alt=""
-                            style="width: 72px; height: 72px;">
-                        </div>
+                          <div class="slder-nav-img"><img src="{{asset('storage/'.@$photo->photos)}}" class="me-2" alt="" style="width: 72px; height: 72px;">
+                          </div>
                         @endforeach
                       </div>
                     </div>
@@ -572,29 +575,12 @@
     <button class="price-btn">{{@$hotel->room->price_room}} for 1 Nights</button>
   </div>
   @endforeach
-  @else
-  {{-- No data found box --}}
-  {{-- <div class="loading_spiner_">
-    <div class="spinner mx-auto"></div>
-  </div> --}}
-  <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
-    class="result-main-content border-semidark mt-4">
-    <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
-      <div class="empty-table w-100 text-center py-5">
-        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-          colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
-        </lord-icon>
-        <h4>No records has been added yet.</h4>
-        <h6>Add a new record by simpley clicking the button on right side.</h6>
-      </div>
-    </div>
-  </main>
   @endif
   <!----- notify me ----->
   {{-- <div class="loading_spiner_">
     <div class="spinner mx-auto"></div>
   </div> --}}
-  <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
+  {{-- <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
     class="result-main-content border-semidark mt-4">
     <div class="result-main-inner">
       <div class="row">
@@ -1395,4 +1381,4 @@
       </div>
     </div>
     <!-------- Notify popup end -------->
-  </div>
+  </div> --}}

@@ -6,7 +6,13 @@
 
 
 @push('css')
-{{-- <link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css"> --}}
+<style>
+    .hotel-wrapper .hotel-box img {
+    object-fit: cover;
+    max-height: 139px;
+    border-radius: 9px 9px 0px 0px;
+}
+</style>
 @endpush
 
 
@@ -20,102 +26,10 @@
                 <h5>Saved for Later</h5>
             </div>
             <div class="saved-hotels-details">
-                <h5 class="box-title-text mb-4">Hotels (3)</h5>
-                <div class="hotel-wrapper mb-5">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-                            <div class="hotel-box mx-auto mx-lg-0">
-                                <img src="assets/images/save card.png" class="w-100" alt="">
-                                <div class="content">
-                                    <h5 class="ms-2">Hotel W Madrid</h5>
-                                    <span class="d-l-Purple mb-3 ms-2"><img
-                                            src="assets/images/icons/search-h-loaction.png" alt="" class="mb-2 me-2">
-                                        Madrid</span>
-                                    <p class="d-l-Purple mt-2 mb-1 ms-1"><span class="purpel-text fw-bold">10/19/20 -
-                                            10/22/20 </span> 3 nights</p>
-                                    <span class="purple-dark"><img src="assets/images/icons/order-hotel-icon2.png"
-                                            alt=""> 2 Adults</span>
-                                    <div class="text-with--btn d-flex justify-content-between">
-                                        <div class="king_room">
-                                            <span><img src="assets/images/icons/order-hotel-icon3.png" alt="">2
-                                                Rooms</span>
-                                            <p class="mb--0 ms-4 ps-2 purple-dark">1 King, 1 Queen</p>
-                                        </div>
-                                        <div class="icons_ d-flex align-items-center">
-                                            <a href="javacsript:;"><img src="assets/images/icons/pluse-big-blue.png"
-                                                    class="me-1" alt=""></a>
-                                            <a href="javacsript:;"><img src="assets/images/icons/remove-b.png"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="search-result-price__tag b-1 position-relative">
-                                <button class="price-btn">Show me Hotels</button>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-                            <div class="hotel-box mx-auto">
-                                <img src="assets/images/save card.png" class="w-100" alt="">
-                                <div class="content">
-                                    <h5 class="ms-2">Hotel W Madrid</h5>
-                                    <span class="d-l-Purple mb-3 ms-2"><img
-                                            src="assets/images/icons/search-h-loaction.png" alt="" class="mb-2 me-2">
-                                        Madrid</span>
-                                    <p class="d-l-Purple mt-2 mb-1 ms-1"><span class="purpel-text fw-bold">10/19/20 -
-                                            10/22/20 </span> 3 nights</p>
-                                    <span class="purple-dark"><img src="assets/images/icons/order-hotel-icon2.png"
-                                            alt=""> 2 Adults</span>
-                                    <div class="text-with--btn d-flex justify-content-between">
-                                        <div class="king_room">
-                                            <span><img src="assets/images/icons/order-hotel-icon3.png" alt="">2
-                                                Rooms</span>
-                                            <p class="mb--0 ms-4 ps-2 purple-dark">1 King, 1 Queen</p>
-                                        </div>
-                                        <div class="icons_ d-flex align-items-center">
-                                            <a href="javacsript:;"><img src="assets/images/icons/pluse-big-blue.png"
-                                                    class="me-1" alt=""></a>
-                                            <a href="javacsript:;"><img src="assets/images/icons/remove-b.png"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="search-result-price__tag b-2 position-relative ">
-                                <button class="price-btn">Show me Hotels</button>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-                            <div class="hotel-box ms-lg-auto mx-auto mx-lg-0 ">
-                                <img src="assets/images/save card.png" class="w-100" alt="">
-                                <div class="content">
-                                    <h5 class="ms-2">Hotel W Madrid</h5>
-                                    <span class="d-l-Purple mb-3 ms-2"><img
-                                            src="assets/images/icons/search-h-loaction.png" alt="" class="mb-2 me-2">
-                                        Madrid</span>
-                                    <p class="d-l-Purple mt-2 mb-1 ms-1"><span class="purpel-text fw-bold">10/19/20 -
-                                            10/22/20 </span> 3 nights</p>
-                                    <span class="purple-dark"><img src="assets/images/icons/order-hotel-icon2.png"
-                                            alt=""> 2 Adults</span>
-                                    <div class="text-with--btn d-flex justify-content-between">
-                                        <div class="king_room">
-                                            <span><img src="assets/images/icons/order-hotel-icon3.png" alt="">2
-                                                Rooms</span>
-                                            <p class="mb--0 ms-4 ps-2 purple-dark">1 King, 1 Queen</p>
-                                        </div>
-                                        <div class="icons_ d-flex align-items-center">
-                                            <a href="javacsript:;"><img src="assets/images/icons/pluse-big-blue.png"
-                                                    class="me-1" alt=""></a>
-                                            <a href="javacsript:;"><img src="assets/images/icons/remove-b.png"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="search-result-price__tag b-3 position-relative ">
-                                <button class="price-btn">Show me Hotels</button>
-                            </div>
-                        </div>
+                <h5 class="box-title-text mb-4">My next trip <span class="hotelTotalShow"></span></h5>
+                <div class="hotel-wrapper mb-4">
+                    <div class="row wishlistDiv">
+                        @include('frontend::saved.wishlist')
                     </div>
                 </div>
             </div>
@@ -593,4 +507,54 @@
     <!-- SAVEED SECTION END -->
 @endsection
 @push('script')
+<script>
+$(document).ready(function(){
+    var baseUrl = $('#base_url').val();
+
+    $(document).on('click', '.removeWishlist', function(e){
+        e.preventDefault();
+        let hotelId = $(this).data('id');
+
+        if (!hotelId) {
+            return;
+        }
+        
+        formdata = new FormData();
+        formdata.append('hotelId', hotelId);
+
+        $.ajax({
+            url: "{{route('wishlish.remove')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                console.log('done');
+                wishList();
+            }, error:function (response) {
+                console.log('fail');
+            }
+        }); 
+    });
+
+    function wishlistCount() {
+        var hotelCount = $('.hotelCount').val();
+        var hotelTotalShow = $('.hotelTotalShow').text('('+hotelCount+')');
+    }
+
+    wishlistCount();
+
+    function wishList() {
+        $.ajax({
+            url: "{{route('wishlist.list')}}",
+            type: "GET",
+            dataType: "HTML",
+            success: function (response) {
+                $(".wishlistDiv").html(response);
+                wishlistCount();
+            }
+        });
+    }
+});
+</script>
 @endpush

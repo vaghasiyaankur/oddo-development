@@ -101,7 +101,7 @@ Add-Layout
                                                     <h2 class="accordion-header" >
                                                         <button class="accordion-button collapsed justify-content-between amenityCategoryDiv" name="{{$category->slug}}" type="button" data-bs-toggle="collapse" data-bs-target="#amenity_{{$category->id}}"  aria-expanded="false" aria-controls="amenity_{{$category->id}}">
                                                             <span>{{$category->category}}</span>
-                                                            <span class="ms-auto me-5"> <span class="checkbox_length_{{$category->slug}}">0</span>/{{$category->amenities->count()}} selected</span>
+                                                            <span class="ms-auto me-md-5 ms-2"> <span class="checkbox_length_{{$category->slug}}">0</span>/{{$category->amenities->count()}} selected</span>
                                                         </button>
                                                     </h2>
                                                     <div id="amenity_{{$category->id}}" class="accordion-collapse collapse amenities-acc-main overflow-auto" >

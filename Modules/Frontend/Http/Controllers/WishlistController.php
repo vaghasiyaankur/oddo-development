@@ -5,25 +5,18 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\User;
 use App\Models\Hotel;
-use App\Models\Wishlistable;
+use App\Models\User;
 
-class SavedController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index() {
-        $id = auth()->user()->id;
-        $user = User::find($id);
-        $wish = Wishlistable::where('user_id', $id)->count();
-        $wishlists = [];
-        if($wish){
-            $wishlists = $user->wishlists();
-        }
-        return view('frontend::saved.index', compact('wishlists'));
+    public function index()
+    {
+        return view('frontend::index');
     }
 
     /**
@@ -32,7 +25,7 @@ class SavedController extends Controller
      */
     public function create()
     {
-        return view('testing::create');
+        return view('frontend::create');
     }
 
     /**
@@ -52,7 +45,7 @@ class SavedController extends Controller
      */
     public function show($id)
     {
-        return view('testing::show');
+        return view('frontend::show');
     }
 
     /**
@@ -62,7 +55,7 @@ class SavedController extends Controller
      */
     public function edit($id)
     {
-        return view('testing::edit');
+        return view('frontend::edit');
     }
 
     /**
@@ -81,7 +74,24 @@ class SavedController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy(Request $request)
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function addWishlist(Request $request) {
+        try {
+            $id = auth()->user()->id;
+            $user = User::find($id);
+            $hotel = Hotel::where('UUID',$request->hotelId)->first();
+            $user->wish($hotel);
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
+        }
+        return response()->json(["success" => "wishlist add Successfully"], 200);
+    }
+
+    public function removeWishlist(Request $request)
     {
         try {
             $id = auth()->user()->id;
@@ -92,18 +102,5 @@ class SavedController extends Controller
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
         return response()->json(["success" => "wishlist remove Successfully"], 200);
-    }
-
-    public function wishlistList()
-    {
-        $id = auth()->user()->id;
-        $user = User::find($id);
-        $wish = Wishlistable::where('user_id', $id)->count();
-        if($wish){
-            $data['wishlists'] = $user->wishlists();
-            return view('frontend::saved.wishlist', $data);
-        }
-        $data['wishlists'] = [];
-        return view('frontend::saved.wishlist', $data);
     }
 }
