@@ -119,7 +119,8 @@ class LoginController extends Controller
             'password.required' => 'The Password field is required.'
         ]);
         $user = User::where('email', $input['email'])->first();
-        if($user->email_verified_at == null){
+        
+        if($user == null || $user->email_verified_at == null){
             return response()->json(["error" => "please verify your account."], 403);  
         }
      

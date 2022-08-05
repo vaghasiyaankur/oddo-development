@@ -1,13 +1,9 @@
   {{-- loader --}}
   <div class="loading_spiner_" style="display: none">
     <div class="spinner mx-auto"></div>
-  </div>
-  <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
-  
-  @if(count($hotels))
+</div>
+ @if(count($hotels))
   @foreach($hotels as $key => $hotel)
-
-
   <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500"
     class="result-main-content mt-4">
     <div class="result-main-inner">
@@ -579,23 +575,6 @@
     <button class="price-btn">{{@$hotel->room->price_room}} for 1 Nights</button>
   </div>
   @endforeach
-  @else
-  {{-- No data found box --}}
-  {{-- <div class="loading_spiner_">
-    <div class="spinner mx-auto"></div>
-  </div>
-  <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
-    class="result-main-content border-semidark mt-4">
-    <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
-      <div class="empty-table w-100 text-center py-5">
-        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-          colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
-        </lord-icon>
-        <h4>No records has been added yet.</h4>
-        <h6>Add a new record by simpley clicking the button on right side.</h6>
-      </div>
-    </div>
-  </main> --}}
   @endif
   <!----- notify me ----->
   {{-- <div class="loading_spiner_">

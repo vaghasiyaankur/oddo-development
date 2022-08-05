@@ -52,7 +52,8 @@
         /* loading sipner css strat*/
         .loading_spiner_ {
             border-radius: 8px;
-            min-height: 350px;
+            min-height: 57px;
+            padding-top: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -296,17 +297,33 @@
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 <label>Guests</label>
                                 <select class="form-control js-example-tags select_guest" name="guest">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    @php
+                                        $selectGuest = Request()->guest;     
+                                    @endphp
+                                    <option disabled>Select Guest</option>
+                                    <option {{ $selectGuest == '1' ? 'selected' : '' }}>1</option>
+                                    <option {{ $selectGuest == '2' ? 'selected' : '' }}>2</option>
+                                    <option {{ $selectGuest == '3' ? 'selected' : '' }}>3</option>
+                                    {{-- <option {{ $selectGuest == '4' ? 'selected' : '' }}>4</option>
+                                    <option {{ $selectGuest == '5' ? 'selected' : '' }}>5</option>
+                                    <option {{ $selectGuest == '6' ? 'selected' : '' }}>6</option>
+                                    <option {{ $selectGuest == '7' ? 'selected' : '' }}>7</option> --}}
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                                @php
+                                    $selectRoom = Request()->room;     
+                                @endphp
                                 <label>Room</label>
                                 <select class="form-control js-example-tags select_room" name="room">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    <option disabled>Select Room</option>
+                                    <option {{ $selectRoom == '1' ? 'selected' : '' }}>1</option>
+                                    <option {{ $selectRoom == '2' ? 'selected' : '' }}>2</option>
+                                    <option {{ $selectRoom == '3' ? 'selected' : '' }}>3</option>
+                                    {{-- <option {{ $selectRoom == '4' ? 'selected' : '' }}>4</option>
+                                    <option {{ $selectRoom == '5' ? 'selected' : '' }}>5</option>
+                                    <option {{ $selectRoom == '6' ? 'selected' : '' }}>6</option>
+                                    <option {{ $selectRoom == '7' ? 'selected' : '' }}>7</option> --}}
                                 </select>
                             </div>
 
@@ -385,13 +402,13 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <aside class="side-content">
-                            <span class="side-text">Viewing results</span>
+                            <span class="side-text">Viewing  {{ $hotels->total() }} results</span>
                             <form class="hotel-result-form">
                                 <div class="hotels-result-search">
                                     <h5 class="search-heading">Search</h5>
                                     <div class="input-group align-items-center search-input">
                                         <i class="fa-solid fa-magnifying-glass ps-2"></i>
-                                        <input type="text" class="form-control" placeholder="Search by name">
+                                        <input type="text" class="form-control propertyName" name="propertyName"  placeholder="Search by name" value="{{request()->propertyName}}">
                                     </div>
                                 </div>
                                 <div class="hotels-result-sort pt-4">
@@ -465,7 +482,7 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-6">
                                                                                         <div class="form-check">
-                                                                                            <input class="form-check-input"
+                                                                                            <input class="form-check-input topFilter"
                                                                                                 type="checkbox"
                                                                                                 value=""
                                                                                                 id="flexCheckDefault">
@@ -479,7 +496,7 @@
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <div class="form-check">
-                                                                                            <input class="form-check-input"
+                                                                                            <input class="form-check-input topFilter"
                                                                                                 type="checkbox"
                                                                                                 value=""
                                                                                                 id="flexCheckDefault">
@@ -491,7 +508,7 @@
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <div class="form-check">
-                                                                                            <input class="form-check-input"
+                                                                                            <input class="form-check-input topFilter"
                                                                                                 type="checkbox"
                                                                                                 value=""
                                                                                                 id="flexCheckChecked"
@@ -504,7 +521,7 @@
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <div class="form-check">
-                                                                                            <input class="form-check-input"
+                                                                                            <input class="form-check-input topFilter"
                                                                                                 type="checkbox"
                                                                                                 value=""
                                                                                                 id="flexCheckDefault">
@@ -524,7 +541,7 @@
                                                                             <div
                                                                                 class="hotels-result-style-popup d-sm-flex">
                                                                                 <div class="form-check pe-3">
-                                                                                    <input class="form-check-input"
+                                                                                    <input class="form-check-input style"
                                                                                         type="checkbox" value=""
                                                                                         id="flexCheckDefault">
                                                                                     <label class="form-check-label"
@@ -533,7 +550,7 @@
                                                                                     </label>
                                                                                 </div>
                                                                                 <div class="form-check pe-3">
-                                                                                    <input class="form-check-input"
+                                                                                    <input class="form-check-input style"
                                                                                         type="checkbox" value=""
                                                                                         id="flexCheckChecked" checked>
                                                                                     <label class="form-check-label"
@@ -542,7 +559,7 @@
                                                                                     </label>
                                                                                 </div>
                                                                                 <div class="form-check pe-3">
-                                                                                    <input class="form-check-input"
+                                                                                    <input class="form-check-input style"
                                                                                         type="checkbox" value=""
                                                                                         id="flexCheckDefault">
                                                                                     <label class="form-check-label"
@@ -582,15 +599,15 @@
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox" value=""
                                                                                         id="flexCheckDefault">
-                                                                                    <span class="property-class-icon"><img
+                                                                                    <span class="property-class-icon propertyStar"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                                                                    <span class="property-class-icon"><img
+                                                                                    <span class="property-class-icon propertyStar"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                                                                    <span class="property-class-icon "><img
+                                                                                    <span class="property-class-icon  propertyStar"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                                                                    <span class="property-class-icon "><img
+                                                                                    <span class="property-class-icon  propertyStar"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                                                                    <span class="property-class-icon "><img
+                                                                                    <span class="property-class-icon  propertyStar"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                                 </div>
                                                                                 <div class="form-check pe-4">
@@ -716,21 +733,21 @@
                                         </div>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                        <input class="form-check-input sortBy" type="checkbox" value=""
                                             id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Price: low to high
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                        <input class="form-check-input sortBy" type="checkbox" value=""
                                             id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Price: high to low
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                        <input class="form-check-input sortBy" type="checkbox" value=""
                                             id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Guess Review
@@ -809,13 +826,13 @@
                                         </div>
                                         <div class="row g-0  align-items-center ">
                                             <div class="col-4 col-lg-5">
-                                                <input type="tel" class="form-control" placeholder="$ Min">
+                                                <input type="tel" class="form-control budgetMin" placeholder="$ Min" value="{{request()->budgetMin}}">
                                             </div>
                                             <div class="col-2 p-0 text-center">
                                                 <span class="form-text">to</span>
                                             </div>
                                             <div class="col-4 col-lg-5">
-                                                <input type="tel" class="form-control" placeholder="$ Max">
+                                                <input type="tel" class="form-control budgetMax" placeholder="$ Max" value="{{request()->budgetMax}}">
                                             </div>
                                         </div>
                                     </div>
@@ -824,54 +841,64 @@
                                             <h6>Property Class </h6>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            <input class="form-check-input starRating" type="checkbox" value="5"
+                                                id="star_5"  {{ request()->starRating  == 5 ? 'checked'  : ''}}>
+                                                <label for="star_5">
+                                                    <span class="property-class-icon ps-2"><img
+                                                            src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    <span class="property-class-icon"><img
+                                                            src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    <span class="property-class-icon "><img
+                                                            src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    <span class="property-class-icon "><img
+                                                            src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    <span class="property-class-icon "><img
+                                                            src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked" checked>
-                                            <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            <input class="form-check-input starRating" type="checkbox" value="4"
+                                                id="star_4" {{ request()->starRating == 4 ? 'checked'  : ''}}>
+                                            <label for="star_4">
+                                                <span class="property-class-icon ps-2"><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                <span class="property-class-icon "><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                <span class="property-class-icon "><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                <span class="property-class-icon "><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked" checked>
-                                            <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            <input class="form-check-input starRating" type="checkbox" value="3"
+                                                id="star_3" {{ request()->starRating == 3 ? 'checked'  : ''}}>
+                                            <label for="star_3">
+                                                <span class="property-class-icon ps-2"><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                <span class="property-class-icon "><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                <span class="property-class-icon "><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
-                                            <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            <input class="form-check-input starRating" type="checkbox" value="2"
+                                                id="star_2" {{ request()->starRating == 2 ? 'checked'  : ''}}>
+                                            <label for="star_2">
+                                                <span class="property-class-icon ps-2"><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                <span class="property-class-icon "><img
+                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <span class="property-class-icon ps-2"><img
+                                            <input class="form-check-input starRating" type="checkbox" value="1"
+                                                id="star_1" {{ request()->starRating == 1 ? 'checked'  : ''}}>
+                                            <label for="star_1">
+                                                <span class="property-class-icon ps-2"><img
                                                     src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="hotels-results-neigh pt-4">
@@ -921,13 +948,13 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
                                                 id="flexCheckDefault">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                            <label class="form-check-label ps-2 amenityValue" for="flexCheckDefault">
                                                 All Amenities
                                             </label>
                                         </div>
                                         @foreach ($amenities as $amenity)
                                             <div class="form-check">
-                                                <input class="form-check-input ps-2" type="checkbox" value=""
+                                                <input class="form-check-input ps-2 amenityValue" type="checkbox" value=""
                                                     id="flexCheckChecked">
                                                 <label class="form-check-label " for="flexCheckDefault">
                                                     {{ @$amenity->amenities }}
@@ -939,7 +966,7 @@
                                         @endforeach
                                     </div>
                                     <div class="hotels-result-filter-btn text-center pb-4">
-                                        <button class="btn bg-purple filter-btn">Filter</button>
+                                        <a href="javascript:;" class="btn bg-purple filter-btn filterButton">Filter</a>
                                     </div>
                                 </div>
                             </form>
@@ -948,7 +975,23 @@
 
                     <!-------- Search Hotel Result -------->
                     <div class="col-lg-9 position-relative hotelResultDiv">
+                        <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
+                        <input type="hidden" class="total_page" value="{{$hotels->total()}}">
                         @include('frontend::hotel.hotelResult')
+
+                        {{-- No data found box --}}
+                        <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
+                            class="result-main-content border-semidark mt-4 d-none hotel_empty">
+                            <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
+                            <div class="empty-table w-100 text-center py-5">
+                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
+                                </lord-icon>
+                                <h4>No records has been added yet.</h4>
+                                <h6>Add a new record by simpley clicking the button on right side.</h6>
+                            </div>
+                            </div>
+                        </main>
                     </div>
                     <!-------- Search Hotel Result end -------->
 
@@ -1108,6 +1151,27 @@
             window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
         });
+
+        $(document).on('click', '.filterButton', function(){
+            var propertyName = $('.propertyName').val();
+            var budgetMax = $('.budgetMax').val();
+            var budgetMin = $('.budgetMin').val();
+            var starRating = $('.starRating:checked').val();
+
+            // var sortBy = $('.sortBy').val();
+            // var topFilter = $('.topFilter').val();
+            // var style = $('.style').val();
+            // var propertyStar = $('.propertyStar').val();
+            // var amenityValue = $('.amenityValue').val();
+            // // alert(propertyName);
+
+            if (!propertyName) {
+                return;
+            }   
+            console.log(budgetMin);
+            window.location.href = baseUrl  + "/hotel?propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating;
+        });
+
     </script>
     <!-- custom-selector js -->
     <script>
@@ -1167,7 +1231,7 @@ $(document).ready(function(){
     infinteLoadMore(page);
 
     $(window).scroll(function () {
-        if ($(window).scrollTop() + ($(window).height() + 350) >= $(document).height()) {
+        if ($(window).scrollTop() + ($(window).height() + 250) >= $(document).height()) {
             page++;
             var paginate = $('.last_page_value').val();
             if(paginate >= page){
@@ -1179,10 +1243,15 @@ $(document).ready(function(){
     // load hotel Detail
     function infinteLoadMore(page) {
         var search = $("input[name=search]").val();
+        var guest = $("select[name=guest]").val();
+        var room = $("select[name=room]").val();
+
+        var propertyName = $("input[name=propertyName]").val();
+
         if(search){
             $.ajax({
             
-                url: baseUrl  + "/hotel?page=" + page + "&search=" + search ,
+                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&guest=" + guest + "&room=" + room ,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1190,21 +1259,40 @@ $(document).ready(function(){
                 }
             })
             .done(function (response) {
-                if (response.length == 0) {
-                    $('.auto-load').html("We don't have more data to display :(");
-                    return;
-                }
                 $('.loading_spiner_').hide();
-                // $('.auto-load').hide();
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
+                }
                 $(".hotelResultDiv").append(response);
-                // $("#data-wrapper").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
             });
                 
-        }else{
-
+        } else if(propertyName) {
+            $.ajax({
+            
+                url: baseUrl  + "/hotel?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating,
+                datatype: "html",
+                type: "get",
+                beforeSend: function () {
+                    $('.loading_spiner_').show();
+                }
+            })
+            .done(function (response) {
+                $('.loading_spiner_').hide();
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
+                }
+                $(".hotelResultDiv").append(response);
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                console.log('Server error occured');
+            });  
+        } else {
+            console.log('demo');
             $.ajax({
                 
                 url: baseUrl + "/hotel?page=" + page,
@@ -1215,14 +1303,13 @@ $(document).ready(function(){
                 }
             })
             .done(function (response) {
-                if (response.length == 0) {
-                    $('.auto-load').html("We don't have more data to display :(");
-                    return;
+                $('.loading_spiner_').hide();
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
                 }
                 $('.loading_spiner_').hide();
-                // $('.auto-load').hide();
                 $(".hotelResultDiv").append(response);
-                // $("#data-wrapper").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
@@ -1230,6 +1317,8 @@ $(document).ready(function(){
         } 
     }
 
+
+   
     $('.loading_spiner_').hide();
 
     $(document).on('click', '.addWishlist', function(){

@@ -26,8 +26,8 @@
                 <h5>Saved for Later</h5>
             </div>
             <div class="saved-hotels-details">
-                <h5 class="box-title-text mb-4">Hotels <span class="hotelTotalShow"></span></h5>
-                <div class="hotel-wrapper mb-5">
+                <h5 class="box-title-text mb-4">My next trip <span class="hotelTotalShow"></span></h5>
+                <div class="hotel-wrapper mb-4">
                     <div class="row wishlistDiv">
                         @include('frontend::saved.wishlist')
                     </div>
