@@ -42,9 +42,9 @@
         .navbar-menu .navbar-nav .nav-link{
             white-space: nowrap;
         }
-        .navbar-nav{
+        /* .navbar-nav{
             overflow: auto;
-        }
+        } */
     </style>
     @stack('css')
     
@@ -54,9 +54,9 @@
     <input type="hidden" value="{{URL::to('')}}" id="base_url">
 
     @include('layout::admin.includes.header')
-     <!-- Begin page -->
-     <div id="layout-wrapper">
-         <!-- ============================================================== -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">

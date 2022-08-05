@@ -10,11 +10,11 @@
             </li> <!-- end Dashboard Menu -->
             
             <li class="nav-item">
-                <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenityCategory.index']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
-                    role="button" aria-expanded="false" aria-controls="sidebarApps">
+                <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenityCategory.index']) ? 'active' : '' }}" href="#amenityList1" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="amenityList1">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Amenity</span>
                 </a>
-                <div class="collapse menu-dropdown" id="sidebarApps">
+                <div class="collapse menu-dropdown" id="amenityList1">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link menu-link {{ Request::routeIs('amenity.index') ? 'submenu_active' : '' }}" href="{{ route('amenity.index') }}">
@@ -30,11 +30,11 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link {{ Request::routeIs(['roomType.index', 'room.index']) ? 'active' : '' }}" href="#sidebarApps" data-bs-toggle="collapse"
-                    role="button" aria-expanded="false" aria-controls="sidebarApps">
+                <a class="nav-link menu-link {{ Request::routeIs(['roomType.index', 'room.index']) ? 'active' : '' }}" href="#roomList1" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="roomList1">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Room</span>
                 </a>
-                <div class="collapse menu-dropdown" id="sidebarApps">
+                <div class="collapse menu-dropdown" id="roomList1">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a class="nav-link menu-link {{ Request::routeIs('roomType.index') ? 'submenu_active' : '' }}" href="{{ route('roomType.index') }}">
@@ -74,8 +74,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="landing.html">
-                    <i class="ri-rocket-line"></i> <span data-key="t-landing">Reports</span>
+                <a class="nav-link menu-link {{ Request::routeIs('setting.index') ? 'active' : '' }}" href="{{ route('setting.index') }}">
+                    <i class="ri-rocket-line"></i> <span data-key="t-landing">Settings</span>
                 </a>
             </li>
             <li class="nav-item">

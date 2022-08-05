@@ -108,6 +108,11 @@ Route::prefix('admin')->group(function() {
             Route::post('/delete-food/{id}', 'destroy')->name('delete.food');
             Route::post('/update-food/{id}', 'update')->name('update.food');
         });
+
+         // Setting
+         Route::controller(SettingController::class)->group(function(){
+         Route::view('setting', 'admin::Settings.index')->name('setting.index');
+         });
     });
 
     // Route::view('/amenity-view', 'admin::amenity');
