@@ -224,13 +224,17 @@ $(document).ready(function(){
         $('.acc_btn_').removeClass('d-none');
         $('.edit_password_').removeClass('d-none');
         $(this).hide();
-    });  
+    });
 
     $(document).on('click', '.closeEdit', function(){
+
+        $('.editUser').show();
+        $('.inpute-text').attr('readonly', true);
+        $('.acc_btn_').addClass('d-none');
+        $('.edit_password_').addClass('d-none');
         $(this).hide();
-        $('.editUser').show();        
-    });  
-    
+    });
+
     $(document).on('click', '.account_submit_btn',function(){
         let name = $('.name').val();
         !name ? $(`#name-error`).html(`The name field is required.`) : $(`#name-error`).html(``);
@@ -256,7 +260,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 $('.acc_btn_').addClass('d-none');
                 $('.edit_password_').addClass('d-none');
                 $('.editUser').show();
@@ -265,7 +269,7 @@ $(document).ready(function(){
             }, error:function (response) {
                 $('#email-error').text(response.responseJSON.errors.email);
             }
-        }); 
+        });
     });
 
     $(document).on('click', '.account-pass-btn',function(){
@@ -293,7 +297,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 $(".changePasswordForm").trigger("reset");
                 $("#succesful_password").modal("toggle");
             }, error:function (response) {
@@ -307,7 +311,7 @@ $(document).ready(function(){
                     $('#confirmPassword-error').text(response.responseJSON.errors.confirmPassword);
                 }
             }
-        }); 
+        });
     });
 
     // $(document).on('click', '.resetLoginButton', function(){
