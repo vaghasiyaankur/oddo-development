@@ -1,47 +1,47 @@
 /* ============ ACCOUNT PAGE RESPONSIVE CSS START ========== */
 @media screen and (max-width: 992px) {
-  .account-section .payment-title .modal-body-form {
-    min-height: 500px;
-    padding: 40px 25px;
-  }
+    .account-section .payment-title .modal-body-form {
+        min-height: 500px;
+        padding: 40px 25px;
+    }
 }
 
 @media screen and (max-width: 499px) {
-  .account-section .payment-details {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .account-section .payment-details-box {
-    white-space: nowrap;
-  }
-  .account-section .payment-details .payment-details-box .payment-cansel {
-    margin-left: 6px;
-  }
-  .account-section .payment-details .payment-details-box .payment-icon {
-    margin: 0 auto;
-  }
-  .account-section .payment-details {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-  .account-title {
-    font-size: 30px;
-  }
-  .account-section .account-detail {
-    padding: 8px;
-  }
-  .account-section .payment-details .payment-details-box .masterc_details {
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 32px;
-  }
-  .account-section .payment-details .payment-details-box .masterc_ex {
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 32px;
-  }
+    .account-section .payment-details {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .account-section .payment-details-box {
+        white-space: nowrap;
+    }
+    .account-section .payment-details .payment-details-box .payment-cansel {
+        margin-left: 6px;
+    }
+    .account-section .payment-details .payment-details-box .payment-icon {
+        margin: 0 auto;
+    }
+    .account-section .payment-details {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .account-title {
+        font-size: 30px;
+    }
+    .account-section .account-detail {
+        padding: 8px;
+    }
+    .account-section .payment-details .payment-details-box .masterc_details {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 32px;
+    }
+    .account-section .payment-details .payment-details-box .masterc_ex {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 32px;
+    }
 }
 
 /* ============ ACCOUNT PAGE RESPONSIVE CSS END ========== */
@@ -49,57 +49,57 @@
 /* ============ ORDER-HISTORY PAGE RESPONSIVE CSS START ========== */
 
 @media screen and (max-width: 1200px) {
-  .order-history .order-history-details .accordion .order-id .or-total {
-    margin-right: 103px;
-  }
-  .order-history .order-history-details .accordion .order-id .or-id {
-    margin-left: 88px;
-    margin-right: 102px;
-  }
-  .order-history .order-history-details .accordion .col_amt {
-    margin-left: 122px;
-  }
-  .order-history .order-history-details .accordion .col_totl {
-    margin-left: 110px;
-  }
+    .order-history .order-history-details .accordion .order-id .or-total {
+        margin-right: 103px;
+    }
+    .order-history .order-history-details .accordion .order-id .or-id {
+        margin-left: 88px;
+        margin-right: 102px;
+    }
+    .order-history .order-history-details .accordion .col_amt {
+        margin-left: 122px;
+    }
+    .order-history .order-history-details .accordion .col_totl {
+        margin-left: 110px;
+    }
 }
 @media screen and (max-width: 992px) {
-  .order-history .order-history-details .accordion .col_id {
-    margin-left: 20px;
-  }
-  .order-history .order-history-details .accordion .col_totl {
-    margin-left: 30px;
-  }
-  .order-history .order-history-details .accordion .col_amt {
-    margin-left: 37px;
-  }
-  .order-history .order-history-details .accordion .order-id .or-id {
-    margin-left: 40px;
-    margin-right: 31px;
-  }
-  .order-history .order-history-details .accordion .order-id .or-total {
-    margin-right: 20px;
-  }
-  .order-history .order-history-details .accordion .right-order-list,
-  .order-history .order-history-details .accordion .left-order-list {
-    padding-right: 25px;
-    padding-left: 25px;
-    padding-bottom: 10px;
-  }
+    .order-history .order-history-details .accordion .col_id {
+        margin-left: 20px;
+    }
+    .order-history .order-history-details .accordion .col_totl {
+        margin-left: 30px;
+    }
+    .order-history .order-history-details .accordion .col_amt {
+        margin-left: 37px;
+    }
+    .order-history .order-history-details .accordion .order-id .or-id {
+        margin-left: 40px;
+        margin-right: 31px;
+    }
+    .order-history .order-history-details .accordion .order-id .or-total {
+        margin-right: 20px;
+    }
+    .order-history .order-history-details .accordion .right-order-list,
+    .order-history .order-history-details .accordion .left-order-list {
+        padding-right: 25px;
+        padding-left: 25px;
+        padding-bottom: 10px;
+    }
 }
 @media screen and (max-width: 567px) {
-  .order-history .order-history-details .accordion .order-id .or-id {
-    margin-left: 18px;
-    margin-right: 8px;
-  }
+    .order-history .order-history-details .accordion .order-id .or-id {
+        margin-left: 18px;
+        margin-right: 8px;
+    }
 }
 @media screen and (max-width: 390px) {
-  .order-history .order-history-details .accordion .col_amt {
-    margin-left: 26px !important;
-  }
-  .order-history .order-history-details .accordion .col_id {
-    margin-left: 10px;
-  }
+    .order-history .order-history-details .accordion .col_amt {
+        margin-left: 26px !important;
+    }
+    .order-history .order-history-details .accordion .col_id {
+        margin-left: 10px;
+    }
 }
 
 /* ============ ORDER-HISTORY PAGE RESPONSIVE CSS END ========== */
@@ -107,52 +107,52 @@
 /* ============= CHECK-OUT PAGE RESPONSIV CSS START ============== */
 
 @media screen and (min-width: 900px) and (max-width: 1200px) {
-  .h_r_line:before {
-    width: 100%;
-    max-width: 378px;
-  }
+    .h_r_line:before {
+        width: 100%;
+        max-width: 378px;
+    }
 }
 @media screen and (max-width: 992px) {
-  .modal-body-add-card {
-    padding: 22px 30px;
-  }
-  .account-section .modal-title h5 {
-    margin-bottom: 25px;
-  }
+    .modal-body-add-card {
+        padding: 22px 30px;
+    }
+    .account-section .modal-title h5 {
+        margin-bottom: 25px;
+    }
 }
 
 @media screen and (max-width: 567px) {
-  .checkout-section .l-payment-details {
-    padding: 22px 5px;
-  }
-  .checkout-section .payment_cansel {
-    margin-left: 18px;
-  }
+    .checkout-section .l-payment-details {
+        padding: 22px 5px;
+    }
+    .checkout-section .payment_cansel {
+        margin-left: 18px;
+    }
 }
 @media screen and (min-width: 376px) and (max-width: 576px) {
-  .j_c_center {
-    display: flex;
-    justify-content: center !important;
-  }
+    .j_c_center {
+        display: flex;
+        justify-content: center !important;
+    }
 }
 
 @media screen and (max-width: 450px) {
-  .h_r_line:before {
-    max-width: 350px;
-  }
-  .payment-details-box .masterc_details,
-  .masterc_ex {
-    font-size: 13px;
-  }
-  .checkout-section .payment_cansel {
-    margin-left: 2px;
-  }
-  .checkout-section .left-payment-box {
-    padding: 0 12px;
-  }
-  .order-id-inner .holiday-details {
-    padding: 24px 2px;
-  }
+    .h_r_line:before {
+        max-width: 350px;
+    }
+    .payment-details-box .masterc_details,
+    .masterc_ex {
+        font-size: 13px;
+    }
+    .checkout-section .payment_cansel {
+        margin-left: 2px;
+    }
+    .checkout-section .left-payment-box {
+        padding: 0 12px;
+    }
+    .order-id-inner .holiday-details {
+        padding: 24px 2px;
+    }
 }
 
 /* ============= CHECK-OUT PAGE RESPONSIV CSS END ============== */
@@ -160,9 +160,9 @@
 /* ============== MULTI SEARCH PAGE CSS START ================== */
 
 @media screen and (max-width: 992px) {
-  .multi-search-section .uber-discount {
-    padding: 32px 19px;
-  }
+    .multi-search-section .uber-discount {
+        padding: 32px 19px;
+    }
 }
 
 /* ============== MULTI SEARCH PAGE CSS END ================== */
@@ -170,105 +170,105 @@
 /* ============== PLANNER PAGE CSS START ================== */
 
 @media screen and (max-width: 1200px) {
-  .planner-section .planner-acording .p-a-body .p-a-details .p-a-details-btn {
-    margin-left: 56px;
-  }
-  .p-a-dropdown {
-    max-width: 215px;
-  }
+    .planner-section .planner-acording .p-a-body .p-a-details .p-a-details-btn {
+        margin-left: 56px;
+    }
+    .p-a-dropdown {
+        max-width: 215px;
+    }
 }
 @media screen and (max-width: 992px) {
-  .p-a-dropdown {
-    max-width: 100%;
-  }
-  .planner-section .planner-acording .p-a-body .slick-next {
-    right: 4px !important;
-  }
-  .planner-section .planner-acording .p-a-body .slick-prev {
-    left: 90% !important;
-  }
-  .cart__btn {
-    padding: 6px 20px;
-    white-space: nowrap;
-  }
+    .p-a-dropdown {
+        max-width: 100%;
+    }
+    .planner-section .planner-acording .p-a-body .slick-next {
+        right: 4px !important;
+    }
+    .planner-section .planner-acording .p-a-body .slick-prev {
+        left: 90% !important;
+    }
+    .cart__btn {
+        padding: 6px 20px;
+        white-space: nowrap;
+    }
 }
 @media screen and (max-width: 786px) {
-  .planner-section .planner-acording .p-a-body .slick-prev {
-    left: 87% !important;
-  }
+    .planner-section .planner-acording .p-a-body .slick-prev {
+        left: 87% !important;
+    }
 }
 @media screen and (max-width: 450px) {
-  .planner-section .planner-acording .p-a-body .slick-prev {
-    left: 83% !important;
-  }
+    .planner-section .planner-acording .p-a-body .slick-prev {
+        left: 83% !important;
+    }
 }
 
 /* ============== PLANNER PAGE CSS END ================== */
 
 /* ================== SAVE PAGE CSS START ================= */
 @media screen and (max-width: 1400px) {
-  .search-result-price__tag.b-3 {
-    margin-left: 26%;
-  }
+    .search-result-price__tag.b-3 {
+        margin-left: 26%;
+    }
 }
 @media screen and (max-width: 1200px) {
-  .search-result-price__tag.b-2 {
-    margin-left: 17%;
-  }
-  .search-result-price__tag.b-3 {
-    margin-left: 14%;
-  }
+    .search-result-price__tag.b-2 {
+        margin-left: 17%;
+    }
+    .search-result-price__tag.b-3 {
+        margin-left: 14%;
+    }
 }
 @media screen and (max-width: 992px) {
-  .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content {
-    padding-top: 11px;
-    padding-left: 5px;
-    padding-right: 4px;
-  }
-  .search-result-price__tag .price-btn {
-    padding: 10px 15px;
-  }
-  .search-result-price__tag.b-1 {
-    margin-left: 24%;
-  }
-  .search-result-price__tag.b-2,
-  .search-result-price__tag.b-3 {
-    margin-left: 26%;
-  }
+    .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content {
+        padding-top: 11px;
+        padding-left: 5px;
+        padding-right: 4px;
+    }
+    .search-result-price__tag .price-btn {
+        padding: 10px 15px;
+    }
+    .search-result-price__tag.b-1 {
+        margin-left: 24%;
+    }
+    .search-result-price__tag.b-2,
+    .search-result-price__tag.b-3 {
+        margin-left: 26%;
+    }
 }
 @media screen and (max-width: 768px) {
-  .search-result-price__tag .price-btn {
-    padding: 6px 13px;
-  }
-  .search-result-price__tag.b-1 {
-    margin-left: 19%;
-  }
-  .search-result-price__tag.b-2,
-  .search-result-price__tag.b-3 {
-    margin-left: 19%;
-  }
+    .search-result-price__tag .price-btn {
+        padding: 6px 13px;
+    }
+    .search-result-price__tag.b-1 {
+        margin-left: 19%;
+    }
+    .search-result-price__tag.b-2,
+    .search-result-price__tag.b-3 {
+        margin-left: 19%;
+    }
 }
 @media screen and (max-width: 576px) {
-  .search-result-price__tag.b-1 {
-    margin-left: 34%;
-  }
-  .search-result-price__tag.b-2,
-  .search-result-price__tag.b-3 {
-    margin-left: 33%;
-  }
-  .place-box{
-    max-width: 280px;
-    margin: 0 auto;
-  }
+    .search-result-price__tag.b-1 {
+        margin-left: 34%;
+    }
+    .search-result-price__tag.b-2,
+    .search-result-price__tag.b-3 {
+        margin-left: 33%;
+    }
+    .place-box {
+        max-width: 280px;
+        margin: 0 auto;
+    }
 }
 @media screen and (max-width: 375px) {
-  .search-result-price__tag.b-1 {
-    margin-left: 25%;
-  }
-  .search-result-price__tag.b-2,
-  .search-result-price__tag.b-3 {
-    margin-left: 25%;
-  }
+    .search-result-price__tag.b-1 {
+        margin-left: 25%;
+    }
+    .search-result-price__tag.b-2,
+    .search-result-price__tag.b-3 {
+        margin-left: 25%;
+    }
 }
 
 /* ================== SAVE PAGE CSS END ================= */
@@ -276,103 +276,134 @@
 /* ============= UPCOMING TRIP PAGE CSS START ============== */
 
 @media screen and (max-width: 992px) {
-  .cansel-Reservation .modal-body-trip {
-    padding: 20px 4px;
-  }
+    .cansel-Reservation .modal-body-trip {
+        padding: 20px 4px;
+    }
 }
 @media screen and (max-width: 468px) {
-  .holiday-details {
-    padding: 10px 8px;
-  }
+    .holiday-details {
+        padding: 10px 8px;
+    }
 }
 /* ============= UPCOMING TRIP PAGE CSS END ============== */
 
 /* ============= USER-MENU PAGE CSS START ============== */
 
 @media screen and (max-width: 1400px) {
-  .user-menu-section .user-menu-right {
-    min-height: 531px;
-  }
+    .user-menu-section .user-menu-right {
+        min-height: 531px;
+    }
 }
 @media screen and (max-width: 1200px) {
-  .user-menu-section .user-menu-right {
-    min-height: 445px;
-  }
-  .user-menu-section .user-menu-right {
-    padding-top: 45px;
-    padding-bottom: 11px;
-  }
+    .user-menu-section .user-menu-right {
+        min-height: 445px;
+    }
+    .user-menu-section .user-menu-right {
+        padding-top: 45px;
+        padding-bottom: 11px;
+    }
 }
 @media screen and (max-width: 992px) {
-  .user-menu-section .user-menu-right {
-    min-height: 410px;
-  }
-  .user-menu-section .user-menu-right {
-    padding-top: 45px;
-    padding-bottom: 11px;
-    padding-right: 30px;
-    padding-left: 30px;
-  }
+    .user-menu-section .user-menu-right {
+        min-height: 410px;
+    }
+    .user-menu-section .user-menu-right {
+        padding-top: 45px;
+        padding-bottom: 11px;
+        padding-right: 30px;
+        padding-left: 30px;
+    }
 }
 @media screen and (max-width: 567px) {
-  .search-result-price-tag {
-    margin-top: -30px;
-    margin-left: 32%;
-  }
-  .search-result-price-tag .price-btn {
-    padding: 10px 22px;
-    line-height: 20px;
-  }
+    .search-result-price-tag {
+        margin-top: -30px;
+        margin-left: 32%;
+    }
+    .search-result-price-tag .price-btn {
+        padding: 10px 22px;
+        line-height: 20px;
+    }
 }
 @media screen and (max-width: 380px) {
-  .search-result-price-tag {
-    margin-left: 22%;
-  }
+    .search-result-price-tag {
+        margin-left: 22%;
+    }
 }
 /* ============= USER-MENU PAGE CSS END ============== */
 
 /* ========== EXPLORE-ATTRECTION CSS START ========= */
 
-@media screen and (min-width:992px) and (max-width:1200px) {
-  .atribute-planenr-section .ei-corte-details{
-    min-height: 544px;
-  }
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .atribute-planenr-section .ei-corte-details {
+        min-height: 544px;
+    }
 }
-@media screen and (max-width:992px) {
-  .atribute-planenr-section .ei-corte-details{
-    max-width: 90%;
-    margin: 0 auto;
-    min-height: 514px;
-  }
+@media screen and (max-width: 992px) {
+    .atribute-planenr-section .ei-corte-details {
+        max-width: 90%;
+        margin: 0 auto;
+        min-height: 514px;
+    }
 }
-@media screen and (max-width:768px) {
-  .atribute-planenr-section .swiper_back{
-    padding: 3px 9px;
-    top: 43px;
-    left: 23px;
-  }
-  .atribute-planenr-section .ei-corte-details{
-    max-width: 100%;
-    min-height: 514px;
-  }
-  .atribute-planenr-section .discription_section .map_pera{
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: scroll;
-    text-overflow: ellipsis;
-  }
+@media screen and (max-width: 768px) {
+    .atribute-planenr-section .swiper_back {
+        padding: 3px 9px;
+        top: 43px;
+        left: 23px;
+    }
+    .atribute-planenr-section .ei-corte-details {
+        max-width: 100%;
+        min-height: 514px;
+    }
+    .atribute-planenr-section .discription_section .map_pera {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: scroll;
+        text-overflow: ellipsis;
+    }
 }
 /* ========== EXPLORE-ATTRECTION CSS END ========= */
 
 /* ============ navbar ============= */
-@media screen and (min-width:992px){
-  .navbar .offcanvas-start.show{
-    visibility: hidden !important;
-  } 
+@media screen and (min-width: 992px) {
+    .navbar .offcanvas-start.show {
+        visibility: hidden !important;
+    }
 }
-@media screen and (max-width:578px) {
-  .check-in-out-form .check-in-out-icon .check-icons-inner{
-    display: none;
-  }
+@media screen and (max-width: 578px) {
+    .check-in-out-form .check-in-out-icon .check-icons-inner {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+        flex: 0 0 40% !important;
+        padding-right: 70px !important;
+    }
+    .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
+        flex: 0 0 52% !important;
+        padding-left: 16px !important;
+    }
+}
+@media screen and (max-width: 992px) {
+    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+        flex: 0 0 40% !important;
+        padding-right: 2px !important;
+    }
+    .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
+        flex: 0 0 60% !important;
+        padding-left: 2px !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+        flex: 0 0 40% !important;
+        padding-right: 2px !important;
+        margin: 0 auto !important;
+    }
+    .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
+        display: none !important;
+    }
 }
