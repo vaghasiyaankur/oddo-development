@@ -69,7 +69,7 @@ Layout & pricing
                                 </div>
                             </form>
                         </div>
-                        
+
                         <div class="form-info-box mt-3 bed_option_div">
                             <form action="" class="form-bedoption">
                                 <div class="p-form-heading">
@@ -86,12 +86,12 @@ Layout & pricing
                                     <input type="hidden" class="number-of-select" value="1">
                                     <div class="d-flex align-items-center mb-3 bed_option_1 bed-option-div" >
                                         @if(isset($hotelBeds) && $hotelBeds->count() > 0)
-                                        @foreach ($hotelBeds as $hotelBed)    
+                                        @foreach ($hotelBeds as $hotelBed)
                                             <input type="hidden" value="{{$hotelBed->UUID}}" class="bedId">
                                         @endforeach
                                         <select class="form-select w-50 bed_size bed_size_1 select-bed" >
                                             @foreach ($beds as $bed)
-                                            @foreach ($hotelBeds as $hotelBed)     
+                                            @foreach ($hotelBeds as $hotelBed)
                                                         <option value="{{$bed->id}}" {{ isset($hotelBed) && $bed->id == $hotelBed->bed_id ? 'selected' : '' }}>{{$bed->bed_type}} / {{$bed->bed_size}}</option>
                                                     @endforeach
                                                 @endforeach
@@ -161,7 +161,7 @@ Layout & pricing
                                         <div class="form-check form-check-inline bathroom-radio">
                                             <label class="form-check-label" for="yes">
                                             <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes"  {{ isset($roomDetail) && $roomDetail->bathroom_private == 'yes'  ? 'checked' : '' }}>
-                                            Yes    
+                                            Yes
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline bathroom-radio">
@@ -176,11 +176,11 @@ Layout & pricing
                                             <label for="" class="form-label label-heading ">Which bathroom items are avaliable in this room?</label>
                                         </div>
                                     </div>
-                                    <div class="bathroom-item-list ">      
+                                    <div class="bathroom-item-list ">
                                         <div class="bathroom-item-check d-flex flex-wrap align-items-center justify-content-between">
                                             <input type="hidden" name="property_type" class="property_type" value="{{@$hotel->propertytype->type}}">
 
-                                            <?php 
+                                            <?php
                                                 if(isset($roomDetail)) $bathroomDatas = explode(',', $roomDetail->bathroom_item );
                                             ?>
                                             @foreach ($bathrooms as $bathroom)
@@ -190,7 +190,7 @@ Layout & pricing
                                                         {{$bathroom->item}}
                                                     </label>
                                                 </div>
-                                            @endforeach     
+                                            @endforeach
                                         </div>
                                     </div>
                                 </form>
@@ -208,12 +208,12 @@ Layout & pricing
                                         <div class="input-group mb-3 total-room-layout w-50">
                                             <label for="" class="form-label label-heading">Price for <span class="total_person">1</span> person</label>
                                             <div class="input-group flex-nowrap">
-                                                <span class="input-group-text para-fs-14" id="addon-wrapping">INR/per
+                                                <span class="input-group-text para-fs-14" id="addon-wrapping" >INR/per
                                                     Night</span>
                                                 <input type="text" class="form-control custom-from-control bed_price" placeholder="0" value="{{ isset($roomDetail) ? $roomDetail->price_room : '' }}" >
                                             </div>
                                             <span id="bed_price_error" class="text-danger"></span>
-                                            
+
                                             {{-- <div class="total-room-layout pt-3 d-none number-of-bed">
                                                 <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
                                                 <select class="form-select layout-totalroom  me-3 extra_no_of_bed">
@@ -246,7 +246,7 @@ Layout & pricing
                                             <div class="amenities-title pt-3 dicount-label-div">
                                                 <label for="" class="form-label label-heading ">How much discount do you offer?</label>
                                             </div>
-                                            <div class="input-group mb-3 discount-div ">                                            
+                                            <div class="input-group mb-3 discount-div ">
                                                 <div class="w-50 d-flex">
                                                     <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button" value="{{ isset($roomDetail) ? $roomDetail->discount : '0' }}" >
                                                     <select class="form-select c-form-select discountType" style="border-radius: 0px" name="discount-type" aria-label="Default select example">
@@ -256,7 +256,7 @@ Layout & pricing
                                                 </div>
                                                 <span class="ps-2 lh-3">per guest</span>
                                             </div>
-                                            
+
                                             <div class="p-form-select pt-3 price_wrapper offer-person-div">
                                                 <label for="" class="form-label label-heading">What is the minimum occupancy you are willing to offer a discount for?   </label>
                                                 <input type="hidden" class="numberOfpersonDiscount" value="{{ isset($roomDetail) ? $roomDetail->min_person_discount : '' }}" >
@@ -266,9 +266,10 @@ Layout & pricing
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-6 price-summary-main ">
+                                <div class="col-md-6 price-summary-main" id="price-discounts" style="display: none;">
                                     <div class="price-summary mt-3 mt-lg-0">
                                         <h4 class="mt-3 price-summary-head fw-bold">Price summary for: dsfdsf</h4>
+
                                         <div class="row justify-content-between">
                                             <div class="col-6">
                                                 <p class="mb-1">Number of guests</p>
@@ -277,13 +278,13 @@ Layout & pricing
                                                 <p class="mb-1">Price</p>
                                             </div>
                                         </div>
-                                        <div class="price-discount-div">
+                                        <div class="price-discount-div ">
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="another-c-details mt-4">
                             @if(isset($roomDetail))
@@ -350,6 +351,13 @@ Layout & pricing
 
 @push('scripts')
 <script>
+    $(document).on('click', '#addon-wrapping', function(){
+        $('#price-discounts').addClass('d-block');
+        $('.price-discount-div').addClass('d-block');
+    });
+
+</script>
+<script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -364,42 +372,44 @@ Layout & pricing
 
         $(document).on('keyup', '.number_of_guest', function(){
             var value = $(this).val();
-            
+
             $('.total_person').text(value);
             // $('.number-person').text(value);
 
             if (!value) {
-                $('.total_person').text('0');    
-                $('.number-person').text('0'); 
-            } 
+                $('.total_person').text('0');
+                $('.number-person').text('0');
+            }
 
             var OfferCheck = $('.offer-check:checked').val();
             if(OfferCheck == 'yes')  {
-                RoomDiscount();  
+                RoomDiscount();
                 selected();
-            }       
+            }
         });
-        
+
         $(document).on('focusout', '.discountValue', function(){
-            RoomDiscount();  
-            selected(); 
+            RoomDiscount();
+            selected();
         });
 
         $(document).on('focusout', '.discountType', function(){
-            RoomDiscount(); 
-            selected();   
+            RoomDiscount();
+            selected();
         });
 
         $(document).on('focusout', '.bed_price', function(){
-            RoomDiscount();  
-            selected(name);  
+            RoomDiscount();
+            selected(name);
         });
 
         $(document).on('change', '.star_rating', function(){
             var name = $('.star_rating').find(":selected").text();
             RoomDiscount(name);
-            selected(name); 
+            selected(name);
         });
+
+
 
 
         function RoomDiscount(name){
@@ -414,18 +424,18 @@ Layout & pricing
             for(i=0; i < noOfPerson; i++) {
                 var dec  = (discountValue / 100).toFixed(2);
                 var mult = total * dec * i;
-                
+
                 if(discountType == 'percentage'){
                     var amount = total - mult;
                 }else {
                     var amount = total - discountValue * i;
                 }
-                
+
                 if (j < name) { break; }
                     $(".price-discount-div").append('<div class="row">' +
                                                 '<div class="col-6">' +
                                                    ' <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span>'+j+'</p>' +
-                                                '</div>' + 
+                                                '</div>' +
                                                 '<div class="col-6">' +
                                                    '<p class="mb-1 '+  (amount <= 0 ? 'text-danger': 'text-success')  +'">Rs.'+ amount +'</p>' +
                                                 '</div>' +
@@ -459,8 +469,8 @@ Layout & pricing
 
         function offerCheck(offer) {
             if(offer == 'yes'){
-                RoomDiscount();  
-                selected();  
+                RoomDiscount();
+                selected();
                 $(".discount-div").removeClass('d-none');
             }else{
                 $(".discount-div").addClass('d-none');
@@ -469,11 +479,11 @@ Layout & pricing
                 var total = $('.bed_price').val();
 
                 $(".price-discount-div").empty();
-                
+
                 $(".price-discount-div").append('<div class="row">' +
                                             '<div class="col-6">' +
                                                ' <p class="mb-1"><i class="fa-solid fa-user"></i> X <span class="number-person"></span>'+noOfPerson+'</p>' +
-                                            '</div>' + 
+                                            '</div>' +
                                             '<div class="col-6">' +
                                                '<p class="mb-1 text-success">Rs.'+ total +'</p>' +
                                             '</div>' +
@@ -487,7 +497,7 @@ Layout & pricing
         $("#p_add_another").bind("click", function () {
             var number = $('.number-of-select').val();
             var numbers = parseInt(number)+1;
-            
+
             $("#text-input-add").append('<div class="d-flex align-items-center mb-3 bed-option-div" >' +
                                             '<input type="hidden" value="0" class="bedId">' +
                                             '<select class="form-select w-50 bed_size_'+numbers+' select-bed" >'+
@@ -516,20 +526,21 @@ Layout & pricing
             var number = $('.number-of-select').val(numbers);
         });
 
-    $('.room_name_select').on('change', function(){ 
+    $('.room_name_select').on('change', function(){
         var room_type = $('.room_name_select :selected').text();
         var set_title = $('.room_type_title').html(room_type);
     });
+
 
     $(".btn-submit-click").on('click', function(){
 
         let room_type = $('.room_type option:selected').val();
         !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
 
-        
+
         let number_of_guest = $('.number_of_guest').val();
         !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) : $(`#number_of_guest_error`).html(``);
-        
+
         let bed_price = $('.bed_price').val();
         !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
 
@@ -541,7 +552,7 @@ Layout & pricing
         if (!room_type || !bed_price) {
             return;
         }
-        
+
         let custom_name      = $('.custom_name').val();
         let room_name_select = $('.room_name_select').val();
         let smoking_area     = $('.smoking_area').val();
@@ -555,7 +566,7 @@ Layout & pricing
         let personDis        = $('.offer-person-select').val();
         let checked          = $('.offer-check:checked').val();
 
-        let property_type       = $('.property_type').val(); 
+        let property_type       = $('.property_type').val();
 
         formdata = new FormData();
 
@@ -576,10 +587,10 @@ Layout & pricing
             formdata.append('discountType', discountType);
             formdata.append('personDis', personDis);
         }
-       
+
 
         $('.spinner-border').show();
-        
+
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -595,24 +606,23 @@ Layout & pricing
                     window.location = res.redirect_url;
                 }
             },
-        }); 
+        });
 
     });
 
-    $('.room_type').on('change', function(){ 
+    $('.room_type').on('change', function(){
         roomName();
     });
-
 
     function roomName(){
         var room_type = $('.room_type :selected').text();
         var set_title = $('.room_type_title').html(room_type);
-        var room_type_id = $('.room_type :selected').val(); 
+        var room_type_id = $('.room_type :selected').val();
 
         if(room_type != 'Please Select'){
             $('.layout-room-name').removeClass('d-none');
         }else{
-            $('.layout-room-name').addClass('d-none');  
+            $('.layout-room-name').addClass('d-none');
         }
 
 
@@ -620,7 +630,7 @@ Layout & pricing
             $('.bed_option_div').addClass('d-none');
         }else{
             $('.bed_option_div').removeClass('d-none');
-        } 
+        }
         $.ajax({
             url:"{{ route('room-lists') }}",
             type:"POST",
@@ -657,7 +667,7 @@ Layout & pricing
         }}).get();
 
         var roomId = $('.roomId').val();
-        var hotelId = $('.hotelId').val(); 
+        var hotelId = $('.hotelId').val();
 
         if (!room_type || !bed_price) {
             return;
@@ -676,7 +686,7 @@ Layout & pricing
         let personDis        = $('.offer-person-select').val();
         let checked          = $('.offer-check:checked').val();
 
-        let property_type       = $('.property_type').val(); 
+        let property_type       = $('.property_type').val();
 
         formdata = new FormData();
 
@@ -718,8 +728,11 @@ Layout & pricing
                     window.location = res.redirect_url;
                 }
             },
-        }); 
+        });
     });
+
+
 });
-</script> 
+</script>
+
 @endpush

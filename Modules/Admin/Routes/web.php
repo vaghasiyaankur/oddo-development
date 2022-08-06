@@ -15,7 +15,7 @@ Route::prefix('admin')->group(function() {
     Route::controller(LoginController::class)->group(function(){
         Route::get('/login', 'index')->name('admin.index');
         Route::post('/login', 'login')->name('admin.login');
-        Route::get('/logout', 'logout')->name('admin.logout');  
+        Route::get('/logout', 'logout')->name('admin.logout');
     });
 
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
@@ -46,34 +46,34 @@ Route::prefix('admin')->group(function() {
             Route::post('/add-facility', 'store')->name('add.facility');
             Route::post('/update-facility/{id}', 'update')->name('update.facility');
             Route::post('/status-facility', 'statusFacility')->name('status.facility');
-            Route::post('/delete-facility/{id}', 'destroy')->name('delete.facility');  
+            Route::post('/delete-facility/{id}', 'destroy')->name('delete.facility');
         });
-    
+
         // roomType
         Route::controller(RoomTypeController::class)->group(function(){
             Route::get('/room-type', 'index')->name('roomType.index');
             Route::get('/room-type-list', 'roomTypeList')->name('roomtype.list');
-            Route::post('/add-room-type', 'store')->name('add.roomtype');  
+            Route::post('/add-room-type', 'store')->name('add.roomtype');
             Route::post('/update-roomtype/{id}', 'update')->name('update.roomtype');
-            Route::post('/delete-roomtype/{id}', 'destroy')->name('delete.roomtype');  
+            Route::post('/delete-roomtype/{id}', 'destroy')->name('delete.roomtype');
             Route::post('/status-roomtype', 'statusRoomType')->name('status.roomtype');
         });
 
         // room
         Route::controller(RoomController::class)->group(function(){
-            Route::get('/room', 'index')->name('room.index');   
+            Route::get('/room', 'index')->name('room.index');
             Route::get('/room-list', 'roomList')->name('room.list');
             Route::post('/add-room', 'store')->name('add.room');
-            Route::post('/update-room/{id}', 'update')->name('update.room');  
-            Route::post('/delete-room/{id}', 'destroy')->name('delete.room');  
+            Route::post('/update-room/{id}', 'update')->name('update.room');
+            Route::post('/delete-room/{id}', 'destroy')->name('delete.room');
             Route::post('/status-room', 'statusRoom')->name('status.room');
         });
 
         // location
         Route::controller(LocationController::class)->group(function(){
-            Route::get('/location', 'index')->name('location.index'); 
+            Route::get('/location', 'index')->name('location.index');
             Route::get('/location-list', 'locationList')->name('location.list');
-            Route::post('/add-location', 'store')->name('add.location'); 
+            Route::post('/add-location', 'store')->name('add.location');
             Route::post('/featured-location', 'featuredLocation')->name('featured.location');
             Route::post('/delete-location/{id}', 'destroy')->name('delete.location');
             Route::post('/update-location/{id}', 'update')->name('update.location');
@@ -104,22 +104,28 @@ Route::prefix('admin')->group(function() {
             Route::get('/food', 'index')->name('food.index');
             Route::get('/food-list', 'foodList')->name('food.list');
             Route::post('/add-food', 'store')->name('add.food');
-            Route::post('/status-food', 'statusFood')->name('status.food'); 
+            Route::post('/status-food', 'statusFood')->name('status.food');
             Route::post('/delete-food/{id}', 'destroy')->name('delete.food');
             Route::post('/update-food/{id}', 'update')->name('update.food');
         });
 
-        // Setting
-        Route::controller(SettingController::class)->group(function(){
-            Route::get('setting', 'index')->name('setting.index');
-            Route::post('update/logo', 'updateLogo')->name('update.logo');
+        Route::controller(PropertyController::class)->group(function(){
+            Route::get('/property','index')->name('property.index');
+            Route::get('/property-list', 'propertyList')->name('property.list');
+            Route::post('/property-status','PropertyStatus')->name('property.status');
         });
 
-        // booking
+         // Setting
+         Route::controller(SettingController::class)->group(function(){
+         Route::view('setting', 'admin::Settings.index')->name('setting.index');
+         });
+
+          // booking
         Route::controller(BookingController::class)->group(function(){
             Route::view('booking', 'admin::booking.index')->name('booking.index');
         });
     });
+
 
     // Route::view('/amenity-view', 'admin::amenity');
     // Route::view('/location-old', 'admin::location');

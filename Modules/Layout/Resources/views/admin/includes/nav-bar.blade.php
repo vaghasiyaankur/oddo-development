@@ -8,7 +8,7 @@
                     <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                 </a>
             </li> <!-- end Dashboard Menu -->
-            
+
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenityCategory.index']) ? 'active' : '' }}" href="#amenityList1" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="amenityList1">
@@ -74,6 +74,12 @@
                 </a>
             </li>
             <li class="nav-item">
+
+                <a class="nav-link menu-link {{ Request::routeIs('property.index') ? 'active' : '' }}" href="{{ route('property.index') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Property</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('booking.index') ? 'active' : '' }}" href="{{ route('booking.index') }}">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Booking</span>
                 </a>
@@ -81,6 +87,7 @@
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('setting.index') ? 'active' : '' }}" href="{{ route('setting.index') }}">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Settings</span>
+
                 </a>
             </li>
             <li class="nav-item">

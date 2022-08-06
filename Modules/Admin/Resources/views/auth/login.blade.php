@@ -2,7 +2,7 @@
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
 
     <head>
-        
+
         <meta charset="utf-8" />
         <title>Sign In | Velzon - Admin & Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
             <!-- auth page bg -->
             <div class="auth-one-bg-position auth-one-bg"  id="auth-particles">
                 <div class="bg-overlay"></div>
-                
+
                 <div class="shape">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
                         <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
@@ -59,12 +59,16 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-lg-6 col-xl-5">
                             <div class="card mt-4">
-                            
-                                <div class="card-body p-4"> 
+
+                                <div class="card-body p-4">
                                     <div class="text-center mt-2">
                                         <h5 class="text-primary">Welcome Back !</h5>
                                         <p class="text-muted">Sign in to continue to Odda.</p>
                                     </div>
+
+                                    @if(session('error'))
+                                    <div class="alert alert-danger mb-0">{{session('error')}}</div>
+                                    @endif
                                     <div class="p-2 mt-4">
                                         <form action="{{route('admin.login')}}" method="POST">
                                             @csrf
@@ -75,7 +79,7 @@
                                                     <span class="error text-danger">{{ $errors->first('email') }}</span>
                                                 @endif
                                             </div>
-                    
+
                                             <div class="mb-3">
                                                 {{-- <div class="float-end">
                                                     <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
@@ -89,7 +93,7 @@
                                                     <span class="error text-danger">{{ $errors->first('password') }}</span>
                                                 @endif
                                             </div>
-                                            
+
                                             <div class="mt-4">
                                                 <button class="btn btn-success w-100" type="submit">Sign In</button>
                                             </div>
@@ -128,6 +132,7 @@
         <!-- end auth-page-wrapper -->
 
         <!-- JAVASCRIPT -->
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="{{ asset('assets/Admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/Admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
@@ -141,6 +146,13 @@
         <script src="{{ asset('assets/Admin/assets/js/pages/particles.app.js') }}"></script>
         <!-- password-addon init -->
         <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
+        <script  type="text/javascript">
+            $(document).ready(function() {
+                setTimeout(function(){
+                    $('.alert-danger').hide();
+                }, 4000);
+            });
+        </script>
     </body>
 
 </html>
