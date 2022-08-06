@@ -23,6 +23,7 @@ use Modules\UserSite\Database\Seeders\HotelRoomTableSeeder;
 use Modules\UserSite\Database\Seeders\HotelPhotoTableSeeder;
 use Modules\UserSite\Database\Seeders\LogoFaviconTableSeeder;
 use Database\Seeders\UserTableSeeder;
+use Modules\UserSite\Database\Seeders\GeneralSettingTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
             HotelRoomTableSeeder::class,
             HotelPhotoTableSeeder::class,
             LogoFaviconTableSeeder::class,
+            GeneralSettingTableSeeder::class,
         ]);
     }
 }

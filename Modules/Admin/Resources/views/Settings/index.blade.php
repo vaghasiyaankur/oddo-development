@@ -1,6 +1,8 @@
 @extends('layout::admin.master')
 
 @push('css')
+<link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css">
+<link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
 <style>
 .headingText{
     position: absolute;
@@ -95,6 +97,47 @@ input:not([type="radio"]), textarea {
 .bg--dark {
     background-color: #071251 !important;
 }
+
+/* logo & favicon start  */
+.logo-favicon .card{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.25);
+}
+
+.logo-uplod svg {
+  width: auto;
+}
+
+.logo-uplod .filepond--credits {
+  display: none;
+}
+.logo-uplod  .filepond--root {
+  width: 100%;
+  max-width: 420px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+.logo-uplod .filepond--root .filepond--drop-label {
+    height:100%;
+    min-height: 100px;
+}
+.logo-uplod .filepond--drop-label {
+  color: #4c4e53;
+}
+.logo-uplod .filepond--label-action {
+  text-decoration-color: #babdc0;
+}
+.logo-uplod .filepond--panel-root {
+  border-radius: 2em;
+  background-color: #edf0f4;
+  height: 1em;
+}
+.logo-uplod .filepond--item-panel {
+  background-color: #595e68;
+}
+.logo-uplod .filepond--drip-blob {
+  background-color: #7f8a9a;
+}
 </style>
 @endpush
 
@@ -152,9 +195,9 @@ input:not([type="radio"]), textarea {
                         <div class="card-body p-4" style="min-height: 500px; height: 100%;">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="generalSetting" role="tabpanel">
+                                    @include('admin::settings.generalSetting')
                                 </div>
                                 <!--end tab-pane-->
-                                
                                 <!--end tab-pane-->
                                 <div class="tab-pane" id="logoFavicon" role="tabpanel">
                                     @include('admin::settings.logoFavicon')

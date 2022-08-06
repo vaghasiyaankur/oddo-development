@@ -119,6 +119,7 @@ Route::prefix('admin')->group(function() {
          Route::controller(SettingController::class)->group(function(){
             Route::get('setting', 'index')->name('setting.index');
             Route::post('update/logo', 'updateLogo')->name('update.logo');
+            Route::post('update/generalsetting', 'updateGeneralSetting')->name('update.generalSetting');
          });
 
           // booking
