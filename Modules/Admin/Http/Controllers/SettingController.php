@@ -5,6 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\LogoFavicon;
+use File;
 
 class SettingController extends Controller
 {
@@ -14,7 +16,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('admin::index');
+        $logoFavicon = LogoFavicon::first();
+        return view('admin::settings.index', compact('logoFavicon'));
     }
 
     /**
@@ -75,5 +78,48 @@ class SettingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateLogo(Request $request)
+    {
+        $whiteBackground = $request->file('whiteBackground');
+        $blackBackground = $request->file('blackBackground');
+        $favicon = $request->file('favicon');
+        $logo = LogoFavicon::first();
+
+        if($whiteBackground) {
+            $logo_image_whiteBackground =  'logo/img_'.rand(100000,999999).".".$whiteBackground->GetClientOriginalExtension();
+            $whiteBackground->move(public_path('storage/logo/'),$logo_image_whiteBackground);
+            
+            $path = public_path()."/storage/".@$logo->white_background;
+            $result = File::exists($path);
+            if($result) File::delete($path);
+            
+            $logo->white_background = $logo_image_whiteBackground;
+        }
+        
+         if($blackBackground) {
+            $logo_image_blackBackground =  'logo/img_'.rand(100000,999999).".".$blackBackground->GetClientOriginalExtension();
+            $blackBackground->move(public_path('storage/logo/'),$logo_image_blackBackground);
+            
+            $path = public_path()."/storage/".@$logo->black_background;
+            $result = File::exists($path);
+            if($result) File::delete($path);
+
+            $logo->black_background = $logo_image_blackBackground;
+        }
+        
+        if($favicon){
+            $logo_image_favicon =  'logo/img_'.rand(100000,999999).".".$favicon->GetClientOriginalExtension();
+            $favicon->move(public_path('storage/logo/'),$logo_image_favicon);
+            
+            $path = public_path()."/storage/".@$logo->favicon;
+            $result = File::exists($path);
+            if($result) File::delete($path);
+    
+            $logo->favicon = $logo_image_favicon;
+        }
+        $logo->update();
+        return response()->json(["success" => "logo update Successfully"], 200);
     }
 }

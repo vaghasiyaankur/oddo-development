@@ -109,10 +109,16 @@ Route::prefix('admin')->group(function() {
             Route::post('/update-food/{id}', 'update')->name('update.food');
         });
 
-         // Setting
-         Route::controller(SettingController::class)->group(function(){
-         Route::view('setting', 'admin::Settings.index')->name('setting.index');
-         });
+        // Setting
+        Route::controller(SettingController::class)->group(function(){
+            Route::get('setting', 'index')->name('setting.index');
+            Route::post('update/logo', 'updateLogo')->name('update.logo');
+        });
+
+        // booking
+        Route::controller(BookingController::class)->group(function(){
+            Route::view('booking', 'admin::booking.index')->name('booking.index');
+        });
     });
 
     // Route::view('/amenity-view', 'admin::amenity');
