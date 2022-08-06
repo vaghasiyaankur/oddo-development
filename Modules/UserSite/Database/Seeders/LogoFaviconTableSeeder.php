@@ -26,7 +26,7 @@ class LogoFaviconTableSeeder extends Seeder
             'favicon' => 'logo/favicon.png',
         ]);
 
-        File::copy(public_path('storage/images/white_background.png'), public_path('storage/logo/white_background.png'));
-        File::copy(public_path('storage/images/favicon.png'), public_path('storage/logo/favicon.png'));
+        // File::copy(public_path('storage/images/white_background.png'), public_path('storage/logo/white_background.png'));
+        // File::copy(public_path('storage/images/favicon.png'), public_path('storage/logo/favicon.png'));
     }
 }
