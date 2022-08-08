@@ -127,7 +127,13 @@ Route::prefix('admin')->group(function() {
             Route::post('update/logo', 'updateLogo')->name('update.logo');
             Route::post('delete/favicon/{id}', 'deleteFavicon')->name('delete.favicon');
             Route::post('delete/logo/{id}', 'deleteLogo')->name('delete.logo');
-         });
+        });
+
+        // booking
+        Route::controller(BookingController::class)->group(function(){
+            // Route::get('booking', 'index')->name('booking.index');
+        Route::view('booking', 'admin::booking.index')->name('booking.index');
+        });
 
     });
 
