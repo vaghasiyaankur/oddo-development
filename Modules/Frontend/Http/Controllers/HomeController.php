@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\City;
 use App\Models\Partner;
+use App\Models\LogoFavicon;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,12 @@ class HomeController extends Controller
         $cities = City::where('featured',1)->get();
         $partners = Partner::get();
         return view('frontend::home.index',compact('cities','partners'));
+    }
+
+    public static function logoFavicon()
+    {
+        $LogoFavicon = LogoFavicon::first();
+        return $LogoFavicon;
     }
 
     /**

@@ -1,3 +1,4 @@
+@php $logoFavicon = Modules\Admin\Http\Controllers\AdminController::logoFavicon() @endphp
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex align-items-center">
@@ -5,11 +6,10 @@
             <div class="navbar-brand-box horizontal-logo">
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/Admin/assets/images/logo-sm.png') }}" alt="" height="22">
+                        <img src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/Admin/assets/images/logo-dark.png') }}" alt=""
-                            height="17">
+                        <img src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}" height="50">
                     </span>
                 </a>
             </div>

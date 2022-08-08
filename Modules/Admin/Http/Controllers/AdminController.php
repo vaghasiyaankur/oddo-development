@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\LogoFavicon;
 
 class AdminController extends Controller
 {
@@ -75,5 +76,11 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function logoFavicon()
+    {
+        $LogoFavicon = LogoFavicon::first();
+        return $LogoFavicon;
     }
 }

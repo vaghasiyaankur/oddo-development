@@ -1,3 +1,4 @@
+@php $logoFavicon = Modules\Admin\Http\Controllers\AdminController::logoFavicon() @endphp
 <!DOCTYPE html>
 <html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
 
@@ -7,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>odda / @yield('title')</title>
+    <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
+
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/style.css') }}">
 
