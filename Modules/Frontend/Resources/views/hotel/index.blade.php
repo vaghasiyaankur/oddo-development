@@ -430,8 +430,8 @@
                         <aside class="side-content">
                             <div class="d-flex align-items-center justify-content-between">
                                 <span class="side-text">Viewing  {{ $hotels->total() }} results</span>
-                                <span class="side-btn">
-                                    <a href="javascript:;" class="btn reset-btn Resetform">Reset</a>
+                                <span class="side-btn ResetForm d-none">
+                                    <a href="javascript:;" id="ResetForm" class="btn reset-btn Resetform">Reset</a>
                                 </span>
                             </div>
                             <form class="hotel-result-form" id="formReset">
@@ -448,7 +448,7 @@
                                 <div class="hotels-result-sort pt-4">
                                     <h5 class="search-heading ">Sort By</h5>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                        <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
                                             id="flexCheckChecked" checked>
                                         <div class="search-prefe-main d-flex justify-content-between align-items-center">
                                             <div class="search-prefe-text">
@@ -767,21 +767,21 @@
                                         </div>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sortBy" type="checkbox" value=""
+                                        <input class="form-check-input sortBy" name="FilterCheck"  type="checkbox" value=""
                                             id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Price: low to high
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sortBy" type="checkbox" value=""
+                                        <input class="form-check-input sortBy" name="FilterCheck"  type="checkbox" value=""
                                             id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Price: high to low
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sortBy" type="checkbox" value=""
+                                        <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value=""
                                             id="flexCheckDefault">
                                         <label class="form-check-label ps-2" for="flexCheckDefault">
                                             Guess Review
@@ -800,28 +800,28 @@
                                             <h6>Top filters </h6>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" name="FilterCheck"  type="checkbox" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Final price with taxes fees
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Breakfast Included
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
                                                 id="flexCheckChecked" checked>
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Flexible Check-In
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Flexible Check-Out
@@ -833,21 +833,21 @@
                                             <h6>Style </h6>
                                         </div>
                                         <div class="form-check ">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Modern
                                             </label>
                                         </div>
                                         <div class="form-check ">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
                                                 id="flexCheckChecked" checked>
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Historic
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Contemporary
@@ -875,7 +875,7 @@
                                             <h6>Property Class </h6>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input starRating" type="checkbox" value="5"
+                                            <input class="form-check-input starRating" type="checkbox" name="FilterCheck" value="5"
                                                 id="star_5"  {{ request()->starRating  == 5 ? 'checked'  : ''}}>
                                                 <label for="star_5">
                                                     <span class="property-class-icon ps-2"><img
@@ -891,7 +891,7 @@
                                                 </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input starRating" type="checkbox" value="4"
+                                            <input class="form-check-input starRating" type="checkbox" name="FilterCheck" value="4"
                                                 id="star_4" {{ request()->starRating == 4 ? 'checked'  : ''}}>
                                             <label for="star_4">
                                                 <span class="property-class-icon ps-2"><img
@@ -905,7 +905,7 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input starRating" type="checkbox" value="3"
+                                            <input class="form-check-input starRating" type="checkbox" name="FilterCheck" value="3"
                                                 id="star_3" {{ request()->starRating == 3 ? 'checked'  : ''}}>
                                             <label for="star_3">
                                                 <span class="property-class-icon ps-2"><img
@@ -917,7 +917,7 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input starRating" type="checkbox" value="2"
+                                            <input class="form-check-input starRating" type="checkbox" name="FilterCheck" value="2"
                                                 id="star_2" {{ request()->starRating == 2 ? 'checked'  : ''}}>
                                             <label for="star_2">
                                                 <span class="property-class-icon ps-2"><img
@@ -927,7 +927,7 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input starRating" type="checkbox" value="1"
+                                            <input class="form-check-input starRating" type="checkbox" name="FilterCheck" value="1"
                                                 id="star_1" {{ request()->starRating == 1 ? 'checked'  : ''}}>
                                             <label for="star_1">
                                                 <span class="property-class-icon ps-2"><img
@@ -980,7 +980,7 @@
                                             <h6>Amenities </h6>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
                                                 id="flexCheckDefault">
                                             <label class="form-check-label ps-2 amenityValue" for="flexCheckDefault">
                                                 All Amenities
@@ -988,7 +988,7 @@
                                         </div>
                                         @foreach ($amenities as $amenity)
                                             <div class="form-check">
-                                                <input class="form-check-input ps-2 amenityValue" type="checkbox" value=""
+                                                <input class="form-check-input ps-2 amenityValue" type="checkbox" name="FilterCheck" value=""
                                                     id="flexCheckChecked">
                                                 <label class="form-check-label " for="flexCheckDefault">
                                                     {{ @$amenity->amenities }}
@@ -1463,8 +1463,18 @@ $(document).ready(function(){
         }
     }
 
-    var searchProperty = $('.searchProperty').val().length;
-    searchPropertyData(searchProperty);
+    $(document).ready(function(){
+        // if($('input[type="checkbox"]:checked').length > 0){
+        //     $('.ResetForm').removeClass('d-none');
+        // }
+        $('input[type="checkbox"]').change(function() {
+            if($('input[name="FilterCheck"]:checked').length > 0){
+                $('.ResetForm').removeClass('d-none');
+            }else{
+                $('.ResetForm').addClass('d-none');
+            }
+        });
+    });
 
 });
 </script>
