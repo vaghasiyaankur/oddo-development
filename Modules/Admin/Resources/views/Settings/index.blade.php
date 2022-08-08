@@ -119,7 +119,7 @@ input:not([type="radio"]), textarea {
 }
 .logo-uplod .filepond--root .filepond--drop-label {
     height:100%;
-    min-height: 100px;
+    min-height: 232px;
 }
 .logo-uplod .filepond--drop-label {
   color: #4c4e53;
@@ -137,6 +137,38 @@ input:not([type="radio"]), textarea {
 }
 .logo-uplod .filepond--drip-blob {
   background-color: #7f8a9a;
+}
+
+.tab-content .tab-pane .logo-favicon .logo-btn{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #0ab39c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+.logo-image{
+    width: 100%;
+    max-width: 420px;
+    background: #edf0f4;
+    margin: 0 auto;
+    height: 100%;
+    min-height: 232px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    position: relative;
+}
+.logo-image .logo-btn-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #0ab39c;
+    border-radius: 50%;
+    padding: 0px 5px;
+    color: #fff;
 }
 </style>
 @endpush

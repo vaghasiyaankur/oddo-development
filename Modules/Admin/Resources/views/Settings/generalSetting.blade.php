@@ -36,7 +36,7 @@
         </div>
         <div class="col-lg-4 pb-3">
             <label for="exampleInputdate" class="form-label ">Currency symbol</label>
-            <input type="text" class="form-control symbol currencySymbol" id="labelInput" placeholder="Currency symbol" >
+            <input type="text" class="form-control symbol currencySymbol" id="labelInput" placeholder="Currency symbol" value="{{$GeneralSetting->symbol}}">
             <span class="text-danger" id="currencySymbol-error"></span>
         </div>
         <div class="send-btn text-end">
@@ -46,7 +46,3 @@
         </div>
     </div>
 </div> 
-
-@push('script')
-
-@endpush

@@ -86,51 +86,71 @@ class SettingController extends Controller
 
     public function updateLogo(Request $request)
     {
-        $whiteBackground = $request->file('whiteBackground');
-        $blackBackground = $request->file('blackBackground');
+        if (!isset($_FILES['logo']) && !isset($_FILES['favicon'])) {
+            return response()->json(["error" => "please select logo or favicon."], 403);
+        } 
+
+        $logo = $request->file('logo');
         $favicon = $request->file('favicon');
-        $logo = LogoFavicon::first();
+        $LogoFavicon = LogoFavicon::first();
 
-        if($whiteBackground) {
-            $logo_image_whiteBackground =  'logo/img_'.rand(100000,999999).".".$whiteBackground->GetClientOriginalExtension();
-            $whiteBackground->move(public_path('storage/logo/'),$logo_image_whiteBackground);
+
+        if($logo) {
+            $logo_image =  'logo/img_'.rand(100000,999999).".".$logo->GetClientOriginalExtension();
+            $logo->move(public_path('storage/logo/'),$logo_image);
             
-            $path = public_path()."/storage/".@$logo->white_background;
+            $path = public_path()."/storage/".@$LogoFavicon->logo;
             $result = File::exists($path);
             if($result) File::delete($path);
             
-            $logo->white_background = $logo_image_whiteBackground;
-        }
-        
-         if($blackBackground) {
-            $logo_image_blackBackground =  'logo/img_'.rand(100000,999999).".".$blackBackground->GetClientOriginalExtension();
-            $blackBackground->move(public_path('storage/logo/'),$logo_image_blackBackground);
-            
-            $path = public_path()."/storage/".@$logo->black_background;
-            $result = File::exists($path);
-            if($result) File::delete($path);
-
-            $logo->black_background = $logo_image_blackBackground;
+            $LogoFavicon->logo = $logo_image;
         }
         
         if($favicon){
             $logo_image_favicon =  'logo/img_'.rand(100000,999999).".".$favicon->GetClientOriginalExtension();
             $favicon->move(public_path('storage/logo/'),$logo_image_favicon);
             
-            $path = public_path()."/storage/".@$logo->favicon;
+            $path = public_path()."/storage/".@$LogoFavicon->favicon;
             $result = File::exists($path);
             if($result) File::delete($path);
     
-            $logo->favicon = $logo_image_favicon;
+            $LogoFavicon->favicon = $logo_image_favicon;
         }
-        $logo->update();
+        $LogoFavicon->update();
         return response()->json(["success" => "logo update Successfully"], 200);
+    }
+
+    public function deleteFavicon($id)
+    {
+        $LogoFavicon = LogoFavicon::where('id',$id)->first();
+
+        $path = public_path()."/storage/".@$LogoFavicon->favicon;
+        $result = File::exists($path);
+        if($result) File::delete($path);
+
+        $LogoFavicon->favicon = null;
+        $LogoFavicon->update();
+
+        return response()->json(["error" => "favicon delete Successfully"], 200);
+    }   
+
+    public function deleteLogo($id)
+    {
+        $LogoFavicon = LogoFavicon::where('id',$id)->first();
+
+        $path = public_path()."/storage/".@$LogoFavicon->logo;
+        $result = File::exists($path);
+        if($result) File::delete($path);
+
+        $LogoFavicon->logo = null;
+        $LogoFavicon->update();
+
+        return response()->json(["error" => "logo delete Successfully"], 200);
     }
 
     public function updateGeneralSetting(Request $request)
     {
         $id = 1;
-
         $amenity   =  GeneralSetting::updateOrCreate([ 'id' => $id ], [
             'site_name' => $request->siteName ,
             'primary_email' => $request->primaryEmail ,

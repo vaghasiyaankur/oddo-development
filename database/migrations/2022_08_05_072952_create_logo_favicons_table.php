@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('logo_favicons', function (Blueprint $table) {
             $table->id();
-            $table->string('white_background')->nullable();
-            $table->string('black_background')->nullable();
+            $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
+            $table->string('default_logo')->nullable();
+            $table->string('default_favicon')->nullable();
             $table->timestamps();
         });
     }

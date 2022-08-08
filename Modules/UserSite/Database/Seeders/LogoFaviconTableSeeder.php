@@ -21,12 +21,11 @@ class LogoFaviconTableSeeder extends Seeder
     public function run()
     {
         LogoFavicon::create([
-            'white_background' => 'logo/white_background.png',
-            'black_background' => 'logo/black_background.png',
-            'favicon' => 'logo/favicon.png',
+            'default_logo' => 'logo/white_background.png',
+            'default_favicon' => 'logo/favicon.png',
         ]);
 
-        // File::copy(public_path('storage/images/white_background.png'), public_path('storage/logo/white_background.png'));
-        // File::copy(public_path('storage/images/favicon.png'), public_path('storage/logo/favicon.png'));
+        File::copy(public_path('storage/images/white_background.png'), public_path('storage/logo/white_background.png'));
+        File::copy(public_path('storage/images/favicon.png'), public_path('storage/logo/favicon.png'));
     }
 }

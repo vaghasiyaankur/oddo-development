@@ -31,34 +31,72 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '.logoButton', function(e){
+    $(document).on('click', '.logo-btn', function(e){
         e.preventDefault();
 
-        let whiteBackground = $('.whiteBackground')[0].files[0];
-        let blackBackground = $('.blackBackground')[0].files[0];
-        let favicon = $('.favicon')[0].files[0];
+        var formdata = new FormData();
 
-        if(whiteBackground || blackBackground || favicon){
-            formdata = new FormData();
-            formdata.append('whiteBackground', whiteBackground);
-            formdata.append('blackBackground', blackBackground);
-            formdata.append('favicon', favicon);
-            
-            $.ajax({
-                url: "{{route('update.logo')}}",
-                type: "POST",
-                processData: false,
-                contentType: false,
-                data: formdata,
-                success: function (response) { 
-                    toastMixin.fire({ title: response.success, icon: 'success' });
-                }, error:function (response) {
-                    toastMixin.fire({ title: 'error', icon: 'success' });
-                }   
-            }); 
-        }else{
-            // toastMixin.fire({ title: 'change logo.', icon: 'error' });
+        logo = FilePondLogo.getFiles();
+        for (var i = 0; i < logo.length; i++) {
+            formdata.append('logo', logo[i].file);
         }
+
+        var favicon = FilePondFavicon.getFiles();
+        for (var i = 0; i < favicon.length; i++) {
+            formdata.append('favicon', favicon  [i].file);
+        }
+            
+        $.ajax({
+            url: "{{route('update.logo')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                toastMixin.fire({ title: response.success, icon: 'success' });
+            }, error:function (response) {
+                console.log(response.error);
+                toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
+            }   
+        });    
+    });
+
+    $(document).on('click', '.deleteFavicon', function(){
+        let id = $(this).data('value');
+            
+        formdata = new FormData();
+        formdata.append('id', id);
+
+        $.ajax({
+            url: baseUrl + "/admin/delete/favicon/" + id,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                // logoFavicon();
+                toastMixin.fire({ title: response.danger, icon: 'error' });
+            },
+        }); 
+    });
+
+    $(document).on('click', '.deleteLogo', function(){
+        let id = $(this).data('value');
+            
+        formdata = new FormData();
+        formdata.append('id', id);
+
+        $.ajax({
+            url: baseUrl + "/admin/delete/logo/" + id,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                // logoFavicon();
+                toastMixin.fire({ title: response.danger, icon: 'error' });
+            },
+        }); 
     });
 });
 
@@ -86,10 +124,10 @@ $(document).ready(function(){
            var selectCurrency =  $('.selectCurrency').find(":selected").text();
            var currencySymbol =  $('.currencySymbol').val();
 
-           !siteName ? $(`#siteName-error`).html(`The siteName field is required.`) : $(`#siteName-error`).html(``);
-           !primaryEmail ? $(`#primaryEmail-error`).html(`The primaryEmail field is required.`) : $(`#primaryEmail-error`).html(``);
-           !contactNumber ? $(`#contactNumber-error`).html(`The contactNumber field is required.`) : $(`#contactNumber-error`).html(``);
-           !currencySymbol ? $(`#currencySymbol-error`).html(`The currencySymbol field is required.`) : $(`#currencySymbol-error`).html(``);
+           !siteName ? $(`#siteName-error`).html(`The site name field is required.`) : $(`#siteName-error`).html(``);
+           !primaryEmail ? $(`#primaryEmail-error`).html(`The primary email field is required.`) : $(`#primaryEmail-error`).html(``);
+           !contactNumber ? $(`#contactNumber-error`).html(`The contact number field is required.`) : $(`#contactNumber-error`).html(``);
+           !currencySymbol ? $(`#currencySymbol-error`).html(`The currency symbol field is required.`) : $(`#currencySymbol-error`).html(``);
 
 
            if (!siteName || !primaryEmail || !contactNumber || !currencySymbol) {
@@ -125,6 +163,12 @@ $(document).ready(function(){
         FilePondPluginImagePreview
     );
 
+    FilePond.registerPlugin(
+        FilePondPluginFileEncode,
+        FilePondPluginFileValidateSize,
+        FilePondPluginImagePreview
+    );
+
     const fileponLayout = `
         <i class="icon">
             <svg width="40" height="40" viewBox="0 0 81 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,20 +186,23 @@ $(document).ready(function(){
 
     // Select the file input and use create() to turn it into a pond
     $(document).ready(function () {
-        FilePond.create(document.querySelector("input#file01"), {
+        FilePondLogo = FilePond.create(document.querySelector("input#file01"), {
             labelIdle: fileponLayout,
             imagePreviewHeight: fileponReviewHeight
         });
-        FilePond.create(document.querySelector("input#file02"), {
+
+        FilePondFavicon = FilePond.create(document.querySelector("input#file02"), {
             labelIdle: fileponLayout,
             imagePreviewHeight: fileponReviewHeight
         });
     });
 
     $(document).ready(function () {
-        const inputFile = $("input[type='file']");
-        inputFile.on("change", function () {
-            console.log($(this).val());
-        });
+        // const inputFile = $("input[type='file']");
+        // inputFile.on("change", function () {
+        //     console.log($(this).val());
+        // });
+
+       
     });
 </script>

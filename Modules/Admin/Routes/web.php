@@ -118,8 +118,14 @@ Route::prefix('admin')->group(function() {
          // Setting
          Route::controller(SettingController::class)->group(function(){
             Route::get('setting', 'index')->name('setting.index');
-            Route::post('update/logo', 'updateLogo')->name('update.logo');
+
+            // general Setting
             Route::post('update/generalsetting', 'updateGeneralSetting')->name('update.generalSetting');
+
+            // logo & favicon
+            Route::post('update/logo', 'updateLogo')->name('update.logo');
+            Route::post('delete/favicon/{id}', 'deleteFavicon')->name('delete.favicon');
+            Route::post('delete/logo/{id}', 'deleteLogo')->name('delete.logo');
          });
 
           // booking
@@ -127,11 +133,4 @@ Route::prefix('admin')->group(function() {
             Route::view('booking', 'admin::booking.index')->name('booking.index');
         });
     });
-
-
-    // Route::view('/amenity-view', 'admin::amenity');
-    // Route::view('/location-old', 'admin::location');
-    // Route::view('/amenity-types', 'admin::amenity-type');
-    // Route::view('/facilities', 'admin::facilities');
-    // Route::view('/property', 'admin::property')->name('property');
 });
