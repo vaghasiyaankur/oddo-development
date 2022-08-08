@@ -243,6 +243,32 @@
             background-color: #6a78c7;
             color: white;
         }
+
+        /* side contact button css  */
+        .side-content .side-btn{
+            padding: 4px 30px;
+            background: #e6e8f5;
+            border-radius: 100px;
+
+        }
+        .side-content .side-btn .btn{
+            padding: 0;
+            color: #6a78c7;
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 800;
+        }
+
+        .hotels-result-search .input-group a {
+            padding: 2px 20px;
+            background: #e6e8f5;
+            border-radius: 100px !important;
+            font-size: 12px;
+            line-height: 24px;
+            color: #6a78c7;
+            font-weight: 800;
+        }
+
     </style>
 @endpush
 
@@ -298,7 +324,7 @@
                                 <label>Guests</label>
                                 <select class="form-control js-example-tags select_guest" name="guest">
                                     @php
-                                        $selectGuest = Request()->guest;     
+                                        $selectGuest = Request()->guest;
                                     @endphp
                                     <option disabled>Select Guest</option>
                                     <option {{ $selectGuest == '1' ? 'selected' : '' }}>1</option>
@@ -312,7 +338,7 @@
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 @php
-                                    $selectRoom = Request()->room;     
+                                    $selectRoom = Request()->room;
                                 @endphp
                                 <label>Room</label>
                                 <select class="form-control js-example-tags select_room" name="room">
@@ -402,13 +428,21 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <aside class="side-content">
-                            <span class="side-text">Viewing  {{ $hotels->total() }} results</span>
-                            <form class="hotel-result-form">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="side-text">Viewing  {{ $hotels->total() }} results</span>
+                                <span class="side-btn">
+                                    <a href="javascript:;" class="btn reset-btn Resetform">Reset</a>
+                                </span>
+                            </div>
+                            <form class="hotel-result-form" id="formReset">
                                 <div class="hotels-result-search">
                                     <h5 class="search-heading">Search</h5>
                                     <div class="input-group align-items-center search-input">
                                         <i class="fa-solid fa-magnifying-glass ps-2"></i>
-                                        <input type="text" class="form-control propertyName" name="propertyName"  placeholder="Search by name" value="{{request()->propertyName}}">
+                                        {{-- <input type="text" class="form-control propertyName" name="propertyName"  placeholder="Search by name" value="{{request()->propertyName}}"> --}}
+                                        <input type="text" class="form-control propertyName searchProperty" name="propertyName"  placeholder="Search by name" value="{{ request()->searchProperty }}">
+                                        <a href="#" id="Apply" class="d-none">Apply</a>
+                                        <span class="search-errors text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="hotels-result-sort pt-4">
@@ -1020,7 +1054,7 @@
 
     <!-------- Weather swiper js start--------->
     <script>
-        // Google Place Search 
+        // Google Place Search
         google.maps.event.addDomListener(window, 'load', initialize);
 
         function initialize() {
@@ -1152,6 +1186,19 @@
                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
         });
 
+        $(document).on('click', '#Apply', function(e) {
+            var searchProperty = $(".searchProperty").val();
+            // console.log(searchProperty);
+            // !searchProperty ? $(`.search-errors`).html(`Please enter a destination to start searching.`) : $(`.search-errors`)
+            //     .html(``);
+
+            // if (!searchProperty) {
+            //     return;
+            // }
+
+            window.location.href = base_url + "/hotel?searchProperty=" + searchProperty;
+        });
+
         $(document).on('click', '.filterButton', function(){
             var propertyName = $('.propertyName').val();
             var budgetMax = $('.budgetMax').val();
@@ -1167,7 +1214,7 @@
 
             if (!propertyName) {
                 return;
-            }   
+            }
             console.log(budgetMin);
             window.location.href = baseUrl  + "/hotel?propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating;
         });
@@ -1248,9 +1295,11 @@ $(document).ready(function(){
 
         var propertyName = $("input[name=propertyName]").val();
 
+        var searchProperty = $('.searchProperty').val();
+
         if(search){
             $.ajax({
-            
+
                 url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&guest=" + guest + "&room=" + room ,
                 datatype: "html",
                 type: "get",
@@ -1269,10 +1318,31 @@ $(document).ready(function(){
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
             });
-                
+
+        } else if(searchProperty) {
+            $.ajax({
+
+                url: baseUrl  + "/hotel?page=" + page + "&searchProperty=" + searchProperty,
+                datatype: "html",
+                type: "get",
+                beforeSend: function () {
+                    $('.loading_spiner_').show();
+                }
+            })
+            .done(function (response) {
+                $('.loading_spiner_').hide();
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
+                }
+                $(".hotelResultDiv").append(response);
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                console.log('Server error occured');
+            });
         } else if(propertyName) {
             $.ajax({
-            
+
                 url: baseUrl  + "/hotel?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating,
                 datatype: "html",
                 type: "get",
@@ -1290,11 +1360,11 @@ $(document).ready(function(){
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
-            });  
+            });
         } else {
             console.log('demo');
             $.ajax({
-                
+
                 url: baseUrl + "/hotel?page=" + page,
                 datatype: "html",
                 type: "get",
@@ -1314,11 +1384,11 @@ $(document).ready(function(){
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
             });
-        } 
+        }
     }
 
 
-   
+
     $('.loading_spiner_').hide();
 
     $(document).on('click', '.addWishlist', function(){
@@ -1330,7 +1400,7 @@ $(document).ready(function(){
         if (!hotelId) {
             return;
         }
-        
+
         formdata = new FormData();
         formdata.append('hotelId', hotelId);
 
@@ -1340,12 +1410,12 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 console.log('done');
             }, error:function (response) {
                 console.log('fail');
             }
-        }); 
+        });
     });
 
     $(document).on('click', '.removeWishlist', function(){
@@ -1357,7 +1427,7 @@ $(document).ready(function(){
         if (!hotelId) {
             return;
         }
-        
+
         formdata = new FormData();
         formdata.append('hotelId', hotelId);
 
@@ -1367,13 +1437,35 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 console.log('done');
             }, error:function (response) {
                 console.log('fail');
             }
-        }); 
+        });
     });
+
+    $(document).on('click', '.Resetform', function(e){
+        e.preventDefault();
+        $("#formReset")[0].reset();
+    });
+
+    $(document).on('keyup', '.searchProperty', function(){
+        var searchProperty = $(this).val().length;
+        searchPropertyData(searchProperty);
+    });
+
+    function searchPropertyData(searchProperty) {
+        if(searchProperty >= 1){
+            $('#Apply').removeClass('d-none');
+        }else{
+            $('#Apply').addClass('d-none');
+        }
+    }
+
+    var searchProperty = $('.searchProperty').val().length;
+    searchPropertyData(searchProperty);
+
 });
 </script>
 @endpush

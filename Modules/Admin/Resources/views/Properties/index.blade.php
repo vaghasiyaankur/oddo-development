@@ -1,4 +1,5 @@
 @extends('layout::admin.master')
+@section('title','Properties')
 @push('css')
 <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/classic.min.css') }}" />
 <!-- 'monolith' theme -->
@@ -6,7 +7,6 @@
 <!-- 'nano' theme -->
 <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/nano.min.css') }}" />
 
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <style>
     .amenity-type-select .iconpicker-dropdown ul {
         left: -21px !important;
@@ -119,21 +119,16 @@
             <div class="card" id="orderList">
                 <div class="card-header  border-0">
                     <div class="row d-flex align-items-center">
-                        <div class=" col-sm-8">
+                        <div class=" col-sm-5">
                             <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Properties</h5>
                         </div>
-                        <div class=" col-sm-4 float-right">
+                        <div class=" col-sm-7 float-right">
                             <div class="d-flex align-items-center justify-content-evenly">
                                 <div class="search-box w-100">
-                                    <input type="text" class="form-control search"
+                                    <input type="search" value="{{ Request::input('search') }}" class="form-control search" name="search"
                                         placeholder="Search for Amenity status or something...">
-                                    <i class="ri-search-line search-icon"></i>
+                                    <i class="ri-search-line search-icon" ></i>
                                 </div>
-                                {{-- <div class="btn-group ms-4">
-                                    <a class="btn btn-success text-nowrap" data-bs-toggle="modal"
-                                        data-bs-target="#facilityCreate"><i class="ri-add-line align-bottom me-1"></i>
-                                        Add Property</a>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -163,5 +158,6 @@
 <!-- init form-pickers js -->
 <script src="{{ asset('assets/Admin/assets/js/pages/form-pickers.init.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
 @include('admin::properties.scripts')
 @endpush

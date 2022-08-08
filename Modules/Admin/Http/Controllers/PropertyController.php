@@ -13,7 +13,7 @@ class PropertyController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $properties = Hotel::with('propertytype')->paginate(10);
         // dd($properties);
@@ -80,8 +80,9 @@ class PropertyController extends Controller
         //
     }
 
-    public function propertyList(){
-        $data['properties'] = Hotel::paginate(10);
+    public function propertyList(Request $request){
+        $search = $request->input('search');
+        $data['properties'] = Hotel::with('propertytype')->where('property_name','LIKE',"%{$search}%")->paginate(10);
         return view('admin::properties.PropertyList', $data);
     }
 

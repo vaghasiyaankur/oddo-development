@@ -1,4 +1,5 @@
 @extends('layout::admin.master')
+@section('title','Location')
 
 @push('css')
 <!-- dropzone css -->
@@ -70,9 +71,9 @@
                         <div class="col-sm-8">
                             <div class="d-flex align-items-center justify-content-evenly">
                                 <div class="search-box w-100">
-                                    <input type="text" class="form-control search"
-                                        placeholder="Search for Location, Country , status or something...">
-                                    <i class="ri-search-line search-icon"></i>
+                                    <input type="search" value="{{ Request::input('search') }}" class="form-control search" name="search"
+                                        placeholder="Search for Amenity status or something...">
+                                    <i class="ri-search-line search-icon" ></i>
                                 </div>
                                 <div class="live-preview ms-4">
                                     <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
@@ -81,7 +82,7 @@
                                             Add Location
                                      </button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

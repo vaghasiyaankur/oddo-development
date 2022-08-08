@@ -15,7 +15,7 @@ class AmenityController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -45,11 +45,11 @@ class AmenityController extends Controller
     {
         $validated   = $request->validate([
             'amenityName'  => 'required|unique:amenities,amenities',
-        ], [ 
-            'amenityName.unique' => 'This Amenity already exists.' 
+        ], [
+            'amenityName.unique' => 'This Amenity already exists.'
         ]);
 
-        try{   
+        try{
             $amenity = new Amenities();
             $amenity->amenities = $request->amenityName;
             $amenity->icon = $request->amenityIcon;
@@ -93,10 +93,10 @@ class AmenityController extends Controller
     {
         $validated   = $request->validate([
             'amenityName'  => 'required|unique:amenities,amenities,'.$id.',id',
-        ], [ 
-            'amenityName.unique' => 'This Amenity already exists.' 
+        ], [
+            'amenityName.unique' => 'This Amenity already exists.'
         ]);
-        
+
         try{
             $amenity = Amenities::updateOrCreate([ 'id' => $id ], [
                 'amenities' => $request->amenityName,
@@ -125,9 +125,10 @@ class AmenityController extends Controller
         }
     }
 
-    public function amenityList()
+    public function amenityList(Request $request)
     {
-        $data['amenities'] = Amenities::get();
+        $search = $request->input('search');
+        $data['amenities'] = Amenities::where('amenities','LIKE',"%{$search}%")->get();
         return view('admin::Amenity.amenity_list', $data);
     }
 
@@ -146,5 +147,4 @@ class AmenityController extends Controller
             return response()->json(["message" => "Units updated Successfully"], 200);
         }
     }
-
 }

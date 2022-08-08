@@ -1,5 +1,5 @@
 @extends('layout::admin.master')
-
+@section('title','Amenity-Category')
 @push('css')
 <style>
     @-webkit-keyframes moving-gradient {

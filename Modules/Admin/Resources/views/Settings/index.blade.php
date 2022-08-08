@@ -1,4 +1,5 @@
 @extends('layout::admin.master')
+@section('title','Settings')
 
 @push('css')
 <style>

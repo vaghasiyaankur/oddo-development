@@ -1,4 +1,5 @@
 @extends('layout::admin.master')
+@section('title','Facilities')
 
 @push('css')
 <!-- 'classic'color picker css theme -->
@@ -127,9 +128,9 @@
                         <div class=" col-sm-8">
                             <div class="d-flex align-items-center justify-content-evenly">
                                 <div class="search-box w-100">
-                                    <input type="text" class="form-control search"
+                                    <input type="search" value="{{ Request::input('search') }}" class="form-control search" name="search"
                                         placeholder="Search for Amenity status or something...">
-                                    <i class="ri-search-line search-icon"></i>
+                                    <i class="ri-search-line search-icon" ></i>
                                 </div>
                                 <div class="btn-group ms-4">
                                     <a class="btn btn-success text-nowrap" data-bs-toggle="modal"

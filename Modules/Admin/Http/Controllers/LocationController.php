@@ -10,7 +10,7 @@ use App\Models\Country;
 use App\Models\Hotel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 
 
 class LocationController extends Controller
@@ -19,7 +19,7 @@ class LocationController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -50,16 +50,16 @@ class LocationController extends Controller
         $validated   = $request->validate([
             'name'  => 'required|unique:cities,name',
             'file' => 'required'
-        ], [ 
+        ], [
             'name.unique' => 'This city already exists.',
             'file.required' => 'This image field required'
         ]);
 
         $image_64 = $request->file;
         $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
-        $image = str_replace($replace, '', $image_64);     
-        $image = str_replace(' ', '+', $image); 
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
         $imageName = 'Img_'.Str::random(10).'.'.$extension;
         $img =base64_decode($image);
         Storage::disk('public')->put('city'.'/'.$imageName, base64_decode($image));
@@ -109,7 +109,7 @@ class LocationController extends Controller
             'name'  => 'required|unique:cities,name,'.$id.',UUID',
             'image' => 'required',
             'file' => 'required_if:image,==,1'
-        ], [ 
+        ], [
             'name.unique' => 'This city already exists.',
             'file.required_if' => 'This image field required',
         ]);
@@ -118,9 +118,9 @@ class LocationController extends Controller
         if($request->file){
             $image_64 = $request->file;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
-            $image = str_replace($replace, '', $image_64);     
-            $image = str_replace(' ', '+', $image); 
+            $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
             $imageName = 'city/Img_'.Str::random(10).'.'.$extension;
             $img =base64_decode($image);
             Storage::disk('public')->put($imageName, base64_decode($image));
@@ -160,7 +160,7 @@ class LocationController extends Controller
                     unlink($image_path);
                 }
                 $location->delete();
-                
+
                 return response()->json(["danger" => "location deleted Successfully"], 200);
 
             }
@@ -169,8 +169,9 @@ class LocationController extends Controller
         }
     }
 
-    public function locationList(){
-        $data['cities'] = City::latest()->get();
+    public function locationList(Request $request){
+        $search = $request->input('search');
+        $data['cities'] = City::latest()->where('name','LIKE',"%{$search}%")->get();
         return view('admin::location.locationList', $data);
     }
 

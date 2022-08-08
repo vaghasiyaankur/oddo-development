@@ -1,4 +1,4 @@
-<table class="table align-middle mb-0 ">
+<table class="table align-middle mb-0 propertyList" id="propertyList">
     <thead>
         <tr>
             <th scope="col">No</th>
@@ -10,8 +10,6 @@
         </tr>
     </thead>
     <tbody class="table__body">
-        {{-- @dd($Properties->toarray()) --}}
-        {{-- @dd($properties->propertytype) --}}
         @if(count($properties))
         @foreach($properties as $key=> $property)
             <tr>
@@ -50,7 +48,7 @@
                         <span></span>
                     </div>
                     <div class="form-check form-switch loadingHide">
-                        <input class="form-check-input amenityCategoryStatus" data-id="{{ $property->UUID }}"  data-value="{{$property->status}}" type="checkbox" role="switch" id="SwitchCheck1" {{ $property->status == 1 ? 'checked':
+                        <input class="form-check-input PropertyStatus" data-id="{{ $property->UUID }}"  data-value="{{$property->status}}" type="checkbox" role="switch" id="SwitchCheck1" {{ $property->status == 1 ? 'checked':
                         ''}}>
                     </div>
                 </td>
@@ -75,18 +73,6 @@
         <h4>No records has been added yet.</h4>
     </div>
 @endif
-
-    {{-- <div class="table-footer align-items-center pt-2 justify-content-between d-flex">
-        {{$properties->withPath('/admin/facilities')->links('admin::layouts.pagination')}}
-    </div> --}}
-
-    {{-- FOR EMPTY TABLE --}}
-    {{-- <div class="empty-table w-100 text-center py-5">
-        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
-        </lord-icon>
-        <h4>No records has been added yet.</h4>
-        <h6>Add a new record by simpley clicking the button on top right side.</h6>
-    </div> --}}
 
 
 

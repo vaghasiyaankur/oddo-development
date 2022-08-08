@@ -1,6 +1,6 @@
 <script>
     var baseUrl = $('#base_url').val();
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -56,12 +56,12 @@
         theEditor = editor;
     }).catch(error => {
         console.error(error);
-    }); 
+    });
 
     function getDataFromTheEditor() {
         return theEditor.getData();
     }
-    
+
     let Editor;
     ClassicEditor.create(document.querySelector('#Editor')).then(editEditor => {
         Editor = editEditor;
@@ -76,7 +76,7 @@
 
 
 $(document).ready(function() {
-    
+
     var current_color = $(".facilityColor").val() || null;
     var edit_color    = $(".EditfacilityColor").val() || "#4169e1";
     $('[data-bs-toggle="popover"]').popover();
@@ -87,7 +87,7 @@ $(document).ready(function() {
         defaultRepresentation: "HEXA",
         default: current_color,
         components: {
-            
+
             // Main components
             preview: true,
             opacity: true,
@@ -120,7 +120,7 @@ $(document).ready(function() {
         defaultRepresentation: "HEXA",
         default: edit_color,
         components: {
-            
+
             // Main components
             preview: true,
             opacity: true,
@@ -145,7 +145,7 @@ $(document).ready(function() {
         edit_color = color.toHEXA().toString();
         $('.EditfacilityColor').val(edit_color);
     });
-        
+
 
     // insert facility
     $(document).on('click', '.faciltySubmit', function(){
@@ -157,7 +157,7 @@ $(document).ready(function() {
 
         let facilityColor = $('.facilityColor').val();
         !facilityColor ? $(`#facilityColor-error`).html(`The facility color field is required.`) : $(`#facilityColor-error`).html(``);
-        
+
         // let facilityDescription = $('.facilityDescription').text();
         let facilityDescription = getDataFromTheEditor();
         !facilityDescription ? $(`#facilityDescription-error`).html(`The facility description field is required.`) : $(`#facilityDescription-error`).html(``);
@@ -181,7 +181,7 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (res) { 
+            success: function (res) {
                 toastMixin.fire({ title: res.success, icon: 'success' });
                 $(".createFaclityForm").trigger("reset");
                 $("#facilityCreate").modal("hide");
@@ -189,9 +189,9 @@ $(document).ready(function() {
             }, error:function (response) {
                 $('#faclityName-error').text(response.responseJSON.errors.faclityName);
             }
-        }); 
+        });
     });
-    
+
     //  edit Facility
     $(document).on('click', '.editFacility', function(){
         let facility = $(this).data("value");
@@ -213,7 +213,7 @@ $(document).ready(function() {
 
         let editFacilityColor = $('.EditfacilityColor').val();
         !editFacilityColor ? $(`#EditfacilityColor-error`).html(`The facility color field is required.`) : $(`#EditfacilityColor-error`).html(``);
-        
+
         let editFacilityDescription = Editor.getData();
         !editFacilityDescription ? $(`#editFacilityDescription-error`).html(`The facility description field is required.`) : $(`#editFacilityDescription-error`).html(``);
 
@@ -265,10 +265,10 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (res) { 
+            success: function (res) {
                 facilitiesList();
             },
-        }); 
+        });
     });
 
     $(document).on('click', '.deleteFacility', function(){
@@ -276,7 +276,7 @@ $(document).ready(function() {
 
         $('.loadingShow span').css('display', 'block');
         $('.loadingHide').addClass('d-none');
-        
+
         formdata = new FormData();
         formdata.append('id', id);
         $.ajax({
@@ -285,19 +285,20 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 facilitiesList();
                 toastMixin.fire({ title: response.danger, icon: 'error' });
             },
-        }); 
+        });
     });
 
     // facilities Table
-    function facilitiesList() {
+    function facilitiesList(data = null) {
         $.ajax({
             url: "{{route('facilities.list')}}",
             type: "GET",
             dataType: "HTML",
+            data : { search : data },
             success: function (response) {
                 setTimeout(function() {
                     $('.loadingShow span').css('display', 'none');
@@ -307,5 +308,12 @@ $(document).ready(function() {
             }
         });
     }
+
+    $('.search').keyup(function(){
+        var search = $(this).val();
+        facilitiesList(search);
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+    });
 });
 </script>

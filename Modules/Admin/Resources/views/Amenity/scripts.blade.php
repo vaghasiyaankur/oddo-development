@@ -1,7 +1,7 @@
 <script>
     var baseUrl = $('#base_url').val();
-    
-    $(document).ready(function(){ 
+
+    $(document).ready(function(){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -51,7 +51,7 @@
                 // iconpicker.set('bi-alarm') // Reset with a value
             })();
         }
-        
+
 
 
         // $(document).on('click', '.amenity-button', function() {
@@ -61,12 +61,12 @@
         $(document).on('click', '.save-amenity', function(){
             let amenityName = $('.amenityName').val();
             !amenityName ? $(`#amenityName-error`).html(`The Amenity field is required.`) : $(`#amenityName-error`).html(``);
-            
+
             let amenityIcon = $('.amenityIcon').val();
             !amenityIcon ? $(`#amenityIcon-error`).html(`The Icon field is required.`) : $(`#amenityIcon-error`).html(``);
 
             let amenityCategory = $('.amenityCategory').val();
-            
+
             var status = $('input[name="status"]:checked').val();
 
             $('.loadingShow span').css('display', 'block');
@@ -101,7 +101,7 @@
                     },  1500);
                     $('#amenityName-error').text(response.responseJSON.errors.amenityName);
                 }
-            }); 
+            });
         });
 
 
@@ -126,7 +126,7 @@
         $(document).on('click', '.edit-amenity', function(){
             let amenityName = $('#amenityName').val();
             !amenityName ? $(`#amenityName-edit-error`).html(`The Amenity field is required.`) : $(`#amenityName-error`).html(``);
-            
+
             let amenityIcon = $('#amenityIcon').val();
             !amenityIcon ? $(`#amenityIcon-edit-error`).html(`The Icon field is required.`) : $(`#amenityIcon-error`).html(``);
 
@@ -181,15 +181,15 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (res) { 
+                success: function (res) {
                     amenityList();
                 },
-            }); 
+            });
         });
 
         $(document).on('click', '.amenityDelete', function(){
             let id = $(this).data('value');
-            
+
             formdata = new FormData();
             formdata.append('id', id);
 
@@ -202,26 +202,35 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     amenityList();
                     toastMixin.fire({ title: response.danger, icon: 'error' });
                 },
-            }); 
+            });
         });
 
-        function amenityList() {
+        function amenityList(data = null) {
             $.ajax({
                 url: "{{route('amenity.list')}}",
                 type: "GET",
                 dataType: "HTML",
+                data : { search : data },
                 success: function (response) {
                     setTimeout(function() {
                         $('.loadingShow span').css('display', 'none');
                         $('.loadingHide').removeClass('d-none');
+                        $(".amenity-list").html(response);
                     },  1500);
-                    $(".amenity-list").html(response);
                 }
+
             });
         }
+
+        $('.search').keyup(function(){
+            var search = $(this).val();
+            amenityList(search);
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+        });
     });
 </script>

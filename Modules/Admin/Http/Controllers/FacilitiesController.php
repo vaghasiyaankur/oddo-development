@@ -13,7 +13,7 @@ class FacilitiesController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -42,8 +42,8 @@ class FacilitiesController extends Controller
     {
         $validated   = $request->validate([
             'faclityName'  => 'required|unique:facilities,facilities_name',
-        ], [ 
-            'faclityName.unique' => 'This facilitey already exists.' 
+        ], [
+            'faclityName.unique' => 'This facilitey already exists.'
         ]);
 
         try{
@@ -87,11 +87,11 @@ class FacilitiesController extends Controller
      * @return Renderable
      */
     public function update(Request $request, $id)
-    {   
+    {
         $validated   = $request->validate([
             'editFaclityName'  => 'required|unique:facilities,facilities_name,'.$id.',id',
-        ], [ 
-            'editFaclityName.unique' => 'This facilitey already exists.' 
+        ], [
+            'editFaclityName.unique' => 'This facilitey already exists.'
         ]);
 
         try{
@@ -123,8 +123,9 @@ class FacilitiesController extends Controller
         }
     }
 
-    public function facilitiesList(){
-        $data['facilities'] = Facilities::paginate(10);
+    public function facilitiesList(Request $request){
+        $search = $request->input('search');
+        $data['facilities'] = Facilities::where('facilities_name','LIKE',"%{$search}%")->paginate(10);
         return view('admin::facilities.facilities_list', $data);
     }
 
@@ -140,4 +141,5 @@ class FacilitiesController extends Controller
             return response()->json(["message" => "facility status updated Successfully"], 200);
         }
     }
+
 }

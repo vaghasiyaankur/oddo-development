@@ -150,13 +150,13 @@ Amenity
                             <div class=" col-sm-8">
                                 <div class="d-flex align-items-center justify-content-evenly">
                                     <div class="search-box w-100">
-                                        <input type="text" class="form-control search"
+                                        <input type="text" value="{{ Request::input('search') }}" class="form-control search" name="search"
                                             placeholder="Search for Amenity status or something...">
-                                        <i class="ri-search-line search-icon"></i>
+                                        <i class="ri-search-line search-icon" ></i>
                                     </div>
                                     <div class="btn-group d-flex justify-content-end ms-4">
                                         <button type="button" class="btn btn-success  text-nowrap rounded-1"  data-bs-toggle="modal" data-bs-target="#exampleModalgrid2"><i class=" ri-add-line align-bottom me-1"></i>
-                                            Amenity 
+                                            Amenity
                                         </button>
                                     </div>
                                 </div>

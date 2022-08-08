@@ -8,7 +8,7 @@
         uploadMultiple: false,
         maxFilesize:1,
         maxFiles: 1,
-        acceptedFiles: ".jpeg,.jpg,.png,.gif",  
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",
         thumbnailWidth: '500',
         thumbnailHeight: '500',
         clickable: true,
@@ -27,7 +27,7 @@
         uploadMultiple: false,
         maxFilesize:1,
         maxFiles: 1,
-        acceptedFiles: ".jpeg,.jpg,.png,.gif",  
+        acceptedFiles: ".jpeg,.jpg,.png,.gif",
         thumbnailWidth: '500',
         thumbnailHeight: '500',
         clickable: true,
@@ -38,7 +38,7 @@
         },
     });
 
-   
+
 
     $(document).ready(function(){
         var baseUrl = $('#base_url').val();
@@ -66,7 +66,7 @@
             if (!cityName) {
                 return;
             }
-        
+
             $('.loadingShow span').css('display', 'block');
             $('.loadingHide').addClass('d-none');
 
@@ -82,7 +82,7 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     $(".modal").modal("hide");
                     myNewdDropzone.removeAllFiles(true);
                     $('#cityName-error').html('');
@@ -95,8 +95,8 @@
                         $('.loadingHide').removeClass('d-none');
                     $('#cityName-error').text(response.responseJSON.errors.name);
                     $('#image-error').text(response.responseJSON.errors.file);
-                }   
-            }); 
+                }
+            });
         });
 
         // featured Status
@@ -114,10 +114,10 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (res) { 
+                success: function (res) {
                     locationList();
                 },
-            }); 
+            });
         });
 
         // delete Location
@@ -135,7 +135,7 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     if(response.danger){
                         toastMixin.fire({ title: response.danger, icon: 'error' });
                     }else{
@@ -143,12 +143,12 @@
                     }
                     locationList();
                 },
-            }); 
+            });
         });
 
         // edit location
         $(document).on('click', '.location-Edit', function(){
-            
+
             // myNewdDropzone.removeAllFiles(true);
             $('.deleteValue').val(0);
             $('#imagePreview').show().html('');
@@ -169,9 +169,9 @@
                 $('#imagePreview').append(`<li class="mt-2 list-unstyled" id="dropzone-preview-list " style=" list-style:none !important; "
                                         <div class="border rounded">
                                                 <div class="d-flex p-2 align-items-center">
-                                                <div class="flex-shrink-0 me-3"> 
+                                                <div class="flex-shrink-0 me-3">
                                                     <div class="avatar-sm bg-light rounded">
-                                                        <img data-dz-thumbnail class="img-fluid rounded d-block imageSet" 
+                                                        <img data-dz-thumbnail class="img-fluid rounded d-block imageSet"
                                                             src="`+baseUrl +`/storage/`+ location.background_image+ `" alt="Dropzone-Image" />
                                                         <input type="hidden" class="imageDataValue" value="`+location.background_image+`">
                                                     </div>
@@ -188,10 +188,10 @@
                                                     <button  class="btn btn-sm btn-danger deleteImage">Delete</button>
                                                 </div>
                                             </div>
-                                        </div>  
+                                        </div>
                                     </li>`);
         });
-        
+
         // delete Image
         $(document).on('click', '.deleteImage', function(){
             $('.deleteValue').val(1);
@@ -208,7 +208,7 @@
             let status = $('.editStatus:checked').val();
 
             let image = $('.deleteValue').val();
-            
+
             let files = editMyNewdDropzone.getAcceptedFiles();
             var file = [];
             files.filter(async (f,i)=> {
@@ -218,7 +218,7 @@
             if (!cityName) {
                 return;
             }
-        
+
             $('.loadingShow span').css('display', 'block');
             $('.loadingHide').addClass('d-none');
 
@@ -236,7 +236,7 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     $(".modal").modal("hide");
                     editMyNewdDropzone.removeAllFiles(true);
                     $('#EditcityName-error').html('');
@@ -249,17 +249,18 @@
                         $('.loadingHide').removeClass('d-none');
                     $('#EditcityName-error').text(response.responseJSON.errors.name);
                     $('#Editimage-error').text(response.responseJSON.errors.file);
-                }   
-            }); 
+                }
+            });
         });
 
 
         // location List
-        function locationList(){
+        function locationList(data = null){
             $.ajax({
                 url: "{{route('location.list')}}",
                 type: "GET",
                 dataType: "HTML",
+                data : { search : data },
                 success: function (response) {
                     $(".city_list").html(response);
                     setTimeout(function() {
@@ -268,7 +269,14 @@
                     },  2000);
                 }
             });
-        }  
+        }
+
+        $('.search').keyup(function(){
+            var search = $(this).val();
+            locationList(search);
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+        });
     });
 
 
