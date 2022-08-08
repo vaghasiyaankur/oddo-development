@@ -80,7 +80,11 @@
                 </a>
             </li>
             <li class="nav-item">
-
+                <a class="nav-link menu-link {{ Request::routeIs('booking.index') ? 'active' : '' }}" href="{{ route('booking.index') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Booking</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('setting.index') ? 'active' : '' }}" href="{{ route('setting.index') }}">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Settings</span>
 

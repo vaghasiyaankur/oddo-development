@@ -116,10 +116,18 @@ Route::prefix('admin')->group(function() {
             Route::post('/property-status','PropertyStatus')->name('property.status');
         });
 
-        // Setting
-        Route::controller(SettingController::class)->group(function(){
-            Route::view('setting', 'admin::Settings.index')->name('setting.index');
-        });
+         // Setting
+         Route::controller(SettingController::class)->group(function(){
+            Route::get('setting', 'index')->name('setting.index');
+
+            // general Setting
+            Route::post('update/generalsetting', 'updateGeneralSetting')->name('update.generalSetting');
+
+            // logo & favicon
+            Route::post('update/logo', 'updateLogo')->name('update.logo');
+            Route::post('delete/favicon/{id}', 'deleteFavicon')->name('delete.favicon');
+            Route::post('delete/logo/{id}', 'deleteLogo')->name('delete.logo');
+         });
 
     });
 
