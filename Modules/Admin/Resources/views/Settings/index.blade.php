@@ -114,7 +114,7 @@ input:not([type="radio"]), textarea {
 }
 .logo-uplod  .filepond--root {
   width: 100%;
-  max-width: 420px; 
+  max-width: 420px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -237,7 +237,7 @@ input:not([type="radio"]), textarea {
                                 </div>
                                 <!--end tab-pane-->
                                 <div class="tab-pane" id="emailSetting" role="tabpanel">
-
+                                    @include('admin::settings.emailSetting')
                                 </div>
                                 <!--end tab-pane-->
                             </div>

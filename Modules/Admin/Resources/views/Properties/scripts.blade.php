@@ -41,10 +41,29 @@
         });
     }
 
+
     $('.search').keyup(function(){
         var search = $(this).val();
+        var searchLength = $(this).val().length;
+        searchLengthData(searchLength);
         PropertyList(search);
+
         $('.loadingShow span').css('display', 'block');
         $('.loadingHide').addClass('d-none');
+    });
+
+    function searchLengthData(searchLength) {
+        if(searchLength >= 1){
+            $('.close-icon').removeClass('d-none');
+        }else{
+            $('.close-icon').addClass('d-none');
+        }
+    }
+
+    $(document).on('click', '.cancelBtn', function(){
+        var search = $('.search').val('');
+        var searchLength = $(search).val().length;
+        searchLengthData(searchLength);
+        PropertyList();
     });
 </script>

@@ -112,6 +112,12 @@
             animation-timing-function: linear;
             animation-fill-mode: forwards;
         }
+        .page-content .card-header .search-box  .close-icon{
+            position: absolute;
+            right: 10px;
+            top: 7px;
+            font-size: 17px;
+        }
 </style>
 @endpush
 
@@ -128,9 +134,10 @@
                         <div class=" col-sm-8">
                             <div class="d-flex align-items-center justify-content-evenly">
                                 <div class="search-box w-100">
-                                    <input type="search" value="{{ Request::input('search') }}" class="form-control search" name="search"
+                                    <input type="text" value="{{ Request::input('search') }}" class="form-control search" name="search"
                                         placeholder="Search for Amenity status or something...">
                                     <i class="ri-search-line search-icon" ></i>
+                                    <i class="ri-close-line close-icon cancelBtn d-none" ></i>
                                 </div>
                                 <div class="btn-group ms-4">
                                     <a class="btn btn-success text-nowrap" data-bs-toggle="modal"

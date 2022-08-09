@@ -45,25 +45,26 @@ $(document).ready(function(){
         for (var i = 0; i < favicon.length; i++) {
             formdata.append('favicon', favicon  [i].file);
         }
-            
+
         $.ajax({
             url: "{{route('update.logo')}}",
             type: "POST",
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 toastMixin.fire({ title: response.success, icon: 'success' });
+                logoFavicon();
             }, error:function (response) {
                 console.log(response.error);
                 toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
-            }   
-        });    
+            }
+        });
     });
 
     $(document).on('click', '.deleteFavicon', function(){
         let id = $(this).data('value');
-            
+
         formdata = new FormData();
         formdata.append('id', id);
 
@@ -73,16 +74,16 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
-                // logoFavicon();
+            success: function (response) {
+                logoFavicon();
                 toastMixin.fire({ title: response.danger, icon: 'error' });
             },
-        }); 
+        });
     });
 
     $(document).on('click', '.deleteLogo', function(){
         let id = $(this).data('value');
-            
+
         formdata = new FormData();
         formdata.append('id', id);
 
@@ -92,28 +93,28 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 // logoFavicon();
                 toastMixin.fire({ title: response.danger, icon: 'error' });
+                logoFavicon();
             },
-        }); 
+        });
     });
 });
 
     $(document).ready(function(){
         $('.selectCurrency').change(function(){
-            var currency = $(this).val(); 
+            var currency = $(this).val();
             var symbol = $(this).find(':selected').data('id');
             $('.symbol').val(symbol);
             $('.currencySpan').text('('+currency+')');
         });
-        
+
         function selectCurrency(){
             var symbol = $('.selectCurrency').find(':selected').data('id');
-            console.log(symbol);
             $('.symbol').val(symbol);
         }
-    
+
         selectCurrency();
 
         $(document).on('click', '.generalSettingBtn', function(){
@@ -157,6 +158,80 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('click', '.emailSettingBtn', function(){
+        var id = $('.id').val();
+        var host_name =  $('.host_name').val();
+        var port_name =  $('.port_name').val();
+        var encryption =  $('.encryption').val();
+        var username =  $('.username').val();
+        var password =  $('.password').val();
+        var from_email =  $('.fromemail').val();
+        var from_name =  $('.fromname').val();
+
+        !host_name ? $(`#hostname-error`).html(`The hostname field is required.`) : $(`#hostname-error`).html(``);
+        !port_name ? $(`#portname-error`).html(`The portname field is required.`) : $(`#portname-error`).html(``);
+        !encryption ? $(`#encryption-error`).html(`The encryption field is required.`) : $(`#encryption-error`).html(``);
+        !username ? $(`#username-error`).html(`The username field is required.`) : $(`#username-error`).html(``);
+        !password ? $(`#password-error`).html(`The password field is required.`) : $(`#password-error`).html(``);
+
+
+        if (!host_name || !port_name || !encryption || !username || !password) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('id', id);
+        formdata.append('host_name', host_name);
+        formdata.append('port_name', port_name);
+        formdata.append('encryption', encryption);
+        formdata.append('username', username);
+        formdata.append('password', password);
+        formdata.append('fromemail', from_email);
+        formdata.append('fromname', from_name);
+
+        $.ajax({
+            url: "{{route('update.emailSetting')}}",
+            data: formdata,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                toastMixin.fire({ title: response.success, icon: 'success' });
+                emailSettings();
+            }, error:function (response) {
+                console.log('hello');
+            }
+        });
+    });
+
+    function emailSettings() {
+        $.ajax({
+            url: "{{route('emailsetting.show')}}",
+            type: "GET",
+            dataType: "HTML",
+            success: function (response) {
+                setTimeout(function() {
+                    $("#emailSetting").html(response);
+                },  1500);
+            }
+
+        });
+    }
+
+    function logoFavicon() {
+        $.ajax({
+            url: "{{route('logoFavicon.show')}}",
+            type: "GET",
+            dataType: "HTML",
+            success: function (response) {
+                setTimeout(function() {
+                    $("#logoFavicon").html(response);
+                },  1500);
+            }
+
+        });
+    }
+
     FilePond.registerPlugin(
         FilePondPluginFileEncode,
         FilePondPluginFileValidateSize,
@@ -195,14 +270,5 @@ $(document).ready(function(){
             labelIdle: fileponLayout,
             imagePreviewHeight: fileponReviewHeight
         });
-    });
-
-    $(document).ready(function () {
-        // const inputFile = $("input[type='file']");
-        // inputFile.on("change", function () {
-        //     console.log($(this).val());
-        // });
-
-       
     });
 </script>

@@ -185,7 +185,7 @@ $(document).ready(function() {
                 toastMixin.fire({ title: res.success, icon: 'success' });
                 $(".createFaclityForm").trigger("reset");
                 $("#facilityCreate").modal("hide");
-                facilitiesList();
+                facilitiesList(search);
             }, error:function (response) {
                 $('#faclityName-error').text(response.responseJSON.errors.faclityName);
             }
@@ -311,9 +311,34 @@ $(document).ready(function() {
 
     $('.search').keyup(function(){
         var search = $(this).val();
+        var searchLength = $(this).val().length;
+        searchLengthData(searchLength);
         facilitiesList(search);
+
         $('.loadingShow span').css('display', 'block');
         $('.loadingHide').addClass('d-none');
     });
+
+    function searchLengthData(searchLength) {
+        if(searchLength >= 1){
+            $('.close-icon').removeClass('d-none');
+        }else{
+            $('.close-icon').addClass('d-none');
+        }
+    }
+
+    $(document).on('click', '.cancelBtn', function(){
+        var search = $('.search').val('');
+        var searchLength = $(search).val().length;
+        searchLengthData(searchLength);
+        facilitiesList();
+    });
+
+    // $('.search').keyup(function(){
+    //     var search = $(this).val();
+    //     facilitiesList(search);
+    //     $('.loadingShow span').css('display', 'block');
+    //     $('.loadingHide').addClass('d-none');
+    // });
 });
 </script>

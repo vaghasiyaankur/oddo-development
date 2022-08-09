@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\LogoFavicon;
 use App\Models\GeneralSetting;
+use App\Models\EmailSetting;
 use File;
 
 class SettingController extends Controller
@@ -21,7 +22,8 @@ class SettingController extends Controller
         $currencies = json_decode(file_get_contents($path), true);
         $logoFavicon = LogoFavicon::first();
         $GeneralSetting = GeneralSetting::first();
-        return view('admin::settings.index', compact('logoFavicon', 'currencies', 'GeneralSetting'));
+        $EmailSetting = EmailSetting::first();
+        return view('admin::settings.index', compact('logoFavicon', 'currencies', 'GeneralSetting','EmailSetting'));
     }
 
     /**
@@ -88,7 +90,7 @@ class SettingController extends Controller
     {
         if (!isset($_FILES['logo']) && !isset($_FILES['favicon'])) {
             return response()->json(["error" => "please select logo or favicon."], 403);
-        } 
+        }
 
         $logo = $request->file('logo');
         $favicon = $request->file('favicon');
@@ -98,22 +100,22 @@ class SettingController extends Controller
         if($logo) {
             $logo_image =  'logo/img_'.rand(100000,999999).".".$logo->GetClientOriginalExtension();
             $logo->move(public_path('storage/logo/'),$logo_image);
-            
+
             $path = public_path()."/storage/".@$LogoFavicon->logo;
             $result = File::exists($path);
             if($result) File::delete($path);
-            
+
             $LogoFavicon->logo = $logo_image;
         }
-        
+
         if($favicon){
             $logo_image_favicon =  'logo/img_'.rand(100000,999999).".".$favicon->GetClientOriginalExtension();
             $favicon->move(public_path('storage/logo/'),$logo_image_favicon);
-            
+
             $path = public_path()."/storage/".@$LogoFavicon->favicon;
             $result = File::exists($path);
             if($result) File::delete($path);
-    
+
             $LogoFavicon->favicon = $logo_image_favicon;
         }
         $LogoFavicon->update();
@@ -132,7 +134,7 @@ class SettingController extends Controller
         $LogoFavicon->update();
 
         return response()->json(["error" => "favicon delete Successfully"], 200);
-    }   
+    }
 
     public function deleteLogo($id)
     {
@@ -161,5 +163,33 @@ class SettingController extends Controller
         ]);
 
         return response()->json(["success" => "general Setting update Successfully"], 200);
+    }
+
+    public function updateEmailSetting(Request $request)
+    {
+        $id = $request->id;
+        $amenities   =  EmailSetting::updateOrCreate([ 'id' => $id ], [
+            'host_name' => $request->host_name ,
+            'port_name' => $request->port_name ,
+            'encryption' => $request->encryption ,
+            'username' => $request->username ,
+            'password' => $request->password ,
+            'from_email' => $request->from_email ,
+            'from_name' => $request->from_name ,
+        ]);
+
+        return response()->json(["success" => "Email Setting update Successfully"], 200);
+    }
+
+    public function emailSettingShow()
+    {
+        $data['EmailSetting'] = EmailSetting::first();
+        return view('admin::Settings.emailSetting', $data);
+    }
+
+    public function logoFaviconShow()
+    {
+        $data['logoFavicon'] = LogoFavicon::first();
+        return view('admin::Settings.logoFavicon', $data);
     }
 }
