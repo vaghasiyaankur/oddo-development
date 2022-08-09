@@ -97,4 +97,10 @@ class PropertyController extends Controller
             return response()->json(["success" => "facility status updated Successfully"], 200);
         }
     }
+
+    public function SingleProperty($slug)
+    {
+       $hotel = Hotel::where('slug', $slug)->first();
+       return view('admin::properties.single-property', compact('hotel'));
+    }   
 }

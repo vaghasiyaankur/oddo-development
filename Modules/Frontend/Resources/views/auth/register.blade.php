@@ -15,7 +15,7 @@
                                     </div>
                                     <div id="success-div"></div>
                                     <div class="p-2 mt-3">
-                                        <form action="javascript:;" method="POST" class="signUpForm">
+                                        <form action="javascript:;" method="POST" class="signUpForm" style="margin-top: 40px;position:relative;">
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="name" class="form-label">First Name<span class="text-danger">*</span></label>
@@ -138,7 +138,7 @@
                 data: formdata,
                 success: function (response) {
                     $('.spinner-border').hide();
-                    $('#success-div').html(` <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                    $('#success-div').html(` <div class="alert alert-borderless alert-success text-center p-2 mx-2" role="alert"  style="position:absolute;width:85%;>
                                         <span id="">`+response.success+`</span>
                                     </div>`);
                     setTimeout(function(){

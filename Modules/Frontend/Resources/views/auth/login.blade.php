@@ -16,7 +16,7 @@
                                     </div>
                                     <div id="expired-div"></div>
                                     <div class="p-2 mt-4">
-                                        <form class="loginForm" action="javscript:;" method="POST">
+                                        <form class="loginForm" action="javscript:;" method="POST" style="margin-top: 42px;position:relative;">
                                             <div class="mb-4">
                                                 <label for="email" class="form-label">Email <span
                                                         class="text-danger">*</span></label>
@@ -113,7 +113,7 @@ $(document).ready(function(){
             }, error:function (response) {
                 if(response.responseJSON.error){
                     $('.spinner-border').hide();
-                    $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                    $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center p-2 mx-2" style="position:absolute;width:85%;" role="alert">
                                             <span id="expired-link-error">`+response.responseJSON.error+`</span>
                                         </div>`);
                     setTimeout(function(){

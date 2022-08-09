@@ -15,11 +15,11 @@
                                 </div>
                                 <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop"
                                     colors="primary:#5867ba" class="img-fluid"
-                                    style="width: 100%;max-width: 105px;">
+                                    style="width: 100%;max-width: 105px;margin-top:40px;position:relative;">
                                 </lord-icon>
                             </div>
                             <div class="p-2 ">
-                                <form class="forgetPasswordForm" action="javascript:;" >
+                                <form class="forgetPasswordForm" action="javascript:;">
                                     <div class="mb-4">
                                         <label class="form-label">Email</label>
                                         <input type="email" class="form-control" id="forget-email"
@@ -82,7 +82,7 @@ $(document).ready(function(){
                 success: function (response) {
                     $('.spinner-border').hide();
                     console.log(response.success);
-                    $('#forget-success-div').html(` <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                    $('#forget-success-div').html(` <div class="alert alert-borderless alert-success text-center p-2 mx-2" style="position:absolute;width:85%;" role="alert">
                                         <span>`+response.success+`</span>
                                     </div>`);
                     $(".forgetPasswordForm").trigger("reset");

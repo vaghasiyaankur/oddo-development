@@ -7,6 +7,7 @@
             <th scope="col">Poperty Type</th>
             <th scope="col">Rating</th>
             <th scope="col">Status</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody class="table__body">
@@ -50,6 +51,16 @@
                     <div class="form-check form-switch loadingHide">
                         <input class="form-check-input PropertyStatus" data-id="{{ $property->UUID }}"  data-value="{{$property->status}}" type="checkbox" role="switch" id="SwitchCheck1" {{ $property->status == 1 ? 'checked':
                         ''}}>
+                    </div>
+                </td>
+                <td>
+                    <div class="loadingShow td-3">
+                        <span></span>
+                    </div>
+                    <div class="form-check form-switch loadingHide">
+                        <a href="{{route('property.single', ['slug' => $property->slug])}}">
+                            <i class="ri-eye-fill align-bottom text-muted fs-4"></i>
+                        </a>
                     </div>
                 </td>
             </tr>

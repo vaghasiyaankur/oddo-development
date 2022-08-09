@@ -114,6 +114,7 @@ Route::prefix('admin')->group(function() {
             Route::get('/property','index')->name('property.index');
             Route::get('/property-list', 'propertyList')->name('property.list');
             Route::post('/property-status','PropertyStatus')->name('property.status');
+            Route::get('/single-property/{slug}', 'SingleProperty')->name('property.single');
         });
 
          // Setting
