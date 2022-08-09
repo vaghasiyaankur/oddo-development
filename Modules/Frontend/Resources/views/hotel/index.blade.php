@@ -1464,9 +1464,9 @@ $(document).ready(function(){
     }
 
     $(document).ready(function(){
-        // if($('input[type="checkbox"]:checked').length > 0){
-        //     $('.ResetForm').removeClass('d-none');
-        // }
+        if($('input[type="checkbox"]:checked').length > 0){
+            $('.ResetForm').removeClass('d-none');
+        }
         $('input[type="checkbox"]').change(function() {
             if($('input[name="FilterCheck"]:checked').length > 0){
                 $('.ResetForm').removeClass('d-none');

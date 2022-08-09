@@ -67,10 +67,10 @@
                                     </div>
 
                                     @if(session('error'))
-                                    <div class="alert alert-danger mb-0">{{session('error')}}</div>
+                                    <div class="alert alert-danger mb-0 p-2 pl-3" style="position: absolute;width:85%;text-align:center;">{{session('error')}}</div>
                                     @endif
-                                    <div class="p-2 mt-4">
-                                        <form action="{{route('admin.login')}}" method="POST">
+                                    <div class="p-2 mt-3">
+                                        <form action="{{route('admin.login')}}" method="POST" style="position: relative;margin-top:35px;">
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">Email</label>
@@ -85,7 +85,7 @@
                                                     <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
                                                 </div> --}}
                                                 <label class="form-label" for="password-input">Password</label>
-                                                <div class="position-relative auth-pass-inputgroup mb-3">
+                                                <div class="position-relative auth-pass-inputgroup">
                                                     <input type="password" name="password" class="form-control pe-5" placeholder="Enter password" id="password-input">
                                                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                 </div>

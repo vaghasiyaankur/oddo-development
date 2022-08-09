@@ -124,7 +124,12 @@ Route::prefix('admin')->group(function() {
             // general Setting
             Route::post('update/generalsetting', 'updateGeneralSetting')->name('update.generalSetting');
 
+            // email setting
+            Route::post('update/emailsetting', 'updateEmailSetting')->name('update.emailSetting');
+            Route::get('emailSetting/show', 'emailSettingShow')->name('emailsetting.show');
+
             // logo & favicon
+            Route::get('logoFavicon/show', 'logoFaviconShow')->name('logoFavicon.show');
             Route::post('update/logo', 'updateLogo')->name('update.logo');
             Route::post('delete/favicon/{id}', 'deleteFavicon')->name('delete.favicon');
             Route::post('delete/logo/{id}', 'deleteLogo')->name('delete.logo');

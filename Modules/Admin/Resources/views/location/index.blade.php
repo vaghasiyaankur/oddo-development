@@ -4,7 +4,7 @@
 @push('css')
 <!-- dropzone css -->
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-    <style>
+<style>
         .Upload--img .dropzone {
             min-height: 132px;
             padding: 13px 17px;
@@ -56,6 +56,12 @@
         min-height: 50px;
         max-height: 50px;
     }
+    .page-content .card-header .search-box  .close-icon{
+        position: absolute;
+        right: 10px;
+        top: 7px;
+        font-size: 17px;
+    }
 </style>
 @endpush
 @section('content')
@@ -71,9 +77,10 @@
                         <div class="col-sm-8">
                             <div class="d-flex align-items-center justify-content-evenly">
                                 <div class="search-box w-100">
-                                    <input type="search" value="{{ Request::input('search') }}" class="form-control search" name="search"
+                                    <input type="text" value="{{ Request::input('search') }}" class="form-control search" name="search"
                                         placeholder="Search for Amenity status or something...">
                                     <i class="ri-search-line search-icon" ></i>
+                                    <i class="ri-close-line close-icon cancelBtn d-none" ></i>
                                 </div>
                                 <div class="live-preview ms-4">
                                     <button type="button" class="btn btn-success text-nowrap" data-bs-toggle="modal"
