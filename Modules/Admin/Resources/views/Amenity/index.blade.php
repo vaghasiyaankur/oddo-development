@@ -134,6 +134,14 @@ Amenity
             animation-timing-function: linear;
             animation-fill-mode: forwards;
         }
+
+        /* close icon start */
+       .page-content .card-header .search-box  .close-icon{
+            position: absolute;
+            right: 10px;
+            top: 7px;
+            font-size: 17px;
+        }
     </style>
 @endpush
 
@@ -153,6 +161,7 @@ Amenity
                                         <input type="text" value="{{ Request::input('search') }}" class="form-control search" name="search"
                                             placeholder="Search for Amenity status or something...">
                                         <i class="ri-search-line search-icon" ></i>
+                                        <i class="ri-close-line close-icon cancelBtn d-none" ></i>
                                     </div>
                                     <div class="btn-group d-flex justify-content-end ms-4">
                                         <button type="button" class="btn btn-success  text-nowrap rounded-1"  data-bs-toggle="modal" data-bs-target="#exampleModalgrid2"><i class=" ri-add-line align-bottom me-1"></i>

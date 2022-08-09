@@ -98,7 +98,6 @@
     <!------- Header End ------->
 
     @yield('content')
-    {{$logoFavicon}}
     @include('frontend::auth.login')
     @include('frontend::auth.register')
     @include('frontend::auth.forget')
