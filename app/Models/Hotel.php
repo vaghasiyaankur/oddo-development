@@ -79,6 +79,12 @@ class Hotel extends Model
         return $this->belongsTo(FoodType::class, 'breakfast_type');
     }
 
+    public function food_type()
+    {
+        $breakfast_type = explode(',',$this->breakfast_type);
+        return FoodType::whereIn('id', $breakfast_type)->get();
+    }
+
     public function facilities(){
         $facilities = explode(',',$this->facilities_id);
         return Facilities::whereIn('id', $facilities)->get();

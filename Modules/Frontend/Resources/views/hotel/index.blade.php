@@ -449,7 +449,7 @@
                                     <h5 class="search-heading ">Sort By</h5>
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                            id="flexCheckChecked" checked>
+                                            id="flexCheckChecked" >
                                         <div class="search-prefe-main d-flex justify-content-between align-items-center">
                                             <div class="search-prefe-text">
                                                 <label class="form-check-label ps-2" for="flexCheckChecked">
@@ -491,7 +491,7 @@
                                                                         <div class="form-check pe-4">
                                                                             <input class="form-check-input"
                                                                                 type="checkbox" value=""
-                                                                                id="flexCheckChecked" checked>
+                                                                                id="flexCheckChecked" >
                                                                             <label class="form-check-label"
                                                                                 for="flexCheckDefault">
                                                                                 Price: high to low
@@ -546,7 +546,7 @@
                                                                                                 type="checkbox"
                                                                                                 value=""
                                                                                                 id="flexCheckChecked"
-                                                                                                checked>
+                                                                                                >
                                                                                             <label class="form-check-label"
                                                                                                 for="flexCheckDefault">
                                                                                                 Flexible Check-In
@@ -586,7 +586,7 @@
                                                                                 <div class="form-check pe-3">
                                                                                     <input class="form-check-input style"
                                                                                         type="checkbox" value=""
-                                                                                        id="flexCheckChecked" checked>
+                                                                                        id="flexCheckChecked" >
                                                                                     <label class="form-check-label"
                                                                                         for="flexCheckDefault">
                                                                                         Historic
@@ -647,7 +647,7 @@
                                                                                 <div class="form-check pe-4">
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox" value=""
-                                                                                        id="flexCheckChecked" checked>
+                                                                                        id="flexCheckChecked" >
                                                                                     <span class="property-class-icon"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                                     <span class="property-class-icon "><img
@@ -660,7 +660,7 @@
                                                                                 <div class="form-check pe-4">
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox" value=""
-                                                                                        id="flexCheckChecked" checked>
+                                                                                        id="flexCheckChecked" >
                                                                                     <span class="property-class-icon"><img
                                                                                             src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                                     <span class="property-class-icon "><img
@@ -716,7 +716,7 @@
                                                                                 <div class="form-check pe-md-4 pe-3">
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox" value=""
-                                                                                        id="flexCheckChecked" checked>
+                                                                                        id="flexCheckChecked" >
                                                                                     <label class="form-check-label"
                                                                                         for="flexCheckDefault">
                                                                                         Breakfast
@@ -815,7 +815,7 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                                id="flexCheckChecked" checked>
+                                                id="flexCheckChecked" >
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Flexible Check-In
                                             </label>
@@ -841,7 +841,7 @@
                                         </div>
                                         <div class="form-check ">
                                             <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                                id="flexCheckChecked" checked>
+                                                id="flexCheckChecked" >
                                             <label class="form-check-label ps-2" for="flexCheckDefault">
                                                 Historic
                                             </label>
@@ -1448,6 +1448,7 @@ $(document).ready(function(){
     $(document).on('click', '.Resetform', function(e){
         e.preventDefault();
         $("#formReset")[0].reset();
+        resetFilter();
     });
 
     $(document).on('keyup', '.searchProperty', function(){
@@ -1463,10 +1464,13 @@ $(document).ready(function(){
         }
     }
 
-    $(document).ready(function(){
+    function resetFilter() {
         if($('input[type="checkbox"]:checked').length > 0){
             $('.ResetForm').removeClass('d-none');
+        }else{
+            $('.ResetForm').addClass('d-none');
         }
+
         $('input[type="checkbox"]').change(function() {
             if($('input[name="FilterCheck"]:checked').length > 0){
                 $('.ResetForm').removeClass('d-none');
@@ -1474,8 +1478,8 @@ $(document).ready(function(){
                 $('.ResetForm').addClass('d-none');
             }
         });
-    });
-
+    }
+    resetFilter();
 });
 </script>
 @endpush

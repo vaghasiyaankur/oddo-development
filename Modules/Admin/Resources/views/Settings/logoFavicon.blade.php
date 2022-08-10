@@ -1,5 +1,6 @@
 <div class="logo-favicon">
     <h3 class="mb-5 fs-4">Logo and Favicon</h3>
+    <a href="javascript;" class="btn logo-btn">save</a>
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -36,7 +37,7 @@
         </div>
     </div>
     {{-- @if (!isset($logoFavicon)) --}}
-        <a href="javascript;" class="btn logo-btn">save</a>
+        
     {{-- @endif --}}
 </div>
 

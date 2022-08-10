@@ -48,6 +48,22 @@
         /* .navbar-nav{
             overflow: auto;
         } */
+
+        /* dropdown menu start */
+        .navbar-header .topbar-head-dropdown .dropdown-menu.show {
+            position: absolute !important;
+            right: 0;
+            /* width: 100% !important;
+            min-width: 320px !important; */
+            top: 70px !important;
+        }
+       
+        @media screen and (max-width:400px){
+            .navbar-header .topbar-head-dropdown .dropdown-menu.show {
+                right: -30px;
+                max-width: 100% !important;
+            }
+        }
     </style>
     @stack('css')
     
@@ -105,9 +121,20 @@
     <!-- icon picker js -->
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
     <script>
-        $(document).ready(function(){
-            $(".topnav-hamburger").click(function(){
+        $(document).ready(function() {
+            $(".topnav-hamburger").click(function() {
                 $("body").toggleClass('menu');
+            });
+
+            $(document).on("click", function(event) {
+                var $trigger = $(".headerDiv");
+                if ($trigger !== event.target && !$trigger.has(event.target).length) {
+                    $(".notifactionDiv").removeClass("show");
+                }
+            });
+
+            $('.btnNotificaion').click(function() {
+                $('.notifactionDiv').toggleClass('show');
             });
         });
     </script>

@@ -9,6 +9,8 @@ use App\Models\LogoFavicon;
 use App\Models\GeneralSetting;
 use App\Models\EmailSetting;
 use File;
+use Illuminate\Support\Facades\Config;
+
 
 class SettingController extends Controller
 {
@@ -168,14 +170,15 @@ class SettingController extends Controller
     public function updateEmailSetting(Request $request)
     {
         $id = $request->id;
-        $amenities   =  EmailSetting::updateOrCreate([ 'id' => $id ], [
+        
+        $EmailSetting   =  EmailSetting::updateOrCreate([ 'id' => $id ], [
             'host_name' => $request->host_name ,
             'port_name' => $request->port_name ,
             'encryption' => $request->encryption ,
             'username' => $request->username ,
             'password' => $request->password ,
-            'from_email' => $request->from_email ,
-            'from_name' => $request->from_name ,
+            'from_email' => $request->fromemail ,
+            'from_name' => $request->fromname ,
         ]);
 
         return response()->json(["success" => "Email Setting update Successfully"], 200);

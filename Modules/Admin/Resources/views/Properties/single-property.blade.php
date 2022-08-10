@@ -70,12 +70,12 @@
                                                     <i class="{{$hotel->star_rating >= 5 ? "ri-star-fill" : "" }} fs-15 text-warning"></i>
                                                 </div>
                                                 <div class="vr"></div>
-                                                <div class="text-muted">Create Date : <span class="fw-medium " id="create-date">20 Dec, 2021</span></div>
+                                                <div class="text-muted">Create Date : <span class="fw-medium " id="create-date">{{ date('d M, Y', strtotime($hotel->created_at)) }}</span></div>
                                                 <div class="vr"></div>
                                                 <!-- <div class="text-muted">Due Date : <span class="fw-medium" id="due-date">29 Dec, 2021</span></div>
                                                 <div class="vr"></div> -->
                                                 <button type="button" class="btn  view-btn mt-n1 p-0 favourite-btn active">
-                                                    <a href="javascript:;"> Gallery</a>
+                                                    <a href="javascript:;"> gallery</a>
                                                 </button>
                                                 <!-- <div class="text-muted"><span class="fw-medium" id="due-date">Gallery</span></div> -->
                                             </div>
@@ -155,34 +155,56 @@
                         <h6 class="fw-semibold text-uppercase mb-3">Create an Excellent UI for a Dashboard</h6>
                         <ul class="text-muted vstack gap-2 mb-4">
                             <li>Is parking available for guests?
-                                <!-- <a href="javascript:;" class="fs-12">
-                                    <i class="ri-close-line close-icon bg-danger rounded-pill"></i>
-                                </a> -->
-                                <a href="javascript:;" class="fs-12">
-                                    <i class="ri-check-line close-icon  badge-btn rounded-pill"></i>
-                                </a>
-                                <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">private</span>
-                                <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">on site</span>
+                                @if ($hotel->parking_available == 'no')    
+                                    <a href="javascript:;" class="fs-12">
+                                        <i class="ri-close-line badge-btn close-icon bg-danger rounded-pill"></i>
+                                    </a> 
+                                @else
+                                    <a href="javascript:;" class="fs-12">
+                                        <i class="ri-check-line close-icon  badge-btn rounded-pill"></i>
+                                    </a>
+                                    <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">{{$hotel->parking_site}} Site</span>
+                                    <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">{{$hotel->parking_type}}</span>
+                                @endif
                             </li>
-                            <li>Is breakfast available to guests?
-                                <a href="javascript:;" class="fs-12">
-                                    <i class="ri-check-line close-icon fs-12 badge-btn rounded-pill"></i>
-                                </a>
-                                <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">Italian</span>
+                            <li>Is breakfast available to guests? 
+                                @if ($hotel->breakfast == 'no')
+                                    <a href="javascript:;" class="fs-12">
+                                        <i class="ri-close-line badge-btn close-icon bg-danger rounded-pill"></i>
+                                    </a> 
+                                @else
+                                    <a href="javascript:;" class="fs-12">
+                                        <i class="ri-check-line close-icon fs-12 badge-btn rounded-pill"></i>
+                                    </a>
+                                    @php
+                                        $breakfast = $hotel->food_type();
+                                    @endphp
+                                    @foreach ($breakfast as $item) 
+                                        <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">{{$item->food_type}}</span>
+                                    @endforeach
+                                @endif
                             </li>
                             <li>Languages Spoken
-                                <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">Gujarati</span>
+                                @php
+                                    $languages = explode(',', $hotel->language);
+                                @endphp
+                                @foreach ($languages as $language)
+                                    <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">{{$language}}</span>
+                                @endforeach
                             </li>
                             <li>Can you provide extra bed?
-                                <!-- <a href="javascript:;" class="fs-12 bg-danger rounded-pill badge-btn">
-                                    <i class="ri-close-line close-icon fs-12 "></i>
-                                </a> -->
-                                <a href="javascript:;" class="fs-12">
-                                    <i class="ri-check-line close-icon fs-12 badge-btn rounded-pill"></i>
-                                </a>
-                                <a href="javascript:;" class="fs-12">
-                                <span class="fs-12 badge-btn rounded-pill  px-2 py-1">1</span>
-                                </a>
+                                @if ($hotel->extra_bed == 'no')
+                                    <a href="javascript:;" class="fs-12 bg-danger rounded-pill badge-btn">
+                                        <i class="ri-close-line close-icon fs-12 "></i>
+                                    </a>
+                                @else
+                                    <a href="javascript:;" class="fs-12">
+                                        <i class="ri-check-line close-icon fs-12 badge-btn rounded-pill"></i>
+                                    </a>
+                                    <a href="javascript:;" class="fs-12">
+                                    <span class="fs-12 badge-btn rounded-pill  px-2 py-1">{{$hotel->number_extra_bed}}</span>
+                                    </a>
+                                @endif
                                 
                             </li>
                         </ul>
@@ -196,7 +218,7 @@
                                 <a href="javascript:;" class="fs-12 ">
                                     <i class="ri-check-line close-icon fs-12 badge-btn rounded-pill"></i>
                                 </a>
-                                <span class=" fs-12 badge-btn  px-2 py-1"><span>1</span> Day</span>
+                                <span class=" fs-12 badge-btn  px-2 py-1"><span>{{$hotel->cancel_booking}}</span> Day</span>
                             </li>
                             <li>guests will pay 100%
                                 <!-- <a href="javascript:;" class="rounded-pill fs-12 badge-btn bg-danger rounded-pill">
@@ -205,7 +227,7 @@
                                 <a href="javascript:;" class=" fs-12 ">
                                     <i class="ri-check-line close-icon fs-12 badge-btn rounded-pill"></i>
                                 </a>
-                                <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">of the first night</span>
+                                <span class="badge-btn  fs-12 px-2 py-1" id="t-priority">{{ $hotel->pay_type == 'first_hight' ? 'of the first night' : ' of the full stay' }}</span>
                             </li>
                         </ul>
                     </div>
@@ -218,11 +240,11 @@
                     <div class="card-header">
                         <h5 class="card-title mb-0">Selected Amenities</h5>
                     </div>
-                    @foreach ($hotel->amenity() as $amenity)
                     <div class="card-body fs-13 ">
-                        <li><span class="ps-2">{{$amenity->amenities}}</span></li>
+                        @foreach ($hotel->amenity() as $amenity)
+                            <li><span class="ps-2">{{$amenity->amenities}}</span></li>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
                 <!--end card-->
                 <div class="card">
@@ -230,12 +252,9 @@
                         <h5 class="card-title mb-0">Selected Facilities</h5>
                     </div>
                     <div class="card-body fs-13 ">
-                        <li><span class="ps-2">Bidet</span></li>
-                        <li><span class="ps-2">Bath</span></li>
-                        <li><span class="ps-2">Dining table</span></li>
-                        <li><span class="ps-2">Computer</span></li>
-                        <li><span class="ps-2">Sofa bed</span></li>
-                        <li><span class="ps-2">Wardrobe or closet</span></li>
+                        @foreach ($hotel->facilities() as $facilities)
+                            <li><span class="ps-2">{{$facilities->facilities_name}}</span></li>
+                        @endforeach
                     </div>
                 </div>
                 <!--end card-->

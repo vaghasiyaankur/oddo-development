@@ -142,7 +142,7 @@ input:not([type="radio"]), textarea {
 
 .tab-content .tab-pane .logo-favicon .logo-btn{
     position: absolute;
-    bottom: 20px;
+    top: 70px;
     right: 20px;
     background: #0ab39c;
     padding: 5px 10px;

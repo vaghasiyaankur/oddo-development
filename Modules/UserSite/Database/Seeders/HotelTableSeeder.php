@@ -31,7 +31,7 @@ class HotelTableSeeder extends Seeder
 
         $value = ['yes','no'];
         $parkingSite = ['on','off'];
-        $parkingType = ['private','pubic'];
+        $parkingType = ['private','public'];
         $breakfast = ['yes','no'];
         $language = ["english","hindi","Russian"];
         $cancel = ['1','2','3','7','14'];

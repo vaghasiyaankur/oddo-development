@@ -1,5 +1,5 @@
 <div class="general-setting">
-    <h3 class="mb-5">General Setting</h3>
+    <h3 class="mb-5  fs-4">General Setting</h3>
     <div class="row">
         <div class="col-lg-4 pb-3">
             <label for="labelInput" class="form-label ">Site name</label>
