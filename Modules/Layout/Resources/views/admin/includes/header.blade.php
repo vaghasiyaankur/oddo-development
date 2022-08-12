@@ -1,10 +1,18 @@
 @php $logoFavicon = Modules\Admin\Http\Controllers\AdminController::logoFavicon() @endphp
+<div class="overlay">
+	<div class="overlayDoor"></div>
+	<div class="overlayContent">
+		<div class="loader">
+			<div class="inner"></div>
+		</div>
+	</div>
+</div>
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex align-items-center">
             <!-- LOGO -->
             <div class="navbar-brand-box horizontal-logo">
-                <a href="index.html" class="logo logo-dark">
+                <a href="{{ route('dashboard') }}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}">
                     </span>
@@ -135,7 +143,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="text-reset notification-item d-block dropdown-item position-relative active">
                                                         <div class="d-flex">
                                                             <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -160,7 +168,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                         <div class="d-flex">
                                                             <div class="avatar-xs me-3">
@@ -186,7 +194,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                         <div class="d-flex">
                                                             <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -210,7 +218,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="my-3 text-center">
                                                         <button type="button" class="btn btn-soft-success waves-effect waves-light">View
                                                             All Notifications <i class="ri-arrow-right-line align-middle"></i></button>
@@ -228,7 +236,7 @@
                                     <div class="simplebar-scrollbar" style="height: 176px; display: block; transform: translate3d(0px, 0px, 0px);"></div>
                                 </div>
                             </div>
-                
+
                         </div>
                         <div class="tab-pane fade py-2 ps-2" id="messages-tab" role="tabpanel">
                             <div data-simplebar="init" style="max-height: 300px;" class="pe-2">
@@ -258,13 +266,13 @@
                                                                 <!-- <div class="form-check notification-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="messages-notification-check01">
                                                                     <label class="form-check-label" for="messages-notification-check01"></label>
-                                                            
+
                                                                 </div> -->
                                                                   <a href="javascript;;" class="btn btn-primary py-1 px-2"> View</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
                                                             <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -284,13 +292,13 @@
                                                                 <!-- <div class="form-check notification-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="messages-notification-check02">
                                                                     <label class="form-check-label" for="messages-notification-check02"></label>
-                                                            
+
                                                                 </div> -->
                                                                   <a href="javascript;;" class="btn btn-primary py-1 px-2"> View</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
                                                             <img src="assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -310,13 +318,13 @@
                                                                 <!-- <div class="form-check notification-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="messages-notification-check03">
                                                                     <label class="form-check-label" for="messages-notification-check03"></label>
-                                                            
+
                                                                 </div> -->
                                                                   <a href="javascript;;" class="btn btn-primary py-1 px-2"> View</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
                                                             <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -335,13 +343,13 @@
                                                                 <!-- <div class="form-check notification-check">
                                                                     <input class="form-check-input" type="checkbox" value="" id="messages-notification-check04">
                                                                     <label class="form-check-label" for="messages-notification-check04"></label>
-                                                            
+
                                                                 </div> -->
                                                                   <a href="javascript;;" class="btn btn-primary py-1 px-2"> View</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="my-3 text-center">
                                                         <button type="button" class="btn btn-soft-success waves-effect waves-light">View
                                                             All Messages <i class="ri-arrow-right-line align-middle"></i></button>
@@ -369,27 +377,34 @@
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
                 </div>
-                
+
                 <!-- noti end  -->
 
-            <div class="dropdown ms-sm-3 header-item topbar-user">
-                <button type="button" class="btn" id="page-header-user-dropdown">
+            {{-- <div class="dropdown ms-sm-3 header-item topbar-user">
+                <button type="button" class="btn show" id="page-header-user-dropdown">
                     <span class="d-flex align-items-center">
                         <img class="rounded-circle header-profile-user"
                             src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
                             alt="Header Avatar">
                         <span class="text-start ms-xl-2">
-                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna
-                                Adame</span>
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{auth()->user()->name}}</span>
                             <span
-                                class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{auth()->user()->email}}</span>
                         </span>
                     </span>
                 </button>
-                {{-- <div class="dropdown-menu dropdown-menu-end">
+                <div class="dropdown-menu dropdown-menu-end pt-0 " style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 72px);" data-popper-placement="bottom-end">
+                    <div class="p-3 bg-primary border-bottom">
+                        <h6 class="mb-0 text-white text-capitalize">admin</h6>
+                        <p class="mb-0 font-size-11 text-white-50 fw-semibold">admin@admin.com</p>
+                    </div>
+                    <a class="dropdown-item d-flex align-items-center" href="https://eshopee.rutvikvaghasiya.com/admin/profile/update/1"><i class="fa fa-cog mr-1"></i> <span class="align-middle">Settings</span></a>
+                    <a class="dropdown-item" href="https://eshopee.rutvikvaghasiya.com/admin/auth/logout"><i class="fa fa-arrow-circle-right mr-1"></i><span class="align-middle">Logout</span></a>
+                </div>
+                <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <h6 class="dropdown-header">Welcome Anna!</h6>
                     <a class="dropdown-item" href="pages-profile.html"><i
@@ -418,7 +433,26 @@
                     <a class="dropdown-item" href="auth-logout-basic.html"><i
                             class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                             class="align-middle" data-key="t-logout">Logout</span></a>
-                </div> --}}
+                </div>
+            </div> --}}
+
+            <div class="dropdown ms-sm-3 header-item topbar-user">
+                <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="d-flex align-items-center">
+                        <img class="rounded-circle header-profile-user"
+                        src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}"
+                        alt="Header Avatar">
+                        <span class="text-start ms-xl-2">
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{auth()->user()->name}}</span>
+                            <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{auth()->user()->email}}</span>
+                        </span>
+                    </span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end" style="">
+                    <!-- item-->
+                    <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">My Profile</span></a>
+                    <a class="dropdown-item" href="apps-chat.html"><i class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Log out</span></a>
+                </div>
             </div>
         </div>
     </div>

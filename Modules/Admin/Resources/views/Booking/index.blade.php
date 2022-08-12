@@ -1,5 +1,5 @@
 @extends('layout::admin.master')
-
+@section('title','Booking')
 @push('css')
 <style>
 

@@ -4,7 +4,7 @@
         </div>
         <ul class="navbar-nav" id="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link menu-link ps-0" href="dashboard.html">
+                <a class="nav-link menu-link ps-0" href="{{ route('dashboard') }}">
                     <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                 </a>
             </li> <!-- end Dashboard Menu -->

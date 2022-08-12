@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
 
 <head>
@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  
+
     <!-- Begin page -->
     <div id="layout-wrapper">
 
@@ -33,7 +33,7 @@
                 <div class="d-flex align-items-center">
                     <!-- LOGO -->
                     <div class="navbar-brand-box horizontal-logo">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="{{ route('dashboard') }}" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="assets/images/logo-sm.png" alt="" height="22">
                             </span>
@@ -556,7 +556,7 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-                    
+
                 </div>
                 <!-- container-fluid -->
             </div>
@@ -597,12 +597,12 @@
     <script src="{{ asset('assets/Admin/js/form-input-spin.init.js') }}"></script>
 
     <!-- input step init -->
-    <script src="{{ asset('assets/Admin/assets/js/form-input-spin.init.js') }}"></script>
+    <script src="{{ asset('assets/Admin/assets/js/form-input-spin.init.js') }}"></script> --}}
     <!-- ecommerce cart js -->
     {{-- <script src="{{ asset('assets/Admin/js/ecommerce-cart.init.js') }}"></script> --}}
     <!-- App js -->
     {{-- <script src="{{ asset('assets/Admin/assets/js/app.js') }}"></script> --}}
 
-</body>
+{{-- </body>
 
-</html>
+</html> --}}
