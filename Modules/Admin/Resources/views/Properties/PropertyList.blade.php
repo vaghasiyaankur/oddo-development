@@ -49,8 +49,13 @@
                         <span></span>
                     </div>
                     <div class="form-check form-switch loadingHide">
-                        <input class="form-check-input PropertyStatus" data-id="{{ $property->UUID }}"  data-value="{{$property->status}}" type="checkbox" role="switch" id="SwitchCheck1" {{ $property->status == 1 ? 'checked':
-                        ''}}>
+                        @if($property->status == 1)
+                        <a href="javascript:;">
+                            <button class="btn btn-success fs-12 px-2 py-1">Active</button>
+                        @else
+                            <button class="btn btn-danger fs-12 px-2 py-1">Deactive</button>
+                        </a>
+                        @endif
                     </div>
                 </td>
                 <td>
