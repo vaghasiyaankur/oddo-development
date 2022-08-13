@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Database\Seeders\UserTableSeeder;
 use Modules\UserSite\Database\Seeders\CountryTableSeeder;
 use Modules\UserSite\Database\Seeders\CityTableSeeder;
 use Modules\UserSite\Database\Seeders\PartnerTableSeeder;
@@ -22,9 +23,10 @@ use Modules\UserSite\Database\Seeders\HotelContactTableSeeder;
 use Modules\UserSite\Database\Seeders\HotelRoomTableSeeder;
 use Modules\UserSite\Database\Seeders\HotelPhotoTableSeeder;
 use Modules\UserSite\Database\Seeders\LogoFaviconTableSeeder;
-use Database\Seeders\UserTableSeeder;
 use Modules\UserSite\Database\Seeders\GeneralSettingTableSeeder;
 use Modules\UserSite\Database\Seeders\EmailSettingTableSeeder;
+use Modules\UserSite\Database\Seeders\MailTemplateTableSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -55,6 +57,7 @@ class DatabaseSeeder extends Seeder
             LogoFaviconTableSeeder::class,
             GeneralSettingTableSeeder::class,
             EmailSettingTableSeeder::class,
+            MailTemplateTableSeeder::class,
         ]);
     }
 }

@@ -118,66 +118,8 @@ class HotelTableSeeder extends Seeder
 
                 
                 $photoEntry = HotelPhoto::create($photo);
-
-                
-                // $url = 'https://source.unsplash.com/random/1200x800';
-        
-                // $contents = file_get_contents($url);
-                
-                // Storage::disk('public')->put('hotel'.'/'.$hotelEntry->slug, $contents);
             }
-        }    
-        // $hotels = [
-        //     [
-        //         'property_name'  => 'one king west hotel',
-        //         'star_rating' => '2',
-        //         'street_addess' => 'Surendra Nath Banerjee Rd, Moulali',
-        //         'country_id' => '1',
-        //         'city_id' => '1',
-        //         'pos_code' => '700014',
-        //         'parking_available' => 'yes',
-        //         'parking_site' => 'on',
-        //         'parking_type' => 'private',
-        //         'breakfast'  => 'optional',
-        //         'breakfast_type' => '2',
-        //         'language' => '["english"]',
-        //         'facilities' => '["1"]',
-        //         'extra_bed' => 'yes',
-        //         'number_extra_bed' => '2',
-        //         'cancel_booking' => '2',
-        //         'pay_type' => 'first_night',
-        //         'check_in' => '12:00 AM',
-        //         'check_out' => '12:00 AM',
-        //         'amenity_id' => '1,2',
-        //         'property_id' => '1'
-        //     ],[
-        //         'property_name'  => 'Hotel X Toronto by Library Hotel Collection',
-        //         'star_rating' => '5',
-        //         'street_addess' => '111 Princes Boulevard',
-        //         'country_id' => '1',
-        //         'city_id' => '1',
-        //         'pos_code' => '700014',
-        //         'parking_available' => 'yes',
-        //         'parking_site' => 'on',
-        //         'parking_type' => 'private',
-        //         'breakfast'  => 'optional',
-        //         'breakfast_type' => '2',
-        //         'language' => '["english","hindi"]',
-        //         'facilities' => '["3","5","7"]',
-        //         'extra_bed' => 'no',
-        //         'number_extra_bed' => Null,
-        //         'cancel_booking' => '2',
-        //         'pay_type' => 'first_night',
-        //         'check_in' => '12:00 AM',
-        //         'check_out' => '12:00 AM',
-        //         'amenity_id' => '1,2',
-        //         'property_id' => '1'   
-        //     ]
-        // ];
-        // foreach ($hotels as $hotel) {
-        //     Hotel::create($hotel);
-        // }
-
+        }   
     }
     
 }

@@ -204,6 +204,10 @@ input:not([type="radio"]), textarea {
         .table>:not(:first-child){
             border-top-width: 0px !important;
         }
+
+        .selectSettingTab{
+            cursor: pointer;
+        }
 </style>
 @endpush
 

@@ -12,112 +12,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($mailTemplates as $key => $mailTemplate)
                     <tr>
+
                         <th scope="row">
-                            {{-- <a href="#" class="fw-medium">#VZ2109</a> --}}
-                            1
+                            {{$key + 1}}
                         </th>
-                        <td>Room Booking</td>
-                        <td>Confirmation of Room Booking</td>
+                        <td>{{$mailTemplate->mail_type}}</td>
+                        <td>{{$mailTemplate->mail_subject}}</td>
                         <td>
-                            <a href="" class="link-success">
-                                <button type="submit" class="btn btn-success generalSettingBtn">
-                                    <i class=" ri-pencil-fill align-middle"></i>
-                                    Edit
-                                </button>
+                            <a href="javascript:;" class="link-success btn btn-success text-white editEmailTemplate" data-id="{{$mailTemplate->id}}">
+                                <i class=" ri-pencil-fill align-middle"></i>
+                                Edit
                             </a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">
-                            {{-- <a href="#" class="fw-medium">#VZ2109</a> --}}
-                            2
-                        </th>
-                        <td>Package Booking</td>
-                        <td>Confirmation of Package Booking</td>
-                        <td>
-                            <a href="" class="link-success">
-                                <button type="submit" class="btn btn-success generalSettingBtn">
-                                    <i class=" ri-pencil-fill align-middle"></i>
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            {{-- <a href="#" class="fw-medium">#VZ2108</a> --}}
-                            3
-                        </th>
-                        <td>Verify Email</td>
-                        <td>Verify Your Email Address</td>
-                        <td>
-                            <a href="" class="link-success">
-                                <button type="submit" class="btn btn-success generalSettingBtn">
-                                    <i class=" ri-pencil-fill align-middle"></i>
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            {{-- <a href="#" class="fw-medium">#VZ2107</a> --}}
-                            4
-                        </th>
-                        <td>Reset Password</td>
-                        <td>Recover Password of Your Account</td>
-                        <td>
-                            <a href="" class="link-success">
-                                <button type="submit" class="btn btn-success generalSettingBtn">
-                                    <i class=" ri-pencil-fill align-middle"></i>
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            {{-- <a href="#" class="fw-medium">#VZ2107</a> --}}
-                            5
-                        </th>
-                        <td>Payment Cancelled
-                            <p class="mb-0">
-                                <small class="text-secondary">(After Admin rejects Payments via Offline
-                                    Gateways)</small>
-                            </p>
-                        </td>
-                        <td>Booking Request is Rejected</td>
-                        <td>
-                            <a href="" class="link-success">
-                                <button type="submit" class="btn btn-success generalSettingBtn">
-                                    <i class=" ri-pencil-fill align-middle"></i>
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            {{-- <a href="#" class="fw-medium">#VZ2107</a> --}}
-                            6
-                        </th>
-                        <td>Payment Received
-                            <p class="mb-0">
-                                <small class="text-secondary">(After Admin Accepts Payments Via Offline
-                                    Gateways)</small>
-                            </p>
-                        </td>
-                        <td>Confirmation of Payment Received</td>
-                        <td>
-                            <a href="" class="link-success">
-                                <button type="submit" class="btn btn-success generalSettingBtn">
-                                    <i class=" ri-pencil-fill align-middle"></i>
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -7,6 +7,7 @@
 
 <script>
 $(document).ready(function(){
+   
     // Base Url
     var baseUrl = $('#base_url').val();
 
@@ -263,6 +264,8 @@ $(document).ready(function(){
         });
     }
 
+
+
     FilePond.registerPlugin(
         FilePondPluginFileEncode,
         FilePondPluginFileValidateSize,
@@ -301,29 +304,5 @@ $(document).ready(function(){
             labelIdle: fileponLayout,
             imagePreviewHeight: fileponReviewHeight
         });
-
-
-        // ck editor
-        let theEditor;
-        ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
-            theEditor = editor;
-        }).catch(error => {
-            console.error(error);
-        });
-
-        function getDataFromTheEditor() {
-            return theEditor.getData();
-        }
-
-        let Editor;
-        ClassicEditor.create(document.querySelector('#Editor')).then(editEditor => {
-            Editor = editEditor;
-        }).catch(error => {
-            console.error(error);
-        });
-
-        function setDataFromEditor(desc) {
-            return Editor.setData(desc);
-        }
     });
 </script>

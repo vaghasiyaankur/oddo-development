@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Models\LogoFavicon;
 use App\Models\GeneralSetting;
 use App\Models\EmailSetting;
+use App\Models\EmailTemplate;
 use File;
 use Illuminate\Support\Facades\Config;
 
@@ -48,8 +49,11 @@ class SettingController extends Controller
             $html = view('admin::settings.generalSetting', compact('currencies', 'GeneralSetting'))->render();
             
         } else if($request->target == 'emailTemplate') {
-            $html = view('admin::settings.editEmailTemplate')->render();
-            // $html = view('admin::settings.emailTemplate')->render();
+
+            $mailTemplates = EmailTemplate::get();
+            $html = view('admin::settings.emailTemplate', compact('mailTemplates'))->render();
+            // $html = view('admin::settings.editEmailTemplate')->render();
+
         } 
         else {
             
@@ -227,4 +231,5 @@ class SettingController extends Controller
         $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
         return $html;
     }
+
 }

@@ -1,5 +1,5 @@
 <div class="general-setting">
-    <div class="general-header d-flex justify-content-between align-items-center mb-5">
+    <div class="general-header d-flex justify-content-between align-items-center mb-5 flex-wrap">
         <h3 class="mb-0 fs-4">General Setting</h3>
         <a href="javascript:;">
             <button type="submit" class="btn btn-success generalSettingBtn">Update</button>
@@ -48,8 +48,6 @@
        
     </div>
 </div> 
-
-
 <script>
     $(document).ready(function(){
         $('.selectCurrency').change(function(){
@@ -69,5 +67,4 @@
 
         selectCurrency();
     });
-   
 </script>
