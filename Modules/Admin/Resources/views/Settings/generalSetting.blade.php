@@ -1,5 +1,11 @@
 <div class="general-setting">
-    <h3 class="mb-5  fs-4">General Setting</h3>
+    <div class="general-header d-flex justify-content-between align-items-center mb-5">
+        <h3 class="mb-0 fs-4">General Setting</h3>
+        <a href="javascript:;">
+            <button type="submit" class="btn btn-success generalSettingBtn">Update</button>
+        </a>
+    </div>
+    {{-- <h3 class="mb-5  fs-4">General Setting</h3> --}}
     <div class="row">
         <div class="col-lg-4 pb-3">
             <label for="labelInput" class="form-label ">Site name</label>
@@ -39,10 +45,29 @@
             <input type="text" class="form-control symbol currencySymbol" id="labelInput" placeholder="Currency symbol" value="{{$GeneralSetting->symbol}}">
             <span class="text-danger" id="currencySymbol-error"></span>
         </div>
-        <div class="send-btn text-end">
-            <a href="javascript:;" >
-                <button type="submit" class="btn btn-primary generalSettingBtn">Update</button>
-            </a>
-        </div>
+       
     </div>
 </div> 
+
+
+<script>
+    $(document).ready(function(){
+        $('.selectCurrency').change(function(){
+            var currency = $(this).val();
+            var symbol = $(this).find(':selected').data('id');
+            console.log(symbol);
+            $('.symbol').val(symbol);
+            $('.currencySpan').text('('+currency+')');
+        });
+
+        function selectCurrency(){
+            var currency = $('.selectCurrency').val();
+            $('.currencySpan').text('('+currency+')');
+            var symbol = $('.selectCurrency').find(':selected').data('id');
+            $('.symbol').val(symbol);
+        }
+
+        selectCurrency();
+    });
+   
+</script>

@@ -126,6 +126,8 @@ Route::prefix('admin')->group(function() {
          Route::controller(SettingController::class)->group(function(){
             Route::get('setting', 'index')->name('setting.index');
 
+            Route::post('setting', 'changeSetting')->name('setting.change');
+
             // general Setting
             Route::post('update/generalsetting', 'updateGeneralSetting')->name('update.generalSetting');
 

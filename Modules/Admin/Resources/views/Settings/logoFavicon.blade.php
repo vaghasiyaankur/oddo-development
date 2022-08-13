@@ -1,6 +1,10 @@
 <div class="logo-favicon">
-    <h3 class="mb-5 fs-4">Logo and Favicon</h3>
-    <a href="javascript;" class="btn logo-btn">save</a>
+    <div class="logo-header d-flex justify-content-between align-items-center mb-5">
+        <h3 class="fs-4 mb-0">Logo and Favicon</h3>
+        <a href="javascript:;">
+            <button type="submit" class="btn btn-success logo-btn">save</button>
+        </a>
+    </div>
     <div class="row">
         <div class="col-lg-6">
             <div class="card">

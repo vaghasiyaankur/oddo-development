@@ -4,6 +4,7 @@
 @push('css')
 <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css">
 <link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <style>
 .headingText{
     position: absolute;
@@ -141,11 +142,11 @@ input:not([type="radio"]), textarea {
 }
 
 .tab-content .tab-pane .logo-favicon .logo-btn{
-    position: absolute;
+    /* position: absolute;
     top: 70px;
-    right: 20px;
+    right: 20px; */
     background: #0ab39c;
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
     border-radius: 5px;
     color: #fff;
 }
@@ -171,6 +172,38 @@ input:not([type="radio"]), textarea {
     padding: 0px 5px;
     color: #fff;
 }
+
+/* email template start  */
+       .tables thead th {
+            font-weight: 700;
+            font-size: 18px;
+            border: 0 !important;
+            padding: 12px 25px;
+        }
+
+         .tables tbody td,
+        .tables tbody th {
+            font-size: 14px;
+            font-weight: 400px;
+            border-color: #ebedf2 !important;
+            padding: 0 25px !important;
+            border: 0 !important;
+            height: 50px;
+            vertical-align: middle !important;
+        }
+        .table-striped tbody tr:nth-of-type(odd){
+            background-color: rgba(0,0,0,.05);
+        }
+
+        .table-striped th,
+        .table-striped td,
+            {
+            border-top: 0 !important;
+            border-bottom: 0 !important;
+        }
+        .table>:not(:first-child){
+            border-top-width: 0px !important;
+        }
 </style>
 @endpush
 
@@ -181,16 +214,6 @@ input:not([type="radio"]), textarea {
             <div class="position-relative mx-n4 mt-n4">
                 <div class="profile-wid-bg profile-setting-img position-relative">
                     <img src="{{ asset('assets/admin/assets/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
-                    {{-- <div class="overlay-content">
-                        <div class="text-end p-3">
-                            <div class="p-0 ms-auto rounded-circle profile-photo-edit">
-                                <input id="profile-foreground-img-file-input" type="file" class="profile-foreground-img-file-input">
-                                <label for="profile-foreground-img-file-input" class="profile-photo-edit btn btn-light">
-                                    <i class="ri-image-edit-line align-bottom me-1"></i> Change Cover
-                                </label>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="headingText">
                         <h2>Settings</h2>
                     </div>
@@ -202,44 +225,34 @@ input:not([type="radio"]), textarea {
                 <div class="col-xxl-12">
                     <div class="card mt-n5">
                         <div class="card-header">
-                            <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist" style="flex-wrap: nowrap;overflow: auto;white-space: nowrap;">
+                            <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0 settingNav" role="tablist" style="flex-wrap: nowrap;overflow: auto;white-space: nowrap;">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#generalSetting" role="tab" aria-selected="true">
+                                    <a class="nav-link active selectSettingTab" data-target="generalSetting">
                                        General Setting
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#logoFavicon" role="tab" aria-selected="false">
+                                    <a class="nav-link selectSettingTab" data-target="logoFavicon">
                                         Logo and Favicon
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#emailSetting" role="tab" aria-selected="false">
+                                    <a class="nav-link selectSettingTab" data-target="emailSetting">
                                         Email Setting
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#privacy" role="tab" aria-selected="false">
-                                        Privacy Policy
+                                <li class="nav-item">
+                                    <a class="nav-link selectSettingTab" data-target="emailTemplate">
+                                        Email template
                                     </a>
-                                </li> --}}
+                                </li>
                             </ul>
                         </div>
                         <div class="card-body p-4" style="min-height: 500px; height: 100%;">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="generalSetting" role="tabpanel">
+                                <div class="settingContent active" id="generalSetting">
                                     @include('admin::settings.generalSetting')
                                 </div>
-                                <!--end tab-pane-->
-                                <!--end tab-pane-->
-                                <div class="tab-pane" id="logoFavicon" role="tabpanel">
-                                    @include('admin::settings.logoFavicon')
-                                </div>
-                                <!--end tab-pane-->
-                                <div class="tab-pane" id="emailSetting" role="tabpanel">
-                                    @include('admin::settings.emailSetting')
-                                </div>
-                                <!--end tab-pane-->
                             </div>
                         </div>
                     </div>

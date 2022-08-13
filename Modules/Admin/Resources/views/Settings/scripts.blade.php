@@ -3,8 +3,7 @@
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
 <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
-<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js">
-</script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -16,6 +15,32 @@ $(document).ready(function(){
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+
+    $(document).on('click', '.selectSettingTab', function() {
+        var target = $(this).data('target');
+        var active = $(this).addClass('active');
+
+        $('.selectSettingTab').removeClass('active');
+        $(this).addClass('active');
+         console.log();
+
+        formdata = new FormData();
+        formdata.append('target', target);
+
+        $.ajax({
+            url: "{{route('setting.change')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                $('.settingContent').empty();
+                $('.settingContent').html(response);
+            }, error:function (response) {
+
+            }
+        }); 
     });
 
     $(".profilePicUpload").change(function() {
@@ -54,7 +79,7 @@ $(document).ready(function(){
             data: formdata,
             success: function (response) {
                 toastMixin.fire({ title: response.success, icon: 'success' });
-                logoFavicon();
+                logoFavicon();  
             }, error:function (response) {
                 console.log(response.error);
                 toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
@@ -103,6 +128,7 @@ $(document).ready(function(){
 });
 
     $(document).ready(function(){
+        
         $('.selectCurrency').change(function(){
             var currency = $(this).val();
             var symbol = $(this).find(':selected').data('id');
@@ -111,6 +137,8 @@ $(document).ready(function(){
         });
 
         function selectCurrency(){
+            var currency = $('.selectCurrency').val();
+            $('.currencySpan').text('('+currency+')');
             var symbol = $('.selectCurrency').find(':selected').data('id');
             $('.symbol').val(symbol);
         }
@@ -167,6 +195,7 @@ $(document).ready(function(){
         var password =  $('.password').val();
         var from_email =  $('.fromemail').val();
         var from_name =  $('.fromname').val();
+        console.log(host_name);
 
         !host_name ? $(`#hostname-error`).html(`The hostname field is required.`) : $(`#hostname-error`).html(``);
         !port_name ? $(`#portname-error`).html(`The portname field is required.`) : $(`#portname-error`).html(``);
@@ -211,7 +240,8 @@ $(document).ready(function(){
             dataType: "HTML",
             success: function (response) {
                 setTimeout(function() {
-                    $("#emailSetting").html(response);
+                    $('.settingContent').empty();
+                    $('.settingContent').html(response);
                 },  1500);
             }
 
@@ -225,7 +255,8 @@ $(document).ready(function(){
             dataType: "HTML",
             success: function (response) {
                 setTimeout(function() {
-                    $("#logoFavicon").html(response);
+                    $('.settingContent').empty();
+                    $('.settingContent').html(response);
                 },  1500);
             }
 
@@ -270,5 +301,29 @@ $(document).ready(function(){
             labelIdle: fileponLayout,
             imagePreviewHeight: fileponReviewHeight
         });
+
+
+        // ck editor
+        let theEditor;
+        ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
+            theEditor = editor;
+        }).catch(error => {
+            console.error(error);
+        });
+
+        function getDataFromTheEditor() {
+            return theEditor.getData();
+        }
+
+        let Editor;
+        ClassicEditor.create(document.querySelector('#Editor')).then(editEditor => {
+            Editor = editEditor;
+        }).catch(error => {
+            console.error(error);
+        });
+
+        function setDataFromEditor(desc) {
+            return Editor.setData(desc);
+        }
     });
 </script>
