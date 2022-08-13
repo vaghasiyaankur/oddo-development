@@ -146,7 +146,7 @@
 
                                                     <div class="text-reset notification-item d-block dropdown-item position-relative active">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <img src="{{ asset('assets\images\h-details-4.png') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                             <div class="flex-1">
                                                                 <a href="#!" class="stretched-link">
                                                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -197,7 +197,7 @@
 
                                                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <img src="{{ asset('assets\images\nav-img5.png') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                             <div class="flex-1">
                                                                 <a href="#!" class="stretched-link">
                                                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -250,7 +250,7 @@
                                                 <div class="simplebar-content" style="padding: 0px 8px 0px 0px;">
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <img src="{{ asset('assets\images\nav-img5.png') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                             <div class="flex-1">
                                                                 <a href="#!" class="stretched-link">
                                                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">James Lemire</h6>
@@ -275,7 +275,7 @@
 
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <img src="{{ asset('assets\images\h-details-4.png') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                             <div class="flex-1">
                                                                 <a href="#!" class="stretched-link">
                                                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -301,7 +301,7 @@
 
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <img src="{{ asset('assets\images\nav-img3.png') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                             <div class="flex-1">
                                                                 <a href="#!" class="stretched-link">
                                                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kenneth Brown</h6>
@@ -327,7 +327,7 @@
 
                                                     <div class="text-reset notification-item d-block dropdown-item">
                                                         <div class="d-flex">
-                                                            <img src="assets/images/users/avatar-8.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <img src="{{ asset('assets\images\nav-img5.png') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                             <div class="flex-1">
                                                                 <a href="#!" class="stretched-link">
                                                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -370,7 +370,7 @@
                         </div>
                         <div class="tab-pane fade p-4" id="alerts-tab" role="tabpanel">
                             <div class="w-25 w-sm-50 pt-3 mx-auto">
-                                <img src="assets/images/svg/bell.svg" class="img-fluid" alt="user-pic">
+                                <img src="{{ asset('assets\images\nav-img3.png') }}" class="img-fluid" alt="user-pic">
                             </div>
                             <div class="text-center pb-5 mt-2">
                                 <h6 class="fs-18 fw-semibold lh-base">Hey! You have no any notifications </h6>
@@ -450,8 +450,8 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" style="">
                     <!-- item-->
-                    <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">My Profile</span></a>
-                    <a class="dropdown-item" href="apps-chat.html"><i class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Log out</span></a>
+                    <a class="dropdown-item" href="{{ route('profile') }}"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">My Profile</span></a>
+                    <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="fa fa-sign-out text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Log out</span></a>
                 </div>
             </div>
         </div>

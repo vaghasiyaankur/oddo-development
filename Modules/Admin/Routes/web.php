@@ -19,9 +19,12 @@ Route::prefix('admin')->group(function() {
     });
 
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
-        // amenity category
+        // dashboard
         Route::view('/dashboard', 'admin::dashboard')->name('dashboard');
-        
+
+        //profile
+        Route::view('/profile', 'admin::profile.index')->name('profile');
+
         Route::controller(AmenityCategoryController::class)->group(function(){
             Route::get('/amenity-category', 'amenityCategory')->name('amenityCategory.index');
             Route::post('/add-amenity-category', 'addAmenityCategory')->name('add.amenitycategory');
