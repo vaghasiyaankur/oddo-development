@@ -1,5 +1,11 @@
 <div class="email-setting">
-    <h3 class="mb-5 fs-4">Email Configuration</h3>
+    <div class="email-header d-flex justify-content-between align-items-center mb-5">
+        <h3 class="mb-0 fs-4">Email Configuration</h3>
+        <a href="javascript:;">
+            <button type="submit" class="btn btn-success emailSettingBtn">{{ isset($EmailSetting) ? 'Update' : 'Create'  }} </button>
+        </a>
+    </div>
+    {{-- <h3 class="mb-5 fs-4">Email Configuration</h3> --}}
     <div class="row">
         <div class="col-lg-4 pb-3">
             <input type="hidden" class="id" value="{{ isset($EmailSetting) ? $EmailSetting->id : '' }}" >
@@ -38,10 +44,10 @@
             <input type="text" class="form-control fromname" id="labelInput" placeholder="From Name" value="{{ isset($EmailSetting) ? $EmailSetting->from_name : ''  }}">
             <span class="text-danger" id="fromname-error"></span>
         </div>
-        <div class="send-btn text-end">
+        {{-- <div class="send-btn text-end">
             <a href="javascript:;" >
                 <button type="submit" class="btn btn-primary emailSettingBtn">{{ isset($EmailSetting) ? 'Update' : 'Create'  }} </button>
             </a>
-        </div>
+        </div> --}}
     </div>
 </div>

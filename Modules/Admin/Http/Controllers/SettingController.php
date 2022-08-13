@@ -19,13 +19,42 @@ class SettingController extends Controller
      * @return Renderable
      */
     public function index()
-    {
+    { 
         $path = public_path().'/json/currency.json';
         $currencies = json_decode(file_get_contents($path), true);
-        $logoFavicon = LogoFavicon::first();
         $GeneralSetting = GeneralSetting::first();
-        $EmailSetting = EmailSetting::first();
-        return view('admin::settings.index', compact('logoFavicon', 'currencies', 'GeneralSetting','EmailSetting'));
+        // $EmailSetting = EmailSetting::first();
+        return view('admin::settings.index', compact('currencies', 'GeneralSetting'));
+    }
+
+    public function changeSetting(Request $request)
+    {
+        
+        if($request->target == 'logoFavicon'){
+            $logoFavicon = LogoFavicon::first();
+            $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
+            // return $html;
+
+        }else if($request->target == 'emailSetting'){
+            $EmailSetting = EmailSetting::first();
+            $html = view('admin::settings.emailSetting', compact('EmailSetting'))->render();
+            // return $html;
+
+        }else if($request->target == 'generalSetting') {
+            
+            $path = public_path().'/json/currency.json';
+            $currencies = json_decode(file_get_contents($path), true);
+            $GeneralSetting = GeneralSetting::first();
+            $html = view('admin::settings.generalSetting', compact('currencies', 'GeneralSetting'))->render();
+            
+        } else if($request->target == 'emailTemplate') {
+            $html = view('admin::settings.editEmailTemplate')->render();
+            // $html = view('admin::settings.emailTemplate')->render();
+        } 
+        else {
+            
+        }
+        return $html;
     }
 
     /**
@@ -186,13 +215,16 @@ class SettingController extends Controller
 
     public function emailSettingShow()
     {
-        $data['EmailSetting'] = EmailSetting::first();
-        return view('admin::Settings.emailSetting', $data);
+        $EmailSetting = EmailSetting::first();
+        $html = view('admin::settings.emailSetting', compact('EmailSetting'))->render();
+
+        return $html;
     }
 
     public function logoFaviconShow()
     {
-        $data['logoFavicon'] = LogoFavicon::first();
-        return view('admin::Settings.logoFavicon', $data);
+        $logoFavicon = LogoFavicon::first();
+        $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
+        return $html;
     }
 }
