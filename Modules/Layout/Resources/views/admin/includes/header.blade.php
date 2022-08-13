@@ -33,7 +33,8 @@
 
             <!-- Back Button Pos Link-->
             <div class="navbar-header-links fs-4">
-                <button type="button" class="btn btn-success px-4 fs-5" onclick="javascript:window.history.back();"><i class="fa fa-angle-double-left me-2" aria-hidden="true"></i>
+                <button type="button" class="btn btn-success px-3 px-sm-4 fs-5" onclick="javascript:window.history.back();">
+                <i class="fa fa-angle-double-left me-2" aria-hidden="true"></i>
                      Back</button>
             </div>
         </div>

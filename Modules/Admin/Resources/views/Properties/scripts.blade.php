@@ -66,4 +66,22 @@
         searchLengthData(searchLength);
         PropertyList();
     });
+
+    // $(document).on('change', '.sorting', function(){
+    //     var target = $(this).find(":selected").val();
+
+    //     formdata = new FormData();
+    //     formdata.append('target', target);
+
+    //     $.ajax({
+    //         url: "{{route('property.list')}}",
+    //         type: "GET",
+    //         processData: false,
+    //         contentType: false,
+    //         data: formdata,
+    //         success: function (response) {
+    //             // PropertyList();
+    //         },
+    //     });
+    // });
 </script>

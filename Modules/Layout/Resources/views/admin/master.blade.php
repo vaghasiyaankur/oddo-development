@@ -53,9 +53,9 @@
         .navbar-header .topbar-head-dropdown .dropdown-menu.show {
             position: absolute !important;
             right: 0;
-            /* width: 100% !important;
-            min-width: 320px !important; */
-            top: 70px !important;
+            width: 100% !important;
+            min-width: 320px !important;
+            top: 0px !important;
         }
 
         @media screen and (max-width:400px){
@@ -138,6 +138,13 @@
         border-radius: 50%;
         -webkit-animation: spinInner 1s linear infinite;
                 animation: spinInner 1s linear infinite;
+        }
+
+        @media (max-width: 1024.1px) {
+            .page-content{
+                padding: calc(70px + 1.5rem) calc(1.5rem / 2) 60px calc(1.5rem / 2) !important;
+            }
+
         }
 
         @-webkit-keyframes spin {

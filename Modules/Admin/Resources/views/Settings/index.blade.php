@@ -204,11 +204,29 @@ input:not([type="radio"]), textarea {
         .table>:not(:first-child){
             border-top-width: 0px !important;
         }
+        @media screen and (max-width:480px) {
+            .tables thead th {
+                padding: 12px auto;
+            }
+            .tables tbody td,
+            .tables tbody th {
+                padding: 0 12px !important;
+            }
+        }
+        @media screen and (max-width:480px) {
+            .tables thead th {
+                padding: 12px 5px;
+            }
+            .tables tbody td,
+            .tables tbody th {
+                padding: 0 5px !important;
+            }
+        }
 </style>
 @endpush
 
 @section('content')
-    <div class="page-content px-4">
+    <div class="page-content px-2 px-sm-4">
         <div class="container-fluid">
 
             <div class="position-relative mx-n4 mt-n4">
