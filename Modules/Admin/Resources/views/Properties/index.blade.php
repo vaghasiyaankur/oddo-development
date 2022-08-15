@@ -122,7 +122,7 @@
             width: 75px;
         }
         .dropdown-menu.show{
-            min-width: 120px !important;
+            /* min-width: 120px !important; */
         }
         .btn-group .sorting{
             margin-right: 30px;
@@ -152,9 +152,9 @@
                                     </div>
                                     <div class="btn-group ms-5">
                                         <select class="form-select sorting" aria-label="Default select example" name="">
-                                            <option value="">Select Sorting</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Deactive">Deactive</option>
+                                            <option value="" selected>Select Sorting</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Deactive</option>
                                         </select>
                                     </div>
                                 </div>

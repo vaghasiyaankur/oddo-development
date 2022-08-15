@@ -146,7 +146,7 @@ $(document).ready(function(){
 
         selectCurrency();
 
-        $(document).on('click', '.generalSettingBtn', function(){
+        $(document).on('click', '.gen-btn', function(){
            var siteName =  $('.siteName').val();
            var primaryEmail =  $('.primaryEmail').val();
            var contactNumber =  $('.contactNumber').val();
@@ -185,6 +185,65 @@ $(document).ready(function(){
                 }
             });
         });
+
+        $(document).on('click', '.editEmailTemplate', function(){
+            var id = $(this).data('id');
+
+            // formdata = new FormData();
+            // formdata.append('id', id);
+
+            $.ajax({
+                url: "{{route('edit.emailTemplate')}}",
+                type: "GET",
+                data: {"id": id},
+                dataType: "HTML",
+                success: function (response) {  
+                    setTimeout(function() {
+                        $('.settingContent').empty();
+                        $('.settingContent').html(response);
+                    },  1500);
+                }, error:function (response) {
+                }
+            });
+        });
+    });
+
+    $(document).on('click', '.MailTemplateUpdate', function(){
+        var mail_id = $('.mail_id').val();
+        var mail_type = $('.mail_type').val();
+        var mail_subject = $('.mail_subject').val();
+        let mail_body = getDataFromTheEditor();
+
+
+        !mail_type ? $(`#mail_type-error`).html(`The Mail Type field is required.`) : $(`#mail_type-error`).html(``);
+        !mail_subject ? $(`#mail_subject-error`).html(`The Mail Subject field is required.`) : $(`#mail_subject-error`).html(``);
+        !mail_body ? $(`#mail_body-error`).html(`The Mail Body field is required.`) : $(`#mail_body-error`).html(``);
+
+
+        if (!mail_type || !mail_subject || !mail_body) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('mail_id', mail_id);
+        formdata.append('mail_type', mail_type);
+        formdata.append('mail_subject', mail_subject);
+        formdata.append('mail_body', mail_body);
+
+        $.ajax({
+            url: "{{route('update.EmailTemplate')}}",
+            data: formdata,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                toastMixin.fire({ title: response.success, icon: 'success' });
+                emailTemplate();
+            }, error:function (response) {
+                console.log('hello');
+            }
+        });
+
     });
 
     $(document).on('click', '.emailSettingBtn', function(){
@@ -196,7 +255,6 @@ $(document).ready(function(){
         var password =  $('.password').val();
         var from_email =  $('.fromemail').val();
         var from_name =  $('.fromname').val();
-        console.log(host_name);
 
         !host_name ? $(`#hostname-error`).html(`The hostname field is required.`) : $(`#hostname-error`).html(``);
         !port_name ? $(`#portname-error`).html(`The portname field is required.`) : $(`#portname-error`).html(``);
@@ -227,7 +285,6 @@ $(document).ready(function(){
             contentType: false,
             success: function (response) {
                 toastMixin.fire({ title: response.success, icon: 'success' });
-                emailSettings();
             }, error:function (response) {
                 console.log('hello');
             }
@@ -252,6 +309,21 @@ $(document).ready(function(){
     function logoFavicon() {
         $.ajax({
             url: "{{route('logoFavicon.show')}}",
+            type: "GET",
+            dataType: "HTML",
+            success: function (response) {
+                setTimeout(function() {
+                    $('.settingContent').empty();
+                    $('.settingContent').html(response);
+                },  1500);
+            }
+
+        });
+    }
+
+    function emailTemplate() {
+        $.ajax({
+            url: "{{route('emailtemplate.show')}}",
             type: "GET",
             dataType: "HTML",
             success: function (response) {

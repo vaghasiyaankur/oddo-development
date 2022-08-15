@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class EmailTemplate extends Model
 {
     use HasFactory;
+
+    protected $table = 'email_templates';
+
+    protected $guarded = ['id'];
 }

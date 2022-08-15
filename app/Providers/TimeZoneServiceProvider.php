@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class TimeZoneServiceProvider extends ServiceProvider
 {
@@ -25,11 +27,12 @@ class TimeZoneServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $GeneralSetting = GeneralSetting::first();
-        
-        if($GeneralSetting){
-            date_default_timezone_set($GeneralSetting->time_zone);
+        if(Schema::hasTable('general_settings')) {
+            $GeneralSetting = GeneralSetting::first();
+            
+            if($GeneralSetting){
+                date_default_timezone_set($GeneralSetting->time_zone);
+            }
         }
-        
     }
 }

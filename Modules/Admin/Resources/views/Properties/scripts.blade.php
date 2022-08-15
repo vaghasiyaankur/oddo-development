@@ -25,12 +25,12 @@
         });
     });
 
-    function PropertyList(data = null){
+    function PropertyList(data = null, status = null){
         $.ajax({
             url: "{{route('property.list')}}",
             type: "GET",
             dataType: "HTML",
-            data : { search : data },
+            data : { search : data, status : status },
             success: function (response) {
                 setTimeout(function() {
                         $('.loadingShow span').css('display', 'none');
@@ -45,8 +45,9 @@
     $('.search').keyup(function(){
         var search = $(this).val();
         var searchLength = $(this).val().length;
+        var status = $('.sorting').find(":selected").val();
         searchLengthData(searchLength);
-        PropertyList(search);
+        PropertyList(search,status);
 
         $('.loadingShow span').css('display', 'block');
         $('.loadingHide').addClass('d-none');
@@ -67,21 +68,27 @@
         PropertyList();
     });
 
-    // $(document).on('change', '.sorting', function(){
-    //     var target = $(this).find(":selected").val();
+    $(document).on('change', '.sorting', function(){
+        // var status = $(this).find(":selected").val();
+        // var search = $('.search').val();
+        // $.ajax({
+        //     url: "{{route('property.list')}}",
+        //     type: "GET",
+        //     dataType: "HTML",
+        //     data : { status : status },
+        //     success: function (response) {
+        //         PropertyList(search);
+        //     }
+        // });
+        // $('.loadingShow span').css('display', 'block');
+        // $('.loadingHide').addClass('d-none');
 
-    //     formdata = new FormData();
-    //     formdata.append('target', target);
-
-    //     $.ajax({
-    //         url: "{{route('property.list')}}",
-    //         type: "GET",
-    //         processData: false,
-    //         contentType: false,
-    //         data: formdata,
-    //         success: function (response) {
-    //             // PropertyList();
-    //         },
-    //     });
-    // });
+        var status = $(this).find(":selected").val();
+        // var searchLength = $(this).val().length;
+        // searchLengthData(searchLength);
+        var search = $('.search').val();
+        PropertyList(search,status);
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+    });
 </script>

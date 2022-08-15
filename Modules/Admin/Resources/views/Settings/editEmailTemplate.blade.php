@@ -3,26 +3,21 @@
         <h3 class="mb-0 fs-4">Update Mail Template</h3>
         <div class="send-btn">
             <a href="javascript:;">
-                <button type="submit" class="btn btn-success generalSettingBtn">
-                    <i class="ri-rewind-fill align-middle"></i>
-                    Back
-                </button>
-            </a>
-            <a href="javascript:;">
-                <button type="submit" class="btn btn-success generalSettingBtn">Submit</button>
+                <button type="submit" class="btn btn-success generalSettingBtn MailTemplateUpdate">Update</button>
             </a>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-7 px-0 px-sm-2">
             <form id="mailTemplateForm" class="mailTemplateForm">
-
+                <input type="hidden" class="mail_id" value="{{$emailTeamplate->id}}">
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="form-group">
                             <label for="">Mail Type</label>
-                            <input type="text" class="form-control text-capitalize" name="mail_type"
-                                value="room booking" readonly="">
+                            <input type="text" class="form-control text-capitalize mail_type" name="mail_type"
+                                value="{{$emailTeamplate->mail_type}}" readonly="">
+                            <span class="text-danger" id="mail_type-error"></span>
                         </div>
                     </div>
                 </div>
@@ -30,14 +25,18 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="">Mail Subject*</label>
-                            <input type="text" class="form-control" name="mail_subject"
-                                placeholder="Enter Mail Subject" value="Confirmation of Room Booking">
+                            <input type="text" class="form-control mail_subject" name="mail_subject"
+                                placeholder="Enter Mail Subject" value="{{$emailTeamplate->mail_subject}}">
+                                <span class="text-danger" id="mail_subject-error"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <textarea name="content" class="facilityDescription" id="createCKEditor"></textarea>
+                        <label for="">Mail Body*</label>
+                        <div id="summernote createCKEditor"  name="content" class="facilityDescription mail_body">{{$emailTeamplate->mail_body}}</div>
+                        <textarea name="content" class="facilityDescription mail_body" id="createCKEditor">{{$emailTeamplate->mail_body}}</textarea>
+                        <span class="text-danger" id="mail_body-error"></span>
                     </div>
                 </div>
             </form>
@@ -59,93 +58,12 @@
                             Customer Name
                         </th>
                     </tr>
-
                     <tr>
                         <td>
                             {booking_number}
                         </td>
                         <th scope="row">
                             Booking Number
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {booking_date}
-                        </td>
-                        <th scope="row">
-                            Booking Date
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {number_of_night}
-                        </td>
-                        <th scope="row">
-                            Number of Nights
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {check_in_date}
-                        </td>
-                        <th scope="row">
-                            Check in Date
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {check_out_date}
-                        </td>
-                        <th scope="row">
-                            Check out Date
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {number_of_guests}
-                        </td>
-                        <th scope="row">
-                            Number of Guests
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {room_name}
-                        </td>
-                        <th scope="row">
-                            Room Name
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {room_rent}
-                        </td>
-                        <th scope="row">
-                            Room Rent
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {room_type}
-                        </td>
-                        <th scope="row">
-                            Room Type
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {room_amenities}
-                        </td>
-                        <th scope="row">
-                            Room Amenities
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            {website_title}
-                        </td>
-                        <th scope="row">
-                            Website Title
                         </th>
                     </tr>
                 </tbody>
