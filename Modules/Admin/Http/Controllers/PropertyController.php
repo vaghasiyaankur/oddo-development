@@ -81,9 +81,18 @@ class PropertyController extends Controller
 
     public function propertyList(Request $request){
         $search = $request->input('search');
-        $data['properties'] = Hotel::with('propertytype')->where('property_name','LIKE',"%{$search}%")
-                                ->select('property_name', 'status', 'star_rating', 'property_id', 'slug', 'id')
-                                ->paginate(10);
+        $status = $request->input('status');
+        if ($status != '') {
+            $data['properties'] = Hotel::with('propertytype')->where('property_name','like','%'.$search.'%')
+                                    ->where('status' ,$status)
+                                    ->select('property_name', 'status', 'star_rating', 'property_id', 'slug', 'id')
+                                    ->paginate(10);
+        }else{
+            $data['properties'] = Hotel::with('propertytype')->where('property_name','like','%'.$search.'%')
+                                    ->select('property_name', 'status', 'star_rating', 'property_id', 'slug', 'id')
+                                    ->paginate(10);
+        }
+        // dd($data);
         return view('admin::properties.PropertyList', $data);
     }
 
