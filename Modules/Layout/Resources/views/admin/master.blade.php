@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>odda / @yield('title')</title>
-    <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
+    <link rel="shortcut icon"
+        href="{{ $logoFavicon->favicon == null ? asset('storage/' . $logoFavicon->default_favicon) : asset('storage/' . $logoFavicon->favicon) }}">
 
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/style.css') }}">
@@ -35,16 +36,18 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <!-- Sweet Alert css-->
+    <!-- Sweet Alert css-->
     {{-- <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
     <style>
         .submenu_active {
             color: #0ab39c !important;
         }
-        .navbar-menu .navbar-nav .nav-link{
+
+        .navbar-menu .navbar-nav .nav-link {
             white-space: nowrap;
         }
+
         /* .navbar-nav{
             overflow: auto;
         } */
@@ -58,57 +61,66 @@
             top: 0px !important;
         }
 
-        @media screen and (max-width:400px){
+        @media screen and (max-width:400px) {
             .navbar-header .topbar-head-dropdown .dropdown-menu.show {
                 right: -30px;
                 max-width: 100% !important;
             }
         }
+
         .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100000000;
-        }
-        .overlay .overlayDoor:before, .overlay .overlayDoor:after {
-        content: "";
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        background: #fff;
-        transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
-        transition-delay: 0.8s;
-        }
-        .overlay .overlayDoor:before {
-        left: 0;
-        }
-        .overlay .overlayDoor:after {
-        right: 0;
-        }
-        .overlay.loaded .overlayDoor:before {
-        left: -50%;
-        }
-        .overlay.loaded .overlayDoor:after {
-        right: -50%;
-        }
-        .overlay.loaded .overlayContent {
-        opacity: 0;
-        margin-top: -15px;
-        }
-        .overlay .overlayContent {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100000000;
         }
 
-        .dropdown-menu.show{
+        .overlay .overlayDoor:before,
+        .overlay .overlayDoor:after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+            transition-delay: 0.8s;
+        }
+
+        .overlay .overlayDoor:before {
+            left: 0;
+        }
+
+        .overlay .overlayDoor:after {
+            right: 0;
+        }
+
+        .overlay.loaded .overlayDoor:before {
+            left: -50%;
+        }
+
+        .overlay.loaded .overlayDoor:after {
+            right: -50%;
+        }
+
+        .overlay.loaded .overlayContent {
+            opacity: 0;
+            margin-top: -15px;
+        }
+
+        .overlay .overlayContent {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+        }
+
+        .dropdown-menu.show {
             min-width: 200px;
             position: absolute;
             inset: 0px 0px auto auto;
@@ -118,75 +130,163 @@
         }
 
         .loader {
-        width: 128px;
-        height: 128px;
-        border: 3px solid #0ab39c;
-        border-bottom: 3px solid transparent;
-        border-radius: 50%;
-        position: relative;
-        -webkit-animation: spin 1s linear infinite;
-                animation: spin 1s linear infinite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+            width: 128px;
+            height: 128px;
+            border: 3px solid #0ab39c;
+            border-bottom: 3px solid transparent;
+            border-radius: 50%;
+            position: relative;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .loader .inner {
-        width: 64px;
-        height: 64px;
-        border: 3px solid transparent;
-        border-top: 3px solid #0ab39c;
-        border-radius: 50%;
-        -webkit-animation: spinInner 1s linear infinite;
-                animation: spinInner 1s linear infinite;
+            width: 64px;
+            height: 64px;
+            border: 3px solid transparent;
+            border-top: 3px solid #0ab39c;
+            border-radius: 50%;
+            -webkit-animation: spinInner 1s linear infinite;
+            animation: spinInner 1s linear infinite;
         }
 
         @media (max-width: 1024.1px) {
-            .page-content{
+            .page-content {
                 padding: calc(70px + 1.5rem) calc(1.5rem / 2) 60px calc(1.5rem / 2) !important;
             }
 
         }
 
         @-webkit-keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes spin {
-        0% {
-            transform: rotate(0deg);
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        100% {
-            transform: rotate(360deg);
-        }
-        }
+
         @-webkit-keyframes spinInner {
-        0% {
-            transform: rotate(0deg);
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-720deg);
+            }
         }
-        100% {
-            transform: rotate(-720deg);
-        }
-        }
+
         @keyframes spinInner {
-        0% {
-            transform: rotate(0deg);
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-720deg);
+            }
         }
-        100% {
-            transform: rotate(-720deg);
+
+        /**** LOADING NAVBAR CSS START ****/
+
+        #preloader {
+            position: fixed;
+            top: 120px !important;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #FFFCFC;
+            transform-origin: bottom;
+            z-index: 99;
         }
+
+        .preloader .black_wall {
+            height: 100%;
+            background-color: var(--vz-body-bg);
+            transform-origin: top;
+            animation: preloader_slide 0.5s ease-in-out 0s 1 normal both
         }
+
+        .preloader .loader {
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            border-radius: 2px;
+            top: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            background-color: #0ab39c;
+            border: 1px solid #0ab39c;
+            transform-origin: left;
+            animation: loader_running 3s ease-in-out 1s infinite normal both
+        }
+
+        .preloader.off {
+            animation: preloader_slide 0.5s ease-in-out 0s 1 reverse both
+        }
+
+        @keyframes loader_running {
+            0% {
+                transform: scaleX(0);
+                transform-origin: left
+            }
+
+            49% {
+                transform: scaleX(1);
+                transform-origin: left
+            }
+
+            50% {
+                transform: scaleX(1);
+                transform-origin: right
+            }
+
+            100% {
+                transform-origin: right;
+                transform: scaleX(0)
+            }
+        }
+
+        @keyframes preloader_slide {
+            from {
+                transform: scaleY(0)
+            }
+
+            to {
+                transform: scaleY(1)
+            }
+        }
+
+        @media screen and (max-width:1024px){
+            #preloader{
+                position: fixed;
+                top: 71px !important;
+            }
+        }
+
+        /**** LOADING NAVBAR CSS END ****/
     </style>
     @stack('css')
 
 </head>
+
 <body>
     <!------- Main Url For javascript  -------->
-    <input type="hidden" value="{{URL::to('')}}" id="base_url">
+    <input type="hidden" value="{{ URL::to('') }}" id="base_url">
 
     @include('layout::admin.includes.header')
     <!-- Begin page -->
@@ -196,10 +296,10 @@
         <!-- ============================================================== -->
         <div class="main-content">
 
-        @yield('content')
-        @include('layout::admin.includes.footer')
-    </div>
-    <!-- end main content-->
+            @yield('content')
+            @include('layout::admin.includes.footer')
+        </div>
+        <!-- end main content-->
     </div>
     <!-- END layout-wrapper -->
 
@@ -265,7 +365,9 @@
             $(window).bind('load', function() {
                 $('.overlay, body').addClass('loaded');
                 setTimeout(function() {
-                    $('.overlay').css({'display':'none'})
+                    $('.overlay').css({
+                        'display': 'none'
+                    })
                 }, 2000)
             });
 
@@ -274,7 +376,7 @@
                 $('.overlay, body').addClass('loaded');
             }, 60000);
         });
-        $('#page-header-user-dropdown').on('click',function(){
+        $('#page-header-user-dropdown').on('click', function() {
 
         })
     </script>
