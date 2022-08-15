@@ -7,7 +7,7 @@
 
 <script>
 $(document).ready(function(){
-   
+
     // Base Url
     var baseUrl = $('#base_url').val();
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
             }, error:function (response) {
 
             }
-        }); 
+        });
     });
 
     $(".profilePicUpload").change(function() {
@@ -71,7 +71,7 @@ $(document).ready(function(){
         for (var i = 0; i < favicon.length; i++) {
             formdata.append('favicon', favicon  [i].file);
         }
-
+        $('.updateLoader').addClass('on').removeClass('off');
         $.ajax({
             url: "{{route('update.logo')}}",
             type: "POST",
@@ -80,7 +80,8 @@ $(document).ready(function(){
             data: formdata,
             success: function (response) {
                 toastMixin.fire({ title: response.success, icon: 'success' });
-                logoFavicon();  
+                logoFavicon();
+                $('.updateLoader').addClass('off').removeClass('on');
             }, error:function (response) {
                 console.log(response.error);
                 toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
@@ -129,7 +130,7 @@ $(document).ready(function(){
 });
 
     $(document).ready(function(){
-        
+
         $('.selectCurrency').change(function(){
             var currency = $(this).val();
             var symbol = $(this).find(':selected').data('id');
@@ -172,6 +173,8 @@ $(document).ready(function(){
             formdata.append('selectCurrency', selectCurrency);
             formdata.append('currencySymbol', currencySymbol);
 
+            $('.updateLoader').addClass('on').removeClass('off');
+
             $.ajax({
                 url: "{{route('update.generalSetting')}}",
                 data: formdata,
@@ -180,6 +183,7 @@ $(document).ready(function(){
                 contentType: false,
                 success: function (response) {
                     toastMixin.fire({ title: response.success, icon: 'success' });
+                    $('.updateLoader').addClass('off').removeClass('on');
                 }, error:function (response) {
                     console.log('hello');
                 }
@@ -197,7 +201,7 @@ $(document).ready(function(){
                 type: "GET",
                 data: {"id": id},
                 dataType: "HTML",
-                success: function (response) {  
+                success: function (response) {
                     setTimeout(function() {
                         $('.settingContent').empty();
                         $('.settingContent').html(response);
@@ -230,6 +234,9 @@ $(document).ready(function(){
         formdata.append('mail_subject', mail_subject);
         formdata.append('mail_body', mail_body);
 
+
+        $('.updateLoader').addClass('on').removeClass('off');
+
         $.ajax({
             url: "{{route('update.EmailTemplate')}}",
             data: formdata,
@@ -239,6 +246,7 @@ $(document).ready(function(){
             success: function (response) {
                 toastMixin.fire({ title: response.success, icon: 'success' });
                 emailTemplate();
+                $('.updateLoader').addClass('off').removeClass('on');
             }, error:function (response) {
                 console.log('hello');
             }
@@ -277,6 +285,7 @@ $(document).ready(function(){
         formdata.append('fromemail', from_email);
         formdata.append('fromname', from_name);
 
+        $('.updateLoader').addClass('on').removeClass('off');
         $.ajax({
             url: "{{route('update.emailSetting')}}",
             data: formdata,
@@ -285,6 +294,7 @@ $(document).ready(function(){
             contentType: false,
             success: function (response) {
                 toastMixin.fire({ title: response.success, icon: 'success' });
+                $('.updateLoader').addClass('off').removeClass('on');
             }, error:function (response) {
                 console.log('hello');
             }
