@@ -439,7 +439,7 @@
         </div>
     </div>
 </header>
-<div id="preloader" class="preloader off">
+<div id="preloader" class="preloader off updateLoader">
     <div class="black_wall"></div>
     <div class="loader"></div>
 </div>

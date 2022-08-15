@@ -3,7 +3,7 @@
         <h3 class="mb-0 fs-4">Update Mail Template</h3>
         <div class="send-btn">
             <a href="javascript:;">
-                <button type="submit" class="btn btn-success generalSettingBtn MailTemplateUpdate">Update</button>
+                <button type="submit" class="btn btn-success MailTemplateUpdate">Update</button>
             </a>
         </div>
     </div>
@@ -75,7 +75,7 @@
         </div>
     </div>
 </div>
-  
+
 <script>
     // var theEditor;
     // ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
@@ -87,7 +87,6 @@
     function getDataFromTheEditor() {
         return myEditor.getData();
     }
-
     var myEditor ;
     DecoupledEditor
     .create( document.querySelector( '#editor' ) )
