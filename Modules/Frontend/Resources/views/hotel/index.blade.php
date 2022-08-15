@@ -1454,6 +1454,7 @@ $(document).ready(function(){
     $(document).on('keyup', '.searchProperty', function(){
         var searchProperty = $(this).val().length;
         searchPropertyData(searchProperty);
+        ResetPropertyData(searchProperty);
     });
 
     function searchPropertyData(searchProperty) {
@@ -1463,6 +1464,24 @@ $(document).ready(function(){
             $('#Apply').addClass('d-none');
         }
     }
+
+    function ResetPropertyData(searchProperty){
+        if(searchProperty >= 1){
+            $('.ResetForm').removeClass('d-none');
+        }else{
+            $('.ResetForm').addClass('d-none');
+        }
+    }
+
+    $(document).on('keyup', '.budgetMin', function(){
+        var searchProperty = $(this).val().length;
+        ResetPropertyData(searchProperty);
+    });
+
+    $(document).on('keyup', '.budgetMax', function(){
+        var searchProperty = $(this).val().length;
+        ResetPropertyData(searchProperty);
+    });
 
     function resetFilter() {
         if($('input[type="checkbox"]:checked').length > 0){
