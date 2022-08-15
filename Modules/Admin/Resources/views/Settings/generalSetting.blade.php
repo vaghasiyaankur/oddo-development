@@ -2,7 +2,7 @@
     <div class="general-header d-flex justify-content-between align-items-center mb-5 flex-wrap">
         <h3 class="mb-0 fs-4">General Setting</h3>
         <a href="javascript:;">
-            <button type="submit" class="btn btn-success generalSettingBtn">Update</button>
+            <button type="submit" class="btn btn-success gen-btn">Update</button>
         </a>
     </div>
     {{-- <h3 class="mb-5  fs-4">General Setting</h3> --}}

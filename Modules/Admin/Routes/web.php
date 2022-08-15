@@ -125,7 +125,6 @@ Route::prefix('admin')->group(function() {
          // Setting
          Route::controller(SettingController::class)->group(function(){
             Route::get('setting', 'index')->name('setting.index');
-
             Route::post('setting', 'changeSetting')->name('setting.change');
 
             // general Setting
@@ -134,6 +133,11 @@ Route::prefix('admin')->group(function() {
             // email setting
             Route::post('update/emailsetting', 'updateEmailSetting')->name('update.emailSetting');
             Route::get('emailSetting/show', 'emailSettingShow')->name('emailsetting.show');
+
+            Route::get('edit/emailtemplate', 'editEditTemplate')->name('edit.emailTemplate');
+            Route::post('update/emailtemplate', 'updateEmailTemplate')->name('update.EmailTemplate');
+            Route::get('emailtemplate/show', 'emailTemplateShow')->name('emailtemplate.show');
+
 
             // logo & favicon
             Route::get('logoFavicon/show', 'logoFaviconShow')->name('logoFavicon.show');

@@ -52,8 +52,6 @@ class SettingController extends Controller
 
             $mailTemplates = EmailTemplate::get();
             $html = view('admin::settings.emailTemplate', compact('mailTemplates'))->render();
-            // $html = view('admin::settings.editEmailTemplate')->render();
-
         } 
         else {
             
@@ -225,11 +223,36 @@ class SettingController extends Controller
         return $html;
     }
 
-    public function logoFaviconShow()
-    {
+    public function logoFaviconShow() {
         $logoFavicon = LogoFavicon::first();
         $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
         return $html;
+    }
+
+    public function emailTemplateShow()
+    {
+        $mailTemplates = EmailTemplate::get();
+        $html = view('admin::settings.emailTemplate', compact('mailTemplates'))->render();
+        return $html;
+    }
+
+    public function editEditTemplate(Request $request) {
+        $id = $request->id;
+        $emailTeamplate = EmailTemplate::where('id', $id)->first();
+        $html = view('admin::settings.editEmailTemplate', compact('emailTeamplate'))->render();
+        return $html;
+    }
+
+    public function updateEmailTemplate(Request $request) {  
+        $id = $request->mail_id;
+            
+        $EmailSetting   =  EmailTemplate::updateOrCreate([ 'id' => $id ], [
+            'mail_type' => $request->mail_type ,
+            'mail_subject' => $request->mail_subject ,
+            'mail_body' => $request->mail_body,
+        ]);
+
+        return response()->json(["success" => "Update Mail template Successfully"], 200);
     }
 
 }
