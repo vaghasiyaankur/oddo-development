@@ -34,8 +34,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <label for="">Mail Body*</label>
-                        <div id="summernote createCKEditor"  name="content" class="facilityDescription mail_body">{{$emailTeamplate->mail_body}}</div>
-                        <textarea name="content" class="facilityDescription mail_body" id="createCKEditor">{{$emailTeamplate->mail_body}}</textarea>
+                        {{-- <div id="summernote createCKEditor"  name="content" class="facilityDescription mail_body">{{$emailTeamplate->mail_body}}</div>
+                        <textarea name="content" class="facilityDescription mail_body" id="createCKEditor">{{$emailTeamplate->mail_body}}</textarea> --}}
+                        <div id="toolbar-container"></div>
+                        <div name="content" id="editor" class="border-1 border mail_body">
+                            {{$emailTeamplate->mail_body}}
+                        </div>
                         <span class="text-danger" id="mail_body-error"></span>
                     </div>
                 </div>
@@ -73,14 +77,30 @@
 </div>
   
 <script>
-    var theEditor;
-    ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
-        theEditor = editor;
-    }).catch(error => {
-        console.error(error);
-    });
+    // var theEditor;
+    // ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
+    //     theEditor = editor;
+    // }).catch(error => {
+    //     console.error(error);
+    // });
 
     function getDataFromTheEditor() {
-        return theEditor.getData();
+        return myEditor.getData();
     }
+
+    var myEditor ;
+    DecoupledEditor
+    .create( document.querySelector( '#editor' ) )
+    .then( editor => {
+        const toolbarContainer = document.querySelector( '#toolbar-container' );
+
+        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+    editor.model.document.on( 'change:data', () => {
+        console.log( 'The data has changed!' );
+    } );
+    myEditor = editor;
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
 </script>

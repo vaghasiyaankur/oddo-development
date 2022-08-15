@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('mail_type')->nullable();
             $table->string('mail_subject')->nullable();
-            $table->string('mail_body')->nullable();
+            $table->longtext('mail_body')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
