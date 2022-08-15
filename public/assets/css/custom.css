@@ -159,6 +159,12 @@ header.header .navbar {
     color: #393c52;
     white-space: nowrap;
 }
+.header .navbar .navbar-brand img{
+    width: 100%;
+    height: 100%;
+    max-width: 154px;
+    max-height: 62px;
+}
 /****** Dropdown ******/
 header.header .navbar .dropdown-custom {
     border: none;
