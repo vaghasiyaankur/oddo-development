@@ -767,23 +767,23 @@
                                         </div>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sortBy" name="FilterCheck"  type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
+                                        <input class="form-check-input sortBy" name="FilterCheck"  type="checkbox" value="1"
+                                            id="flexCheckDefault1">
+                                        <label class="form-check-label ps-2" for="flexCheckDefault1">
                                             Price: low to high
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input sortBy" name="FilterCheck"  type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
+                                            id="flexCheckDefault2">
+                                        <label class="form-check-label ps-2" for="flexCheckDefault2">
                                             Price: high to low
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
+                                            id="flexCheckDefault3">
+                                        <label class="form-check-label ps-2" for="flexCheckDefault3">
                                             Guess Review
                                         </label>
                                     </div>
@@ -801,29 +801,29 @@
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" name="FilterCheck"  type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckDefault4">
+                                            <label class="form-check-label ps-2" for="flexCheckDefault4">
                                                 Final price with taxes fees
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckDefault5">
+                                            <label class="form-check-label ps-2" for="flexCheckDefault5">
                                                 Breakfast Included
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                                id="flexCheckChecked" >
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckChecked6" >
+                                            <label class="form-check-label ps-2" for="flexCheckChecked6">
                                                 Flexible Check-In
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckDefault7">
+                                            <label class="form-check-label ps-2" for="flexCheckDefault7">
                                                 Flexible Check-Out
                                             </label>
                                         </div>
@@ -834,22 +834,22 @@
                                         </div>
                                         <div class="form-check ">
                                             <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckDefault8">
+                                            <label class="form-check-label ps-2" for="flexCheckDefault8">
                                                 Modern
                                             </label>
                                         </div>
                                         <div class="form-check ">
                                             <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                                id="flexCheckChecked" >
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckDefault9" >
+                                            <label class="form-check-label ps-2" for="flexCheckDefault9">
                                                 Historic
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label ps-2" for="flexCheckDefault">
+                                                id="flexCheckDefault10">
+                                            <label class="form-check-label ps-2" for="flexCheckDefault10">
                                                 Contemporary
                                             </label>
                                         </div>
@@ -860,13 +860,13 @@
                                         </div>
                                         <div class="row g-0  align-items-center ">
                                             <div class="col-4 col-lg-5">
-                                                <input type="tel" class="form-control budgetMin" placeholder="$ Min" value="{{request()->budgetMin}}">
+                                                <input type="number" class="form-control budgetMin" placeholder="$ Min" value="{{request()->budgetMin}}">
                                             </div>
                                             <div class="col-2 p-0 text-center">
                                                 <span class="form-text">to</span>
                                             </div>
                                             <div class="col-4 col-lg-5">
-                                                <input type="tel" class="form-control budgetMax" placeholder="$ Max" value="{{request()->budgetMax}}">
+                                                <input type="number" class="form-control budgetMax" placeholder="$ Max" value="{{request()->budgetMax}}">
                                             </div>
                                         </div>
                                     </div>
@@ -989,8 +989,8 @@
                                         @foreach ($amenities as $amenity)
                                             <div class="form-check">
                                                 <input class="form-check-input ps-2 amenityValue" type="checkbox" name="FilterCheck" value=""
-                                                    id="flexCheckChecked">
-                                                <label class="form-check-label " for="flexCheckDefault">
+                                                    id="flexCheckChecked_{{$amenity->id}}" >
+                                                <label class="form-check-label " for="flexCheckChecked_{{$amenity->id}}">
                                                     {{ @$amenity->amenities }}
                                                 </label>
                                                 <span class="amenities-icon">
