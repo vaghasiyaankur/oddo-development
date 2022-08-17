@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 use App\Models\EmailTemplate;
+use App\Models\ShortCodeMailTemplate;
 
 class RegisterVerification extends Mailable
 {
@@ -34,17 +35,17 @@ class RegisterVerification extends Mailable
         $User = User::latest()->first();
         $emailTemplate = EmailTemplate::where('id', 2)->first();
 
-        $dataValue = array(
-            'customer_name'  => $User->name,
-            'website_title' => 'Odda'
-        );
-        
-        $pattern = '{%s}';
-        foreach($dataValue as $key=>$val){
-            $varMap[sprintf($pattern,$key)] = $val;
+        $short_code_id = explode(',',$emailTemplate->short_code_id);
+        $ShortCodes = ShortCodeMailTemplate::whereIn('id',$short_code_id)->get();
+
+        $shortCode = array();
+        foreach ($ShortCodes as $key => $ShortCode) {
+            $shortCode[] = $ShortCode->short_code;;
         }
 
-        $emailContent = strtr($emailTemplate->mail_body,$varMap);
+        $shortCodeValues = array($User->name, 'Odda'); 
+        $shortCodeValue = array_combine($shortCode, $shortCodeValues);
+        $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
         
         return $this->from('jemin.codetrinity@gmail.com')->view('frontend::auth.RegisterVerificationMail')
                     ->subject($emailTemplate->mail_subject)

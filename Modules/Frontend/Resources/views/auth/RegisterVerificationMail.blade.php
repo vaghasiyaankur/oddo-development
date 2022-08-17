@@ -66,9 +66,9 @@
                                             <tr>
                                                 <td style="color: #6a78c7;font-family: ui-monospace;font-size: 40px;font-style: normal;font-weight: 600;line-height: 40px;text-decoration: none;text-align: center;">Odda </td>
                                             </tr>
-                                            {{-- <tr>
+                                             <tr>
                                                 {!! $emailContent !!}
-                                            </tr> --}}
+                                            </tr> 
                                             <tr>
                                                 <td colspan="2"
                                                     style="padding-top: 22px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-size: 28px; font-smoothing: always; font-style: normal; font-weight: 600; line-height: 40px; mso-line-height-rule: exactly; text-decoration: none;text-align: center;">Your Account is not Verified Please Verified Your Account</td>

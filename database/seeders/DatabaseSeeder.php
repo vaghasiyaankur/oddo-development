@@ -26,6 +26,8 @@ use Modules\UserSite\Database\Seeders\LogoFaviconTableSeeder;
 use Modules\UserSite\Database\Seeders\GeneralSettingTableSeeder;
 use Modules\UserSite\Database\Seeders\EmailSettingTableSeeder;
 use Modules\UserSite\Database\Seeders\MailTemplateTableSeeder;
+use Modules\UserSite\Database\Seeders\ShortCodeMailTemplateTableSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -58,6 +60,7 @@ class DatabaseSeeder extends Seeder
             GeneralSettingTableSeeder::class,
             EmailSettingTableSeeder::class,
             MailTemplateTableSeeder::class,
+            ShortCodeMailTemplateTableSeeder::class,
         ]);
     }
 }

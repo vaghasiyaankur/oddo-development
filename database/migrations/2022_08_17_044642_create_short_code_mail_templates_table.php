@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('email_templates', function (Blueprint $table) {
+        Schema::create('short_code_mail_templates', function (Blueprint $table) {
             $table->id();
-            $table->string('mail_type')->nullable();
-            $table->string('mail_subject')->nullable();
-            $table->longtext('mail_body')->nullable();
-            $table->string('short_code_id')->nullable();
-            $table->boolean('status')->default(1);
+            $table->string('short_code')->nullable();
+            $table->string('meaning')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_templates');
+        Schema::dropIfExists('short_code_mail_templates');
     }
 };

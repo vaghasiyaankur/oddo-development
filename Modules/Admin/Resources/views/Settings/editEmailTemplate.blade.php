@@ -10,13 +10,13 @@
     <div class="row">
         <div class="col-lg-7 px-0 px-sm-2">
             <form id="mailTemplateForm" class="mailTemplateForm">
-                <input type="hidden" class="mail_id" value="{{$emailTeamplate->id}}">
+                <input type="hidden" class="mail_id" value="{{$emailTemplate->id}}">
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="form-group">
                             <label for="">Mail Type</label>
                             <input type="text" class="form-control text-capitalize mail_type" name="mail_type"
-                                value="{{$emailTeamplate->mail_type}}" readonly="">
+                                value="{{$emailTemplate->mail_type}}" readonly="">
                             <span class="text-danger" id="mail_type-error"></span>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="">Mail Subject*</label>
                             <input type="text" class="form-control mail_subject" name="mail_subject"
-                                placeholder="Enter Mail Subject" value="{{$emailTeamplate->mail_subject}}">
+                                placeholder="Enter Mail Subject" value="{{$emailTemplate->mail_subject}}">
                                 <span class="text-danger" id="mail_subject-error"></span>
                         </div>
                     </div>
@@ -34,11 +34,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <label for="">Mail Body*</label>
-                        {{-- <div id="summernote createCKEditor"  name="content" class="facilityDescription mail_body">{{$emailTeamplate->mail_body}}</div>
-                        <textarea name="content" class="facilityDescription mail_body" id="createCKEditor">{{$emailTeamplate->mail_body}}</textarea> --}}
+                        {{-- <div id="summernote createCKEditor"  name="content" class="facilityDescription mail_body">{{$emailTemplate->mail_body}}</div>
+                        <textarea name="content" class="facilityDescription mail_body" id="createCKEditor">{{$emailTemplate->mail_body}}</textarea> --}}
                         <div id="toolbar-container"></div>
                         <div name="content" id="editor" class="border-1 border mail_body">
-                            {{$emailTeamplate->mail_body}}
+                            {!! $emailTemplate->mail_body !!}
                         </div>
                         <span class="text-danger" id="mail_body-error"></span>
                     </div>
@@ -54,22 +54,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($ShortCodes as $ShortCode)
                     <tr>
                         <td>
-                            {customer_name}
+                            {{$ShortCode->short_code}}
                         </td>
                         <th scope="row">
-                            Customer Name
+                        {{$ShortCode->meaning}}
                         </th>
                     </tr>
-                    <tr>
-                        <td>
-                            {booking_number}
-                        </td>
-                        <th scope="row">
-                            Booking Number
-                        </th>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

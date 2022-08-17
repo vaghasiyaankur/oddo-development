@@ -71,6 +71,9 @@
                                                     style="padding-top: 22px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-size: 28px; font-smoothing: always; font-style: normal; font-weight: 600; line-height: 40px; mso-line-height-rule: exactly; text-decoration: none;text-align: center;">You have requested to reset your password</td>
                                             </tr>
                                             <tr>
+                                                {!! $emailContent !!}
+                                            </tr> 
+                                            <tr>
                                                 <td style="padding-top: 17px; padding-bottom: 20px;">
                                                     <table cellpadding="0" cellspacing="0" style="width: 100%">
                                                         <tbody>
