@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
   <title>odda / @yield('title')</title>
-  <!------- Bootstrap CSS Link------->  
+  <!------- Bootstrap CSS Link------->
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
   <!------- Fontawsomee cdn link ------->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
@@ -67,55 +67,6 @@
             });
         });
   </script>
-    <!-- // Home page slider start -->
-  <script>
-    // Params
-    var sliderSelector = '.swiper-container',
-    options = {
-      init: false,
-      loop: true,
-      speed:800,
-      slidesPerView: 5, // or 'auto'
-      spaceBetween: 10,
-      centeredSlides : true,
-      effect: 'coverflow', // 'cube', 'fade', 'coverflow',
-      coverflowEffect: {
-        rotate: 0, // Slide rotate in degrees
-        stretch: -100, // Stretch space between slides (in px)
-        depth: 200, // Depth offset in px (slides translate in Z axis)
-        modifier: 1, // Effect multipler
-        slideShadows : true, // Enables slides shadows
-      },
-      grabCursor: true,
-      parallax: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        1023: {
-          slidesPerView: 1,
-          spaceBetween: 0
-        }
-      },
-      // Events
-      on: {
-        imagesReady: function(){
-          this.el.classList.remove('loading');
-        }
-      }
-    };
-  var mySwiper = new Swiper(sliderSelector, options);
-
-  // Initialize slider
-  mySwiper.init();
-
-  
-</script>
 @stack('scripts')
   <!-- // Home page slider end -->
 </body>

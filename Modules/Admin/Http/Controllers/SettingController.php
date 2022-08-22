@@ -21,7 +21,7 @@ class SettingController extends Controller
      * @return Renderable
      */
     public function index()
-    { 
+    {
         $path = public_path().'/json/currency.json';
         $currencies = json_decode(file_get_contents($path), true);
         $GeneralSetting = GeneralSetting::first();
@@ -31,7 +31,7 @@ class SettingController extends Controller
 
     public function changeSetting(Request $request)
     {
-        
+
         if($request->target == 'logoFavicon'){
             $logoFavicon = LogoFavicon::first();
             $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
@@ -43,19 +43,19 @@ class SettingController extends Controller
             // return $html;
 
         }else if($request->target == 'generalSetting') {
-            
+
             $path = public_path().'/json/currency.json';
             $currencies = json_decode(file_get_contents($path), true);
             $GeneralSetting = GeneralSetting::first();
             $html = view('admin::settings.generalSetting', compact('currencies', 'GeneralSetting'))->render();
-            
+
         } else if($request->target == 'emailTemplate') {
 
             $mailTemplates = EmailTemplate::get();
             $html = view('admin::settings.emailTemplate', compact('mailTemplates'))->render();
-        } 
+        }
         else {
-            
+
         }
         return $html;
     }
@@ -70,6 +70,8 @@ class SettingController extends Controller
         $favicon = $request->file('favicon');
         $LogoFavicon = LogoFavicon::first();
 
+        $logo_image = ($LogoFavicon->logo != null) ? $LogoFavicon->logo : $LogoFavicon->default_logo;
+        $logo_image_favicon = ($LogoFavicon->favicon != null) ? $LogoFavicon->favicon : $LogoFavicon->default_favicon;
 
         if($logo) {
             $logo_image =  'logo/img_'.rand(100000,999999).".".$logo->GetClientOriginalExtension();
@@ -93,7 +95,7 @@ class SettingController extends Controller
             $LogoFavicon->favicon = $logo_image_favicon;
         }
         $LogoFavicon->update();
-        return response()->json(["success" => "logo update Successfully"], 200);
+        return response()->json(["success" => "logo update Successfully", 'logo' => $logo_image, 'favicon' => $logo_image_favicon], 200);
     }
 
     public function deleteFavicon($id)
@@ -107,7 +109,9 @@ class SettingController extends Controller
         $LogoFavicon->favicon = null;
         $LogoFavicon->update();
 
-        return response()->json(["error" => "favicon delete Successfully"], 200);
+        $favicon = LogoFavicon::where('id',$id)->first();
+
+        return response()->json(["error" => "favicon delete Successfully", 'favicon' => $favicon->default_favicon], 200);
     }
 
     public function deleteLogo($id)
@@ -121,7 +125,9 @@ class SettingController extends Controller
         $LogoFavicon->logo = null;
         $LogoFavicon->update();
 
-        return response()->json(["error" => "logo delete Successfully"], 200);
+        $logo = LogoFavicon::where('id',$id)->first();
+
+        return response()->json(["error" => "logo delete Successfully", 'logo' => $logo->default_logo], 200);
     }
 
     public function updateGeneralSetting(Request $request)
@@ -142,7 +148,7 @@ class SettingController extends Controller
     public function updateEmailSetting(Request $request)
     {
         $id = $request->id;
-        
+
         $EmailSetting   =  EmailSetting::updateOrCreate([ 'id' => $id ], [
             'host_name' => $request->host_name ,
             'port_name' => $request->port_name ,
@@ -187,9 +193,9 @@ class SettingController extends Controller
         return $html;
     }
 
-    public function updateEmailTemplate(Request $request) {  
+    public function updateEmailTemplate(Request $request) {
         $id = $request->mail_id;
-            
+
         $EmailSetting   =  EmailTemplate::updateOrCreate([ 'id' => $id ], [
             'mail_type' => $request->mail_type ,
             'mail_subject' => $request->mail_subject ,
