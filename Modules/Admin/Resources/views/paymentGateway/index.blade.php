@@ -25,7 +25,7 @@
             <h4 class="mb-4">Payment Gateways</h4>
         </div>
         <div class="row">
-            <div class="col-xxl-4 col-lg-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div class="payment-logo d-flex align-items-center ">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div><!-- end col -->
-            <div class="col-xxl-4 col-lg-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div class="payment-logo d-flex align-items-center ">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div><!-- end col -->
-            <div class="col-xxl-4 col-lg-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div class="payment-logo d-flex align-items-center ">
