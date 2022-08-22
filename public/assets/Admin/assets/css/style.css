@@ -1,6 +1,6 @@
 .navbar-nav .active {
     color: #0ab39c !important;
-    border-bottom: 3px solid #0ab39c;
+    /* border-bottom: 3px solid #0ab39c; */
 }
 .edit-data-box .edit-box .dropdown .dropdown-item:focus,
 .edit-data-box .edit-box .dropdown .dropdown-item:hover {
@@ -91,6 +91,4 @@
         width: 105px;
     }
 }
-
-
 /* ADMIN-LOCATION PAGE LOADING ANIMATION CSS END  */

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Routing\Controller;
+use App\Models\logoFavicon;
 use Auth;
 
 class LoginController extends Controller
@@ -16,7 +17,9 @@ class LoginController extends Controller
 
     public function index()
     {
-       return view('admin::auth.login');
+
+    $logoFavicon = logoFavicon::first();
+       return view('admin::auth.login',compact('logoFavicon'));
     }
 
     /**

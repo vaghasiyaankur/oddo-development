@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>odda / @yield('title')</title>
     <link rel="shortcut icon"
-        href="{{ $logoFavicon->favicon == null ? asset('storage/' . $logoFavicon->default_favicon) : asset('storage/' . $logoFavicon->favicon) }}">
+        class="favicon_image" href="{{ $logoFavicon->favicon == null ? asset('storage/' . $logoFavicon->default_favicon) : asset('storage/' . $logoFavicon->favicon) }}">
 
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/style.css') }}">
