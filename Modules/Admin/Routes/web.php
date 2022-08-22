@@ -152,6 +152,10 @@ Route::prefix('admin')->group(function() {
         Route::view('booking', 'admin::booking.index')->name('booking.index');
         });
 
+        Route::controller(PaymentGatewayController::class)->group(function(){
+            Route::get('payment', 'index')->name('paymentGateway.index');
+        });
+
     });
 
 

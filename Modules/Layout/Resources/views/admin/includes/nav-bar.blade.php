@@ -154,16 +154,17 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link menu-link {{ Request::routeIs('paymentGateway.index') ? 'active' : '' }}" href="{{ route('paymentGateway.index') }}">
+                    <i class="ri-rocket-line"></i> <span data-key="t-landing">Payment Gateway</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('setting.index') ? 'active' : '' }}" href="{{ route('setting.index') }}">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Settings</span>
 
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link menu-link" href="{{ route('admin.logout') }}">
-                    <i class="ri-rocket-line"></i> <span data-key="t-landing">Logout</span>
-                </a>
-            </li> --}}
+           
         </ul>
     </div>
     <!-- Sidebar -->

@@ -1,0 +1,168 @@
+@extends('layout::admin.master')
+@section('title', 'Payment Gateway')
+@push('css')
+    <style>
+        .payment-logo .payment_logo_icon {
+            width: 100%;
+            max-width: 48px;
+            max-height: 48px;
+        }
+
+        .card-radio .form-check-input:checked+.form-check-label {
+            border-color: #405189 !important;
+            background: aliceblue;
+        }
+
+        .card-radio .form-check-input:checked+.form-check-label:before {
+            content: "" !important;
+        }
+    </style>
+@endpush
+
+@section('content')
+    <div class="page-content px-4">
+        <div class="payment-title">
+            <h4 class="mb-4">Payment Gateways</h4>
+        </div>
+        <div class="row">
+            <div class="col-xxl-4 col-lg-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="payment-logo d-flex align-items-center ">
+                            <img class="payment_logo_icon pe-3" src="{{ asset('assets/images/payment-logo/paypal.png') }}"
+                                alt="">
+                            <h6 class="card-title mb-0">Paypal</h6>
+                        </div>
+                        <div class="form-check form-switch form-switch-success fs-5">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3" checked="">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="paypal-status mb-2">
+                            <h6>Paypal Status</h6>
+                            <div class="status-card d-flex align-items-center justify-content-between">
+                                <div class="form-check card-radio w-100 me-4">
+                                    <input id="paypalMethod01" name="paypalMethod" type="radio"
+                                        class="form-check-input" checked="">
+                                    <label class="form-check-label py-2 text-center" for="paypalMethod01">Active</label>
+                                </div>
+                                <div class="form-check card-radio w-100">
+                                    <input id="paypalMethod02" name="paypalMethod" type="radio"
+                                        class="form-check-input">
+                                    <label class="form-check-label py-2 text-center" for="paypalMethod02">Deactive</label>
+                                </div>
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-group mb-2">
+                                <label>Paypal Client ID</label>
+                                <input type="text" class="form-control" name="client_id">
+                            </div>
+                            <div class="form-group">
+                                <label>Paypal Client Secret</label>
+                                <input type="text" class="form-control" name="client_id">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <a href="javascript:void(0);" class="btn btn-success w-100 fs-5">Update Your details</a>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="col-xxl-4 col-lg-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="payment-logo d-flex align-items-center ">
+                            <img class="payment_logo_icon pe-3" src="{{ asset('assets/images/payment-logo/stripe.png') }}"
+                                alt="">
+                            <h6 class="card-title mb-0">Stripe</h6>
+                        </div>
+                        <div class="form-check form-switch form-switch-success fs-5">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="paypal-status mb-2">
+                            <h6>Stripe Status</h6>
+                            <div class="status-card d-flex align-items-center justify-content-between">
+                                <div class="form-check card-radio w-100 me-4">
+                                    <input id="StripeMethod01" name="StripeMethod" type="radio"
+                                        class="form-check-input" >
+                                    <label class="form-check-label py-2 text-center" for="StripeMethod01">Active</label>
+                                </div>
+                                <div class="form-check card-radio w-100">
+                                    <input id="StripeMethod02" name="StripeMethod" type="radio"
+                                        class="form-check-input" checked="">
+                                    <label class="form-check-label py-2 text-center" for="StripeMethod02">Deactive</label>
+                                </div>
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-group mb-2">
+                                <label>Stripe Client ID</label>
+                                <input type="text" class="form-control" name="client_id">
+                            </div>
+                            <div class="form-group">
+                                <label>Stripe Client Secret</label>
+                                <input type="text" class="form-control" name="client_id">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <a href="javascript:void(0);" class="btn btn-success w-100 fs-5">Update Your details</a>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="col-xxl-4 col-lg-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="payment-logo d-flex align-items-center ">
+                            <img class="payment_logo_icon pe-3" src="{{ asset('assets/images/payment-logo/razorpay.png') }}"
+                                alt="">
+                            <h6 class="card-title mb-0">Razorpay</h6>
+                        </div>
+                        <div class="form-check form-switch form-switch-success fs-5">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck3"
+                                checked="">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="paypal-status mb-2">
+                            <h6>Razorpay Status</h6>
+                            <div class="status-card d-flex align-items-center justify-content-between">
+                                <div class="form-check card-radio w-100 me-4">
+                                    <input id="RazorpayMethod01" name="RazorpayMethod" type="radio"
+                                        class="form-check-input" checked="">
+                                    <label class="form-check-label py-2 text-center" for="RazorpayMethod01">Active</label>
+                                </div>
+                                <div class="form-check card-radio w-100">
+                                    <input id="RazorpayMethod02" name="RazorpayMethod" type="radio"
+                                        class="form-check-input">
+                                    <label class="form-check-label py-2 text-center" for="RazorpayMethod02">Deactive</label>
+                                </div>
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-group mb-2">
+                                <label>Razorpay Client ID</label>
+                                <input type="text" class="form-control" name="client_id">
+                            </div>
+                            <div class="form-group">
+                                <label>Razorpay Client Secret</label>
+                                <input type="text" class="form-control" name="client_id">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <a href="javascript:void(0);" class="btn btn-success w-100 fs-5">Update Your details</a>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+    </div>
+    <!-- End Page-content -->
+@endsection
+
+@push('scripts')
+    @include('admin::paymentGateway.scripts')
+@endpush
