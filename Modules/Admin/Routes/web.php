@@ -154,6 +154,9 @@ Route::prefix('admin')->group(function() {
 
         Route::controller(PaymentGatewayController::class)->group(function(){
             Route::get('payment', 'index')->name('paymentGateway.index');
+
+            // paypal
+            Route::post('update/paypal/{uuid}', 'updatePaypal')->name('update.paypal');
         });
 
     });
