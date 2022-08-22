@@ -38,10 +38,10 @@
                             </div>
                             <span class="text-danger" id="facilityColor-error"></span>
                         </div>
-                        <div class="mb-3 facilitydesc">
+                        <div class="mb-2 facilitydesc">
                             <textarea name="content" class="facilityDescription" id="createCKEditor"></textarea>
-                            <span class="text-danger" id="facilityDescription-error"></span>
                         </div>
+                        <span class="text-danger mb-2" id="facilityDescription-error"></span>
                         <div class="mb-2">
                             <div class="form-check custom-checkbox d-flex justify-content-end align-items-center">
                                 <button type="submit" class="btn btn-success faciltySubmit">Submit</button>

@@ -396,6 +396,9 @@
         flex: 0 0 60% !important;
         padding-left: 2px !important;
     }
+    .header .navbar .navbar-brand img{
+        margin-top: -18px;
+    }
 }
 @media screen and (max-width: 768px) {
     .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
