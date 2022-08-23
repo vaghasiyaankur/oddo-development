@@ -24,14 +24,14 @@ Add-Property
                             <div class="p-form-heading">
                                 <h5>What’s the name of your property?</h5>
                             </div>
-                            <input type="hidden" class="hotelId" value="{{ isset($hotelDetail) ? $hotelDetail->UUID : '' }}"> 
+                            <input type="hidden" class="hotelId" value="{{ isset($hotelDetail) ? $hotelDetail->UUID : '' }}">
                             <div class="input-with-icon d-flex justify-content-center align-items-center">
                                 <input type="text" class="form-control custom-from-control border-0 property_name"
                                     name="property_name" value="{{ isset($hotelDetail) ? $hotelDetail->property_name : '' }}">
                                 <i class="fa-solid fa-circle-exclamation pe-2" data-toggle="tooltip"
                                     data-bs-placement="bottom"
                                     title="Guests will see this name when they search for place to stay"></i>
-                                   
+
                             </div>
                             <span id="property-name-error" class="text-danger"></span>
                             @if(@$hotel->propertytype->type == 'Hotel' || @$hotelDetail->propertytype->type == 'Hotel')
@@ -72,7 +72,7 @@ Add-Property
                                 @foreach ($hotelContacts as $key => $hotelContact)
                                 <div class="data_1 contact-div contact-border">
                                     <input type="hidden" class='contant_count' value="{{$key+1}}">
-                                    <div class="contact--name pt-3">  
+                                    <div class="contact--name pt-3">
                                         <label for="contactname" class="form-label label-heading">Contact Name</label>
                                         <input type="hidden"  class="hotelContactId" value="{{$hotelContact->UUID}}">
                                         <input type="text" id="contactname" name="contactname_1" class="form-control custom-from-control contactname_1" value="{{$hotelContact->name}}">
@@ -84,7 +84,7 @@ Add-Property
                                                 <input type="tel" name="phone_1" id="phone_1" class="form-control custom-from-control phone_1 phoneNumber" value="{{$hotelContact->number}}" />
                                             </div>
                                             <div class="contact-number-inner margin--left phone-optional-div">
-                                                <label for="optional_1" class="form-label label-heading " style="white-space: nowrap;">Alternative Phone Number(Optional)</label>   
+                                                <label for="optional_1" class="form-label label-heading " style="white-space: nowrap;">Alternative Phone Number(Optional)</label>
                                                 <input type="tel"  name="optional_1" id="optional_1" class="form-control custom-from-control optional_1 phoneOptinal" value="{{$hotelContact->number_optinal}}" />
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@ Add-Property
                                 <div id="add_pro_detail">
                                     <div class="data_1 contact-div">
                                         <input type="hidden" class='contant_count' value="1">
-                                        <div class="contact--name">  
+                                        <div class="contact--name">
                                             <input type="hidden"  class="hotelContactId" value="0">
                                             <label for="contactname" class="form-label label-heading">Contact Name</label>
                                             <input type="text" id="contactname" name="contactname_1" class="form-control custom-from-control contactname_1">
@@ -114,9 +114,9 @@ Add-Property
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             @endif
-                            
+
                             <div class="another-c-details mt-4">
                                 <a href="javascript:;" class="btn another-c-d-btn" id="add_contact_detail">Add Another Contact Details</a>
                             </div>
@@ -201,8 +201,8 @@ Add-Property
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </a>
-                        </div>  
-                    @else    
+                        </div>
+                    @else
                         <div class="another-c-details mt-4">
                             <a href="javascript:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue
                                 <div class="spinner-border" role="status" style="display: none;">
@@ -234,9 +234,9 @@ Add-Property
     }
 
     .contact-border:not(:first-child) {
-        border-top: 1px solid #ced4da; 
+        border-top: 1px solid #ced4da;
         margin-top:15px;
-       
+
     }
 </style>
 @endpush
@@ -274,11 +274,10 @@ Add-Property
             !address ? $(`#address-error`).html(`The Address Line field is required.`) : $(`#address-error`).html(``);
 
             let address_line = $('.address_line').val();
-            !address_line ? $(`#address_line-error`).html(`The Address Line field is required.`) : $(`#address_line-error`).html(``);
 
             let country = $('.country').val();
             !country ? $(`#country-error`).html(`The Country field is required.`) : $(`#country-error`).html(``);
-            
+
             let city = $('.city').val();
             !city ? $(`#city-error`).html(`The City field is required.`) : $(`#city-error`).html(``);
 
@@ -329,15 +328,15 @@ Add-Property
                         window.location = res.redirect_url;
                     }
                 },
-            }); 
+            });
         });
 
         // var number = 1;
-        
-        
+
+
 
         $("#add_contact_detail").bind("click", function () {
-            
+
                 $("#add_pro_detail").append('<div class="remove-p-details border-1 contact-div contact-border"  style="">' +
                     '<div class="contact--name pt-3 ">' +
                         '<label for="contactname" class="form-label label-heading">Contact Name</label>' +
@@ -352,7 +351,7 @@ Add-Property
                             '<div class="contact-number-inner margin--left phone-optional-div">' +
                                 '<label for="" class="form-label label-heading "style="white-space: nowrap;">Alternative Phone Number(Optional)</label>' +
                                 ' <input type="tel" name=""  class="form-control custom-from-control phoneOptinal">' +
-                            '</div>' + 
+                            '</div>' +
                             '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />' + '</div>' +
                     '</div>' +
                 '</div>');
@@ -360,14 +359,14 @@ Add-Property
 
 
         });
-        
+
         $("body").on("click", ".remove", function () {
-            $(this).closest(".remove-p-details").remove();     
+            $(this).closest(".remove-p-details").remove();
         });
 
-        $('.country').on('change',function() {     
+        $('.country').on('change',function() {
             var country = $(this).val();
-            $.ajax({  
+            $.ajax({
                 url:"{{ route('cities') }}",
                 type:"POST",
                 data: {
@@ -375,7 +374,7 @@ Add-Property
                 },
                 success:function (data) {
                     $('.city').empty();
-                    $.each(data.cities[0].cities,function(index,cities){  
+                    $.each(data.cities[0].cities,function(index,cities){
                         $('.city').append('<option value="'+cities.id+'">'+cities.name+'</option>');
                     })
                 }
@@ -404,11 +403,10 @@ Add-Property
         !address ? $(`#address-error`).html(`The Address Line field is required.`) : $(`#address-error`).html(``);
 
         let address_line = $('.address_line').val();
-        !address_line ? $(`#address_line-error`).html(`The Address Line field is required.`) : $(`#address_line-error`).html(``);
 
         let country = $('.country').val();
         !country ? $(`#country-error`).html(`The Country field is required.`) : $(`#country-error`).html(``);
-        
+
         let city = $('.city').val();
         !city ? $(`#city-error`).html(`The City field is required.`) : $(`#city-error`).html(``);
 
@@ -426,7 +424,7 @@ Add-Property
 
         }}).get();
 
-        if (!property_name || !address || !address_line || !country || !city || !zipcode) {
+        if (!property_name || !address || !country || !city || !zipcode) {
             return;
         }
 
@@ -457,11 +455,11 @@ Add-Property
             success: function (res) {
                 $('.spinner-border').hide();
                 $("input[type=text], input[type=tel]").val("");
-                if (res.redirect_url) {
+                // if (res.redirect_url) {
                     window.location = res.redirect_url;
-                }
+                // }
             },
-        }); 
+        });
     });
 
 </script>

@@ -269,6 +269,10 @@
             font-weight: 800;
         }
 
+        .result-view{
+            height: 30px;
+        }
+
     </style>
 @endpush
 
@@ -428,7 +432,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <aside class="side-content">
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between result-view">
                                 <span class="side-text">Viewing  {{ $hotels->total() }} results</span>
                                 <span class="side-btn ResetForm d-none">
                                     <a href="javascript:;" id="ResetForm" class="btn reset-btn Resetform">Reset</a>
