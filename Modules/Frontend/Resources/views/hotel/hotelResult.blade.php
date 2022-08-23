@@ -69,7 +69,7 @@
                                       <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
                                                   ? ',
-                                                                                                                                                                                                                                                                                                        ' .
+                                                                                                                                                                                                                                                          ' .
                                                       $hotel->country->country_name
                                                   : '' }}</span>
                                       </p>
@@ -1604,7 +1604,7 @@
                                   <div class="col-lg-4">
                                       <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
                                           <div class="payment-logo d-flex align-items-center ">
-                                              <img class="payment_logo_icon me-2"
+                                              <img class="payment_logo_icon me-2" 
                                                   src="{{ asset('assets/images/payment-logo/paypal.png') }}"
                                                   alt="">
                                               <h6 class="card-title mb-0 text-dark">Paypal</h6>
@@ -1624,15 +1624,11 @@
                                   <div class="col-lg-4">
                                       <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
                                           <div class="payment-logo d-flex align-items-center ">
-                                              <img class="payment_logo_icon me-2"
-                                                  src="{{ asset('assets/images/payment-logo/razorpay.png') }}"
+                                              <img class="payment_logo_icon me-2" src="{{ asset('assets/images/payment-logo/razorpay.png') }}"
                                                   alt="">
                                               <h6 class="card-title mb-0 text-dark">Razorpay</h6>
                                           </div>
                                       </a>
-                                  </div>
-                                  <div class="payment-box-innder-details">
-                                      <img src="{{ asset('asset/image/payment-logo/strip.') }}" alt="">
                                   </div>
                               </div>
                           </div>
