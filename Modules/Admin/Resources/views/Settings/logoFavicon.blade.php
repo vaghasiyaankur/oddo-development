@@ -2,7 +2,7 @@
     <div class="logo-header d-flex justify-content-between align-items-center mb-5 flex-wrap">
         <h3 class="fs-4 mb-0">Logo and Favicon</h3>
         <a href="javascript:;">
-            <button type="submit" class="btn btn-success logo-btn">save</button>
+            <button type="submit" class="btn btn-success logo-btn">Update</button>
         </a>
     </div>
     <div class="row">

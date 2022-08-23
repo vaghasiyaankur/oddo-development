@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('payment_getways', function (Blueprint $table) {
             $table->id();
+            $table->integer('UUID')->unique()->nullable();
             $table->string('payment_type')->nullable();
+            $table->string('payment_icon')->nullable();
             $table->string('client_id')->nullable();
             $table->string('client_secret_key')->nullable();
+            $table->string('api_secret_key')->nullable();
             $table->string('status')->nullable();
             $table->string('test_mode')->nullable();
             $table->timestamps();

@@ -35,17 +35,20 @@
                                                     id="E-mail" placeholder="Enter your Email">
                                                     <span class="text-danger" id="useremail-error"></span>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-3 position-relative" >
                                                 <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="password" class="form-control userpassword"
-                                                    id="password" placeholder="Enter Password">
-                                                    <span class="text-danger" id="userpassword-error"></span>
+                                                id="password" placeholder="Enter Password">
+                                                <button class="toggle btn btn-link position-absolute end-0 text-decoration-none text-muted" type="button" id="password-show" style="top: 30px;"><i class="fa fa-eye align-middle" id="eyeIcon"></i></button>
+                                                <span class="text-danger" id="userpassword-error"></span>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="password-input">Confirm Password <span class="text-danger">*</span></label>
+                                            <div class="mb-3 position-relative">
+                                                <label for="password" class="form-label">Confirm Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="RePassword" class="form-control userrepassword"
                                                 id="username" placeholder="Enter Confirm Password">
+                                                <button class="toggle btn btn-link position-absolute end-0 text-decoration-none text-muted" type="button" id="password-hide" style="top: 30px;"><i class="fa fa-eye align-middle" id="eyeIcons"></i></button>
                                                 <span class="text-danger" id="userrepassword-error"></span>
+
                                             </div>
                                             <div class="mt-4 position-relative">
                                                 <button class="btn log_in_btn w-100 signup">Sign Up</button>
@@ -93,8 +96,8 @@
     $('#success-div').html('');
 
     var baseUrl = $('#base_url').val();
-    
-    $(document).ready(function(){ 
+
+    $(document).ready(function(){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -104,10 +107,10 @@
         $(document).on('click', '.signup', function(){
             let name = $('.name').val();
             !name ? $(`#name-error`).html(`The name field is required.`) : $(`#name-error`).html(``);
-           
+
             let lastName = $('.lastName').val();
             !lastName ? $(`#lastName-error`).html(`The last name field is required.`) : $(`#lastName-error`).html(``);
-            
+
             let useremail = $('.useremail').val();
             !useremail ? $(`#useremail-error`).html(`The email field is required.`) : $(`#useremail-error`).html(``);
 
@@ -142,7 +145,7 @@
                                         <span id="">`+response.success+`</span>
                                     </div>`);
                     setTimeout(function(){
-                        $('#success-div').html(``); 
+                        $('#success-div').html(``);
                     }, 4000);
                     $(".signUpForm").trigger("reset");
                     $('#name-error').text('');
@@ -156,8 +159,41 @@
                     $('#useremail-error').text(response.responseJSON.errors.email);
                     $('#userrepassword-error').text(response.responseJSON.errors.RePassword);
                 }
-            }); 
-        }); 
+            });
+        });
     });
+</script>
+<script>
+    let passwordInput = document.getElementById("password"),
+    toggle = document.getElementById("password-show"),
+    icon = document.getElementById("eyeIcon");
+
+    function togglePassword() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+        }
+    }
+
+    toggle.addEventListener("click", togglePassword, false);
+</script>
+<script>
+    let passwordInputs = document.getElementById("username"),
+    toggles = document.getElementById("password-hide"),
+    icons = document.getElementById("eyeIcons");
+
+    function toggleREPassword() {
+        if (passwordInputs.type === "password") {
+            passwordInputs.type = "text";
+            icons.classList.add("fa-eye-slash");
+        } else {
+            passwordInputs.type = "password";
+            icons.classList.remove("fa-eye-slash");
+        }
+    }
+    toggles.addEventListener("click", toggleREPassword, false);
 </script>
 @endpush
