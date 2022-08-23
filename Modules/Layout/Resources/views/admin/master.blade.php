@@ -204,7 +204,7 @@
 
         #preloader {
             position: fixed;
-            top: 120px !important;
+            top: 117px !important;
             right: 0;
             bottom: 0;
             left: 0;

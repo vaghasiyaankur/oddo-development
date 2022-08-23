@@ -18,11 +18,14 @@ return new class extends Migration
             $table->integer('UUID')->unique()->nullable();
             $table->string('payment_type')->nullable();
             $table->string('payment_icon')->nullable();
-            $table->string('client_id')->nullable();
-            $table->string('client_secret_key')->nullable();
-            $table->string('api_secret_key')->nullable();
+            $table->string('test_client_id')->nullable();
+            $table->string('test_client_secret_key')->nullable();
+            $table->string('test_api_secret_key')->nullable();
+            $table->string('live_client_id')->nullable();
+            $table->string('live_client_secret_key')->nullable();
+            $table->string('live_api_secret_key')->nullable();
             $table->string('status')->nullable();
-            $table->string('test_mode')->nullable();
+            $table->string('mode')->nullable();
             $table->timestamps();
         });
     }
