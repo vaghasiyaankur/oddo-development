@@ -24,41 +24,52 @@ class PaymentTableSeeder extends Seeder
             'sb-nrb6a16324783_api1.business.example.com',
             'YUQZV5HF9EWC433X',
             'AlUbKnK29hQu5gg23suU0myvzJzMA7LLy0RbLNz6wf5.JAxW3DjFapVP',
+            'live_demo',
+            'live_demo',
+            'live_demo',
             '1',
-            '1'],
+            'test'],
 
             ['Stripe',  
             'paymentGateway/razorpay.png',
             'pk_test_51K9nWFSEHRtZ2j6i7laSxXbJpg25Y51cqGBjyWPOiXVlXOscQvsBupsHiN0xONkr2MDs1CsHBNni9wNvuNyNlb2k00HjvTADGG',
             'sk_test_51K9nWFSEHRtZ2j6imHtkYo3tz0lNjKpaPyoXlqXmO40NlEnOfQ2h1tA8LGMIPKYYUnB5vQTyQLZx4hmKlESakTsc00gewuPBjL', 
             null,
+            'live_demo',
+            'live_demo',
+            'live_demo',
             '1',
-            '1'], 
+            'test'], 
 
             ['Razorpay',
             'paymentGateway/stripe.png',
             'rzp_test_ImnZdPCDKBmCSP',
             'vTX48Qk4Idt5gc49386hu3Ra',
             null,
+            'live_demo',
+            'live_demo',
+            'live_demo',
             '1',
-            '1']
+            'test']
         ];
 
         File::copy(public_path('storage/images/paypal.png'), public_path('storage/paymentGateway/paypal.png'));
-        File::copy(public_path('storage/images/razorpay.png'), public_path('storage/paymentGateway/razorpay.png'));
-        File::copy(public_path('storage/images/stripe.png'), public_path('storage/paymentGateway/stripe.png'));
+        File::copy(public_path('storage/images/razorpay.png'), public_path('storage/paymentGateway/stripe.png'));
+        File::copy(public_path('storage/images/stripe.png'), public_path('storage/paymentGateway/razorpay.png'));
 
-        foreach ($Payments as  list($paymentType, $payment_icon, $client_id, $client_key, $api_secret_key, $status, $testMode )) {
+        foreach ($Payments as  list($paymentType, $payment_icon, $client_id, $client_key, $api_secret_key, $live_id, $live_key, $live_api, $status, $testMode )) {
             paymentGetways::create([
                 'payment_type' => $paymentType,
                 'payment_icon' => $payment_icon,
-                'client_id' => $client_id,
-                'client_secret_key' => $client_key,
-                'api_secret_key' => $api_secret_key,
+                'test_client_id' => $client_id,
+                'test_client_secret_key' => $client_key,
+                'test_api_secret_key' => $api_secret_key,
+                'live_client_id' => $live_id,
+                'live_client_secret_key' => $live_key,
+                'live_api_secret_key' => $live_api,
                 'status' => $status,
-                'test_mode' => $testMode
+                'mode' => $testMode
             ]);
         }
-
     }
 }

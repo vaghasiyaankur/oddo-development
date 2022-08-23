@@ -137,8 +137,7 @@ Route::prefix('admin')->group(function() {
             Route::get('edit/emailtemplate', 'editEditTemplate')->name('edit.emailTemplate');
             Route::post('update/emailtemplate', 'updateEmailTemplate')->name('update.EmailTemplate');
             Route::get('emailtemplate/show', 'emailTemplateShow')->name('emailtemplate.show');
-
-
+            
             // logo & favicon
             Route::get('logoFavicon/show', 'logoFaviconShow')->name('logoFavicon.show');
             Route::post('update/logo', 'updateLogo')->name('update.logo');
@@ -157,6 +156,15 @@ Route::prefix('admin')->group(function() {
 
             // paypal
             Route::post('update/paypal/{uuid}', 'updatePaypal')->name('update.paypal');
+            Route::get('/show/paypal', 'showPaypal')->name('show.paypal');
+
+            // stripe
+            Route::post('/update/stripe/{uuid}', 'updateStripe')->name('update.stripe');
+            Route::get('/show/stripe', 'showStripe')->name('show.stripe');
+
+            // razorpay
+            Route::post('/update/razorpay/{uuid}', 'updateRazorpay')->name('update.razorpay');
+            Route::get('/show/razorpay', 'showRazorpay')->name('show.razorpay');
         });
 
     });
