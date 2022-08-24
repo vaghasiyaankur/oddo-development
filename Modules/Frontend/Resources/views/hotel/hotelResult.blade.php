@@ -1,5 +1,5 @@
   {{-- loader --}}
-  <div class="loading_spiner_ d-none">
+  <div class="loading_spiner_" style="display: none">
       <div class="spinner mx-auto"></div>
   </div>
   @if (count($hotels))
@@ -789,23 +789,19 @@
                                     </div>
                                 </div>
                                 <div class="payment_select_type">
+
+                                    <input type="hidden" value="{{@$hotel->room->price_room}}" class="amount_data_{{$hotel->UUID}}">
+                                    {{-- <input type="text" value="{{auth()->user()->name}}" class="user_name"> --}}
                                     <h5 class="payment__type_title">Select your payment type</h5>
                                     <div class="row mt-3">
-                                      @foreach ($paymentGateways as $paymentGateway)
-                                        <div class="col-lg-4">
-                                            <a class="payment--select-box mb-3 mb-lg-0 payment_button_{{$paymentGateway->payment_type}}" href="javascript:;">
-                                                <div class="payment-logo d-flex align-items-center ">
-                                                    <img class="payment_logo_icon me-2"
-                                                        src="{{ asset('storage/' . $paymentGateway['payment_icon']) }}"
-                                                        alt="">
-                                                    <h6 class="card-title mb-0 text-dark">{{$paymentGateway->payment_type}}</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        {{-- <form action="{{ route($paymentGateway->route) }}" method="POST" >
-                                          @csrf
-                                          <button type="submit">submit</button>
-                                        </form> --}}
+                                      @foreach ($paymentGateways as $paymentGateway)  
+                                          @if ($paymentGateway->payment_type == 'Razorpay')
+                                            @include('frontend::hotel.Razorpay')
+                                          @elseif ($paymentGateway->payment_type == 'Stripe')
+                                            @include('frontend::hotel.Stripe')
+                                          @elseif ($paymentGateway->payment_type == 'Paypal')
+                                            @include('frontend::hotel.Paypal')
+                                          @endif
                                       @endforeach
                                     </div>
                                 </div>

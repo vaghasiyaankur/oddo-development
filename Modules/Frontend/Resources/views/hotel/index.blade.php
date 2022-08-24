@@ -1042,6 +1042,8 @@
 @endsection
 
 @push('script')
+    {{-- razorpay cdn  --}}
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
     <!-- aos js -->
     <script src="{{ asset('assets/Admin/assets/libs/aos/aos.js') }}"></script>
 
@@ -1505,30 +1507,60 @@ $(document).ready(function(){
     }
     resetFilter();
 
-    // payment
-    // $(document).on('click', '.payment_button_Razorpay', function(){
-    //     alert('hello');
-    //     $.ajax({
-    //         url: "{{ route('payment.razorpay')}}",
-    //         type: "POST",
-    //         processData: false,
-    //         contentType: false,
-    //         data: {"_token": "{{ csrf_token() }}"},
-    //         success: function (response) {
-    //         }, error:function (response) {
-    //         }
-    //     });
-    // });
+    // razorpay payment gateway
+    $(document).on('click', '.payment_button_Razorpay', function(e){
+        e.preventDefault(); 
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        // var name = $('.user_name').val();
+        var total_amount = amount+"00";
+        
+        var options = { 
+        "key": "{{config('services.razorpay.key')}}", 
+        "amount": total_amount, 
+        "currency": "USD", 
+        "name": "NiceSnippets", 
+        "description": "Test Transaction", 
+        "image": "/image/imgpsh_fullsize.png", 
+        "order_id": "", 
+        "handler": function (response){ 
+            $.ajaxSetup({ 
+                headers: { 
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                } 
+            }); 
+            $.ajax({ 
+                type:'POST', 
+                url:"{{ route('payment.razorpay') }}", 
+                data:{razorpay_payment_id:response.razorpay_payment_id,amount:amount}, 
+                success:function(data){ 
+                    $('.success-message').text(data.success); 
+
+                    $('.success-alert').fadeIn('slow', function(){ 
+                    $('.success-alert').delay(5000).fadeOut();  
+                    }); 
+                    $('.amount').val(''); 
+                } 
+            }); 
+        }, 
+        "prefill": { 
+            "name": "Mehul Bagda", 
+            "email": "mehul.bagda@example.com", 
+            "contact": "818********6" 
+        }, 
+        "notes": { 
+            "address": "test test" 
+        }, 
+        "theme": { 
+            "color": "#6a78c7" 
+        } 
+        }; 
+        var rzp1 = new Razorpay(options); 
+        rzp1.open(); 
+    });
 });
 </script>
-<script src="https://checkout.razorpay.com/v1/checkout.js"
-        data-key="{{ env('RAZORPAY_KEY') }}"
-        data-amount="1000"
-        data-buttontext="Pay 10 INR"
-        data-name="ItSolutionStuff.com"
-        data-description="Rozerpay"
-        data-prefill.name="name"
-        data-prefill.email="email"
-        data-theme.color="#ff7529">
-</script>
+
+
+
 @endpush
