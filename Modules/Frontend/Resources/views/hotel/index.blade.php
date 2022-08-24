@@ -51,6 +51,7 @@
 
         /* loading sipner css strat*/
         .loading_spiner_ {
+            /* margin-top: 20%; */
             border-radius: 8px;
             min-height: 57px;
             padding-top: 15px;
@@ -470,16 +471,16 @@
                                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                                                         <div class="modal-content">
-                                                            <div class="modal-header justify-content-end">
-                                                                <button type="button" data-bs-dismiss="modal"
-                                                                    class="modal-close" aria-label="Close"><i
-                                                                        class="fa-solid fa-xmark"></i></button>
-                                                            </div>
                                                             <div class="modal-body py-sm-5">
                                                                 <div class="hotels-result-sort hotel-sort-popup"
                                                                     id="preferences-scroll">
-                                                                    <div class="hotel-sort-popup-heading">
+                                                                    <div class="hotel-sort-popup-heading justify-content-between d-flex">
                                                                         <h4>My Preferences</h4>
+                                                                        <div class="modal-header justify-content-end p-0">
+                                                                            <button type="button" data-bs-dismiss="modal"
+                                                                                class="modal-close" aria-label="Close"><i
+                                                                                    class="fa-solid fa-xmark text-secondary fs-3"></i></button>
+                                                                        </div>
                                                                     </div>
                                                                     <h5 class="search-heading pt-3">Sort By</h5>
                                                                     <div class="hotel-result-sort-popup d-sm-flex">
@@ -1010,7 +1011,6 @@
                             </form>
                         </aside>
                     </div>
-
                     <!-------- Search Hotel Result -------->
                     <div class="col-lg-9 position-relative hotelResultDiv">
                         <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
@@ -1275,6 +1275,8 @@
 
 <script>
 
+$('.loading_spiner_').addClass('d-block');
+
 $(document).ready(function(){
 
     var baseUrl = $('#base_url').val();
@@ -1373,16 +1375,17 @@ $(document).ready(function(){
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
-                    $('.loading_spiner_').show();
+                    $('.loading_spiner_').removeClass('d-none');
+                    // $('.loading_spiner_').show();
                 }
             })
             .done(function (response) {
-                $('.loading_spiner_').hide();
+                $('.loading_spiner_').addClass('d-none');
                 var total_page = $('.total_page').val();
                 if(total_page == 0){
                     $('.hotel_empty').removeClass('d-none');
                 }
-                $('.loading_spiner_').hide();
+                // $('.loading_spiner_').hide();
                 $(".hotelResultDiv").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -1392,8 +1395,6 @@ $(document).ready(function(){
     }
 
 
-
-    $('.loading_spiner_').hide();
 
     $(document).on('click', '.addWishlist', function(){
         let hotelId = $(this).data('id');
@@ -1505,4 +1506,5 @@ $(document).ready(function(){
     resetFilter();
 });
 </script>
+
 @endpush
