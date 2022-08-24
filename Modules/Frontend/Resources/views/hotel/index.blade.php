@@ -1504,7 +1504,31 @@ $(document).ready(function(){
         });
     }
     resetFilter();
+
+    // payment
+    // $(document).on('click', '.payment_button_Razorpay', function(){
+    //     alert('hello');
+    //     $.ajax({
+    //         url: "{{ route('payment.razorpay')}}",
+    //         type: "POST",
+    //         processData: false,
+    //         contentType: false,
+    //         data: {"_token": "{{ csrf_token() }}"},
+    //         success: function (response) {
+    //         }, error:function (response) {
+    //         }
+    //     });
+    // });
 });
 </script>
-
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="{{ env('RAZORPAY_KEY') }}"
+        data-amount="1000"
+        data-buttontext="Pay 10 INR"
+        data-name="ItSolutionStuff.com"
+        data-description="Rozerpay"
+        data-prefill.name="name"
+        data-prefill.email="email"
+        data-theme.color="#ff7529">
+</script>
 @endpush

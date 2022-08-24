@@ -13,4 +13,8 @@ class paymentGetways extends Model
     protected $table = 'payment_getways';
 
     protected $guarded = ['id'];
+
+    public function scopeActive($query) {
+        return $query->where('status', 1);
+    }
 }

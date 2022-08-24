@@ -28,15 +28,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group mb-2">
-                    <label>Stripe Client ID</label>
-                    <input type="text" class="form-control stripe_client_id" value="{{ $paymentGateways[1]["mode"] == "test" ? $paymentGateways[1]["test_client_id"]  : $paymentGateways[1]["live_client_id"] }}">
-                    <span id="stripe_client_id_error" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label>Stripe Client Secret</label>
-                    <input type="text" class="form-control stripe_secret_key" value="{{ $paymentGateways[1]["mode"] == "test" ? $paymentGateways[1]["test_client_secret_key"]  : $paymentGateways[1]["live_client_secret_key"] }}">
-                    <span id="stripe_secret_key_error" class="text-danger"></span>
+                <div class="Payment_InputDetails">
+                    <div class="spinner-container">
+                        <div class="spinner">
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Stripe Client ID</label>
+                        <input type="text" class="form-control stripe_client_id" value="{{ $paymentGateways[1]["mode"] == "test" ? $paymentGateways[1]["test_client_id"]  : $paymentGateways[1]["live_client_id"] }}">
+                        <span id="stripe_client_id_error" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Stripe Client Secret</label>
+                        <input type="text" class="form-control stripe_secret_key" value="{{ $paymentGateways[1]["mode"] == "test" ? $paymentGateways[1]["test_client_secret_key"]  : $paymentGateways[1]["live_client_secret_key"] }}">
+                        <span id="stripe_secret_key_error" class="text-danger"></span>
+                    </div>
                 </div>
             </form>
         </div>
