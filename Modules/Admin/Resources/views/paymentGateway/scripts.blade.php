@@ -26,16 +26,20 @@ $(document).ready(function(){
      $(document).on('change', '.paypal_mode', function(){
         var mode = $(this).val();
         var type = $(this).data('value');
-        $('.updateLoader').addClass('on').removeClass('off');
-        
+
+        var paypalForm = $(this).parents('.card');
+        paypalForm.find('.spinner-container').css('display', 'block');
+
         $.ajax({
             url: "{{route('show.paypal')}}",
             type: "GET",
             dataType:'json',
             data : { mode : mode, type : type},
             success: function (response) {
-                console.log(response);
-                $('.updateLoader').addClass('off').removeClass('on');
+
+               setTimeout(function(){ 
+                    $('.spinner-container').css('display', 'none');
+                 }, 500);
 
                 if (response.mode == 'live') {
                     $('.paypal_id').val(response.paymentGateways.live_client_id);
@@ -75,7 +79,9 @@ $(document).ready(function(){
         if (!paypal_id || !paypal_key || !paypal_api_key) {
             return;
         }
-        $('.updateLoader').addClass('on').removeClass('off');
+
+        var paypalForm = $(this).parents('.card');
+        paypalForm.find('.spinner-container').css('display', 'block');
 
         formdata = new FormData();
         formdata.append('paypal_id', paypal_id);
@@ -92,7 +98,11 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) { 
-                $('.updateLoader').addClass('off').removeClass('on');
+
+                setTimeout(function(){ 
+                    $('.spinner-container').css('display', 'none');
+                 }, 500);
+
                 toastMixin.fire({ title: response.success, icon: 'success' });
             }, error:function (response) {
                 // console.log(response);
@@ -120,7 +130,9 @@ $(document).ready(function(){
         if (!stripe_id || !stripe_client_id || !stripe_secret_key) {
             return;
         }
-        $('.updateLoader').addClass('on').removeClass('off');
+
+        var paypalForm = $(this).parents('.card');
+        paypalForm.find('.spinner-container').css('display', 'block');
 
         formdata = new FormData();
         formdata.append('stripe_id', stripe_id);
@@ -137,7 +149,10 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) { 
-                $('.updateLoader').addClass('off').removeClass('on');
+
+                setTimeout(function(){ 
+                    $('.spinner-container').css('display', 'none');
+                 }, 500);
                 toastMixin.fire({ title: response.success, icon: 'success' });
             }, error:function (response) {
                 // console.log(response);
@@ -149,7 +164,9 @@ $(document).ready(function(){
      $(document).on('change', '.stripe_mode', function(){
         var mode = $(this).val();
         var type = $(this).data('value');
-        $('.updateLoader').addClass('on').removeClass('off');
+
+        var paypalForm = $(this).parents('.card');
+        paypalForm.find('.spinner-container').css('display', 'block');
         
         $.ajax({
             url: "{{route('show.stripe')}}",
@@ -157,8 +174,10 @@ $(document).ready(function(){
             dataType:'json',
             data : { mode : mode, type : type},
             success: function (response) {
-                console.log(response);
-                $('.updateLoader').addClass('off').removeClass('on');
+
+                setTimeout(function(){ 
+                    $('.spinner-container').css('display', 'none');
+                 }, 500);
 
                 if (response.mode == 'live') {
                     $('.stripe_client_id').val(response.paymentGateways.live_client_id);
@@ -191,7 +210,8 @@ $(document).ready(function(){
         if (!razor_id || !razor_client_id || !razor_client_secret_key) {
             return;
         }
-        $('.updateLoader').addClass('on').removeClass('off');
+        var paypalForm = $(this).parents('.card');
+        paypalForm.find('.spinner-container').css('display', 'block');
 
         formdata = new FormData();
         formdata.append('razor_id', razor_id);
@@ -207,7 +227,10 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) { 
-                $('.updateLoader').addClass('off').removeClass('on');
+                setTimeout(function(){ 
+                    $('.spinner-container').css('display', 'none');
+                 }, 500);
+
                 toastMixin.fire({ title: response.success, icon: 'success' });
             }, error:function (response) {
                 // console.log(response);
@@ -219,7 +242,9 @@ $(document).ready(function(){
     $(document).on('change', '.razorpay_mode', function(){
         var mode = $(this).val();
         var type = $(this).data('value');
-        $('.updateLoader').addClass('on').removeClass('off');
+        
+        var paypalForm = $(this).parents('.card');
+        paypalForm.find('.spinner-container').css('display', 'block');
 
         $.ajax({
             url: "{{route('show.razorpay')}}",
@@ -227,7 +252,11 @@ $(document).ready(function(){
             dataType:'json',
             data : { mode : mode, type : type},
             success: function (response) {
-                $('.updateLoader').addClass('off').removeClass('on');
+
+                setTimeout(function(){ 
+                    $('.spinner-container').css('display', 'none');
+                 }, 500);
+
 
                 if (response.mode == 'live') {
                     $('.razor_client_id').val(response.paymentGateways.live_client_id);
