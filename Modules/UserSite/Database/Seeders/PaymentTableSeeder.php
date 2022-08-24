@@ -28,7 +28,8 @@ class PaymentTableSeeder extends Seeder
             'live_demo',
             'live_demo',
             '1',
-            'test'],
+            'test',
+            'payment.paypal'],
 
             ['Stripe',  
             'paymentGateway/razorpay.png',
@@ -39,7 +40,8 @@ class PaymentTableSeeder extends Seeder
             'live_demo',
             'live_demo',
             '1',
-            'test'], 
+            'test',
+            'payment.stripe'], 
 
             ['Razorpay',
             'paymentGateway/stripe.png',
@@ -50,14 +52,15 @@ class PaymentTableSeeder extends Seeder
             'live_demo',
             'live_demo',
             '1',
-            'test']
+            'test',
+            'payment.razorpay']
         ];
 
         File::copy(public_path('storage/images/paypal.png'), public_path('storage/paymentGateway/paypal.png'));
         File::copy(public_path('storage/images/razorpay.png'), public_path('storage/paymentGateway/stripe.png'));
         File::copy(public_path('storage/images/stripe.png'), public_path('storage/paymentGateway/razorpay.png'));
 
-        foreach ($Payments as  list($paymentType, $payment_icon, $client_id, $client_key, $api_secret_key, $live_id, $live_key, $live_api, $status, $testMode )) {
+        foreach ($Payments as  list($paymentType, $payment_icon, $client_id, $client_key, $api_secret_key, $live_id, $live_key, $live_api, $status, $testMode, $route )) {
             paymentGetways::create([
                 'payment_type' => $paymentType,
                 'payment_icon' => $payment_icon,
@@ -68,7 +71,8 @@ class PaymentTableSeeder extends Seeder
                 'live_client_secret_key' => $live_key,
                 'live_api_secret_key' => $live_api,
                 'status' => $status,
-                'mode' => $testMode
+                'mode' => $testMode,
+                'route' => $route
             ]);
         }
     }
