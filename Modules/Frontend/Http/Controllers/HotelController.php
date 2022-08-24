@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Hotel;
 use App\Models\Amenities;
+use App\Models\paymentGetways;
 
 class HotelController extends Controller
 {
@@ -31,6 +32,7 @@ class HotelController extends Controller
         $searchProperty = request()->searchProperty;
 
         // dd($starRating);
+        $paymentGateways = paymentGetways::get();
         if($search){
             $search = str_replace(',', ' ', $search);
 
@@ -43,7 +45,7 @@ class HotelController extends Controller
                     ->active()->latest()->paginate(2);
 
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
                 return $html;
             }
 
@@ -51,7 +53,7 @@ class HotelController extends Controller
             $hotels = Hotel::with('room')->where('property_name', 'like', '%'.$searchProperty.'%')->active()->latest()->paginate(2);
 
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
                 return $html;
             }
         } else if($propertyName) {
@@ -61,19 +63,20 @@ class HotelController extends Controller
                 $query->whereBetween('price_room', [$budgetMin, $budgetMax]); })
             ->active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
                 return $html;
             }
         } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
                 return $html;
             }
         }
 
+
         $amenities = Amenities::where('featured',1)->active()->get();
-        return view('frontend::hotel.index', compact('hotels', 'amenities'));
+        return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways'));
     }
 
     public function hotelDetail(){

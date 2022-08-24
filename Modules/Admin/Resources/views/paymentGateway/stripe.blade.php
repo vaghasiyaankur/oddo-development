@@ -7,7 +7,7 @@
                 <h6 class="card-title mb-0">{{ $paymentGateways[1]['payment_type'] }}</h6>
             </div>
             <div class="form-check form-switch form-switch-success fs-5">
-                <input class="form-check-input stripe_status" type="checkbox" role="switch" id="SwitchCheck3" {{ $paymentGateways[1]['status'] == 1 ? "checked" : " " }}>
+                <input class="form-check-input payment_status" type="checkbox" role="switch" id="SwitchCheck3" {{ $paymentGateways[1]['status'] == 1 ? "checked" : " " }} data-value="{{ $paymentGateways[1]['payment_type'] }}">
             </div>
         </div>
         <div class="card-body px-4">

@@ -740,8 +740,78 @@
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
               <button class="price-btn" data-bs-toggle="modal"
-                  data-bs-target="#payment_type">{{ @$hotel->room->price_room }} for 1 Nights</button>
+                  data-bs-target="#payment_type_{{@$hotel->UUID}}">{{ @$hotel->room->price_room }} for 1 Nights</button>
           </div>
+          {{-- PAYMENT POPOUP START --}}
+          <div class="modal fade payment_details_popup" id="payment_type_{{@$hotel->UUID}}" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-body py-sm-5 modal-dialog-centered">
+                        <div class="payment-details-box">
+                            <div class="payment_popup_title d-flex justify-content-between align-items-center">
+                                <h4 style="color: #6a78d2;">Payment Details</h4>
+                                <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                                        class="fa-solid fa-xmark text-dark"></i></button>
+                            </div>
+                            <div class="payment_details_inner">
+                                <div class="row mb-4">
+                                    <div class="col-12  left-order-list">
+                                        <div class="payment--detail-box holiday-details mt-3 position-relative">
+                                            <div class="hotel--img">
+                                                <img src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}" alt="">
+                                            </div>
+                                            <h5 class="h--title ms-2">{{$hotel->property_name}}</h5>
+                                            <div class="h-date d-flex align-items-center">
+                                                <img src="assets/images/icons/order-hotel-icon.png" alt="">
+                                                <p class="m-0 pe-2">Mar 23, 2020</p>
+                                                <img src="assets/images/icons/order-h-eroow.png" alt="">
+                                                <p class="m-0 ps-2">Jun 12, 2020</p>
+                                            </div>
+                                            <div class="h-pepl d-flex align-items-center">
+                                                <img src="assets/images/icons/order-hotel-icon2.png" alt="">
+                                                <p class="m-0">2 Guests, 1 Infant</p>
+                                            </div>
+                                            <div class="h-room d-flex align-items-center">
+                                                <img src="assets/images/icons/order-hotel-icon3.png" alt="">
+                                                <p class="m-0">2 Rooms, 1 King, 2 Queen</p>
+                                            </div>
+                                            <div class="h-totl d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <p class="m-0 h--totl ms-2 mt-2">Total</p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}</p><span
+                                                        class="h--totl text-muted">for 1 nights</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment_select_type">
+                                    <h5 class="payment__type_title">Select your payment type</h5>
+                                    <div class="row mt-3">
+                                      @foreach ($paymentGateways as $paymentGateway)    
+                                        <div class="col-lg-4">
+                                            <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
+                                                <div class="payment-logo d-flex align-items-center ">
+                                                    <img class="payment_logo_icon me-2" 
+                                                        src="{{ asset('storage/' . $paymentGateway['payment_icon']) }}"
+                                                        alt="">
+                                                    <h6 class="card-title mb-0 text-dark">{{$paymentGateway->payment_type}}</h6>
+                                                </div>
+                                            </a>
+                                        </div>
+                                      @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          {{-- PAYMENT POPOUP END --}}
       @endforeach
   @endif
   <!----- notify me ----->
@@ -1552,90 +1622,4 @@
   </div> --}}
 
 
-  {{-- PAYMENT POPOUP START --}}
-  <div class="modal fade payment_details_popup" id="payment_type" data-bs-backdrop="static" data-bs-keyboard="false"
-      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-fullscreen">
-          <div class="modal-content">
-              <div class="modal-body py-sm-5 modal-dialog-centered">
-                  <div class="payment-details-box">
-                      <div class="payment_popup_title d-flex justify-content-between align-items-center">
-                          <h4 style="color: #6a78d2;">Payment Details</h4>
-                          <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
-                                  class="fa-solid fa-xmark text-dark"></i></button>
-                      </div>
-                      <div class="payment_details_inner">
-                          <div class="row mb-4">
-                              <div class="col-12  left-order-list">
-                                  <div class="payment--detail-box holiday-details mt-3 position-relative">
-                                      <div class="hotel--img">
-                                          <img src="http://127.0.0.1:8000/storage/hotels/00.jpg" alt="">
-                                      </div>
-                                      <h5 class="h--title ms-2">Hotel Holiday Inn</h5>
-                                      <div class="h-date d-flex align-items-center">
-                                          <img src="assets/images/icons/order-hotel-icon.png" alt="">
-                                          <p class="m-0 pe-2">Mar 23, 2020</p>
-                                          <img src="assets/images/icons/order-h-eroow.png" alt="">
-                                          <p class="m-0 ps-2">Jun 12, 2020</p>
-                                      </div>
-                                      <div class="h-pepl d-flex align-items-center">
-                                          <img src="assets/images/icons/order-hotel-icon2.png" alt="">
-                                          <p class="m-0">2 Guests, 1 Infant</p>
-                                      </div>
-                                      <div class="h-room d-flex align-items-center">
-                                          <img src="assets/images/icons/order-hotel-icon3.png" alt="">
-                                          <p class="m-0">2 Rooms, 1 King, 2 Queen</p>
-                                      </div>
-                                      <div class="h-totl d-flex justify-content-between align-items-center">
-                                          <div>
-                                              <p class="m-0 h--totl ms-2 mt-2">Total</p>
-                                          </div>
-                                          <div class="d-flex align-items-center">
-                                              <p class="m-0 pe-2 h-amount">$1,245.00</p><span
-                                                  class="h--totl text-muted">for 8 nights</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="payment_select_type">
-                              <h5 class="payment__type_title">Select your payment type</h5>
-                              <div class="row mt-3">
-                                  <div class="col-lg-4">
-                                      <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
-                                          <div class="payment-logo d-flex align-items-center ">
-                                              <img class="payment_logo_icon me-2" 
-                                                  src="{{ asset('assets/images/payment-logo/paypal.png') }}"
-                                                  alt="">
-                                              <h6 class="card-title mb-0 text-dark">Paypal</h6>
-                                          </div>
-                                      </a>
-                                  </div>
-                                  <div class="col-lg-4">
-                                      <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
-                                          <div class="payment-logo d-flex align-items-center ">
-                                              <img class="payment_logo_icon me-2"
-                                                  src="{{ asset('assets/images/payment-logo/stripe.png') }}"
-                                                  alt="">
-                                              <h6 class="card-title mb-0 text-dark">Stripe</h6>
-                                          </div>
-                                      </a>
-                                  </div>
-                                  <div class="col-lg-4">
-                                      <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
-                                          <div class="payment-logo d-flex align-items-center ">
-                                              <img class="payment_logo_icon me-2" src="{{ asset('assets/images/payment-logo/razorpay.png') }}"
-                                                  alt="">
-                                              <h6 class="card-title mb-0 text-dark">Razorpay</h6>
-                                          </div>
-                                      </a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  {{-- PAYMENT POPOUP END --}}
+

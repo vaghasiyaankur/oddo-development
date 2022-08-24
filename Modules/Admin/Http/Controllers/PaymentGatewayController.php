@@ -95,4 +95,16 @@ class PaymentGatewayController extends Controller
         $paymentGateways = paymentGetways::where('payment_type', $type)->first();
         return response()->json(['paymentGateways' => $paymentGateways, 'mode' => $mode]);
     }
+
+    public function paymentStatus(Request $request)
+    {
+        $status = $request->status;
+        $type = $request->type; 
+
+        $paymentGetways = paymentGetways::updateOrCreate([ 'payment_type' => $type ], [
+            'status' => $status
+        ]);
+        
+        return response()->json(["success" => "paypal updated Successfully"], 200);
+    }
 }

@@ -5,13 +5,7 @@
             </li>
             <li class="{{ Request::routeIs('calender') ? 'active' : '' }}"><a href="{{route('calender')}}">Calender &
                     Pricing</a></li>
-            <li class="{{ Request::routeIs('property-category') ? 'active' : '' }}"><a href="{{route('property-category')}}">Add Property</a></li>
-            <li><a href="#">Security</a></li>
-            <li><a href="#">Dog site</a></li>
-            <li><a href="#">Dogistry</a></li>
-            <li><a href="#">PawLibs</a></li>
-            <li><a href="#">Orders</a></li>
-            <li class="pb-5"><a href="#">My Pawpoints</a></li>
+            <li class="{{ Request::routeIs('property-category') ? 'active' : '' }} pb-3"><a href="{{route('property-category')}}">Add Property</a></li>
             {{-- <li class="logout mt-5 mb-3"><a href="#">Log Out</a></li> --}}
         </ul>
     </div>

@@ -68,13 +68,6 @@ $(document).ready(function(){
 
         var paypal_mode = $('.paypal_mode:checked').val();
         var paypal_UUID = $('.paypal_UUID').val();
-        
-
-        if($('.paypal_status').prop("checked") == true){
-            var paypal_status  = 1;
-        }else{
-            var paypal_status  = 0;
-        }
 
         if (!paypal_id || !paypal_key || !paypal_api_key) {
             return;
@@ -88,7 +81,6 @@ $(document).ready(function(){
         formdata.append('paypal_key', paypal_key);
         formdata.append('paypal_api_key', paypal_api_key);
         formdata.append('paypal_UUID', paypal_UUID);
-        formdata.append('paypal_status', paypal_status);
         formdata.append('paypal_mode', paypal_mode);
 
         $.ajax({
@@ -121,11 +113,6 @@ $(document).ready(function(){
         var stripe_mode = $('.stripe_mode:checked').val();
         var stripe_id = $('.stripe_id').val();    
 
-        if($('.stripe_status').prop("checked") == true){
-            var stripe_status  = 1;
-        }else{
-            var stripe_status  = 0;
-        }
 
         if (!stripe_id || !stripe_client_id || !stripe_secret_key) {
             return;
@@ -138,7 +125,6 @@ $(document).ready(function(){
         formdata.append('stripe_id', stripe_id);
         formdata.append('stripe_client_id', stripe_client_id);
         formdata.append('stripe_secret_key', stripe_secret_key);
-        formdata.append('stripe_status', stripe_status);
         formdata.append('stripe_mode', stripe_mode);
 
 
@@ -201,12 +187,6 @@ $(document).ready(function(){
         var razorpay_mode = $('.razorpay_mode:checked').val();
         var razor_id = $('.razor_id').val();    
 
-        if($('.razor_status').prop("checked") == true){
-            var razor_status  = 1;
-        }else{
-            var razor_status  = 0;
-        }
-
         if (!razor_id || !razor_client_id || !razor_client_secret_key) {
             return;
         }
@@ -217,7 +197,6 @@ $(document).ready(function(){
         formdata.append('razor_id', razor_id);
         formdata.append('razor_client_id', razor_client_id);
         formdata.append('razor_client_secret_key', razor_client_secret_key);
-        formdata.append('razor_status', razor_status);
         formdata.append('razorpay_mode', razorpay_mode);
 
         $.ajax({
@@ -267,6 +246,35 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+    // payment Status
+    $(document).on('change', '.payment_status', function(){
+        var type = $(this).data('value');
+
+        if($(this).prop("checked") == true){
+            var status  = 1;
+        }else{
+            var status  = 0;
+        }
+
+        formdata = new FormData();
+        formdata.append('type', type);
+        formdata.append('status', status);
+
+        $.ajax({
+            url: "{{route('paymentGateways.status')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) { 
+                // $('.updateLoader').addClass('off').removeClass('on');
+                // toastMixin.fire({ title: response.success, icon: 'success' });
+            }, error:function (response) {
+                // console.log(response);
+            }
+        }); 
     });
 });
 </script>

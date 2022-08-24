@@ -8,7 +8,7 @@
             </div>
             <div class="form-check form-switch form-switch-success fs-5">
                 <input class="form-check-input razor_status" type="checkbox" role="switch" id="SwitchCheck3"
-                    {{ $paymentGateways[2]['status'] == 1 ? 'checked' : ' ' }}>
+                {{ $paymentGateways[2]['status'] == 1 ? "checked" : " " }} data-value="{{ $paymentGateways[2]['payment_type'] }}">
             </div>
         </div>
         <div class="card-body px-4">
