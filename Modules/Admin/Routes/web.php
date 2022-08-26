@@ -168,6 +168,11 @@ Route::prefix('admin')->group(function() {
             Route::get('/show/razorpay', 'showRazorpay')->name('show.razorpay');
         });
 
+        Route::controller(PaymentController::class)->group(function(){
+            Route::get('payments', 'index')->name('payment.index');
+            Route::get('/payment-list', 'paymentList')->name('payment.list');
+        });
+
     });
 
 

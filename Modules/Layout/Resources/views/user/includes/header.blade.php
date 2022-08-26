@@ -3,7 +3,9 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home.index') }}"><img src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}"></a>
+            <a class="navbar-brand " href="{{ route('home.index') }}">
+                <img class="logoImage" src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}">
+            </a>
             <button class="navbar-toggler responsive_btn" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" style="position: absolute;
             right: 26px;top: 34px;">
                 <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>

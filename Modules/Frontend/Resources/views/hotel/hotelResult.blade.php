@@ -791,12 +791,15 @@
                                 <div class="payment_select_type">
 
                                     <input type="hidden" value="{{@$hotel->room->price_room}}" class="amount_data_{{$hotel->UUID}}">
-                                    {{-- <input type="text" value="{{auth()->user()->name}}" class="user_name"> --}}
+                                    <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{$hotel->UUID}}">
+
+
                                     <h5 class="payment__type_title">Select your payment type</h5>
                                     <div class="row mt-3">
                                       @foreach ($paymentGateways as $paymentGateway)  
-                                          @if ($paymentGateway->payment_type == 'Razorpay')
-                                            @include('frontend::hotel.Razorpay')
+                                      @if ($paymentGateway->payment_type == 'Razorpay')
+                                      @include('frontend::hotel.Razorpay')
+                                          <input type="hidden" value="{{$paymentGateway->id}}" class="razorpay_payment_id"> 
                                           @elseif ($paymentGateway->payment_type == 'Stripe')
                                             @include('frontend::hotel.Stripe')
                                           @elseif ($paymentGateway->payment_type == 'Paypal')

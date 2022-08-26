@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('payment_method_id')->unsigned()->nullable();
-            $table->integer('hotel_id')->nullable();
+            $table->string('payment_id')->nullble();
+            $table->string('hotel_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('payment_method_id')->references('id')->on('payment_getways');
             $table->timestamps();
