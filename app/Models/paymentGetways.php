@@ -17,4 +17,10 @@ class paymentGetways extends Model
     public function scopeActive($query) {
         return $query->where('status', 1);
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'id');
+    }
+    
 }

@@ -1039,6 +1039,16 @@
         </div>
     </section>
     <!------- Search result end ------->
+    {{-- <form action="{{ route('payment.razorpay') }}" method="POST">
+    @csrf
+    <script src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_ImnZdPCDKBmCSP" data-amount="10001" data-currency="INR"
+        data-buttontext="Pay 100 INR" data-name="codesolutionstuff.com"
+        data-description="Rozerpay"
+        data-image="https://codesolutionstuff.com/wp-content/uploads/2020/10/logo.jpg"
+        data-prefill.name="name" data-prefill.email="email"
+        data-theme.color="#F37254"></script>
+</form> --}}
 @endsection
 
 @push('script')
@@ -1512,49 +1522,52 @@ $(document).ready(function(){
         e.preventDefault(); 
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
-        // var name = $('.user_name').val();
         var total_amount = amount+"00";
-        
-        var options = { 
-        "key": "{{config('services.razorpay.key')}}", 
-        "amount": total_amount, 
-        "currency": "USD", 
-        "name": "NiceSnippets", 
-        "description": "Test Transaction", 
-        "image": "/image/imgpsh_fullsize.png", 
-        "order_id": "", 
-        "handler": function (response){ 
-            $.ajaxSetup({ 
-                headers: { 
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
-                } 
-            }); 
-            $.ajax({ 
-                type:'POST', 
-                url:"{{ route('payment.razorpay') }}", 
-                data:{razorpay_payment_id:response.razorpay_payment_id,amount:amount}, 
-                success:function(data){ 
-                    $('.success-message').text(data.success); 
+        var image = $('.logoImage').attr('src');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var payment_id = $('.razorpay_payment_id').val();
 
-                    $('.success-alert').fadeIn('slow', function(){ 
-                    $('.success-alert').delay(5000).fadeOut();  
-                    }); 
-                    $('.amount').val(''); 
-                } 
-            }); 
-        }, 
-        "prefill": { 
-            "name": "Mehul Bagda", 
-            "email": "mehul.bagda@example.com", 
-            "contact": "818********6" 
-        }, 
-        "notes": { 
-            "address": "test test" 
-        }, 
-        "theme": { 
-            "color": "#6a78c7" 
-        } 
+        var options = { 
+            "key": "{{config('services.razorpay.key')}}", 
+            "amount": total_amount, 
+            "currency": "INR", 
+            "name": "NiceSnippets", 
+            "description": "Test Transaction", 
+            "image": image, 
+            "order_id": "", 
+            "handler": function (response){ 
+                $.ajaxSetup({ 
+                    headers: { 
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                    } 
+                }); 
+                $.ajax({ 
+                    type:'POST', 
+                    url:"{{ route('payment.razorpay') }}", 
+                    data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id}, 
+                    success:function(data){ 
+                        $('.success-message').text(data.success); 
+
+                        $('.success-alert').fadeIn('slow', function(){ 
+                        $('.success-alert').delay(5000).fadeOut();  
+                        }); 
+                        $('.amount').val(''); 
+                    } 
+                }); 
+            }, 
+            "prefill": { 
+                "name": "demo", 
+                "email": "dem@examle.com", 
+                "contact": "1234567890" 
+            }, 
+            "notes": { 
+                "address": "test test" 
+            }, 
+            "theme": { 
+                "color": "#6a78c7" 
+            } 
         }; 
+
         var rzp1 = new Razorpay(options); 
         rzp1.open(); 
     });

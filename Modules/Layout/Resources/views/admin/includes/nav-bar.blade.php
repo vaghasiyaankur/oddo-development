@@ -97,6 +97,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link menu-link {{ Request::routeIs('payment.index') ? 'active' : '' }}" href="{{ route('payment.index') }}">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-landing">Payments</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('setting.index') ? 'active' : '' }}" href="{{ route('setting.index') }}">
                     <i class="ri-rocket-line"></i> <span data-key="t-landing">Settings</span>
                 </a>
