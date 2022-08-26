@@ -2640,3 +2640,28 @@ section.hotel-room .room-card-main .single-card-img img {
 }
 
 /* -------hotelResult page popup css end------- */
+
+/* -------payment-success popup css start-------- */
+.payment_details_popup .payment-details-box .success_popup_inner{
+    padding: 21px 10px;
+    text-align: center;
+}
+.payment_details_popup .payment-details-box .success_popup_inner span.print--link a{
+    text-decoration: underline !important;
+    color: #6a78d2;
+}
+.payment_details_popup .payment-details-box .success_popup_inner .go-home-btn{
+    padding: 15px 28px;
+    background-color: #eaf7f0;
+    width: 100%;
+    max-width: 192px;
+    text-transform: uppercase;
+    margin: 0 auto;
+    border-radius: 50px;
+    color: #27ae60 !important;
+    transition: 0.4s all;
+}
+.payment_details_popup .payment-details-box .success_popup_inner .go-home-btn:hover{
+    background-color: #d7f4e5;
+}
+/* -------payment-success popup css start-------- */

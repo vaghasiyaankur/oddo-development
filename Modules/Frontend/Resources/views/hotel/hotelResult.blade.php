@@ -69,7 +69,7 @@
                                       <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
                                                   ? ',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ' .
                                                       $hotel->country->country_name
                                                   : '' }}</span>
                                       </p>
@@ -743,86 +743,120 @@
           </div>
           {{-- PAYMENT POPOUP START --}}
           <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
-            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content">
-                    <div class="modal-body py-sm-5 modal-dialog-centered">
-                        <div class="payment-details-box">
-                            <div class="payment_popup_title d-flex justify-content-between align-items-center">
-                                <h4 style="color: #6a78d2;">Payment Details :</h4>
-                                <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                    aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
-                            </div>
-                            <div class="payment_details_inner">
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                        <div class="payment-user-name holiday-details">
-                                            <h5 class="mb-3" style="color: #6a78d2;">User Details :</h5>
-                                            <div class="paymentuser_name">
-                                                <h5>Michel Jacson</h5>
-                                                <h6>12, abc soc , nana varachha road surat.</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12  left-order-list">
-                                        <div class="payment--detail-box holiday-details mt-3 position-relative">
-                                            <div class="hotel--img">
-                                                <img src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}"
-                                                    alt="">
-                                            </div>
-                                            <h5 class="h--title ms-2">{{ $hotel->property_name }}</h5>
-                                            <div class="h-date d-flex align-items-center">
-                                                <img src="assets/images/icons/order-hotel-icon.png" alt="">
-                                                <p class="m-0 pe-2">Mar 23, 2020</p>
-                                                <img src="assets/images/icons/order-h-eroow.png" alt="">
-                                                <p class="m-0 ps-2">Jun 12, 2020</p>
-                                            </div>
-                                            <div class="h-pepl d-flex align-items-center">
-                                                <img src="assets/images/icons/order-hotel-icon2.png" alt="">
-                                                <p class="m-0">2 Guests, 1 Infant</p>
-                                            </div>
-                                            <div class="h-room d-flex align-items-center">
-                                                <img src="assets/images/icons/order-hotel-icon3.png" alt="">
-                                                <p class="m-0">2 Rooms, 1 King, 2 Queen</p>
-                                            </div>
-                                            <div class="h-totl d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <p class="m-0 h--totl ms-2 mt-2">Total</p>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}
-                                                    </p><span class="h--totl text-muted">for 1 nights</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="payment_select_type">
-                                    <h5 class="payment__type_title" style="color: #6a78d2;">Select your payment type :</h5>
-                                    <div class="row mt-3">
-                                        @foreach ($paymentGateways as $paymentGateway)
-                                          <div class="col-lg-4">
-                                              <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;">
-                                                  <div class="payment-logo d-flex align-items-center ">
-                                                      <img class="payment_logo_icon me-2"
-                                                          src="{{ asset('storage/' . $paymentGateway['payment_icon']) }}"
-                                                          alt="">
-                                                      <h6 class="card-title mb-0 text-dark">
-                                                          {{ $paymentGateway->payment_type }}</h6>
-                                                  </div>
-                                              </a>
+              data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                      <div class="modal-body py-sm-5 modal-dialog-centered">
+                          <div class="payment-details-box">
+                              <div class="payment_popup_title d-flex justify-content-between align-items-center">
+                                  <h4 style="color: #6a78d2;">Payment Details :</h4>
+                                  <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                      aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
+                              </div>
+                              <div class="payment_details_inner">
+                                  <div class="row mb-4">
+                                      <div class="col-12">
+                                          <div class="payment-user-name holiday-details">
+                                              <h5 class="mb-3" style="color: #6a78d2;">User Details :</h5>
+                                              <div class="paymentuser_name">
+                                                  <h5>Michel Jacson</h5>
+                                                  <h6>12, abc soc , nana varachha road surat.</h6>
+                                              </div>
                                           </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                      </div>
+                                      <div class="col-12  left-order-list">
+                                          <div class="payment--detail-box holiday-details mt-3 position-relative">
+                                              <div class="hotel--img">
+                                                  <img src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}"
+                                                      alt="">
+                                              </div>
+                                              <h5 class="h--title ms-2">{{ $hotel->property_name }}</h5>
+                                              <div class="h-date d-flex align-items-center">
+                                                  <img src="assets/images/icons/order-hotel-icon.png" alt="">
+                                                  <p class="m-0 pe-2">Mar 23, 2020</p>
+                                                  <img src="assets/images/icons/order-h-eroow.png" alt="">
+                                                  <p class="m-0 ps-2">Jun 12, 2020</p>
+                                              </div>
+                                              <div class="h-pepl d-flex align-items-center">
+                                                  <img src="assets/images/icons/order-hotel-icon2.png" alt="">
+                                                  <p class="m-0">2 Guests, 1 Infant</p>
+                                              </div>
+                                              <div class="h-room d-flex align-items-center">
+                                                  <img src="assets/images/icons/order-hotel-icon3.png" alt="">
+                                                  <p class="m-0">2 Rooms, 1 King, 2 Queen</p>
+                                              </div>
+                                              <div class="h-totl d-flex justify-content-between align-items-center">
+                                                  <div>
+                                                      <p class="m-0 h--totl ms-2 mt-2">Total</p>
+                                                  </div>
+                                                  <div class="d-flex align-items-center">
+                                                      <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}
+                                                      </p><span class="h--totl text-muted">for 1 nights</span>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="payment_select_type">
+                                      <h5 class="payment__type_title" style="color: #6a78d2;">Select your payment type
+                                          :</h5>
+                                      <div class="row mt-3">
+                                          @foreach ($paymentGateways as $paymentGateway)
+                                              <div class="col-lg-4">
+                                                  <a class="payment--select-box mb-3 mb-lg-0" href="javascript:;"
+                                                      >
+                                                      <div class="payment-logo d-flex align-items-center ">
+                                                          <img class="payment_logo_icon me-2"
+                                                              src="{{ asset('storage/' . $paymentGateway['payment_icon']) }}"
+                                                              alt="">
+                                                          <h6 class="card-title mb-0 text-dark">
+                                                              {{ $paymentGateway->payment_type }}</h6>
+                                                      </div>
+                                                  </a>
+                                              </div>
+                                          @endforeach
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
           {{-- PAYMENT POPOUP END --}}
+          {{-- PAYMENT SUCCESS-POPOUP START --}}
+          <div class="modal fade payment_details_popup" id="success_payment" data-bs-backdrop="static"
+              data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                      <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                              class="fa-solid fa-xmark text-dark"></i></button>
+                      <div class="modal-body py-sm-5 modal-dialog-centered">
+                          <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
+                              <div class="d-flex justify-content-end align-items-center">
+                                  <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                      aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
+                              </div>
+                              <div class="success_popup_inner">
+                                  <div class="succes-pass d-flex justify-content-center mb-4">
+                                      <img src="assets/images/icons/succes-pass-reset.png" alt="">
+                                  </div>
+                                  <div class="success_innerdetails mb-5">
+                                    <h5 class="text-muted mb-3 text-uppercase">Booking Ref : FRA-BE-1982458-MAHAKSHA-DELIVERD</h5>
+                                    <h4 class="text-bold mb-2">You successfully created your booking</h4>
+                                    <h5 class="text-muted">To print your booking <span class="print--link"><a href="">click here</a></span></h5>
+                                  </div>
+                                  <div class="">
+                                    <a href="javascript" class="go-home-btn text-dark">Go Home</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {{-- PAYMENT SUCCESS-POPOUP END --}}
       @endforeach
   @endif
   <!----- notify me ----->
