@@ -22,5 +22,10 @@ class paymentGetways extends Model
     {
         return $this->hasMany(Payment::class, 'id');
     }
+
+    public function hotelBooking()
+    {
+        return $this->hasMany(HotelBooking::class, 'id');
+    }
     
 }
