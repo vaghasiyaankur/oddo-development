@@ -69,7 +69,7 @@
                                       <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
                                                   ? ',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ' .
                                                       $hotel->country->country_name
                                                   : '' }}</span>
                                       </p>
@@ -822,6 +822,38 @@
             </div>
         </div>
           {{-- PAYMENT POPOUP END --}}
+          {{-- PAYMENT SUCCESS-POPOUP START --}}
+          <div class="modal fade payment_details_popup" id="success_payment" data-bs-backdrop="static"
+              data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                      <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                              class="fa-solid fa-xmark text-dark"></i></button>
+                      <div class="modal-body py-sm-5 modal-dialog-centered">
+                          <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
+                              <div class="d-flex justify-content-end align-items-center">
+                                  <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                      aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
+                              </div>
+                              <div class="success_popup_inner">
+                                  <div class="succes-pass d-flex justify-content-center mb-4">
+                                      <img src="assets/images/icons/succes-pass-reset.png" alt="">
+                                  </div>
+                                  <div class="success_innerdetails mb-5">
+                                    <h5 class="text-muted mb-3 text-uppercase">Booking Ref : FRA-BE-1982458-MAHAKSHA-DELIVERD</h5>
+                                    <h4 class="text-bold mb-2">You successfully created your booking</h4>
+                                    <h5 class="text-muted">To print your booking <span class="print--link"><a href="">click here</a></span></h5>
+                                  </div>
+                                  <div class="">
+                                    <a href="javascript" class="go-home-btn text-dark">Go Home</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {{-- PAYMENT SUCCESS-POPOUP END --}}
       @endforeach
   @endif
   <!----- notify me ----->
