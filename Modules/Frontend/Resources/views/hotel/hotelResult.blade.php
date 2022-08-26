@@ -69,7 +69,7 @@
                                       <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
                                                   ? ',
-                                                                                                                                                                                                                                                          ' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  ' .
                                                       $hotel->country->country_name
                                                   : '' }}</span>
                                       </p>
@@ -665,8 +665,7 @@
                                                                               <div
                                                                                   class="location-popup-card-single ms-3 mt-4">
                                                                                   <div class="card-single-head d-flex align-items-center bg-purple"
-                                                                                      style="background-color: {{ @$facilities->color }} !important;
-                                                          color: white;">
+                                                                                      style="background-color: {{ @$facilities->color }} !important;color: white;">
                                                                                       <div class="card-head-img pe-3">
                                                                                           <i id="img-icon"
                                                                                               class="{{ @$facilities->icon }}"></i>
@@ -676,8 +675,7 @@
                                                                                       </div>
                                                                                   </div>
                                                                                   <div class="card-content"
-                                                                                      style="max-height: 200px;
-                                                        max-width: 240px;">
+                                                                                      style="max-height: 200px;max-width: 240px;">
                                                                                       <p class="mb-2">
                                                                                           {{ $facilities->description }}
                                                                                       </p>
@@ -740,28 +738,40 @@
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
               <button class="price-btn" data-bs-toggle="modal"
-                  data-bs-target="#payment_type_{{@$hotel->UUID}}">{{ @$hotel->room->price_room }} for 1 Nights</button>
+                  data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{ @$hotel->room->price_room }} for 1
+                  Nights</button>
           </div>
           {{-- PAYMENT POPOUP START --}}
-          <div class="modal fade payment_details_popup" id="payment_type_{{@$hotel->UUID}}" data-bs-backdrop="static" data-bs-keyboard="false"
-          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
+            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
                     <div class="modal-body py-sm-5 modal-dialog-centered">
                         <div class="payment-details-box">
                             <div class="payment_popup_title d-flex justify-content-between align-items-center">
-                                <h4 style="color: #6a78d2;">Payment Details</h4>
-                                <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
-                                        class="fa-solid fa-xmark text-dark"></i></button>
+                                <h4 style="color: #6a78d2;">Payment Details :</h4>
+                                <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                    aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
                             </div>
                             <div class="payment_details_inner">
                                 <div class="row mb-4">
+                                    <div class="col-12">
+                                        <div class="payment-user-name holiday-details">
+                                            <h5 class="mb-3" style="color: #6a78d2;">User Details :</h5>
+                                            <div class="paymentuser_name">
+                                                <h5>Michel Jacson</h5>
+                                                <h6>12, abc soc , nana varachha road surat.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-12  left-order-list">
                                         <div class="payment--detail-box holiday-details mt-3 position-relative">
                                             <div class="hotel--img">
-                                                <img src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}" alt="">
+                                                <img src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}"
+                                                    alt="">
                                             </div>
-                                            <h5 class="h--title ms-2">{{$hotel->property_name}}</h5>
+                                            <h5 class="h--title ms-2">{{ $hotel->property_name }}</h5>
                                             <div class="h-date d-flex align-items-center">
                                                 <img src="assets/images/icons/order-hotel-icon.png" alt="">
                                                 <p class="m-0 pe-2">Mar 23, 2020</p>
@@ -781,8 +791,8 @@
                                                     <p class="m-0 h--totl ms-2 mt-2">Total</p>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}</p><span
-                                                        class="h--totl text-muted">for 1 nights</span>
+                                                    <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}
+                                                    </p><span class="h--totl text-muted">for 1 nights</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -792,14 +802,11 @@
 
                                     <input type="hidden" value="{{@$hotel->room->price_room}}" class="amount_data_{{$hotel->UUID}}">
                                     <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{$hotel->UUID}}">
-
-
                                     <h5 class="payment__type_title">Select your payment type</h5>
                                     <div class="row mt-3">
                                       @foreach ($paymentGateways as $paymentGateway)  
-                                      @if ($paymentGateway->payment_type == 'Razorpay')
-                                      @include('frontend::hotel.Razorpay')
-                                          <input type="hidden" value="{{$paymentGateway->id}}" class="razorpay_payment_id"> 
+                                          @if ($paymentGateway->payment_type == 'Razorpay')
+                                            @include('frontend::hotel.Razorpay')
                                           @elseif ($paymentGateway->payment_type == 'Stripe')
                                             @include('frontend::hotel.Stripe')
                                           @elseif ($paymentGateway->payment_type == 'Paypal')
@@ -813,7 +820,7 @@
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
           {{-- PAYMENT POPOUP END --}}
       @endforeach
   @endif
@@ -1623,6 +1630,3 @@
     </div>
     <!-------- Notify popup end -------->
   </div> --}}
-
-
-
