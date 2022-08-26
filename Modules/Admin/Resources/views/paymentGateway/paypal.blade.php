@@ -8,7 +8,7 @@
                 <h6 class="card-title mb-0">{{ $paymentGateways[0]['payment_type'] }}</h6>
             </div>
             <div class="form-check form-switch form-switch-success fs-5">
-                <input class="form-check-input paypal_status" type="checkbox" role="switch" id="SwitchCheck3"  {{ $paymentGateways[0]['status'] == 1 ? "checked" : " " }} data-value="{{ $paymentGateways[0]['payment_type'] }}">
+                <input class="form-check-input payment_status" type="checkbox" role="switch" id="SwitchCheck3"  {{ $paymentGateways[0]['status'] == 1 ? "checked" : " " }} data-value="{{ $paymentGateways[0]['payment_type'] }}">
             </div>
         </div>
         {{-- paypal form --}}

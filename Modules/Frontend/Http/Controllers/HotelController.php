@@ -32,7 +32,7 @@ class HotelController extends Controller
         $searchProperty = request()->searchProperty;
 
         // dd($starRating);
-        $paymentGateways = paymentGetways::get();
+        $paymentGateways = paymentGetways::active()->get();
         if($search){
             $search = str_replace(',', ' ', $search);
 

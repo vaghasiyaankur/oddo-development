@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -47,5 +48,10 @@ return [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => 'http://localhost:8000/auth/twitter/callback',
+    ],
+
+    'razorpay' => [
+        'key' => 'rzp_test_ImnZdPCDKBmCSP',
+        'secret' => 'vTX48Qk4Idt5gc49386hu3Ra'
     ],
 ];

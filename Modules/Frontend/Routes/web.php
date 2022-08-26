@@ -90,3 +90,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::get('wishlist/list', 'wishlistList')->name('wishlist.list');
     });
 });
+
+// payment
+Route::prefix('payment')->controller(PaymentController::class)->group(function(){
+    Route::view('/paypal', 'frontend::index')->name('payment.paypal');
+    Route::view('/stripe', 'frontend::index')->name('payment.stripe');
+    Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
+});

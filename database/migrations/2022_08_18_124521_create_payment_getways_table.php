@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payment_getways', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('UUID')->unique()->nullable();
             $table->string('payment_type')->nullable();
             $table->string('payment_icon')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('live_api_secret_key')->nullable();
             $table->string('status')->nullable();
             $table->string('mode')->nullable();
+            $table->string('route')->nullable();
             $table->timestamps();
         });
     }
