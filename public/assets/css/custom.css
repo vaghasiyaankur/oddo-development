@@ -2620,6 +2620,7 @@ section.hotel-room .room-card-main .single-card-img img {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 6px;
 }
 .payment-logo .payment_logo_icon {
     width: 100%;
