@@ -36,9 +36,9 @@ class PaymentController extends Controller
 
                 $hotel_booking = new HotelBooking;
                 $hotel_booking->user_name = auth()->user()->name;
-                $hotel_booking->hotel_id = $input['hotel_id'];
-                $hotel_booking->amount = $payment['amount']/100;
-                $hotel_booking->payment_method_id = $input['payment_id'];
+                $hotel_booking->room = $input['hotel_id'];
+                $hotel_booking->rent = $payment['amount']/100;
+                $hotel_booking->paid_via = $input['payment_id'];
                 $hotel_booking->save();
                 
             } catch (Exception $e) {
@@ -94,7 +94,13 @@ class PaymentController extends Controller
                     return $e->getMessage();
             }
         }
-
     }
+
+    public function showPaypal(Request $request)
+    {
+        dd($request->toarray());
+    }
+
+
 
 }

@@ -1609,5 +1609,29 @@ $(document).ready(function(){
     });
 </script>
 
+<script>
+$(document).ready(function(){
+    $(document).on('click', '.payment_button_Paypal', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+        var image = $('.logoImage').attr('src');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var payment_id = $('.paypal_payment_id').val();
+
+        $.ajax({
+            type:'POST',
+            url:"{{ route('show.paypal') }}",
+            data: {total_amount : total_amount,hotel_id : hotel_id, payment_id : payment_id},
+            success:function(response){
+                
+            },error:function (response) {
+                console.log('fail');
+            }
+        });
+    });
+});
+</script>
 
 @endpush
