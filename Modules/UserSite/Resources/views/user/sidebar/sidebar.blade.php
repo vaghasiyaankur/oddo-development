@@ -5,8 +5,10 @@
             </li>
             <li class="{{ Request::routeIs('calender') ? 'active' : '' }}"><a href="{{route('calender')}}">Calender &
                     Pricing</a></li>
-            <li class="{{ Request::routeIs('property-category') ? 'active' : '' }} pb-3"><a href="{{route('property-category')}}">Add Property</a></li>
+            <li class="{{ Request::routeIs('property-category') ? 'active' : '' }} "><a href="{{route('property-category')}}">Add Property</a></li>
+            <li class=""><a href="{{route('booking')}}">Bookings</a></li>
             {{-- <li class="logout mt-5 mb-3"><a href="#">Log Out</a></li> --}}
+            
         </ul>
     </div>
 </div>

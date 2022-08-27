@@ -2662,6 +2662,20 @@ section.hotel-room .room-card-main .single-card-img img {
     transition: 0.4s all;
 }
 .payment_details_popup .payment-details-box .success_popup_inner .go-home-btn:hover{
-    background-color: #d7f4e5;
+    background-color: #b9f2d4;
+}
+.payment_details_popup .payment-details-box .success_popup_inner .try-again-btn{
+    padding: 15px 28px;
+    background-color: #f27474;
+    width: 100%;
+    max-width: 192px;
+    text-transform: uppercase;
+    margin: 0 auto;
+    border-radius: 50px;
+    color: #fff !important;
+    transition: 0.4s all;
+}
+.payment_details_popup .payment-details-box .success_popup_inner .try-again-btn:hover{
+    background-color: #f94c4c;
 }
 /* -------payment-success popup css start-------- */
