@@ -1561,7 +1561,7 @@ $(document).ready(function(){
             "name": "demo",
             "email": "dem@examle.com",
             "contact": "1234567890"
-        }, 
+        },
         "notes": {
             "address": "test test"
         },
@@ -1583,8 +1583,9 @@ $(document).ready(function(){
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
         var total_amount = amount+"00";
-
+        var payment_id = $('.stripe_payment_id').val();
         var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
 
         $.ajaxSetup({
             headers: {
@@ -1595,9 +1596,8 @@ $(document).ready(function(){
         $.ajax({
             type:'POST',
             url:"{{ route('show.stripe') }}",
-            data: {total_amount : total_amount,property_name : property_name},
+            data: {total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id},
             success:function(response){
-                console.log(response.session.id);
                 stripe.redirectToCheckout({
                     sessionId : response.session.id,
                 })
