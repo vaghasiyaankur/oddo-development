@@ -61,7 +61,7 @@ Route::controller(WishlistController::class)->group(function(){
 
 // Route::view('/register', 'frontend::auth.register');
 
-// google socialite 
+// google socialite
 Route::controller(Auth\Socialite\GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
@@ -94,6 +94,9 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
 // payment
 Route::prefix('payment')->controller(PaymentController::class)->group(function(){
     Route::view('/paypal', 'frontend::index')->name('payment.paypal');
-    Route::view('/stripe', 'frontend::index')->name('payment.stripe');
+
+    Route::post('show/stripe', 'showStripe')->name('show.stripe');
+    Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
+
     Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
 });

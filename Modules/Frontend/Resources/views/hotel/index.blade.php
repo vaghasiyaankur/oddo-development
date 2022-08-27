@@ -1042,8 +1042,10 @@
 @endsection
 
 @push('script')
+    {{-- stripe cdn--}}
+    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
     {{-- razorpay cdn  --}}
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <!-- aos js -->
     <script src="{{ asset('assets/Admin/assets/libs/aos/aos.js') }}"></script>
 
@@ -1509,58 +1511,91 @@ $(document).ready(function(){
 
     // razorpay payment gateway
     $(document).on('click', '.payment_button_Razorpay', function(e){
-        e.preventDefault(); 
+        e.preventDefault();
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
         // var name = $('.user_name').val();
         var total_amount = amount+"00";
-        
-        var options = { 
-        "key": "{{config('services.razorpay.key')}}", 
-        "amount": total_amount, 
-        "currency": "USD", 
-        "name": "NiceSnippets", 
-        "description": "Test Transaction", 
-        "image": "/image/imgpsh_fullsize.png", 
-        "order_id": "", 
-        "handler": function (response){ 
-            $.ajaxSetup({ 
-                headers: { 
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
-                } 
-            }); 
-            $.ajax({ 
-                type:'POST', 
-                url:"{{ route('payment.razorpay') }}", 
-                data:{razorpay_payment_id:response.razorpay_payment_id,amount:amount}, 
-                success:function(data){ 
-                    $('.success-message').text(data.success); 
 
-                    $('.success-alert').fadeIn('slow', function(){ 
-                    $('.success-alert').delay(5000).fadeOut();  
-                    }); 
-                    $('.amount').val(''); 
-                } 
-            }); 
-        }, 
-        "prefill": { 
-            "name": "Mehul Bagda", 
-            "email": "mehul.bagda@example.com", 
-            "contact": "818********6" 
-        }, 
-        "notes": { 
-            "address": "test test" 
-        }, 
-        "theme": { 
-            "color": "#6a78c7" 
-        } 
-        }; 
-        var rzp1 = new Razorpay(options); 
-        rzp1.open(); 
+        var options = {
+        "key": "{{config('services.razorpay.key')}}",
+        "amount": total_amount,
+        "currency": "USD",
+        "name": "NiceSnippets",
+        "description": "Test Transaction",
+        "image": "/image/imgpsh_fullsize.png",
+        "order_id": "",
+        "handler": function (response){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url:"{{ route('payment.razorpay') }}",
+                data:{razorpay_payment_id:response.razorpay_payment_id,amount:amount},
+                success:function(data){
+                    $('.success-message').text(data.success);
+
+                    $('.success-alert').fadeIn('slow', function(){
+                    $('.success-alert').delay(5000).fadeOut();
+                    });
+                    $('.amount').val('');
+                }
+            });
+        },
+        "prefill": {
+            "name": "Mehul Bagda",
+            "email": "mehul.bagda@example.com",
+            "contact": "818********6"
+        },
+        "notes": {
+            "address": "test test"
+        },
+        "theme": {
+            "color": "#6a78c7"
+        }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
     });
 });
 </script>
+<script>
 
+    const stripe =  Stripe("{{ config('services.stripe.key') }}");
+
+
+    $(document).on('click', '.payment_button_Stripe', function(e){
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+
+        var property_name = $(this).data('value');
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type:'POST',
+            url:"{{ route('show.stripe') }}",
+            data: {total_amount : total_amount,property_name : property_name},
+            success:function(response){
+                console.log(response.session.id);
+                stripe.redirectToCheckout({
+                    sessionId : response.session.id,
+                })
+            },error:function (response) {
+                console.log('fail');
+            }
+        });
+
+    });
+</script>
 
 
 @endpush
