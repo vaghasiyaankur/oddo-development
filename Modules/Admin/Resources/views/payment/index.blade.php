@@ -1,5 +1,5 @@
 @extends('layout::admin.master')
-@section('title', 'Properties')
+@section('title', 'Payment')
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/classic.min.css') }}" />
     <!-- 'monolith' theme -->
