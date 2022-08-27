@@ -40,7 +40,7 @@ class PaymentController extends Controller
                 $hotel_booking->amount = $payment['amount']/100;
                 $hotel_booking->payment_method_id = $input['payment_id'];
                 $hotel_booking->save();
-                
+
             } catch (Exception $e) {
                 return  $e->getMessage();
                 Session::put('error',$e->getMessage());
@@ -55,6 +55,12 @@ class PaymentController extends Controller
     public function showStripe(Request $request)
     {
 
+        $paymentData = [
+            'hotel_id' => $request->hotel_id,
+            'payment_id' => $request->payment_id
+        ];
+
+        Session::put('paymentData', $paymentData);
         // require_once __DIR__.'/../../../vendor/autoload.php';
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
         $session = \Stripe\Checkout\Session::create([
@@ -69,8 +75,8 @@ class PaymentController extends Controller
             'quantity' => 1,
         ]],
             'mode' => 'payment',
-            'success_url' => 'http://127.0.0.1:8003/payment/succeeded',
-            'cancel_url' => 'http://127.0.0.1:8003/cancel',
+            'success_url' => 'http://127.0.0.1:8000/payment/succeeded',
+            'cancel_url' => 'http://127.0.0.1:8000/cancel',
         ]);
 
 
@@ -79,21 +85,28 @@ class PaymentController extends Controller
     }
 
     public function StripeSucceed(Request $request){
-        $paymentStripe = Session::get('paymentStripe');
-        dd($paymentStripe);
-        if($request->type === "charge.succeeded"){
-            try{
 
-            Payment::create([
-                'id' => $request->data['object']['id'],
-                'amount' => $request->data['object']['amount'],
-                'description' => $request->data['object']['description'],
-                'user_id' => $request->data['object']['billing_details']['name']
-            ]);
-            } catch (\Exception $e) {
-                    return $e->getMessage();
-            }
-        }
+        $paymentStripe = Session::get('paymentStripe');
+        $paymentData = Session::get('paymentData');
+        // echo $paymentStripe->payment_intent;
+
+        $Payment = new Payment();
+        $Payment->amount =  $paymentStripe->amount_total/100;
+        $Payment->description = 'test mode';
+        $Payment->user_id = auth()->user()->id;
+        $Payment->payment_method_id = $paymentData['payment_id'];
+        $Payment->payment_id = $paymentStripe->payment_intent;
+        $Payment->hotel_id = $paymentData['hotel_id'];
+        $Payment->save();
+        // dd($paymentStripe->toarray());
+
+        // $hotel_booking = new HotelBooking;
+        // $hotel_booking->user_name = auth()->user()->name;
+        // $hotel_booking->hotel_id = $input['hotel_id'];
+        // $hotel_booking->amount = $payment['amount']/100;
+        // $hotel_booking->payment_method_id = $input['payment_id'];
+        // $hotel_booking->save();
+
 
     }
 
