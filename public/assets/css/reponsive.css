@@ -562,3 +562,16 @@
         margin-right: 5px !important;
     }
 }
+
+/* --------hotel page payment popup start--------- */
+
+@media screen and (max-width:520px) {
+    .payment_details_popup .payment_details_inner .holiday-details{
+        padding: 24px 5px;
+    }
+    .payment_details_popup .payment_details_inner .payment--detail-box .hotel--img img{
+        right: 17px;
+    }
+}
+
+/* --------hotel page payment popup end--------- */

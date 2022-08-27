@@ -168,6 +168,17 @@ Route::prefix('admin')->group(function() {
             Route::get('/show/razorpay', 'showRazorpay')->name('show.razorpay');
         });
 
+        Route::controller(PaymentController::class)->group(function(){
+            Route::get('payments', 'index')->name('payment.index');
+            Route::get('/payment-list', 'paymentList')->name('payment.list');
+        });
+        
+        Route::controller(BookingController::class)->group(function(){
+            Route::get('booking', 'index')->name('booking.index');
+            Route::get('/booking-list', 'bookingList')->name('booking.list');
+            Route::post('/status-booking', 'statusBooking')->name('status.booking');
+        });
+
     });
 
 

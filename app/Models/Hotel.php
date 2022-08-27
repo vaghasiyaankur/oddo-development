@@ -99,4 +99,13 @@ class Hotel extends Model
         $user = auth()->user()->id;
         return Wishlistable::where('user_id', $user)->where('model_id', $modal_id)->select('model_id', 'user_id')->first();
     }
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'id');
+    }
+    
+    public function hotelBooking()
+    {
+        return $this->hasMany(HotelBooking::class, 'id');
+    }
 }

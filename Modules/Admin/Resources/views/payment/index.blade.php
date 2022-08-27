@@ -1,5 +1,5 @@
 @extends('layout::admin.master')
-@section('title','Booking')
+@section('title', 'Payment')
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/classic.min.css') }}" />
     <!-- 'monolith' theme -->
@@ -121,30 +121,11 @@
         .form-check button {
             width: 75px;
         }
-        .badge-btn-success {
-            display: inline-block;
-            padding: 4px 4px;
-            font-weight: 600;
-            line-height: 1;
-            color: #09a18c;
-            text-align: center;
-            border-radius: .25rem;
-            background: #c9fff8;
-        }
-        .badge-btn-danger {
-            display: inline-block;
-            padding: 5px 5px;
-            font-weight: 600;
-            line-height: 1;
-            color: red;
-            text-align: center;
-            border-radius: .25rem;
-            background: rgb(255 223 223);
-        }
     </style>
 @endpush
 
 @section('content')
+
     <div class="page-content">
         <div class="row">
             <div class="col-lg-12">
@@ -152,7 +133,7 @@
                     <div class="card-header  border-0">
                         <div class="row d-flex align-items-center">
                             <div class=" col-sm-5">
-                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Booking</h5>
+                                <h5 class="card-title mb-0 ms-0 ms-sm-3  mb-3 mb-sm-0">Payment</h5>
                             </div>
                             <div class=" col-sm-7 float-right">
                                 <div class="d-flex align-items-center justify-content-evenly">
@@ -170,8 +151,8 @@
                         <div class="categories-main">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="table-responsive bookingTable">
-                                        @include('admin::booking.bookingList')
+                                    <div class="table-responsive paymentTable">
+                                        @include('admin::payment.paymentList')
                                     </div>
                                 </div>
                             </div>
@@ -182,13 +163,15 @@
             <!--end col-->
         </div>
     </div>
+
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/pickr.min.js') }}"></script>
+    <script src="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/pickr.min.js') }}"></script>
 
-<!-- init form-pickers js -->
-<script src="{{ asset('assets/Admin/assets/js/pages/form-pickers.init.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    @include('admin::booking.scripts')
+    <!-- init form-pickers js -->
+    <script src="{{ asset('assets/Admin/assets/js/pages/form-pickers.init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    @include('admin::payment.scripts')
 @endpush

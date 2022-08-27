@@ -5,22 +5,24 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\HotelBooking;
+use App\Models\Payment;
 
-class BookingController extends Controller
+class PaymentController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookings = HotelBooking::paginate(10);
-        return view('admin::booking.index',compact('bookings'));
+        $search = $request->input('search');
+        $payments = Payment::paginate(10);
+        return view('admin::payment.index',compact('payments'));
     }
 
     /**
@@ -82,29 +84,14 @@ class BookingController extends Controller
     {
         //
     }
-    public function bookingList(Request $request){
+
+    public function paymentList(Request $request){
         $search = $request->input('search');
-        $data['bookings'] = HotelBooking::with('hotel')
+        $data['payments'] = Payment::with('hotel')
         ->whereHas('hotel',function($q) use ($search){  
             $q->where('property_name','like','%'.$search.'%');
         })->paginate(10);
-
-        return view('admin::booking.bookingList',$data);
-    }
-
-    public function statusBooking(Request $request){
-        // $status = $request->status;
-        // $id     = $request->id;
-
-        // if($status == '1'){
-        //     $facility = HotelBooking::where('id', $id)->update([ 'status' => 0 ]);
-        //     return response()->json(["message" => "Booking status updated Successfully"], 200);
-        // }elseif($status == '2'){
-        //     $facility = HotelBooking::where('id', $id)->update([ 'status' => 2 ]);
-        //         return response()->json(["message" => "Booking status updated Successfully"], 200);
-        // }else{
-        //     $facility = HotelBooking::where('id', $id)->update([ 'status' => 1 ]);
-        //     return response()->json(["message" => "Booking status updated Successfully"], 200);
-        // }
+        
+        return view('admin::payment.paymentList', $data); 
     }
 }

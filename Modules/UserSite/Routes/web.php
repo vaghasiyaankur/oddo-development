@@ -34,6 +34,7 @@ Route::prefix('user')->group(function() {
 
         Route::view('/calender', 'usersite::user.calender')->name('calender');
 
+        Route::view('/booking', 'usersite::user.booking')->name('booking');
         // proeprty form
         Route::controller(PropertyController::class)->group(function(){
             Route::get('property-category', 'category')->name('property-category');

@@ -63,4 +63,14 @@ class User extends Authenticatable
             get: fn ($value) =>  ["user", "admin"][$value],
         );
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'id');
+    }
+
+    public function hotelBooking()
+    {
+        return $this->hasMany(HotelBooking::class, 'id');
+    }
 }
