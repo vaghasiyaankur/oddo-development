@@ -2679,3 +2679,21 @@ section.hotel-room .room-card-main .single-card-img img {
     background-color: #f94c4c;
 }
 /* -------payment-success popup css start-------- */
+
+/*ORDER-HISTORY HOTEL REVIEW FORM POPUP START */
+.review_details_popup .review--box{
+    width: 100%;
+    max-width: 650px;
+    min-height: 471px;
+    margin: 0 auto;
+    padding: 30px 49px;
+    background: #fff;
+    border-radius: 8px;
+}
+.review_details_popup .review_form_inner .rating--facilities .rating_filed_box{
+    width: 100%;
+    max-width: 150px;
+}
+
+
+/*ORDER-HISTORY HOTEL REVIEW FORM POPUP END */

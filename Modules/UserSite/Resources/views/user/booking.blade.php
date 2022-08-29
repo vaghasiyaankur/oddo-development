@@ -17,13 +17,51 @@
         table tbody tr td {
             padding: 30px 10px !important;
         }
-        table thead th{
+
+        table thead th {
             background-color: #eef1f7 !important;
             color: #8195a8 !important;
         }
-        .hotelimg_box img{
+
+        .hotelimg_box img {
             max-width: 60px;
             width: 100%;
+        }
+
+        .hotel--booking-box .booking--inner-box {
+            border: 1px solid lightgrey;
+            min-height: 150px;
+            border-radius: 11px;
+            box-shadow: 0px 0px 5px rgb(0 0 0 / 10%);
+        }
+
+        .hotel--booking-box .booking--inner-box .hotel_book_img img {
+            width: 100%;
+            max-width: 179px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 11px 0px 0px 11px;
+        }
+
+        .hotel--booking-box .booking--inner-box .inner-right-content {
+            width: 100%;
+            padding: 15px 20px;
+        }
+        .offer--button{
+            padding: 6px 11px;
+            background-color: #eef1f7 !important;
+            color: #889cad !important;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+        .hotel--booking-box .page-item.active .page-link {
+            z-index: 3;
+            color: #fff !important;
+            background-color: #6a78c7;
+            border-color: #6a78c7;
+        }
+        .page-link{
+            color: #000;
         }
     </style>
 @endpush
@@ -36,13 +74,142 @@
                 @include('usersite::user.sidebar.sidebar')
                 <div class="col-lg-10 col-md-10 col-12 right-side-content">
                     <div id="tabs">
-                        <div class="booking-title-text">
-                            <h5 class="mb-4" style="color: #8195a8;font-weight: 600;">Bookings Details :</h5>
-                        </div>
-                        <div class="card">
-                            <div class="card-body p-0">
-                                <div class="live-preview">
-                                    <div class="table-responsive table-card">
+                        <div class="hotel--booking-box">
+                            <div class="booking-title-text">
+                                <h5 class="mb-4" style="color: #8195a8;font-weight: 600;">Bookings Details :</h5>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <div class="booking--inner-box d-flex">
+                                        <div class="hotel_book_img">
+                                            <img src="{{ asset('storage/hotels/02.jpg') }}">
+                                        </div>
+                                        <div class="inner-right-content">
+                                            <div
+                                                class="title--with-price d-flex justify-content-between akign-items-center mb-1">
+                                                <div class="title--badge">
+                                                    <span class="badge"
+                                                        style="background-color: #eef1f7;color: #8195a8;font-size: 13px;">Hotel</span>
+                                                </div>
+                                                <div class="title-price--tage">
+                                                    <sup class="me-1"> &euro;</sup><span class="fs-5 fw-normal">84</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="">
+                                                    <h6 class="fw-bold mb-0">Vienna House Easy Cracow</h6>
+                                                </div>
+                                                <div class="">
+                                                    <span class="fw-bold" style="color: #14d014;">Save &euro;4</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="h-date d-flex align-items-center" style="margin-left: -8px;">
+                                                    <img src="{{ asset('assets/images/icons/order-hotel-icon.png') }}"
+                                                        alt="">
+                                                    <p class="m-0 pe-2">Mar 23, 2020</p>
+                                                    <img src="{{ asset('assets/images/icons/order-h-eroow.png') }}"
+                                                        alt="">
+                                                    <p class="m-0 ps-2">Jun 12, 2020</p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0 pe-2 h-amount">$1278
+                                                    </p><span class="h--totl text-muted">for 1 nights</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="h-pepl d-flex align-items-center" style="margin-left: -8px;">
+                                                    <img src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}"
+                                                        alt="">
+                                                    <p class="m-0 ">2 Guests, 1 Infant</p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                   <a href="javascript:;" style="color: #000"><span class="text-uppercase fw-bold" style="font-size: 13px;"><i class="fa-regular fa-heart"></i> favorite</span></a> 
+                                                    <a href="javascript:;" class="btn offer--button ms-2">View offers</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <div class="booking--inner-box d-flex">
+                                        <div class="hotel_book_img">
+                                            <img src="{{ asset('storage/hotels/01.jpg') }}">
+                                        </div>
+                                        <div class="inner-right-content">
+                                            <div
+                                                class="title--with-price d-flex justify-content-between akign-items-center mb-1">
+                                                <div class="title--badge">
+                                                    <span class="badge"
+                                                        style="background-color: #eef1f7;color: #8195a8;font-size: 13px;">Hotel</span>
+                                                </div>
+                                                <div class="title-price--tage">
+                                                    <sup class="me-1"> &euro;</sup><span class="fs-5 fw-normal">84</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="">
+                                                    <h6 class="fw-bold mb-0">Chatrium Hotel Riverside Carcow</h6>
+                                                </div>
+                                                <div class="">
+                                                    <span class="fw-bold" style="color: #14d014;">Save &euro;4</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="h-date d-flex align-items-center" style="margin-left: -8px;">
+                                                    <img src="{{ asset('assets/images/icons/order-hotel-icon.png') }}"
+                                                        alt="">
+                                                    <p class="m-0 pe-2">Mar 23, 2020</p>
+                                                    <img src="{{ asset('assets/images/icons/order-h-eroow.png') }}"
+                                                        alt="">
+                                                    <p class="m-0 ps-2">Jun 12, 2020</p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0 pe-2 h-amount">$1278
+                                                    </p><span class="h--totl text-muted">for 1 nights</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="h-pepl d-flex align-items-center" style="margin-left: -8px;">
+                                                    <img src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}"
+                                                        alt="">
+                                                    <p class="m-0 ">2 Guests, 1 Infant</p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                   <a href="javascript:;" style="color:#000"> <span class="text-uppercase fw-bold" style="font-size: 13px;"><i class="fa-solid fa-heart" style="color: red;"></i> saved</span></a>
+                                                    <a href="javascript:;" class="btn offer--button ms-2">View offers</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-0 text-center text-sm-start align-items-center mb-4">
+                                    <div class="col-sm-6">
+                                        <div>
+                                            <p class="mb-sm-0 text-muted">Showing <span class="fw-semibold">1</span> to <span class="fw-semibold">10</span> of <span class="fw-semibold text-decoration-underline">12</span> entries</p>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-sm-6">
+                                        <ul class="pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
+                                            <li class="page-item disabled">
+                                                <a href="#" class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item active">
+                                                <a href="#" class="page-link">1</a>
+                                            </li>
+                                            <li class="page-item ">
+                                                <a href="#" class="page-link">2</a>
+                                            </li>                                           
+                                            <li class="page-item">
+                                                <a href="#" class="page-link">Next</a>
+                                            </li>
+                                        </ul>
+                                    </div><!-- end col -->
+                            </div>
+                            
+                            {{-- <div class="table-responsive table-card">
                                         <table class="table align-middle table-nowrap mb-0">
                                             <thead class="table-light">
                                                 <tr>
@@ -178,10 +345,8 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                            </div><!-- end card-body -->
-                        </div><!-- end card -->
+                                    </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,4 +356,6 @@
 
 
 @push('scripts')
+  <!-- project list init -->
+  <script src="{{ asset('assets/js/pages/project-list.init.js') }}"></script>
 @endpush

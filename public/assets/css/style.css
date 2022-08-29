@@ -253,11 +253,11 @@
 }
 .order-history .order-history-details .accordion .recipt-btn {
   padding: 12px 40px;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #fff;
-  background: #a4a6ba;
+  color: #6a78c7;
+  background: #ffffff;
   border-radius: 100px;
 }
 /***===================== ORDER HISTORY PAGE END =======================***/

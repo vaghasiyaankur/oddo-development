@@ -73,7 +73,7 @@ Add-Layout
                                         @foreach($amenities_category as $category)
                                             @foreach($category->amenitiesFeatured as $amenity)
                                                 <div class="form-check py-3 ">
-                                                    <label class="form-check-label para-fs-14 fs-6">
+                                                    <label class="form-check-label para-fs-14 fs-6 w-100">
                                                         <input class="form-check-input top_aminity" type="checkbox" value="{{@$amenity->id}}" {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>
                                                         {{@$amenity->amenities}}
                                                     </label>
@@ -108,9 +108,8 @@ Add-Layout
                                                         <div class="accordion-body bg-light py-2">
                                                             @foreach($category->amenities as $amenity)
                                                                 <div class="form-check py-2 border--bottom amenity-checked">
-                                                                    <label class="form-check-label para-fs-14 fs-6">
-                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}"  {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>
-                                
+                                                                    <label class="form-check-label para-fs-14 fs-6 w-100">
+                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}"  {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>                                
                                                                     {{$amenity->amenities}}
                                                                     </label>
                                                                 </div>
