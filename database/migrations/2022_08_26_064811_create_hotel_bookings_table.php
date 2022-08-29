@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('hotel_bookings', function (Blueprint $table) {
             $table->id();
             $table->integer('UUID')->unique()->nullable();
-            $table->string('user_name')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('room')->nullable();
             $table->string('rent')->nullable();
             $table->string('paid_via')->nullable();
             $table->boolean('status')->default(0);
             $table->text('attachment')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

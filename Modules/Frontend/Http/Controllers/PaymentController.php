@@ -36,9 +36,9 @@ class PaymentController extends Controller
 
                 $hotel_booking = new HotelBooking;
                 $hotel_booking->user_name = auth()->user()->name;
-                $hotel_booking->room = $input['hotel_id'];
-                $hotel_booking->rent = $payment['amount']/100;
-                $hotel_booking->paid_via = $input['payment_id'];
+                $hotel_booking->hotel_id = $input['hotel_id'];
+                $hotel_booking->amount = $payment['amount']/100;
+                $hotel_booking->payment_method_id = $input['payment_id'];
                 $hotel_booking->save();
 
             } catch (Exception $e) {
@@ -86,7 +86,6 @@ class PaymentController extends Controller
 
     public function StripeSucceed(Request $request){
 
-
         $paymentStripe = Session::get('paymentStripe');
         $paymentData = Session::get('paymentData');
         // echo $paymentStripe->payment_intent;
@@ -99,9 +98,16 @@ class PaymentController extends Controller
         $Payment->payment_id = $paymentStripe->payment_intent;
         $Payment->hotel_id = $paymentData['hotel_id'];
         $Payment->save();
+        // dd($paymentStripe->toarray());
 
+        $hotel_booking = new HotelBooking;
+        $hotel_booking->user_id = auth()->user()->id;
+        $hotel_booking->room = $paymentData['hotel_id'];
+        $hotel_booking->rent = $paymentStripe->amount_total/100;
+        $hotel_booking->paid_via = $paymentData['payment_id'];
+        $hotel_booking->save();
+
+        return redirect('/hotel');
     }
-
-
 
 }
