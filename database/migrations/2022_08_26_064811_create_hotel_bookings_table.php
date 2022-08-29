@@ -17,13 +17,17 @@ return new class extends Migration
             $table->id();
             $table->integer('UUID')->unique()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->string('room')->nullable();
+            $table->integer('hotel_id')->unsigned()->nullable();
+            $table->integer('room_id')->unsigned()->nullable();
             $table->string('rent')->nullable();
-            $table->string('paid_via')->nullable();
-            $table->boolean('status')->default(0);
+            $table->integer('payment_method_id')->unsigned()->nullable();
+            $table->boolean('status')->default(1);
             $table->text('attachment')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreign('payment_method_id')->references('id')->on('payment_getways');
         });
     }
 

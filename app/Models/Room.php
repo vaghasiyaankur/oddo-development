@@ -32,4 +32,8 @@ class Room extends Model
         return BathroomItem::whereIn('id', $bathroom)->get();
     }
 
+    public function hotelBooking()
+    {
+        return $this->hasMany(HotelBooking::class, 'id');
+    }
 }
