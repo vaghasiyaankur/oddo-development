@@ -281,7 +281,7 @@
     <!------- Hotel-result Check-in-out section start ------->
     <section class="check-in-out hotel-result py-3">
         <div class="container">
-            <div class="check-in-out-inner">
+            <div class="check-in-out-inner"id="go_to_page">
                 <h4>Hotels</h4>
                 <div class="check-in-out-form">
                     <div class="check-in-out-top">
@@ -296,7 +296,7 @@
                                     <i class="fa-solid fa-magnifying-glass pe-3"></i>
                                 </div>
                             </div>
-                            <div class="col-lg-6 mb-2">
+                            <div class="col-lg-6 mb-2" >
                                 <form action="javascript: void(0);">
                                     <div
                                         class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
@@ -1601,7 +1601,6 @@ $(document).ready(function(){
 
     const stripe =  Stripe("{{ config('services.stripe.key') }}");
 
-
     $(document).on('click', '.payment_button_Stripe', function(e){
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
@@ -1630,33 +1629,23 @@ $(document).ready(function(){
                 console.log('fail');
             }
         });
-
     });
 </script>
 
 <script>
-$(document).ready(function(){
-    $(document).on('click', '.payment_button_Paypal', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        var total_amount = amount+"00";
-        var image = $('.logoImage').attr('src');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var payment_id = $('.paypal_payment_id').val();
+    // $(document).ready(function(){
+    //     $('.price-btn').on('click',function (e) {
+    // 	    e.preventDefault();
+    // 	    var target = this.hash;
+    // 	    var $target = $(target);
+    // 	    $('html, body').stop().animate({
+    // 	        'scrollTop': $target.offset().top
+    // 	    }, 900, 'swing', function () {
+    // 	        // window.location.hash = target;
+    // 	    });
+    // 	});
+    // });
+    </script>
 
-        $.ajax({
-            type:'POST',
-            url:"{{ route('show.paypal') }}",
-            data: {total_amount : total_amount,hotel_id : hotel_id, payment_id : payment_id},
-            success:function(response){
-
-            },error:function (response) {
-                console.log('fail');
-            }
-        });
-    });
-});
-</script>
 
 @endpush

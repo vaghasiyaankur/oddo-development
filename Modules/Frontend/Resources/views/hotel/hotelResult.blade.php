@@ -680,11 +680,11 @@
                                       </div>
                                       <!-------- Location popup end -------->
                                   </div>
-                                  <div class="middle-content-bottom">
+                                  {{-- <div class="middle-content-bottom">
                                       <p class="m-0">12 Nights, {{ @$hotel->room->guest_stay_room }} Guests, 2
                                           Rooms, 3 Beds</p>
                                       <p class="bottom-text">Tax. Included</p>
-                                  </div>
+                                  </div> --}}
                               </div>
                           </div>
                       </div>
@@ -724,9 +724,10 @@
           </main>
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
-              <button class="price-btn" data-bs-toggle="modal"
-                  data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{ @$hotel->room->price_room }} for 1
-                  Nights</button>
+{{-- 
+          <button class="hotelPriceBtn d-block">$ {{ @$hotel->room->price_room }} USD</button> --}}
+
+              <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$hotel->room->price_room }} USD</button>
           </div>
           {{-- PAYMENT POPOUP START --}}
           <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"

@@ -93,7 +93,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
 
 // payment
 Route::prefix('payment')->controller(PaymentController::class)->group(function(){
-    Route::post('/paypal', 'showPaypal')->name('show.paypal');
+    // Route::get('/paypal', 'showPaypal')->name('show.paypal');
+    // Route::get('paypal/success', 'successPaypal')->name('paypal.success');
+    // Route::get('paypal/cancel', 'cancelPaypal')->name('paypal.cancel');
+
 
     Route::post('show/stripe', 'showStripe')->name('show.stripe');
     Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
