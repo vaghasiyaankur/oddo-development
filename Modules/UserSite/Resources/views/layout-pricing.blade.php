@@ -185,7 +185,7 @@ Layout & pricing
                                             ?>
                                             @foreach ($bathrooms as $bathroom)
                                                 <div class="form-check py-3 border--dotted">
-                                                    <label class="form-check-label para-fs-14 fs-6">
+                                                    <label class="form-check-label para-fs-14 fs-6 w-100">
                                                         <input class="form-check-input" name="bathroom_item" type="checkbox" value="{{$bathroom->id}}" {{  isset($roomDetail) && in_array($bathroom->id, $bathroomDatas) ? 'checked' : '' }} >
                                                         {{$bathroom->item}}
                                                     </label>

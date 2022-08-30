@@ -113,7 +113,7 @@
                                                                   </div>
                                                                   <div class="total-review mt-2 mb-3">
                                                                       <span class="good-text">Good</span>
-                                                                      <span class="total-review-text ms-3">8/10</span>
+                                                                      <span class="total-review-text ms-3">4/5</span>
                                                                   </div>
                                                               </div>
                                                               <div class="popup-content-main">
@@ -132,35 +132,35 @@
                                                                                       <span
                                                                                           class=" para-fs-14">Staff</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-green">8/10</span>
+                                                                                          class="review-section-text bg-green">3/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span
                                                                                           class="para-fs-14">Amenities</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-red">2/10</span>
+                                                                                          class="review-section-text bg-red">2/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span
                                                                                           class="para-fs-14">Cleanless</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-orange">5/10</span>
+                                                                                          class="review-section-text bg-orange">5/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span
                                                                                           class="para-fs-14">Room</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-green">8/10</span>
+                                                                                          class="review-section-text bg-green">5/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span
                                                                                           class="para-fs-14">Breakfast</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-red">3/10</span>
+                                                                                          class="review-section-text bg-red">3/5</span>
                                                                                   </div>
                                                                               </div>
                                                                           </div>
@@ -172,35 +172,35 @@
                                                                                       <span
                                                                                           class="para-fs-14">Internet</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-orange">6/10</span>
+                                                                                          class="review-section-text bg-orange">4/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span class="para-fs-14">Property
                                                                                           Condition</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-red">2/10</span>
+                                                                                          class="review-section-text bg-red">2/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span class="para-fs-14">Service
                                                                                           & Staff</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-green">10/10</span>
+                                                                                          class="review-section-text bg-green">5/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span class="para-fs-14">Price /
                                                                                           Quality</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-orange">5/10</span>
+                                                                                          class="review-section-text bg-orange">2/5</span>
                                                                                   </div>
                                                                                   <div
                                                                                       class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
                                                                                       <span
                                                                                           class="para-fs-14">Location</span>
                                                                                       <span
-                                                                                          class="review-section-text bg-green">10/10</span>
+                                                                                          class="review-section-text bg-green">5/5</span>
                                                                                   </div>
                                                                               </div>
                                                                           </div>
@@ -212,20 +212,7 @@
                                                                               class="comment-reviews-heading d-flex justify-content-between align-items-center mt-4 flex-wrap">
                                                                               <div class="comment-reviews-text">
                                                                                   <h5>Reviews (1024)</h5>
-                                                                              </div>
-                                                                              <div class="comment-reviews-option">
-                                                                                  <select
-                                                                                      class="form-select form-select-lg ">
-                                                                                      <option selected>Placeholder
-                                                                                      </option>
-                                                                                      <option value="1">One
-                                                                                      </option>
-                                                                                      <option value="2">Two
-                                                                                      </option>
-                                                                                      <option value="3">Three
-                                                                                      </option>
-                                                                                  </select>
-                                                                              </div>
+                                                                              </div>                                                    
                                                                           </div>
                                                                           <div class="reviews-comment-text-main mt-4">
                                                                               <div class="row border-bottom mt-3">
@@ -800,11 +787,14 @@
                                       </div>
                                   </div>
                                   <div class="payment_select_type">
-
                                       <input type="hidden" value="{{ @$hotel->room->price_room }}"
                                           class="amount_data_{{ $hotel->UUID }}">
                                       <input type="hidden" value="{{ @$hotel->id }}"
                                           class="hotel_id_{{ $hotel->UUID }}">
+                                        {{-- @if(isset($hotel->room)) --}}
+                                        <input type="hidden" value="{{ @$hotel->room->id }}"
+                                            class="room_id_{{ $hotel->UUID }}">
+                                        {{-- @endif --}}
                                       <h5 class="payment__type_title">Select your payment type</h5>
                                       <div class="row mt-3">
                                           @foreach ($paymentGateways as $paymentGateway)
@@ -849,15 +839,17 @@
                                           style="background-color: rgb(255, 255, 255);"></div>
                                   </div>
                                   <div class="success_innerdetails mb-5">
-                                      <h6 class="text-muted mb-3 text-uppercase">Booking Ref :
-                                          FRA-BE-1982458-MAHAKSHA-DELIVERD</h6>
+                                      <h6 class="text-muted mb-3 text-uppercase bookingId">Booking Ref :
+                                        @if(isset($booking))
+                                          {{ $booking->UUID ? $booking->UUID : '' }}
+                                        @endif</h6>
+
                                       <h4 class="text-bold mb-2">You successfully created your booking</h4>
                                       <h6 class="text-muted">To print your booking <span class="print--link"><a
                                                   href="">click here</a></span></h6>
                                   </div>
                                   <div class="back-tophome-btn">
-                                      <a href="javascript:;" class="go-home-btn text-dark" data-bs-toggle="modal"
-                                          data-bs-target="#payment_error_">Go Home</a>
+                                      <a href="{{ route('home.index') }}" class="go-home-btn text-dark">Go Home</a>
                                   </div>
                               </div>
                           </div>
@@ -887,7 +879,10 @@
                                       <h4 class="text-bold mb-3">Unfortunately we have an issue with your payment,try
                                           again later</h4>
                                       <h6 class="text-muted mb-3 text-uppercase">Booking Ref :
-                                          FRA-BE-1982458-MAHAKSHA-DELIVERD</h6>
+                                        @if(isset($booking))
+                                        {{ $booking->UUID ? $booking->UUID : '' }}
+                                        @endif
+                                    </h6>
                                   </div>
                                   <div class="back-tophome-btn">
                                       <a href="javascript:;" class="try-again-btn text-dark">Try Again</a>

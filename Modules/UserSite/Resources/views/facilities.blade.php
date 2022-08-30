@@ -130,7 +130,7 @@ Facilities
                                     <div class="facilities-check d-flex flex-wrap align-items-center justify-content-between">
                                         @foreach ($facilities as $facilitate)
                                             <div class="form-check py-3 border--dotted">
-                                                <label class="form-check-label para-fs-14 fs-6">
+                                                <label class="form-check-label para-fs-14 fs-6 w-100">
                                                     <input class="form-check-input facilities_check" name="facilities_check[]" type="checkbox" value="{{$facilitate->id}}" {{  isset($hotelDetail) && in_array($facilitate->id, $facilitites) ? 'checked' : '' }}>
                                                     {{$facilitate->facilities_name}}
                                                 </label>

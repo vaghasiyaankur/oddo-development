@@ -35,21 +35,21 @@ class PaymentController extends Controller
                 $Payment->save();
 
                 $hotel_booking = new HotelBooking;
-                $hotel_booking->user_name = auth()->user()->name;
+                $hotel_booking->user_id = auth()->user()->id;
                 $hotel_booking->hotel_id = $input['hotel_id'];
-                $hotel_booking->amount = $payment['amount']/100;
+                $hotel_booking->room_id = $input['room_id'];
+                $hotel_booking->rent = $payment['amount']/100;
                 $hotel_booking->payment_method_id = $input['payment_id'];
                 $hotel_booking->save();
 
             } catch (Exception $e) {
-                return  $e->getMessage();
                 Session::put('error',$e->getMessage());
-                return redirect()->back();
+                return response()->json(['error' =>'error']);
             }
         }
 
-        Session::put('success', 'Payment successful');
-        return redirect()->back();
+        $bookingId = HotelBooking::select('UUID')->latest()->first();
+        return response()->json(['bookingId' => $bookingId]);
     }
 
     public function showStripe(Request $request)
@@ -57,7 +57,8 @@ class PaymentController extends Controller
 
         $paymentData = [
             'hotel_id' => $request->hotel_id,
-            'payment_id' => $request->payment_id
+            'payment_id' => $request->payment_id,
+            'room_id' => $request->room_id
         ];
 
         Session::put('paymentData', $paymentData);
@@ -89,7 +90,6 @@ class PaymentController extends Controller
         $paymentStripe = Session::get('paymentStripe');
         $paymentData = Session::get('paymentData');
         // echo $paymentStripe->payment_intent;
-
         $Payment = new Payment();
         $Payment->amount =  $paymentStripe->amount_total/100;
         $Payment->description = 'test mode';
@@ -102,12 +102,14 @@ class PaymentController extends Controller
 
         $hotel_booking = new HotelBooking;
         $hotel_booking->user_id = auth()->user()->id;
-        $hotel_booking->room = $paymentData['hotel_id'];
+        $hotel_booking->hotel_id = $paymentData['hotel_id'];
+        $hotel_booking->room_id = $paymentData['room_id'];
         $hotel_booking->rent = $paymentStripe->amount_total/100;
-        $hotel_booking->paid_via = $paymentData['payment_id'];
+        $hotel_booking->payment_method_id = $paymentData['payment_id'];
         $hotel_booking->save();
 
-        return redirect('/hotel');
+        $bookingId = HotelBooking::select('UUID')->latest()->first();
+        return redirect()->route('hotel.index')->with(['booking'=> $bookingId]);
     }
 
 }
