@@ -36,4 +36,9 @@ class Room extends Model
     {
         return $this->hasMany(HotelBooking::class, 'id');
     }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'id');
+    }
 }

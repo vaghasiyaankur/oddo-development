@@ -16,6 +16,41 @@
             height: 0.80rem;
             background-size: 0.80rem;
         }
+
+        /* rating css */
+        input.star {
+            display: none;
+        }
+
+        label.mdi {
+            float: right;
+            /* padding: 10px; */
+                font-size: 17px;
+            color:
+                #444;
+            transition: all .2s;
+        }
+
+        input.star:checked~label.mdi:before {
+            color:
+                #ffc700;
+            transition: all .25s;
+        }
+
+        input.star-5:checked~label.mdi:before {
+            color:
+                #ffc700;
+            text-shadow: 0 0 5px #7f8c8d;
+        }
+
+        input.star-1:checked~label.mdi:before {
+            color:
+                #ffc700;
+        }
+
+        label.mdi:hover {
+            transform: rotate(-15deg) scale(1.3);
+        }
     </style>
 @endpush
 
@@ -499,7 +534,7 @@
                                 <h5 class="mb-3">How would you rate our hotels facilities ?</h5>
                                 <div class="col-lg-6">
                                     <div class="row">
-                                        <div class="col-12 mb-2">
+                                        <div class="col-12 mb-2 reviewMainDiv">
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="staff-headingRating">
                                                     <button
@@ -512,7 +547,7 @@
                                                             style="
                                                         color: #fff !important;
                                                     "><i
-                                                                class="mdi mdi-star text-warning pe-1"></i>4/5</span>
+                                                                class="mdi mdi-star text-warning pe-1"></i><span class="cleanessSpan"></span>/5</span>
                                                     </button>
                                                 </h2>
                                                 <div id="staff-collapseRating" class="accordion-collapse collapse"
@@ -522,11 +557,31 @@
                                                             <div class="form-check ps-2">
                                                                 <label class="form-check-label" for="productratingRadio4">
                                                                     <span class="text-muted">
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star"></i>
+                                                                        <input class="star staff-5 cleanessReview" value="5"
+                                                                            id="staff-5" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="staff-5"></label>
+                                                                        <input class="star staff-4 cleanessReview" value="4"
+                                                                            id="staff-4" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="staff-4"></label>
+                                                                        <input class="star staff-3 cleanessReview" value="3"
+                                                                            id="staff-3" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="star-3"></label>
+                                                                        <input class="star staff-2 cleanessReview" value="2"
+                                                                            id="staff-2" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="staff-2"></label>
+                                                                        <input class="star staff-1 cleanessReview" value="1"
+                                                                            id="staff-1" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="staff-1"></label>
                                                                     </span>
                                                                 </label>
                                                             </div>
@@ -535,7 +590,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 mb-2">
+                                        <div class="col-12 mb-2 reviewMainDiv">
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="Cleanless-headingRating">
                                                     <button
@@ -546,7 +601,7 @@
                                                         <span class="text-muted fs-6">Cleaness</span><span
                                                             class="badge bg-orange text-body fs-12 fw-medium ms-auto"
                                                             style="color: #fff !important"><i
-                                                                class="mdi mdi-star text-warning pe-1"></i>3/5</span>
+                                                                class="mdi mdi-star text-warning pe-1"></i><span class="cleanessSpan"></span>/5</span>
                                                     </button>
                                                 </h2>
                                                 <div id="Cleanless-collapseRating" class="accordion-collapse collapse"
@@ -556,11 +611,32 @@
                                                             <div class="form-check ps-2">
                                                                 <label class="form-check-label" for="productratingRadio4">
                                                                     <span class="text-muted">
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star text-warning"></i>
-                                                                        <i class="mdi mdi-star"></i>
+                                                                        <input class="star star-5 cleanessReview" value="5"
+                                                                            id="star-5" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="star-5"></label>
+                                                                        <input class="star star-4 cleanessReview" value="4"
+                                                                            id="star-4" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="star-4"></label>
+                                                                        <input class="star star-3 cleanessReview" value="3"
+                                                                            id="star-3" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="star-3"></label>
+                                                                        <input class="star star-2 cleanessReview" value="2"
+                                                                            id="star-2" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="star-2"></label>
+                                                                        <input class="star star-1 cleanessReview" value="1"
+                                                                            id="star-1" type="radio"
+                                                                            name="star" />
+                                                                        <label class="mdi mdi-star"
+                                                                            for="star-1"></label>
+
                                                                     </span>
                                                                 </label>
                                                             </div>
@@ -855,13 +931,16 @@
                             <div class="row mt-2 mb-4">
                                 <div class="col-12">
                                     <div>
-                                        <label for="exampleFormControlTextarea5" class="form-label fs-5">Add Your Feedback :</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea5" rows="3" placeholder="Please enter your feedback here !"></textarea>
+                                        <label for="exampleFormControlTextarea5" class="form-label fs-5">Add Your Feedback
+                                            :</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"
+                                            placeholder="Please enter your feedback here !"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="feedback-btn text-end ">
-                                <div class="btn w-100" style="background-color: #6a78d2;border: 1px solid #6a78d5;color: #fff;">Submit</div>
+                                <button class="btn w-100 reviewSubmit"
+                                    style="background-color: #6a78d2;border: 1px solid #6a78d5;color: #fff;">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -872,4 +951,13 @@
     {{-- HOTEL REVIEW POPOUP END --}}
 @endsection
 @push('script')
+<script>
+    $(document).ready(function(){
+        $(document).on('change','.cleanessReview', function(){
+            var cleanessReview = $('.cleanessReview:checked').val();
+            var review = $(this).closest('.reviewMainDiv');
+            var child = review.find('.cleanessSpan').html(cleanessReview);
+        });
+    });
+</script>
 @endpush

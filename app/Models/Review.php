@@ -4,24 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Uuids;
 
-class HotelBooking extends Model
+class Review extends Model
 {
-    use HasFactory,Uuids;
+    use HasFactory;
 
-    protected $table = 'hotel_bookings';
+
+    protected $table = 'reviews';
 
     protected $guarded = ['id'];
+
 
     public function hotel()
     {
         return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
-    }
-
-    public function paymentGateway()
-    {
-        return $this->belongsTo(paymentGetways::class, 'payment_method_id', 'id');
     }
 
     public function user()
@@ -29,10 +25,8 @@ class HotelBooking extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function room()
+    public function roomData()
     {
         return $this->belongsTo(Room::class, 'room_id','id');
     }
-
-
 }

@@ -4,6 +4,7 @@
             <th scope="col">Booking No.</th>
             <th scope="col">User Name</th>
             <th scope="col">Hotel Name</th>
+            <th scope="col">Room Name</th>
             <th scope="col">Amount</th>
             <th scope="col">Paid Via</th>
             <th scope="col">Payment Status </th>
@@ -24,13 +25,19 @@
                 <div class="loadingShow td-3">
                     <span></span>
                 </div>
-                <div class="loadingHide">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</div>
+                <div class="loadingHide">{{ $booking->user->name }} {{ $booking->user->last_name }}</div>
             </td>
             <td>
                 <div class="loadingShow td-3">
                     <span></span>
                 </div>
                 <div class="loadingHide">{{$booking->hotel->property_name}}</div>
+            </td>
+            <td>
+                <div class="loadingShow td-3">
+                    <span></span>
+                </div>
+                <div class="loadingHide">{{$booking->room->roomlist->room_name }}</div>
             </td>
             <td>
                 <div class="loadingShow td-3">

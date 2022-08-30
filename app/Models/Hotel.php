@@ -32,7 +32,7 @@ class Hotel extends Model
     public function scopeActive($query) {
         return $query->where('status', 1);
     }
-    
+
     public function propertytype()
     {
         return $this->belongsTo(PropertyType::class, 'property_id');
@@ -51,7 +51,7 @@ class Hotel extends Model
     public function photos()
     {
         return $this->hasMany(HotelPhoto::class);
-    }   
+    }
 
     public function mainPhoto()
     {
@@ -103,9 +103,14 @@ class Hotel extends Model
     {
         return $this->hasMany(Payment::class, 'id');
     }
-    
+
     public function hotelBooking()
     {
         return $this->hasMany(HotelBooking::class, 'id');
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'id');
     }
 }
