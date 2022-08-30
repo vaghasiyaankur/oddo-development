@@ -60,7 +60,7 @@
             background-color: #6a78c7;
             border-color: #6a78c7;
         }
-        .page-link{
+        .hotel--booking-box .page-item .page-link{
             color: #000;
         }
     </style>
@@ -125,7 +125,7 @@
                                                     <p class="m-0 ">2 Guests, 1 Infant</p>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                   <a href="javascript:;" style="color: #000"><span class="text-uppercase fw-bold" style="font-size: 13px;"><i class="fa-regular fa-heart"></i> favorite</span></a> 
+                                                   <a href="javascript:;" style="color: #000"><span class="text-uppercase fw-bold" style="font-size: 13px;"><i class="fa-regular fa-heart"></i> favorite</span></a>
                                                     <a href="javascript:;" class="btn offer--button ms-2">View offers</a>
                                                 </div>
                                             </div>
@@ -187,7 +187,7 @@
                                 <div class="row g-0 text-center text-sm-start align-items-center mb-4">
                                     <div class="col-sm-6">
                                         <div>
-                                            <p class="mb-sm-0 text-muted">Showing <span class="fw-semibold">1</span> to <span class="fw-semibold">10</span> of <span class="fw-semibold text-decoration-underline">12</span> entries</p>
+                                            <p class="mb-sm-0 text-muted">Showing <span class="fw-semibold">1</span> to <span class="fw-semibold">10</span> of <span class="fw-semibold">12</span> entries</p>
                                         </div>
                                     </div>
                                     <!-- end col -->
@@ -201,14 +201,14 @@
                                             </li>
                                             <li class="page-item ">
                                                 <a href="#" class="page-link">2</a>
-                                            </li>                                           
+                                            </li>
                                             <li class="page-item">
                                                 <a href="#" class="page-link">Next</a>
                                             </li>
                                         </ul>
                                     </div><!-- end col -->
                             </div>
-                            
+
                             {{-- <div class="table-responsive table-card">
                                         <table class="table align-middle table-nowrap mb-0">
                                             <thead class="table-light">

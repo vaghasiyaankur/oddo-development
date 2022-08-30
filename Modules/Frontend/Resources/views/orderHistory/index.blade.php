@@ -543,7 +543,7 @@
                                                         type="button" data-bs-toggle="collapse"
                                                         data-bs-target="#Cleanless-collapseRating" aria-expanded="false"
                                                         aria-controls="Cleanless-collapseRating">
-                                                        <span class="text-muted fs-6">Cleanless</span><span
+                                                        <span class="text-muted fs-6">Cleaness</span><span
                                                             class="badge bg-orange text-body fs-12 fw-medium ms-auto"
                                                             style="color: #fff !important"><i
                                                                 class="mdi mdi-star text-warning pe-1"></i>3/5</span>
@@ -848,9 +848,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                      
+                                        </div>
                                     </div>
-                                </div>                               
+                                </div>
                             </div>
                             <div class="row mt-2 mb-4">
                                 <div class="col-12">

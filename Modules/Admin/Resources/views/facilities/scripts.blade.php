@@ -186,6 +186,10 @@ $(document).ready(function() {
                 $(".createFaclityForm").trigger("reset");
                 $("#facilityCreate").modal("hide");
                 facilitiesList(search);
+                setTimeout(function() {
+                    $('.loadingShow span').css('display', 'none');
+                    $('.loadingHide').removeClass('d-none');
+                },  1500);
             }, error:function (response) {
                 $('#faclityName-error').text(response.responseJSON.errors.faclityName);
             }
