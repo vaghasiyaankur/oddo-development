@@ -68,10 +68,7 @@
                                   <div class="middle-content-location">
                                       <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
-                                                  ? ',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ' .
-                                                      $hotel->country->country_name
-                                                  : '' }}</span>
+                                                  ? ',' .$hotel->country->country_name: '' }}</span>
                                       </p>
                                       <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
                                           {{ @$hotel->pos_code }}</p>
@@ -724,10 +721,19 @@
           </main>
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
-{{-- 
-          <button class="hotelPriceBtn d-block">$ {{ @$hotel->room->price_room }} USD</button> --}}
-
-              <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$hotel->room->price_room }} USD</button>
+              @if (count($hotelAmounts))
+                @foreach ($hotelAmounts as  $hotelAmount) 
+                  @foreach ($hotelAmount as $key => $item)
+                    @if ($key == $hotel->id)
+                      <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$item }} USD</button>
+                      <input type="hidden" value="{{ @$item }}"
+                                          class="amount_data_{{ $hotel->UUID }}">
+                    @endif   
+                  @endforeach
+                @endforeach
+              @else
+                <button class="hotelPriceBtn price-btn">$ {{ @$hotel->room->price_room }} USD</button>
+              @endif
           </div>
           {{-- PAYMENT POPOUP START --}}
           <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
@@ -779,7 +785,16 @@
                                                       <p class="m-0 h--totl ms-2 mt-2">Total</p>
                                                   </div>
                                                   <div class="d-flex align-items-center">
-                                                      <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}
+                                                      <p class="m-0 pe-2 h-amount">$
+                                                        @if (count($hotelAmounts))
+                                                          @foreach ($hotelAmounts as  $hotelAmount) 
+                                                            @foreach ($hotelAmount as $key => $item)
+                                                              @if ($key == $hotel->id)
+                                                                {{ @$item }}
+                                                              @endif   
+                                                            @endforeach
+                                                          @endforeach
+                                                        @endif
                                                       </p><span class="h--totl text-muted">for 1 nights</span>
                                                   </div>
                                               </div>
@@ -787,8 +802,8 @@
                                       </div>
                                   </div>
                                   <div class="payment_select_type">
-                                      <input type="hidden" value="{{ @$hotel->room->price_room }}"
-                                          class="amount_data_{{ $hotel->UUID }}">
+                                      {{-- <input type="hidden" value="{{ @$hotel->room->price_room }}"
+                                          class="amount_data_{{ $hotel->UUID }}"> --}}
                                       <input type="hidden" value="{{ @$hotel->id }}"
                                           class="hotel_id_{{ $hotel->UUID }}">
                                         {{-- @if(isset($hotel->room)) --}}

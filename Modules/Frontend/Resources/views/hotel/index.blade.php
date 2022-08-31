@@ -318,6 +318,8 @@
                                                     data-datepicker="separateRange" value="{{ request()->checkOut }}" />
                                             </div>
                                         </div>
+                                    <span class="text-danger d-none bookingSelectError" style="position: absolute;bottom: -28px;
+                                    left: 62px;">Please Select your trip date for booking room!</span>
                                     </div>
                                 </form>
                             </div>
@@ -358,8 +360,10 @@
                                 </select>
                             </div>
 
-
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                                @php
+                                    $selectBed = Request()->bed;
+                                @endphp
                                 <label>Beds</label>
                                 <div class="bed-selector ">
                                     <div class="select-div d-flex justify-content-between align-items-center">
@@ -416,7 +420,7 @@
                                                 <option value="fa-bed" data-icon="fa-bed">3</option>
                                                 </select> -->
                             </div>
-                            <div class="check-in-out-btn mt-3 text-xl-end text-center col-lg-3">
+                            <div class="check-in-out-btn mt-4 text-xl-end text-center col-lg-3">
                                 <a href="#" class="btn search-btn purple" id='SubmitSearch'>Search</a>
                             </div>
                         </div>
@@ -1215,12 +1219,24 @@
             var checkOut = $("input[name=value_from_end_date]").val();
             var guest = $("select[name=guest]").val();
             var room = $("select[name=room]").val();
-            var bed = $("select[name=bed]").val();
+            // var bed = $("input[class='hotelBeds']:checked").val();
+            // var bed = $(".hotelBeds").prop("checked", true);
+            // $('.hotelBeds').each(function() {
+            //     if ($(this).prop("checked", true)) {
+            //         console.log($(this).data('value'));
+            //         var cat = $(this).data('value').replace("&", "%26").replace("+", "%2B"); 
+            //         category.push(cat);
+            //     }
+            // });
+
+            var bed = new Array();
+            $('input[name="bed"]:checked').each(function() {
+                bed.push($(this).val());
+            });
 
             if (!search) {
                 return;
             }
-
 
             window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
@@ -1285,20 +1301,34 @@
             });
 
             function addRoom($number) {
+                let searchParams = new URLSearchParams(window.location.search)
+                let bed = searchParams.get('bed').split(",");
+                var king = '';
+                var queen = '';
+                var twin = '';
+                if(bed.includes('King')){
+                    king = 'checked';
+                }
+                if(bed.includes('Queen')){
+                    queen = 'checked';
+                }
+                if(bed.includes('twin')){
+                    twin = 'checked';
+                }
                 $room = $(`<div class="room"><div class="title-container">
                             <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
                         </div>
                         <section class="dropdown-container">
                             <div class="dropdown-inner">
-                                <input class="form-check-input" type="checkbox" id="king_` + $number + `">
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="king_` + $number + `" value="King" `+king+`>
                                 <label for="king_` + $number + `">1 King</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input class="form-check-input" type="checkbox" id="twin_` + $number + `">
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin" `+twin+`>
                                 <label for="twin_` + $number + `">2 Twin</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input class="form-check-input" type="checkbox" id="queen_` + $number + `">
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen" `+queen+`>
                                 <label for="queen_` + $number + `">2 Queen</label>
                             </div>
                         </section>
@@ -1334,7 +1364,10 @@ $(document).ready(function(){
         var search = $("input[name=search]").val();
         var guest = $("select[name=guest]").val();
         var room = $("select[name=room]").val();
-
+        var bed = new Array();
+        $('input[name="bed"]:checked').each(function() {
+            bed.push(this.value);
+        });
         var propertyName = $("input[name=propertyName]").val();
 
         var searchProperty = $('.searchProperty').val();
@@ -1342,7 +1375,7 @@ $(document).ready(function(){
         if(search){
             $.ajax({
 
-                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&guest=" + guest + "&room=" + room ,
+                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&guest=" + guest + "&room=" + room + "&bed=" + bed,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1632,19 +1665,15 @@ $(document).ready(function(){
 </script>
 
 <script>
-    // $(document).ready(function(){
-    //     $('.price-btn').on('click',function (e) {
-    // 	    e.preventDefault();
-    // 	    var target = this.hash;
-    // 	    var $target = $(target);
-    // 	    $('html, body').stop().animate({
-    // 	        'scrollTop': $target.offset().top
-    // 	    }, 900, 'swing', function () {
-    // 	        // window.location.hash = target;
-    // 	    });
-    // 	});
-    // });
-    </script>
+    $(document).on('click','.hotelPriceBtn',function (e) {
+        $('.bookingSelectError').removeClass("d-none");
+	    e.preventDefault();
+        $("html, body").animate({ 
+            scrollTop: 0 
+        }, "fast");
+        return false;
+	});
+</script>
 
 
 @endpush

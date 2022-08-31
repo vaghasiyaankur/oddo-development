@@ -84,6 +84,32 @@
             width: 18px !important;
             height: 18px !important;
         }
+        /* .daterangepicker {
+            top: 869.391px !important;
+            left: 1025px !important;
+        } */
+        .range_inputs {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+            align-items: center;
+        }
+        .range_inputs .cancelBtn{
+            border: 1px solid #d9c8c8;
+            margin-top: 5px;
+        }
+        .ranges{
+            width: 100%;
+            padding: 0 56px;
+        }
+
+        .daterangepicker{
+            top: 260.797px;
+            left: 1323px;
+            right: auto;
+            max-width: 516px;
+            /* width: 100%; */
+        }
     </style>
     
 </head>

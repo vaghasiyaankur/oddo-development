@@ -738,20 +738,34 @@
             });
 
             function addRoom($number) {
+                let searchParams = new URLSearchParams(window.location.search)
+                let bed = searchParams.get('bed').split(",");
+                var king = '';
+                var queen = '';
+                var twin = '';
+                if(bed.includes('King')){
+                    king = 'checked';
+                }
+                if(bed.includes('Queen')){
+                    queen = 'checked';
+                }
+                if(bed.includes('twin')){
+                    twin = 'checked';
+                }
                 $room = $(`<div class="room"><div class="title-container">
                                 <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
                             </div>
                             <section class="dropdown-container">
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" class="form-check-input" id="king_` + $number + `">
+                                    <input type="checkbox" class="form-check-input" id="king_` + $number + `" `+king+`>
                                     <label for="king_` + $number + `">1 King</label>
                                 </div>
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" class="form-check-input" id="twin_` + $number + `">
+                                    <input type="checkbox" class="form-check-input" id="twin_` + $number + `" `+queen+`>
                                     <label for="twin_` + $number + `">2 Twin</label>
                                 </div>
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" class="form-check-input" id="queen_` + $number + `">
+                                    <input type="checkbox" class="form-check-input" id="queen_` + $number + `" `+twin+`>
                                     <label for="queen_` + $number + `">2 Queen</label>
                                 </div>
                             </section>
