@@ -95,10 +95,13 @@
 }
 @media screen and (max-width: 390px) {
     .order-history .order-history-details .accordion .col_amt {
-        margin-left: 26px !important;
+        margin-left: 58px !important;
     }
     .order-history .order-history-details .accordion .col_id {
-        margin-left: 10px;
+        margin-left: 42px;
+    }
+    .order-history .order-history-details .accordion .col_totl {
+        margin-left: 76px;
     }
 }
 
