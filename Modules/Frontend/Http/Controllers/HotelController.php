@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Models\Hotel;
 use App\Models\Amenities;
 use App\Models\paymentGetways;
+use App\Models\HotelBooking;
 
 class HotelController extends Controller
 {
@@ -32,6 +33,8 @@ class HotelController extends Controller
         $searchProperty = request()->searchProperty;
 
         // dd($starRating);
+        $booking = HotelBooking::select('UUID')->latest()->first();
+        // dd($booking->toarray());
         $paymentGateways = paymentGetways::active()->get();
         if($search){
             $search = str_replace(',', ' ', $search);
@@ -45,7 +48,7 @@ class HotelController extends Controller
                     ->active()->latest()->paginate(2);
 
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
                 return $html;
             }
 
@@ -53,7 +56,7 @@ class HotelController extends Controller
             $hotels = Hotel::with('room')->where('property_name', 'like', '%'.$searchProperty.'%')->active()->latest()->paginate(2);
 
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
                 return $html;
             }
         } else if($propertyName) {
@@ -63,20 +66,20 @@ class HotelController extends Controller
                 $query->whereBetween('price_room', [$budgetMin, $budgetMax]); })
             ->active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
                 return $html;
             }
         } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
                 return $html;
             }
         }
 
 
         $amenities = Amenities::where('featured',1)->active()->get();
-        return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways'));
+        return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways','booking'));
     }
 
     public function hotelDetail(){

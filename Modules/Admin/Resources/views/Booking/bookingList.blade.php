@@ -4,6 +4,7 @@
             <th scope="col">Booking No.</th>
             <th scope="col">User Name</th>
             <th scope="col">Hotel Name</th>
+            <th scope="col">Room Name</th>
             <th scope="col">Amount</th>
             <th scope="col">Paid Via</th>
             <th scope="col">Payment Status </th>
@@ -12,7 +13,7 @@
         </tr>
     </thead>
     <tbody class="table__body">
-        @foreach ($bookings as $key=>$booking)   
+        @foreach ($bookings as $key=>$booking)
         <tr>
             <th scope="row">
                 <div class="loadingShow td-2">
@@ -24,7 +25,7 @@
                 <div class="loadingShow td-3">
                     <span></span>
                 </div>
-                <div class="loadingHide">{{ auth()->user()->name }} {{ auth()->user()->last_name }}</div>
+                <div class="loadingHide">{{ $booking->user->name }} {{ $booking->user->last_name }}</div>
             </td>
             <td>
                 <div class="loadingShow td-3">
@@ -36,7 +37,13 @@
                 <div class="loadingShow td-3">
                     <span></span>
                 </div>
-                <div class="loadingHide">{{ $booking->amount }}</div>
+                <div class="loadingHide">{{$booking->room->roomlist->room_name }}</div>
+            </td>
+            <td>
+                <div class="loadingShow td-3">
+                    <span></span>
+                </div>
+                <div class="loadingHide">{{ $booking->rent }}</div>
             </td>
             <td>
                 <div class="loadingShow td-3">
@@ -85,10 +92,9 @@
 @else
 {{-- FOR EMPTY TABLE --}}
 <div class="empty-table w-100 text-center py-5">
-    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-        colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
-    </lord-icon>
-    <h4>No records has been added yet.</h4>
-    <h6>Add a new record by simpley clicking the button on top right side.</h6>
-</div>
+        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
+        </lord-icon>
+        <h4>No records has been added yet.</h4>
+        <h6>Add a new record by simpley clicking the button on top right side.</h6>
+    </div>
 @endif

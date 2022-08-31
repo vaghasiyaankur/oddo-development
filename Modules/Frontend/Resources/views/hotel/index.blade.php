@@ -281,7 +281,7 @@
     <!------- Hotel-result Check-in-out section start ------->
     <section class="check-in-out hotel-result py-3">
         <div class="container">
-            <div class="check-in-out-inner">
+            <div class="check-in-out-inner"id="go_to_page">
                 <h4>Hotels</h4>
                 <div class="check-in-out-form">
                     <div class="check-in-out-top">
@@ -296,7 +296,7 @@
                                     <i class="fa-solid fa-magnifying-glass pe-3"></i>
                                 </div>
                             </div>
-                            <div class="col-lg-6 mb-2">
+                            <div class="col-lg-6 mb-2" >
                                 <form action="javascript: void(0);">
                                     <div
                                         class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
@@ -1052,8 +1052,30 @@
 @endsection
 
 @push('script')
+    @if (session()->get('booking'))
+        <script>
+            $(document).ready(function() {
+                $('#success_payment').modal('show');
+                setTimeout(function() {
+                    $('#success_payment').modal('hide')
+                }, 4000);
+            });
+        </script>
+    @endif
+
+    {{-- @if (session()->get('error'))
+        <script>
+            $(document).ready(function() {
+                $('#payment_error_').modal('show');
+                setTimeout(function() {
+                    $('#payment_error_').modal('hide')
+                }, 4000);
+            });
+        </script>
+    @endif --}}
     {{-- stripe cdn--}}
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <script src="https://checkout.stripe.com/v3/checkout.js"></script>
     {{-- razorpay cdn  --}}
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <!-- aos js -->
@@ -1528,6 +1550,7 @@ $(document).ready(function(){
         var image = $('.logoImage').attr('src');
         var hotel_id = $('.hotel_id_'+id).val();
         var payment_id = $('.razorpay_payment_id').val();
+        var room_id = $('.room_id_'+id).val();
 
         var options = {
         "key": "{{config('services.razorpay.key')}}",
@@ -1546,14 +1569,14 @@ $(document).ready(function(){
             $.ajax({
                 type:'POST',
                 url:"{{ route('payment.razorpay') }}",
-                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id},
+                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id},
                 success:function(data){
-                    $('.success-message').text(data.success);
-
-                    $('.success-alert').fadeIn('slow', function(){
-                    $('.success-alert').delay(5000).fadeOut();
-                    });
-                    $('.amount').val('');
+                    console.log(data.bookingId);
+                    $('.payment_details_popup').hide();
+                    $('.modal-backdrop').hide();
+                    // $('.modal-close').hide();
+                    $("#success_payment").modal("toggle");
+                    $('.bookingId').val('Booking Ref :'+ data.bookingId);
                 }
             });
         },
@@ -1578,7 +1601,6 @@ $(document).ready(function(){
 
     const stripe =  Stripe("{{ config('services.stripe.key') }}");
 
-
     $(document).on('click', '.payment_button_Stripe', function(e){
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
@@ -1586,6 +1608,7 @@ $(document).ready(function(){
         var payment_id = $('.stripe_payment_id').val();
         var property_name = $(this).data('value');
         var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
 
         $.ajaxSetup({
             headers: {
@@ -1596,8 +1619,9 @@ $(document).ready(function(){
         $.ajax({
             type:'POST',
             url:"{{ route('show.stripe') }}",
-            data: {total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id},
+            data: {total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id},
             success:function(response){
+
                 stripe.redirectToCheckout({
                     sessionId : response.session.id,
                 })
@@ -1605,33 +1629,23 @@ $(document).ready(function(){
                 console.log('fail');
             }
         });
-
     });
 </script>
 
 <script>
-$(document).ready(function(){
-    $(document).on('click', '.payment_button_Paypal', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        var total_amount = amount+"00";
-        var image = $('.logoImage').attr('src');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var payment_id = $('.paypal_payment_id').val();
+    // $(document).ready(function(){
+    //     $('.price-btn').on('click',function (e) {
+    // 	    e.preventDefault();
+    // 	    var target = this.hash;
+    // 	    var $target = $(target);
+    // 	    $('html, body').stop().animate({
+    // 	        'scrollTop': $target.offset().top
+    // 	    }, 900, 'swing', function () {
+    // 	        // window.location.hash = target;
+    // 	    });
+    // 	});
+    // });
+    </script>
 
-        $.ajax({
-            type:'POST',
-            url:"{{ route('show.paypal') }}",
-            data: {total_amount : total_amount,hotel_id : hotel_id, payment_id : payment_id},
-            success:function(response){
-                
-            },error:function (response) {
-                console.log('fail');
-            }
-        });
-    });
-});
-</script>
 
 @endpush

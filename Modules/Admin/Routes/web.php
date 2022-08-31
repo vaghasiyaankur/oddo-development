@@ -137,7 +137,7 @@ Route::prefix('admin')->group(function() {
             Route::get('edit/emailtemplate', 'editEditTemplate')->name('edit.emailTemplate');
             Route::post('update/emailtemplate', 'updateEmailTemplate')->name('update.EmailTemplate');
             Route::get('emailtemplate/show', 'emailTemplateShow')->name('emailtemplate.show');
-            
+
             // logo & favicon
             Route::get('logoFavicon/show', 'logoFaviconShow')->name('logoFavicon.show');
             Route::post('update/logo', 'updateLogo')->name('update.logo');
@@ -172,11 +172,16 @@ Route::prefix('admin')->group(function() {
             Route::get('payments', 'index')->name('payment.index');
             Route::get('/payment-list', 'paymentList')->name('payment.list');
         });
-        
+
         Route::controller(BookingController::class)->group(function(){
             Route::get('booking', 'index')->name('booking.index');
             Route::get('/booking-list', 'bookingList')->name('booking.list');
             Route::post('/status-booking', 'statusBooking')->name('status.booking');
+        });
+
+        Route::controller(ReviewController::class)->group(function(){
+            Route::get('review', 'index')->name('review.index');
+            Route::get('review-list', 'ReviewList')->name('review.list');
         });
 
     });

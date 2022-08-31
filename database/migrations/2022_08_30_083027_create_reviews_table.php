@@ -13,23 +13,27 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotel_bookings', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->integer('UUID')->unique()->nullable();
+            $table->integer('staff')->nullable();
+            $table->integer('cleaness')->nullable();
+            $table->integer('rooms')->nullable();
+            $table->integer('location')->nullable();
+            $table->integer('breakfast')->nullable();
+            $table->integer('service_staff')->nullable();
+            $table->integer('property')->nullable();
+            $table->integer('price_quality')->nullable();
+            $table->integer('amenities')->nullable();
+            $table->integer('internet')->nullable();
+            $table->string('feedback')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();
             $table->integer('room_id')->unsigned()->nullable();
-            $table->string('rent')->nullable();
-            $table->integer('payment_method_id')->unsigned()->nullable();
-            $table->boolean('status')->default(1);
-            $table->text('attachment')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('payment_method_id')->references('id')->on('payment_getways');
         });
     }
 
@@ -40,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotel_bookings');
+        Schema::dropIfExists('reviews');
     }
 };

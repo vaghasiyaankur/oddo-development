@@ -1,6 +1,6 @@
 <script>
      $(document).ready(function(){
-    
+
         var baseUrl = $('#base_url').val();
 
         $.ajaxSetup({
@@ -61,7 +61,7 @@
             if (!item || !bathroomIcon) {
                 return;
             }
-            
+
             $('.loadingShow span').css('display', 'block');
             $('.loadingHide').addClass('d-none');
 
@@ -76,7 +76,7 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     $(".bathroomItemForm").trigger("reset");
                     bathroomList();
                     toastMixin.fire({ title: response.success, icon: 'success' });
@@ -89,7 +89,7 @@
                         $('.loadingHide').removeClass('d-none');
                     $('#item-error').text(response.responseJSON.errors.item);
                 }
-            }); 
+            });
         });
 
         $(document).on('click', '.edit-item', function(){
@@ -100,7 +100,7 @@
             $(".editItem").val(item.item);
             $(".edit_id").val(item.UUID);
 
-            var iconSelect = item.icon; 
+            var iconSelect = item.icon;
             iconPickerEdit(iconSelect);
         });
 
@@ -115,13 +115,13 @@
             if (!item || !bathroomIcon) {
                 return;
             }
-            
-            $('.loadingShow span').css('display', 'block');
-            $('.loadingHide').addClass('d-none');
-
             formdata = new FormData();
             formdata.append('item', item);
             formdata.append('bathroomIcon', bathroomIcon);
+
+            $('.loadingShow span').css('display', 'block');
+            $('.loadingHide').addClass('d-none');
+
 
 
             $.ajax({
@@ -130,7 +130,7 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     $(".editBathroomItemForm").trigger("reset");
                     $('#editItem-error').html('');
                     bathroomList();
@@ -144,13 +144,13 @@
                         $('.loadingHide').removeClass('d-none');
                     $('#editItem-error').text(response.responseJSON.errors.item);
                 }
-            }); 
+            });
         });
 
         $(document).on('change', '.bathroomStatus', function(){
             var id = $(this).data('id');
             var status = $(this).data('value');
-            
+
             formdata = new FormData();
             formdata.append('status', status);
             formdata.append('id', id);
@@ -161,10 +161,10 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                success: function (response) { 
+                success: function (response) {
                     bathroomList();
                 },
-            }); 
+            });
         });
 
         $(document).on('click', '.bathroomDetele', function(){
@@ -178,15 +178,15 @@
                 type: "POST",
                 processData: false,
                 contentType: false,
-                success: function (response) { 
+                success: function (response) {
                     toastMixin.fire({ title: response.danger, icon: 'error' });
-                    bathroomList(); 
+                    bathroomList();
                     setTimeout(function() {
                         $('.loadingShow span').css('display', 'none');
                         $('.loadingHide').removeClass('d-none');
                     },  1500);
                 },
-            }); 
+            });
 
         });
 

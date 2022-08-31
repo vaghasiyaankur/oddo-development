@@ -13,7 +13,7 @@
                                   @auth
                                       <a href="javascript:;"
                                           class="wishlist_icon_ {{ $hotel->wishlistData($hotel->id) ? 'removeWishlist active' : 'addWishlist' }} "
-                                          data-id='{{ $hotel->UUID }}'><i class="fa-solid fa-heart"></i></a>
+                                          data-id='{{ $hotel->UUID }}'><i class="fa-solid fa-heart" style="padding-left: 1.5px;"></i></a>
                                   @endauth
 
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">
@@ -64,18 +64,18 @@
                               <div class="result-main-middle-content">
                                   <a href="{{ route('hotel.detail', @$hotel->slug) }}">
                                       <h2 class="middle-content-heading pt-4 mb-1">{{ $hotel->property_name }}</h2>
+                                        <div class="middle-content-location">
+                                          <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
+                                                  class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
+                                                      ? ',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ' .
+                                                          $hotel->country->country_name
+                                                      : '' }}</span>
+                                          </p>
+                                          <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
+                                              {{ @$hotel->pos_code }}</p>
+                                        </div>
                                   </a>
-                                  <div class="middle-content-location">
-                                      <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
-                                              class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
-                                                  ? ',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ' .
-                                                      $hotel->country->country_name
-                                                  : '' }}</span>
-                                      </p>
-                                      <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
-                                          {{ @$hotel->pos_code }}</p>
-                                  </div>
                                   <div class="middle-content-review">
                                       <p class="m-0 review-text text-decoration-underline"><a href="#"
                                               data-bs-toggle="modal" data-bs-target="#reviewspopup">1024 reviews</a></p>
@@ -86,15 +86,15 @@
                                           <div
                                               class="modal-dialog modal-dialog-scrollable modal-fullscreen modal-dialog-centered">
                                               <div class="modal-content">
-                                                  <div class="modal-header justify-content-end">
-                                                      <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                                          aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                                  </div>
                                                   <div class="modal-body py-sm-5">
                                                       <div class="reviews-popup overflow-auto">
                                                           <div class="reviews-popup-inner">
+                                                            <div class="modal-header justify-content-end">
+                                                                <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                                                    aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
+                                                            </div>
                                                               <div
-                                                                  class="reviews-popup-heading d-flex justify-content-between align-items-center flex-wrap">
+                                                                  class="reviews-popup-heading d-flex justify-content-between align-items-center flex-wrap pt-1">
                                                                   <div class="reviews-heading">
                                                                       <h4 class="m-0">First Hotel Reviews</h4>
                                                                       <p class="m-0">Madrid, Spain.</p>
@@ -212,7 +212,7 @@
                                                                               class="comment-reviews-heading d-flex justify-content-between align-items-center mt-4 flex-wrap">
                                                                               <div class="comment-reviews-text">
                                                                                   <h5>Reviews (1024)</h5>
-                                                                              </div>                                                    
+                                                                              </div>
                                                                           </div>
                                                                           <div class="reviews-comment-text-main mt-4">
                                                                               <div class="row border-bottom mt-3">
@@ -680,11 +680,11 @@
                                       </div>
                                       <!-------- Location popup end -------->
                                   </div>
-                                  <div class="middle-content-bottom">
+                                  {{-- <div class="middle-content-bottom">
                                       <p class="m-0">12 Nights, {{ @$hotel->room->guest_stay_room }} Guests, 2
                                           Rooms, 3 Beds</p>
                                       <p class="bottom-text">Tax. Included</p>
-                                  </div>
+                                  </div> --}}
                               </div>
                           </div>
                       </div>
@@ -724,9 +724,10 @@
           </main>
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
-              <button class="price-btn" data-bs-toggle="modal"
-                  data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{ @$hotel->room->price_room }} for 1
-                  Nights</button>
+{{-- 
+          <button class="hotelPriceBtn d-block">$ {{ @$hotel->room->price_room }} USD</button> --}}
+
+              <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$hotel->room->price_room }} USD</button>
           </div>
           {{-- PAYMENT POPOUP START --}}
           <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
@@ -786,11 +787,14 @@
                                       </div>
                                   </div>
                                   <div class="payment_select_type">
-
                                       <input type="hidden" value="{{ @$hotel->room->price_room }}"
                                           class="amount_data_{{ $hotel->UUID }}">
                                       <input type="hidden" value="{{ @$hotel->id }}"
                                           class="hotel_id_{{ $hotel->UUID }}">
+                                        {{-- @if(isset($hotel->room)) --}}
+                                        <input type="hidden" value="{{ @$hotel->room->id }}"
+                                            class="room_id_{{ $hotel->UUID }}">
+                                        {{-- @endif --}}
                                       <h5 class="payment__type_title">Select your payment type</h5>
                                       <div class="row mt-3">
                                           @foreach ($paymentGateways as $paymentGateway)
@@ -816,8 +820,8 @@
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen">
                   <div class="modal-content">
-                      <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
-                              class="fa-solid fa-xmark text-dark"></i></button>
+                      {{-- <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                              class="fa-solid fa-xmark text-dark"></i></button> --}}
                       <div class="modal-body py-sm-5 modal-dialog-centered">
                           <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
                             <div class="success_popup_inner position-relative">
@@ -835,15 +839,17 @@
                                           style="background-color: rgb(255, 255, 255);"></div>
                                   </div>
                                   <div class="success_innerdetails mb-5">
-                                      <h6 class="text-muted mb-3 text-uppercase">Booking Ref :
-                                          FRA-BE-1982458-MAHAKSHA-DELIVERD</h6>
+                                      <h6 class="text-muted mb-3 text-uppercase bookingId">Booking Ref :
+                                        @if(isset($booking))
+                                          {{ $booking->UUID ? $booking->UUID : '' }}
+                                        @endif</h6>
+
                                       <h4 class="text-bold mb-2">You successfully created your booking</h4>
                                       <h6 class="text-muted">To print your booking <span class="print--link"><a
                                                   href="">click here</a></span></h6>
                                   </div>
                                   <div class="back-tophome-btn">
-                                      <a href="javascript:;" class="go-home-btn text-dark" data-bs-toggle="modal"
-                                          data-bs-target="#payment_error_">Go Home</a>
+                                      <a href="{{ route('home.index') }}" class="go-home-btn text-dark">Go Home</a>
                                   </div>
                               </div>
                           </div>
@@ -873,7 +879,10 @@
                                       <h4 class="text-bold mb-3">Unfortunately we have an issue with your payment,try
                                           again later</h4>
                                       <h6 class="text-muted mb-3 text-uppercase">Booking Ref :
-                                          FRA-BE-1982458-MAHAKSHA-DELIVERD</h6>
+                                        @if(isset($booking))
+                                        {{ $booking->UUID ? $booking->UUID : '' }}
+                                        @endif
+                                    </h6>
                                   </div>
                                   <div class="back-tophome-btn">
                                       <a href="javascript:;" class="try-again-btn text-dark">Try Again</a>

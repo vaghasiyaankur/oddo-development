@@ -21,9 +21,9 @@ class PaymentTableSeeder extends Seeder
         $Payments = [
             ['Paypal',
             'paymentGateway/paypal.png',
-            'AfnfdihnzP8TU_I0SyhrFRBUNgpa0Fn8YZgb473vmomEbo4hZdiExbXeKOsftOotFdxA3PPy-zMJd0aZ',
-            'EBdsmhqAaUOe-S7lb4A2ifNqOCDGC3XBgMUf0fay-3X-A-2lVBb11a6NlCHJGSuTvUqqFrUB9KWJHguQ',
-            'null',
+            'sb-nrb6a16324783_api1.business.example.com',
+            'YUQZV5HF9EWC433X',
+            'AlUbKnK29hQu5gg23suU0myvzJzMA7LLy0RbLNz6wf5.JAxW3DjFapVP',
             'live_demo',
             'live_demo',
             'live_demo',
