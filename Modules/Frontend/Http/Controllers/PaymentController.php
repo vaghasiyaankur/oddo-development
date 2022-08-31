@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Payment;
 use Slim\Http\Response;
 use Stripe\Stripe;
+use Mail;
+use App\Mail\PaymentSuccess;
 
 class PaymentController extends Controller
 {
@@ -48,6 +50,7 @@ class PaymentController extends Controller
             }
         }
 
+        Mail::to(auth()->user()->email)->send(new PaymentSuccess);
         $bookingId = HotelBooking::select('UUID')->latest()->first();
         return response()->json(['bookingId' => $bookingId]);
     }
@@ -86,10 +89,8 @@ class PaymentController extends Controller
     }
 
     public function StripeSucceed(Request $request){
-
         $paymentStripe = Session::get('paymentStripe');
         $paymentData = Session::get('paymentData');
-        // echo $paymentStripe->payment_intent;
         $Payment = new Payment();
         $Payment->amount =  $paymentStripe->amount_total/100;
         $Payment->description = 'test mode';
@@ -108,6 +109,7 @@ class PaymentController extends Controller
         $hotel_booking->payment_method_id = $paymentData['payment_id'];
         $hotel_booking->save();
 
+        Mail::to(auth()->user()->email)->send(new PaymentSuccess);
         $bookingId = HotelBooking::select('UUID')->latest()->first();
         return redirect()->route('hotel.index')->with(['booking'=> $bookingId]);
     }

@@ -1607,6 +1607,7 @@ $(document).ready(function(){
                     console.log(data.bookingId);
                     $('.payment_details_popup').hide();
                     $('.modal-backdrop').hide();
+                    // $('.modal-close').hide();
                     $("#success_payment").modal("toggle");
                     $('.bookingId').val('Booking Ref :'+ data.bookingId);
                 }

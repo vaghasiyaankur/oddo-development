@@ -5,6 +5,9 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\Review;
+use App\Models\HotelBooking;
+use Carbon\Carbon;
 
 class OrderHistoryController extends Controller
 {
@@ -14,7 +17,14 @@ class OrderHistoryController extends Controller
      */
     public function index()
     {
-        return view('frontend::orderHistory.index');
+        $userId = auth()->user()->id;
+
+        $mytime = Carbon::now();
+        // dd($mytime);
+
+        $orderHistorys = HotelBooking::where('user_id', $userId)->whereDate('end_date', '<=', Carbon::now())->get();
+        $reviews = Review::where('user_id', $userId)->get();
+        return view('frontend::orderHistory.index', compact('orderHistorys', 'reviews'));
     }
 
     /**
@@ -33,7 +43,26 @@ class OrderHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $id = '';
+        $amenity = Review::updateOrCreate([ 'id' => $id ], [
+           'staff' => $request->staffReview,
+           'cleaness' => $request->cleanessReview,
+           'rooms' => $request->roomReview,
+           'location' => $request->locationReview,
+           'breakfast' => $request->breakfastReview,
+           'service_staff' => $request->serviceStaffReview,
+           'property' => $request->propertyConditionReview,
+           'price_quality' => $request->priceQualityReview,
+           'amenities' => $request->amenityReview,
+           'internet' => $request->internetReview,
+           'feedback' => $request->feedbackReview,
+           'hotel_id' => $request->hotel_id,
+           'room_id' => $request->room_id,
+           'user_id' => auth()->user()->id
+        ]);
+
+        return response()->json(["success" => "review submit successfully."], 200);
     }
 
     /**

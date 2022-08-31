@@ -12,35 +12,33 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap-grid.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="{{ asset('user/asset/css/user-style.css') }}">
+    <!------ Datepiker cdn ------->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
 
     <style>
-        table tbody tr td {
-            padding: 30px 10px !important;
+        .daterangepicker.opensright:after {
+            left: 230px;
+            border: none;
         }
 
-        table thead th {
-            background-color: #eef1f7 !important;
-            color: #8195a8 !important;
+        .daterangepicker.opensright:before {
+            left: 229px;
+            border: none;
+
         }
 
-        .hotelimg_box img {
-            max-width: 60px;
-            width: 100%;
+        .daterangepicker {
+            left: auto !important;
+            right: 81px !important;
         }
 
-        .hotel--booking-box .booking--inner-box {
-            border: 1px solid lightgrey;
-            min-height: 150px;
-            border-radius: 11px;
-            box-shadow: 0px 0px 5px rgb(0 0 0 / 10%);
-        }
-
-        .hotel--booking-box .booking--inner-box .hotel_book_img img {
-            width: 100%;
-            max-width: 179px;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 11px 0px 0px 11px;
+        .daterangepicker .calendar td,
+        .daterangepicker .calendar th {
+            min-width: 25px;
+            font-size: 14px;
         }
 
         .hotel--booking-box .booking--inner-box .inner-right-content {
@@ -69,15 +67,43 @@
 
 @section('content')
     <section class="account-content" style="min-height: 608px;">
-        <div class="container">
+        <div class="container-fluid container-lg">
             <div class="row py-4">
                 @include('usersite::user.sidebar.sidebar')
-                <div class="col-lg-10 col-md-10 col-12 right-side-content">
+                <div class="col-lg-10 col-md-10 col-12 right-side-content px-3">
                     <div id="tabs">
                         <div class="hotel--booking-box">
-                            <div class="booking-title-text">
-                                <h5 class="mb-4" style="color: #8195a8;font-weight: 600;">Bookings Details :</h5>
-                            </div>
+                            <div
+                                class="booking-title-text d-flex justify-content-between align-items-center flex-wrap mb-4">
+                                <div class="right-sidetitle">
+                                    <h5 class="mb-0 mt-2 mt-md-0" style="color: #8195a8;font-weight: 600;">Bookings Details :</h5>
+                                </div>
+                                <div class="rightside_content mt-3 mt-lg-0 overflow-auto">
+                                    <ul class="nav nav-pills nav-custom nav-custom-light" role="tablist">
+                                        <li class="nav-item order-2 order-lg-1">
+                                            <a class="nav-link active" data-bs-toggle="tab" href="#nav-light-home"
+                                                role="tab" aria-selected="false">
+                                                All (38)
+                                            </a>
+                                        </li>
+                                        <li class="nav-item order-3 order-lg-2">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#nav-light-profile"
+                                                role="tab" aria-selected="false">
+                                                Upcoming Booking (18)
+                                            </a>
+                                        </li>
+                                        <li class="nav-item order-4 order-lg-3">
+                                            <a class="nav-link " data-bs-toggle="tab" href="#nav-light-messages"
+                                                role="tab" aria-selected="true">
+                                                Past Booking (20)
+                                            </a>
+                                        </li>
+                                        <li class="nav-item order-1 order-lg-4">
+                                            <form>
+                                                <a class="nav-link " role="tab" aria-selected="true"
+                                                    name="value_from_start_date"s data-datepicker="separateRange">
+                                                    <i class="fa-solid fa-calendar-days" style="color: #8195a8;"></i>
+                                                </a>
 
                             <div class="row">
                                 <div class="col-lg-12 mb-4">
@@ -356,6 +382,78 @@
 
 
 @push('scripts')
-  <!-- project list init -->
-  <script src="{{ asset('assets/js/pages/project-list.init.js') }}"></script>
+    <!------Datepiker js cdn ------->
+
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('.date_checkin').datepicker({
+                dateFormat: 'mm-dd-yy',
+                startDate: '+1d'
+            });
+        });
+        jQuery(document).ready(function() {
+            jQuery('.date_checkout').datepicker({
+                dateFormat: 'mm-dd-yy',
+                startDate: '+1d'
+            });
+        });
+        // js for multiselect datepiker calender start (hotelresult page)
+        var separator = ' - ',
+            dateFormat = 'MM/DD/YYYY';
+        var options = {
+            autoUpdateInput: false,
+            autoApply: true,
+            locale: {
+                format: dateFormat,
+                separator: separator,
+            },
+            opens: "right"
+        };
+
+
+        $('[data-datepicker=separateRange]')
+            .daterangepicker(options)
+            .on('apply.daterangepicker', function(ev, picker) {
+                var boolStart = this.name.match(/value_from_start_/g) == null ? false : true;
+                var boolEnd = this.name.match(/value_from_end_/g) == null ? false : true;
+
+                var mainName = this.name.replace('value_from_start_', '');
+                if (boolEnd) {
+                    mainName = this.name.replace('value_from_end_', '');
+                    $(this).closest('form').find('[name=value_from_end_' + mainName + ']').blur();
+                }
+
+                $(this).closest('form').find('[name=value_from_start_' + mainName + ']').val(picker.startDate.format(
+                    dateFormat));
+                $(this).closest('form').find('[name=value_from_end_' + mainName + ']').val(picker.endDate.format(
+                    dateFormat));
+
+                $(this).trigger('change').trigger('keyup');
+            })
+            .on('show.daterangepicker', function(ev, picker) {
+                var boolStart = this.name.match(/value_from_start_/g) == null ? false : true;
+                var boolEnd = this.name.match(/value_from_end_/g) == null ? false : true;
+                var mainName = this.name.replace('value_from_start_', '');
+                if (boolEnd) {
+                    mainName = this.name.replace('value_from_end_', '');
+                }
+
+                var startDate = $(this).closest('form').find('[name=value_from_start_' + mainName + ']').val();
+                var endDate = $(this).closest('form').find('[name=value_from_end_' + mainName + ']').val();
+
+                $('[name=daterangepicker_start]').val(startDate).trigger('change').trigger('keyup');
+                $('[name=daterangepicker_end]').val(endDate).trigger('change').trigger('keyup');
+
+                if (boolEnd) {
+                    $('[name=daterangepicker_end]').focus();
+                }
+            });
+        // js for multiselect calender end (hotelresult page)
+    </script>
 @endpush

@@ -40,7 +40,7 @@ class MailTemplateTableSeeder extends Seeder
                 'booking confirmation',
                 'Confirmation of hotel booking',
                 'demo',
-                '1,2'
+                '1,2,3'
             ],[
                 'booking canceled',
                 'canceled of hotel booking',

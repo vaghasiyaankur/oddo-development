@@ -18,6 +18,7 @@ class ShortCodeMailTemplateTableSeeder extends Seeder
         $shortCodes = [
             ['{customer_name}', 'Customer Name'],
             ['{website_title}', 'Website Title'],
+            ['{booking_id}', 'Booking Id']
         ];
 
         foreach ($shortCodes as  list($shortCode, $meaning)) {

@@ -5,24 +5,18 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\Payment;
+use App\Models\Review;
 
-class PaymentController extends Controller
+class ReviewController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->input('search');
-        $payments = Payment::paginate(10);
-        return view('admin::payment.index',compact('payments'));
+        $reviews = Review::paginate(10);
+        return view('admin::review.index',compact('reviews'));
     }
 
     /**
@@ -85,13 +79,12 @@ class PaymentController extends Controller
         //
     }
 
-    public function paymentList(Request $request){
+    public function ReviewList(Request $request){
         $search = $request->input('search');
-        $data['payments'] = Payment::with('hotel')
+        $data['reviews'] = Review::with('hotel')
         ->whereHas('hotel',function($q) use ($search){
             $q->where('property_name','like','%'.$search.'%');
         })->paginate(10);
-
-        return view('admin::payment.paymentList', $data);
+        return view('admin::review.reviewList',$data);
     }
 }
