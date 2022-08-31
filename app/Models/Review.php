@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Traits\Uuids;
 class Review extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
 
 
     protected $table = 'reviews';

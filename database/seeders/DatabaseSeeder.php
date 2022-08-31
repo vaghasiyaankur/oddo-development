@@ -28,6 +28,8 @@ use Modules\UserSite\Database\Seeders\EmailSettingTableSeeder;
 use Modules\UserSite\Database\Seeders\MailTemplateTableSeeder;
 use Modules\UserSite\Database\Seeders\ShortCodeMailTemplateTableSeeder;
 use Modules\UserSite\Database\Seeders\PaymentTableSeeder;
+use Modules\UserSite\Database\Seeders\BookingTableSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -62,6 +64,7 @@ class DatabaseSeeder extends Seeder
             MailTemplateTableSeeder::class,
             ShortCodeMailTemplateTableSeeder::class,
             PaymentTableSeeder::class,
+            BookingTableSeeder::class,
         ]);
     }
 }

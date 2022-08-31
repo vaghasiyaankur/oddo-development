@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->integer('UUID')->unique()->nullable();
             $table->integer('staff')->nullable();
             $table->integer('cleaness')->nullable();
             $table->integer('rooms')->nullable();

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('payment_method_id')->unsigned()->nullable();
             $table->boolean('status')->default(1);
             $table->text('attachment')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('hotel_id')->references('id')->on('hotels');
