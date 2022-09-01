@@ -56,13 +56,13 @@ settings: {
   //----  clander js checkin check-out start ----//
   jQuery(document).ready(function () {
     jQuery('#date_checkin').datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd-mm-yy',
         startDate: '+1d'
     });
 });
 jQuery(document).ready(function () {
     jQuery('#date_checkout').datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd-mm-yy',
         startDate: '+1d'
     });
 });
@@ -74,14 +74,16 @@ $(document).ready(function(){
 });
 
 // js for multiselect datepiker calender start (hotelresult page)
-var separator = ' - ', dateFormat = 'MM/DD/YYYY';
+var separator = ' - ', dateFormat = 'DD/MM/YYYY';
   var options = {
     autoUpdateInput: false,
     autoApply: true,
     locale: {
       format: dateFormat,
-      separator: separator,
+      separator: separator
   },
+  minDate: moment().add(1, 'days'),
+        maxDate: moment().add(359, 'days'),
   opens: "right"
 };
 

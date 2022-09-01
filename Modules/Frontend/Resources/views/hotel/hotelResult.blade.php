@@ -13,7 +13,7 @@
                                   @auth
                                       <a href="javascript:;"
                                           class="wishlist_icon_ {{ $hotel->wishlistData($hotel->id) ? 'removeWishlist active' : 'addWishlist' }} "
-                                          data-id='{{ $hotel->UUID }}'><i class="fa-solid fa-heart" style="padding-left: 1.5px;"></i></a>
+                                          data-id='{{ $hotel->UUID }}'><i class="fa-solid fa-heart"></i></a>
                                   @endauth
 
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">
@@ -64,18 +64,28 @@
                               <div class="result-main-middle-content">
                                   <a href="{{ route('hotel.detail', @$hotel->slug) }}">
                                       <h2 class="middle-content-heading pt-4 mb-1">{{ $hotel->property_name }}</h2>
-                                        <div class="middle-content-location">
-                                          <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
-                                                  class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
-                                                      ? ',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ' .
-                                                          $hotel->country->country_name
-                                                      : '' }}</span>
-                                          </p>
-                                          <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
-                                              {{ @$hotel->pos_code }}</p>
-                                        </div>
-                                  </a>
+                                  {{-- </a>
+                                  <div class="middle-content-location">
+                                      <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
+                                              class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
+                                                  ? ',' .$hotel->country->country_name: '' }}</span>
+                                      </p>
+                                      <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
+                                          {{ @$hotel->pos_code }}</p>
+                                  </div> --}}
+
+                                  <div class="middle-content-location">
+                                    <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
+                                            class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
+                                                ? ',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ' .
+                                                    $hotel->country->country_name
+                                                : '' }}</span>
+                                    </p>
+                                    <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
+                                        {{ @$hotel->pos_code }}</p>
+                                  </div>
+                            </a>
                                   <div class="middle-content-review">
                                       <p class="m-0 review-text text-decoration-underline"><a href="#"
                                               data-bs-toggle="modal" data-bs-target="#reviewspopup">1024 reviews</a></p>
@@ -86,15 +96,15 @@
                                           <div
                                               class="modal-dialog modal-dialog-scrollable modal-fullscreen modal-dialog-centered">
                                               <div class="modal-content">
+                                                  <div class="modal-header justify-content-end">
+                                                      <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                                          aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                                                  </div>
                                                   <div class="modal-body py-sm-5">
                                                       <div class="reviews-popup overflow-auto">
                                                           <div class="reviews-popup-inner">
-                                                            <div class="modal-header justify-content-end">
-                                                                <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                                                    aria-label="Close"><i class="fa-solid fa-xmark text-dark"></i></button>
-                                                            </div>
                                                               <div
-                                                                  class="reviews-popup-heading d-flex justify-content-between align-items-center flex-wrap pt-1">
+                                                                  class="reviews-popup-heading d-flex justify-content-between align-items-center flex-wrap">
                                                                   <div class="reviews-heading">
                                                                       <h4 class="m-0">First Hotel Reviews</h4>
                                                                       <p class="m-0">Madrid, Spain.</p>
@@ -212,7 +222,7 @@
                                                                               class="comment-reviews-heading d-flex justify-content-between align-items-center mt-4 flex-wrap">
                                                                               <div class="comment-reviews-text">
                                                                                   <h5>Reviews (1024)</h5>
-                                                                              </div>
+                                                                              </div>                                                    
                                                                           </div>
                                                                           <div class="reviews-comment-text-main mt-4">
                                                                               <div class="row border-bottom mt-3">
@@ -724,10 +734,19 @@
           </main>
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
-{{-- 
-          <button class="hotelPriceBtn d-block">$ {{ @$hotel->room->price_room }} USD</button> --}}
-
-              <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$hotel->room->price_room }} USD</button>
+              @if (count($hotelAmounts))
+                @foreach ($hotelAmounts as  $hotelAmount) 
+                  @foreach ($hotelAmount as $key => $item)
+                    @if ($key == $hotel->id)
+                      <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$item }} USD</button>
+                      <input type="hidden" value="{{ @$item }}"
+                                          class="amount_data_{{ $hotel->UUID }}">
+                    @endif   
+                  @endforeach
+                @endforeach
+              @else
+                <button class="hotelPriceBtn price-btn">$ {{ @$hotel->room->price_room }} USD</button>
+              @endif
           </div>
           {{-- PAYMENT POPOUP START --}}
           <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
@@ -779,7 +798,16 @@
                                                       <p class="m-0 h--totl ms-2 mt-2">Total</p>
                                                   </div>
                                                   <div class="d-flex align-items-center">
-                                                      <p class="m-0 pe-2 h-amount">${{ @$hotel->room->price_room }}
+                                                      <p class="m-0 pe-2 h-amount">$
+                                                        @if (count($hotelAmounts))
+                                                          @foreach ($hotelAmounts as  $hotelAmount) 
+                                                            @foreach ($hotelAmount as $key => $item)
+                                                              @if ($key == $hotel->id)
+                                                                {{ @$item }}
+                                                              @endif   
+                                                            @endforeach
+                                                          @endforeach
+                                                        @endif
                                                       </p><span class="h--totl text-muted">for 1 nights</span>
                                                   </div>
                                               </div>
@@ -787,8 +815,8 @@
                                       </div>
                                   </div>
                                   <div class="payment_select_type">
-                                      <input type="hidden" value="{{ @$hotel->room->price_room }}"
-                                          class="amount_data_{{ $hotel->UUID }}">
+                                      {{-- <input type="hidden" value="{{ @$hotel->room->price_room }}"
+                                          class="amount_data_{{ $hotel->UUID }}"> --}}
                                       <input type="hidden" value="{{ @$hotel->id }}"
                                           class="hotel_id_{{ $hotel->UUID }}">
                                         {{-- @if(isset($hotel->room)) --}}
@@ -820,8 +848,8 @@
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen">
                   <div class="modal-content">
-                      {{-- <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
-                              class="fa-solid fa-xmark text-dark"></i></button> --}}
+                      <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                              class="fa-solid fa-xmark text-dark"></i></button>
                       <div class="modal-body py-sm-5 modal-dialog-centered">
                           <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
                             <div class="success_popup_inner position-relative">
