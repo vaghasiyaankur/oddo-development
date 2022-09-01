@@ -20,11 +20,11 @@ class OrderHistoryController extends Controller
         $userId = auth()->user()->id;
 
         $mytime = Carbon::now();
-        // dd($mytime);
-
         $orderHistorys = HotelBooking::where('user_id', $userId)->whereDate('end_date', '<=', Carbon::now())->get();
         $reviews = Review::where('user_id', $userId)->get();
-        return view('frontend::orderHistory.index', compact('orderHistorys', 'reviews'));
+        $reviewCount = '';
+        $ReviewsPopup = '';
+        return view('frontend::orderHistory.index', compact('orderHistorys', 'reviews', 'ReviewsPopup', 'reviewCount'));
     }
 
     /**
@@ -45,7 +45,7 @@ class OrderHistoryController extends Controller
     {
 
         $id = '';
-        $amenity = Review::updateOrCreate([ 'id' => $id ], [
+        $review = Review::updateOrCreate([ 'id' => $id ], [
            'staff' => $request->staffReview,
            'cleaness' => $request->cleanessReview,
            'rooms' => $request->roomReview,
@@ -70,9 +70,24 @@ class OrderHistoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    /**
+     * [Description for show]
+     * ratingHotel path: app\Helpers\ratingHotel.php
+     *
+     * @param Request $request
+     *
+     * @return [type]
+     *
+     */
+    public function show(Request $request)
     {
-        return view('testing::show');
+
+        // ratingHostel Helper function
+        $rating = ratingHotel($request->reviewId);
+        $data['reviewCount'] = $rating;
+
+        $data['ReviewsPopup'] = Review::where('UUID', $request->reviewId)->first();
+        return view('frontend::orderHistory.view', $data);
     }
 
     /**
