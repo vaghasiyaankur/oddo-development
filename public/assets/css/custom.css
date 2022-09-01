@@ -951,7 +951,7 @@ header.header .navbar .dropdown .dropdown-btn {
     .search-result-inner
     .hotel-result-form
     .search-input {
-    border: 1px solid #393c52;
+    border: 1px solid #878996;
     border-radius: 5px;
     padding: 1px 16px;
     /* max-width: 240px; */
@@ -1017,7 +1017,7 @@ header.header .navbar .dropdown .dropdown-btn {
 }
 
 .hotel-result.search-result .side-content .hotel-result-form .hotels-filter .hotels-result-budget .form-control {
-    border: 1px solid #393c52;
+    border: 1px solid #878996;
     border-radius: 5px;
     padding: 6px 13px;
 }
