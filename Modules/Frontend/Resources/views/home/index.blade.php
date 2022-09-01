@@ -600,13 +600,16 @@
             var checkOut = $("input[name=value_from_end_date]").val();
             var guest = $("select[name=guest]").val();
             var room = $("select[name=room]").val();
-            var bed = $("select[name=bed]").val();
+            var bed = new Array();
+            $('input[name="bed"]:checked').each(function() {
+                bed.push($(this).val());
+            });
 
             if (!search) {
                 return;
             }   
             var page = 2;
-            window.location.href = baseUrl  + "/hotel?search=" + search + "&guest=" + guest + "&room=" + room;
+            window.location.href = baseUrl  + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
 
         });
 
@@ -714,7 +717,7 @@
     </script>
 
     <!-- custom-selector js -->
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $(".select-div").click(function() {
                 $('.select-room').html('');
@@ -739,39 +742,104 @@
 
             function addRoom($number) {
                 let searchParams = new URLSearchParams(window.location.search)
-                let bed = searchParams.get('bed').split(",");
-                var king = '';
-                var queen = '';
-                var twin = '';
-                if(bed.includes('King')){
-                    king = 'checked';
-                }
-                if(bed.includes('Queen')){
-                    queen = 'checked';
-                }
-                if(bed.includes('twin')){
-                    twin = 'checked';
+                if(!searchParams){
+                    let bed = searchParams.get('bed').split(",");
+                    var king = '';
+                    var queen = '';
+                    var twin = '';
+                    if(bed.includes('King')){
+                        king = 'checked';
+                    }
+                    if(bed.includes('Queen')){
+                        queen = 'checked';
+                    }
+                    if(bed.includes('twin')){
+                        twin = 'checked';
+                    }
                 }
                 $room = $(`<div class="room"><div class="title-container">
-                                <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
-                            </div>
+                            <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
+                        </div>
                             <section class="dropdown-container">
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" class="form-check-input" id="king_` + $number + `" `+king+`>
+                                    <input type="checkbox" class="form-check-input" id="king_` name="bed" + $number + `" " value="King" `+king+`>
                                     <label for="king_` + $number + `">1 King</label>
                                 </div>
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" class="form-check-input" id="twin_` + $number + `" `+queen+`>
+                                    <input type="checkbox" class="form-check-input" id="twin_` name="bed" + $number + `" " value="twin" `+queen+`>
                                     <label for="twin_` + $number + `">2 Twin</label>
                                 </div>
                                 <div class="dropdown-inner">
-                                    <input type="checkbox" class="form-check-input" id="queen_` + $number + `" `+twin+`>
+                                    <input type="checkbox" class="form-check-input" id="queen_` name="bed" + $number + `" " value="Queen" `+twin+`>
                                     <label for="queen_` + $number + `">2 Queen</label>
                                 </div>
                             </section>
                         </div>`);
                 $('.select-room').append($room);
             }
+        });
+    </script> --}}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.select-div', function() {
+                $('.select-room').html('');
+                var index = $('.select_room').val();
+                for (var i = 1; i <= index; i++) {
+                    $number = i;
+                    addRoom($number);
+                }
+                $(".select-option").toggleClass("option-none");
+            });
+
+            $(".js-example-tags").select2({
+                tags: true
+            });
+
+            $(document).on("click", function(event) {
+                var $trigger = $(".bed-selector");
+                if ($trigger !== event.target && !$trigger.has(event.target).length) {
+                    $(".select-room").addClass("option-none");
+                }
+            });
+
+            function addRoom($number) {
+                let searchParams = new URLSearchParams(window.location.search)
+                if(!searchParams){
+                    let bed = searchParams.get('bed').split(",");
+                    var king = '';
+                    var queen = '';
+                    var twin = '';
+                    if(bed.includes('King')){
+                        king = 'checked';
+                    }
+                    if(bed.includes('Queen')){
+                        queen = 'checked';
+                    }
+                    if(bed.includes('twin')){
+                        twin = 'checked';
+                    }
+                }
+                $room = $(`<div class="room"><div class="title-container">
+                            <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
+                        </div>
+                        <section class="dropdown-container">
+                            <div class="dropdown-inner">
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="king_` + $number + `" value="King" `+king+`>
+                                <label for="king_` + $number + `">1 King</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin" `+twin+`>
+                                <label for="twin_` + $number + `">2 Twin</label>
+                            </div>
+                            <div class="dropdown-inner">
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen" `+queen+`>
+                                <label for="queen_` + $number + `">2 Queen</label>
+                            </div>
+                        </section>
+                    </div>`);
+                $('.select-room').append($room);
+            }
+
         });
     </script>
 @endpush

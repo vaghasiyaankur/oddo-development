@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\City;
 use App\Models\Partner;
+use App\Models\Hotel;
 use App\Models\LogoFavicon;
 
 class HomeController extends Controller
@@ -15,8 +16,48 @@ class HomeController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $search = request()->search;
+        $checkIn = request()->checkIn;
+        $checkOut = request()->checkOut;
+        $guest =  request()->guest;
+        $room = request()->room;
+        $bed = explode(',' , request()->bed);
+        // dd($search);
+        if($search){
+            $search = str_replace(',', ' ', $search);
+            $hotels = Hotel::with('country', 'city', 'room' )
+                    ->orWhereRelation('city', 'name', 'like', '%'.$search.'%')
+                    ->whereRelation('room', 'guest_stay_room', $guest)
+                    ->whereRelation('room', 'number_of_room', $room)
+                    ->orwhereHas('hotelBed.bedType', function($query) use ($bed) {
+                        $query->whereIn('bed_type', $bed);                    
+                    })
+                    ->active()->latest()->paginate(2);
+            
+            $hotelAmounts = array(); 
+            
+            foreach($hotels as $hotel){
+                $amount = $hotel->room->price_room;
+                $hotel_amount = $amount * $room;
+                $hotelAmounts[] = array($hotel->id => $hotel_amount);
+            }
+
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
+                return $html;
+            }
+
+        }  else {
+            $hotels = Hotel::active()->latest()->paginate(2);
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
+                return $html;
+            }
+        }
+
         $cities = City::where('featured',1)->get();
         $partners = Partner::get();
         return view('frontend::home.index',compact('cities','partners'));

@@ -32,9 +32,8 @@ class HotelController extends Controller
 
         $searchProperty = request()->searchProperty;
 
-        // dd($starRating);
         $booking = HotelBooking::select('UUID')->latest()->first();
-        // dd($booking->toarray());
+        
         $paymentGateways = paymentGetways::active()->get();
         $hotelAmounts = array();
         if($search){
@@ -51,14 +50,14 @@ class HotelController extends Controller
                     })
                     ->active()->latest()->paginate(2);
             
-            $hotelAmounts = array(); 
-
-            foreach($hotels as $hotel){
-                $amount = $hotel->room->price_room;
-                $hotel_amount = $amount * $room;
-                $hotelAmounts[] = array($hotel->id => $hotel_amount);
+                    $hotelAmounts = array(); 
+                    if($hotels){
+                        foreach($hotels as $hotel){
+                        $amount = $hotel->room->price_room;
+                        $hotel_amount = $amount * $room;
+                        $hotelAmounts[] = array($hotel->id => $hotel_amount);
+                    }
             }
-
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
@@ -68,7 +67,7 @@ class HotelController extends Controller
             $hotels = Hotel::with('room')->where('property_name', 'like', '%'.$searchProperty.'%')->active()->latest()->paginate(2);
 
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
         } else if($propertyName) {
@@ -78,13 +77,13 @@ class HotelController extends Controller
                 $query->whereBetween('price_room', [$budgetMin, $budgetMax]); })
             ->active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
         } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
         }

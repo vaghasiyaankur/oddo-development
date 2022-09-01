@@ -64,7 +64,6 @@
                               <div class="result-main-middle-content">
                                   <a href="{{ route('hotel.detail', @$hotel->slug) }}">
                                       <h2 class="middle-content-heading pt-4 mb-1">{{ $hotel->property_name }}</h2>
-                                  {{-- </a>
                                   <div class="middle-content-location">
                                       <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
@@ -72,19 +71,17 @@
                                       </p>
                                       <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
                                           {{ @$hotel->pos_code }}</p>
-                                  </div> --}}
+                                  </div> 
 
-                                  <div class="middle-content-location">
+                                  {{-- <div class="middle-content-location">
                                     <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
                                             class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
-                                                ? ',
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ' .
-                                                    $hotel->country->country_name
+                                                ? ', $hotel->country->country_name
                                                 : '' }}</span>
                                     </p>
                                     <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
                                         {{ @$hotel->pos_code }}</p>
-                                  </div>
+                                  </div> --}}
                             </a>
                                   <div class="middle-content-review">
                                       <p class="m-0 review-text text-decoration-underline"><a href="#"
@@ -752,9 +749,9 @@
           <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
               data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
               aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-fullscreen">
+              <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                   <div class="modal-content">
-                      <div class="modal-body py-sm-5 modal-dialog-centered">
+                      <div class="modal-body py-sm-5">
                           <div class="payment-details-box">
                               <div class="payment_popup_title d-flex justify-content-between align-items-center">
                                   <h4 style="color: #6a78d2;">Payment Details :</h4>
@@ -846,11 +843,11 @@
           {{-- PAYMENT SUCCESS-POPOUP START --}}
           <div class="modal fade payment_details_popup" id="success_payment" data-bs-backdrop="static"
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-fullscreen">
+              <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                   <div class="modal-content">
                       <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
                               class="fa-solid fa-xmark text-dark"></i></button>
-                      <div class="modal-body py-sm-5 modal-dialog-centered">
+                      <div class="modal-body py-sm-5 ">
                           <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
                             <div class="success_popup_inner position-relative">
                                 <button type="button" data-bs-dismiss="modal" class="modal-close position-absolute top-0 end-0"
@@ -890,9 +887,9 @@
           {{-- PAYMENT ERROR-POPOUP START --}}
           <div class="modal fade payment_details_popup" id="payment_error_" data-bs-backdrop="static"
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-fullscreen">
+              <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                   <div class="modal-content">
-                      <div class="modal-body py-sm-5 modal-dialog-centered">
+                      <div class="modal-body py-sm-5 ">
                           <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
                               <div class="success_popup_inner position-relative">
                                 <button type="button" data-bs-dismiss="modal" class="modal-close position-absolute top-0 end-0"

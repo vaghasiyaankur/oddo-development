@@ -361,9 +361,6 @@
                             </div>
 
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
-                                @php
-                                    $selectBed = Request()->bed;
-                                @endphp
                                 <label>Beds</label>
                                 <div class="bed-selector ">
                                     <div class="select-div d-flex justify-content-between align-items-center">
@@ -1219,16 +1216,7 @@
             var checkOut = $("input[name=value_from_end_date]").val();
             var guest = $("select[name=guest]").val();
             var room = $("select[name=room]").val();
-            // var bed = $("input[class='hotelBeds']:checked").val();
-            // var bed = $(".hotelBeds").prop("checked", true);
-            // $('.hotelBeds').each(function() {
-            //     if ($(this).prop("checked", true)) {
-            //         console.log($(this).data('value'));
-            //         var cat = $(this).data('value').replace("&", "%26").replace("+", "%2B"); 
-            //         category.push(cat);
-            //     }
-            // });
-
+            
             var bed = new Array();
             $('input[name="bed"]:checked').each(function() {
                 bed.push($(this).val());
@@ -1262,7 +1250,7 @@
             var starRating = $('.starRating:checked').val();
 
             // var sortBy = $('.sortBy').val();
-            // var topFilter = $('.topFilter').val();
+            // var topFilter = $('.topFilter').val();   
             // var style = $('.style').val();
             // var propertyStar = $('.propertyStar').val();
             // var amenityValue = $('.amenityValue').val();
@@ -1302,18 +1290,20 @@
 
             function addRoom($number) {
                 let searchParams = new URLSearchParams(window.location.search)
-                let bed = searchParams.get('bed').split(",");
-                var king = '';
-                var queen = '';
-                var twin = '';
-                if(bed.includes('King')){
-                    king = 'checked';
-                }
-                if(bed.includes('Queen')){
-                    queen = 'checked';
-                }
-                if(bed.includes('twin')){
-                    twin = 'checked';
+                if(!searchParams){
+                    let bed = searchParams.get('bed').split(",");
+                    var king = '';
+                    var queen = '';
+                    var twin = '';
+                    if(bed.includes('King')){
+                        king = 'checked';
+                    }
+                    if(bed.includes('Queen')){
+                        queen = 'checked';
+                    }
+                    if(bed.includes('twin')){
+                        twin = 'checked';
+                    }
                 }
                 $room = $(`<div class="room"><div class="title-container">
                             <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
