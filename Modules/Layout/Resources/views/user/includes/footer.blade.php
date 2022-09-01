@@ -15,7 +15,7 @@
                           <div class="icon-inner me-2"><i class="fa-brands fa-linkedin text-white"></i></div>
                       </div>
                   </div>
-                  <div class="col-lg-2 col-md-6 mt-3 mt-lg-0 mb-3 mb-lg-0">
+                  <div class="col-lg-2 col-sm-6 mt-3 mt-lg-0 mb-3 mb-lg-0">
                       <div class="footer-link">
                           <h5 class="purple">Products</h5>
                           <ul class="nav flex-column">
@@ -31,7 +31,7 @@
                           </ul>
                       </div>
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
+                  <div class="col-lg-2 col-sm-6 mb-3 mb-lg-0">
                       <div class="footer-link">
                           <h5 class="purple">Customers</h5>
                           <ul class="nav flex-column">
@@ -40,11 +40,11 @@
                               </li>
                               <li class="nav-item">
                                   <a class="nav-link ps-0" href="#"> Reviews</a>
-                              </li>
+                              </li> 
                           </ul>
                       </div>
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
+                  <div class="col-lg-2 col-sm-6 mb-3 mb-lg-0">
                       <div class="footer-link">
                           <h5 class="purple">Company</h5>
                           <ul class="nav flex-column">
@@ -69,7 +69,7 @@
                           </ul>
                       </div> 
                   </div>
-                  <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
+                  <div class="col-lg-2 col-sm-6 mb-3 mb-lg-0">
                       <div class="footer-link">
                           <h5 class="purple">Resources</h5>
                           <ul class="nav flex-column">

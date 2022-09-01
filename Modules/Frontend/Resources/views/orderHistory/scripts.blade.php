@@ -1,14 +1,16 @@
 <script>
 
-    // var baseUrl = $('#base_url').val();
+    var baseUrl = $('#base_url').val();
 
-    // $. ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
+    $. ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $(document).ready(function() {
+        $(".starrate span.ctrl").width($(".starrate span.cont").width());
+        $(".starrate span.ctrl").height($(".starrate span.cont").height());
 
         // star rating
         $(document).on('click', '.star', function() {
@@ -98,7 +100,40 @@
         });
 
         $(document).on('click', '.reviewPopUp', function(){
-            var reviewDetail = $(this).data('id');
+            var reviewId = $(this).data('id');
+
+            formdata = new FormData();
+            formdata.append('reviewId', reviewId);
+
+            $.ajax({
+                url: "{{route('show.review')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    $(".ratingFormViewPopUp").html(response);
+                    $('.reviews-popup-main').modal('show');
+
+                    var valueHover = $('#starrate').data('val');
+        upStars(valueHover);
+                }, error:function (response) {
+
+                }
+            });
+
         });
     });
+
+    // set rating popup
+    function upStars(val) {
+        var val = parseFloat(val);
+        var full = Number.isInteger(val);
+        val = parseInt(val);
+        var stars = $("#starrate img");
+
+        stars.slice(0, val).attr("src", ""+baseUrl+"/assets/images/icons/star.png");
+        if (!full) { stars.slice(val, val + 1).attr("src", ""+baseUrl+"/assets/images/icons/half-star.png"); val++ }
+        stars.slice(val, 5).attr("src", "");
+    }
 </script>

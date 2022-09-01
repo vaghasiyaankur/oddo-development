@@ -6,7 +6,13 @@
 
 
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <style>
+        .starrate i.activeStar {
+            color: gold;
+            font-size: 17px;
+        }
+
         .review_details_popup .accordion-button::after {
             content: "" !important;
             margin-left: 11px;
@@ -100,13 +106,14 @@
             -webkit-transform: rotate(35deg);
             transform: rotate(35deg);
         }
-        .order-history{
+
+        .order-history {
             min-height: 575px;
         }
 
 
 
-        .order-history .order-history-details .accordion .reviewBtn  {
+        .order-history .order-history-details .accordion .reviewBtn {
             border: 1px solid lightgray;
             padding: 8px 14px;
             font-weight: 600;
@@ -126,7 +133,7 @@
             width: 100%;
             max-width: 852px;
             /* height: 100%;
-                max-height: 746px; */
+                    max-height: 746px; */
             background: #ffffff;
             border-radius: 8px;
             margin: 0 auto;
@@ -176,7 +183,8 @@
             font-size: 14px;
             line-height: 24px;
         }
-        .reviews-popup-main .review-popup-img{
+
+        .reviews-popup-main .review-popup-img {
             width: 100%;
             max-width: 235px;
         }
@@ -194,87 +202,84 @@
             <div class="order-history-details">
                 <div class="accordion" id="accordionExample">
 
-                        @forelse ($orderHistorys as $orderHistory)
-
+                    @forelse ($orderHistorys as $orderHistory)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <div class="d-flex flex-wrap align-items-center p-3 justify-content-sm-evenly justify-content-start j_c_center"
-                                    href="#collapse_{{ $orderHistory->UUID }}" data-bs-toggle="collapse" aria-expanded="false"
-                                    aria-controls="collapseExample">
+                                    href="#collapse_{{ $orderHistory->UUID }}" data-bs-toggle="collapse"
+                                    aria-expanded="false" aria-controls="collapseExample">
                                     <a class="btn p-0 mb-2">
-                                        <img src="{{  asset('assets/images/icons/downarrow.png') }}">
+                                        <img src="{{ asset('assets/images/icons/downarrow.png') }}">
                                     </a>
                                     <div class="col_id fs-6">Order Id: {{ $orderHistory->UUID }}</div>
                                     <div class="col_totl fs-6 mt-1 mt-md-0">Total:$ {{ $orderHistory->rent }}</div>
                                     <div
                                         class="col_amt fs-6 d-flex flex-wrap align-items-center justify-content-sm-center mt-2 mt-md-0">
-                                        <img src="{{  asset('assets/images/icons/order-d_right-icon.png') }}" alt="">
-                                        <span class="ps-1">Purchesed on </span><span class="ps-1 mt-1 mt-md-0">{!! date('d M y', strtotime($orderHistory->start_date)) !!}</span>
+                                        <img src="{{ asset('assets/images/icons/order-d_right-icon.png') }}" alt="">
+                                        <span class="ps-1">Purchesed on </span><span
+                                            class="ps-1 mt-1 mt-md-0">{!! date('d M y', strtotime($orderHistory->start_date)) !!}</span>
                                     </div>
                                 </div>
                             </h2>
-                            <div id="collapse_{{ $orderHistory->UUID }}" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                data-bs-parent="#accordionExample">
+                            <div id="collapse_{{ $orderHistory->UUID }}" class="accordion-collapse collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body p-0">
                                     <div class="order-id d-flex flex-wrap align-items-center justify-content-evenly">
                                         <p class="mb-0 or-id">Order Id: {{ $orderHistory->UUID }}</p>
                                         <p class="mb-0 or-total">Total: ${{ $orderHistory->rent }}</p>
                                         <div
                                             class="purches-date d-flex flex-wrap align-items-center justify-content-center ms-sm-3">
-                                            <img src="{{  asset('assets/images/icons/order-right-icon.png') }}" class="pe-1" alt="">
-                                            <span class="ps-1">Purchesed on </span><span class="ps-1">{!! date('d M y', strtotime($orderHistory->start_date)) !!}</span>
+                                            <img src="{{ asset('assets/images/icons/order-right-icon.png') }}"
+                                                class="pe-1" alt="">
+                                            <span class="ps-1">Purchesed on </span><span
+                                                class="ps-1">{!! date('d M y', strtotime($orderHistory->start_date)) !!}</span>
                                         </div>
                                     </div>
                                     <div class="order-id-inner">
                                         <div class="row">
                                             <div class="recipt_button text-end mt-3">
-
-                                                @foreach ($reviews as $key => $review)
-                                                    @if ($review->hotel_id == $orderHistory->hotel_id)
-
-                                                        <div class="recipt_button text-end mt-3">
-                                                            <a href="javascript:;" data-bs-toggle="modal"
-                                                                data-bs-target="#review_view_popup" class="reviewPopUp" data-id="{{ $orderHistory->UUID }}">
-                                                                <span class="reviewBtn me-5 ">View Review</span>
-                                                            </a>
-                                                        </div>
-
-                                                    @else
-
-                                                        <a href="javascript:;" data-id="{{ $orderHistory->UUID }}"  data-bs-toggle="modal"
-                                                        data-bs-target="#review__popup" id="popUp">
-                                                            <span class="recipt-btn me-4">+ Add Review</span>
+                                                @php $review = $reviews->where('hotel_id', $orderHistory->hotel_id)->first() @endphp
+                                                @if ($review)
+                                                    <div class="recipt_button text-end mt-3">
+                                                        <a href="javascript:;" data-bs-toggle="modal" class="reviewPopUp"
+                                                            data-id="{{ $review->UUID }}">
+                                                            <span class="reviewBtn me-5 ">View Review</span>
                                                         </a>
-                                                    @endif
-                                                    @endforeach
+                                                    </div>
+                                                @else
+                                                    <a href="javascript:;" data-id="{{ $orderHistory->UUID }}"
+                                                        data-bs-toggle="modal" data-bs-target="#review__popup"
+                                                        id="popUp">
+                                                        <span class="recipt-btn me-4">+ Add Review</span>
+                                                    </a>
+                                                @endif
 
-                                                    @if (!count($reviews))
-                                                    <a href="javascript:;" data-id="{{ $orderHistory->UUID }}"  data-bs-toggle="modal"
-                                                        data-bs-target="#review__popup" id="popUp">
-                                                            <span class="recipt-btn me-4">+ Add Review</span>
-                                                        </a>
-                                                    @endif
-
-
-                                                <input type="hidden" id="hotel_id_{{ $orderHistory->UUID }}" value="{{ $orderHistory->hotel_id }}">
-                                                <input type="hidden" id="room_id_{{ $orderHistory->UUID }}" value="{{ $orderHistory->room_id }}">
+                                                <input type="hidden" id="hotel_id_{{ $orderHistory->UUID }}"
+                                                    value="{{ $orderHistory->hotel_id }}">
+                                                <input type="hidden" id="room_id_{{ $orderHistory->UUID }}"
+                                                    value="{{ $orderHistory->room_id }}">
                                             </div>
                                             <div class="col-12 col-lg-6 left-order-list">
                                                 <span class="h-btn">Hotels</span>
                                                 <div class="holiday-details">
-                                                    <h5 class="h--title ms-2">{{  $orderHistory->hotel->property_name }}</h5>
+                                                    <h5 class="h--title ms-2">{{ $orderHistory->hotel->property_name }}
+                                                    </h5>
                                                     <div class="h-date d-flex align-items-center">
-                                                        <img src="{{  asset('assets/images/icons/order-hotel-icon.png') }}" alt="">
+                                                        <img src="{{ asset('assets/images/icons/order-hotel-icon.png') }}"
+                                                            alt="">
                                                         <p class="m-0 pe-2">{!! date('M d,Y', strtotime($orderHistory->start_date)) !!}</p>
-                                                        <img src="{{  asset('assets/images/icons/order-h-eroow.png') }}" alt="">
+                                                        <img src="{{ asset('assets/images/icons/order-h-eroow.png') }}"
+                                                            alt="">
                                                         <p class="m-0 ps-2">{!! date('M d,Y', strtotime($orderHistory->end_date)) !!}</p>
                                                     </div>
                                                     <div class="h-pepl d-flex align-items-center">
-                                                        <img src="{{  asset('assets/images/icons/order-hotel-icon2.png') }}" alt="">
+                                                        <img src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}"
+                                                            alt="">
                                                         <p class="m-0">2 Guests, 1 Infant</p>
                                                     </div>
                                                     <div class="h-room d-flex align-items-center">
-                                                        <img src="{{  asset('assets/images/icons/order-hotel-icon3.png') }}" alt="">
+                                                        <img src="{{ asset('assets/images/icons/order-hotel-icon3.png') }}"
+                                                            alt="">
                                                         <p class="m-0">2 Rooms, 1 King, 2 Queen</p>
                                                     </div>
                                                     <div class="h-totl d-flex justify-content-between align-items-center">
@@ -282,8 +287,8 @@
                                                             <p class="m-0 h--totl ms-2 mt-2">Total</p>
                                                         </div>
                                                         <div class="d-flex align-items-center">
-                                                            <p class="m-0 pe-2 h-amount">$ {{ $orderHistory->rent }}</p><span
-                                                                class="h--totl text-muted">for 8 nights</span>
+                                                            <p class="m-0 pe-2 h-amount">$ {{ $orderHistory->rent }}</p>
+                                                            <span class="h--totl text-muted">for 8 nights</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -291,7 +296,8 @@
                                             <div class="col-12 col-lg-6 right-order-list">
                                                 <span class="h-btn">Transportation</span>
                                                 <div class="transpot-details p-3">
-                                                    <img src="{{  asset('assets/images/icons/order-transpot-icon.png') }}" alt="">
+                                                    <img src="{{ asset('assets/images/icons/order-transpot-icon.png') }}"
+                                                        alt="">
                                                     <div class="h-totl d-flex justify-content-between align-items-center">
                                                         <div>
                                                             <p class="m-0 h--totl ms-2 mt-2">Total</p>
@@ -308,19 +314,19 @@
                                 </div>
                             </div>
                         </div>
-                        @empty
+                    @empty
 
-                        @endforelse
-                    </div>
+                    @endforelse
+                </div>
             </div>
         </div>
     </section>
     {{-- HOTEL REVIEW POPOUP START --}}
     <div class="modal fade review_details_popup" id="review__popup" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-dialog modal-fullscreen modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body py-sm-5 modal-dialog-centered">
+                <div class="modal-body py-sm-5 ">
                     <div class="review--box">
                         <div class="review--title d-flex justify-content-between align-items-center mb-3">
                             <h5 style="color: #6a78d2;">Add Your Feedback :</h5>
@@ -349,7 +355,7 @@
                                                         "><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="staffReview reviewValue">
+                                                            <input type="hidden" class="staffReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="staff-collapseRating" class="accordion-collapse collapse"
@@ -357,7 +363,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -390,14 +397,15 @@
                                                         <button
                                                             class="accordion-button bg-transparent shadow-none collapsed p-3 py-2"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#Cleanless-collapseRating" aria-expanded="false"
+                                                            data-bs-target="#Cleanless-collapseRating"
+                                                            aria-expanded="false"
                                                             aria-controls="Cleanless-collapseRating">
                                                             <span class="text-muted fs-6">Cleaness</span><span
                                                                 class="badge bg-red text-body fs-12 fw-medium ms-auto ratingColor"
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="cleanessReview reviewValue">
+                                                            <input type="hidden" class="cleanessReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Cleanless-collapseRating" class="accordion-collapse collapse"
@@ -405,7 +413,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -447,7 +456,7 @@
                                                         "><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="roomReview reviewValue">
+                                                            <input type="hidden" class="roomReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Room-collapseRating" class="accordion-collapse collapse"
@@ -455,7 +464,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -488,14 +498,14 @@
                                                         <button
                                                             class="accordion-button bg-transparent shadow-none collapsed p-3 py-2"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#Location-collapseRating" aria-expanded="false"
-                                                            aria-controls="Location-collapseRating">
+                                                            data-bs-target="#Location-collapseRating"
+                                                            aria-expanded="false" aria-controls="Location-collapseRating">
                                                             <span class="text-muted fs-6">Location</span><span
                                                                 class="badge bg-red text-body fs-12 fw-medium ms-auto ratingColor"
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="locationReview reviewValue">
+                                                            <input type="hidden" class="locationReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Location-collapseRating" class="accordion-collapse collapse"
@@ -503,7 +513,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -536,14 +547,15 @@
                                                         <button
                                                             class="accordion-button bg-transparent shadow-none collapsed p-3 py-2"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#Breakfast-collapseRating" aria-expanded="false"
+                                                            data-bs-target="#Breakfast-collapseRating"
+                                                            aria-expanded="false"
                                                             aria-controls="Breakfast-collapseRating">
                                                             <span class="text-muted fs-6">Breakfast</span><span
                                                                 class="badge bg-red text-body fs-12 fw-medium ms-auto ratingColor"
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="breakfastReview reviewValue">
+                                                            <input type="hidden" class="breakfastReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Breakfast-collapseRating" class="accordion-collapse collapse"
@@ -551,7 +563,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -595,7 +608,7 @@
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="serviceStaffReview reviewValue">
+                                                            <input type="hidden" class="serviceStaffReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Service-collapseRating" class="accordion-collapse collapse"
@@ -603,7 +616,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -636,14 +650,15 @@
                                                         <button
                                                             class="accordion-button bg-transparent shadow-none collapsed p-3 py-2"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#property-collapseRating" aria-expanded="false"
-                                                            aria-controls="property-collapseRating">
+                                                            data-bs-target="#property-collapseRating"
+                                                            aria-expanded="false" aria-controls="property-collapseRating">
                                                             <span class="text-muted fs-6">Property condition</span><span
                                                                 class="badge bg-red text-body fs-12 fw-medium ms-auto ratingColor"
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="propertyConditionReview reviewValue">
+                                                            <input type="hidden"
+                                                                class="propertyConditionReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="property-collapseRating" class="accordion-collapse collapse"
@@ -651,7 +666,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -691,7 +707,7 @@
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="priceQualityReview reviewValue">
+                                                            <input type="hidden" class="priceQualityReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Price-collapseRating" class="accordion-collapse collapse"
@@ -699,7 +715,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -732,14 +749,15 @@
                                                         <button
                                                             class="accordion-button bg-transparent shadow-none collapsed p-3 py-2"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#Amenities-collapseRating" aria-expanded="false"
+                                                            data-bs-target="#Amenities-collapseRating"
+                                                            aria-expanded="false"
                                                             aria-controls="Amenities-collapseRating">
                                                             <span class="text-muted fs-6">Amenities</span><span
                                                                 class="badge bg-red text-body fs-12 fw-medium ms-auto ratingColor"
                                                                 style="color: #fff !important"><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="amenityReview reviewValue">
+                                                            <input type="hidden" class="amenityReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Amenities-collapseRating" class="accordion-collapse collapse"
@@ -747,7 +765,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -780,8 +799,8 @@
                                                         <button
                                                             class="accordion-button bg-transparent shadow-none collapsed p-3 py-2"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#Internet-collapseRating" aria-expanded="false"
-                                                            aria-controls="Internet-collapseRating">
+                                                            data-bs-target="#Internet-collapseRating"
+                                                            aria-expanded="false" aria-controls="Internet-collapseRating">
                                                             <span class="text-muted fs-6">Internet</span><span
                                                                 class="badge bg-red text-body fs-12 fw-medium ms-auto ratingColor"
                                                                 style="
@@ -789,7 +808,7 @@
                                                         "><i
                                                                     class="mdi mdi-star text-warning pe-1"></i><span
                                                                     class="cleanessSpan">0</span>/5</span>
-                                                                    <input type="hidden" class="internetReview reviewValue">
+                                                            <input type="hidden" class="internetReview reviewValue">
                                                         </button>
                                                     </h2>
                                                     <div id="Internet-collapseRating" class="accordion-collapse collapse"
@@ -797,7 +816,8 @@
                                                         <div class="accordion-body text-body p-2 pt-0">
                                                             <div class="d-flex flex-column gap-2">
                                                                 <div class="form-check ps-2">
-                                                                    <label class="form-check-label" for="productratingRadio4">
+                                                                    <label class="form-check-label"
+                                                                        for="productratingRadio4">
                                                                         <span class="text-muted">
                                                                             <ul class="ratingW ps-0">
                                                                                 <li><a href="javascript:void(0);">
@@ -831,19 +851,20 @@
                                 <div class="row mt-2 mb-4">
                                     <div class="col-12">
                                         <div>
-                                            <label for="exampleFormControlTextarea5" class="form-label fs-5">Add Your Feedback
+                                            <label for="exampleFormControlTextarea5" class="form-label fs-5">Add Your
+                                                Feedback
                                                 :</label>
                                             <textarea class="form-control feedbackReview" id="exampleFormControlTextarea5" rows="3"
                                                 placeholder="Please enter your feedback here !"></textarea>
                                         </div>
-                                            <span class="text-danger" id="feedbackReview-error"></span>
+                                        <span class="text-danger" id="feedbackReview-error"></span>
                                     </div>
                                 </div>
                                 <input type="hidden" class="hotel_id" value="0">
                                 <input type="hidden" class="room_id" value="0">
                                 <div class="feedback-btn text-end ">
-                                    <button class="btn w-100 reviewSubmit"
-                                        style="background-color: #6a78d2;border: 1px solid #6a78d5;color: #fff;">Submit</button>
+                                    <a href="javascript:void(0);" class="btn w-100 reviewSubmit"
+                                        style="background-color: #6a78d2;border: 1px solid #6a78d5;color: #fff;">Submit</a>
                                 </div>
                             </form>
                         </div>
@@ -853,11 +874,14 @@
         </div>
     </div>
     {{-- HOTEL REVIEW POPOUP END --}}
-
-    @include('frontend::orderHistory.view')
+    <div class="ratingFormViewPopUp">
+        @include('frontend::orderHistory.view')
+    </div>
 @endsection
 
 
 @push('script')
-@include('frontend::orderHistory.scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    @include('frontend::orderHistory.scripts')
 @endpush

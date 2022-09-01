@@ -93,6 +93,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
     Route::prefix('order')->controller(OrderHistoryController::class)->group(function(){
         Route::get('/history', 'index')->name('orderhistory.index');
         Route::post('/store', 'store')->name('add.review');
+        Route::post('/view', 'show')->name('show.review');
     });
 });
 
