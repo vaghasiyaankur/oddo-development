@@ -25,7 +25,7 @@ class HotelTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        
+
         $propertyTypes = PropertyType::get();
         $cities = City::get();
 
@@ -41,7 +41,7 @@ class HotelTableSeeder extends Seeder
         $user = [2,3];
 
         foreach($propertyTypes as $k => $type){
-            foreach($cities as $key => $city){ 
+            foreach($cities as $key => $city){
                 $hotel = [
                         'property_name'  => $faker->name,
                         'star_rating' => rand(1,5),
@@ -64,7 +64,7 @@ class HotelTableSeeder extends Seeder
                         'check_in' => '12:00 AM',
                         'check_out' => '12:00 AM',
                         'amenity_id' => rand(1,13),
-                        'property_id' => $type->id,   
+                        'property_id' => $type->id,
                         'status' => 1,
                         'user_id' => $user[array_rand($user)],
                 ];
@@ -80,7 +80,7 @@ class HotelTableSeeder extends Seeder
 
                 $roomListEntry = RoomList::create($roomList);
 
-                $room = 
+                $room =
                     [
                         'custom_name_room' => $faker->name,
                         'smoking_policy'   => $smokingPolicy[array_rand($smokingPolicy)],
@@ -102,7 +102,7 @@ class HotelTableSeeder extends Seeder
 
                 $bed = [
                         'no_of_bed' => rand(1,3),
-                        'bed_id'    => rand(1,4),
+                        'bed_id'    => rand(1,3),
                         'room_id'   => $roomEntry->id,
                 ];
 
@@ -114,12 +114,12 @@ class HotelTableSeeder extends Seeder
                         'photos_path' => Null,
                         'room_id'     => $roomEntry->id,
                         'hotel_id'    => $hotelEntry->id,
-                ];   
+                ];
 
-                
+
                 $photoEntry = HotelPhoto::create($photo);
             }
-        }   
+        }
     }
-    
+
 }

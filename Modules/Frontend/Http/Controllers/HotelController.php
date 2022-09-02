@@ -33,7 +33,7 @@ class HotelController extends Controller
         $searchProperty = request()->searchProperty;
 
         $booking = HotelBooking::select('UUID')->latest()->first();
-        
+
         $paymentGateways = paymentGetways::active()->get();
         $hotelAmounts = array();
         if($search){
@@ -42,15 +42,15 @@ class HotelController extends Controller
             $hotels = Hotel::with('country', 'city', 'room' )
                     // ->orwhere('property_name', 'like', '%'.$search.'%')
                     // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
-                    ->orWhereRelation('city', 'name', 'like', '%'.$search.'%')
+                    ->whereRelation('city', 'name', 'like', '%'.$search.'%')
                     ->whereRelation('room', 'guest_stay_room', $guest)
                     ->whereRelation('room', 'number_of_room', $room)
-                    ->orWhereHas('hotelBed.bedType', function($query) use ($bed) {
-                        $query->whereIn('bed_type', $bed);                    
+                    ->WhereHas('hotelBed.bedType', function($query) use ($bed) {
+                        $query->whereIn('bed_type', $bed);
                     })
-                    ->active()->latest()->paginate(2);
-            
-                    $hotelAmounts = array(); 
+                    ->active()->latest()->paginate(10);
+
+                    $hotelAmounts = array();
                     if($hotels){
                         foreach($hotels as $hotel){
                         $amount = $hotel->room->price_room;
