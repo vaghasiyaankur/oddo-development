@@ -48,7 +48,7 @@
                             <div class="text-center mt-sm-5 mb-4 text-white-50">
                                 <div>
                                     <a href="index.html" class="d-inline-block auth-logo">
-                                        <img src="assets/images/logo-light.png" alt="" height="20">
+                                        <img src="{{ asset('assets/Admin/assets/images/logo-light.png') }}" alt="" height="20">
                                     </a>
                                 </div>
                                 {{-- <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p> --}}
@@ -67,8 +67,10 @@
                                         <p class="text-muted">Sign in to continue to Odda.</p>
                                     </div>
 
-                                    @if(session('error'))
-                                    <div class="alert alert-danger mb-0 p-2 pl-3" style="position: absolute;width:85%;text-align:center;">{{session('error')}}</div>
+                                    @if(session()->has('error'))
+                                    <div class="alert alert-danger mb-0 p-2 pl-3" style="position: absolute;width:85%;text-align:center;">
+                                            {{ session()->get('error') }}
+                                        </div>
                                     @endif
                                     <div class="p-2 mt-3">
                                         <form action="{{route('admin.login')}}" method="POST" style="position: relative;margin-top:35px;">
@@ -139,7 +141,7 @@
         <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
         <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script>
         <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
-        <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script>
+        {{-- <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script> --}}
 
         <!-- particles js -->
         <script src="{{ asset('assets/Admin/assets/libs/particles.js/particles.js') }}"></script>

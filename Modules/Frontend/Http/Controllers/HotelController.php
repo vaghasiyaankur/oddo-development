@@ -45,7 +45,7 @@ class HotelController extends Controller
                     ->whereRelation('city', 'name', 'like', '%'.$search.'%')
                     ->whereRelation('room', 'guest_stay_room', $guest)
                     ->whereRelation('room', 'number_of_room', $room)
-                    ->WhereHas('hotelBed.bedType', function($query) use ($bed) {
+                    ->whereHas('hotelBed.bedType', function($query) use ($bed) {
                         $query->whereIn('bed_type', $bed);
                     })
                     ->active()->latest()->paginate(10);
