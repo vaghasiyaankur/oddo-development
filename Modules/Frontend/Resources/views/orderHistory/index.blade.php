@@ -133,7 +133,7 @@
             width: 100%;
             max-width: 852px;
             /* height: 100%;
-                    max-height: 746px; */
+                        max-height: 746px; */
             background: #ffffff;
             border-radius: 8px;
             margin: 0 auto;
@@ -315,7 +315,6 @@
                             </div>
                         </div>
                     @empty
-
                     @endforelse
                 </div>
             </div>
@@ -850,7 +849,7 @@
                                 </div>
                                 <div class="row mt-2 mb-4">
                                     <div class="col-12">
-                                        <div>
+                                        <div class="mb-2">
                                             <label for="exampleFormControlTextarea5" class="form-label fs-5">Add Your
                                                 Feedback
                                                 :</label>

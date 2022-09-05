@@ -341,7 +341,7 @@
                                     <option {{ $selectGuest == '5' ? 'selected' : '' }}>5</option>
                                     <option {{ $selectGuest == '6' ? 'selected' : '' }}>6</option>
                                     <option {{ $selectGuest == '7' ? 'selected' : '' }}>7</option> --}}
-                                </select>
+                                </select> 
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 @php
@@ -357,7 +357,7 @@
                                     <option {{ $selectRoom == '5' ? 'selected' : '' }}>5</option>
                                     <option {{ $selectRoom == '6' ? 'selected' : '' }}>6</option>
                                     <option {{ $selectRoom == '7' ? 'selected' : '' }}>7</option> --}}
-                                </select>
+                                </select> 
                             </div>
 
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
@@ -411,11 +411,11 @@
                                     </div>
                                 </div>
                                 <!-- <label>Bed</label>
-                                                <select class="select2-icon" name="icon" multiple="multiple">
-                                                <option value="fa-bed" data-icon="fa-bed">2</option>
-                                                <option value="fa-bed" data-icon="fa-bed">1</option>
-                                                <option value="fa-bed" data-icon="fa-bed">3</option>
-                                                </select> -->
+                                        <select class="select2-icon" name="icon" multiple="multiple">
+                                        <option value="fa-bed" data-icon="fa-bed">2</option>
+                                        <option value="fa-bed" data-icon="fa-bed">1</option>
+                                        <option value="fa-bed" data-icon="fa-bed">3</option>
+                                        </select> -->
                             </div>
                             <div class="check-in-out-btn mt-4 text-xl-end text-center col-lg-3">
                                 <a href="#" class="btn search-btn purple" id='SubmitSearch'>Search</a>

@@ -1,12 +1,12 @@
 @media screen and (max-width: 991px) {
-    header.header .navbar .navbar-nav .nav-item{
+    header.header .navbar .navbar-nav .nav-item {
         padding-right: 0;
     }
-    .header .list-properties .list-properties-btn{
+    .header .list-properties .list-properties-btn {
         background: #eef1f7;
         border: 1px solid #eef1f7;
     }
-    header.header .navbar .dropdown .dropdown-btn{
+    header.header .navbar .dropdown .dropdown-btn {
         background: #eef1f7;
         border: 1px solid #eef1f7;
     }
@@ -135,6 +135,7 @@
         .hotel-sort-popup {
         padding: 22px;
     }
+   
     .h-details-title .h-details-title-box .h-details-heading h2 {
         font-size: 32px;
         line-height: 32px;
@@ -398,6 +399,11 @@
         display: block;
         width: 100%;
     }
+    .hotel-result.search-result .search-result-inner .result-main-content .result-main-img img.img-wrapper {
+        height: 100%;
+        min-height: 215px !important;
+        max-height: 215px !important;
+    }
 }
 @media screen and (max-width: 480px) {
     .hotel-result.search-result
@@ -565,11 +571,15 @@
 
 /* --------hotel page payment popup start--------- */
 
-@media screen and (max-width:520px) {
-    .payment_details_popup .payment_details_inner .holiday-details{
+@media screen and (max-width: 520px) {
+    .payment_details_popup .payment_details_inner .holiday-details {
         padding: 24px 5px;
     }
-    .payment_details_popup .payment_details_inner .payment--detail-box .hotel--img img{
+    .payment_details_popup
+        .payment_details_inner
+        .payment--detail-box
+        .hotel--img
+        img {
         right: 17px;
     }
 }
