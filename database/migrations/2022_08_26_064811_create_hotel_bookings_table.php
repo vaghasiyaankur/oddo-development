@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('attachment')->nullable();
             $table->text('start_date')->nullable();
             $table->text('end_date')->nullable();
+            $table->text('day_diff')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('hotel_id')->references('id')->on('hotels');

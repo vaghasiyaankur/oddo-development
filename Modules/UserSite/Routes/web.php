@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Schema;
 
 Route::prefix('user')->group(function() {
     Route::middleware(['auth', 'user-access:user'])->group(function(){
-    Route::controller(UserController::class)->group(function(){
+        Route::controller(UserController::class)->group(function(){
             Route::get('/home', 'index')->name('user.view');
             Route::get('property-list', 'propertyList')->name('property.List');
         });
@@ -46,9 +46,9 @@ Route::prefix('user')->group(function() {
             Route::view('layout-form', 'usersite::add-layout')->name('layout-form');
             Route::get('layout-pricing-form', 'layout_pricing')->name('layout-pricing-form');
             Route::post('room-lists', 'room_list')->name('room-lists');
-            Route::get('room-list', 'room_lists')->name('room-list'); 
+            Route::get('room-list', 'room_lists')->name('room-list');
             Route::get('amenities', 'amenities')->name('amenities');
-            Route::post('add-room', 'add_room')->name('add-room'); 
+            Route::post('add-room', 'add_room')->name('add-room');
             Route::post('add-facilities', 'add_facilities')->name('add-facilities');
             Route::post('add-amenities', 'add_amenities')->name('add-amenities');
             Route::view('photos', 'usersite::photo')->name('photo');
@@ -56,7 +56,7 @@ Route::prefix('user')->group(function() {
             Route::view('policy', 'usersite::policies')->name('policy');
             Route::post('add-policy', 'add_policy')->name('add-policy');
 
-            
+
             // edit Property
             Route::get('edit/basic-info/{id}', 'editProperty')->name('edit.proeprty');
             Route::post('update-property-form', 'updateProperty')->name('update-property-form');
@@ -78,6 +78,10 @@ Route::prefix('user')->group(function() {
             // delete Property
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
             Route::post('deleteRoom/{id}', 'deleteRoom')->name('delete.room');
+        });
+        Route::controller(BookingController::class)->group(function(){
+            // Route::view('/booking', 'usersite::user.booking')->name('booking');
+            Route::get('booking', 'index')->name('booking');
         });
     });
 });

@@ -845,8 +845,8 @@
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                   <div class="modal-content">
-                      <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
-                              class="fa-solid fa-xmark text-dark"></i></button>
+                      {{-- <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                              class="fa-solid fa-xmark text-dark"></i></button> --}}
                       <div class="modal-body py-sm-5 ">
                           <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
                             <div class="success_popup_inner position-relative">
