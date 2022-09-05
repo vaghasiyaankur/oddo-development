@@ -1,5 +1,5 @@
   {{-- loader --}}
-  <div class="loading_spiner_" style="display: none">
+  <div class="loading_spiner_ d-none">
       <div class="spinner mx-auto"></div>
   </div>
   @if (count($hotels))
@@ -71,7 +71,7 @@
                                       </p>
                                       <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
                                           {{ @$hotel->pos_code }}</p>
-                                  </div> 
+                                  </div>
 
                                   {{-- <div class="middle-content-location">
                                     <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
@@ -219,7 +219,7 @@
                                                                               class="comment-reviews-heading d-flex justify-content-between align-items-center mt-4 flex-wrap">
                                                                               <div class="comment-reviews-text">
                                                                                   <h5>Reviews (1024)</h5>
-                                                                              </div>                                                    
+                                                                              </div>
                                                                           </div>
                                                                           <div class="reviews-comment-text-main mt-4">
                                                                               <div class="row border-bottom mt-3">
@@ -732,13 +732,13 @@
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
               @if (count($hotelAmounts))
-                @foreach ($hotelAmounts as  $hotelAmount) 
+                @foreach ($hotelAmounts as  $hotelAmount)
                   @foreach ($hotelAmount as $key => $item)
                     @if ($key == $hotel->id)
                       <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$item }} USD</button>
                       <input type="hidden" value="{{ @$item }}"
                                           class="amount_data_{{ $hotel->UUID }}">
-                    @endif   
+                    @endif
                   @endforeach
                 @endforeach
               @else
@@ -797,11 +797,11 @@
                                                   <div class="d-flex align-items-center">
                                                       <p class="m-0 pe-2 h-amount">$
                                                         @if (count($hotelAmounts))
-                                                          @foreach ($hotelAmounts as  $hotelAmount) 
+                                                          @foreach ($hotelAmounts as  $hotelAmount)
                                                             @foreach ($hotelAmount as $key => $item)
                                                               @if ($key == $hotel->id)
                                                                 {{ @$item }}
-                                                              @endif   
+                                                              @endif
                                                             @endforeach
                                                           @endforeach
                                                         @endif

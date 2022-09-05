@@ -14,6 +14,7 @@ use Slim\Http\Response;
 use Stripe\Stripe;
 use Mail;
 use App\Mail\PaymentSuccess;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -23,6 +24,10 @@ class PaymentController extends Controller
         $api = new Api(config('services.razorpay.key'), config('services.razorpay.secret'));
 
         $payment = $api->payment->fetch($input['razorpay_payment_id']);
+
+        $start_date = Carbon::createFromFormat('m/d/Y', $input['start_date'])->format('Y-m-d');
+        $end_date = Carbon::createFromFormat('m/d/Y', $input['end_date'])->format('Y-m-d');
+
 
         if(count($input)  && !empty($input['razorpay_payment_id'])) {
             try {
@@ -42,6 +47,8 @@ class PaymentController extends Controller
                 $hotel_booking->room_id = $input['room_id'];
                 $hotel_booking->rent = $payment['amount']/100;
                 $hotel_booking->payment_method_id = $input['payment_id'];
+                $hotel_booking->start_date = $start_date;
+                $hotel_booking->end_date = $end_date;
                 $hotel_booking->save();
 
             } catch (Exception $e) {
@@ -61,7 +68,9 @@ class PaymentController extends Controller
         $paymentData = [
             'hotel_id' => $request->hotel_id,
             'payment_id' => $request->payment_id,
-            'room_id' => $request->room_id
+            'room_id' => $request->room_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
         ];
 
         Session::put('paymentData', $paymentData);
@@ -90,7 +99,9 @@ class PaymentController extends Controller
 
     public function StripeSucceed(Request $request){
         $paymentStripe = Session::get('paymentStripe');
+        // dd($paymentStripe->toarray());
         $paymentData = Session::get('paymentData');
+
         $Payment = new Payment();
         $Payment->amount =  $paymentStripe->amount_total/100;
         $Payment->description = 'test mode';
@@ -99,7 +110,6 @@ class PaymentController extends Controller
         $Payment->payment_id = $paymentStripe->payment_intent;
         $Payment->hotel_id = $paymentData['hotel_id'];
         $Payment->save();
-        // dd($paymentStripe->toarray());
 
         $hotel_booking = new HotelBooking;
         $hotel_booking->user_id = auth()->user()->id;
@@ -107,6 +117,8 @@ class PaymentController extends Controller
         $hotel_booking->room_id = $paymentData['room_id'];
         $hotel_booking->rent = $paymentStripe->amount_total/100;
         $hotel_booking->payment_method_id = $paymentData['payment_id'];
+        $hotel_booking->start_date = Carbon::createFromFormat('m/d/Y', $paymentData['start_date'])->format('Y-m-d');
+        $hotel_booking->end_date = Carbon::createFromFormat('m/d/Y', $paymentData['end_date'])->format('Y-m-d');
         $hotel_booking->save();
 
         Mail::to(auth()->user()->email)->send(new PaymentSuccess);

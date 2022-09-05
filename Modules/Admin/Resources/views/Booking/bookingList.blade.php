@@ -8,6 +8,8 @@
             <th scope="col">Amount</th>
             <th scope="col">Paid Via</th>
             <th scope="col">Payment Status </th>
+            <th scope="col">Start Date </th>
+            <th scope="col">End Date </th>
             <th scope="col">Attachment</th>
             <th scope="col">Actions</th>
         </tr>
@@ -62,6 +64,18 @@
                     <label class="badge-btn-success">Success</label>
                 @endif
                 </div>
+            </td>
+            <td>
+                <div class="loadingShow td-3">
+                    <span></span>
+                </div>
+                <div class="loadingHide">{{ $booking->hotel->check_in }}</div>
+            </td>
+            <td>
+                <div class="loadingShow td-3">
+                    <span></span>
+                </div>
+                <div class="loadingHide">{{ $booking->hotel->check_out }}</div>
             </td>
             <td>
                 <div class="loadingShow td-3">

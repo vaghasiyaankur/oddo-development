@@ -35,7 +35,7 @@
             <label for="exampleInputdate" class="form-label">Currency : <span class="currencySpan"></span></label>
             <select class="form-select mb-3 selectCurrency" aria-label="Default select example">
                 <option disabled>Select your Status </option>
-                @foreach ($currencies as $currency) 
+                @foreach ($currencies as $currency)
                     <option value="{{$currency['code']}}" data-id="{{$currency['symbol']}}" {{ $currency['code'] == $GeneralSetting->currency ? 'selected' : '' }}>{{$currency['code']}}</option>
                 @endforeach
             </select>
@@ -45,9 +45,10 @@
             <input type="text" class="form-control symbol currencySymbol" id="labelInput" placeholder="Currency symbol" value="{{$GeneralSetting->symbol}}">
             <span class="text-danger" id="currencySymbol-error"></span>
         </div>
-       
+
     </div>
-</div> 
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.selectCurrency').change(function(){

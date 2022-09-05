@@ -17,10 +17,9 @@ class BedTypeTableSeeder extends Seeder
     {
 
         $bedTypes = [
-            ['Single bed', '90-130 cm wide'],
-            ['Double bed', '131-150 cm wide'],
-            ['Large bed (King size)', '151-180 cm wide'],
-            ['Extra-large double bed (Super-king size)', '181-210 cm wide'],
+            ['twin', '96.5-188 cm wide'],
+            ['Queen', '153-203 cm wide'],
+            ['King', '183-203 cm wide'],
         ];
 
         foreach ($bedTypes as  list($bed_type, $bed_size)) {
