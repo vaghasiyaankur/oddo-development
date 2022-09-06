@@ -58,6 +58,16 @@ class Hotel extends Model
         return $this->photos()->where('main_photo', 1);
     }
 
+    public function photo()
+    {
+        return $this->hasOne(HotelPhoto::class);
+    }
+
+    public function mainPhotoData()
+    {
+        return $this->photo()->where('main_photo', 1);
+    }
+
     public function city(){
         return $this->belongsTo(City::class, 'city_id');
     }
@@ -112,6 +122,18 @@ class Hotel extends Model
     public function review()
     {
         return $this->hasMany(Review::class, 'id');
+    }
+
+    public function reviewCount($id)
+    {
+        // dd($data);
+        return Review::where('hotel_id',$id)->count();
+    }
+    
+    public function reviewRatings($id)
+    {
+        $data = listHotelRating($id);
+        return $data;
     }
 
     public function hotelBed()

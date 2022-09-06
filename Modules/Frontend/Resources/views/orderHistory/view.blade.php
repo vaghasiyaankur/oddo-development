@@ -29,7 +29,7 @@ tabindex="-1" aria-labelledby="staticBackdropLabel" aria-modal="true" role="dial
                             </div>
                             <div class="total-review mt-2 mb-3 me-5">
                                 <span class="good-text">{{ @$reviewCount >= 2.5 ? 'Good' : 'Bed'}}</span>
-                                <span class="total-review-text ms-3">{{ @$reviewCount }}/5</span>
+                                <span class="total-review-text ms-3 {{@$reviewCount <= 2 ? 'bg-red' : 'bg-green' }}">{{ @$reviewCount }}/5</span>
                             </div>
                         </div>
 

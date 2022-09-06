@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('price_quality')->nullable();
             $table->integer('amenities')->nullable();
             $table->integer('internet')->nullable();
+            $table->integer('total_rating')->nullable();
             $table->string('feedback')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();

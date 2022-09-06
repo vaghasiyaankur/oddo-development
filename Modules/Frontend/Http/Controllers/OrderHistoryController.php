@@ -45,6 +45,8 @@ class OrderHistoryController extends Controller
     {
 
         $id = '';
+        $total = ($request->staffReview + $request->cleanessReview + $request->roomReview + $request->locationReview + $request->breakfastReview + $request->serviceStaffReview + $request->propertyConditionReview + $request->priceQualityReview + $request->amenityReview + $request->internetReview) / 10;
+
         $review = Review::updateOrCreate([ 'id' => $id ], [
            'staff' => $request->staffReview,
            'cleaness' => $request->cleanessReview,
@@ -59,6 +61,7 @@ class OrderHistoryController extends Controller
            'feedback' => $request->feedbackReview,
            'hotel_id' => $request->hotel_id,
            'room_id' => $request->room_id,
+           'total_rating' => $total,
            'user_id' => auth()->user()->id
         ]);
 
@@ -119,5 +122,18 @@ class OrderHistoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function list()
+    {
+        $userId = auth()->user()->id;
+
+        $data['mytime'] = Carbon::now();
+        $data['orderHistorys'] = HotelBooking::where('user_id', $userId)->whereDate('end_date', '<=', Carbon::now())->get();
+        $data['reviews'] = Review::where('user_id', $userId)->get();
+        $data['reviewCount'] = '';
+        $data['ReviewsPopup'] = '';
+
+        return view('frontend::orderHistory.orderHistory_list', $data);
     }
 }

@@ -83,6 +83,7 @@
                 success: function (response) {
                     $(".reviewForm").find('input:text, input:password, input:file, select, textarea').val('');
                     $('#review__popup').modal('hide');
+                    orderHistoryList();
                 }, error:function (response) {
 
                 }
@@ -116,7 +117,7 @@
                     $('.reviews-popup-main').modal('show');
 
                     var valueHover = $('#starrate').data('val');
-        upStars(valueHover);
+                    upStars(valueHover);
                 }, error:function (response) {
 
                 }
@@ -124,6 +125,17 @@
 
         });
     });
+
+    function orderHistoryList() {
+        $.ajax({
+            url: "{{route('list.review')}}",
+            type: "GET",
+            dataType: "HTML",
+            success: function (response) {
+                $(".order-history-details").html(response);
+            }
+        });   
+    }
 
     // set rating popup
     function upStars(val) {

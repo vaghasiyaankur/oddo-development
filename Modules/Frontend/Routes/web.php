@@ -94,7 +94,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::get('/history', 'index')->name('orderhistory.index');
         Route::post('/store', 'store')->name('add.review');
         Route::post('/view', 'show')->name('show.review');
+        Route::get('/list', 'list')->name('list.review');        
     });
+
+    Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');
 });
 
 // payment

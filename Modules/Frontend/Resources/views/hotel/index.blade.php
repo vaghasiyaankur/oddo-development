@@ -274,6 +274,24 @@
             height: 30px;
         }
 
+        /* popup scroll */
+        .reviews-popup-main .reviews-popup::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: transparent;
+}
+
+.reviews-popup-main .reviews-popup::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: transparent;
+}
+
+.reviews-popup-main .reviews-popup::-webkit-scrollbar-thumb
+{
+	border-radius: 20px;
+	background-color: #a9a9a9;
+}
     </style>
 @endpush
 
@@ -1040,16 +1058,10 @@
         </div>
     </section>
     <!------- Search result end ------->
-    {{-- <form action="{{ route('payment.razorpay') }}" method="POST">
-    @csrf
-    <script src="https://checkout.razorpay.com/v1/checkout.js"
-        data-key="rzp_test_ImnZdPCDKBmCSP" data-amount="10001" data-currency="INR"
-        data-buttontext="Pay 100 INR" data-name="codesolutionstuff.com"
-        data-description="Rozerpay"
-        data-image="https://codesolutionstuff.com/wp-content/uploads/2020/10/logo.jpg"
-        data-prefill.name="name" data-prefill.email="email"
-        data-theme.color="#F37254"></script>
-</form> --}}
+    <div class="mainReviewPopupDiv">
+        @include('frontend::hotel.review')
+    </div>
+
 @endsection
 
 @push('script')
@@ -1664,6 +1676,29 @@ $(document).ready(function(){
         }, "fast");
         return false;
 	});
+
+    $(document).on('click', '.reviewPopup', function(e) {
+        e.preventDefault();
+
+        var hotel_id = $(this).data('id');
+
+        formdata = new FormData();
+        formdata.append('hotel_id', hotel_id);
+
+        $.ajax({
+            url: "{{route('hotel.review')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                $('.mainReviewPopupDiv').html(response);
+                $('.reviews-popup-main').modal('show');
+            }, error:function (response) {
+
+            }
+        });
+    });
 </script>
 
 

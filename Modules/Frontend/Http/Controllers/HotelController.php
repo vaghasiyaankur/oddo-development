@@ -9,6 +9,8 @@ use App\Models\Hotel;
 use App\Models\Amenities;
 use App\Models\paymentGetways;
 use App\Models\HotelBooking;
+use App\Models\Review;
+use DB;
 
 class HotelController extends Controller
 {
@@ -99,64 +101,23 @@ class HotelController extends Controller
         return view('frontend::hotel.hotelDetails', compact('hotel'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
+    public function hotelReview(Request $request)
     {
-        return view('testing::create');
-    }
+        $hotelId = $request->hotel_id;
+        $hotel = Hotel::where('UUID', $hotelId)->first();
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if ($hotel == null) {
+            $data = array(
+                'review' => '',
+                'rating' => '',
+                'hotelData'  => $hotel
+            );  
+        }else{
+            $data['hotelRating'] = listHotelRating($hotel->id);
+        }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('testing::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('testing::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        // dd($data['hotelRating']['review']->staff);
+        return view('frontend::hotel.review', $data);
+        // return response()->json(["data" => $data], 200);
     }
 }
