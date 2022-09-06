@@ -41,7 +41,7 @@ body {
 }
 
 .bg-green {
-    background: #219653;
+    background: #219653 !important;
     box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.1);
 }
 
@@ -71,11 +71,11 @@ body {
 }
 
 .bg-red {
-    background: #eb5757;
+    background: #eb5757 !important;
 }
 
 .bg-orange {
-    background: #f2994a;
+    background: #f2994a !important;
 }
 
 .bg-purple-2 {
@@ -1519,7 +1519,7 @@ header.header .navbar .dropdown .dropdown-btn {
 
 /******* Reviews popup start *******/
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup {
+.reviews-popup-main .reviews-popup {
     width: 100%;
     max-width: 852px;
     height: 100%;
@@ -1529,12 +1529,12 @@ header.header .navbar .dropdown .dropdown-btn {
     margin: 0 auto;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup .reviews-popup-heading {
+.reviews-popup-main .reviews-popup .reviews-popup-heading {
     border-bottom: 1px solid #a4a6ba;
     padding: 32px 26px 17px 40px;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup .reviews-heading h4 {
+.reviews-popup-main .reviews-popup .reviews-heading h4 {
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
@@ -1543,33 +1543,35 @@ header.header .navbar .dropdown .dropdown-btn {
     white-space: nowrap;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup .reviews-heading P {
+.reviews-popup-main .reviews-popup .reviews-heading P {
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
     color: #878996;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .reviews-popup .reviews-heading .good-text span {
+.reviews-popup-main .reviews-popup .reviews-heading .good-text span {
     font-weight: 400;
     font-size: 24px;
     line-height: 24px;
     color: #393c52;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .popup-content-main {
+ .reviews-popup-main .popup-content-main {
     padding: 16px 26px 17px 40px;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .popup-content-main .review-section-total-review .review-section-text {
+.reviews-popup-main .popup-content-main .review-section-total-review .review-section-text {
     padding: 0px 8px;
     border-radius: 5px;
     color: #ffffff;
     font-size: 14px;
     line-height: 24px;
+    min-width: 49px;
+    text-align: center;
 }
 
-.hotel-result.search-result .result-main-middle .middle-content-review .reviews-popup-main .popup-content-main .comment-reviews-option .form-select {
+.reviews-popup-main .popup-content-main .comment-reviews-option .form-select {
     padding: 0.8rem 7rem 0.8rem 1rem;
     font-weight: 400;
     font-size: 14px;
@@ -1579,18 +1581,28 @@ header.header .navbar .dropdown .dropdown-btn {
     border-radius: 5px;
 }
 
-.hotel-result.search-result .result-main-middle .reviews-popup-main .reviews-comment-text-main .review-section-total-review span {
+.reviews-popup-main .reviews-comment-text-main .review-section-total-review span {
     font-size: 20px;
     line-height: 24px;
     color: #393c52;
 }
 
-.hotel-result.search-result .result-main-middle .reviews-popup-main .reviews-comment-text-main .verified-text .reviews-verified-text {
+.reviews-popup-main .reviews-comment-text-main .verified-text .reviews-verified-text {
     font-weight: 400;
     font-size: 12px;
     line-height: 22px;
     color: #40cc6d;
     text-align: center;
+}
+
+.reviews-popup-inner .total-review .total-review-text{
+    padding: 8px 9px;
+    background: orange;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
 }
 
 
