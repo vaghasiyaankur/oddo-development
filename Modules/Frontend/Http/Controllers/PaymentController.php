@@ -25,9 +25,10 @@ class PaymentController extends Controller
 
         $payment = $api->payment->fetch($input['razorpay_payment_id']);
 
-          $start_date = Carbon::parse(date('d/m/Y', strtotime($input['start_date'])));
-          $end_date = Carbon::parse(date('d/m/Y', strtotime($input['end_date'])));
-        $shift_difference = $start_date->diffInDays($end_date);
+            $start_date = Carbon::createFromFormat('d/m/Y',$input['start_date'])->format('d-m-Y');
+            $end_date = Carbon::createFromFormat('d/m/Y',$input['end_date'])->format('d-m-Y');
+
+            $shift_difference = Carbon::parse($end_date)->diffInDays($start_date);
 
 
         if(count($input)  && !empty($input['razorpay_payment_id'])) {
@@ -102,13 +103,11 @@ class PaymentController extends Controller
     public function StripeSucceed(Request $request){
         $paymentStripe = Session::get('paymentStripe');
         $paymentData = Session::get('paymentData');
-        // dd($paymentData['start_date']);
-        // $start_date = Carbon::createFromFormat('d/m/Y', $paymentData['start_date'])->format('d-m-Y');
-        // $end_date = Carbon::createFromFormat('d/m/Y', $paymentData['end_date'])->format('d-m-Y');
 
-        $start_date = Carbon::parse(date('d/m/Y', strtotime($paymentData['start_date'])));
-        $end_date = Carbon::parse(date('d/m/Y', strtotime($paymentData['end_date'])));
-        $shift_difference = $start_date->diffInDays($end_date);
+        $start_date = Carbon::createFromFormat('d/m/Y',$paymentData['start_date'])->format('d-m-Y');
+        $end_date = Carbon::createFromFormat('d/m/Y',$paymentData['end_date'])->format('d-m-Y');
+
+        $shift_difference = Carbon::parse($end_date)->diffInDays($start_date);
 
         $Payment = new Payment();
         $Payment->amount =  $paymentStripe->amount_total/100;

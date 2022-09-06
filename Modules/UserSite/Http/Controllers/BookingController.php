@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\HotelBooking;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -18,69 +19,31 @@ class BookingController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $bookings = HotelBooking::with('hotel')->paginate(2);
-        return view('usersite::user.booking',compact('bookings'));
+        return view('usersite::user.booking.booking',compact('bookings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('usersite::create');
-    }
+   public function bookingFilter(Request $request)
+   {
+        $currentDate = Carbon::now()->format('d/m/Y');
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if($request->filter == 'All'){
+            $bookings = HotelBooking::with('hotel')->paginate(2);
+            $html = view('usersite::user.booking.all', compact('bookings'))->render();
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('usersite::show');
-    }
+        } else if($request->filter == 'upcomingBooking'){
+            $bookings = HotelBooking::with('hotel')->where('end_date','>', $currentDate)->paginate(1);
+            $html = view('usersite::user.booking.upcomingBooking', compact('bookings'))->render();
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('usersite::edit');
-    }
+        } else if($request->filter == 'pastBooking') {
+            $bookings = HotelBooking::with('hotel')->where('end_date','<', $currentDate)->paginate(2);
+            $html = view('usersite::user.booking.pastBooking', compact('bookings'))->render();
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        } else {
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
-    }
+        }
+        return $html;
+   }
 }

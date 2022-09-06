@@ -17,12 +17,14 @@ class BookingTableSeeder extends Seeder
     {
 
         $HotelBookings = [
-            ['2', '1', '1', '1200', '2', '1', '2022-09-01', '2022-09-05'],
-            ['2', '2', '2', '2500', '2', '1', '2022-08-21', '2022-08-31'],
-            ['2', '3', '3', '3500', '2', '1', '2022-08-5', '2022-08-11'],
+            ['2', '1', '1', '1200', '2', '1', '01/09/2022', '05/09/2022', '10' ],
+            ['2', '2', '2', '2500', '2', '1', '21/08/2022', '31/08/2022', '12' ],
+            ['2', '3', '3', '3500', '2', '1', '05/08/2022', '11/08/2022', '15' ],
+            ['2', '3', '3', '3500', '2', '1', '09/09/2022', '20/09/2022', '15' ],
+            ['2', '3', '3', '3500', '2', '1', '25/08/2022', '21/08/2022', '15' ],
         ];
 
-        foreach ($HotelBookings as  list($user_id, $hotel_id, $room_id, $rent, $payment_method_id, $status, $star_date, $end_date)) {
+        foreach ($HotelBookings as  list($user_id, $hotel_id, $room_id, $rent, $payment_method_id, $status, $star_date, $end_date, $day_diff)) {
             HotelBooking::create([
                 'user_id' => $user_id,
                 'hotel_id' => $hotel_id,
@@ -32,6 +34,7 @@ class BookingTableSeeder extends Seeder
                 'status' => $status,
                 'start_date' => $star_date,
                 'end_date' => $end_date,
+                'day_diff' => $day_diff,
             ]);
         }
     }

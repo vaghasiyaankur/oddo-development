@@ -153,7 +153,7 @@ $(document).ready(function(){
 
     $(document).ready(function(){
 
-        $('.selectCurrency').change(function(){
+        $(document).on('change', '.selectCurrency', function(){
             var currency = $(this).val();
             var symbol = $(this).find(':selected').data('id');
             $('.symbol').val(symbol);

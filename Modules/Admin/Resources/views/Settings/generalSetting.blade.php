@@ -54,7 +54,6 @@
         $('.selectCurrency').change(function(){
             var currency = $(this).val();
             var symbol = $(this).find(':selected').data('id');
-            console.log(symbol);
             $('.symbol').val(symbol);
             $('.currencySpan').text('('+currency+')');
         });
