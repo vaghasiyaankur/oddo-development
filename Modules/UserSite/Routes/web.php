@@ -79,9 +79,9 @@ Route::prefix('user')->group(function() {
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
             Route::post('deleteRoom/{id}', 'deleteRoom')->name('delete.room');
         });
-        Route::controller(BookingController::class)->group(function(){
-            // Route::view('/booking', 'usersite::user.booking')->name('booking');
-            Route::get('booking', 'index')->name('booking');
+        Route::prefix('booking')->controller(BookingController::class)->group(function(){
+            Route::get('/', 'index')->name('booking');
+            Route::post('filter', 'bookingFilter')->name('booking.filter');
         });
     });
 });
