@@ -1,12 +1,12 @@
 @media screen and (max-width: 991px) {
-    header.header .navbar .navbar-nav .nav-item{
+    header.header .navbar .navbar-nav .nav-item {
         padding-right: 0;
     }
-    .header .list-properties .list-properties-btn{
+    .header .list-properties .list-properties-btn {
         background: #eef1f7;
         border: 1px solid #eef1f7;
     }
-    header.header .navbar .dropdown .dropdown-btn{
+    header.header .navbar .dropdown .dropdown-btn {
         background: #eef1f7;
         border: 1px solid #eef1f7;
     }
@@ -135,33 +135,13 @@
         .hotel-sort-popup {
         padding: 22px;
     }
+   
     .h-details-title .h-details-title-box .h-details-heading h2 {
         font-size: 32px;
         line-height: 32px;
     }
 }
 
-@media screen and (max-width: 1399px) {
-    /* .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon{
-        right: -15px;
-        top: 7px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest{
-        top: 19px;
-        right: 16%;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag{
-        top: 77px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-tree{
-        left: 45%;
-        top: -8px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-bank{
-        top: 56px;
-        left: 29%;
-    } */
-}
 @media screen and (max-width: 1240px) {
     .homepage-swiper .swiper-slide .content p.title {
         font-size: 43px;
@@ -398,6 +378,11 @@
         display: block;
         width: 100%;
     }
+    .hotel-result.search-result .search-result-inner .result-main-content .result-main-img img.img-wrapper {
+        height: 100%;
+        min-height: 215px !important;
+        max-height: 215px !important;
+    }
 }
 @media screen and (max-width: 480px) {
     .hotel-result.search-result
@@ -565,11 +550,15 @@
 
 /* --------hotel page payment popup start--------- */
 
-@media screen and (max-width:520px) {
-    .payment_details_popup .payment_details_inner .holiday-details{
+@media screen and (max-width: 520px) {
+    .payment_details_popup .payment_details_inner .holiday-details {
         padding: 24px 5px;
     }
-    .payment_details_popup .payment_details_inner .payment--detail-box .hotel--img img{
+    .payment_details_popup
+        .payment_details_inner
+        .payment--detail-box
+        .hotel--img
+        img {
         right: 17px;
     }
 }

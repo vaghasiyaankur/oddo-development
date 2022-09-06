@@ -103,7 +103,7 @@
             <div class="row py-4">
                 @include('usersite::user.sidebar.sidebar')
                 <div class="col-lg-10 col-md-10 col-12 right-side-content px-3">
-                    <div id="tabs">
+                        <div id="tabs">
                         <div class="hotel--booking-box">
                             <div
                                 class="booking-title-text d-flex justify-content-between align-items-center flex-wrap mb-4">
@@ -116,7 +116,7 @@
                                         <li class="nav-item order-2 order-lg-1">
                                             <a class="nav-link active" data-bs-toggle="tab" href="#nav-light-home"
                                                 role="tab" aria-selected="false">
-                                                All (38)
+                                                All ({{ $bookings->count() }})
                                             </a>
                                         </li>
                                         <li class="nav-item order-3 order-lg-2">
@@ -146,68 +146,72 @@
                             <div class="tab-content text-muted">
                                 <div class="tab-pane active" id="nav-light-home" role="tabpanel">
                                     <div class="row">
+                                        @foreach($bookings as $booking)
                                         <div class="col-lg-12 mb-4">
-                                            <div class="booking--inner-box d-flex">
-                                                <div class="hotel_book_img">
-                                                    <img src="{{ asset('storage/hotels/02.jpg') }}">
-                                                </div>
-                                                <div class="inner-right-content">
-                                                    <div
-                                                        class="title--with-price d-flex justify-content-between akign-items-center mb-1">
-                                                        <div class="title--badge">
-                                                            <span class="badge"
-                                                                style="background-color: #eef1f7;color: #8195a8;font-size: 13px;">Hotel</span>
-                                                        </div>
+                                                <div class="booking--inner-box d-flex">
+                                                    <div class="hotel_book_img">
+                                                        <img src="{{ asset('storage/' . @$booking->hotel->mainPhoto->first()->photos) }}" style="height:150px;width:150px;">
                                                     </div>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="hotel--title">
-                                                            <h6 class="fw-bold mb-0">Vienna House Easy Cracow</h6>
+                                                    <div class="inner-right-content">
+                                                        <div
+                                                            class="title--with-price d-flex justify-content-between akign-items-center mb-1">
+                                                            <div class="title--badge">
+                                                                <span class="badge"
+                                                                    style="background-color: #eef1f7;color: #8195a8;font-size: 13px;">{{ $booking->hotel->propertytype->type }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="title-price--tage">
-                                                            <sup class="me-1"> &euro;</sup><span
-                                                                class="fs-5 fw-normal">84</span>
+                                                        {{-- @dd($booking->hotel) --}}
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="hotel--title">
+                                                                <h6 class="fw-bold mb-0">{{ $booking->hotel->property_name }}</h6>
+                                                            </div>
+                                                            <div class="title-price--tage">
+                                                                {{-- <sup class="me-1"> &euro;</sup> --}}
+                                                                <span
+                                                                    class="fs-5 fw-normal">${{ $booking->rent }}</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="h-date d-flex align-items-center"
-                                                            style="margin-left: -8px;">
-                                                            <img src="{{ asset('assets/images/icons/order-hotel-icon.png') }}"
-                                                                alt="">
-                                                            <p class="m-0 pe-sm-2">Mar 23, 2020</p>
-                                                            <img src="{{ asset('assets/images/icons/order-h-eroow.png') }}"
-                                                                alt="">
-                                                            <p class="m-0 ps-sm-2">Jun 12, 2020</p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="h-date d-flex align-items-center"
+                                                                style="margin-left: -8px;">
+                                                                <img src="{{ asset('assets/images/icons/order-hotel-icon.png') }}"
+                                                                    alt="">
+                                                                <p class="m-0 pe-sm-2">{{ $booking->start_date }}</p>
+                                                                <img src="{{ asset('assets/images/icons/order-h-eroow.png') }}"
+                                                                    alt="">
+                                                                <p class="m-0 ps-sm-2">{{ $booking->end_date }}</p>
+                                                            </div>
+                                                            <div class="hotel--title-rate">
+                                                                <span class="fw-bold" style="color: #14d014;">Save
+                                                                   {{ $booking->rent * $booking->room->discount /100 }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="hotel--title-rate">
-                                                            <span class="fw-bold" style="color: #14d014;">Save
-                                                                &euro;4</span>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="h-pepl d-flex align-items-center"
+                                                                style="margin-left: -8px;">
+                                                                <img src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}"
+                                                                    alt="">
+                                                                <p class="m-0 ">{{ $booking->room->guest_stay_room }} Guests</p>
+                                                            </div>
+                                                            <div class="d-flex align-items-center">
+                                                                <p class="m-0 pe-2 h-amount">${{ $booking->rent - $booking->rent * $booking->room->discount /100 }}
+                                                                </p><span class="h--totl text-muted">for 1 nights</span>
+                                                            </div>
+                                                            {{-- <div class="d-flex align-items-center">
+                                                                <a href="javascript:;" style="color: #000"><span
+                                                                        class="text-uppercase fw-bold"
+                                                                        style="font-size: 13px;"><i
+                                                                            class="fa-regular fa-heart"></i>
+                                                                        favorite</span></a>
+                                                                <a href="javascript:;" class="btn offer--button ms-2">View
+                                                                    offers</a>
+                                                            </div> --}}
                                                         </div>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="h-pepl d-flex align-items-center"
-                                                            style="margin-left: -8px;">
-                                                            <img src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}"
-                                                                alt="">
-                                                            <p class="m-0 ">2 Guests, 1 Infant</p>
-                                                        </div>
-                                                        <div class="d-flex align-items-center">
-                                                            <p class="m-0 pe-2 h-amount">$1278
-                                                            </p><span class="h--totl text-muted">for 1 nights</span>
-                                                        </div>
-                                                        {{-- <div class="d-flex align-items-center">
-                                                            <a href="javascript:;" style="color: #000"><span
-                                                                    class="text-uppercase fw-bold"
-                                                                    style="font-size: 13px;"><i
-                                                                        class="fa-regular fa-heart"></i>
-                                                                    favorite</span></a>
-                                                            <a href="javascript:;" class="btn offer--button ms-2">View
-                                                                offers</a>
-                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12 mb-4">
+                                            @endforeach
+                                        {{-- <div class="col-lg-12 mb-4">
                                             <div class="booking--inner-box d-flex">
                                                 <div class="hotel_book_img">
                                                     <img src="{{ asset('storage/hotels/01.jpg') }}">
@@ -255,7 +259,7 @@
                                                             <p class="m-0 pe-2 h-amount">$1278
                                                             </p><span class="h--totl text-muted">for 1 nights</span>
                                                         </div>
-                                                        {{-- <div class="d-flex align-items-center">
+                                                        <div class="d-flex align-items-center">
                                                             <a href="javascript:;" style="color:#000"> <span
                                                                     class="text-uppercase fw-bold"
                                                                     style="font-size: 13px;"><i class="fa-solid fa-heart"
@@ -263,11 +267,11 @@
                                                                     saved</span></a>
                                                             <a href="javascript:;" class="btn offer--button ms-2">View
                                                                 offers</a>
-                                                        </div> --}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="row g-0 text-center text-sm-start align-items-center mb-4 px-3">
                                             <div class="col-sm-6">
                                                 <div>

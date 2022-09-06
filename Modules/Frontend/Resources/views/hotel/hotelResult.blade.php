@@ -1,5 +1,5 @@
   {{-- loader --}}
-  <div class="loading_spiner_" style="display: none">
+  <div class="loading_spiner_ d-none">
       <div class="spinner mx-auto"></div>
   </div>
   @if (count($hotels))
@@ -71,7 +71,7 @@
                                       </p>
                                       <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
                                           {{ @$hotel->pos_code }}</p>
-                                  </div> 
+                                  </div>
 
                                   {{-- <div class="middle-content-location">
                                     <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
@@ -89,10 +89,313 @@
 
                                               {{--  data-bs-target="#reviewspopup_{{$hotel->UUID}}" --}}
                                       <!-------- Reviews Popup Start -------->
+<<<<<<< HEAD
                                       {{-- <div class="ratingFormViewPopUp"> --}}
                                        
                                       {{-- </div> --}}
-                                      <!-------- Reviews Popup End -------->
+=======
+                                      <div class="modal fade reviews-popup-main" id="reviewspopup"
+                                          data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                          <div
+                                              class="modal-dialog modal-dialog-scrollable modal-fullscreen modal-dialog-centered">
+                                              <div class="modal-content">
+                                                  <div class="modal-header justify-content-end">
+                                                      <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                                          aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                                                  </div>
+                                                  <div class="modal-body py-sm-5">
+                                                      <div class="reviews-popup overflow-auto">
+                                                          <div class="reviews-popup-inner">
+                                                              <div
+                                                                  class="reviews-popup-heading d-flex justify-content-between align-items-center flex-wrap">
+                                                                  <div class="reviews-heading">
+                                                                      <h4 class="m-0">First Hotel Reviews</h4>
+                                                                      <p class="m-0">Madrid, Spain.</p>
+                                                                      <div class="reviews-star">
+                                                                          <span><img
+                                                                                  src="assets/images/icons/start.png"></span>
+                                                                          <span><img
+                                                                                  src="assets/images/icons/start.png"></span>
+                                                                          <span><img
+                                                                                  src="assets/images/icons/start.png"></span>
+                                                                          <span><img
+                                                                                  src="assets/images/icons/start.png"></span>
+                                                                          <span><img
+                                                                                  src="assets/images/icons/start.png"></span>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="total-review mt-2 mb-3">
+                                                                      <span class="good-text">Good</span>
+                                                                      <span class="total-review-text ms-3">4/5</span>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="popup-content-main">
+                                                                  <div class="popup-content-first">
+                                                                      <div class="row">
+                                                                          <div class="col-md-4">
+                                                                              <div class="review-popup-img">
+                                                                                  <img src="assets/images/reviews-popup-1.png"
+                                                                                      class="img-fluid w-100">
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-md-3 col-sm-5">
+                                                                              <div class="review-section">
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class=" para-fs-14">Staff</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-green">3/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class="para-fs-14">Amenities</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-red">2/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class="para-fs-14">Cleanless</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-orange">5/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class="para-fs-14">Room</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-green">5/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class="para-fs-14">Breakfast</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-red">3/5</span>
+                                                                                  </div>
+                                                                              </div>
+                                                                          </div>
+                                                                          <div
+                                                                              class="col-md-3 col-sm-5 p-sm-0 offset-sm-1">
+                                                                              <div class="review-section">
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class="para-fs-14">Internet</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-orange">4/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span class="para-fs-14">Property
+                                                                                          Condition</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-red">2/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span class="para-fs-14">Service
+                                                                                          & Staff</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-green">5/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span class="para-fs-14">Price /
+                                                                                          Quality</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-orange">2/5</span>
+                                                                                  </div>
+                                                                                  <div
+                                                                                      class="review-section-total-review d-flex align-items-center justify-content-between mt-2">
+                                                                                      <span
+                                                                                          class="para-fs-14">Location</span>
+                                                                                      <span
+                                                                                          class="review-section-text bg-green">5/5</span>
+                                                                                  </div>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="popup-reviews-comment">
+                                                                      <div class="popup-reviews-comment-inner">
+                                                                          <div
+                                                                              class="comment-reviews-heading d-flex justify-content-between align-items-center mt-4 flex-wrap">
+                                                                              <div class="comment-reviews-text">
+                                                                                  <h5>Reviews (1024)</h5>
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="reviews-comment-text-main mt-4">
+                                                                              <div class="row border-bottom mt-3">
+                                                                                  <div
+                                                                                      class="col-sm-1 col-2 text-center">
+                                                                                      <img
+                                                                                          src="assets/images/icons/review-popup-2.png">
+                                                                                  </div>
+                                                                                  <div class="col-sm-8 col-9 p-0 ">
+                                                                                      <div
+                                                                                          class="reviews-comment-content">
+                                                                                          <div
+                                                                                              class="review-section-total-review d-flex mb-2">
+                                                                                              <span
+                                                                                                  class="pe-3">Henrie
+                                                                                                  N.</span>
+                                                                                              <span
+                                                                                                  class="review-section-text bg-green">8/10</span>
+                                                                                          </div>
+                                                                                          <p
+                                                                                              class="comment-small-text para-fs-14">
+                                                                                              Traveled in June 20 - 2019
+                                                                                          </p>
+                                                                                          <p
+                                                                                              class="reviews-comment para-fs-14">
+                                                                                              I can't say enough about
+                                                                                              First
+                                                                                              Hotel. First Hotel saved
+                                                                                              my business. We have no
+                                                                                              regrets!</p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                                  <div class="col-sm-3 col-12 p-0">
+                                                                                      <div class="verified-text">
+                                                                                          <p
+                                                                                              class="reviews-verified-text">
+                                                                                              Verified Traveller</p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </div>
+                                                                              <div class="row border-bottom mt-3">
+                                                                                  <div
+                                                                                      class="col-sm-1 col-2 text-center">
+                                                                                      <img
+                                                                                          src="assets/images/icons/review-popup-3.png">
+                                                                                  </div>
+                                                                                  <div class="col-sm-8 col-9 p-0 ">
+                                                                                      <div
+                                                                                          class="reviews-comment-content">
+                                                                                          <div
+                                                                                              class="review-section-total-review d-flex mb-2">
+                                                                                              <span
+                                                                                                  class="pe-3">Henrie
+                                                                                                  N.</span>
+                                                                                              <span
+                                                                                                  class="review-section-text bg-green">8/10</span>
+                                                                                          </div>
+                                                                                          <p
+                                                                                              class="comment-small-text  para-fs-14">
+                                                                                              Traveled in June 20 - 2019
+                                                                                          </p>
+                                                                                          <p
+                                                                                              class="reviews-comment  para-fs-14">
+                                                                                              I can't say enough about
+                                                                                              First Hotel. First Hotel
+                                                                                              saved my business. We have
+                                                                                              no regrets!
+                                                                                          </p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                                  <div class="col-sm-3 col-12 p-0">
+                                                                                      <div class="verified-text">
+                                                                                          <p
+                                                                                              class="reviews-verified-text">
+                                                                                              Verified Traveller</p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </div>
+                                                                              <div class="row border-bottom mt-3">
+                                                                                  <div
+                                                                                      class="col-sm-1 col-2 text-center">
+                                                                                      <img
+                                                                                          src="assets/images/icons/review-popup-2.png">
+                                                                                  </div>
+                                                                                  <div class="col-sm-8 col-9 p-0 ">
+                                                                                      <div
+                                                                                          class="reviews-comment-content">
+                                                                                          <div
+                                                                                              class="review-section-total-review d-flex mb-2">
+                                                                                              <span
+                                                                                                  class="pe-3">Henrie
+                                                                                                  N.</span>
+                                                                                              <span
+                                                                                                  class="review-section-text bg-green">8/10</span>
+                                                                                          </div>
+                                                                                          <p
+                                                                                              class="comment-small-text  para-fs-14">
+                                                                                              Traveled in June 20 - 2019
+                                                                                          </p>
+                                                                                          <p
+                                                                                              class="reviews-comment  para-fs-14">
+                                                                                              I can't say enough about
+                                                                                              First Hotel. First Hotel
+                                                                                              saved my business. We have
+                                                                                              no regrets!
+                                                                                          </p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                                  <div class="col-sm-3 col-12 p-0">
+                                                                                      <div class="verified-text">
+                                                                                          <p
+                                                                                              class="reviews-verified-text">
+                                                                                              Verified Traveller</p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </div>
+                                                                              <div class="row border-bottom mt-3">
+                                                                                  <div
+                                                                                      class="col-sm-1 col-2 text-center">
+                                                                                      <img
+                                                                                          src="assets/images/icons/review-popup-2.png">
+                                                                                  </div>
+                                                                                  <div class="col-sm-8 col-9 p-0 ">
+                                                                                      <div
+                                                                                          class="reviews-comment-content">
+                                                                                          <div
+                                                                                              class="review-section-total-review d-flex mb-2">
+                                                                                              <span
+                                                                                                  class="pe-3">Henrie
+                                                                                                  N.</span>
+                                                                                              <span
+                                                                                                  class="review-section-text bg-green">8/10</span>
+                                                                                          </div>
+                                                                                          <p
+                                                                                              class="comment-small-text  para-fs-14">
+                                                                                              Traveled in June 20 - 2019
+                                                                                          </p>
+                                                                                          <p
+                                                                                              class="reviews-comment  para-fs-14">
+                                                                                              I can't say enough about
+                                                                                              First Hotel. First Hotel
+                                                                                              saved my business. We have
+                                                                                              no regrets!
+                                                                                          </p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                                  <div class="col-sm-3 col-12 p-0">
+                                                                                      <div class="verified-text">
+                                                                                          <p
+                                                                                              class="reviews-verified-text">
+                                                                                              Verified Traveller</p>
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+>>>>>>> 9ed5ec24386be6ad760e08f5057e20ed117e05df
+{{-- <div class="ratingFormViewPopUp"> --}}
+                                       
+                                      {{-- </div> --}}                                      
+<!-------- Reviews Popup End -------->
                                       @for ($i = 0; $i < 5; $i++)
                                           <span><img
                                                   src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}"></span>
@@ -436,13 +739,13 @@
           <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-offset="0"
               class="search-result-price-tag position-relative ">
               @if (count($hotelAmounts))
-                @foreach ($hotelAmounts as  $hotelAmount) 
+                @foreach ($hotelAmounts as  $hotelAmount)
                   @foreach ($hotelAmount as $key => $item)
                     @if ($key == $hotel->id)
                       <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$item }} USD</button>
                       <input type="hidden" value="{{ @$item }}"
                                           class="amount_data_{{ $hotel->UUID }}">
-                    @endif   
+                    @endif
                   @endforeach
                 @endforeach
               @else
@@ -501,11 +804,11 @@
                                                   <div class="d-flex align-items-center">
                                                       <p class="m-0 pe-2 h-amount">$
                                                         @if (count($hotelAmounts))
-                                                          @foreach ($hotelAmounts as  $hotelAmount) 
+                                                          @foreach ($hotelAmounts as  $hotelAmount)
                                                             @foreach ($hotelAmount as $key => $item)
                                                               @if ($key == $hotel->id)
                                                                 {{ @$item }}
-                                                              @endif   
+                                                              @endif
                                                             @endforeach
                                                           @endforeach
                                                         @endif
@@ -549,8 +852,8 @@
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                   <div class="modal-content">
-                      <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
-                              class="fa-solid fa-xmark text-dark"></i></button>
+                      {{-- <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                              class="fa-solid fa-xmark text-dark"></i></button> --}}
                       <div class="modal-body py-sm-5 ">
                           <div class="payment-details-box" style="padding: 22px 25px;min-height: 402px;">
                             <div class="success_popup_inner position-relative">

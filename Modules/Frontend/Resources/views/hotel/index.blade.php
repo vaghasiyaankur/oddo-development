@@ -246,6 +246,7 @@
         }
 
         /* side contact button css  */
+
         .side-content .side-btn{
             padding: 4px 30px;
             background: #e6e8f5;
@@ -270,9 +271,50 @@
             font-weight: 800;
         }
 
-        .result-view{
+        .hotel-result .side-content .result-view{
             height: 30px;
         }
+        /* media querry for bookingselect error */
+
+        @media screen and (max-width:992px){
+            .hotel-result .bookingSelectError{
+                position: absolute;
+                bottom: -113px !important;
+                left: 0 !important;
+            }
+        }
+        @media screen and (min-width:406px) and (max-width:768px){
+            .hotel-result .bookingSelectError{
+                position: absolute;
+                bottom: -258px !important;
+                left: 0 !important;
+            }
+        }
+        @media screen and (max-width:406px){
+                .hotel-result .bookingSelectError{
+                    position: absolute;
+                    bottom: -272px !important;
+                    left: 0 !important;
+                }
+        }
+         /* popup scroll */
+         .reviews-popup-main .reviews-popup::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: transparent;
+}
+
+.reviews-popup-main .reviews-popup::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: transparent;
+}
+
+.reviews-popup-main .reviews-popup::-webkit-scrollbar-thumb
+{
+	border-radius: 20px;
+	background-color: #a9a9a9;
+}
 
         /* popup scroll */
         .reviews-popup-main .reviews-popup::-webkit-scrollbar-track
@@ -292,6 +334,30 @@
 	border-radius: 20px;
 	background-color: #a9a9a9;
 }
+
+        /* media querry for bookingselect error */
+
+        @media screen and (max-width:992px){
+            .hotel-result .bookingSelectError{
+                position: absolute;
+                bottom: -113px !important;
+                left: 0 !important;
+            }
+        }
+        @media screen and (min-width:406px) and (max-width:768px){
+            .hotel-result .bookingSelectError{
+                position: absolute;
+                bottom: -258px !important;
+                left: 0 !important;
+            }
+        }
+        @media screen and (max-width:406px){
+                .hotel-result .bookingSelectError{
+                    position: absolute;
+                    bottom: -272px !important;
+                    left: 0 !important;
+                }
+        }
     </style>
 @endpush
 
@@ -322,16 +388,16 @@
                                             <label class="check-inout mt-2">Check-In</label>
                                             <div class="input--text d-flex align-items-center">
                                                 <img src="assets/images/icons/cal-1.png" class="px-2">
-                                                <input type="text" class="input--control ps-xl-2"
+                                                <input type="text" class="input--control ps-xl-2 check_in"
                                                     name="value_from_start_date" placeholder="08/19/2020"
                                                     data-datepicker="separateRange" value="{{ request()->checkIn }}" />
                                             </div>
                                         </div>
-                                        <div class="check-text-label pt-4">
+                                        <div class="check-text-label pt-4 mt-2">
                                             <label class="check-inout check-out-label mt-2">Check-Out</label>
                                             <div class="input--text d-flex align-items-center">
                                                 <img src="assets/images/icons/cal-2.png" class="px-2">
-                                                <input type="text" class="input--control ps-xl-2"
+                                                <input type="text" class="input--control ps-xl-2 check_out"
                                                     name="value_from_end_date" placeholder="08/19/2020"
                                                     data-datepicker="separateRange" value="{{ request()->checkOut }}" />
                                             </div>
@@ -359,7 +425,7 @@
                                     <option {{ $selectGuest == '5' ? 'selected' : '' }}>5</option>
                                     <option {{ $selectGuest == '6' ? 'selected' : '' }}>6</option>
                                     <option {{ $selectGuest == '7' ? 'selected' : '' }}>7</option> --}}
-                                </select>
+                                </select> 
                             </div>
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                                 @php
@@ -375,7 +441,7 @@
                                     <option {{ $selectRoom == '5' ? 'selected' : '' }}>5</option>
                                     <option {{ $selectRoom == '6' ? 'selected' : '' }}>6</option>
                                     <option {{ $selectRoom == '7' ? 'selected' : '' }}>7</option> --}}
-                                </select>
+                                </select> 
                             </div>
 
                             <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
@@ -429,13 +495,13 @@
                                     </div>
                                 </div>
                                 <!-- <label>Bed</label>
-                                                <select class="select2-icon" name="icon" multiple="multiple">
-                                                <option value="fa-bed" data-icon="fa-bed">2</option>
-                                                <option value="fa-bed" data-icon="fa-bed">1</option>
-                                                <option value="fa-bed" data-icon="fa-bed">3</option>
-                                                </select> -->
+                                        <select class="select2-icon" name="icon" multiple="multiple">
+                                        <option value="fa-bed" data-icon="fa-bed">2</option>
+                                        <option value="fa-bed" data-icon="fa-bed">1</option>
+                                        <option value="fa-bed" data-icon="fa-bed">3</option>
+                                        </select> -->
                             </div>
-                            <div class="check-in-out-btn mt-4 text-xl-end text-center col-lg-3">
+                            <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
                                 <a href="#" class="btn search-btn purple" id='SubmitSearch'>Search</a>
                             </div>
                         </div>
@@ -1228,7 +1294,7 @@
             var checkOut = $("input[name=value_from_end_date]").val();
             var guest = $("select[name=guest]").val();
             var room = $("select[name=room]").val();
-            
+
             var bed = new Array();
             $('input[name="bed"]:checked').each(function() {
                 bed.push($(this).val());
@@ -1243,6 +1309,7 @@
         });
 
         $(document).on('click', '#Apply', function(e) {
+
             var searchProperty = $(".searchProperty").val();
             // console.log(searchProperty);
             // !searchProperty ? $(`.search-errors`).html(`Please enter a destination to start searching.`) : $(`.search-errors`)
@@ -1262,7 +1329,7 @@
             var starRating = $('.starRating:checked').val();
 
             // var sortBy = $('.sortBy').val();
-            // var topFilter = $('.topFilter').val();   
+            // var topFilter = $('.topFilter').val();
             // var style = $('.style').val();
             // var propertyStar = $('.propertyStar').val();
             // var amenityValue = $('.amenityValue').val();
@@ -1316,6 +1383,20 @@
                     if(bed.includes('twin')){
                         twin = 'checked';
                     }
+                }else{
+                    let bed = searchParams.get('bed')?.split(",");
+                    var king = '';
+                    var queen = '';
+                    var twin = '';
+                    if(bed?.includes('King')){
+                        king = 'checked';
+                    }
+                    if(bed?.includes('Queen')){
+                        queen = 'checked';
+                    }
+                    if(bed?.includes('twin')){
+                        twin = 'checked';
+                    }
                 }
                 $room = $(`<div class="room"><div class="title-container">
                             <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
@@ -1364,6 +1445,8 @@ $(document).ready(function(){
     // load hotel Detail
     function infinteLoadMore(page) {
         var search = $("input[name=search]").val();
+        var checkIn = $("input[name=value_from_start_date]").val();
+        var checkOut = $("input[name=value_from_end_date]").val();
         var guest = $("select[name=guest]").val();
         var room = $("select[name=room]").val();
         var bed = new Array();
@@ -1377,15 +1460,15 @@ $(document).ready(function(){
         if(search){
             $.ajax({
 
-                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&guest=" + guest + "&room=" + room + "&bed=" + bed,
+                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
-                    $('.loading_spiner_').show();
+                $('.loading_spiner_').removeClass('d-none');
                 }
             })
             .done(function (response) {
-                $('.loading_spiner_').hide();
+                $('.loading_spiner_').addClass('d-none');
                 var total_page = $('.total_page').val();
                 if(total_page == 0){
                     $('.hotel_empty').removeClass('d-none');
@@ -1403,11 +1486,11 @@ $(document).ready(function(){
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
-                    $('.loading_spiner_').show();
+                $('.loading_spiner_').removeClass('d-none');
                 }
             })
             .done(function (response) {
-                $('.loading_spiner_').hide();
+                $('.loading_spiner_').addClass('d-none');
                 var total_page = $('.total_page').val();
                 if(total_page == 0){
                     $('.hotel_empty').removeClass('d-none');
@@ -1424,11 +1507,11 @@ $(document).ready(function(){
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
-                    $('.loading_spiner_').show();
+                $('.loading_spiner_').removeClass('d-none');
                 }
             })
             .done(function (response) {
-                $('.loading_spiner_').hide();
+                $('.loading_spiner_').addClass('d-none');
                 var total_page = $('.total_page').val();
                 if(total_page == 0){
                     $('.hotel_empty').removeClass('d-none');
@@ -1447,7 +1530,6 @@ $(document).ready(function(){
                 type: "get",
                 beforeSend: function () {
                     $('.loading_spiner_').removeClass('d-none');
-                    // $('.loading_spiner_').show();
                 }
             })
             .done(function (response) {
@@ -1456,7 +1538,6 @@ $(document).ready(function(){
                 if(total_page == 0){
                     $('.hotel_empty').removeClass('d-none');
                 }
-                // $('.loading_spiner_').hide();
                 $(".hotelResultDiv").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -1586,6 +1667,8 @@ $(document).ready(function(){
         var hotel_id = $('.hotel_id_'+id).val();
         var payment_id = $('.razorpay_payment_id').val();
         var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
 
         var options = {
         "key": "{{config('services.razorpay.key')}}",
@@ -1604,7 +1687,7 @@ $(document).ready(function(){
             $.ajax({
                 type:'POST',
                 url:"{{ route('payment.razorpay') }}",
-                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id},
+                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id, start_date: start_date, end_date : end_date},
                 success:function(data){
                     console.log(data.bookingId);
                     $('.payment_details_popup').hide();
@@ -1644,6 +1727,8 @@ $(document).ready(function(){
         var property_name = $(this).data('value');
         var hotel_id = $('.hotel_id_'+id).val();
         var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
 
         $.ajaxSetup({
             headers: {
@@ -1654,7 +1739,7 @@ $(document).ready(function(){
         $.ajax({
             type:'POST',
             url:"{{ route('show.stripe') }}",
-            data: {total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id},
+            data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
             success:function(response){
 
                 stripe.redirectToCheckout({
@@ -1671,8 +1756,8 @@ $(document).ready(function(){
     $(document).on('click','.hotelPriceBtn',function (e) {
         $('.bookingSelectError').removeClass("d-none");
 	    e.preventDefault();
-        $("html, body").animate({ 
-            scrollTop: 0 
+        $("html, body").animate({
+            scrollTop: 0
         }, "fast");
         return false;
 	});
