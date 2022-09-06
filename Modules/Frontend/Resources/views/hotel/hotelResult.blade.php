@@ -1,4 +1,5 @@
   {{-- loader --}}
+
   <div class="loading_spiner_ d-none">
       <div class="spinner mx-auto"></div>
   </div>
@@ -84,15 +85,10 @@
                                   </div> --}}
                             </a>
                                   <div class="middle-content-review">
-                                      <p class="m-0 review-text text-decoration-underline"><a href="javascript:;" class="reviewPopup"
+                                      <p class="m-0 review-text text-decoration-underline"><a href="javascript:;" class="{{$hotel->reviewCount($hotel->id) != 0 ? 'reviewPopup' :  ''}}"
                                               data-bs-toggle="modal" data-id="{{$hotel->UUID}}">{{$hotel->reviewCount($hotel->id) != 0 ? $hotel->reviewCount($hotel->id) : 0 }}  review</a></p>
-
                                               {{--  data-bs-target="#reviewspopup_{{$hotel->UUID}}" --}}
-                                      <!-------- Reviews Popup Start -------->
-                                        {{-- <div class="ratingFormViewPopUp"> --}}
-                                        {{-- </div> --}}
-                                    
-                                      <!-------- Reviews Popup End -------->
+
                                       @for ($i = 0; $i < 5; $i++)
                                           <span><img
                                                   src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}"></span>
@@ -439,14 +435,13 @@
                 @foreach ($hotelAmounts as  $hotelAmount)
                   @foreach ($hotelAmount as $key => $item)
                     @if ($key == $hotel->id)
-                      <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">$ {{ @$item }} USD</button>
-                      <input type="hidden" value="{{ @$item }}"
-                                          class="amount_data_{{ $hotel->UUID }}">
+                      <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button>
+                      <input type="hidden" value="{{ @$item }}" class="amount_data_{{ $hotel->UUID }}">
                     @endif
                   @endforeach
                 @endforeach
               @else
-                <button class="hotelPriceBtn price-btn">$ {{ @$hotel->room->price_room }} USD</button>
+                <button class="hotelPriceBtn price-btn">  {{currency()['sumbol'] }} {{ @$hotel->room->price_room }}   {{currency()['currency'] }}</button>
               @endif
           </div>
           {{-- PAYMENT POPOUP START --}}

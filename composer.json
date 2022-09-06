@@ -45,7 +45,8 @@
         },
         "files": [
             "app/Helpers/ratingHotel.php",
-            "app/Helpers/hotelListRating.php"
+            "app/Helpers/hotelListRating.php",
+            "app/Helpers/currency.php"
         ]
     },
     "scripts": {

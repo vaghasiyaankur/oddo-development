@@ -18,7 +18,11 @@
                                 <p class="m-0">{{ @$hotelRating['hotelData']->city->name }}{{ @$hotelRating['hotelData']->country_id
                                   ? ',' .@$hotelRating['hotelData']->country->country_name: '' }}</p>
                                 <div class="reviews-star">
-                                    <span><img
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <span><img
+                                                src="{{ @$hotelRating['hotelData']->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}"></span>
+                                    @endfor
+                                    {{-- <span><img
                                             src="assets/images/icons/start.png"></span>
                                     <span><img
                                             src="assets/images/icons/start.png"></span>
@@ -27,7 +31,7 @@
                                     <span><img
                                             src="assets/images/icons/start.png"></span>
                                     <span><img
-                                            src="assets/images/icons/start.png"></span>
+                                            src="assets/images/icons/start.png"></span> --}}
                                 </div>
                             </div>
                             <div class="total-review mt-2 mb-3">
