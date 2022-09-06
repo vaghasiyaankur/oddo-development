@@ -142,27 +142,6 @@
     }
 }
 
-@media screen and (max-width: 1399px) {
-    /* .travel-planning .travel-info-main .travel-info-inner .travel-info-csoon{
-        right: -15px;
-        top: 7px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-rest{
-        top: 19px;
-        right: 16%;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-bag{
-        top: 77px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-tree{
-        left: 45%;
-        top: -8px;
-    }
-    .travel-planning .travel-info-main .travel-info-inner .travel-info-bank{
-        top: 56px;
-        left: 29%;
-    } */
-}
 @media screen and (max-width: 1240px) {
     .homepage-swiper .swiper-slide .content p.title {
         font-size: 43px;

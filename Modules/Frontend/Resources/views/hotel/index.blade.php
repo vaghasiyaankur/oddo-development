@@ -246,6 +246,7 @@
         }
 
         /* side contact button css  */
+
         .side-content .side-btn{
             padding: 4px 30px;
             background: #e6e8f5;
@@ -270,8 +271,32 @@
             font-weight: 800;
         }
 
-        .result-view{
+        .hotel-result .side-content .result-view{
             height: 30px;
+        }
+
+        /* media querry for bookingselect error */
+
+        @media screen and (max-width:992px){
+            .hotel-result .bookingSelectError{
+                position: absolute;
+                bottom: -113px !important;
+                left: 0 !important;
+            }
+        }
+        @media screen and (min-width:406px) and (max-width:768px){
+            .hotel-result .bookingSelectError{
+                position: absolute;
+                bottom: -258px !important;
+                left: 0 !important;
+            }
+        }
+        @media screen and (max-width:406px){
+                .hotel-result .bookingSelectError{
+                    position: absolute;
+                    bottom: -272px !important;
+                    left: 0 !important;
+                }
         }
 
     </style>
@@ -309,7 +334,7 @@
                                                     data-datepicker="separateRange" value="{{ request()->checkIn }}" />
                                             </div>
                                         </div>
-                                        <div class="check-text-label pt-4">
+                                        <div class="check-text-label pt-4 mt-2">
                                             <label class="check-inout check-out-label mt-2">Check-Out</label>
                                             <div class="input--text d-flex align-items-center">
                                                 <img src="assets/images/icons/cal-2.png" class="px-2">
@@ -417,7 +442,7 @@
                                         <option value="fa-bed" data-icon="fa-bed">3</option>
                                         </select> -->
                             </div>
-                            <div class="check-in-out-btn mt-4 text-xl-end text-center col-lg-3">
+                            <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
                                 <a href="#" class="btn search-btn purple" id='SubmitSearch'>Search</a>
                             </div>
                         </div>
