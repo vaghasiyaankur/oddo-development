@@ -27,7 +27,6 @@
         dateFormat = 'MM/DD/YYYY';
     var options = {
         autoUpdateInput: false,
-        autoApply: true,
         locale: {
             format: dateFormat,
             separator: separator,
@@ -73,34 +72,51 @@
                 $('[name=daterangepicker_end]').focus();
             }
         });
-    // js for multiselect calender end (hotelresult page)
 
-    $(document).on('click', '.selectFilter', function() {
-        var filter = $(this).data('target');
-        var active = $(this).addClass('active');
 
-        $('.selectSettingTab').removeClass('active');
-        $(this).addClass('active');
-        //  console.log();
+    $(document).ready(function() {
+        $(document).on('click', '.applyBtn', function() {
+            var start_date = $("input[name=daterangepicker_start]").val();
+            var end_date = $("input[name=daterangepicker_end]").val();
 
-        formdata = new FormData();
-        formdata.append('filter', filter);
+            var url = new URL(location);
 
-        // $('.updateLoader').addClass('on').removeClass('off');
-        $.ajax({
-            url: "{{route('booking.filter')}}",
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: formdata,
-            success: function (response) {
-                console.log(response);
-                // $('.updateLoader').addClass('off').removeClass('on');
-                $('.tab-content').empty();
-                $('.tab-content').html(response);
-            }, error:function (response) {
-
-            }
+            window.location.href = location.pathname + "?start_date=" + start_date + "&end_date=" + end_date;
         });
     });
+
+
+
+
+
+    // js for multiselect calender end (hotelresult page)
+
+    // $(document).on('click', '.selectFilter', function() {
+    //     var filter = $(this).data('target');
+    //     var active = $(this).addClass('active');
+
+    //     $('.selectSettingTab').removeClass('active');
+    //     $(this).addClass('active');
+    //     //  console.log();
+
+    //     formdata = new FormData();
+    //     formdata.append('filter', filter);
+
+    //     // $('.updateLoader').addClass('on').removeClass('off');
+    //     $.ajax({
+    //         url: "{{ route('booking.filter') }}",
+    //         type: "POST",
+    //         processData: false,
+    //         contentType: false,
+    //         data: formdata,
+    //         success: function (response) {
+    //             console.log(response);
+    //             // $('.updateLoader').addClass('off').removeClass('on');
+    //             $('.tab-content').empty();
+    //             $('.tab-content').html(response);
+    //         }, error:function (response) {
+
+    //         }
+    //     });
+    // });
 </script>

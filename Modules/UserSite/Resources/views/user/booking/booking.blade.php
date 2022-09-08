@@ -85,26 +85,25 @@
                                 <div class="rightside_content mt-3 mt-lg-0 overflow-auto">
                                     <ul class="nav nav-pills nav-custom nav-custom-light" role="tablist">
                                         <li class="nav-item order-2 order-lg-1">
-                                            <a class="nav-link active selectFilter" data-bs-toggle="tab" href="#nav-light-home"
-                                                role="tab" aria-selected="false" data-target="All">
-                                                All ({{ $bookings->total() }})
+                                            <a class="nav-link selectFilter {{!Request::input('filter') ? 'active' : '' }}" href="{{ route('booking') }}" name="btnFilter" id="btnFilter1"
+                                               value="All">
+                                                All ({{ $total_booking }})
                                             </a>
                                         </li>
 
                                         <li class="nav-item order-3 order-lg-2">
-                                            <a class="nav-link selectFilter" data-bs-toggle="tab" href="#nav-light-profile"
-                                                role="tab" aria-selected="false" data-target="upcomingBooking">
-                                                Upcoming Booking ({{ $bookings->count() }})
+                                            <a class="nav-link selectFilter {{Request::input('filter') == 'upcomingBooking' ? 'active' : '' }}" href="{{ route('booking',['filter'=>'upcomingBooking']) }}" name="btnFilter" id="btnFilter2"
+                                                value="upcomingBooking">
+                                                Upcoming Booking ({{ $upcomingBooking }})
                                             </a>
                                         </li>
 
                                         <li class="nav-item order-4 order-lg-3">
-                                            <a class="nav-link selectFilter" data-bs-toggle="tab" href="#nav-light-messages"
-                                                role="tab" aria-selected="true" data-target="pastBooking">
-                                                Past Booking ({{ $bookings->count() }})
+                                            <a class="nav-link selectFilter {{Request::input('filter') == 'pastBooking' ? 'active' : '' }}" href="{{ route('booking',['filter'=>'pastBooking']) }}" name="btnFilter" id="btnFilter3"
+                                                 value="pastBooking">
+                                                Past Booking ({{ $pastBooking }})
                                             </a>
                                         </li>
-
                                         <li class="nav-item order-1 order-lg-4">
                                             <form>
                                                 <a class="nav-link" role="tab" aria-selected="true"

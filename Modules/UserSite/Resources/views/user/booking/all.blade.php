@@ -55,8 +55,8 @@
             </div>
             @endforeach
         <div class="row g-0 text-center text-sm-start align-items-center mb-4 px-3">
-            @if(count($bookings))
-                {{$bookings->withPath('/user/booking')->links('usersite::pagination.pagination')}}
+            @if($total_booking)
+                {{$bookings->withPath('/user/booking')->withQueryString()->links('usersite::pagination.pagination')}}
             @endif
         </div>
     </div>
