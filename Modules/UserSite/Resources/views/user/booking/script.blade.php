@@ -11,20 +11,20 @@
 
     jQuery(document).ready(function() {
         jQuery('.date_checkin').datepicker({
-            dateFormat: 'mm-dd-yy',
+            dateFormat: 'yy-mm-dd',
             startDate: '+1d'
         });
     });
 
     jQuery(document).ready(function() {
         jQuery('.date_checkout').datepicker({
-            dateFormat: 'mm-dd-yy',
+            dateFormat: 'yy-mm-dd',
             startDate: '+1d'
         });
     });
     // js for multiselect datepiker calender start (hotelresult page)
     var separator = ' - ',
-        dateFormat = 'MM/DD/YYYY';
+        dateFormat = 'YYYY/MM/DD';
     var options = {
         autoUpdateInput: false,
         locale: {
