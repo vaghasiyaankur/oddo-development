@@ -25,8 +25,8 @@ class PaymentController extends Controller
 
         $payment = $api->payment->fetch($input['razorpay_payment_id']);
 
-            $start_date = Carbon::createFromFormat('d/m/Y',$input['start_date'])->format('d-m-Y');
-            $end_date = Carbon::createFromFormat('d/m/Y',$input['end_date'])->format('d-m-Y');
+            $start_date = Carbon::createFromFormat('d/m/Y',$input['start_date'])->format('Y-m-d');
+            $end_date = Carbon::createFromFormat('d/m/Y',$input['end_date'])->format('Y-m-d');
 
             $shift_difference = Carbon::parse($end_date)->diffInDays($start_date);
 
@@ -104,8 +104,8 @@ class PaymentController extends Controller
         $paymentStripe = Session::get('paymentStripe');
         $paymentData = Session::get('paymentData');
 
-        $start_date = Carbon::createFromFormat('d/m/Y',$paymentData['start_date'])->format('d-m-Y');
-        $end_date = Carbon::createFromFormat('d/m/Y',$paymentData['end_date'])->format('d-m-Y');
+        $start_date = Carbon::createFromFormat('d/m/Y',$paymentData['start_date'])->format('Y-m-d');
+        $end_date = Carbon::createFromFormat('d/m/Y',$paymentData['end_date'])->format('Y-m-d');
 
         $shift_difference = Carbon::parse($end_date)->diffInDays($start_date);
 

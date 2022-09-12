@@ -55,8 +55,15 @@
             </div>
             @endforeach
         <div class="row g-0 text-center text-sm-start align-items-center mb-4 px-3">
-            @if(count($bookings))
-                {{$bookings->withPath('/user/booking')->links('usersite::pagination.pagination')}}
+            @if($total_booking)
+                {{$bookings->withPath('/user/booking')->withQueryString()->links('usersite::pagination.pagination')}}
+            @else
+                <div class="empty-table w-100 text-center py-5">
+                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
+                    </lord-icon>
+                    <h4>No records has been added yet.</h4>
+                    <h6>Add a new record by simpley clicking the button on top right side.</h6>
+                </div>
             @endif
         </div>
     </div>

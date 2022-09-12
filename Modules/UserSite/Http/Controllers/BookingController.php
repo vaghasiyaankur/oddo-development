@@ -21,13 +21,38 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        $bookings = HotelBooking::with('hotel')->paginate(2);
-        return view('usersite::user.booking.booking',compact('bookings'));
+
+        $currentDate = today()->format('Y-m-d');
+        $total_booking = HotelBooking::with('hotel')->count();
+        $bookings = HotelBooking::with('hotel');
+        $upcomingBooking = HotelBooking::with('hotel')->where('start_date','>=', $currentDate)->count();
+        $pastBooking = HotelBooking::with('hotel')->where('start_date','<=', $currentDate)->count();
+
+        $start_date = Carbon::parse($request->start_date)
+                             ->format('Y-m-d');
+
+        $end_date = Carbon::parse($request->end_date)
+                             ->format('Y-m-d');
+
+        // return HotelBooking::whereBetween('hotel_id', [
+        //     $start_date, $end_date
+        // ])->get();
+
+        if($request->filter == 'upcomingBooking'){
+            $bookings = $bookings->where('start_date','>=', $currentDate);
+        } else if($request->filter == 'pastBooking') {
+            $bookings = $bookings->where('start_date','<=', $currentDate);
+        }else if($request->start_date && $request->end_date){
+            $bookings = $bookings
+            ->whereBetween('start_date', array($request->start_date, $request->end_date));
+        }
+        $bookings = $bookings->paginate(2);
+        return view('usersite::user.booking.booking',compact('bookings','upcomingBooking','pastBooking','total_booking'));
     }
 
    public function bookingFilter(Request $request)
    {
-        $currentDate = Carbon::now()->format('d/m/Y');
+        $currentDate = Carbon::now()->format('Y-m-d');
 
         if($request->filter == 'All'){
             $bookings = HotelBooking::with('hotel')->paginate(2);
