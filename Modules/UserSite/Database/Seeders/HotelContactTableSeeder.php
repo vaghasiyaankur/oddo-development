@@ -18,34 +18,19 @@ class HotelContactTableSeeder extends Seeder
 
     public function run()
     {
-        $HotelContact = [
-            [
-                'name'           => 'nikunjbhai',
-                'number'         => '239-380-0336',
-                'number_optinal' => '330-749-6894',
-                'hotel_id'       => '1',
-                'created_at'     => date("Y-m-d H:i:s"),
-                'updated_at'     => date("Y-m-d H:i:s"),
-            ],
-            [
-                'name'           => 'jeminbhai',
-                'number'         => '352-488-4751',
-                'number_optinal' => '315-373-5026',
-                'hotel_id'       => '1',
-                'created_at'     => date("Y-m-d H:i:s"),
-                'updated_at'     => date("Y-m-d H:i:s"),
-            ],
-            [
-                'name'           => 'smitbhai',
-                'number'         => '228-281-4243',
-                'number_optinal' => '206-313-5390',
-                'hotel_id'       => '2',
-                'created_at'     => date("Y-m-d H:i:s"),
-                'updated_at'     => date("Y-m-d H:i:s"),
-            ],
-
+        $HotelContacts = [
+            ['nikunjbhai', '239-380-0336', '330-749-6894', '1'],
+            ['jeminbhai', '352-488-4751', '315-373-5026', '1'],
+            ['smitbhai', '228-281-4243', '206-313-5390', '2'],
         ];
 
-        HotelContact::insert($HotelContact);
+        foreach ($HotelContacts as  list($name, $number, $number_optinal, $hotel_id)) {
+            HotelContact::create([
+                'name' => $name,
+                'number' => $number,
+                'number_optinal' =>$number_optinal,
+                'hotel_id' => $hotel_id
+            ]);
+        }
     }
 }

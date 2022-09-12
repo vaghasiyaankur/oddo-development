@@ -8,8 +8,9 @@ use App\Traits\Uuids;
 
 class HotelContact extends Model
 {
+    protected $table = 'hotel_contacts';
+
     use HasFactory, Uuids;
-
-    protected $fillable = ['name', 'number', 'number_optinal', 'hotel_id'];
-
+    
+    protected $guarded = ['id'];
 }

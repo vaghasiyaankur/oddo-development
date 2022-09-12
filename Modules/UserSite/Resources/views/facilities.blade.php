@@ -141,7 +141,13 @@ Facilities
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 {{  isset($hotelDetail) ? 'update-facilities-button' : 'facilities-button' }} ">Continue
+                            {{-- <a href="javascript:;" class="btn another-c-d-btn w-100 {{  isset($hotelDetail) ? 'update-facilities-button' : 'facilities-button' }} ">Continue
+                                <div class="spinner-border" role="status" style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </a> --}}
+
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 facilities-button">Continue
                                 <div class="spinner-border" role="status" style="display: none;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -254,12 +260,12 @@ Facilities
             formdata = new FormData();
 
             formdata.append('parking_avaliable', parking_avaliable);
-            if(parking_avaliable == 'yes'){
+            if(parking_avaliable == 'yes') {
                 formdata.append('parking_type', parking_type);
-                formdata.append('parking_site', parking_site); }
+                formdata.append('parking_site', parking_site); 
+            }
             formdata.append('brackfast_select', brackfast_select);
-            if(brackfast_select == 'optional'){
-                formdata.append('food_type_val', food_type_val); }
+            if(brackfast_select == 'optional') formdata.append('food_type_val', food_type_val); 
             formdata.append('facilities', facilities);
             formdata.append('language', language);
 
@@ -282,57 +288,57 @@ Facilities
             }); 
         }); 
 
-        $('.update-facilities-button').on('click', function(){
-            var number = $('.number-of-select').val();
+        // $('.update-facilities-button').on('click', function(){
+        //     var number = $('.number-of-select').val();
             
-            var hotelId = $('.hotelId').val();
+        //     var hotelId = $('.hotelId').val();
 
-            let languageSelect = $('.language option:selected').val();
-            !languageSelect ? $(`#language_error_1`).html(`Select a language type`) : $(`#language_error_1`).html(``);
+        //     let languageSelect = $('.language option:selected').val();
+        //     !languageSelect ? $(`#language_error_1`).html(`Select a language type`) : $(`#language_error_1`).html(``);
 
-            if (!languageSelect) {
-                return;
-            }
+        //     if (!languageSelect) {
+        //         return;
+        //     }
 
-            let parking_avaliable = $('.parking-avaliable').val();
-            let parking_type      = $('.parking-type').val();
-            let parking_site      = $('.parking-site').val();
-            let brackfast_select  = $('.brackfast_select').val();
-            let food_type_val     = $('.food_type_val').val();
-            var language          = $('.language option:selected').map(function(){return $(this).val();}).get();
-            var facilities        = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
+        //     let parking_avaliable = $('.parking-avaliable').val();
+        //     let parking_type      = $('.parking-type').val();
+        //     let parking_site      = $('.parking-site').val();
+        //     let brackfast_select  = $('.brackfast_select').val();
+        //     let food_type_val     = $('.food_type_val').val();
+        //     var language          = $('.language option:selected').map(function(){return $(this).val();}).get();
+        //     var facilities        = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
 
-            formdata = new FormData();
+        //     formdata = new FormData();
 
-            formdata.append('parking_avaliable', parking_avaliable);
-            if(parking_avaliable == 'yes'){
-                formdata.append('parking_type', parking_type);
-                formdata.append('parking_site', parking_site); }
-            formdata.append('brackfast_select', brackfast_select);
-            if(brackfast_select == 'optional'){
-                formdata.append('food_type_val', food_type_val); }
-            formdata.append('facilities', facilities);
-            formdata.append('language', language);
-            formdata.append('hotelId', hotelId);
+        //     formdata.append('parking_avaliable', parking_avaliable);
+        //     if(parking_avaliable == 'yes'){
+        //         formdata.append('parking_type', parking_type);
+        //         formdata.append('parking_site', parking_site); }
+        //     formdata.append('brackfast_select', brackfast_select);
+        //     if(brackfast_select == 'optional'){
+        //         formdata.append('food_type_val', food_type_val); }
+        //     formdata.append('facilities', facilities);
+        //     formdata.append('language', language);
+        //     formdata.append('hotelId', hotelId);
 
-            $('.spinner-border').show();    
-            $.ajax({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                },
-                url: "{{route('update.facilities')}}",
-                type: "POST",
-                processData: false,
-                contentType: false,
-                data: formdata,
-                success: function (res) {
-                    $("input[type=text], input[type=tel]").val("");
-                    if (res.redirect_url) {
-                        window.location = res.redirect_url;
-                    }
-                },
-            }); 
-        }); 
+        //     $('.spinner-border').show();    
+        //     $.ajax({
+        //         headers: {
+        //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        //         },
+        //         url: "{{route('update.facilities')}}",
+        //         type: "POST",
+        //         processData: false,
+        //         contentType: false,
+        //         data: formdata,
+        //         success: function (res) {
+        //             $("input[type=text], input[type=tel]").val("");
+        //             if (res.redirect_url) {
+        //                 window.location = res.redirect_url;
+        //             }
+        //         },
+        //     }); 
+        // }); 
     });
 </script>
 @endpush

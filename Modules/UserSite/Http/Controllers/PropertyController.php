@@ -35,8 +35,8 @@ class PropertyController extends Controller
 
     public function basicInfo() {
         $countries = Country::with('cities')->active()->get();
-        $hotel = Hotel::with('propertytype')->latest()->first();
-        return view('usersite::BasicInfo', compact('countries', 'hotel'));
+        $hotelDetail = Hotel::with('propertytype')->latest()->first();
+        return view('usersite::BasicInfo', compact('countries', 'hotelDetail'));
     }
 
     public function cities(Request $request){
@@ -58,11 +58,45 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('basic-info')]);
     }
 
-    public function property_submit(Request $request) {
-        $hotel_id = Session::get('hotel')->id;
-        $count    = $request->count;
+    // public function property_submit(Request $request) {
+    //     $hotel_id = Session::get('hotel')->id;
+    //     $count = $request->count;    
 
-        $Hotel   =  Hotel::updateOrCreate([ 'id' => $hotel_id ], [
+    //     $Hotel  =  Hotel::updateOrCreate([ 'id' => $hotel_id ], [
+    //         'property_name' => $request->property_name,
+    //         'description'   => $request->description,
+    //         'star_rating'   => $request->star_rating,
+    //         'street_addess' => $request->address,
+    //         'address_line'  => $request->address_line,
+    //         'country_id'    => $request->country,
+    //         'city_id'       => $request->city,
+    //         'pos_code'      => $request->zipcode
+    //     ]);
+
+    //     $contents = json_decode($request->get('contactDetail'));
+
+    //     $contact_id = $request->contact_id;
+    //     foreach($contents as $contect){
+    //         $HotelContact   =   HotelContact::updateOrCreate([ 'id' => $contact_id ], [
+    //             'name' => $contect->name,
+    //             'number'   => $contect->phone,
+    //             'number_optinal' => $contect->phoneOptional,
+    //             'hotel_id' => $hotel_id,
+    //         ]);
+    //     }
+    //     return response()->json(['redirect_url' => route('layout-form')]);
+    // }
+
+    public function property_submitUpdate(Request $request)
+    {
+        if ($request->hotelId) {
+            $hotelId = $request->hotelId;
+        }else{
+            $hotelId = Session::get('hotel')->id;
+        }
+        $count = $request->count;    
+
+        $Hotel   =  Hotel::updateOrCreate([ 'UUID' => $hotelId ], [
             'property_name' => $request->property_name,
             'description'   => $request->description,
             'star_rating'   => $request->star_rating,
@@ -73,17 +107,64 @@ class PropertyController extends Controller
             'pos_code'      => $request->zipcode
         ]);
 
-        $contents = json_decode($request->get('contactDetail'));
+        $contacts = json_decode($request->get('contactDetail'));
+
         $contact_id = $request->contact_id;
-        foreach($contents as $contect){
-            $Hotel   =   HotelContact::updateOrCreate([ 'id' => $contact_id ], [
-                'name' => $contect->name,
-                'number'   => $contect->phone,
-                'number_optinal' => $contect->phoneOptional,
-                'hotel_id' => $hotel_id,
-            ]);
+        if($contacts){
+            foreach($contacts as $contact) {
+                if($contact->id != 0) {
+                    $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact->id ], [
+                        'name' => $contact->name,
+                        'number'   => $contact->phone,
+                        'number_optinal' => $contact->phoneOptional,
+                        'hotel_id' => $Hotel->id
+                    ]);
+                }else{
+                    $contact_id = '';
+                    $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact_id ], [
+                        'name' => $contact->name,
+                        'number'   => $contact->phone,
+                        'number_optinal' => $contact->phoneOptional,
+                        'hotel_id' => $Hotel->id
+                    ]);
+                }
+            }
         }
-        return response()->json(['redirect_url' => route('layout-form')]);
+
+        if ($request->hotelId) {
+            $roomCount = Room::where('hotel_id', $Hotel->id)->count();
+
+            if($roomCount == 1){
+                return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotelId])]);
+            }else{
+                return response()->json(['redirect_url' => route('edit.layout', ['id' => $hotelId])]);
+            }
+        }
+    }
+
+    public function facilities_add_update(Request $request)
+    {
+        $lang = explode(",", $request['language']);
+        $language = join(",", array_unique($lang));
+        $facilities = $request['facilities'];
+        $hotel_id = Session::get('hotel')->id;
+
+        $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
+            'parking_available'  => $request->parking_avaliable,
+            'parking_type'       => $request->parking_type,
+            'parking_site'       => $request->parking_site,
+            'breakfast'          => $request->brackfast_select,
+            'breakfast_type'     => $request->food_type_val,
+            'facilities_id'      => $facilities,
+            'language'           => $language
+        ]);
+
+        return response()->json(['redirect_url' => route('amenities')]);  
+    }
+
+    public function amenities_add_update(Request $request)
+    {
+        dd($request->toarray());
     }
 
     public function layout_pricing() {
@@ -101,7 +182,9 @@ class PropertyController extends Controller
     public function facilities() {
         $facilities = Facilities::active()->get();
         $food_types = FoodType::active()->get();
-        return view('usersite::facilities', compact('facilities', 'food_types'));
+        $hotelDetail = Hotel::latest()->first();
+
+        return view('usersite::facilities', compact('facilities', 'food_types', 'hotelDetail'));
     }
 
     public function room_list(Request $request) {
@@ -157,25 +240,25 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('room-list')]);
     }
 
-    public function add_facilities(Request $request) {
+    // public function add_facilities(Request $request) {
 
-        $lang = explode(",", $request['language']);
-        $language = join(",", array_unique($lang));
-        $facilities = $request['facilities'];
-        $hotel_id = Session::get('hotel')->id;
+    //     $lang = explode(",", $request['language']);
+    //     $language = join(",", array_unique($lang));
+    //     $facilities = $request['facilities'];
+    //     $hotel_id = Session::get('hotel')->id;
 
-        $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
-            'parking_available'  => $request->parking_avaliable,
-            'parking_type'       => $request->parking_type,
-            'parking_site'       => $request->parking_site,
-            'breakfast'          => $request->brackfast_select,
-            'breakfast_type'     => $request->food_type_val,
-            'facilities_id'      => $facilities,
-            'language'           => $language
-        ]);
+    //     $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
+    //         'parking_available'  => $request->parking_avaliable,
+    //         'parking_type'       => $request->parking_type,
+    //         'parking_site'       => $request->parking_site,
+    //         'breakfast'          => $request->brackfast_select,
+    //         'breakfast_type'     => $request->food_type_val,
+    //         'facilities_id'      => $facilities,
+    //         'language'           => $language
+    //     ]);
 
-        return response()->json(['redirect_url' => route('amenities')]);
-    }
+    //     return response()->json(['redirect_url' => route('amenities')]);
+    // }
 
     public function add_amenities(Request $request) {
 
@@ -291,52 +374,54 @@ class PropertyController extends Controller
         }
     }
 
-    public function updateProperty(Request $request)
-    {
-        $hotel_id = $request->hotelId;
 
-        $Hotel   =  Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
-            'property_name' => $request->property_name,
-            'description'   => $request->description,
-            'star_rating'   => $request->star_rating,
-            'street_addess' => $request->address,
-            'address_line'  => $request->address_line,
-            'country_id'    => $request->country,
-            'city_id'       => $request->city,
-            'pos_code'      => $request->zipcode
-        ]);
+    // public function updateProperty(Request $request)
+    // {
+    //     $hotel_id = $request->hotelId;
 
-        $hotelId = Hotel::where('UUID', $hotel_id)->select('id')->first();
-        $contacts = json_decode($request->get('contactDetail'));
+    //     $Hotel = Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
+    //         'property_name' => $request->property_name,
+    //         'description'   => $request->description,
+    //         'star_rating'   => $request->star_rating,
+    //         'street_addess' => $request->address,
+    //         'address_line'  => $request->address_line,
+    //         'country_id'    => $request->country,
+    //         'city_id'       => $request->city,
+    //         'pos_code'      => $request->zipcode
+    //     ]);
 
-        if($contacts){
-            foreach($contacts as $contact) {
-                if($contact->id != 0) {
-                    $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact->id ], [
-                        'name' => $contact->name,
-                        'number'   => $contact->phone,
-                        'number_optinal' => $contact->phoneOptional
-                    ]);
-                }else{
-                    $contact_id = '';
-                    $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact_id ], [
-                        'name' => $contact->name,
-                        'number'   => $contact->phone,
-                        'number_optinal' => $contact->phoneOptional,
-                        'hotel_id' => $hotelId->id
-                    ]);
-                }
-            }
-        }
+    //     $hotelId = Hotel::where('UUID', $hotel_id)->select('id')->first();
+    //     $contacts = json_decode($request->get('contactDetail'));
 
-        $roomCount = Room::where('hotel_id', $hotelId->id)->count();
+    //     if($contacts){
+    //         foreach($contacts as $contact) {
+    //             if($contact->id != 0) {
+    //                 $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact->id ], [
+    //                     'name' => $contact->name,
+    //                     'number'   => $contact->phone,
+    //                     'number_optinal' => $contact->phoneOptional,
+    //                     'hotel_id' => $hotelId->id
+    //                 ]);
+    //             }else{
+    //                 $contact_id = '';
+    //                 $hotelContact   =   HotelContact::updateOrCreate([ 'UUID' => $contact_id ], [
+    //                     'name' => $contact->name,
+    //                     'number'   => $contact->phone,
+    //                     'number_optinal' => $contact->phoneOptional,
+    //                     'hotel_id' => $hotelId->id
+    //                 ]);
+    //             }
+    //         }
+    //     }
 
-        if($roomCount == 1){
-            return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotel_id])]);
-        }else{
-            return response()->json(['redirect_url' => route('edit.layout', ['id' => $hotel_id])]);
-        }
-    }
+    //     $roomCount = Room::where('hotel_id', $hotelId->id)->count();
+
+    //     if($roomCount == 1){
+    //         return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotel_id])]);
+    //     }else{
+    //         return response()->json(['redirect_url' => route('edit.layout', ['id' => $hotel_id])]);
+    //     }
+    // }
 
     public function editLayout($id)
     {
@@ -417,29 +502,28 @@ class PropertyController extends Controller
 
         $hotelDetail = Hotel::where('UUID', $id)->first();
         return view('usersite::facilities', compact('facilities', 'food_types', 'hotelDetail'));
-
     }
 
-    public function updateFacilities(Request $request)
-    {
-        $lang = explode(",", $request['language']);
-        $language = join(",", array_unique($lang));
-        $facilities = $request['facilities'];
+    // public function updateFacilities(Request $request)
+    // {
+    //     $lang = explode(",", $request['language']);
+    //     $language = join(",", array_unique($lang));
+    //     $facilities = $request['facilities'];
 
-        $hotelId = $request->hotelId;
+    //     $hotelId = $request->hotelId;
 
-        $Hotel = Hotel::updateOrCreate([ 'UUID' => $hotelId ], [
-            'parking_available' => $request->parking_avaliable,
-            'parking_type' => $request->parking_type,
-            'parking_site' => $request->parking_site,
-            'breakfast' => $request->brackfast_select,
-            'breakfast_type' => $request->food_type_val,
-            'facilities_id' => $facilities,
-            'language' => $language
-        ]);
+    //     $Hotel = Hotel::updateOrCreate([ 'UUID' => $hotelId ], [
+    //         'parking_available' => $request->parking_avaliable,
+    //         'parking_type' => $request->parking_type,
+    //         'parking_site' => $request->parking_site,
+    //         'breakfast' => $request->brackfast_select,
+    //         'breakfast_type' => $request->food_type_val,
+    //         'facilities_id' => $facilities,
+    //         'language' => $language
+    //     ]);
 
-        return response()->json(['redirect_url' => route('edit.amenities', ['id' => $hotelId])]);
-    }
+    //     return response()->json(['redirect_url' => route('edit.amenities', ['id' => $hotelId])]);
+    // }
 
     public function editAmenities($id) {
 
