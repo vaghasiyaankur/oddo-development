@@ -83,7 +83,7 @@ Facilities
                                 </div>
                                 <div id="add_languages">
                                     @if(isset($hotelDetail))
-                                        <?php 
+                                        <?php
                                             if(isset($hotelDetail)) $languages = explode(',', $hotelDetail->language );
                                         ?>
                                         @foreach ($languages as $language)
@@ -123,10 +123,10 @@ Facilities
                                         data-bs-placement="top"
                                         title="Guests look for these facilities the most when they are searching for properties."></i>
                                 </div>
-                                <?php 
+                                <?php
                                     if(isset($hotelDetail)) $facilitites = explode(',', $hotelDetail->facilities_id );
                                 ?>
-                                <div class="facilities-list pt-4">      
+                                <div class="facilities-list pt-4">
                                     <div class="facilities-check d-flex flex-wrap align-items-center justify-content-between">
                                         @foreach ($facilities as $facilitate)
                                             <div class="form-check py-3 border--dotted">
@@ -135,7 +135,7 @@ Facilities
                                                     {{$facilitate->facilities_name}}
                                                 </label>
                                             </div>
-                                        @endforeach     
+                                        @endforeach
                                     </div>
                                 </div>
                             </form>
@@ -152,7 +152,7 @@ Facilities
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </a>
-                            
+
                         </div>
                     </main>
                 </div>
@@ -211,7 +211,7 @@ Facilities
                                                 '<option value="english">English</option>' +
                                                 '<option value="hindi">Hindi</option>' +
                                                 '<option value="russian">Russian</option>' +
-                                            '</select>' + 
+                                            '</select>' +
                                             '<i class="fa-solid fa-xmark text--red ps-3 "></i>' + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />' +
                                         '</div>' +
                                         '<span id="language_error_'+numbers+'" class="text-danger"></span>');
@@ -241,7 +241,7 @@ Facilities
 
         $('.facilities-button').on('click', function(){
             var number = $('.number-of-select').val();
-
+            var hotelId = $('.hotelId').val();
             let languageSelect = $('.language option:selected').val();
             !languageSelect ? $(`#language_error_1`).html(`Select a language type`) : $(`#language_error_1`).html(``);
 
@@ -260,20 +260,22 @@ Facilities
             formdata = new FormData();
 
             formdata.append('parking_avaliable', parking_avaliable);
+            formdata.append('hotelId', hotelId);
             if(parking_avaliable == 'yes') {
                 formdata.append('parking_type', parking_type);
-                formdata.append('parking_site', parking_site); 
+                formdata.append('parking_site', parking_site);
             }
             formdata.append('brackfast_select', brackfast_select);
-            if(brackfast_select == 'optional') formdata.append('food_type_val', food_type_val); 
+            if(brackfast_select == 'optional') formdata.append('food_type_val', food_type_val);
             formdata.append('facilities', facilities);
             formdata.append('language', language);
 
-            $('.spinner-border').show();    
+            $('.spinner-border').show();
             $.ajax({
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
+                // url: "{{route('edit.layout')}}",
                 url: "{{route('add-facilities')}}",
                 type: "POST",
                 processData: false,
@@ -285,12 +287,12 @@ Facilities
                         window.location = res.redirect_url;
                     }
                 },
-            }); 
-        }); 
+            });
+        });
 
         // $('.update-facilities-button').on('click', function(){
         //     var number = $('.number-of-select').val();
-            
+
         //     var hotelId = $('.hotelId').val();
 
         //     let languageSelect = $('.language option:selected').val();
@@ -321,7 +323,7 @@ Facilities
         //     formdata.append('language', language);
         //     formdata.append('hotelId', hotelId);
 
-        //     $('.spinner-border').show();    
+        //     $('.spinner-border').show();
         //     $.ajax({
         //         headers: {
         //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -337,8 +339,8 @@ Facilities
         //                 window.location = res.redirect_url;
         //             }
         //         },
-        //     }); 
-        // }); 
+        //     });
+        // });
     });
 </script>
 @endpush

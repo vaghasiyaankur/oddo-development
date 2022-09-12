@@ -66,7 +66,7 @@ Add-Layout
                                     </div>
                                     <div class="amenities-check-box px-5">
                                         @if(isset($hotelDetail))
-                                            <?php 
+                                            <?php
                                                 if(isset($hotelDetail)) $amenity_id = explode(',', $hotelDetail->amenity_id );
                                             ?>
                                         @endif
@@ -78,16 +78,17 @@ Add-Layout
                                                         {{@$amenity->amenities}}
                                                     </label>
                                                 </div>
+                                            <span id="amenity-error" class="text-danger"></span>
                                             @endforeach
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="amenities-btn another-c-details mt-4">
                                 <a class="btn btn-primary accordion-btn-link another-c-d-btn d-none" type="button">
-                                    Hide all Amenities
+                                    Show all Amenities
                                 </a>
                                 <a class="btn btn-primary show-button another-c-d-btn" type="button">
-                                    Show all Amenities
+                                    Hide all Amenities
                                 </a>
                                 </div>
                                 <div class="amenities-category pt-4" id="hideshow">
@@ -109,7 +110,7 @@ Add-Layout
                                                             @foreach($category->amenities as $amenity)
                                                                 <div class="form-check py-2 border--bottom amenity-checked">
                                                                     <label class="form-check-label para-fs-14 fs-6 w-100">
-                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}"  {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>                                
+                                                                    <input class="form-check-input check-amenity checked-amenity-{{$amenity->id}}" type="checkbox"  name="{{$category->slug}}" id="amenities" value="{{$amenity->id}}"  {{  isset($hotelDetail) && in_array($amenity->id, $amenity_id) ? 'checked' : '' }}>
                                                                     {{$amenity->amenities}}
                                                                     </label>
                                                                 </div>
@@ -118,13 +119,19 @@ Add-Layout
                                                     </div>
                                                 </div>
                                             @endforeach
-                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 {{  isset($hotelDetail) ? 'update-amenities-button' : 'amenities-button' }} ">Continue
+                            {{-- <a href="javascript:;" class="btn another-c-d-btn w-100 {{  isset($hotelDetail) ? 'update-amenities-button' : 'amenities-button' }} ">Continue
+                                <div class="spinner-border" role="status" style="display: none;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </a> --}}
+
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 amenities-button">Continue
                                 <div class="spinner-border" role="status" style="display: none;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -158,7 +165,7 @@ Add-Layout
 
 @push('scripts')
 <script>
-// jjs for hide and show on butoon 
+// jjs for hide and show on butoon
 $(document).ready(function(){
 
     $('.top_aminity').on('change', function(){
@@ -178,16 +185,16 @@ $(document).ready(function(){
         var set_length = $(`.checkbox_length_${name}`).html(checkbox);
     }
 
-    $('.amenityCategoryDiv').each(function() {  
-        var name  = $(this).attr('name');  
+    $('.amenityCategoryDiv').each(function() {
+        var name  = $(this).attr('name');
         checkCal(name);
-    }); 
+    });
 
     $(".accordion-btn-link").click(function(){
         $("#hideshow").removeClass('d-none');
         $(this).addClass('d-none');
         $(".show-button").removeClass('d-none');
-        
+
     });
 
     $(".show-button").click(function(){
@@ -195,7 +202,7 @@ $(document).ready(function(){
         $(this).addClass('d-none');
         $(".accordion-btn-link").removeClass('d-none');
     });
-    
+
     $('.extra-bed').on('click', function(){
         var extra_bed = $(this).val();
         if(extra_bed == 'yes'){
@@ -210,11 +217,14 @@ $(document).ready(function(){
         var extra_bed  = $('.extra-bed:checked').val();
         var extra_no_of_bed = $('.extra_no_of_bed').val();
         var amenities       = $("input[id='amenities']:checked").map(function(){return $(this).val();}).get();
+        var hotelId = $('.hotelId').val();
 
         formdata = new FormData();
 
         formdata.append('extra_bed', extra_bed);
         formdata.append('amenities', amenities);
+        formdata.append('hotelId', hotelId);
+        
         if(extra_bed == 'yes') {
             formdata.append('extra_no_of_bed', extra_no_of_bed);
         }
@@ -234,43 +244,43 @@ $(document).ready(function(){
                     window.location = res.redirect_url;
                 }
             },
-        }); 
+        });
     });
-   
-    $(document).on('click', '.update-amenities-button', function(){
 
-        var hotelId = $('.hotelId').val(); 
-        var extra_bed = $('.extra-bed:checked').val();
-        var extra_no_of_bed = $('.extra_no_of_bed').val();
-        var amenities = $("input[id='amenities']:checked").map(function(){return $(this).val();}).get();
+    // $(document).on('click', '.update-amenities-button', function(){
+
+    //     var hotelId = $('.hotelId').val();
+    //     var extra_bed = $('.extra-bed:checked').val();
+    //     var extra_no_of_bed = $('.extra_no_of_bed').val();
+    //     var amenities = $("input[id='amenities']:checked").map(function(){return $(this).val();}).get();
 
 
-        formdata = new FormData();
+    //     formdata = new FormData();
 
-        formdata.append('hotelId', hotelId);
-        formdata.append('extra_bed', extra_bed);
-        formdata.append('amenities', amenities);
-        if(extra_bed == 'yes') {
-            formdata.append('extra_no_of_bed', extra_no_of_bed);
-        }
+    //     formdata.append('hotelId', hotelId);
+    //     formdata.append('extra_bed', extra_bed);
+    //     formdata.append('amenities', amenities);
+    //     if(extra_bed == 'yes') {
+    //         formdata.append('extra_no_of_bed', extra_no_of_bed);
+    //     }
 
-        $('.spinner-border').show();
-        $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            url: "{{route('update.amenities')}}",
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: formdata,
-            success: function (res) {
-                if (res.redirect_url) {
-                    window.location = res.redirect_url;
-                }
-            },
-        }); 
-    });
+    //     $('.spinner-border').show();
+    //     $.ajax({
+    //         headers: {
+    //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    //         },
+    //         url: "{{route('update.amenities')}}",
+    //         type: "POST",
+    //         processData: false,
+    //         contentType: false,
+    //         data: formdata,
+    //         success: function (res) {
+    //             if (res.redirect_url) {
+    //                 window.location = res.redirect_url;
+    //             }
+    //         },
+    //     });
+    // });
 });
 </script>
 @endpush

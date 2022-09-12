@@ -25,8 +25,8 @@ Add-Layout
                         </div>
                         @foreach($rooms as $room)
                         <div class="layout-add-room px-4 py-5">
-                            
-                            
+
+
                             <div class="add-room-box d-flex justify-content-between align-items-center">
                                 <div class="addroom-left">
                                     <h5 class="m-0 heading-fs-16 fw-bold">{{$room['roomlist']->room_name}}</h5>
@@ -74,41 +74,40 @@ Add-Layout
 
         $(document).on('click', '.deleteRoom', function(){
             let roomId = $(this).data('id');
-    
+
             $.ajax({
                 url: baseUrl + "/user/deleteRoom/" + roomId,
                 type: "POST",
                 processData: false,
                 contentType: false,
-                success: function (response) { 
+                success: function (response) {
                     console.log(response.roomCount);
                     if(response.roomCount == 1){
                         window.location = 'layout-form';
                     }else{
                         window.location = 'room-list';
-                    }   
+                    }
                 },
-            }); 
+            });
         });
 
         $(document).on('click', '.editRoom', function(){
             let roomId = $(this).data('id');
-            alert('hello');
-            
+
             $.ajax({
-                url: baseUrl + "user/edit/layout-pricing-form/" + roomId,
-                type: "POST",
+                url: baseUrl + "/user/edit/layout-pricing-form/" + roomId,
+                type: "GET",
                 processData: false,
                 contentType: false,
-                success: function (response) { 
+                success: function (response) {
                     console.log(response.roomCount);
                     if(response.roomCount == 1){
                         window.location = 'layout-form';
                     }else{
                         window.location = 'room-list';
-                    }   
+                    }
                 },
-            }); 
+            });
         });
     });
 </script>

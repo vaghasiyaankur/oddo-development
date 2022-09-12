@@ -94,21 +94,20 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::get('/history', 'index')->name('orderhistory.index');
         Route::post('/store', 'store')->name('add.review');
         Route::post('/view', 'show')->name('show.review');
-        Route::get('/list', 'list')->name('list.review');        
+        Route::get('/list', 'list')->name('list.review');
+    });
+
+    // payment
+    Route::prefix('payment')->controller(PaymentController::class)->group(function(){
+        // Route::get('/paypal', 'showPaypal')->name('show.paypal');
+        // Route::get('paypal/success', 'successPaypal')->name('paypal.success');
+        // Route::get('paypal/cancel', 'cancelPaypal')->name('paypal.cancel');
+
+        Route::post('show/stripe', 'showStripe')->name('show.stripe');
+        Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
+        Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
     });
 
     Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');
 });
 
-// payment
-Route::prefix('payment')->controller(PaymentController::class)->group(function(){
-    // Route::get('/paypal', 'showPaypal')->name('show.paypal');
-    // Route::get('paypal/success', 'successPaypal')->name('paypal.success');
-    // Route::get('paypal/cancel', 'cancelPaypal')->name('paypal.cancel');
-
-
-    Route::post('show/stripe', 'showStripe')->name('show.stripe');
-    Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
-
-    Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
-});

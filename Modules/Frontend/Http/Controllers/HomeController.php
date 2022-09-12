@@ -33,12 +33,12 @@ class HomeController extends Controller
                     ->whereRelation('room', 'guest_stay_room', $guest)
                     ->whereRelation('room', 'number_of_room', $room)
                     ->orwhereHas('hotelBed.bedType', function($query) use ($bed) {
-                        $query->whereIn('bed_type', $bed);                    
+                        $query->whereIn('bed_type', $bed);
                     })
                     ->active()->latest()->paginate(2);
-            
-            $hotelAmounts = array(); 
-            
+
+            $hotelAmounts = array();
+
             foreach($hotels as $hotel){
                 $amount = $hotel->room->price_room;
                 $hotel_amount = $amount * $room;
@@ -46,14 +46,14 @@ class HomeController extends Controller
             }
 
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'hotelAmounts'))->render();
                 return $html;
             }
 
         }  else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels'))->render();
                 return $html;
             }
         }

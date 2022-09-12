@@ -287,19 +287,19 @@ Layout & pricing
 
                         </div>
                         <div class="another-c-details mt-4">
-                            @if(isset($roomDetail))
+                            {{-- @if(isset($roomDetail))
                                 <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-update-click">Continue
                                     <div class="spinner-border" role="status" style="display: none;">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                 </a>
-                            @else
+                            @else --}}
                                 <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue
                                     <div class="spinner-border" role="status" style="display: none;">
                                         <span class="sr-only">Loading...</span>
                                     </div>
                                 </a>
-                            @endif
+                            {{-- @endif --}}
                         </div>
                     </main>
                 </div>
@@ -533,7 +533,7 @@ Layout & pricing
 
 
     $(".btn-submit-click").on('click', function(){
-
+        var hotelId = $('.hotelId').val();
         let room_type = $('.room_type option:selected').val();
         !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
 
@@ -570,6 +570,7 @@ Layout & pricing
 
         formdata = new FormData();
 
+        formdata.append('hotelId', hotelId);
         formdata.append('room_type', room_type);
         formdata.append('number_of_guest', number_of_guest);
         formdata.append('bed_price', bed_price);
@@ -595,7 +596,7 @@ Layout & pricing
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            url: "{{route('add-room')}}",
+            url: "{{route('add-layoutprice')}}",
             type: "POST",
             processData: false,
             contentType: false,
@@ -649,87 +650,87 @@ Layout & pricing
 
     roomName();
 
-    $(".btn-update-click").on('click', function(){
-        let room_type = $('.room_type option:selected').val();
-        !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
+    // $(".btn-update-click").on('click', function(){
+    //     let room_type = $('.room_type option:selected').val();
+    //     !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
 
 
-        let number_of_guest = $('.number_of_guest').val();
-        !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) : $(`#number_of_guest_error`).html(``);
+    //     let number_of_guest = $('.number_of_guest').val();
+    //     !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) : $(`#number_of_guest_error`).html(``);
 
-        let bed_price = $('.bed_price').val();
-        !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
+    //     let bed_price = $('.bed_price').val();
+    //     !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
 
-        var BedDetail  = $(".bed-option-div").map(function(){return {
-            id : $(this).children('.bedId').val(),
-            bed   : $(this).children('.select-bed').val(),
-            bedNo : $(this).children('.number_of_bed').val()
-        }}).get();
+    //     var BedDetail  = $(".bed-option-div").map(function(){return {
+    //         id : $(this).children('.bedId').val(),
+    //         bed   : $(this).children('.select-bed').val(),
+    //         bedNo : $(this).children('.number_of_bed').val()
+    //     }}).get();
 
-        var roomId = $('.roomId').val();
-        var hotelId = $('.hotelId').val();
+    //     var roomId = $('.roomId').val();
+    //     var hotelId = $('.hotelId').val();
 
-        if (!room_type || !bed_price) {
-            return;
-        }
+    //     if (!room_type || !bed_price) {
+    //         return;
+    //     }
 
-        let custom_name      = $('.custom_name').val();
-        let room_name_select = $('.room_name_select').val();
-        let smoking_area     = $('.smoking_area').val();
-        let number_of_room   = $('.number_of_room').val();
-        let room_size        = $('.room_size').val();
-        let room_size_feet   = $('.room_size_feet').val();
-        let bathroom_private = $("input[name='bathroom_private']:checked").val();
-        let bathroom_item    = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
-        let discountValue    = $('.discountValue').val();
-        let discountType     = $('.discountType').val();
-        let personDis        = $('.offer-person-select').val();
-        let checked          = $('.offer-check:checked').val();
+    //     let custom_name      = $('.custom_name').val();
+    //     let room_name_select = $('.room_name_select').val();
+    //     let smoking_area     = $('.smoking_area').val();
+    //     let number_of_room   = $('.number_of_room').val();
+    //     let room_size        = $('.room_size').val();
+    //     let room_size_feet   = $('.room_size_feet').val();
+    //     let bathroom_private = $("input[name='bathroom_private']:checked").val();
+    //     let bathroom_item    = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
+    //     let discountValue    = $('.discountValue').val();
+    //     let discountType     = $('.discountType').val();
+    //     let personDis        = $('.offer-person-select').val();
+    //     let checked          = $('.offer-check:checked').val();
 
-        let property_type       = $('.property_type').val();
+    //     let property_type       = $('.property_type').val();
 
-        formdata = new FormData();
+    //     formdata = new FormData();
 
-        formdata.append('roomId', roomId);
-        formdata.append('hotelId', hotelId);
-        formdata.append('room_type', room_type);
-        formdata.append('number_of_guest', number_of_guest);
-        formdata.append('bed_price', bed_price);
-        formdata.append('custom_name', custom_name);
-        formdata.append('room_name_select', room_name_select);
-        formdata.append('smoking_area', smoking_area);
-        formdata.append('number_of_room', number_of_room);
-        formdata.append('BedDetail', JSON.stringify(BedDetail));
-        formdata.append('room_size', room_size);
-        formdata.append('room_size_feet', room_size_feet);
-        formdata.append('bathroom_private',bathroom_private);
-        formdata.append('bathroom_item',bathroom_item);
-        if(checked == 'yes'){
-            formdata.append('discountValue', discountValue);
-            formdata.append('discountType', discountType);
-            formdata.append('personDis', personDis);
-        }
+    //     formdata.append('roomId', roomId);
+    //     formdata.append('hotelId', hotelId);
+    //     formdata.append('room_type', room_type);
+    //     formdata.append('number_of_guest', number_of_guest);
+    //     formdata.append('bed_price', bed_price);
+    //     formdata.append('custom_name', custom_name);
+    //     formdata.append('room_name_select', room_name_select);
+    //     formdata.append('smoking_area', smoking_area);
+    //     formdata.append('number_of_room', number_of_room);
+    //     formdata.append('BedDetail', JSON.stringify(BedDetail));
+    //     formdata.append('room_size', room_size);
+    //     formdata.append('room_size_feet', room_size_feet);
+    //     formdata.append('bathroom_private',bathroom_private);
+    //     formdata.append('bathroom_item',bathroom_item);
+    //     if(checked == 'yes'){
+    //         formdata.append('discountValue', discountValue);
+    //         formdata.append('discountType', discountType);
+    //         formdata.append('personDis', personDis);
+    //     }
 
 
-        $('.spinner-border').show();
+    //     $('.spinner-border').show();
 
-        $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            url: "{{route('update-room')}}",
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: formdata,
-            success: function (res) {
-                $("input[type=text], input[type=tel]").val("");
-                if (res.redirect_url) {
-                    window.location = res.redirect_url;
-                }
-            },
-        });
-    });
+    //     $.ajax({
+    //         headers: {
+    //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    //         },
+    //         url: "{{route('update-room')}}",
+    //         type: "POST",
+    //         processData: false,
+    //         contentType: false,
+    //         data: formdata,
+    //         success: function (res) {
+    //             $("input[type=text], input[type=tel]").val("");
+    //             if (res.redirect_url) {
+    //                 window.location = res.redirect_url;
+    //             }
+    //         },
+    //     });
+    // });
 
 
 });
