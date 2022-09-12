@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\LogoFavicon;
+use App\Models\Hotel;
+use App\Models\Notification;
 
 class AdminController extends Controller
 {
@@ -82,5 +84,30 @@ class AdminController extends Controller
     {
         $LogoFavicon = LogoFavicon::first();
         return $LogoFavicon;
+    }
+
+    public function notification(Request $request)
+    {
+        $hotelCount = Notification::count();
+        return response()->json(["hotelCount" => $hotelCount], 200);
+    }
+
+    public function showNotification(Request $request)
+    {
+        $notifications =  Notification::select('hotel_id')->get();
+        $hotels = array();
+        foreach ($notifications as $key => $notification) {
+            $hotels[] = Hotel::where('id', $notification->hotel_id)->select('id', 'property_name', 'UUID', 'created_at')->get();
+        }
+
+        $data['hotels'] = $hotels;
+        return view('layout::admin.includes.notification', $data);
+    }
+
+    public function deleteNotification(Request $request)
+    {
+        $hotel = Notification::where('hotel_id',$request->hotel_id)->delete();
+
+        return response()->json(["message" => 'notification delete successfully.'], 200);
     }
 }

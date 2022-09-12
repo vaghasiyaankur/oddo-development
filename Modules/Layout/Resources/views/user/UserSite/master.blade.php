@@ -1,3 +1,4 @@
+@php $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon() @endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>odda / @yield('title')</title>
+  <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
   <!------- Bootstrap CSS Link------->
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
   <!------- Fontawsomee cdn link ------->
