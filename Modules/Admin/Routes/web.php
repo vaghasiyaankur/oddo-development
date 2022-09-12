@@ -184,6 +184,12 @@ Route::prefix('admin')->group(function() {
             Route::get('review-list', 'ReviewList')->name('review.list');
         });
 
+        Route::controller(AdminController::class)->group(function(){
+            Route::post('notification', 'notification')->name('property.notification');
+            Route::post('notification/show', 'showNotification')->name('notification.show');
+            Route::post('notification/delete', 'deleteNotification')->name('notification.delete');
+        });
+
     });
 
 

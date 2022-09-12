@@ -83,7 +83,7 @@ Layout & pricing
                                     </div>
                                     <span  id="check_out_error" class="text-danger"></span>
                                 </form>
-
+                                <input type="hidden" class="complete" value="1">
                             </div>
                         </div>
                         <div class="another-c-details mt-4">
@@ -144,6 +144,7 @@ $(document).ready(function(){
 
         let cancel_select = $('.cancel-select option:selected').val();
         let guest_pay = $('.guest-pay option:selected').val();
+        let complete = $('.complete').val();
 
         formdata = new FormData();
 
@@ -151,6 +152,7 @@ $(document).ready(function(){
         formdata.append('guest_pay', guest_pay);
         formdata.append('check_in', check_in);
         formdata.append('check_out', check_out);
+        formdata.append('complete', complete);
 
         $('.spinner-border').show();    
         $.ajax({

@@ -348,10 +348,6 @@
                     $(".notifactionDiv").removeClass("show");
                 }
             });
-
-            $('.btnNotificaion').click(function() {
-                $('.notifactionDiv').toggleClass('show');
-            });
         });
     </script>
     <script>

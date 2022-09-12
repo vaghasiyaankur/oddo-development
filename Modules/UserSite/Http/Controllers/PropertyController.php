@@ -24,6 +24,7 @@ use Modules\UserSite\Entities\HotelPhoto;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Models\Notification;
 
 class PropertyController extends Controller
 {
@@ -164,15 +165,14 @@ class PropertyController extends Controller
 
     public function amenities_add_update(Request $request)
     {
-        $hotel_id = $request->hotelId;
+$hotel_id = $request->hotelId;
 
-        $Hotel   =   Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
-            'extra_bed'        => $request->extra_bed,
-            'number_extra_bed' => $request->extra_no_of_bed,
-            'amenity_id'       => $request['amenities'],
-        ]);
-        return response()->json(['redirect_url' => route('photo')]);
-
+$Hotel   =   Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
+    'extra_bed'        => $request->extra_bed,
+    'number_extra_bed' => $request->extra_no_of_bed,
+    'amenity_id'       => $request['amenities'],
+]);
+return response()->json(['redirect_url' => route('photo')]);
 
     }
 
@@ -351,6 +351,12 @@ class PropertyController extends Controller
             'pay_type'       => $request->guest_pay,
             'check_in'       => $request->check_in,
             'check_out'      => $request->check_out,
+            'complete'       => $request->complete
+        ]);
+
+        $id = '';
+        $notification = Notification::updateOrCreate(['id' => $id], [
+            'hotel_id' => $hotel_id,
         ]);
 
         return response()->json(['redirect_url' => route('home.index')]);

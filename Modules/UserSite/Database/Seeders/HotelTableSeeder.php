@@ -67,6 +67,7 @@ class HotelTableSeeder extends Seeder
                         'property_id' => $type->id,
                         'status' => 1,
                         'user_id' => $user[array_rand($user)],
+                        'complete' => 1,
                 ];
 
                 $hotelEntry = Hotel::create($hotel);
