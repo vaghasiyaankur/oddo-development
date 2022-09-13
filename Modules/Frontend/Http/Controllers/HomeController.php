@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Partner;
 use App\Models\Hotel;
 use App\Models\LogoFavicon;
+use App\Models\PropertyType;
 
 class HomeController extends Controller
 {
@@ -59,8 +60,9 @@ class HomeController extends Controller
         }
 
         $cities = City::where('featured',1)->get();
+        $propertyTypes = PropertyType::active()->get();
         $partners = Partner::get();
-        return view('frontend::home.index',compact('cities','partners'));
+        return view('frontend::home.index',compact('cities','partners', 'propertyTypes'));
     }
 
     public static function logoFavicon()

@@ -10,6 +10,7 @@ use App\Models\Amenities;
 use App\Models\paymentGetways;
 use App\Models\HotelBooking;
 use App\Models\Review;
+use App\Models\PropertyType; 
 use DB;
 
 class HotelController extends Controller
@@ -20,6 +21,9 @@ class HotelController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request->toarray());
+        $propertyType = $request->propertyType;
+
         $search = request()->search;
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
@@ -82,6 +86,15 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
+        } else if($propertyType){
+
+            $propertyTypeId = PropertyType::whereUuid($propertyType)->pluck('id')->first();
+            $hotels = Hotel::with('room')->whereProperty_id($propertyTypeId)->paginate(2); 
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
+                return $html;
+            }
+
         } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
@@ -89,7 +102,6 @@ class HotelController extends Controller
                 return $html;
             }
         }
-
 
         $amenities = Amenities::where('featured',1)->active()->get();
         return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways','booking', 'hotelAmounts'));

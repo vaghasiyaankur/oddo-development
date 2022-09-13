@@ -6,7 +6,7 @@
                     <h6 class="m-0 fs-16 fw-semibold text-white"> Notifications </h6>
                 </div>
                 <div class="col-auto dropdown-tabs">
-                    <span class="badge badge-soft-light fs-13"> New</span>
+                    {{-- <span class="badge badge-soft-light fs-13"> New</span> --}}
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                                                 
                                             @foreach ($hotelDetails as $hotel)
                                             <div class="text-reset notification-item d-block dropdown-item position-relative">
-                                                <div class="d-flex">
+                                                <div class="d-flex align-items-center">
                                                     <div class="avatar-xs me-3">
                                                         <span
                                                             class="avatar-title bg-soft-info text-info rounded-circle fs-16">
@@ -38,19 +38,22 @@
                                                         </span>
                                                     </div>
                                                     <div class="flex-1">
-                                                        <h6 class="mt-0 mb-2 lh-base">{{@$hotel->property_name}}</h6>
+                                                        <a href=""><h6 class="mt-0 mb-1 lh-base">{{@$hotel->property_name}}</h6>
                                                         <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
                                                             <span><i class="mdi mdi-clock-outline"></i> Just {{$hotel->created_at->diffForHumans() }}</span>
                                                         </p>
+                                                    </a>
                                                     </div>
-                                                    <div class="fs-15">
-                                                        <a href="javascript:;" class="btn btn-primary py-1 px-2 deleteNotification" data-id="{{$hotel->id}}">X</a>
+                                                    <div class="ps-2">
+                                                        <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn deleteNotification" data-id="{{$hotel->id}}"><i class="ri-close-fill fs-16"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
                                             @endforeach
                                         
                                         @endforeach
+                                    @else
+                                        <p>Notification box empty.</p>
                                     @endif
                                     {{-- <div class="my-3 text-center">
                                         <button type="button"

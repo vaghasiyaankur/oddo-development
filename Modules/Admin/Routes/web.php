@@ -20,7 +20,9 @@ Route::prefix('admin')->group(function() {
 
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         // dashboard
-        Route::view('/dashboard', 'admin::dashboard')->name('dashboard');
+        Route::controller(DashboardController::class)->group(function(){
+            Route::get('/dashboard', 'index')->name('dashboard');
+        });
 
         //profile
         Route::view('/profile', 'admin::profile.index')->name('profile');
