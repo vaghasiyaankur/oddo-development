@@ -398,7 +398,7 @@ hotel
                                                 data-datepicker="separateRange" value="{{ request()->checkIn }}" />
                                         </div>
                                     </div>
-                                    <div class="check-text-label pt-4 mt-2">
+                                    <div class="check-text-label pt-4">
                                         <label class="check-inout check-out-label mt-2">Check-Out</label>
                                         <div class="input--text d-flex align-items-center">
                                             <img src="assets/images/icons/cal-2.png" class="px-2">
@@ -456,7 +456,6 @@ hotel
                                     <i class="fa-solid fa-car" style="color: #878996"></i>
                                     <span style="color: #878996">king</span>
                                     <i class="fa-solid fa-caret-down" style="color: #878996"></i>
-                                    {{-- <i class="fa-solid fa-angle-down" style="color: #6A78C7;"></i> --}}
                                 </div>
                                 <div class="select-option select-room option-none">
                                     <div class="room">
@@ -499,12 +498,6 @@ hotel
                                     </div>
                                 </div>
                             </div>
-                            <!-- <label>Bed</label>
-                                        <select class="select2-icon" name="icon" multiple="multiple">
-                                        <option value="fa-bed" data-icon="fa-bed">2</option>
-                                        <option value="fa-bed" data-icon="fa-bed">1</option>
-                                        <option value="fa-bed" data-icon="fa-bed">3</option>
-                                        </select> -->
                         </div>
                         <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
                             <a href="#" class="btn search-btn purple" id='SubmitSearch'>Search</a>
@@ -534,8 +527,6 @@ hotel
                                 <h5 class="search-heading">Search</h5>
                                 <div class="input-group align-items-center search-input">
                                     <i class="fa-solid fa-magnifying-glass ps-2"></i>
-                                    {{-- <input type="text" class="form-control propertyName" name="propertyName"
-                                        placeholder="Search by name" value="{{request()->propertyName}}"> --}}
                                     <input type="text" class="form-control propertyName searchProperty"
                                         name="propertyName" placeholder="Search by name"
                                         value="{{ request()->searchProperty }}">
@@ -1031,41 +1022,6 @@ hotel
                                     </div>
                                 </div>
                                 <div class="hotels-results-neigh pt-4">
-                                    {{-- <div class="small-heading ">
-                                        <h6>Neighborhood </h6>
-                                    </div> --}}
-                                    {{-- <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Pequeña Habana
-                                        </label>
-                                    </div>
-                                    <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                            checked>
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Brickell
-                                        </label>
-                                    </div>
-                                    <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Wynwood
-                                        </label>
-                                    </div>
-                                    <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                            checked>
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Cooconut Groove
-                                        </label>
-                                    </div>
-                                    <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault">
-                                            Overtown
-                                        </label>
-                                    </div> --}}
                                 </div>
                                 <div class="hotels-results-amenities pt-1">
                                     <div class="small-heading">
@@ -1102,37 +1058,25 @@ hotel
                 <div class="col-lg-9 position-relative hotelResultDiv">
                     <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
                     <input type="hidden" class="total_page" value="{{$hotels->total()}}">
-                    <div class="select--your-destination">
+                    <div class="select--your-destination mainDivPropertyType d-none">
                         <div class="cat propertyTypeCheckDiv">
                            <label>
-                              <input type="checkbox" class="propertyTpeCheckbox"  name="propertyType" value="All"><span>All (50)</span>
+                              <input type="checkbox" class="propertyTypeCheckbox"  name="propertyType" value="All"><span>All ({{$propertyTypeCounts->count()}})</span>
                            </label>
-                        </div>                        
-                        <div class="cat propertyTypeCheckDiv">
-                           <label>
-                              <input type="checkbox" class="propertyTpeCheckbox"  name="propertyType" value="Hotel"><span>Hotels (5)</span>
-                           </label>
-                        </div>                        
-                        <a class="cat propertyTypeCheckDiv" href="javascript:;">
-                           <label>
-                              <input type="checkbox" class="propertyTpeCheckbox"  name="propertyType" value="Guest house"><span>Guest houses (25)</span>
-                           </label>
-                        </a>    
-                        <div class="cat propertyTypeCheckDiv">
-                            <label>
-                               <input type="checkbox" class="propertyTpeCheckbox"  name="propertyType" value="Homestay"><span>Homestays (5)</span>
-                            </label>
-                         </div>                        
-                         <div class="cat propertyTypeCheckDiv">
-                            <label>
-                               <input type="checkbox" class="propertyTpeCheckbox"  name="propertyType" value="Hostel"><span>Hostels (25)</span>
-                            </label>
-                         </div> 
-                         <div class="cat propertyTypeCheckDiv">
-                            <label>
-                               <input type="checkbox" class="propertyTpeCheckbox"  name="propertyType" value="Farm stay"><span>Farm stays (25)</span>
-                            </label>
-                         </div> 
+                        </div>  
+                        @if (@$propertyTypes)
+                            @foreach ($propertyTypes as $propertyType)    
+                                <div class="cat propertyTypeCheckDiv">
+                                <label>
+                                    <input type="checkbox" class="P_TypeCheckbox"  name="propertyType" value="{{$propertyType->slug}}" ><span>
+                                        @php
+                                            $propertyId = $propertyTypeCounts->where('property_id',$propertyType->id)->count();
+                                        @endphp
+                                        {{$propertyType->type}} ({{$propertyId}})</span>
+                                </label>
+                                </div>  
+                            @endforeach
+                        @endif         
                     </div>                                            
                     @include('frontend::hotel.hotelResult')
 
@@ -1177,16 +1121,6 @@ hotel
 </script>
 @endif
 
-{{-- @if (session()->get('error'))
-<script>
-    $(document).ready(function() {
-                $('#payment_error_').modal('show');
-                setTimeout(function() {
-                    $('#payment_error_').modal('hide')
-                }, 4000);
-            });
-</script>
-@endif --}}
 {{-- stripe cdn--}}
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 <script src="https://checkout.stripe.com/v3/checkout.js"></script>
@@ -1203,7 +1137,7 @@ hotel
 
 <!-------- Google Place Search -------->
 <script type='text/javascript'
-    src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
+    src=    'https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
 </script>
 
 <!-------- Weather swiper js start--------->
@@ -1322,6 +1256,10 @@ hotel
 
 
         $(document).on('click', '#SubmitSearch', function() {
+            submitHotelBtn();
+        });
+
+        function submitHotelBtn() {
             var search = $("input[name=search]").val();
             !search ? $(`.search-error`).html(`Please enter a destination to start searching.`) : $(`.search-error`)
                 .html(``);
@@ -1339,9 +1277,20 @@ hotel
                 return;
             }
 
-            window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
-                checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
-        });
+            var propertyTypeCheckBox = [];
+            $.each($("input[class='P_TypeCheckbox']:checked"), function(){
+                propertyTypeCheckBox.push($(this).val());
+            });
+            var propertyTypeName = propertyTypeCheckBox.join(",");
+
+            if(propertyTypeName){
+                window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
+                    checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed + '&propertyTypeName=' + propertyTypeName;
+            }else{
+                window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
+                    checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
+            }
+        }
 
         $(document).on('click', '#Apply', function(e) {
 
@@ -1403,12 +1352,13 @@ hotel
             });
 
             function addRoom($number) {
-                let searchParams = new URLSearchParams(window.location.search)
-                if(!searchParams){
+                let searchParams = new URLSearchParams(window.location.search);               
+
+                var king = '';
+                var queen = '';
+                var twin = '';
+                if(searchParams && searchParams.has('bed')){
                     let bed = searchParams.get('bed').split(",");
-                    var king = '';
-                    var queen = '';
-                    var twin = '';
                     if(bed.includes('King')){
                         king = 'checked';
                     }
@@ -1418,35 +1368,21 @@ hotel
                     if(bed.includes('twin')){
                         twin = 'checked';
                     }
-                }else{
-                    let bed = searchParams.get('bed')?.split(",");
-                    var king = '';
-                    var queen = '';
-                    var twin = '';
-                    if(bed?.includes('King')){
-                        king = 'checked';
-                    }
-                    if(bed?.includes('Queen')){
-                        queen = 'checked';
-                    }
-                    if(bed?.includes('twin')){
-                        twin = 'checked';
-                    }
                 }
                 $room = $(`<div class="room"><div class="title-container">
                             <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
                         </div>
                         <section class="dropdown-container">
                             <div class="dropdown-inner">
-                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="king_` + $number + `" value="King" `+king+`>
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="king_` + $number + `" value="King"`+ king +`>
                                 <label for="king_` + $number + `">1 King</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin" `+twin+`>
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin"`+ queen +`>
                                 <label for="twin_` + $number + `">2 Twin</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen" `+queen+`>
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen"`+ twin +` >
                                 <label for="queen_` + $number + `">2 Queen</label>
                             </div>
                         </section>
@@ -1463,6 +1399,14 @@ hotel
 $(document).ready(function(){
 
     var baseUrl = $('#base_url').val();
+
+    // CSRF TOKEN
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     var page = 2;
     infinteLoadMore(page);
 
@@ -1496,10 +1440,22 @@ $(document).ready(function(){
         propertyTypeUrl.has('propertyType');
         let propertyType = propertyTypeUrl.get('propertyType');
 
+        // var propertyTypeCheckBox = [];
+        //     $.each($("input[class='P_TypeCheckbox']"), function(){
+        //         propertyTypeCheckBox.push($(this).val());
+        //     });
+        //     var propertyTypeName = propertyTypeCheckBox.join(",");
+        var propertyTypeCheckBox = [];
+        $.each($("input[class='P_TypeCheckbox']:checked"), function(){
+            propertyTypeCheckBox.push($(this).val());
+        });
+        var propertyTypeName = propertyTypeCheckBox.join(",");
+
+
         if(search){
             $.ajax({
 
-                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed,
+                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed + "&propertyTypeName=" + propertyTypeName,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1509,9 +1465,12 @@ $(document).ready(function(){
             .done(function (response) {
                 $('.loading_spiner_').addClass('d-none');
                 var total_page = $('.total_page').val();
+                $('.mainDivPropertyType').removeClass('d-none');
                 if(total_page == 0){
+                // $('.mainDivPropertyType').addClass('d-none');
                     $('.hotel_empty').removeClass('d-none');
                 }
+                console.log(response);
                 $(".hotelResultDiv").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -1582,7 +1541,6 @@ $(document).ready(function(){
                 console.log('Server error occured');
                 });
         }else {
-            console.log('demo');
             $.ajax({
 
                 url: baseUrl + "/hotel?page=" + page,
@@ -1749,10 +1707,8 @@ $(document).ready(function(){
                 url:"{{ route('payment.razorpay') }}",
                 data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id, start_date: start_date, end_date : end_date},
                 success:function(data){
-                    console.log(data.bookingId);
                     $('.payment_details_popup').hide();
                     $('.modal-backdrop').hide();
-                    // $('.modal-close').hide();
                     $("#success_payment").modal("toggle");
                     $('.bookingId').val('Booking Ref :'+ data.bookingId);
                 }
@@ -1842,17 +1798,64 @@ $(document).ready(function(){
 
             }
         });
-    });
-
-    
+    });   
 </script>
 
 <script>
-    // $(document).ready(function(){
-    //     $('.propertyTypeCheckDiv').click(function(){
-    //         console.log('value');
-    //     });
-    // });
+    $(document).ready(function(){
+        
+        $('.propertyTypeCheckbox').click(function(){
+            if(this.checked){
+                $('.P_TypeCheckbox').each(function(){
+                    this.checked = false;
+                });
+                setTimeout(function(){
+                    submitHotelBtn();
+                },50);
+            } 
+        });
+        
+        $('.P_TypeCheckbox').click(function(){
+            if(this.checked){
+                $('.propertyTypeCheckbox').each(function(){
+                    this.checked = false;
+                });
+            }
+            setTimeout(function(){
+                submitHotelBtn();
+            },50);
+        });
+
+        function setUrlValue() {
+            let propertyTypeData = new URLSearchParams(window.location.search);
+
+            if(propertyTypeData && propertyTypeData.has('propertyTypeName')){
+                let property = propertyTypeData.get('propertyTypeName').split(",");
+
+                if(property.includes('hotel')){
+                    $('.P_TypeCheckbox[value=hotel]').attr('checked', true);
+                }
+                if(property.includes('guest-house')){
+                    $('.P_TypeCheckbox[value=guest-house]').attr('checked', true);
+                }
+                if(property.includes('homestay')){
+                    $('.P_TypeCheckbox[value=homestay]').attr('checked', true);
+                }
+                if(property.includes('hostel')){
+                    $('.P_TypeCheckbox[value=hostel]').attr('checked', true);
+                }
+                if(property.includes('farm-stay')){
+                    $('.P_TypeCheckbox[value=farm-stay]').attr('checked', true);
+                }
+            }else{
+                $('.propertyTypeCheckbox').attr('checked', true);
+            }
+
+            $('.select-div').trigger('click');
+            $('.select-room').addClass('option-none');
+        }
+        setUrlValue();
+    });
 </script>
 
 @endpush
