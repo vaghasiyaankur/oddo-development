@@ -23,8 +23,8 @@ Add-Layout
                             <div class="add-room-box mx-auto text-center w-75">
                                 <div class="add-room-icon">
                                     <i class="fa-solid fa-bed fs-3 pe-2"></i>
-                                    <i class="fa-solid fa-bed fs-1 pe-2"></i> 
-                                    <i class="fa-solid fa-bed fs-2"></i> 
+                                    <i class="fa-solid fa-bed fs-1 pe-2"></i>
+                                    <i class="fa-solid fa-bed fs-2"></i>
                                 </div>
                                 <div class="add-room-description mt-3">
                                     <p >No room have been added to your property - start adding rooms to <br>
@@ -35,7 +35,7 @@ Add-Layout
                                 </div>
                             </div>
                         </div>
-                        
+
                     </main>
                 </div>
             </div>

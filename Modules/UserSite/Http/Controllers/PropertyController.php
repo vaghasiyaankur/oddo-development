@@ -34,9 +34,21 @@ class PropertyController extends Controller
         return view('usersite::property-category', compact('propertys'));
     }
 
-    public function basicInfo() {
+    public function basicInfo(Request $request, $id) {
+        $hotel_id = Session::get('hotel')->id;
         $countries = Country::with('cities')->active()->get();
-        $hotelDetail = Hotel::with('propertytype')->latest()->first();
+        $hotelDetail = Hotel::with('propertytype')->whereUuid($id)->first();
+
+        $userId = auth()->user()->id;
+        $hotelUserId = Hotel::where('UUID',$id)->select('user_id', 'id')->first();
+        if($userId == $hotelUserId->user_id){
+            $countries = Country::with('cities')->active()->get();
+            $hotelDetail = Hotel::where('UUID',$id)->with('propertytype')->first();
+            $hotelContacts = HotelContact::where('hotel_id', $hotelUserId->id)->get();
+            return view('usersite::BasicInfo', compact('countries', 'hotelDetail', 'hotelContacts'));
+        }else{
+            return redirect()->back();
+        }
         return view('usersite::BasicInfo', compact('countries', 'hotelDetail'));
     }
 
@@ -55,8 +67,7 @@ class PropertyController extends Controller
 
         $hotel_id = Hotel::latest('created_at')->take(1)->first();
         Session::put('hotel', $hotel_id);
-
-        return response()->json(['redirect_url' => route('basic-info')]);
+        return response()->json(['redirect_url' => route('basic-info', ['id' => $hotel_id->UUID])]);
     }
 
     // public function property_submit(Request $request) {
@@ -131,7 +142,6 @@ class PropertyController extends Controller
                 }
             }
         }
-
         if ($request->hotelId) {
             $roomCount = Room::where('hotel_id', $Hotel->id)->count();
 
@@ -160,21 +170,39 @@ class PropertyController extends Controller
             'language'           => $language
         ]);
 
-        return response()->json(['redirect_url' => route('amenities')]);
+        $hotel = Hotel::select('UUID')->latest('created_at')->first();
+
+        return response()->json(['redirect_url' => route('amenities', ['id' => $hotel_id])]);
     }
 
     public function amenities_add_update(Request $request)
     {
-$hotel_id = $request->hotelId;
+    $hotel_id = $request->hotelId;
 
-$Hotel   =   Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
-    'extra_bed'        => $request->extra_bed,
-    'number_extra_bed' => $request->extra_no_of_bed,
-    'amenity_id'       => $request['amenities'],
-]);
-return response()->json(['redirect_url' => route('photo')]);
+    $Hotel   =   Hotel::updateOrCreate([ 'UUID' => $hotel_id ], [
+        'extra_bed'        => $request->extra_bed,
+        'number_extra_bed' => $request->extra_no_of_bed,
+        'amenity_id'       => $request['amenities'],
+    ]);
+    return response()->json(['redirect_url' => route('photo', ['id' => $Hotel->UUID])]);
 
     }
+
+    // public function layout_pricing($id) {
+    //     $room_types = RoomType::active()->get();
+    //     $beds       = BedType::active()->get();
+    //     $bathrooms  = BathroomItem::active()->get();
+
+    //     $hotel = Hotel::with('propertytype')->whereUuid($id)->latest('created_at')->first();
+
+    //     // $hotel_id = $request->hotelId;
+    //     $hotel_id = Session::get('hotel')->id;
+    //     $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get('id');
+    //     $roomDetail = Room::where('hotel_id', $hotel->id)->first();
+    //     $hotelBeds = HotelBed::where('room_id', $roomDetail->id)->get();
+
+    //     return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail', 'hotelBeds'));
+    // }
 
     public function layout_pricing() {
         $room_types = RoomType::active()->get();
@@ -188,10 +216,11 @@ return response()->json(['redirect_url' => route('photo')]);
         return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms'));
     }
 
-    public function facilities() {
+    public function facilities($id) {
+        // dd($id);
         $facilities = Facilities::active()->get();
         $food_types = FoodType::active()->get();
-        $hotelDetail = Hotel::latest()->first();
+        $hotelDetail = Hotel::whereUuid($id)->first();
         return view('usersite::facilities', compact('facilities', 'food_types', 'hotelDetail'));
     }
 
@@ -201,11 +230,12 @@ return response()->json(['redirect_url' => route('photo')]);
         return response()->json([ 'roomlist' => $roomlist ]);
     }
 
-    public function room_lists() {
+    public function room_lists($id) {
         $hotel_id = Session::get('hotel')->id;
+        $hotels = Hotel::whereUuid($id)->first();
         $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get();
 
-        return view('usersite::room-list', compact('rooms'));
+        return view('usersite::room-list', compact('rooms','hotels'));
     }
 
     public function amenities() {
@@ -216,6 +246,7 @@ return response()->json(['redirect_url' => route('photo')]);
 
     public function layouts_add_update(Request $request) {
         $hotel_id = Session::get('hotel')->id;
+        $hotel_data = $request->hotelId;
         $Hotel = Room::updateOrCreate([ 'UUID' => $hotel_id ],[
             'smoking_policy'   => $request->smoking_area,
             'custom_name_room' => $request->custom_name,
@@ -246,78 +277,14 @@ return response()->json(['redirect_url' => route('photo')]);
                 'room_id'   => $room_id->id,
             ]);
         }
-        return response()->json(['redirect_url' => route('room-list')]);
+        return response()->json(['redirect_url' => route('room-list', ['id' => $hotel_data])]);
     }
 
-    // public function add_room(Request $request) {
-    //     $hotel_id = Session::get('hotel')->id;
-    //     $Hotel = Room::updateOrCreate([ 'id' => $hotel_id ],[
-    //         'smoking_policy'   => $request->smoking_area,
-    //         'custom_name_room' => $request->custom_name,
-    //         'number_of_room'   => $request->number_of_room,
-    //         'guest_stay_room'  => $request->number_of_guest,
-    //         'room_size'        => $request->room_size,
-    //         'room_cal_type'    => $request->room_size_feet,
-    //         'bathroom_private' => $request->bathroom_private,
-    //         'bathroom_item'    => $request->bathroom_item,
-    //         'price_room'       => $request->bed_price,
-    //         'room_list_id'     => $request->room_name_select,
-    //         'room_type_id'     => $request->room_type,
-    //         'discount'         => $request->discountValue,
-    //         'discount_type'    => $request->discountType,
-    //         'min_person_discount' => $request->personDis,
-    //         'hotel_id'         => $hotel_id
-    //     ]);
-
-    //     $room_id = Room::latest('created_at')->take(1)->first();
-
-    //     $id = 1;
-    //     $beds = json_decode($request->get('BedDetail'));
-
-    //     foreach($beds as $bed) {
-    //         $Hotel   =   HotelBed::updateOrCreate([ 'id' => $id ],[
-    //             'no_of_bed' => $bed->bedNo,
-    //             'bed_id'    => $bed->bed,
-    //             'room_id'   => $room_id->id,
-    //         ]);
-    //     }
-    //     return response()->json(['redirect_url' => route('room-list')]);
-    // }
-
-    // public function add_facilities(Request $request) {
-
-    //     $lang = explode(",", $request['language']);
-    //     $language = join(",", array_unique($lang));
-    //     $facilities = $request['facilities'];
-    //     $hotel_id = Session::get('hotel')->id;
-
-    //     $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
-    //         'parking_available'  => $request->parking_avaliable,
-    //         'parking_type'       => $request->parking_type,
-    //         'parking_site'       => $request->parking_site,
-    //         'breakfast'          => $request->brackfast_select,
-    //         'breakfast_type'     => $request->food_type_val,
-    //         'facilities_id'      => $facilities,
-    //         'language'           => $language
-    //     ]);
-
-    //     return response()->json(['redirect_url' => route('amenities')]);
-    // }
-
-    // public function add_amenities(Request $request) {
-
-    //     $hotel_id = Session::get('hotel')->id;
-
-    //     $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
-    //         'extra_bed'        => $request->extra_bed,
-    //         'number_extra_bed' => $request->extra_no_of_bed,
-    //         'amenity_id'       => $request['amenities'],
-    //     ]);
-
-    //     return response()->json(['redirect_url' => route('photo')]);
-    // }
-
-    public function save_photos(Request $request) {
+    public function photos_add_update(Request $request){
+        $hotelphoto = HotelPhoto::where('UUID')->first();
+        $hotel = Hotel::select('id','UUID')->first();
+        $hotel_id = Hotel::latest()->first();
+        if($request->file){
         $image_64 = $request->url;
         $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
         $replace = substr($image_64, 0, strpos($image_64, ',')+1);
@@ -327,21 +294,115 @@ return response()->json(['redirect_url' => route('photo')]);
         $img =base64_decode($image);
         Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
 
-        $hotel_id = Session::get('hotel')->id;
+        $image_path = public_path('storage/'.$hotelphoto->main_photo);
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
 
-        $hotelphoto = new HotelPhoto();
+        $hotel_id = $request->hotelId;
         $hotelphoto->main_photo = $request->main;
         $hotelphoto->photos     = 'hotels/'.$imageName;
         $hotelphoto->hotel_id  = $hotel_id;
-        $hotelphoto->save();
-        // $Hotel   =   HotelPhoto::updateOrCreate([ 'id' => $hotel_id ], [
-        //     'main_photo'  => $request->main,
-        //     'photos' => 'hotels/'.$imageName,
-        //     'hotel_id' => $hotel_id,
-        // ]);
+        $hotelphoto->update();
+        }
 
-        return response()->json(['redirect_url' => route('policy')]);
+        return response()->json(['redirect_url' => route('policy', ['id' => $hotel_id->UUID])]);
     }
+
+    public function add_room(Request $request) {
+        $hotel_id = Session::get('hotel')->id;
+        $hotel_data = $request->hotelId;
+        $Hotel = Room::updateOrCreate([ 'id' => $hotel_id ],[
+            'smoking_policy'   => $request->smoking_area,
+            'custom_name_room' => $request->custom_name,
+            'number_of_room'   => $request->number_of_room,
+            'guest_stay_room'  => $request->number_of_guest,
+            'room_size'        => $request->room_size,
+            'room_cal_type'    => $request->room_size_feet,
+            'bathroom_private' => $request->bathroom_private,
+            'bathroom_item'    => $request->bathroom_item,
+            'price_room'       => $request->bed_price,
+            'room_list_id'     => $request->room_name_select,
+            'room_type_id'     => $request->room_type,
+            'discount'         => $request->discountValue,
+            'discount_type'    => $request->discountType,
+            'min_person_discount' => $request->personDis,
+            'hotel_id'         => $hotel_id
+        ]);
+
+        $room_id = Room::latest('created_at')->take(1)->first();
+
+        $id = 1;
+        $beds = json_decode($request->get('BedDetail'));
+
+        foreach($beds as $bed) {
+            $Hotel   =   HotelBed::updateOrCreate([ 'id' => $id ],[
+                'no_of_bed' => $bed->bedNo,
+                'bed_id'    => $bed->bed,
+                'room_id'   => $room_id->id,
+            ]);
+        }
+        return response()->json(['redirect_url' => route('room-list', ['id' => $hotel_data])]);
+    }
+
+    public function add_facilities(Request $request) {
+
+        $lang = explode(",", $request['language']);
+        $language = join(",", array_unique($lang));
+        $facilities = $request['facilities'];
+        $hotel_id = Session::get('hotel')->id;
+
+        $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
+            'parking_available'  => $request->parking_avaliable,
+            'parking_type'       => $request->parking_type,
+            'parking_site'       => $request->parking_site,
+            'breakfast'          => $request->brackfast_select,
+            'breakfast_type'     => $request->food_type_val,
+            'facilities_id'      => $facilities,
+            'language'           => $language
+        ]);
+
+        return response()->json(['redirect_url' => route('amenities')]);
+    }
+
+    public function add_amenities(Request $request) {
+
+        $hotel_id = Session::get('hotel')->id;
+
+        $Hotel   =   Hotel::updateOrCreate([ 'id' => $hotel_id ], [
+            'extra_bed'        => $request->extra_bed,
+            'number_extra_bed' => $request->extra_no_of_bed,
+            'amenity_id'       => $request['amenities'],
+        ]);
+        $hotel = Hotel::select('id','UUID')->first();
+        return response()->json(['redirect_url' => route('photo', ['id' => $hotel->UUID])]);
+    }
+
+    // public function save_photos(Request $request) {
+    //     $image_64 = $request->url;
+    //     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+    //     $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+    //     $image = str_replace($replace, '', $image_64);
+    //     $image = str_replace(' ', '+', $image);
+    //     $imageName = 'Img_'.Str::random(10).'.'.$extension;
+    //     $img =base64_decode($image);
+    //     Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
+
+    //     $hotel_id = $request->hotelId;
+    //     $hotelphoto = new HotelPhoto();
+    //     $hotelphoto->main_photo = $request->main;
+    //     $hotelphoto->photos     = 'hotels/'.$imageName;
+    //     $hotelphoto->hotel_id  = $hotel_id;
+    //     $hotelphoto->save();
+    //     // $Hotel   =   HotelPhoto::updateOrCreate([ 'id' => $hotel_id ], [
+    //     //     'main_photo'  => $request->main,
+    //     //     'photos' => 'hotels/'.$imageName,
+    //     //     'hotel_id' => $hotel_id,
+    //     // ]);
+    //     $hotel = Hotel::select('id','UUID')->first();
+    //     dd($hotel);
+    //     return response()->json(['redirect_url' => route('policy', ['id' => $hotel_id])]);
+    // }
 
     public function add_policy(Request $request) {
         $hotel_id = Session::get('hotel')->id;
@@ -355,10 +416,10 @@ return response()->json(['redirect_url' => route('photo')]);
         ]);
 
         $id = '';
-        $notification = Notification::updateOrCreate(['id' => $id], [
-            'hotel_id' => $hotel_id,
-        ]);
-
+        // $notification = Notification::updateOrCreate(['id' => $id], [
+        //     'hotel_id' => $hotel_id,
+        // ]);
+        // dd($notification);
         return response()->json(['redirect_url' => route('home.index')]);
     }
 
@@ -475,11 +536,16 @@ return response()->json(['redirect_url' => route('photo')]);
 
     public function editLayout($id)
     {
-        $hotel = Hotel::where('UUID', $id)->select('id')->first();
-        $rooms = Room::with('roomlist')->where('hotel_id', $hotel->id)->get();
+        $hotel_id = Session::get('hotel')->id;
+        $hotel = Hotel::where('UUID', $id)->select('id','UUID')->first();
+        $rooms = Room::with('roomlist')->where('hotel_id', $hotel_id)->get();
+        return view('usersite::room-list', compact('rooms', 'hotel'));
 
-        $hotel_id = $hotel->id;
-        return view('usersite::room-list', compact('rooms', 'hotel_id'));
+
+
+        $hotel_id = Hotel::latest('created_at')->take(1)->first();
+        Session::put('hotel', $hotel_id);
+        return response()->json(['redirect_url' => route('basic-info', ['id' => $hotel_id->UUID])]);
     }
 
     public function editLayoutPrice($id)

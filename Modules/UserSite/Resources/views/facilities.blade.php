@@ -275,7 +275,6 @@ Facilities
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
-                // url: "{{route('edit.layout')}}",
                 url: "{{route('add-facilities')}}",
                 type: "POST",
                 processData: false,

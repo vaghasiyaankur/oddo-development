@@ -17,7 +17,8 @@ Layout & pricing
                     <main class="layout">
                         <div class="pannel-heading">
                             <h2 class=" purple-dark pannel-title">Layout & Pricing</h2>
-                            <a href="{{ $rooms ? route('room-list') : route('layout-form')}}">
+                                <a href="{{ $rooms ? route('room-list',['id' => $hotel->UUID]) : route('layout-form')}}">
+
                                 <h5 class="heading-fs-16 purple-dark">Back to overview</h5>
                             </a>
                         </div>

@@ -43,9 +43,12 @@ Add-Layout
                             </div>
                         </div><br>
                         @endforeach
+                        @php
+                            @$id = Request::route('id');
+                        @endphp
                         <div class="another-c-details mt-4 text-end">
-                            <a href="{{route('layout-pricing-form')}}" class="btn another-c-d-btn bg-light w-25 btn-outline-dark text-dark py-2">Add Another Room</a>
-                            <a href="{{route('facilities-form')}}" class="btn another-c-d-btn w-25 py-2">Continue</a>
+                            <a href="{{route('layout-pricing-form', ['id' => @$id])}}" class="btn another-c-d-btn bg-light w-25 btn-outline-dark text-dark py-2">Add Another Room</a>
+                            <a href="{{route('facilities-form', ['id' => @$id])}}" class="btn another-c-d-btn w-25 py-2">Continue</a>
                         </div>
                     </main>
                 </div>
@@ -92,19 +95,18 @@ Add-Layout
         });
 
         $(document).on('click', '.editRoom', function(){
-            let roomId = $(this).data('id');
 
             $.ajax({
-                url: baseUrl + "/user/edit/layout-pricing-form/" + roomId,
+                url: baseUrl + "/user/layout-pricing-form",
                 type: "GET",
                 processData: false,
                 contentType: false,
                 success: function (response) {
                     console.log(response.roomCount);
-                    if(response.roomCount == 1){
+                    if(response.roomCount < 1){
                         window.location = 'layout-form';
                     }else{
-                        window.location = 'room-list';
+
                     }
                 },
             });
