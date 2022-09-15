@@ -10,6 +10,7 @@ use App\Models\Amenities;
 use App\Models\paymentGetways;
 use App\Models\HotelBooking;
 use App\Models\Review;
+use App\Models\PropertyType; 
 use DB;
 
 class HotelController extends Controller
@@ -20,12 +21,15 @@ class HotelController extends Controller
      */
     public function index(Request $request)
     {
+        $propertyType = $request->propertyType;
+
         $search = request()->search;
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
         $guest =  request()->guest;
         $room = request()->room;
         $bed = explode(',' , request()->bed);
+        $propertyTypeName = explode(',' , request()->propertyTypeName); 
 
         $propertyName = request()->propertyName;
         $budgetMin = request()->budgetMin;
@@ -38,6 +42,9 @@ class HotelController extends Controller
 
         $paymentGateways = paymentGetways::active()->get();
         $hotelAmounts = array();
+
+        $propertyTypes = '';
+        $propertyTypeCounts = '';
         if($search){
             $search = str_replace(',', ' ', $search);
 
@@ -49,19 +56,30 @@ class HotelController extends Controller
                     ->whereRelation('room', 'number_of_room', $room)
                     ->whereHas('hotelBed.bedType', function($query) use ($bed) {
                         $query->whereIn('bed_type', $bed);
-                    })
-                    ->active()->latest()->paginate(10);
-
-                    $hotelAmounts = array();
-                    if($hotels){
-                        foreach($hotels as $hotel){
-                        $amount = $hotel->room->price_room;
-                        $hotel_amount = $amount * $room;
-                        $hotelAmounts[] = array($hotel->id => $hotel_amount);
-                    }
+                    });
+            
+            $propertyTypeCounts = $hotels->withCount('propertytype')->active()->latest()->paginate(10);
+            
+            if ($request->has('propertyTypeName')) {
+            $hotels = $hotels->whereHas('propertytype', function($query) use ($propertyTypeName){
+                        $query->WhereIn('slug', $propertyTypeName);
+                    });
             }
+
+            $hotels = $hotels->active()->latest()->paginate(10);
+
+                $hotelAmounts = array();
+                if($hotels){
+                    foreach($hotels as $hotel){
+                    $amount = $hotel->room->price_room;
+                    $hotel_amount = $amount * $room;
+                    $hotelAmounts[] = array($hotel->id => $hotel_amount);
+                }
+            }
+
+            $propertyTypes = PropertyType::active()->get();
             if ($request->ajax()) {
-                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts', 'propertyTypes', 'propertyTypeCounts'))->render();
                 return $html;
             }
 
@@ -82,6 +100,15 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
+        } else if($propertyType){
+
+            $propertyTypeId = PropertyType::whereUuid($propertyType)->pluck('id')->first();
+            $hotels = Hotel::with('room')->whereProperty_id($propertyTypeId)->paginate(2); 
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
+                return $html;
+            }
+
         } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
@@ -90,9 +117,8 @@ class HotelController extends Controller
             }
         }
 
-
         $amenities = Amenities::where('featured',1)->active()->get();
-        return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways','booking', 'hotelAmounts'));
+        return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways','booking', 'hotelAmounts', 'propertyTypes', 'propertyTypeCounts'));
     }
 
     public function hotelDetail(){
@@ -116,8 +142,6 @@ class HotelController extends Controller
             $data['hotelRating'] = listHotelRating($hotel->id);
         }
 
-        // dd($data['hotelRating']['review']->staff);
         return view('frontend::hotel.review', $data);
-        // return response()->json(["data" => $data], 200);
     }
 }

@@ -69,7 +69,7 @@
                     id="page-header-notifications-dropdown">
                     <i class="bx bx-bell fs-22"></i>
                     <span
-                        class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger notificationCount"><span
+                        class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger notificationCount">0<span
                             class="visually-hidden">unread messages</span></span>
                 </button>
                 <input type="hidden" class="hotelCount" value="">
@@ -148,6 +148,7 @@
 
 @push('scripts')
 <script>
+    var baseUrl = $('#base_url').val();
 
     // count notifiation
     function notificationCount(){
@@ -164,6 +165,13 @@
     }
 
     $(document).ready(function(){
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         notificationCount();
         setInterval(notificationCount,5000);
 

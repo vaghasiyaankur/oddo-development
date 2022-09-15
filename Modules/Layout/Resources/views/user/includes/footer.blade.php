@@ -79,7 +79,9 @@
                               <li class="nav-item">
                                   <a class="nav-link ps-0" href="#"> Contact</a>
                               </li>
-                              <h5 class="text-black mt-2">Legal</h5>
+                              <li class="nav-item">
+                                  <a class="nav-link ps-0" href="#"> Legal</a>
+                              </li>
                               <li class="nav-item">
                                   <a class="nav-link ps-0" href="#">Privacy & Terms</a>
                               </li>

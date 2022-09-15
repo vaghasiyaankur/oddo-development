@@ -34,22 +34,18 @@ hotel
 <section class="h-details-title pt-3">
     <div class="container">
         <div class="h-details-title-box">
-            <div class="h-details-heading">
-                <h2>Holiday Inn {{@$hotel->city->name}}</h2>
-            </div>
-            <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-3">
+            <div class="h-details-heading d-flex justify-content-between align-items-center">
+                <h2 class="d-flex align-items-center">Holiday In {{@$hotel->city->name}} <span class="rating-text bg-green ms-2 py-1">Appartment</span></h2>
                 <div class="h-rating">
                     <span class="rating-text bg-green ">9/10</span>
                     @for($i = 0; $i < 5; $i++)
                         <span><img src="{{ @$hotel->star_rating > $i ? ''.asset('assets/images/icons/start.png') : '' }}"></span>
                     @endfor
-                    {{-- <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
-                    <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
-                    <span><img src="{{asset('assets/images/icons/start.png') }}"></span>
-                    <span><img src="{{asset('assets/images/icons/start.png') }}"></span> --}}
-                    <span class="h-rating-location para-fs-14"><img src="{{asset('assets/images/icons/loaction-purple.png') }}"
-                            class="me-3 ms-5">{{@$hotel->city->name}} {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}. 1.36 km to the center</span>
                 </div>
+            </div>
+            <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-1">               
+                <span class="h-rating-location d-flex justify-content-between align-items-center para-fs-15"><img src="{{asset('assets/images/icons/loaction-purple.png') }}"
+                        class="me-3 ">{{@$hotel->city->name}} {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}. 1.36 km to the center</span>
                 <div class="h-rating-btn mt-md-0 mt-3">
                     <a href="#hotel-room" class="btn reserve-btn bg-purple para-d-l-p">Reserve a Room</a>
                 </div>
@@ -308,59 +304,20 @@ hotel
         <div class="h-d-amenities-inner border--bottom">
             <h5 class="heading-fs-16  purple-dark">Amenities</h5>
             <div class="amenities-card d-flex flex-wrap">
-                    @foreach ($hotel->amenity() as $amenity)     
-                        <div class="amenities-single-card me-2 mb-3">
-                            {{-- <img src="{{ asset('storage/'.@$amenity->icon) }}" class="pe-3"> --}}
-                            <i class="{{$amenity->icon}} pe-3"></i>
-                            <span class="para-fs-14">{{@$amenity->amenities}}</span>
-                        </div>
-                    @endforeach
-                {{-- <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d--a3.png') }} " class="pe-3">
-                    <span class="para-fs-14">Gym</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d--a3.png') }} " class="pe-3">
-                    <span class="para-fs-14">Pet Friendly</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-1.png') }}" class="pe-3">
-                    <span class="para-fs-14">Air Conditioning</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-4.png') }}" class="pe-3">
-                    <span class="para-fs-14">Washer</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-5.png') }}" class="pe-3">
-                    <span class="para-fs-14">Spa</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-6.png') }}" class="pe-3">
-                    <span class="para-fs-14">Free Wi-Fi</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-2.png') }} " class="pe-3">
-                    <span class="para-fs-14">Pool</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d--a3.png') }} " class="pe-3">
-                    <span class="para-fs-14">Gym</span>
-                </div>
-                <div class="amenities-single-card me-2 mb-3">
-                    <img src="{{ asset('assets/images/icons/h-d-a-5.png') }}" class="pe-3">
-                    <span class="para-fs-14">Spa</span>
-                </div> --}}
+                @foreach ($hotel->amenity() as $amenity)     
+                    <div class="amenities-single-card me-2 mb-3">
+                        {{-- <img src="{{ asset('storage/'.@$amenity->icon) }}" class="pe-3"> --}}
+                        <i class="{{$amenity->icon}} pe-3"></i>
+                        <span class="para-fs-14">{{@$amenity->amenities}}</span>
+                    </div>
+                @endforeach
             </div>
-            {{-- <div class="amenities-link ">
-                <a href="#" class="amenities-d-link purple">See all Amenities details</a>
-            </div> --}}
         </div>
     </div>
 </section>
 <!-------- h-details-amenities section end --------->
 <!------- h-details-n-b section start ---------->
-<section class="h-details-n-b pb-4">
+{{-- <section class="h-details-n-b pb-4">
     <div class="container">
         <div class="h-d-near-by-inner border--bottom">
             <div class="near-b-heading">
@@ -434,82 +391,9 @@ hotel
                                                 </div>
                                                 <div class="card-content nearby-card-content">
                                                     <p class="mb-2">{{@$facility->description}}</p>
-                                                    {{-- <p class="mb-2">Museo del Prado </p>
-                                                    <p class="mb-2">Thyssen-Bornemisza Museum</p>
-                                                    <p class="mb-2">Museo Nacional Centro de Arte </p>
-                                                    <p class="mb-2">Atocha Headquarters (Sabatini and Nouvel buildings)
-                                                    </p>
-                                                    <p class="mb-2">Palacio de Velázquez (Retiro Park) </p>
-                                                    <p class="mb-2">Palacio de Cristal (Retiro Park) </p> --}}
                                                 </div>
                                             </div>
-                                        @endforeach
-                                        {{-- <div class="location-popup-card-single nearby-single-card mt-4">
-                                            <div class="card-single-head d-flex align-items-center bg-green">
-                                                <div class="card-head-img pe-3"><img
-                                                        src="{{ asset('assets/images/icons/locationpopup-card2.png') }}"></div>
-                                                <div class="card-head-text">Parks</div>
-                                            </div>
-                                            <div class="card-content nearby-card-content">
-                                                <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                <p class="mb-2">Museum of Geology (UCM)</p>
-                                                <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                            </div>
-                                        </div>
-                                        <div class="location-popup-card-single mt-4 nearby-single-card">
-                                            <div class="card-single-head d-flex align-items-center bg-green-two">
-                                                <div class="card-head-img pe-3"><img
-                                                        src="{{ asset('assets/images/icons/locationpopup-card3.png') }}"></div>
-                                                <div class="card-head-text">Markets</div>
-                                            </div>
-                                            <div class="card-content nearby-card-content">
-                                                <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                <p class="mb-2">Museum of Geology (UCM)</p>
-                                                <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                            </div>
-                                        </div>
-                                        <div class="location-popup-card-single mt-4 nearby-single-card">
-                                            <div class="card-single-head d-flex align-items-center bg-purple-2">
-                                                <div class="card-head-img pe-3"><img
-                                                        src="{{ asset('assets/images/icons/locationpopup-card4.png') }}"></div>
-                                                <div class="card-head-text">Beaches</div>
-                                            </div>
-                                            <div class="card-content nearby-card-content">
-                                                <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                <p class="mb-2">Museum of Geology (UCM)</p>
-                                                <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                            </div>
-                                        </div>
-                                        <div class="location-popup-card-single mt-4 nearby-single-card">
-                                            <div class="card-single-head d-flex align-items-center bg-purple-2">
-                                                <div class="card-head-img pe-3"><img
-                                                        src="{{ asset('assets/images/icons/locationpopup-card4.png') }}"></div>
-                                                <div class="card-head-text">Beaches</div>
-                                            </div>
-                                            <div class="card-content nearby-card-content">
-                                                <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                <p class="mb-2">Museum of Geology (UCM)</p>
-                                                <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                            </div>
-                                        </div>
-                                        <div class="location-popup-card-single nearby-single-card mt-4">
-                                            <div class="card-single-head d-flex align-items-center bg-green">
-                                                <div class="card-head-img pe-3"><img
-                                                        src="{{ asset('assets/images/icons/locationpopup-card2.png') }}"></div>
-                                                <div class="card-head-text">Parks</div>
-                                            </div>
-                                            <div class="card-content nearby-card-content">
-                                                <p class="mb-2">Museum of Entomology (UCM) </p>
-                                                <p class="mb-2">Hispanic Pharmacy Museum (UCM)</p>
-                                                <p class="mb-2">Museum of Geology (UCM)</p>
-                                                <p class="mb-2">Museum of Dentistry "Luis de Macorra" UCM</p>
-                                            </div>
-                                        </div> --}}
-                                        
+                                        @endforeach  
                                     </div>
                                 </div>
                             </div>
@@ -519,7 +403,7 @@ hotel
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!------- h-details-n-b section end ---------->
 <!------- hotel-policies section start -------->
 <section class="hotel-policies ">
@@ -535,8 +419,6 @@ hotel
                                     <img src="{{ asset('assets/images/icons/cal-icon.png') }}" class="pe-2">
                                     <span class="check-text text--green">check-in-time</span>
                                     <span class="form-control  text-center">{{@$hotel->check_in}}</span>
-                                    {{-- <input type="text" class="form-control timepicker text-center"
-                                        placeholder=" Time"> --}}
                                 </div>
                             </div>
                         </div>
@@ -546,8 +428,6 @@ hotel
                                     <img src="{{ asset('assets/images/icons/check-close.png') }}" class="pe-2">
                                     <span class="check-text text--red">check-in-out</span>
                                     <span class="form-control  text-center">{{@$hotel->check_out}}</span>
-                                    {{-- <input type="text" class="form-control timepicker text-center"
-                                        placeholder=" Time"> --}}
                                 </div>
                             </div>
                         </div>
@@ -594,103 +474,6 @@ hotel
             </div>
                 <div class="room-card-main mb-3">
                     <div class="row">
-                        {{-- <div class="col-lg-3">
-                            <div class="room-single-card p-3">
-                                <div class="single-card-img">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"> <img
-                                            src="{{ asset('assets/images/room-img1.png') }}" class="img-fluid w-100 img-wrapper"></a>
-                                    <!------- img slider popup start -------->
-                                    <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-fullscreen modal-dialog-centered"
-                                            role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header justify-content-end">
-                                                    <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                                        aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                                </div>
-                                                <div
-                                                    class="modal-body d-flex justify-content-center align-items-center">
-                                                    <div class="img-swiper">
-                                                        <div class="slider slider-single mb-5">
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                            <div class="slider-single-img"><img
-                                                                    src="{{ asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                        </div>
-                                                        <div class="slider slider-nav">
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img1.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img2.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img3.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img4.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img5.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img6.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img7.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img8.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img9.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img10.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img11.png') }}" class="me-2"
-                                                                    alt=""></div>
-                                                            <div class="silder-nav-img"><img
-                                                                    src="{{ asset('assets/images/nav-img12.png') }}" class="me-2"
-                                                                    alt=""> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!------- img slider popup end -------->
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="col-lg-9">
                             <div class="room-single-card  p-3">
                                 <div class="card-heading d-flex justify-content-between align-items-center">
