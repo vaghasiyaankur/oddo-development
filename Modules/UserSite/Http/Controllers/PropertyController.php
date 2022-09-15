@@ -146,9 +146,9 @@ class PropertyController extends Controller
             $roomCount = Room::where('hotel_id', $Hotel->id)->count();
 
             if($roomCount == 1){
-                return response()->json(['redirect_url' => route('edit.layoutPrice', ['id' => $hotelId])]);
+                return response()->json(['redirect_url' => route('layout-pricing-form', ['id' => $hotelId])]);
             }else{
-                return response()->json(['redirect_url' => route('edit.layout', ['id' => $hotelId])]);
+                return response()->json(['redirect_url' => route('layout-form', ['id' => $hotelId])]);
             }
         }
     }
@@ -204,16 +204,20 @@ class PropertyController extends Controller
     //     return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail', 'hotelBeds'));
     // }
 
-    public function layout_pricing() {
+    public function layout_pricing($id) {
         $room_types = RoomType::active()->get();
         $beds       = BedType::active()->get();
         $bathrooms  = BathroomItem::active()->get();
+        $hotel = Hotel::with('propertytype')->whereUuid($id)->first();
+        $rooms = Room::with('roomlist')->where('hotel_id',$hotel->id)->get('id');
+        $roomDetail = Room::where('hotel_id', $hotel->id)->first();
 
-        $hotel = Hotel::with('propertytype')->latest('created_at')->first();
-        $hotel_id = Session::get('hotel')->id;
-        $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get('id');
+        if ($roomDetail) {
+            $hotelBeds = HotelBed::where('room_id', $roomDetail->id)->get();
+            return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail', 'hotelBeds'));
+        }
 
-        return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms'));
+        return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail'));
     }
 
     public function facilities($id) {
@@ -245,9 +249,10 @@ class PropertyController extends Controller
     }
 
     public function layouts_add_update(Request $request) {
-        $hotel_id = Session::get('hotel')->id;
+
         $hotel_data = $request->hotelId;
-        $Hotel = Room::updateOrCreate([ 'UUID' => $hotel_id ],[
+        $hotel_id = Hotel::whereUuid($hotel_data)->first();
+        $Hotel = Room::updateOrCreate([ 'UUID' => $hotel_data ],[
             'smoking_policy'   => $request->smoking_area,
             'custom_name_room' => $request->custom_name,
             'number_of_room'   => $request->number_of_room,
@@ -262,7 +267,7 @@ class PropertyController extends Controller
             'discount'         => $request->discountValue,
             'discount_type'    => $request->discountType,
             'min_person_discount' => $request->personDis,
-            'hotel_id'         => $hotel_id
+            'hotel_id'         => $hotel_id->id
         ]);
 
         $room_id = Room::latest('created_at')->take(1)->first();
@@ -407,6 +412,8 @@ class PropertyController extends Controller
     public function add_policy(Request $request) {
         $hotel_id = Session::get('hotel')->id;
 
+        // $hotel_id = $request->hotelId;
+
         $Hotel = Hotel::updateOrCreate([ 'id' => $hotel_id ],[
             'cancel_booking' => $request->cancel_select,
             'pay_type'       => $request->guest_pay,
@@ -421,6 +428,12 @@ class PropertyController extends Controller
         // ]);
         // dd($notification);
         return response()->json(['redirect_url' => route('home.index')]);
+    }
+
+    public function viewPolicy($id)
+    {
+        $hotelDetail = Hotel::whereUuid($id)->first();
+        return view('usersite::policies', compact('hotelDetail'));
     }
 
     public function deleteProperty($id)
@@ -461,14 +474,14 @@ class PropertyController extends Controller
         return response()->json(["danger" => "property deleted Successfully"], 200);
     }
 
-    public function deleteRoom($id)
+    public function deleteRoom($hotelId, $id)
     {
         $room = Room::where('UUID', $id)->select('id', 'UUID', 'hotel_id')->first();
         $roomCount = Room::where('hotel_id', $room->hotel_id)->count();
         $roomBed = HotelBed::where('room_id', $room->id)->delete();
         $room = Room::where('UUID', $id)->delete();
 
-        return response()->json(["success" => "room deleted Successfully", 'roomCount' => $roomCount], 200);
+        return response()->json(["success" => "room deleted Successfully", 'roomCount' => $roomCount, 'redirect_url' => route('room-list', ['id' => $hotelId]), 'layout_url' => route('layout-form', ['id' => $hotelId])], 200);
     }
 
     public function editProperty($id)
@@ -619,6 +632,8 @@ class PropertyController extends Controller
         $hotelDetail = Hotel::where('UUID', $id)->first();
         return view('usersite::facilities', compact('facilities', 'food_types', 'hotelDetail'));
     }
+
+
 
     // public function updateFacilities(Request $request)
     // {

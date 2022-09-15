@@ -50,27 +50,28 @@ Route::prefix('user')->group(function() {
             Route::post('add-photos', 'photos_add_update')->name('add-photos');
 
             Route::get('facilities-form/{id}', 'facilities')->name('facilities-form');
-            Route::view('layout-form', 'usersite::add-layout')->name('layout-form');
+            Route::view('layout-form/{id}', 'usersite::add-layout')->name('layout-form');
             Route::get('layout-pricing-form/{id}', 'layout_pricing')->name('layout-pricing-form');
             Route::post('room-lists', 'room_list')->name('room-lists');
-            Route::get('room-list/{id}', 'room_lists')->name('room-list');
+            Route::get('room-list/{id}  ', 'room_lists')->name('room-list');
             Route::get('amenities/{id}', 'amenities')->name('amenities');
             // Route::post('add-room', 'add_room')->name('add-room');
             // Route::post('add-facilities', 'add_facilities')->name('add-facilities');
             // Route::post('add-amenities', 'add_amenities')->name('add-amenities');
             Route::view('photos/{id}', 'usersite::photo')->name('photo');
             Route::post('save-photos', 'save_photos')->name('save-photos');
-            Route::view('policy/{id}', 'usersite::policies')->name('policy');
+            // Route::view('policy/{id}', 'usersite::policies')->name('policy');
+            Route::get('policy/{id}', 'viewPolicy')->name('policy');
             Route::post('add-policy', 'add_policy')->name('add-policy');
 
 
             // edit Property
-            Route::get('edit/basic-info/{id}', 'editProperty')->name('edit.proeprty');
+            // Route::get('edit/basic-info/{id}', 'editProperty')->name('edit.proeprty');
             Route::post('update-property-form', 'updateProperty')->name('update-property-form');
 
 
             Route::get('edit/layout-list/{id}', 'editLayout')->name('edit.layout');
-            Route::get('edit/layout-pricing-form/{id}' , 'editLayoutPrice')->name('edit.layoutPrice');
+            // Route::get('edit/layout-pricing-form/{id}' , 'editLayoutPrice')->name('edit.layoutPrice');
             Route::post('update-room', 'updateRoom')->name('update-room');
 
             Route::get('edit/facilities/{id}', 'editFacilities')->name('edit.facilities');
@@ -84,7 +85,7 @@ Route::prefix('user')->group(function() {
 
             // delete Property
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
-            Route::post('deleteRoom/{id}', 'deleteRoom')->name('delete.room');
+            Route::post('deleteRoom/{hotelid}/{id}', 'deleteRoom')->name('delete.room');
         });
         Route::prefix('booking')->controller(BookingController::class)->group(function(){
             Route::get('/', 'index')->name('booking');

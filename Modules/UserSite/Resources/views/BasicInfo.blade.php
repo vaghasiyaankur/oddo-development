@@ -297,7 +297,7 @@ Add-Property
 
             }}).get();
 
-            if (!property_name || !address || !address_line || !country || !city || !zipcode) {
+            if (!property_name || !address || !country || !city || !zipcode) {
                 return;
             }
 

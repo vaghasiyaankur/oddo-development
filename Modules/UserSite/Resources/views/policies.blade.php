@@ -20,6 +20,7 @@ Layout & pricing
                             <h5 class="heading-fs-16 purple-dark">Specify some basic policies. Do you allow children or pets? How flexible are you with cancellations?</h5>
                         </div>
                         <div class="form-info-box mt-3">
+                            <input type="hidden" class="hotelId" value="{{ isset($hotelDetail) ? $hotelDetail->UUID : '' }}">
                             <form action="" class="form-cancel">
                                 <div class="p-form-heading  d-flex">
                                     <h5>Cancellations</h5>
@@ -29,11 +30,11 @@ Layout & pricing
                                 </div>
                                 <div class="p-form-select d-flex">
                                     <select class="form-select w-50 me-3 cancel-select">
-                                        <option value="1" >1 Day</option>
-                                        <option value="2" >2 days</option>
-                                        <option value="3" >3 days</option>
-                                        <option value="7" >7 days</option>
-                                        <option value="14" >14 days</option>
+                                        <option value="1" {{ isset($hotelDetail) && $hotelDetail->cancel_booking  == 1 ? 'selected' : '' }}>1 Day</option>
+                                        <option value="2" {{ isset($hotelDetail) && $hotelDetail->cancel_booking  == 2 ? 'selected' : '' }}>2 days</option>
+                                        <option value="3" {{ isset($hotelDetail) && $hotelDetail->cancel_booking  == 3 ? 'selected' : '' }}>3 days</option>
+                                        <option value="7" {{ isset($hotelDetail) && $hotelDetail->cancel_booking  == 7 ? 'selected' : '' }}>7 days</option>
+                                        <option value="14" {{ isset($hotelDetail) && $hotelDetail->cancel_booking == 14 ? 'selected' : '' }}>14 days</option>
                                     </select>
                                 </div>
                                 <div class="f-parking-title pt-3">
@@ -41,8 +42,8 @@ Layout & pricing
                                 </div>
                                 <div class="p-form-select d-flex">
                                     <select class="form-select w-50 me-3 guest-pay">
-                                        <option value="first_night">of the first night</option>
-                                        <option value="full_stay">of the full stay</option>
+                                        <option value="first_night" {{ isset($hotelDetail) && $hotelDetail->pay_type  == 'first_night' ? 'selected' : '' }}>of the first night</option>
+                                        <option value="full_stay" {{ isset($hotelDetail) && $hotelDetail->pay_type  == 'full_stay' ? 'selected' : '' }}>of the full stay</option>
                                     </select>
                                 </div>
                             </form>
@@ -63,7 +64,7 @@ Layout & pricing
                                         <div class="timepicker_div ">
                                             <img src="{{asset('assets/images/icons/cal-icon.png')}}" class="pe-2">
                                             <span class="check-text text--green">check-in-time</span>
-                                            <input type="text"  class="form-control timepicker text-center check_in" placeholder="Time">
+                                            <input type="text"  class="form-control timepicker text-center check_in" placeholder="Time" value="{{ isset($hotelDetail) && $hotelDetail->check_in ? $hotelDetail->check_in : '' }}">
                                         </div>
                                     </div>
                                     <span id="check_in_error" class="text-danger"></span>
@@ -78,7 +79,7 @@ Layout & pricing
                                         <div class="timepicker_div ">
                                             <img src="{{asset('assets/images/icons/check-close.png')}}" class="pe-2">
                                             <span class="check-text text--red">check-in-out</span>
-                                            <input type="text" class="form-control timepicker text-center check_out" placeholder="Time" readonly="">
+                                            <input type="text" class="form-control timepicker text-center check_out" placeholder="Time" readonly=""  value="{{ isset($hotelDetail) && $hotelDetail->check_out ? $hotelDetail->check_out : '' }}">
                                         </div>
                                     </div>
                                     <span  id="check_out_error" class="text-danger"></span>
@@ -138,6 +139,8 @@ $(document).ready(function(){
         let check_out = $('.check_out').val();
         !check_out ? $(`#check_out_error`).html(`Select a room type`) : $(`#check_out_error`).html(``);
 
+        let hotelId = $('.hotelId').val();
+
         if (!check_in || !check_out) {
                 return;
         }
@@ -153,7 +156,8 @@ $(document).ready(function(){
         formdata.append('check_in', check_in);
         formdata.append('check_out', check_out);
         formdata.append('complete', complete);
-        console.log(formdata);
+        formdata.append('hotelId', hotelId);
+        
         $('.spinner-border').show();
         $.ajax({
             headers: {

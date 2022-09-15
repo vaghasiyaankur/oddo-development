@@ -17,6 +17,9 @@ Add-Layout
                 <div class="col-lg-3">
                     @include('usersite::side-bar')
                 </div>
+                @php
+                    @$id = Request::route('id');
+                @endphp
                 <div class="col-lg-9">
                     <main class="layout-add">
                         <div class="pannel-heading">
@@ -37,15 +40,13 @@ Add-Layout
                                 <div class="addroom-right">
                                     <div class="addroom-btn">
                                         <a href="javascript:;" class="addroom-link pe-3 purple editRoom" data-id="{{$room->UUID}}">Edit</a>
-                                        <a href="javascript:;" class="addroom-link purple deleteRoom" data-id="{{$room->UUID}}">Delete</a>
+                                        <a href="javascript:;" class="addroom-link purple deleteRoom" data-hotel="{{@$id}}" data-id="{{$room->UUID}}">Delete</a>
                                     </div>
                                 </div>
                             </div>
                         </div><br>
                         @endforeach
-                        @php
-                            @$id = Request::route('id');
-                        @endphp
+                       
                         <div class="another-c-details mt-4 text-end">
                             <a href="{{route('layout-pricing-form', ['id' => @$id])}}" class="btn another-c-d-btn bg-light w-25 btn-outline-dark text-dark py-2">Add Another Room</a>
                             <a href="{{route('facilities-form', ['id' => @$id])}}" class="btn another-c-d-btn w-25 py-2">Continue</a>
@@ -77,18 +78,17 @@ Add-Layout
 
         $(document).on('click', '.deleteRoom', function(){
             let roomId = $(this).data('id');
-
+            let hotel_id = $(this).data('hotel');
             $.ajax({
-                url: baseUrl + "/user/deleteRoom/" + roomId,
+                url: baseUrl + "/user/deleteRoom/" + hotel_id + "/" + roomId,
                 type: "POST",
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response.roomCount);
                     if(response.roomCount == 1){
-                        window.location = 'layout-form';
+                        window.location = res.layout_url;
                     }else{
-                        window.location = 'room-list';
+                        window.location = res.redirect_url;
                     }
                 },
             });

@@ -31,8 +31,11 @@ Add-Layout
                                          describe bed options, layout, and pricing for guests.</p>
                                 </div>
                                 <div class="another-c-details mt-4">
-                                    <a href="{{route('layout-pricing-form')}}" class="btn another-c-d-btn w-25">Add Room</a>
-                                </div>
+                                    @php
+                                        $hotel_id = request()->segment(3);
+                                    @endphp 
+                                    <a href="{{route('layout-pricing-form',['id' => $hotel_id] )}}" class="btn another-c-d-btn w-25">Add Room</a>
+                                </div> 
                             </div>
                         </div>
 

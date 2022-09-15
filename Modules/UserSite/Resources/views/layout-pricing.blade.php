@@ -295,7 +295,7 @@ Layout & pricing
                                     </div>
                                 </a>
                             @else --}}
-                                <a href="javascipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue
+                                <a href="javasrcipt:;" class="btn another-c-d-btn w-100 btn-submit-click">Continue
                                     <div class="spinner-border" role="status" style="display: none;">
                                         <span class="sr-only">Loading...</span>
                                     </div>
