@@ -306,6 +306,34 @@ hotel
         }
     }
 
+    .slick-prev:before, .slick-next:before{
+        font-size:25px;
+    }
+
+    .slick-prev{
+        left:-40px;
+    }
+
+    .slick-next{
+        right:-40px;
+    }
+    .slick-cloned{
+        width:75px !important;
+    }
+
+    .slick-slide.slick-current.slick-center{
+        border: 1px solid white;
+        width: 75px !important;
+        margin-right: 2px;
+    }
+    /* .slick-track{
+        width: 100% !important;
+    } */
+
+    /* .slick-slide.slick-current.slick-active.slick-center{
+        border: 1px solid white;
+        width: 76px;
+    } */
     /* popup scroll */
     .reviews-popup-main .reviews-popup::-webkit-scrollbar-track {
         border-radius: 10px;
@@ -1048,9 +1076,9 @@ hotel
                             <label>
                                 <input type="checkbox" class="propertyTypeCheckbox"  name="propertyType" value="All"><span>All ({{@$propertyTypeCounts->count()}})</span>
                             </label>
-                            </div>  
+                            </div>
                             @if (@$propertyTypes)
-                                @foreach ($propertyTypes as $propertyType)    
+                                @foreach ($propertyTypes as $propertyType)
                                     <div class="cat propertyTypeCheckDiv">
                                     <label>
                                         <input type="checkbox" class="P_TypeCheckbox"  name="propertyType" value="{{$propertyType->slug}}" ><span>
@@ -1059,10 +1087,10 @@ hotel
                                             @endphp
                                             {{$propertyType->type}} ({{$propertyId}})</span>
                                     </label>
-                                    </div>  
+                                    </div>
                                 @endforeach
-                            @endif         
-                        </div>                                            
+                            @endif
+                        </div>
                     @endif
                     @include('frontend::hotel.hotelResult')
 
@@ -1169,10 +1197,10 @@ hotel
 <!-------- image popup (slider image js)------>
 <script>
     $('.slider-single').slick({
-            slidesToShow: 1,
+            slidesToShow: 10,
             slidesToScroll: 1,
             arrows: true,
-            draggable: false,
+            draggable: true,
             fade: true,
             asNavFor: '.slider-nav'
         });
@@ -1182,9 +1210,9 @@ hotel
             slidesToScroll: 1,
             asNavFor: '.slider-single',
             dots: false,
-            draggable: false,
+            draggable: true,
             centerMode: true,
-            arrows: true,
+            arrows: false,
             focusOnSelect: true,
             responsive: [{
                     breakpoint: 1024,
@@ -1316,7 +1344,7 @@ hotel
 <!-- custom-selector js -->
 <script>
     $(document).ready(function() {
-        
+
             $(document).on('click', '.select-div', function() {
                 $('.select-room').html('');
                 var index = $('.select_room').val();
@@ -1339,7 +1367,7 @@ hotel
             });
 
             function addRoom($number) {
-                let searchParams = new URLSearchParams(window.location.search);               
+                let searchParams = new URLSearchParams(window.location.search);
 
                 var king = '';
                 var queen = '';
@@ -1785,12 +1813,12 @@ $(document).ready(function(){
 
             }
         });
-    });   
+    });
 </script>
 
 <script>
     $(document).ready(function(){
-        
+
         $('.propertyTypeCheckbox').click(function(){
             if(this.checked){
                 $('.P_TypeCheckbox').each(function(){
@@ -1799,9 +1827,9 @@ $(document).ready(function(){
                 setTimeout(function(){
                     submitHotelBtn();
                 },50);
-            } 
+            }
         });
-        
+
         $('.P_TypeCheckbox').click(function(){
             if(this.checked){
                 $('.propertyTypeCheckbox').each(function(){

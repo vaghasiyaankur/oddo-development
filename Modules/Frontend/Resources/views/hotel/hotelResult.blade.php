@@ -45,7 +45,7 @@
                                                   </div>
                                                   <div class="slider slider-nav">
                                                       @foreach ($hotel->photos as $photo)
-                                                          <div class="slder-nav-img"><img
+                                                          <div class="slder-nav-img d-block"><img
                                                                   src="{{ asset('storage/' . @$photo->photos) }}"
                                                                   class="me-2" alt=""
                                                                   style="width: 72px; height: 72px;">
