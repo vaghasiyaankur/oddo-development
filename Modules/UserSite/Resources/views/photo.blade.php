@@ -88,7 +88,7 @@ Photo
                             </div>
 
                             <div class="another-c-details mt-4">
-                                <a href="javascript:;" class="btn another-c-d-btn w-100  {{  isset($hotelPhotos) ? 'update-photo-button' : 'save-photo-button' }}">Continue
+                                <a href="javascript:;" class="btn another-c-d-btn w-100  save-photo-button">Continue
                                     <div class="spinner-border" role="status" style="display: none;">
                                         <span class="sr-only">Loading...</span>
                                     </div>
@@ -203,36 +203,36 @@ Photo
         },
     });
 
-    $(document).ready(function(){
+$(document).ready(function(){
 
     var data = $('.sortable').sortable();
 
-    $(document).on('click','.save-photo-button', function(){
-        let files = myNewdDropzone.getAcceptedFiles();
-        var formData = new FormData();
+    // $(document).on('click','.save-photo-button', function(){
+    //     let files = myNewdDropzone.getAcceptedFiles();
+    //     var formData = new FormData();
 
-        files.filter(async (f,i)=> {
-            var main = 0;
-            var mainSrc = $(".image--preview--show:first").attr("alt");
-            if(mainSrc == f.upload.filename){
-                var main = 1;
-            };
+    //     files.filter(async (f,i)=> {
+    //         var main = 0;
+    //         var mainSrc = $(".image--preview--show:first").attr("alt");
+    //         if(mainSrc == f.upload.filename){
+    //             var main = 1;
+    //         };
 
-            $.ajax({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                },
-                url: "{{route('save-photos')}}",
-                type: "POST",
-                data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc},
-                success: function (res) {
-                    if (res.redirect_url) {
-                        window.location = res.redirect_url;
-                    }
-                },
-            });
-        });
-    });
+    //         $.ajax({
+    //             headers: {
+    //                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    //             },
+    //             url: "{{route('save-photos')}}",
+    //             type: "POST",
+    //             data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc},
+    //             success: function (res) {
+    //                 if (res.redirect_url) {
+    //                     window.location = res.redirect_url;
+    //                 }
+    //             },
+    //         });
+    //     });
+    // });
 
     if (localStorage.getItem("deleteImage") === null) {
         localStorage.setItem('deleteImage', JSON.stringify({}));
@@ -257,7 +257,7 @@ Photo
         $(this).parents('.dz-image-preview').hide();
     });
 
-    $(document).on('click', '.update-photo-button', function(){
+    $(document).on('click', '.save-photo-button', function(){
         var hotelId = $('.hotelId').val();
         let files = myNewdDropzone.getAcceptedFiles();
         var deleteImage = JSON.parse(localStorage.getItem("deleteImage"));
@@ -275,7 +275,7 @@ Photo
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
-                url: "{{route('update-photos')}}",
+                url: "{{route('add-photos')}}",
                 type: "POST",
                 data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc, 'hotelId' : hotelId, 'deleteImage' : deleteImage},
                 success: function (response) {

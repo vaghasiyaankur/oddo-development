@@ -36,7 +36,7 @@ Layout & pricing
                                         <option value="14" >14 days</option>
                                     </select>
                                 </div>
-                                <div class="f-parking-title pt-3">  
+                                <div class="f-parking-title pt-3">
                                     <label for="" class="form-label label-heading">or guests will pay 100% </label>
                                 </div>
                                 <div class="p-form-select d-flex">
@@ -52,7 +52,7 @@ Layout & pricing
                                     <p class="para-fs-14 m-0">You'll be able to make changes to your policies later on - this is just to get you started.  </p>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <div class="pcheckinout-box d-flex justify-content-between h-policies-main">
                             <div class="form-info-box mt-3 w-50 me-3">
                                 <form action="" class="form-cancel">
@@ -60,7 +60,7 @@ Layout & pricing
                                         <h5>Check-in</h5>
                                     </div>
                                     <div class="h-check-in-out border-green mx-auto">
-                                        <div class="timepicker_div "> 
+                                        <div class="timepicker_div ">
                                             <img src="{{asset('assets/images/icons/cal-icon.png')}}" class="pe-2">
                                             <span class="check-text text--green">check-in-time</span>
                                             <input type="text"  class="form-control timepicker text-center check_in" placeholder="Time">
@@ -75,7 +75,7 @@ Layout & pricing
                                         <h5>Chcek-out</h5>
                                     </div>
                                     <div class="h-check-in-out border-red mx-auto">
-                                        <div class="timepicker_div "> 
+                                        <div class="timepicker_div ">
                                             <img src="{{asset('assets/images/icons/check-close.png')}}" class="pe-2">
                                             <span class="check-text text--red">check-in-out</span>
                                             <input type="text" class="form-control timepicker text-center check_out" placeholder="Time" readonly="">
@@ -153,8 +153,8 @@ $(document).ready(function(){
         formdata.append('check_in', check_in);
         formdata.append('check_out', check_out);
         formdata.append('complete', complete);
-
-        $('.spinner-border').show();    
+        console.log(formdata);
+        $('.spinner-border').show();
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -170,9 +170,9 @@ $(document).ready(function(){
                     window.location = res.redirect_url;
                 }
             },
-        }); 
+        });
     });
-    
+
 
 });
 </script>

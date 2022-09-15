@@ -38,7 +38,7 @@ Route::prefix('user')->group(function() {
         // proeprty form
         Route::controller(PropertyController::class)->group(function(){
             Route::get('property-category', 'category')->name('property-category');
-            Route::get('basic-info', 'basicInfo')->name('basic-info');
+            Route::get('basic-info/{id}', 'basicInfo')->name('basic-info');
             Route::post('cities', 'cities')->name('cities');
             Route::post('add-property', 'add_property')->name('add-property');
             // Route::post('add-property-form', 'property_submit')->name('add-property-form');
@@ -46,20 +46,21 @@ Route::prefix('user')->group(function() {
             Route::post('add-property-form', 'property_submitUpdate')->name('add-property-form');
             Route::post('add-facilities', 'facilities_add_update')->name('add-facilities');
             Route::post('add-amenities', 'amenities_add_update')->name('add-amenities');
-            Route::post('add-amenities', 'layouts_add_update')->name('add-layoutprice');
+            Route::post('add-layout', 'layouts_add_update')->name('add-layoutprice');
+            Route::post('add-photos', 'photos_add_update')->name('add-photos');
 
-            Route::get('facilities-form', 'facilities')->name('facilities-form');
+            Route::get('facilities-form/{id}', 'facilities')->name('facilities-form');
             Route::view('layout-form', 'usersite::add-layout')->name('layout-form');
-            Route::get('layout-pricing-form', 'layout_pricing')->name('layout-pricing-form');
+            Route::get('layout-pricing-form/{id}', 'layout_pricing')->name('layout-pricing-form');
             Route::post('room-lists', 'room_list')->name('room-lists');
-            Route::get('room-list', 'room_lists')->name('room-list');
-            Route::get('amenities', 'amenities')->name('amenities');
+            Route::get('room-list/{id}', 'room_lists')->name('room-list');
+            Route::get('amenities/{id}', 'amenities')->name('amenities');
             // Route::post('add-room', 'add_room')->name('add-room');
             // Route::post('add-facilities', 'add_facilities')->name('add-facilities');
             // Route::post('add-amenities', 'add_amenities')->name('add-amenities');
-            Route::view('photos', 'usersite::photo')->name('photo');
+            Route::view('photos/{id}', 'usersite::photo')->name('photo');
             Route::post('save-photos', 'save_photos')->name('save-photos');
-            Route::view('policy', 'usersite::policies')->name('policy');
+            Route::view('policy/{id}', 'usersite::policies')->name('policy');
             Route::post('add-policy', 'add_policy')->name('add-policy');
 
 
