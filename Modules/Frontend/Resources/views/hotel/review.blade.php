@@ -1,3 +1,23 @@
+@push('css')
+<style>
+    /* popup scroll */
+    .reviews-popup-main .reviews-popup::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: transparent;
+    }
+
+    .reviews-popup-main .reviews-popup::-webkit-scrollbar {
+        width: 7px;
+        background-color: transparent;
+    }
+    
+    .reviews-popup-main .reviews-popup::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        background-color: #a9a9a9;
+    }
+</style>
+@endpush
+
 <div class="modal fade reviews-popup-main" id="reviews-popup-main"
     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true" data-id="" role="dialog">
@@ -144,7 +164,7 @@
                                             <div class="row border-bottom mt-3">
                                                 <div
                                                     class="col-sm-1 col-2 text-center">
-                                                    <img src="assets/images/icons/review-popup-2.png">
+                                                    <img src="{{asset('assets/images/icons/review-popup-2.png')}}">
                                                 </div>
                                                 <div class="col-sm-8 col-9 p-0 ">
                                                     <div class="reviews-comment-content">

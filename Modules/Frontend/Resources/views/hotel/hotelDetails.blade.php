@@ -35,9 +35,9 @@ hotel
     <div class="container">
         <div class="h-details-title-box">
             <div class="h-details-heading d-flex justify-content-between align-items-center">
-                <h2 class="d-flex align-items-center">Holiday In {{@$hotel->city->name}} <span class="rating-text bg-green ms-2 py-1">Appartment</span></h2>
+                <h2 class="d-flex align-items-center">Holiday In {{@$hotel->city->name}} <span class="rating-text bg-green ms-2 py-1">{{@$hotel->propertytype->type}}</span></h2>
                 <div class="h-rating">
-                    <span class="rating-text bg-green ">9/10</span>
+                    <span class="rating-text bg-green ">{{@$hotel->star_rating}}/5</span>
                     @for($i = 0; $i < 5; $i++)
                         <span><img src="{{ @$hotel->star_rating > $i ? ''.asset('assets/images/icons/start.png') : '' }}"></span>
                     @endfor
@@ -45,7 +45,7 @@ hotel
             </div>
             <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-1">               
                 <span class="h-rating-location d-flex justify-content-between align-items-center para-fs-15"><img src="{{asset('assets/images/icons/loaction-purple.png') }}"
-                        class="me-3 ">{{@$hotel->city->name}} {{@$hotel->country_id ? ','.$hotel->country->country_name : ''}}. 1.36 km to the center</span>
+                        class="me-3 ">{{ @$hotel->street_addess }}, {{ @$hotel->city->name }} {{ @$hotel->country_id ? ',' .$hotel->country->country_name: '' }}, {{ @$hotel->pos_code }}.</span>
                 <div class="h-rating-btn mt-md-0 mt-3">
                     <a href="#hotel-room" class="btn reserve-btn bg-purple para-d-l-p">Reserve a Room</a>
                 </div>
@@ -79,35 +79,32 @@ hotel
                                         <div class="modal-body d-flex justify-content-center align-items-center">
                                             <div class="img-swiper">
                                                 <div class="slider slider-single mb-5">
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
-                                                    <div><img src="{{asset('assets/images/img-popup-bg.png') }}" alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/00.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/01.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/02.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/03.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/04.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/05.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/10.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/11.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/12.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/13.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/14.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
+                                                    <div><img src="{{asset('storage/hotels/15.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
                                                 </div>
                                                 <div class="slider slider-nav">
-                                                    <img src="{{asset('assets/images/nav-img1.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img2.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img3.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img4.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img5.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img6.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img7.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img8.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img9.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img10.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img11.png') }}" class="me-2" alt="">
-                                                    <img src="{{asset('assets/images/nav-img12.png') }}" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/00.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/01.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/02.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/03.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/04.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/05.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/10.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/11.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/12.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/13.jpg') }}" style="width: 72px !important; height: 72px;"  class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/14.jpg') }}" style="width: 72px !important; height: 72px;"  class="me-2" alt="">
+                                                    <img src="{{asset('storage/hotels/15.jpg') }}" style="width: 72px !important; height: 72px;"  class="me-2" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +124,7 @@ hotel
                                         src="{{asset('assets/images/h-details-2.png') }}" class="img-fluid img-wrapper"></a>
                             </div>
                             <!------- img slider popup start -------->
-                            <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
+                            {{-- <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -172,7 +169,7 @@ hotel
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!------- img slider popup end -------->
                         </div>
                     </div>
@@ -186,7 +183,7 @@ hotel
                                         src="{{ asset('assets/images/h-details-3.png') }}" class="img-fluid img-wrapper"></a>
                             </div>
                             <!------- img slider popup start -------->
-                            <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
+                            {{-- <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -231,7 +228,7 @@ hotel
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -244,7 +241,7 @@ hotel
                                         src="{{ asset('assets/images/h-details-4.png') }}" class="img-fluid img-wrapper"></a>
                             </div>
                             <!------- img slider popup start -------->
-                            <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
+                            {{-- <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -289,7 +286,7 @@ hotel
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -469,8 +466,15 @@ hotel
 <section class="hotel-room" id="hotel-room">
     <div class="container">
         <div class="hotel-room-inner">
-            <div class="hotel-room-heading pb-4">
-                <h5>Pick your room for <span class="purple">Orlando, Florida</span></h5>
+            <div class="hotel-room-heading pb-4 d-flex justify-content-between align-item-center">
+                <div class="d-flex align-items-center">
+                    <h5>Pick your room for <span class="purple">{{@$hotel->city->name}}, {{@$hotel->country->country_name}}</span></h5>
+                </div>
+                <div class="">
+                    <button type="button" class="btn reserve-btn bg-purple para-d-l-p" data-bs-toggle="modal" data-bs-target="#reviews-popup-main">
+                        Review
+                      </button>
+                </div>
             </div>
                 <div class="room-card-main mb-3">
                     <div class="row">
@@ -717,6 +721,9 @@ hotel
     </div>
 </section>
 <!-------- Hotel Room section end -------->
+<div class="mainReviewPopupDiv">
+    @include('frontend::hotel.review')
+</div>
 @endsection
 
 @push('script')

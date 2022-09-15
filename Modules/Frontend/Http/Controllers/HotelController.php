@@ -44,7 +44,7 @@ class HotelController extends Controller
         $hotelAmounts = array();
 
         $propertyTypes = '';
-        $propertyTypeCounts = '';
+        $propertyTypeCounts = [];
         if($search){
             $search = str_replace(',', ' ', $search);
 
@@ -124,7 +124,8 @@ class HotelController extends Controller
     public function hotelDetail(){
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
-        return view('frontend::hotel.hotelDetails', compact('hotel'));
+        $hotelRating = listHotelRating($hotel->id);
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating'));
     }
 
     public function hotelReview(Request $request)

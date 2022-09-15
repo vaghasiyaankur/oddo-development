@@ -349,7 +349,7 @@
                     </div>
                 </div>
                 <!-- Valencia Spain  Map-->
-                <div class="place-icon-view d-flex justify-content-between align-items-center flex-wrap">
+                {{-- <div class="place-icon-view d-flex justify-content-between align-items-center flex-wrap">
                     <div class="place-name align-items-center mt-2">
                         <a href="javascript:;"><img src="assets/images/icons/search-h-loaction.png" alt=""
                                 class="mb-2 me-2"></a>
@@ -370,7 +370,7 @@
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d786588.731672099!2d-4.022084791868385!3d39.635934014944716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1653073080931!5m2!1sen!2sin"
                         width="600" height="450" style="border:0;border-radius: 8px;" class="w-100" allowfullscreen=""
                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                </div> --}}
                 <!-- Paris France -->
                 <div class="place-icon-view d-flex justify-content-between align-items-center flex-wrap mb-3">
                     <div class="place-name align-items-center mt-2">

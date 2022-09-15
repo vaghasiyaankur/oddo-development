@@ -322,22 +322,6 @@ hotel
         background-color: #a9a9a9;
     }
 
-    /* popup scroll */
-    .reviews-popup-main .reviews-popup::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background-color: transparent;
-    }
-
-    .reviews-popup-main .reviews-popup::-webkit-scrollbar {
-        width: 7px;
-        background-color: transparent;
-    }
-
-    .reviews-popup-main .reviews-popup::-webkit-scrollbar-thumb {
-        border-radius: 20px;
-        background-color: #a9a9a9;
-    }
-
     /* media querry for bookingselect error */
 
     @media screen and (max-width:992px) {
@@ -1058,26 +1042,28 @@ hotel
                 <div class="col-lg-9 position-relative hotelResultDiv">
                     <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
                     <input type="hidden" class="total_page" value="{{$hotels->total()}}">
-                    <div class="select--your-destination mainDivPropertyType d-none">
-                        <div class="cat propertyTypeCheckDiv">
-                           <label>
-                              <input type="checkbox" class="propertyTypeCheckbox"  name="propertyType" value="All"><span>All ({{$propertyTypeCounts->count()}})</span>
-                           </label>
-                        </div>  
-                        @if (@$propertyTypes)
-                            @foreach ($propertyTypes as $propertyType)    
-                                <div class="cat propertyTypeCheckDiv">
-                                <label>
-                                    <input type="checkbox" class="P_TypeCheckbox"  name="propertyType" value="{{$propertyType->slug}}" ><span>
-                                        @php
-                                            $propertyId = $propertyTypeCounts->where('property_id',$propertyType->id)->count();
-                                        @endphp
-                                        {{$propertyType->type}} ({{$propertyId}})</span>
-                                </label>
-                                </div>  
-                            @endforeach
-                        @endif         
-                    </div>                                            
+                    @if (count($propertyTypeCounts))
+                        <div class="select--your-destination mainDivPropertyType d-none">
+                            <div class="cat propertyTypeCheckDiv">
+                            <label>
+                                <input type="checkbox" class="propertyTypeCheckbox"  name="propertyType" value="All"><span>All ({{@$propertyTypeCounts->count()}})</span>
+                            </label>
+                            </div>  
+                            @if (@$propertyTypes)
+                                @foreach ($propertyTypes as $propertyType)    
+                                    <div class="cat propertyTypeCheckDiv">
+                                    <label>
+                                        <input type="checkbox" class="P_TypeCheckbox"  name="propertyType" value="{{$propertyType->slug}}" ><span>
+                                            @php
+                                                $propertyId = $propertyTypeCounts->where('property_id',$propertyType->id)->count();
+                                            @endphp
+                                            {{$propertyType->type}} ({{$propertyId}})</span>
+                                    </label>
+                                    </div>  
+                                @endforeach
+                            @endif         
+                        </div>                                            
+                    @endif
                     @include('frontend::hotel.hotelResult')
 
                     {{-- No data found box --}}
@@ -1137,7 +1123,7 @@ hotel
 
 <!-------- Google Place Search -------->
 <script type='text/javascript'
-    src=    'https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
+    src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
 </script>
 
 <!-------- Weather swiper js start--------->
@@ -1198,6 +1184,7 @@ hotel
             dots: false,
             draggable: false,
             centerMode: true,
+            arrows: true,
             focusOnSelect: true,
             responsive: [{
                     breakpoint: 1024,
@@ -1378,11 +1365,11 @@ hotel
                                 <label for="king_` + $number + `">1 King</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin"`+ queen +`>
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin"`+ twin +`>
                                 <label for="twin_` + $number + `">2 Twin</label>
                             </div>
                             <div class="dropdown-inner">
-                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen"`+ twin +` >
+                                <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen"`+  queen +` >
                                 <label for="queen_` + $number + `">2 Queen</label>
                             </div>
                         </section>
