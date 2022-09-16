@@ -16,7 +16,7 @@ class PhotocategoryTableSeeder extends Seeder
     public function run()
     {
         $photoCategories = [
-            'Main Photo',
+            'all',
             'Restaurant',
             'Lobby',
             'Rooms',
