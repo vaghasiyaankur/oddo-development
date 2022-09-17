@@ -31,7 +31,6 @@ Layout & pricing
                                     <label for="" class="form-label label-heading">Room type</label>
                                     <input type="hidden" class="hotelId" value="{{ isset($hotel) ? $hotel->UUID : '' }}">
                                     <input type="hidden" class="roomId" value="{{ isset($roomDetail) ? $roomDetail->UUID : '' }}">
-                                    {{-- <input type="hidden" class="hotelId" value="{{ isset($roomDetail) ? $roomDetail->hotel_id : '' }}"> --}}
                                     <select class="form-select w-md-50 room_type ">
                                         <option value="">Please Select</option>
                                         @foreach ($room_types as $room_type)
@@ -77,7 +76,7 @@ Layout & pricing
                                     <h5>Bed Options</h5>
                                 </div>
                                 <div class="bed-option-title d-flex">
-                                    <h5 for="" class="form-label label-heading">What knd of bed are available in this
+                                    <h5 for="" class="form-label label-heading">What kind of bed are available in this
                                         room?</h5>
                                     <i class="fa-solid fa-circle-exclamation ps-2 mt-1" data-toggle="tooltip"
                                         data-bs-placement="top"
@@ -99,7 +98,7 @@ Layout & pricing
                                             </select>
                                             <span class="px-4"><i class="fa-solid fa-xmark"></i></span>
                                             <select class="form-select c-form-select number_of_bed number_of_bed_1">
-                                                <option  value="">Select the number of Beds</option>
+                                                {{-- <option  value="">Select the number of Beds</option> --}}
                                                 <option value="1" {{ isset($hotelBed) && $hotelBed->no_of_bed == '1' ? 'selected' : '' }}>1</option>
                                                 <option value="2" {{ isset($hotelBed) && $hotelBed->no_of_bed == '2' ? 'selected' : '' }}>2</option>
                                                 <option value="3" {{ isset($hotelBed) && $hotelBed->no_of_bed == '3' ? 'selected' : '' }}>3</option>
@@ -113,7 +112,6 @@ Layout & pricing
                                             </select>
                                             <span class="px-4"><i class="fa-solid fa-xmark"></i></span>
                                             <select class="form-select c-form-select number_of_bed number_of_bed_1">
-                                                <option  value="">Select the number of Beds</option>
                                                 <option value="1" >1</option>
                                                 <option value="2" >2</option>
                                                 <option value="3" >3</option>
@@ -129,7 +127,7 @@ Layout & pricing
                                     <label for="" class="form-label label-heading">How many guests can stay in this
                                         room?</label>
                                     <div class="total-room-layout ">
-                                        <input type="number" class="form-control layout-totalroom d-inline number_of_guest" value="{{ isset($roomDetail) ? $roomDetail->guest_stay_room : '' }}">
+                                        <input type="number" class="form-control layout-totalroom d-inline number_of_guest" value="{{ isset($roomDetail) ? $roomDetail->guest_stay_room : '1' }}">
                                         <span class="user-icon ps-2"><i class="fa-solid fa-user purple"></i></span>
                                     </div>
                                     <span id="number_of_guest_error" class="text-danger"></span>
@@ -159,17 +157,17 @@ Layout & pricing
                                         <label for="" class="form-label label-heading ">Is the bathroom private?</label>
                                     </div>
                                     <div class="amenities-raido-btn">
-                                        <div class="form-check form-check-inline bathroom-radio">
-                                            <label class="form-check-label" for="yes">
-                                            <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes"  {{ isset($roomDetail) && $roomDetail->bathroom_private == 'yes'  ? 'checked' : '' }}>
-                                            Yes
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline bathroom-radio">
-                                            <label class="form-check-label" for="no">
+                                        <label class="form-check-label me-3" for="yes" style="display: initial;">
+                                            <div class="form-check form-check-inline bathroom-radio me-0">
+                                                <input class="form-check-input bathroom_private" type="radio" name="bathroom_private" id="yes" value="yes"  {{ isset($roomDetail) && $roomDetail->bathroom_private == 'yes'  ? 'checked' : '' }}>
+                                                Yes
+                                            </div>
+                                        </label>
+                                        <label class="form-check-label me-3" for="no" style="display: initial;">
+                                            <div class="form-check form-check-inline bathroom-radio" me-0>
                                                 <input class="form-check-input bathroom_private" type="radio" name="bathroom_private"  id="no" value="no" {{ isset($roomDetail) && $roomDetail->bathroom_private == 'no'  ? 'checked' : '' }} > No
-                                            </label>
-                                        </div>
+                                            </div>
+                                        </label>
                                     </div>
 
                                     <div class="p-form-heading d-flex">
@@ -214,34 +212,24 @@ Layout & pricing
                                                 <input type="number" class="form-control custom-from-control bed_price" placeholder="0" value="{{ isset($roomDetail) ? $roomDetail->price_room : '' }}" >
                                             </div>
                                             <span id="bed_price_error" class="text-danger"></span>
-
-                                            {{-- <div class="total-room-layout pt-3 d-none number-of-bed">
-                                                <label for="" class="form-label label-heading ">Select the number of extra beds that can be added</label>
-                                                <select class="form-select layout-totalroom  me-3 extra_no_of_bed">
-                                                    <option value="1" >1</option>
-                                                    <option value="2" >2</option>
-                                                    <option value="3" >3</option>
-                                                    <option value="4" >4</option>
-                                                </select>
-                                            </div> --}}
                                         </div>
                                         <div class="amenities-title pt-3">
                                             <label for="" class="form-label label-heading ">Do you offer a lower rate when there are less than 6 guests?</label>
                                         </div>
                                         <div class="amenities-raido-btn">
-                                            <div class="form-check form-check-inline amenities-radio">
-                                                <label class="form-check-label" for="yes">
+                                            <label class="form-check-label me-3" for="checkedyes" style="display: initial;">
+                                                <div class="form-check form-check-inline amenities-radio me-0" >
                                                 <input type="hidden" class="offerChecked" value="{{ isset($roomDetail) && $roomDetail->discount == null  ? 'no' : 'yes' }}">
-                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" id="yes" value="yes" {{ isset($roomDetail) && $roomDetail->discount != 'null'  ? 'checked' : '' }}>
+                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" id="checkedyes" value="yes" {{ isset($roomDetail) && $roomDetail->discount != 'null'  ? 'checked' : '' }}>
                                                  Yes
+                                                </div>
                                                 </label>
-                                            </div>
-                                            <div class="form-check form-check-inline amenities-radio">
-                                                <label class="form-check-label" for="no">
-                                                <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" value="no" id="no" {{ isset($roomDetail) && $roomDetail->discount == null  ? 'checked' : '' }}>
-                                                 No
-                                                </label>
-                                            </div>
+                                            <label class="form-check-label me-3" for="checkedno" style="display: initial;">
+                                                <div class="form-check form-check-inline amenities-radio me-0">
+                                                    <input class="form-check-input offer-check" type="radio" name="flexRadioDefault" value="no" id="checkedno" {{ isset($roomDetail) && $roomDetail->discount == null  ? 'checked' : '' }} >
+                                                    No
+                                                </div>
+                                            </label>
                                         </div>
                                         <div class="discount-div d-none">
                                             <div class="amenities-title pt-3 dicount-label-div">
@@ -249,7 +237,7 @@ Layout & pricing
                                             </div>
                                             <div class="input-group mb-3 discount-div ">
                                                 <div class="w-50 d-flex">
-                                                    <input type="text" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button" value="{{ isset($roomDetail) ? $roomDetail->discount : '0' }}" >
+                                                    <input type="number" class="form-control discountValue" style="border-radius: 0px" aria-label="Text input with dropdown button" value="{{ isset($roomDetail) ? $roomDetail->discount : '0' }}"  min="1" max="100">
                                                     <select class="form-select c-form-select discountType" style="border-radius: 0px" name="discount-type" aria-label="Default select example">
                                                         <option value="percentage" {{ isset($roomDetail) && $roomDetail->discount_type == 'percentage' ? 'selected' : '' }}>%</option>
                                                         <option value="cash" {{ isset($roomDetail) && $roomDetail->discount_type == 'cash' ? 'selected' : '' }}>INR</option>
@@ -267,7 +255,7 @@ Layout & pricing
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-6 price-summary-main" id="price-discounts" style="display: none;">
+                                <div class="col-md-6 price-summary-main" id="price-discounts">
                                     <div class="price-summary mt-3 mt-lg-0">
                                         <h4 class="mt-3 price-summary-head fw-bold">Price summary for: dsfdsf</h4>
 
@@ -364,30 +352,28 @@ Layout & pricing
 
 @push('scripts')
 <script>
-    $(document).on('click', '#addon-wrapping', function(){
-        $('#price-discounts').addClass('d-block');
-        $('.price-discount-div').addClass('d-block');
-    });
-
-</script>
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
+    
+    
     $(document).ready(function(){
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         var name = $('.numberOfpersonDiscount').val();
+        console.log(name);
         selected(name);
+        
+        $(document).on('click', '#addon-wrapping', function(){
+            $('#price-discounts').addClass('d-block');
+            $('.price-discount-div').addClass('d-block');
+        });
 
         $(document).on('keyup', '.number_of_guest', function(){
             var value = $(this).val();
 
             $('.total_person').text(value);
-            // $('.number-person').text(value);
 
             if (!value) {
                 $('.total_person').text('0');
@@ -401,17 +387,17 @@ Layout & pricing
             }
         });
 
-        $(document).on('focusout', '.discountValue', function(){
+        $(document).on('keyup', '.discountValue', function(){
             RoomDiscount();
             selected();
         });
 
-        $(document).on('focusout', '.discountType', function(){
+        $(document).on('change', '.discountType', function(){
             RoomDiscount();
             selected();
         });
 
-        $(document).on('focusout', '.bed_price', function(){
+        $(document).on('keyup', '.bed_price', function(){
             RoomDiscount();
             selected(name);
         });
@@ -422,10 +408,8 @@ Layout & pricing
             selected(name);
         });
 
-
-
-
         function RoomDiscount(name){
+            $('.price-summary-main').removeClass('d-none');
             $(".price-discount-div").empty();
             $(".offer-person-select").empty();
             var discountValue = $('.discountValue').val();
@@ -460,14 +444,14 @@ Layout & pricing
 
         function selected(name){
             var noOfPerson = $('.number_of_guest').val();
-
+            
             for(i=0; i < noOfPerson; i++) {
                 if(i != 0){
                     var selected = '';
-                    if(i == name){
+                    if(i == name) {
                         var selected = 'selected';
                     }
-                    $('.offer-person-select').append('<option value="'+ i +'"'+selected+'> '+ i +'</option>');
+                    $('.offer-person-select').append('<option value="'+ i +'"'+selected+'>'+ i +'</option>');
                 }
             }
         }
@@ -520,7 +504,6 @@ Layout & pricing
                                             '</select>'+
                                             '<span class="px-4"><i class="fa-solid fa-xmark"></i></span>'+
                                             '<select class="form-select c-form-select number_of_bed number_of_bed_'+numbers+'">'+
-                                                '<option value="">Select the number of Beds</option>'+
                                                 '<option value="1">1</option>'+
                                                 '<option value="2">2</option>'+
                                                 '<option value="3">3</option>'+
@@ -528,7 +511,7 @@ Layout & pricing
                                             + '<input type="button"  value="Remove" class="remove bedoption-remove-btn ps-2 text--red" />'+
                                         '</div>');
 
-                                        var number = $('.number-of-select').val(numbers);
+            var number = $('.number-of-select').val(numbers);
 
         });
 
@@ -544,12 +527,11 @@ Layout & pricing
         var set_title = $('.room_type_title').html(room_type);
     });
 
-
     $(".btn-submit-click").on('click', function(){
+        var roomId = $('.roomId').val();
         var hotelId = $('.hotelId').val();
         let room_type = $('.room_type option:selected').val();
         !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
-
 
         let number_of_guest = $('.number_of_guest').val();
         !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) : $(`#number_of_guest_error`).html(``);
@@ -559,7 +541,8 @@ Layout & pricing
 
         var BedDetail  = $(".bed-option-div").map(function(){return {
             bed   : $(this).children('.select-bed').val(),
-            bedNo : $(this).children('.number_of_bed').val()
+            bedNo : $(this).children('.number_of_bed').val(),
+            bedId : $(this).children('.bedId').val()
         }}).get();
 
         if (!room_type || !bed_price) {
@@ -596,12 +579,13 @@ Layout & pricing
         formdata.append('room_size_feet', room_size_feet);
         formdata.append('bathroom_private',bathroom_private);
         formdata.append('bathroom_item',bathroom_item);
+        formdata.append('roomId', roomId);
+
         if(checked == 'yes'){
             formdata.append('discountValue', discountValue);
             formdata.append('discountType', discountType);
             formdata.append('personDis', personDis);
         }
-
 
         $('.spinner-border').show();
 
@@ -621,7 +605,6 @@ Layout & pricing
                 }
             },
         });
-
     });
 
     $('.room_type').on('change', function(){
@@ -639,12 +622,12 @@ Layout & pricing
             $('.layout-room-name').addClass('d-none');
         }
 
-
         if(room_type == 'Single'){
             $('.bed_option_div').addClass('d-none');
         }else{
             $('.bed_option_div').removeClass('d-none');
         }
+
         $.ajax({
             url:"{{ route('room-lists') }}",
             type:"POST",
@@ -654,98 +637,16 @@ Layout & pricing
             dataType: 'JSON',
             success:function (data) {
                 $('.room_name_select').empty();
-                $.each(data.roomlist[0].room_lists,function(index,roomlist){
-                    $('.room_name_select').append('<option value="'+roomlist.id+'">'+roomlist.room_name+'</option>');
-                })
+                if (!$.isEmptyObject(data.roomlist)) {
+                    $.each(data.roomlist[0].room_lists,function(index,roomlist){
+                        $('.room_name_select').append('<option value="'+roomlist.id+'">'+roomlist.room_name+'</option>');
+                    })
+                }
             }
         });
     }
 
     roomName();
-
-    // $(".btn-update-click").on('click', function(){
-    //     let room_type = $('.room_type option:selected').val();
-    //     !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
-
-
-    //     let number_of_guest = $('.number_of_guest').val();
-    //     !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) : $(`#number_of_guest_error`).html(``);
-
-    //     let bed_price = $('.bed_price').val();
-    //     !bed_price ? $(`#bed_price_error`).html(`Please enter a price`) : $(`#bed_price_error`).html(``);
-
-    //     var BedDetail  = $(".bed-option-div").map(function(){return {
-    //         id : $(this).children('.bedId').val(),
-    //         bed   : $(this).children('.select-bed').val(),
-    //         bedNo : $(this).children('.number_of_bed').val()
-    //     }}).get();
-
-    //     var roomId = $('.roomId').val();
-    //     var hotelId = $('.hotelId').val();
-
-    //     if (!room_type || !bed_price) {
-    //         return;
-    //     }
-
-    //     let custom_name      = $('.custom_name').val();
-    //     let room_name_select = $('.room_name_select').val();
-    //     let smoking_area     = $('.smoking_area').val();
-    //     let number_of_room   = $('.number_of_room').val();
-    //     let room_size        = $('.room_size').val();
-    //     let room_size_feet   = $('.room_size_feet').val();
-    //     let bathroom_private = $("input[name='bathroom_private']:checked").val();
-    //     let bathroom_item    = $("input[name='bathroom_item']:checked").map(function(){return $(this).val();}).get();
-    //     let discountValue    = $('.discountValue').val();
-    //     let discountType     = $('.discountType').val();
-    //     let personDis        = $('.offer-person-select').val();
-    //     let checked          = $('.offer-check:checked').val();
-
-    //     let property_type       = $('.property_type').val();
-
-    //     formdata = new FormData();
-
-    //     formdata.append('roomId', roomId);
-    //     formdata.append('hotelId', hotelId);
-    //     formdata.append('room_type', room_type);
-    //     formdata.append('number_of_guest', number_of_guest);
-    //     formdata.append('bed_price', bed_price);
-    //     formdata.append('custom_name', custom_name);
-    //     formdata.append('room_name_select', room_name_select);
-    //     formdata.append('smoking_area', smoking_area);
-    //     formdata.append('number_of_room', number_of_room);
-    //     formdata.append('BedDetail', JSON.stringify(BedDetail));
-    //     formdata.append('room_size', room_size);
-    //     formdata.append('room_size_feet', room_size_feet);
-    //     formdata.append('bathroom_private',bathroom_private);
-    //     formdata.append('bathroom_item',bathroom_item);
-    //     if(checked == 'yes'){
-    //         formdata.append('discountValue', discountValue);
-    //         formdata.append('discountType', discountType);
-    //         formdata.append('personDis', personDis);
-    //     }
-
-
-    //     $('.spinner-border').show();
-
-    //     $.ajax({
-    //         headers: {
-    //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-    //         },
-    //         url: "{{route('update-room')}}",
-    //         type: "POST",
-    //         processData: false,
-    //         contentType: false,
-    //         data: formdata,
-    //         success: function (res) {
-    //             $("input[type=text], input[type=tel]").val("");
-    //             if (res.redirect_url) {
-    //                 window.location = res.redirect_url;
-    //             }
-    //         },
-    //     });
-    // });
-
-
 });
 </script>
 

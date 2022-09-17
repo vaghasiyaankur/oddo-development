@@ -5,7 +5,7 @@ Add-Layout
 @endsection
 <style>
     .pannel-form.admin-pannel-main {
-    min-height: calc(100vh - 472px);
+    min-height: calc(100vh - 361px);
 }
 </style>
 @section('content')
@@ -39,7 +39,8 @@ Add-Layout
                                 </div>
                                 <div class="addroom-right">
                                     <div class="addroom-btn">
-                                        <a href="javascript:;" class="addroom-link pe-3 purple editRoom" data-id="{{$room->UUID}}">Edit</a>
+                                        
+                                        <a href="javascript:;" class="addroom-link pe-3 purple editRoom" data-hotel="{{@$id}}" data-id="{{$room->UUID}}">Edit</a>
                                         <a href="javascript:;" class="addroom-link purple deleteRoom" data-hotel="{{@$id}}" data-id="{{$room->UUID}}">Delete</a>
                                     </div>
                                 </div>
@@ -86,28 +87,30 @@ Add-Layout
                 contentType: false,
                 success: function (response) {
                     if(response.roomCount == 1){
-                        window.location = res.layout_url;
+                        window.location = response.layout_url;
                     }else{
-                        window.location = res.redirect_url;
+                        window.location = response.redirect_url;
                     }
                 },
             });
         });
 
         $(document).on('click', '.editRoom', function(){
+            var roomId = $(this).data('id'); 
+            let hotel_id = $(this).data('hotel');
 
             $.ajax({
-                url: baseUrl + "/user/layout-pricing-form",
-                type: "GET",
+                url: baseUrl + "/user/edit/room/" + hotel_id + "?roomId=" + roomId,
+                type: "POST",
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response.roomCount);
-                    if(response.roomCount < 1){
-                        window.location = 'layout-form';
-                    }else{
-
-                    }
+                    console.log(response);
+                    window.location = response.redirect_url;
+                    // if(response.roomCount == 1){
+                    // }else{
+                    //     window.location = response.redirect_url;
+                    // }
                 },
             });
         });
