@@ -1134,7 +1134,8 @@ hotel
             });
 </script>
 @endif
-
+{{-- paypal cdn --}}
+<script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}&currency=USD"></script>
 {{-- stripe cdn--}}
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 <script src="https://checkout.stripe.com/v3/checkout.js"></script>
@@ -1779,6 +1780,32 @@ $(document).ready(function(){
                 console.log('fail');
             }
         });
+    });
+
+    $(document).on('click', '.payment_button_Paypal', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+        var payment_id = $('.paypal_payment_id').val();
+        var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        window.location.href = base_url + "/payment/processPaypal?id=" + id + "&amount=" + amount + "&total_amount=" + total_amount + "&payment_id=" + payment_id + "&property_name=" + property_name + "&hotel_id=" + hotel_id + '&room_id=' + room_id + '&start_date=' + start_date + '&end_date=' + end_date;
+
+        // $.ajax({
+        //     url: "{{route('processPaypal')}}",
+        //     type: "GET",
+        //     data: {id: id,amount: amount,total_amount: total_amount,payment_id: payment_id,property_name: property_name,hotel_id: hotel_id,room_id: room_id,start_date: start_date,end_date: end_date},
+        //     success: function (response) {
+        //         console.log('succeed');
+        //     }, error:function (response) {
+        //         console.log('fail');
+        //     }
+        // });
     });
 </script>
 
