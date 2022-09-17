@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('photocategories', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('UUID')->unique()->nullable();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();

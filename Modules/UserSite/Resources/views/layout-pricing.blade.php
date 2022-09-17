@@ -142,7 +142,7 @@ Layout & pricing
                                     <h5>Room Size (Optional)</h5>
                                 </div>
                                 <div class="input-group mb-3 total-room-layout w-50">
-                                    <input type="tel" class="form-control custom-from-control room_size" placeholder="0" value="{{ isset($roomDetail) ? $roomDetail->room_size : '' }}">
+                                    <input type="number" class="form-control custom-from-control room_size" placeholder="0" value="{{ isset($roomDetail) ? $roomDetail->room_size : '' }}">
                                     <select class="form-select room_size_feet">
                                         <option value="s-meter" {{ isset($roomDetail) && $roomDetail->room_cal_type == 's-meter' ? 'selected' : '' }}>square meters</option>
                                         <option value="s-feet" {{ isset($roomDetail) && $roomDetail->room_cal_type == 's-feet' ? 'selected' : '' }}>square feet</option>
@@ -211,7 +211,7 @@ Layout & pricing
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text para-fs-14" id="addon-wrapping" >INR/per
                                                     Night</span>
-                                                <input type="text" class="form-control custom-from-control bed_price" placeholder="0" value="{{ isset($roomDetail) ? $roomDetail->price_room : '' }}" >
+                                                <input type="number" class="form-control custom-from-control bed_price" placeholder="0" value="{{ isset($roomDetail) ? $roomDetail->price_room : '' }}" >
                                             </div>
                                             <span id="bed_price_error" class="text-danger"></span>
 
@@ -316,6 +316,18 @@ Layout & pricing
 <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
 
 <style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+
     .spinner-border {
         float: right;
         width: 20px;

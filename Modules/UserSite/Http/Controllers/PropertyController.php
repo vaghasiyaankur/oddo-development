@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use App\Models\Notification;
+use App\Models\Photocategory;
 
 class PropertyController extends Controller
 {
@@ -188,6 +189,14 @@ class PropertyController extends Controller
 
     }
 
+    public function viewPhotos($id)
+    {   
+        $photoCategories =  Photocategory::get();
+        $hotelDetail = Hotel::whereUuid($id)->first();
+        $hotelPhotos = HotelPhoto::whereHotel_id($hotelDetail->id)->get();
+        return view('usersite::photo', compact('hotelDetail', 'photoCategories', 'hotelPhotos'));
+    }
+
     // public function layout_pricing($id) {
     //     $room_types = RoomType::active()->get();
     //     $beds       = BedType::active()->get();
@@ -285,34 +294,34 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('room-list', ['id' => $hotel_data])]);
     }
 
-    public function photos_add_update(Request $request){
-        $hotelphoto = HotelPhoto::where('UUID')->first();
-        $hotel = Hotel::select('id','UUID')->first();
-        $hotel_id = Hotel::latest()->first();
-        if($request->file){
-        $image_64 = $request->url;
-        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
-        $image = str_replace($replace, '', $image_64);
-        $image = str_replace(' ', '+', $image);
-        $imageName = 'Img_'.Str::random(10).'.'.$extension;
-        $img =base64_decode($image);
-        Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
+    // public function photos_add_update(Request $request){
+    //     $hotelphoto = HotelPhoto::where('UUID')->first();
+    //     $hotel = Hotel::select('id','UUID')->first();
+    //     $hotel_id = Hotel::latest()->first();
+    //     if($request->file){
+    //     $image_64 = $request->url;
+    //     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+    //     $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+    //     $image = str_replace($replace, '', $image_64);
+    //     $image = str_replace(' ', '+', $image);
+    //     $imageName = 'Img_'.Str::random(10).'.'.$extension;
+    //     $img =base64_decode($image);
+    //     Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
 
-        $image_path = public_path('storage/'.$hotelphoto->main_photo);
-        if (File::exists($image_path)) {
-            File::delete($image_path);
-        }
+    //     $image_path = public_path('storage/'.$hotelphoto->main_photo);
+    //     if (File::exists($image_path)) {
+    //         File::delete($image_path);
+    //     }
 
-        $hotel_id = $request->hotelId;
-        $hotelphoto->main_photo = $request->main;
-        $hotelphoto->photos     = 'hotels/'.$imageName;
-        $hotelphoto->hotel_id  = $hotel_id;
-        $hotelphoto->update();
-        }
+    //     $hotel_id = $request->hotelId;
+    //     $hotelphoto->main_photo = $request->main;
+    //     $hotelphoto->photos     = 'hotels/'.$imageName;
+    //     $hotelphoto->hotel_id  = $hotel_id;
+    //     $hotelphoto->update();
+    //     }
 
-        return response()->json(['redirect_url' => route('policy', ['id' => $hotel_id->UUID])]);
-    }
+    //     return response()->json(['redirect_url' => route('policy', ['id' => $hotel_id->UUID])]);
+    // }
 
     public function add_room(Request $request) {
         $hotel_id = Session::get('hotel')->id;
@@ -383,31 +392,62 @@ class PropertyController extends Controller
         return response()->json(['redirect_url' => route('photo', ['id' => $hotel->UUID])]);
     }
 
-    // public function save_photos(Request $request) {
-    //     $image_64 = $request->url;
-    //     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-    //     $replace = substr($image_64, 0, strpos($image_64, ',')+1);
-    //     $image = str_replace($replace, '', $image_64);
-    //     $image = str_replace(' ', '+', $image);
-    //     $imageName = 'Img_'.Str::random(10).'.'.$extension;
-    //     $img =base64_decode($image);
-    //     Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
+    public function save_photos($id,Request $request) {
+        // dd($request->deleteImage);
+        $image_64 = $request->url;
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+        $image = str_replace($replace, '', $image_64);
+        $image = str_replace(' ', '+', $image);
+        $imageName = 'Img_'.Str::random(10).'.'.$extension;
+        $img =base64_decode($image);
+        Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
 
-    //     $hotel_id = $request->hotelId;
-    //     $hotelphoto = new HotelPhoto();
-    //     $hotelphoto->main_photo = $request->main;
-    //     $hotelphoto->photos     = 'hotels/'.$imageName;
-    //     $hotelphoto->hotel_id  = $hotel_id;
-    //     $hotelphoto->save();
-    //     // $Hotel   =   HotelPhoto::updateOrCreate([ 'id' => $hotel_id ], [
-    //     //     'main_photo'  => $request->main,
-    //     //     'photos' => 'hotels/'.$imageName,
-    //     //     'hotel_id' => $hotel_id,
-    //     // ]);
-    //     $hotel = Hotel::select('id','UUID')->first();
-    //     dd($hotel);
-    //     return response()->json(['redirect_url' => route('policy', ['id' => $hotel_id])]);
-    // }
+        $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
+
+        $hotel_id = $hotelId;
+
+        $hotelPhotoId = '';
+        $hotelphoto = HotelPhoto::updateOrCreate([ 'UUID' => $hotelPhotoId ],[
+            'main_photo' => $request->main,
+            'photos' => 'hotels/'.$imageName,
+            'hotel_id' => $hotel_id,
+            // 'room_id' => $hotel_id,
+            'category_id' => $request->photoCategory,
+        ]);
+
+        return response()->json(['redirect_url' => route('policy', ['id' => $id])]);
+    }
+
+
+    public function updatePhotos(Request $request)
+    {
+       $editImages = $request->EditImages;
+       
+       foreach ($editImages as $key => $editImage) {
+            $hotelPhotoId = $editImage['id'];   
+            $hotelPhotoPType = $editImage['propertyType'];
+
+            $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
+            $editImageData->update([
+            'category_id' => $hotelPhotoPType
+            ]);
+        }
+
+        $hotelPhotos = json_decode($request->deleteImages);
+
+        foreach($hotelPhotos as $hotelphoto) {
+            $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
+            $hotelPhotoPath = $hotelPhoto->first();
+            $image_path = public_path('storage/'.$hotelPhotoPath->photos);
+            if (File::exists($image_path)) {
+                unlink($image_path);
+            }
+            $hotelPhoto->delete();
+        }
+        $id = request()->hotelId;
+        return response()->json(['redirect_url' => route('policy', ['id' => $id])]);
+    }
 
     public function add_policy(Request $request) {
         $hotel_id = Session::get('hotel')->id;
@@ -423,9 +463,9 @@ class PropertyController extends Controller
         ]);
 
         $id = '';
-        // $notification = Notification::updateOrCreate(['id' => $id], [
-        //     'hotel_id' => $hotel_id,
-        // ]);
+        $notification = Notification::updateOrCreate(['id' => $id], [
+            'hotel_id' => $hotel_id,
+        ]);
         // dd($notification);
         return response()->json(['redirect_url' => route('home.index')]);
     }
@@ -449,16 +489,6 @@ class PropertyController extends Controller
             }
         }
         $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
-
-        // if($room){
-        //     if($room->id != null) {
-        //         $roomBed = HotelBed::where('room_id', $room->id)->select('room_id')->first();
-        //         if($room->id == $roomBed->room_id) {
-        //             $hotelBedDelete = HotelBed::where('room_id', $room->id)->delete();
-        //         }
-        //     }
-        //     $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
-        // }
 
         foreach($hotelPhotos as $hotelphoto) {
             $image_path = public_path('storage/'.$hotelphoto->photos);
@@ -572,7 +602,6 @@ class PropertyController extends Controller
         $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get('id');
         $roomDetail = Room::where('hotel_id', $hotel->id)->first();
         $hotelBeds = HotelBed::where('room_id', $roomDetail->id)->get();
-        // dd($hotelBeds[0]->bed_id);
         return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail', 'hotelBeds'));
     }
 
@@ -683,27 +712,27 @@ class PropertyController extends Controller
         return view('usersite::photo',compact('hotelPhotos', 'hotelDetail'));
     }
 
-    public function updatePhotos(Request $request) {
-        $hotelphoto = HotelPhoto::where('UUID')->first();
-        if($request->file){
-        $image_64 = $request->url;
-        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
-        $image = str_replace($replace, '', $image_64);
-        $image = str_replace(' ', '+', $image);
-        $imageName = 'Img_'.Str::random(10).'.'.$extension;
-        $img =base64_decode($image);
-        Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
+    // public function updatePhotos(Request $request) {
+    //     $hotelphoto = HotelPhoto::where('UUID')->first();
+    //     if($request->file){
+    //     $image_64 = $request->url;
+    //     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+    //     $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+    //     $image = str_replace($replace, '', $image_64);
+    //     $image = str_replace(' ', '+', $image);
+    //     $imageName = 'Img_'.Str::random(10).'.'.$extension;
+    //     $img =base64_decode($image);
+    //     Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
 
-        $image_path = public_path('storage/'.$hotelphoto->main_photo);
-        if (File::exists($image_path)) {
-            File::delete($image_path);
-        }
+    //     $image_path = public_path('storage/'.$hotelphoto->main_photo);
+    //     if (File::exists($image_path)) {
+    //         File::delete($image_path);
+    //     }
 
-        $hotelphoto->main_photo = $request->main;
-        $hotelphoto->photos     = 'hotels/'.$imageName;
-        $hotelphoto->hotel_id  = $hotel_id;
-        $hotelphoto->update();
-        }
-    }
+    //     $hotelphoto->main_photo = $request->main;
+    //     $hotelphoto->photos     = 'hotels/'.$imageName;
+    //     $hotelphoto->hotel_id  = $hotel_id;
+    //     $hotelphoto->update();
+    //     }
+    // }
 }

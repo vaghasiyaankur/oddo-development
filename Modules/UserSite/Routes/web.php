@@ -48,6 +48,7 @@ Route::prefix('user')->group(function() {
             Route::post('add-amenities', 'amenities_add_update')->name('add-amenities');
             Route::post('add-layout', 'layouts_add_update')->name('add-layoutprice');
             Route::post('add-photos', 'photos_add_update')->name('add-photos');
+            Route::post('update-photos', 'photoUpdate')->name('update-photos');
 
             Route::get('facilities-form/{id}', 'facilities')->name('facilities-form');
             Route::view('layout-form/{id}', 'usersite::add-layout')->name('layout-form');
@@ -58,8 +59,8 @@ Route::prefix('user')->group(function() {
             // Route::post('add-room', 'add_room')->name('add-room');
             // Route::post('add-facilities', 'add_facilities')->name('add-facilities');
             // Route::post('add-amenities', 'add_amenities')->name('add-amenities');
-            Route::view('photos/{id}', 'usersite::photo')->name('photo');
-            Route::post('save-photos', 'save_photos')->name('save-photos');
+            Route::get('photos/{id}', 'viewPhotos')->name('photo');
+            Route::post('/save-photos/{id}', 'save_photos')->name('save-photos');
             // Route::view('policy/{id}', 'usersite::policies')->name('policy');
             Route::get('policy/{id}', 'viewPolicy')->name('policy');
             Route::post('add-policy', 'add_policy')->name('add-policy');

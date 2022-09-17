@@ -40,19 +40,29 @@ Photo
                                             </form>
                                         </div>
                                         <input type="hidden" class="hotelId" value="{{@$hotelDetail->UUID}}">
-                                        <div class="sortable row" id="gallery">
+                                        <div class="sortable row editImageDiv" id="gallery" data-id="1">
                                             @if(isset($hotelPhotos))
                                                 @foreach ($hotelPhotos as $hotelPhoto)
-                                                    <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 {{ $hotelPhoto->main_photo ? 'main-photo-wrapper': '' }}  position-relative" name="image"  id="dz-preview-template">
+                                                    <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0   position-relative" name="image"  id="dz-preview-template">
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">
                                                                 <div class="gallery-img m-0">
-                                                                    <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}">
+                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}" >
                                                                 </div>
-                                                                <div class="gallery-btn d-block ms-0 me-0 ">
-                                                                    <a href="javascript:;" class="dz-remove remove-selected-image text-dark  ps-5 deleteImages deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->id}}">
-                                                                        <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
-                                                                    </a>
+                                                                <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
+                                                                    <div class="d-flex remove-selected-image">
+                                                                        <a href="javascript:;" class="dz-remove text-dark deleteImages editDeleteimage deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->UUID}}" >
+                                                                            <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
+                                                                        </a>
+                                                                    </div>
+                                        
+                                                                    <div class="selectPhotoType">
+                                                                        <select class="form-select c-form-select editPhotoCategory" data-id="{{$hotelPhoto->UUID}}" data-delete="0">
+                                                                            @foreach ($photoCategories as $photoCategory) 
+                                                                                <option value="{{$photoCategory->id}}" {{$photoCategory->id == $hotelPhoto->category_id ? 'selected' : ''}}>{{$photoCategory->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -109,10 +119,20 @@ Photo
                         <div class="gallery-img m-0">
                             <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="">
                         </div>
-                        <div class="gallery-btn d-block ms-0 me-0  text-center">
-                            <a href="javascript:;" class="dz-remove remove-selected-image text-dark" data-dz-remove>
-                                <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
-                            </a>
+                        <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center">
+                            <div class="d-flex remove-selected-image">
+                                <a href="javascript:;" class="dz-remove text-dark" data-dz-remove>
+                                    <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
+                                </a>
+                            </div>
+
+                            <div class="selectPhotoType">
+                                <select class="form-select c-form-select photoCategory">
+                                    @foreach ($photoCategories as $photoCategory) 
+                                        <option value="{{$photoCategory->id}}">{{$photoCategory->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,10 +152,15 @@ Photo
 <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 <style>
-    .main-photo-wrapper:first-child:before{
+    .remove-selected-image{
+        border: 1px solid lightgray;
+        border-radius: 4px;
+        padding: 6px 11px;
+    }
+    .main-photo-wrapper:nth-child(2):before{
         content: "Main Photo";
         max-width: 150px;
-        height: 20px;
+        height: 23px;
         text-align: center;
         background: #6a78c7;
         color: #fff;
@@ -146,19 +171,19 @@ Photo
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 14px;
+        font-size: 16px;
         position: absolute;
         top: 0;
         left:0;
         right: 0;
     }
     .pannel-form .property-photos .drop-box-main .uploader-opacity{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
     }
 
     .spinner-border {
@@ -175,6 +200,7 @@ Photo
 @push('scripts')
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <script>
+
     function deleteImage(){
         var image =  JSON.parse(localStorage.getItem("deleteImage"));
 
@@ -204,40 +230,84 @@ Photo
     });
 
 $(document).ready(function(){
+    var baseUrl = $('#base_url').val();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     var data = $('.sortable').sortable();
-
-    // $(document).on('click','.save-photo-button', function(){
-    //     let files = myNewdDropzone.getAcceptedFiles();
-    //     var formData = new FormData();
-
-    //     files.filter(async (f,i)=> {
-    //         var main = 0;
-    //         var mainSrc = $(".image--preview--show:first").attr("alt");
-    //         if(mainSrc == f.upload.filename){
-    //             var main = 1;
-    //         };
-
-    //         $.ajax({
-    //             headers: {
-    //                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-    //             },
-    //             url: "{{route('save-photos')}}",
-    //             type: "POST",
-    //             data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc},
-    //             success: function (res) {
-    //                 if (res.redirect_url) {
-    //                     window.location = res.redirect_url;
-    //                 }
-    //             },
-    //         });
-    //     });
-    // });
 
     if (localStorage.getItem("deleteImage") === null) {
         localStorage.setItem('deleteImage', JSON.stringify({}));
     }
 
+    $(document).on('click', '.save-photo-button', function(){
+        var deleteImage = localStorage.getItem('deleteImage');  
+
+        var hotelId = $('.hotelId').val();
+        let files = myNewdDropzone.getAcceptedFiles();
+        var deleteImage = JSON.parse(localStorage.getItem("deleteImage"));
+        var formData = new FormData();
+
+        var photocategories = $('.photoCategory option:selected').map(function(){return $(this).val();}).get();
+
+        $('.spinner-border').show();
+
+        files.filter(async (f,i)=> {
+            var main = 0;
+            var mainSrc = $(".image--preview--show:first").attr("alt");
+            if(mainSrc == f.upload.filename){
+                var main = 1;
+            };
+            
+            var photoCategory = '';
+            $(photocategories).each(function(index, value) {
+                if(index == i) photoCategory = value;
+            });
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: baseUrl + "/user/save-photos/" + hotelId,
+                type: "POST",
+                data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc, 'hotelId' : hotelId, 'deleteImage' : deleteImage, 'photoCategory' : photoCategory},
+                success: function (response) {
+                    if (response.redirect_url) {
+                        window.location = response.redirect_url;
+                    }
+                },
+            });
+        });
+
+        var editImage = $('.editImageDiv').data('id');
+        if (editImage == 1) {
+
+            var EditImages = $('.editPhotoCategory option:selected').map(function(){
+                return {'id': $(this).parents('.editPhotoCategory').data('id'), 'propertyType' : $(this).val()};
+            }).get();
+
+            var deleteImages = localStorage.getItem('deleteImage');
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "{{route('update-photos')}}",
+                type: "POST",
+                data: {deleteImages: deleteImages, EditImages: EditImages, hotelId: hotelId},
+                success: function (response) {
+                    if (response.redirect_url) {
+                        window.location = response.redirect_url;
+                    }
+                },
+            });
+        }
+    });
+    
     $(document).on('click', '.deleteImages', function(){
         if (localStorage.getItem("deleteImage") === null) {
             localStorage.setItem('deleteImage', JSON.stringify({}));
@@ -255,38 +325,17 @@ $(document).ready(function(){
 
         localStorage.setItem('deleteImage', JSON.stringify(obj));
         $(this).parents('.dz-image-preview').hide();
-    });
+    });  
 
-    $(document).on('click', '.save-photo-button', function(){
-        var hotelId = $('.hotelId').val();
-        let files = myNewdDropzone.getAcceptedFiles();
-        var deleteImage = JSON.parse(localStorage.getItem("deleteImage"));
-
-        var formData = new FormData();
-
-        files.filter(async (f,i)=> {
-            var main = 0;
-            var mainSrc = $(".image--preview--show:first").attr("alt");
-            if(mainSrc == f.upload.filename){
-                var main = 1;
-            };
-
-            $.ajax({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                },
-                url: "{{route('add-photos')}}",
-                type: "POST",
-                data: {'url' : f.dataURL, 'main' : main, 'mainSrc' : mainSrc, 'hotelId' : hotelId, 'deleteImage' : deleteImage},
-                success: function (response) {
-                    if (response.redirect_url) {
-                        window.location = response.redirect_url;
-                    }
-                },
-            });
-        });
-    });
 });
 
+function updateImage() {
+    var images = $('.editPhotoCategory option:selected').map(function(){
+        return {'id': $(this).parents('.editPhotoCategory').data('id'), 'value' : $(this).val()};
+    }).get();
+}
+
+// refresh to delete edit image  
+localStorage.removeItem('deleteImage');
 </script>
 @endpush

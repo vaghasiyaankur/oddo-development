@@ -168,7 +168,7 @@ Add-Property
 
                                             <div class="mb-3">
                                                 <label class="form-label">Zip Code</label>
-                                                <input class="form-control custom-from-control zipcode" type="text"
+                                                <input class="form-control custom-from-control zipcode" type="number"
                                                     name="zipcode" placeholder="eg.123456" value="{{ isset($hotelDetail) ? $hotelDetail->pos_code : '' }}">
                                                     <span id="zipcode-error" class="text-danger"></span>
                                             </div>
@@ -237,6 +237,18 @@ Add-Property
         border-top: 1px solid #ced4da;
         margin-top:15px;
 
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
     }
 </style>
 @endpush
