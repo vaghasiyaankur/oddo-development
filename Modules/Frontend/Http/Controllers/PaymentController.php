@@ -15,6 +15,8 @@ use Stripe\Stripe;
 use Mail;
 use App\Mail\PaymentSuccess;
 use Carbon\Carbon;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
+
 
 class PaymentController extends Controller
 {
@@ -134,4 +136,115 @@ class PaymentController extends Controller
         return redirect()->route('hotel.index')->with(['booking'=> $bookingId]);
     }
 
+    public function createpaypal()
+    {
+        return redirect()->route('hotel.index');
+    }
+
+    public function processPaypal(Request $request)
+    {
+
+        $paymentPayPal = [
+            'hotel_id' => $request->hotel_id,
+            'payment_id' => $request->payment_id,
+            'room_id' => $request->room_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+        ];
+        Session::put('paymentPayPal', $paymentPayPal);
+
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+
+        $response = $provider->createOrder([
+            "intent" => "CAPTURE",
+            "status" => "COMPLETED",
+                "application_context" => [
+                    "return_url" => route('processSuccess'),
+                    "cancel_url" => route('processCancel'),
+                ],
+                "purchase_units" => [
+                    0 => [
+                        "amount" => [
+                            "currency_code" => "USD",
+                            "value" => $request->amount
+                        ]
+                    ]
+                ]
+            ]);
+            if (isset($response['id']) && $response['id'] != null) {
+
+                // redirect to approve href
+                foreach ($response['links'] as $links) {
+                    if ($links['rel'] == 'approve') {
+                        return redirect()->away($links['href']);
+                    }
+                }
+
+                return redirect()
+                ->back()
+                ->with('error', 'Something went wrong.');
+
+            } else {
+                return redirect()
+                ->back()
+                ->with('error', $response['message'] ?? 'Something went wrong.');
+            }
+    }
+
+    public function processSuccess(Request $request)
+    {
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
+
+        $paymentPayPal = Session::get('paymentPayPal');
+        $start_date = Carbon::createFromFormat('d/m/Y',$paymentPayPal['start_date'])->format('Y-m-d');
+        $end_date = Carbon::createFromFormat('d/m/Y',$paymentPayPal['end_date'])->format('Y-m-d');
+        $shift_difference = Carbon::parse($end_date)->diffInDays($start_date);
+
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $result = $response;
+            $amount = $result['purchase_units'][0]['payments']['captures'][0]['amount']['value'];
+
+            $Payment = new Payment();
+            $Payment->amount =  $amount;
+            $Payment->description = 'test mode';
+            $Payment->user_id = auth()->user()->id;
+            $Payment->payment_method_id = $paymentPayPal['payment_id'];
+            $Payment->payment_id = 123;
+            $Payment->hotel_id = $paymentPayPal['hotel_id'];
+            $Payment->save();
+
+            $hotel_booking = new HotelBooking;
+            $hotel_booking->user_id = auth()->user()->id;
+            $hotel_booking->hotel_id = $paymentPayPal['hotel_id'];
+            $hotel_booking->room_id = $paymentPayPal['room_id'];
+            $hotel_booking->rent = $amount;
+            $hotel_booking->payment_method_id = $paymentPayPal['payment_id'];
+            $hotel_booking->start_date = $start_date;
+            $hotel_booking->end_date = $end_date;
+            $hotel_booking->day_diff = $shift_difference;
+            $hotel_booking->save();
+
+            Mail::to(auth()->user()->email)->send(new PaymentSuccess);
+            $bookingId = HotelBooking::select('UUID')->latest()->first();
+            return redirect()->route('hotel.index');
+            // return redirect()
+            //     ->route('createpaypal')
+            //     ->with('success', 'Transaction complete.');
+        } else {
+            return redirect()
+                ->route('createpaypal')
+                ->with('error', $response['message'] ?? 'Something went wrong.');
+        }
+    }
+    public function processCancel(Request $request)
+    {
+        return redirect()
+            ->route('createpaypal')
+            ->with('error', $response['message'] ?? 'You have canceled the transaction.');
+    }
 }

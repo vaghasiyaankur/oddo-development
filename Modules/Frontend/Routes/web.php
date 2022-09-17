@@ -106,6 +106,13 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::post('show/stripe', 'showStripe')->name('show.stripe');
         Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
         Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
+
+        Route::get('createpaypal','createpaypal')->name('createpaypal');
+        Route::get('processPaypal','processPaypal')->name('processPaypal');
+        Route::get('processSuccess','processSuccess')->name('processSuccess');
+        Route::get('processCancel','processCancel')->name('processCancel');
+
+
     });
 
     Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');

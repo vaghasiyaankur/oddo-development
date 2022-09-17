@@ -182,7 +182,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
         /*
          * Package Service Providers...
          */

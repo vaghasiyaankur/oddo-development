@@ -18,7 +18,9 @@
         "league/omnipay": "^3.2",
         "nwidart/laravel-modules": "^9.0",
         "omnipay/paypal": "^3.0",
+        "paypal/rest-api-sdk-php": "*",
         "razorpay/razorpay": "^2.8",
+        "srmklive/paypal": "^3.0",
         "stripe/stripe-php": "^9.3",
         "webpatser/laravel-uuid": "^4.0"
     },
