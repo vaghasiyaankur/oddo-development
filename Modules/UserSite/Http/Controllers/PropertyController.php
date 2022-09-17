@@ -393,7 +393,7 @@ class PropertyController extends Controller
     }
 
     public function save_photos($id,Request $request) {
-        dd($request->deleteImage);
+        // dd($request->deleteImage);
         $image_64 = $request->url;
         $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
         $replace = substr($image_64, 0, strpos($image_64, ',')+1);
@@ -412,10 +412,40 @@ class PropertyController extends Controller
             'main_photo' => $request->main,
             'photos' => 'hotels/'.$imageName,
             'hotel_id' => $hotel_id,
-            'room_id' => $hotel_id,
+            // 'room_id' => $hotel_id,
             'category_id' => $request->photoCategory,
         ]);
 
+        return response()->json(['redirect_url' => route('policy', ['id' => $id])]);
+    }
+
+
+    public function updatePhotos(Request $request)
+    {
+       $editImages = $request->EditImages;
+       
+       foreach ($editImages as $key => $editImage) {
+            $hotelPhotoId = $editImage['id'];   
+            $hotelPhotoPType = $editImage['propertyType'];
+
+            $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
+            $editImageData->update([
+            'category_id' => $hotelPhotoPType
+            ]);
+        }
+
+        $hotelPhotos = json_decode($request->deleteImages);
+
+        foreach($hotelPhotos as $hotelphoto) {
+            $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
+            $hotelPhotoPath = $hotelPhoto->first();
+            $image_path = public_path('storage/'.$hotelPhotoPath->photos);
+            if (File::exists($image_path)) {
+                unlink($image_path);
+            }
+            $hotelPhoto->delete();
+        }
+        $id = request()->hotelId;
         return response()->json(['redirect_url' => route('policy', ['id' => $id])]);
     }
 
@@ -459,16 +489,6 @@ class PropertyController extends Controller
             }
         }
         $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
-
-        // if($room){
-        //     if($room->id != null) {
-        //         $roomBed = HotelBed::where('room_id', $room->id)->select('room_id')->first();
-        //         if($room->id == $roomBed->room_id) {
-        //             $hotelBedDelete = HotelBed::where('room_id', $room->id)->delete();
-        //         }
-        //     }
-        //     $roomDelete = Room::where('hotel_id',$hotel->id)->delete();
-        // }
 
         foreach($hotelPhotos as $hotelphoto) {
             $image_path = public_path('storage/'.$hotelphoto->photos);
@@ -582,7 +602,6 @@ class PropertyController extends Controller
         $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get('id');
         $roomDetail = Room::where('hotel_id', $hotel->id)->first();
         $hotelBeds = HotelBed::where('room_id', $roomDetail->id)->get();
-        // dd($hotelBeds[0]->bed_id);
         return view('usersite::layout-pricing', compact('room_types', 'beds', 'bathrooms', 'hotel', 'rooms', 'roomDetail', 'hotelBeds'));
     }
 

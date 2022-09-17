@@ -48,6 +48,7 @@ Route::prefix('user')->group(function() {
             Route::post('add-amenities', 'amenities_add_update')->name('add-amenities');
             Route::post('add-layout', 'layouts_add_update')->name('add-layoutprice');
             Route::post('add-photos', 'photos_add_update')->name('add-photos');
+            Route::post('update-photos', 'photoUpdate')->name('update-photos');
 
             Route::get('facilities-form/{id}', 'facilities')->name('facilities-form');
             Route::view('layout-form/{id}', 'usersite::add-layout')->name('layout-form');

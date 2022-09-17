@@ -40,24 +40,24 @@ Photo
                                             </form>
                                         </div>
                                         <input type="hidden" class="hotelId" value="{{@$hotelDetail->UUID}}">
-                                        <div class="sortable row" id="gallery">
+                                        <div class="sortable row editImageDiv" id="gallery" data-id="1">
                                             @if(isset($hotelPhotos))
                                                 @foreach ($hotelPhotos as $hotelPhoto)
-                                                    <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 {{ $hotelPhoto->main_photo ? 'main-photo-wrapper': '' }}  position-relative" name="image"  id="dz-preview-template">
+                                                    <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0   position-relative" name="image"  id="dz-preview-template">
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">
                                                                 <div class="gallery-img m-0">
-                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}">
+                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}" >
                                                                 </div>
-                                                                <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center">
+                                                                <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
                                                                     <div class="d-flex remove-selected-image">
-                                                                        <a href="javascript:;" class="dz-remove text-dark deleteImages editDeleteimage deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->UUID}}">
+                                                                        <a href="javascript:;" class="dz-remove text-dark deleteImages editDeleteimage deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->UUID}}" >
                                                                             <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
                                                                         </a>
                                                                     </div>
                                         
                                                                     <div class="selectPhotoType">
-                                                                        <select class="form-select c-form-select photoCategory">
+                                                                        <select class="form-select c-form-select editPhotoCategory" data-id="{{$hotelPhoto->UUID}}" data-delete="0">
                                                                             @foreach ($photoCategories as $photoCategory) 
                                                                                 <option value="{{$photoCategory->id}}" {{$photoCategory->id == $hotelPhoto->category_id ? 'selected' : ''}}>{{$photoCategory->name}}</option>
                                                                             @endforeach
@@ -178,12 +178,12 @@ Photo
         right: 0;
     }
     .pannel-form .property-photos .drop-box-main .uploader-opacity{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
     }
 
     .spinner-border {
@@ -245,8 +245,7 @@ $(document).ready(function(){
     }
 
     $(document).on('click', '.save-photo-button', function(){
-        // get delete image
-        var deleteImage = localStorage.getItem('deleteImage');
+        var deleteImage = localStorage.getItem('deleteImage');  
 
         var hotelId = $('.hotelId').val();
         let files = myNewdDropzone.getAcceptedFiles();
@@ -283,6 +282,30 @@ $(document).ready(function(){
                 },
             });
         });
+
+        var editImage = $('.editImageDiv').data('id');
+        if (editImage == 1) {
+
+            var EditImages = $('.editPhotoCategory option:selected').map(function(){
+                return {'id': $(this).parents('.editPhotoCategory').data('id'), 'propertyType' : $(this).val()};
+            }).get();
+
+            var deleteImages = localStorage.getItem('deleteImage');
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "{{route('update-photos')}}",
+                type: "POST",
+                data: {deleteImages: deleteImages, EditImages: EditImages, hotelId: hotelId},
+                success: function (response) {
+                    if (response.redirect_url) {
+                        window.location = response.redirect_url;
+                    }
+                },
+            });
+        }
     });
     
     $(document).on('click', '.deleteImages', function(){
@@ -302,9 +325,15 @@ $(document).ready(function(){
 
         localStorage.setItem('deleteImage', JSON.stringify(obj));
         $(this).parents('.dz-image-preview').hide();
-    });
-    
+    });  
+
 });
+
+function updateImage() {
+    var images = $('.editPhotoCategory option:selected').map(function(){
+        return {'id': $(this).parents('.editPhotoCategory').data('id'), 'value' : $(this).val()};
+    }).get();
+}
 
 // refresh to delete edit image  
 localStorage.removeItem('deleteImage');
