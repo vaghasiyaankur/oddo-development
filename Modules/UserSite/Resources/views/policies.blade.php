@@ -1,7 +1,7 @@
 @extends('layout::user.UserSite.master')
 
 @section('title')
-Layout & pricing
+Policies
 @endsection
 
 @section('content')

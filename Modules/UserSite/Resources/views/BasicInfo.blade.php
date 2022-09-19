@@ -1,7 +1,7 @@
 @extends('layout::user.UserSite.master')
 
 @section('title')
-Add-Property
+Basic-Info
 @endsection
 
 @section('content')

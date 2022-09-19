@@ -27,6 +27,7 @@ Route::prefix('admin')->group(function() {
         //profile
         Route::view('/profile', 'admin::profile.index')->name('profile');
 
+        // Amenity category 
         Route::controller(AmenityCategoryController::class)->group(function(){
             Route::get('/amenity-category', 'amenityCategory')->name('amenityCategory.index');
             Route::post('/add-amenity-category', 'addAmenityCategory')->name('add.amenitycategory');
@@ -114,6 +115,16 @@ Route::prefix('admin')->group(function() {
             Route::post('/status-food', 'statusFood')->name('status.food');
             Route::post('/delete-food/{id}', 'destroy')->name('delete.food');
             Route::post('/update-food/{id}', 'update')->name('update.food');
+        });
+
+        // Photo Category
+        Route::controller(PhotoCategoryController::class)->group(function(){
+            Route::get('/photo-category', 'index')->name('photocategory.index');
+            Route::get('/photo-list', 'photoList')->name('photoCategory.list');
+            Route::post('/add-photo-catgory', 'store')->name('add.photoCategory');
+            Route::post('/update-photo-category/{id}', 'update')->name('update.photoCategory');
+            Route::post('/delete-photo-category/{id}', 'destroy')->name('delete.photoCategory');
+            Route::post('/photo-status', 'photoCategoryStatus')->name('status.photoCategory');
         });
 
         // property

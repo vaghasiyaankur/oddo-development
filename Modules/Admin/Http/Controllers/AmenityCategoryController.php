@@ -19,7 +19,6 @@ class AmenityCategoryController extends Controller
     {   
         try {
             $amenityCategories = AmenitiesCategory::latest()->paginate(10);
-            $amenityCategories->setPath('amenity-category');
             return view('admin::amenityCategory.index', compact('amenityCategories'));
         }catch(\Exception $e){
             return response()->json(["message" => "Something Went Wrong"], 503);

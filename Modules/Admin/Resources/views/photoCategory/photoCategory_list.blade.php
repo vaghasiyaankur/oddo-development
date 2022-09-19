@@ -2,16 +2,15 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Amenity-Category</th>
-            <th scope="col">Status</th>
+            <th scope="col">photo-Category</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody class="tbody table__body">
-        @if(count($amenityCategories))
+        @if(count($photoCategories))
 
-            @foreach ($amenityCategories as $key => $amenityCategory)
-            <tr class="tr_{{$amenityCategory->id}}">
+            @foreach ($photoCategories as $key => $photoCategory)
+            <tr class="tr_{{$photoCategory->id}}">
                 <th scope="row">
                     <div class="loadingShow td-2">
                         <span></span>
@@ -22,27 +21,17 @@
                     <div class="loadingShow td-3">
                         <span></span>
                     </div>
-                    <div class="loadingHide">{{$amenityCategory->category}}</div>
-                </td>
-                <td>
-                    <div class="loadingShow td-3">
-                        <span></span>
-                    </div>
-                    <div class="form-check form-switch loadingHide">
-                        <input class="form-check-input amenityCategoryStatus" data-value="{{$amenityCategory}}"
-                            type="checkbox" role="switch" id="SwitchCheck1" {{ $amenityCategory->status == 1 ? 'checked':
-                        ''}} >
-                    </div>    
+                    <div class="loadingHide">{{$photoCategory->name}}</div>
                 </td>
                 <td>
                     <div class="loadingShow td-3">
                         <span></span>
                     </div>
                     <div class="loadingHide">
-                        <a href="javascript:void(0);" class="link-success fs-17 pe-3 edit-amenityCategory"
-                            data-value="{{$amenityCategory}}"><i class="ri-edit-2-line"></i></a>
-                        <a href="javascript:void(0);" class="link-danger fs-17 delete-amenityCategory"
-                            data-value="{{$amenityCategory->id}}"><i class="ri-delete-bin-line"></i></a>
+                        <a href="javascript:void(0);" class="link-success fs-17 pe-3 edit-photoCategory"
+                            data-value="{{$photoCategory}}"><i class="ri-edit-2-line"></i></a>
+                        <a href="javascript:void(0);" class="link-danger fs-17 delete-photoCategory"
+                            data-value="{{$photoCategory->id}}"><i class="ri-delete-bin-line"></i></a>
                     </div>
                 </td>
             </tr>
@@ -51,9 +40,9 @@
     </tbody>
 </table>
 
-@if(count($amenityCategories))
+@if(count($photoCategories))
     <div class="table-footer align-items-center pt-2 justify-content-between d-flex">
-        {{$amenityCategories->withPath('/admin/amenity-category')->links('admin::layouts.pagination')}}
+        {{$photoCategories->withPath('/admin/photo-category')->links('admin::layouts.pagination')}}
     </div>
 @else
     {{-- FOR EMPTY TABLE --}}

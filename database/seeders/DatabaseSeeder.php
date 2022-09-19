@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            PhotocategoryTableSeeder::class,
             UserTableSeeder::class,
             CountryTableSeeder::class,
             CityTableSeeder::class,
@@ -67,7 +68,7 @@ class DatabaseSeeder extends Seeder
             PaymentTableSeeder::class,
             BookingTableSeeder::class,
             ReviewTableSeeder::class,
-            PhotocategoryTableSeeder::class,
+            
         ]);
     }
 }

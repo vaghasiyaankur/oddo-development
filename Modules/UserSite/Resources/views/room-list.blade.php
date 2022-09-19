@@ -1,7 +1,7 @@
 @extends('layout::user.UserSite.master')
 
 @section('title')
-Add-Layout
+Room List
 @endsection
 <style>
     .pannel-form.admin-pannel-main {

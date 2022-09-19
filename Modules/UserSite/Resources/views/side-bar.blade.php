@@ -29,9 +29,6 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::routeIs('policy') ? 'active' : '' }}" href="{{route('policy', ['id' => @$id])}}">Policies</a>
             </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="javascript">Payments</a>
-            </li> --}}
         </ul>
     </div>
 </aside>
