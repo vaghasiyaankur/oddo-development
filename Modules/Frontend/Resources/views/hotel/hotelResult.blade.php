@@ -609,7 +609,7 @@
                                     </h6>
                                   </div>
                                   <div class="back-tophome-btn">
-                                      <a href="javascript:;" class="try-again-btn text-dark">Try Again</a>
+                                      <a href="{{ route('home.index') }}" class="try-again-btn text-dark">Try Again</a>
                                   </div>
                               </div>
                           </div>

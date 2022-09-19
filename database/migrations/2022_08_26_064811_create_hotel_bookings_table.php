@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();
             $table->integer('room_id')->unsigned()->nullable();
-            $table->string('rent')->nullable();
+            $table->integer('rent')->nullable();
             $table->integer('payment_method_id')->unsigned()->nullable();
             $table->boolean('status')->default(1);
             $table->text('attachment')->nullable();
