@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TimeZoneServiceProvider::class,
         App\Providers\EmailSettingServiceProvider::class,
+        App\Providers\PaymentGatewayServiceProvider::class,
 
     ],
 
