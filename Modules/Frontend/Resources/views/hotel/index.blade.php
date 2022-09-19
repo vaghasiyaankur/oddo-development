@@ -1134,6 +1134,16 @@ hotel
             });
 </script>
 @endif
+@if (session()->get('error'))
+<script>
+    $(document).ready(function() {
+                $('#payment_error_').modal('show');
+                setTimeout(function() {
+                    $('#payment_error_').modal('hide')
+                }, 4000);
+            });
+</script>
+@endif
 {{-- paypal cdn --}}
 <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}&currency=USD"></script>
 {{-- stripe cdn--}}

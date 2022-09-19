@@ -43,7 +43,7 @@ hotel
                     @endfor
                 </div>
             </div>
-            <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-1">               
+            <div class="h-title-box-inner d-flex flex-wrap justify-content-between align-items-center mt-1">
                 <span class="h-rating-location d-flex justify-content-between align-items-center para-fs-15"><img src="{{asset('assets/images/icons/loaction-purple.png') }}"
                         class="me-3 ">{{ @$hotel->street_addess }}, {{ @$hotel->city->name }} {{ @$hotel->country_id ? ',' .$hotel->country->country_name: '' }}, {{ @$hotel->pos_code }}.</span>
                 <div class="h-rating-btn mt-md-0 mt-3">
@@ -55,63 +55,21 @@ hotel
 </section>
 <!------- h-details-title section end ------->
 <!------- h-details-gallery section start -------->
+<input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{ $hotel->UUID }}">
+<input type="hidden" value="{{ @$hotel->category->id }}" class="category_id_{{ $hotel->UUID }}">
 <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
     <div class="container">
         <div class="h-gallery-inner border--bottom">
             <div class="row">
                 <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
-                    <div class="h-gallery-single">
+                    <div class="h-gallery-single mainPhotoPopup">
                         <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">Lobby</h5>
                         <div class="gallery-single-img">
                             <div class="swiper-s-img">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
+                                <a href="#" data-bs-toggle="modal" class="photoPopup" data-bs-target="#imgPopup" data-id="{{ $hotel->UUID }}"><img
                                         src="{{asset('assets/images/h-details-1.png')}}" class="img-fluid img-wrapper"></a>
                             </div>
-                            <!------- img slider popup start -------->
-                            <div class="modal fade img-popup-slider" id="imgPopup" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header justify-content-end">
-                                            <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                                aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                        </div>
-                                        <div class="modal-body d-flex justify-content-center align-items-center">
-                                            <div class="img-swiper">
-                                                <div class="slider slider-single mb-5">
-                                                    <div><img src="{{asset('storage/hotels/00.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/01.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/02.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/03.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/04.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/05.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/10.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/11.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/12.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/13.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/14.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                    <div><img src="{{asset('storage/hotels/15.jpg') }}" style="width: 857px; height: 551px;"  alt=""></div>
-                                                </div>
-                                                <div class="slider slider-nav">
-                                                    <img src="{{asset('storage/hotels/00.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/01.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/02.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/03.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/04.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/05.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/10.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/11.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/12.jpg') }}"  style="width: 72px !important; height: 72px;" class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/13.jpg') }}" style="width: 72px !important; height: 72px;"  class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/14.jpg') }}" style="width: 72px !important; height: 72px;"  class="me-2" alt="">
-                                                    <img src="{{asset('storage/hotels/15.jpg') }}" style="width: 72px !important; height: 72px;"  class="me-2" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!------- img slider popup end -------->
+                                @include('frontend::hotel.photo')
                         </div>
                     </div>
                 </div>
@@ -173,8 +131,8 @@ hotel
                             <!------- img slider popup end -------->
                         </div>
                     </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
                     <div class="h-gallery-single">
                         <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">Amenities</h5>
                         <div class="gallery-single-img">
@@ -231,8 +189,8 @@ hotel
                             </div> --}}
                         </div>
                     </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
                     <div class="h-gallery-single">
                         <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">Restaurant</h5>
                         <div class="gallery-single-img">
@@ -301,7 +259,7 @@ hotel
         <div class="h-d-amenities-inner border--bottom">
             <h5 class="heading-fs-16  purple-dark">Amenities</h5>
             <div class="amenities-card d-flex flex-wrap">
-                @foreach ($hotel->amenity() as $amenity)     
+                @foreach ($hotel->amenity() as $amenity)
                     <div class="amenities-single-card me-2 mb-3">
                         {{-- <img src="{{ asset('storage/'.@$amenity->icon) }}" class="pe-3"> --}}
                         <i class="{{$amenity->icon}} pe-3"></i>
@@ -331,8 +289,8 @@ hotel
             </div>
             <div class="h-d-nearby-loaction overflow-auto">
                 <div class="small-box-main d-flex mb-3" >
-                    
-                    @foreach ($hotel->facilities() as $facility)    
+
+                    @foreach ($hotel->facilities() as $facility)
                         <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
                             <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
                                 <i id="img-icon" class="{{ @$facility->icon }}"></i>
@@ -379,7 +337,7 @@ hotel
                             <div class="loaction-popup-content-box nearby-content-box">
                                 <div class="loaction-popup-box-main  position-relative">
                                     <div class="loaction-popup-card d-flex mb-4">
-                                        @foreach ($hotel->facilities() as $key => $facility) 
+                                        @foreach ($hotel->facilities() as $key => $facility)
                                             <div class="location-popup-card-single nearby-single-card {{ $key == 0 ? 'ms-1': ''}} mt-4">
                                                 <div class="card-single-head d-flex align-items-center" style="background: {{@$facility->color;}}">
                                                     <div class="card-head-img pe-3 lh-1">
@@ -390,7 +348,7 @@ hotel
                                                     <p class="mb-2">{{@$facility->description}}</p>
                                                 </div>
                                             </div>
-                                        @endforeach  
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -551,7 +509,7 @@ hotel
                                         <span class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>
                                         @php
                                            $price = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $hotel->room->price_room);
-                                        @endphp     
+                                        @endphp
                                         {{$price}}
                                     </h5>
                                     <p class="mb-4 para-fs-14 d-l-Purple">For 12 Nights, Tax. Included</p>
@@ -735,6 +693,41 @@ hotel
 <script>
     $(document).ready(function () {
         $('.timepicker').mdtimepicker();
+    });
+</script>
+<script>
+    $(document).on('click', '.photoPopup', function(e) {
+        e.preventDefault();
+
+        var id = $(this).data('id');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var category_id = $('.category_id_'+id).val();
+
+        formdata = new FormData();
+        formdata.append('id', id);
+        formdata.append('hotel_id', hotel_id);
+        formdata.append('category_id', category_id);
+
+        $.ajax({
+            url: "{{route('hotel.photo')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                // $('.mainPhotoPopup').html(response);
+                // $('.modal-backdrop').hide();
+                $('.photoPopup').modal('show');
+                $('body').removeProp('overflow');
+
+            }, error:function (response) {
+
+            }
+        });
+    });
+
+    $(document).on('click','.modal-close',function(){
+        $('.modal-backdrop').hide();
     });
 </script>
 

@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\HotelPhoto;
 use App\Traits\Uuids;
 
 class Photocategory extends Model
 {
     use HasFactory, Sluggable, Uuids;
-    
+
     protected $table = 'photocategories';
 
     protected $guarded = ['id'];
@@ -23,5 +24,10 @@ class Photocategory extends Model
             ]
         ];
     }
+
+    // public function photo()
+    // {
+    //     return $this->hasOne(HotelPhoto::class);
+    // }
 
 }

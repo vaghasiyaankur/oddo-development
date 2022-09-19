@@ -231,14 +231,11 @@ class PaymentController extends Controller
 
             Mail::to(auth()->user()->email)->send(new PaymentSuccess);
             $bookingId = HotelBooking::select('UUID')->latest()->first();
-            return redirect()->route('hotel.index');
-            // return redirect()
-            //     ->route('createpaypal')
-            //     ->with('success', 'Transaction complete.');
+            return redirect()->route('hotel.index')->with(['booking' => $bookingId]);
         } else {
             return redirect()
-                ->route('createpaypal')
-                ->with('error', $response['message'] ?? 'Something went wrong.');
+                ->route('hotel.index')
+                ->with(['error' => $bookingId]);
         }
     }
     public function processCancel(Request $request)

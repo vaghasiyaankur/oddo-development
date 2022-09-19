@@ -111,10 +111,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::get('processPaypal','processPaypal')->name('processPaypal');
         Route::get('processSuccess','processSuccess')->name('processSuccess');
         Route::get('processCancel','processCancel')->name('processCancel');
-
-
     });
 
     Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');
+
+    Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
 });
 
