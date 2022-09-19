@@ -375,6 +375,10 @@ hotel
             left: 0 !important;
         }
     }
+
+    .slick-track {
+        width: 620px !important;
+    }
 </style>
 @endpush
 

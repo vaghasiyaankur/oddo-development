@@ -56,14 +56,14 @@ Route::prefix('user')->group(function() {
             Route::post('room-lists', 'room_list')->name('room-lists');
             Route::get('room-list/{id}  ', 'room_lists')->name('room-list');
             Route::get('amenities/{id}', 'amenities')->name('amenities');
-            // Route::post('add-room', 'add_room')->name('add-room');
-            // Route::post('add-facilities', 'add_facilities')->name('add-facilities');
-            // Route::post('add-amenities', 'add_amenities')->name('add-amenities');
+            
             Route::get('photos/{id}', 'viewPhotos')->name('photo');
             Route::post('/save-photos/{id}', 'save_photos')->name('save-photos');
             // Route::view('policy/{id}', 'usersite::policies')->name('policy');
             Route::get('policy/{id}', 'viewPolicy')->name('policy');
             Route::post('add-policy', 'add_policy')->name('add-policy');
+
+            Route::post('edit/room/{id}', 'editRoom')->name('room.edit');
 
 
             // edit Property

@@ -1,7 +1,7 @@
 @extends('layout::user.UserSite.master')
 
 @section('title')
-Add-Layout
+Amenities
 @endsection
 
 @section('content')

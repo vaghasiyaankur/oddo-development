@@ -35,9 +35,9 @@
                                           </div>
                                           <div class="modal-body display-flex-items py-sm-5">
                                               <div class="img-swiper">
-                                                  <div class="slider slider-single mb-5">
+                                                  <div class="slider slider-single mb-5" >
                                                       @foreach ($hotel->photos as $photo)
-                                                          <div class="slider-single-img"><img
+                                                          <div class="slider-single-img" ><img
                                                                   src="{{ asset('storage/' . @$photo->photos) }}"
                                                                   alt="" style="width: 857px; height: 551px;">
                                                           </div>

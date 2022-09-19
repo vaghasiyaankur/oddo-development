@@ -1,7 +1,7 @@
 @extends('layout::user.UserSite.master')
 
 @section('title')
-Add-Property
+Basic-Info
 @endsection
 
 @section('content')
@@ -346,10 +346,6 @@ Add-Property
             });
         });
 
-        // var number = 1;
-
-
-
         $("#add_contact_detail").bind("click", function () {
 
                 $("#add_pro_detail").append('<div class="remove-p-details border-1 contact-div contact-border"  style="">' +
@@ -397,87 +393,5 @@ Add-Property
             });
         });
     });
-
-    // $(document).on('click', '.btn-update-click', function(){
-    //     let hotelId = $('.hotelId').val();
-
-    //     let property_name = $('.property_name').val();
-    //     !property_name ? $(`#property-name-error`).html(`The Property Name field is required.`) : $(`#property-name-error`).html(``);
-
-    //     let star_rating = $('.star_rating').val();
-    //     !star_rating ? $(`#star_rating-error`).html(`The Star Rating field is required.`) : $(`#star_rating-error`).html(``);
-
-    //     let contact_name = $('.contact_name').val();
-    //     !contact_name ? $(`#contact_name-error`).html(`The Contact Name field is required.`) : $(`#contact_name-error`).html(``);
-
-    //     let contact_phone = $('.contact_phone').val();
-    //     !contact_phone ? $(`#contact_phone-error`).html(`The Contact Phone field is required.`) : $(`#contact_phone-error`).html(``);
-
-    //     let contact_phone_optional = $('.contact_phone_optional').val();
-
-    //     let address = $('.address').val();
-    //     !address ? $(`#address-error`).html(`The Address Line field is required.`) : $(`#address-error`).html(``);
-
-    //     let address_line = $('.address_line').val();
-
-    //     let country = $('.country').val();
-    //     !country ? $(`#country-error`).html(`The Country field is required.`) : $(`#country-error`).html(``);
-
-    //     let city = $('.city').val();
-    //     !city ? $(`#city-error`).html(`The City field is required.`) : $(`#city-error`).html(``);
-
-    //     let zipcode = $('.zipcode').val();
-    //     !zipcode ? $(`#zipcode-error`).html(`The Zipcode field is required.`) : $(`#zipcode-error`).html(``);
-
-    //     let description = $('.description').val();
-    //     !description ? $(`#description-error`).html(`The description field is required.`) : $(`#description-error`).html(``);
-
-    //     var contactDetail  = $(".contact-div").map(function(){return {
-    //         id : $(this).children('.contact--name').children('.hotelContactId').val(),
-    //         name : $(this).children('.contact--name').children('#contactname').val(),
-    //         phone : $(this).children('.contact-number').children('.contact-number-main').children('.phone-div').children('.phoneNumber').val(),
-    //         phoneOptional : $(this).children('.contact-number').children('.contact-number-main').children('.phone-optional-div').children('.phoneOptinal').val()
-
-    //     }}).get();
-
-
-    //     if (!property_name || !address || !country || !city || !zipcode) {
-    //         return;
-    //     }
-
-    //     formdata = new FormData();
-
-    //     formdata.append('hotelId', hotelId);
-    //     formdata.append('property_name', property_name);
-    //     formdata.append('star_rating', star_rating);
-    //     formdata.append('description', description);
-    //     formdata.append('contactDetail', JSON.stringify(contactDetail));
-    //     formdata.append('address', address);
-    //     formdata.append('address_line', address_line);
-    //     formdata.append('country', country);
-    //     formdata.append('city', city);
-    //     formdata.append('zipcode', zipcode);
-
-
-    //     $('.spinner-border').show();
-    //     $.ajax({
-    //         // headers: {
-    //         //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-    //         // },
-    //         url: "{{route('add-property-form')}}",
-    //         type: "POST",
-    //         processData: false,
-    //         contentType: false,
-    //         data: formdata,
-    //         success: function (res) {
-    //             $('.spinner-border').hide();
-    //             $("input[type=text], input[type=tel]").val("");
-    //             // if (res.redirect_url) {
-    //                 window.location = res.redirect_url;
-    //             // }
-    //         },
-    //     });
-    // });
-
 </script>
 @endpush

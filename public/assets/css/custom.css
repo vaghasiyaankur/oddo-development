@@ -803,7 +803,7 @@ header.header .navbar .dropdown .dropdown-btn {
     font-weight: 900;
 }
 
-.t-city-card-img:before {
+.homeslideItem .t-city-card-img:before {
     content: "";
     display: block;
     position: absolute;

@@ -6,6 +6,15 @@ Add-Layout
 
 @push('css')
 <link rel="stylesheet" href="{{asset('user/asset/css/user-style.css')}}">
+
+<!------- Slick theme css  ------->
+<link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+
+<style>
+    section.account-content {
+        min-height: calc(100vh - 361px);
+    }
+</style>
 @endpush
 
 @section('content')

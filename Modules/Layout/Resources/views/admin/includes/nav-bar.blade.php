@@ -74,6 +74,11 @@
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Bed</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::routeIs('photocategory.index') ? 'active' : '' }}" href="{{ route('photocategory.index') }}">
+                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Photo Category</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
