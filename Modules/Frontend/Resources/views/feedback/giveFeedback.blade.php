@@ -78,9 +78,9 @@
                                             <tr>
                                                 <td colspan="2"
                                                     style="padding-top: 22px; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #000000; font-size: 28px; font-smoothing: always; font-style: normal; font-weight: 600; line-height: 40px; mso-line-height-rule: exactly; text-decoration: none;text-align: center;">
-                                                    {{-- <a href="route('orderhistory.index')" class="reviewPopUp" data-id="96956022">
+                                                    <a href="route('orderhistory.index')" class="reviewPopUp" data-id="96956022">
                                                         <span class="reviewBtn me-5 ">Add Review</span>
-                                                    </a> --}}
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <tr>

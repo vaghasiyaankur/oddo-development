@@ -32,16 +32,16 @@ class GiveFeedBack extends Command
     public function handle()
     {
         
-        // $currentDate = Carbon::now()->format('Y-m-d');
-        // $hotelBookings = HotelBooking::latest()->first();
+        $currentDate = Carbon::now()->format('Y-m-d');
+        $hotelBookings = HotelBooking::latest()->first();
         
-        // $date = date_create($hotelBookings->end_date);
-        // date_add($date, date_interval_create_from_date_string("1 day"));
-        // $enddate = date_format($date, "Y-m-d");
-        //     if($enddate == $currentDate){
-        //         Mail::to(auth()->user()->email)->send(new FeedbackMail);
-        //     }
+        $date = date_create($hotelBookings->end_date);
+        date_add($date, date_interval_create_from_date_string("1 day"));
+        $enddate = date_format($date, "Y-m-d");
+            if($enddate == $currentDate){
+                Mail::to(auth()->user()->email)->send(new FeedbackMail);
+            }
 
-        // return 0;
+        return 0;
     }
 }

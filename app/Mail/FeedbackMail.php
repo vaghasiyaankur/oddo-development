@@ -32,26 +32,26 @@ class FeedbackMail extends Mailable
      */
     public function build()
     {
-        // $userId = auth()->user()->id;
-        // $User = User::whereId($userId)->first();
-        // $emailTemplate = EmailTemplate::where('id', 8)->first();
+        $userId = auth()->user()->id;
+        $User = User::whereId($userId)->first();
+        $emailTemplate = EmailTemplate::where('id', 8)->first();
 
-        // $short_code_id = explode(',',$emailTemplate->short_code_id);
-        // $ShortCodes = ShortCodeMailTemplate::whereIn('id',$short_code_id)->get();
+        $short_code_id = explode(',',$emailTemplate->short_code_id);
+        $ShortCodes = ShortCodeMailTemplate::whereIn('id',$short_code_id)->get();
 
-        // $bookingId = HotelBooking::select('UUID')->latest()->first();
-        // $shortCode = array();
-        // foreach ($ShortCodes as $key => $ShortCode) {
-        //     $shortCode[] = $ShortCode->short_code;
-        // }
+        $bookingId = HotelBooking::select('UUID')->latest()->first();
+        $shortCode = array();
+        foreach ($ShortCodes as $key => $ShortCode) {
+            $shortCode[] = $ShortCode->short_code;
+        }
 
-        // $shortCodeValues = array($User->name, 'Odda');
+        $shortCodeValues = array($User->name, 'Odda');
 
-        // $shortCodeValue = array_combine($shortCode, $shortCodeValues);
-        // $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
+        $shortCodeValue = array_combine($shortCode, $shortCodeValues);
+        $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
 
-        // return $this->from('jemin.codetrinity@gmail.com')->view('frontend::feedback.giveFeedback')
-        //             ->subject($emailTemplate->mail_subject)
-        //             ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $User->name, 'emailContent' => $emailContent]);
+        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::feedback.giveFeedback')
+                    ->subject($emailTemplate->mail_subject)
+                    ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $User->name, 'emailContent' => $emailContent]);
     }
 }
