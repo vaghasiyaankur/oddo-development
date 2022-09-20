@@ -1851,7 +1851,7 @@ $(document).ready(function(){
                 $('.mainReviewPopupDiv').html(response);
                 $('.reviews-popup-main').modal('show');
             }, error:function (response) {
-
+                console.log(response);
             }
         });
     });

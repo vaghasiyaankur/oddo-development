@@ -12,6 +12,7 @@ use App\Models\HotelBooking;
 use App\Models\Review;
 use App\Models\PropertyType;
 use App\Models\HotelPhoto;
+use App\Models\Photocategory;
 use DB;
 
 class HotelController extends Controller
@@ -126,17 +127,17 @@ class HotelController extends Controller
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
         $hotelRating = listHotelRating($hotel->id);
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating'));
+        $photoCategories  = Photocategory::get();
+        $hotelPhotos = array();
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos'));
     }
 
     public function hotelPhoto(Request $request){
-        dd($request->toarray());
-        $Id = $request->id;
-        $hotelId = $request->hotel_id;
+        $hotelId = $request->id;
         $categoryId = $request->category_id;
-        $hotel = Hotel::where('UUID', $Id)->first();
-        $hotelPhoto = HotelPhoto::with('category')->where('hotel_id', $hotel->id)->where('category_id', $categoryId)->latest()->first();
-        return view('frontend::hotel.photo', compact('hotel','hotelPhoto'));
+        $hotel = Hotel::where('UUID', $hotelId)->first();
+        $hotelPhotos = HotelPhoto::where('hotel_id', $hotel->id)->where('category_id', $categoryId)->get();
+        return view('frontend::hotel.photo', compact('hotelPhotos'));
     }
 
     public function hotelReview(Request $request)
