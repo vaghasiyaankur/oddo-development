@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->foreign('hotel_id')->references('id')->on('hotels');
-            $table->foreign('category_id')->references('id')->on('photoCategories');
+            $table->foreign('category_id')->references('id')->on('photocategories');
             $table->timestamps();
         });
     }

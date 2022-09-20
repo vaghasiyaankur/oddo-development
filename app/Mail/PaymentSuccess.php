@@ -31,7 +31,9 @@ class PaymentSuccess extends Mailable
      */
     public function build()
     {
-        $User = User::latest()->first();
+
+        $userId = auth()->user()->id;
+        $User = User::whereId($userId)->first();
         $emailTemplate = EmailTemplate::where('id', 5)->first();
 
         $short_code_id = explode(',',$emailTemplate->short_code_id);
