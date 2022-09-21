@@ -9,8 +9,8 @@ use App\Models\Hotel;
 use App\Models\Amenities;
 use App\Models\paymentGetways;
 use App\Models\HotelBooking;
-use App\Models\Review;
 use App\Models\PropertyType;
+use App\Models\Review;
 use Mail;
 use App\Mail\FeedbackMail;
 use Carbon\Carbon;
@@ -25,15 +25,9 @@ class HotelController extends Controller
      */
     public function index(Request $request)
     {
-        $currentDate = Carbon::now()->format('Y-m-d');
-        $hotelBookings = HotelBooking::latest()->first();
         
-        $date = date_create($hotelBookings->end_date);
-        date_add($date, date_interval_create_from_date_string("1 day"));
-        $enddate = date_format($date, "Y-m-d");
-            if($enddate == $currentDate){
-                Mail::to(auth()->user()->email)->send(new FeedbackMail);
-            }
+       
+      
         $propertyType = $request->propertyType;
 
         $search = request()->search;
