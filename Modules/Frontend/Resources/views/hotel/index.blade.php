@@ -1433,8 +1433,7 @@ $(document).ready(function(){
     // CSRF TOKEN
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
@@ -1573,9 +1572,10 @@ $(document).ready(function(){
                 });
         }else {
             $.ajax({
+
                 url: baseUrl + "/hotel?page=" + page,
                 datatype: "html",
-                type: "GET",
+                type: "get",
                 beforeSend: function () {
                     $('.loading_spiner_').removeClass('d-none');
                 }

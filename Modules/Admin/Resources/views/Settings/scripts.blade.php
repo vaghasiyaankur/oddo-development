@@ -31,9 +31,6 @@ $(document).ready(function(){
 
         $('.updateLoader').addClass('on').removeClass('off');
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             url: "{{route('setting.change')}}",
             type: "POST",
             processData: false,
