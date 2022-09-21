@@ -15,6 +15,7 @@ use Mail;
 use App\Mail\FeedbackMail;
 use Carbon\Carbon;
 use App\Models\HotelPhoto;
+use App\Models\Photocategory;
 use DB;
 
 class HotelController extends Controller
@@ -136,13 +137,12 @@ class HotelController extends Controller
     }
 
     public function hotelPhoto(Request $request){
-        dd($request->toarray());
         $Id = $request->id;
         $hotelId = $request->hotel_id;
         $categoryId = $request->category_id;
         $hotel = Hotel::where('UUID', $Id)->first();
-        $hotelPhoto = HotelPhoto::with('category')->where('hotel_id', $hotel->id)->where('category_id', $categoryId)->latest()->first();
-        return view('frontend::hotel.photo', compact('hotel','hotelPhoto'));
+        $hotelPhotos = HotelPhoto::where('hotel_id', $hotel->id)->where('category_id', $categoryId)->get();
+        return view('frontend::hotel.photo', compact('hotel','hotelPhotos'));
     }
 
     public function hotelReview(Request $request)

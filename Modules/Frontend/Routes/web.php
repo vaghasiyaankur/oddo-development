@@ -96,8 +96,10 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::get('processCancel','processCancel')->name('processCancel');
     });
 
-    Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');
 
-    Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
 });
+// review view url
+Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');
 
+// photo view url
+Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');

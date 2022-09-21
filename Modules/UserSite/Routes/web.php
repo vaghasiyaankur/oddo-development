@@ -56,7 +56,7 @@ Route::prefix('user')->group(function() {
             Route::post('room-lists', 'room_list')->name('room-lists');
             Route::get('room-list/{id}  ', 'room_lists')->name('room-list');
             Route::get('amenities/{id}', 'amenities')->name('amenities');
-            
+
             Route::get('photos/{id}', 'viewPhotos')->name('photo');
             Route::post('/save-photos/{id}', 'save_photos')->name('save-photos');
             // Route::view('policy/{id}', 'usersite::policies')->name('policy');
@@ -65,11 +65,9 @@ Route::prefix('user')->group(function() {
 
             Route::post('edit/room/{id}', 'editRoom')->name('room.edit');
 
-
             // edit Property
             // Route::get('edit/basic-info/{id}', 'editProperty')->name('edit.proeprty');
             Route::post('update-property-form', 'updateProperty')->name('update-property-form');
-
 
             Route::get('edit/layout-list/{id}', 'editLayout')->name('edit.layout');
             // Route::get('edit/layout-pricing-form/{id}' , 'editLayoutPrice')->name('edit.layoutPrice');
