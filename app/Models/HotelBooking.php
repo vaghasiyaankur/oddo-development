@@ -29,6 +29,12 @@ class HotelBooking extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function hotelBookingUser($id)
+    {
+        // dd($id);
+        return User::whereId($id)->first();
+    }
+
     public function room()
     {
         return $this->belongsTo(Room::class, 'room_id','id');

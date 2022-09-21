@@ -50,7 +50,7 @@ class PaymentSuccess extends Mailable
         $shortCodeValue = array_combine($shortCode, $shortCodeValues);
         $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
 
-        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::payment.PaymentSuccessMail')
+        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::mail.PaymentSuccessMail')
                     ->subject($emailTemplate->mail_subject)
                     ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $User->name, 'emailContent' => $emailContent]);
     }

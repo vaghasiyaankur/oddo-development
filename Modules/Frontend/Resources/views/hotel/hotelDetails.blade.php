@@ -83,14 +83,14 @@
     </section>
     <!------- h-details-title section end ------->
     <!------- h-details-gallery section start -------->
-    <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{ $hotel->UUID }}">
-    <input type="hidden" value="{{ @$hotel->category->id }}" class="category_id_{{ $hotel->UUID }}">
+    {{-- <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{ $hotel->UUID }}">
+    <input type="hidden" value="{{ @$hotel->category->id }}" class="category_id_{{ $hotel->UUID }}"> --}}
     <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
         <div class="container">
             <div class="h-gallery-inner border--bottom">
                 <div class="row">
-                    @forelse ($photoCategories as $photoCategory)
-                        <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
+                    @foreach ($photoCategories as $photoCategory)
+                        <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-3 text-start h-gallery--flex">
                             <div class="h-gallery-single mainPhotoPopup">
                                 <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">{{ $photoCategory->name }}</h5>
                                 <div class="gallery-single-img">
@@ -99,59 +99,34 @@
                                             data-id="{{ $hotel->UUID }}" data-category='{{ $photoCategory->id }}'>
                                             <img src="{{ asset('assets/images/h-details-1.png') }}"
                                                 class="img-fluid img-wrapper"></a>
-                                        {{-- data-bs-target="#categoryPhotosPopup" --}}
                                     </div>
-                                    {{-- <div id="mainCategoryImageDiv"> --}}
-                                    <!------- img slider popup start -------->
-
-
-
-
-
-                                    <!------- img slider popup end -------->
-                                    {{-- </div> --}}
                                 </div>
                             </div>
                         </div>
-                    @empty
-                    @endforelse
-                    {{-- <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex ">
-                    <div class="h-gallery-single">
-                        <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">Rooms</h5>
-                        <div class="gallery-single-img">
-                            <div class="swiper-s-img">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
-                                        src="{{asset('assets/images/h-details-2.png') }}" class="img-fluid img-wrapper"></a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
-                    <div class="h-gallery-single">
-                        <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">Amenities</h5>
-                        <div class="gallery-single-img">
-                            <div class="swiper-s-img">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
-                                        src="{{ asset('assets/images/h-details-3.png') }}" class="img-fluid img-wrapper"></a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-0 text-start h-gallery--flex">
-                    <div class="h-gallery-single">
-                        <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">Restaurant</h5>
-                        <div class="gallery-single-img">
-                            <div class="swiper-s-img">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#imgPopup"><img
-                                        src="{{ asset('assets/images/h-details-4.png') }}" class="img-fluid img-wrapper"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
+
+
+    <!------ Hotel details swiper start -------->
+    {{-- <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
+        <div class="container">
+            <div class="saved-hotels-details p-a-details pt-4 pb-5">
+                <h5 class="heading-fs-16  purple-dark">Hotel Pictures ({{ $hotelPictures->count() }})</h5>
+                <div class="mb-5 p-a-swpier">
+                    @foreach ($hotelPictures as $hotelPicture)
+                        <div class="me-3">
+                            <img src="{{ asset('storage/' . $hotelPicture->photos) }}" class="img-fluid" style="width: 425px; height: 415px; object-fit:cover;" alt="">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section> --}}
+    <!--------- Hotel details swiper end -------->
+
     <!------- h-details-gallery section end -------->
     <!-------- h-details-amenities section start --------->
     <section class="h-d-amenities pt-4 pb-4">
@@ -173,82 +148,83 @@
     <!-------- h-details-amenities section end --------->
     <!------- h-details-n-b section start ---------->
     {{-- <section class="h-details-n-b pb-4">
-    <div class="container">
-        <div class="h-d-near-by-inner border--bottom">
-            <div class="near-b-heading">
-                <h5 class="heading-fs-16 purple-dark">What’s near by</h5>
-            </div>
-            <div class="nearby-place d-flex flex-wrap justify-content-between align-items-center pb-4">
-                <div class="nearby-text ">
-                    <p class="para-d-l-p m-0">Pick the places you want to visit.</p>
+        <div class="container">
+            <div class="h-d-near-by-inner border--bottom">
+                <div class="near-b-heading">
+                    <h5 class="heading-fs-16 purple-dark">What’s near by</h5>
                 </div>
-                <div class="show-map">
-                    <span class="purple">Show Map <img src="{{ asset('assets/images/icons/h-d-showmap.png') }}"
-                            class="ps-2"></span>
+                <div class="nearby-place d-flex flex-wrap justify-content-between align-items-center pb-4">
+                    <div class="nearby-text ">
+                        <p class="para-d-l-p m-0">Pick the places you want to visit.</p>
+                    </div>
+                    <div class="show-map">
+                        <span class="purple">Show Map <img src="{{ asset('assets/images/icons/h-d-showmap.png') }}"
+                                class="ps-2"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="h-d-nearby-loaction overflow-auto">
-                <div class="small-box-main d-flex mb-3" >
+                <div class="h-d-nearby-loaction overflow-auto">
+                    <div class="small-box-main d-flex mb-3" >
 
-                    @foreach ($hotel->facilities() as $facility)
-                        <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                            <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
-                                <i id="img-icon" class="{{ @$facility->icon }}"></i>
-                            </div>
-                            <div class="small-box-text ps-2 pe-3">
-                                <span>{{@$facility->facilities_name}}</span>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="nearby-location-main">
-                    <div class="location-popup nearby-loaction">
-                        <div class="location-popup-inner">
-                            <div class="location-popup-locat position-relative">
-                                <div class="loaction-popup-gmap">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788790.9018211137!2d-3.794533563867567!3d39.44188449494803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1651900367722!5m2!1sen!2sin"
-                                        width="100%" height="381" style="border:0;" allowfullscreen=""
-                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        @foreach ($hotel->facilities() as $facility)
+                            <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
+                                <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
+                                    <i id="img-icon" class="{{ @$facility->icon }}"></i>
                                 </div>
-                                <div class="location-popup-hilton">
-                                    <img src="{{ asset('assets/images/icons/location-popup-L.png') }}">
+                                <div class="small-box-text ps-2 pe-3">
+                                    <span>{{@$facility->facilities_name}}</span>
                                 </div>
-                                <div class="loaction-dist-radius">
-                                    <div class="dist-radius-innner">
-                                        <div class="dist-radius-content">
-                                            <h5 class="mt-4 text-center">Distance Radius</h5>
-                                            <div class="dist-radius-total">
-                                                <p class="m-0">1.5</p>
-                                            </div>
-                                            <div class="dist-radius-mile-text text-center">
-                                                <p>Miles</p>
-                                            </div>
-                                            <div class="dist-radius-rang pe-3 ps-3">
-                                                <input type="range" class="form-range" id="customRange1">
-                                            </div>
-                                            <div class="dist-radius-mile d-flex justify-content-between">
-                                                <span>0.5mi</span><span>5mi</span>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="nearby-location-main">
+                        <div class="location-popup nearby-loaction">
+                            <div class="location-popup-inner">
+                                <div class="location-popup-locat position-relative">
+                                    <div class="loaction-popup-gmap">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788790.9018211137!2d-3.794533563867567!3d39.44188449494803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1651900367722!5m2!1sen!2sin"
+                                            width="100%" height="381" style="border:0;" allowfullscreen=""
+                                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                    <div class="location-popup-hilton">
+                                        <img src="{{ asset('assets/images/icons/location-popup-L.png') }}">
+                                    </div>
+                                    <div class="loaction-dist-radius">
+                                        <div class="dist-radius-innner">
+                                            <div class="dist-radius-content">
+                                                <h5 class="mt-4 text-center">Distance Radius</h5>
+                                                <div class="dist-radius-total">
+                                                    <p class="m-0">1.5</p>
+                                                </div>
+                                                <div class="dist-radius-mile-text text-center">
+                                                    <p>Miles</p>
+                                                </div>
+                                                <div class="dist-radius-rang pe-3 ps-3">
+                                                    <input type="range" class="form-range" id="customRange1">
+                                                </div>
+                                                <div class="dist-radius-mile d-flex justify-content-between">
+                                                    <span>0.5mi</span><span>5mi</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="loaction-popup-content-box nearby-content-box">
-                                <div class="loaction-popup-box-main  position-relative">
-                                    <div class="loaction-popup-card d-flex mb-4">
-                                        @foreach ($hotel->facilities() as $key => $facility)
-                                            <div class="location-popup-card-single nearby-single-card {{ $key == 0 ? 'ms-1': ''}} mt-4">
-                                                <div class="card-single-head d-flex align-items-center" style="background: {{@$facility->color;}}">
-                                                    <div class="card-head-img pe-3 lh-1">
-                                                        <i id="img-icon" class="mb-1 {{ @$facility->icon }}"> </i></div>
-                                                    <div class="card-head-text">{{@$facility->facilities_name}}</div>
+                                <div class="loaction-popup-content-box nearby-content-box">
+                                    <div class="loaction-popup-box-main  position-relative">
+                                        <div class="loaction-popup-card d-flex mb-4">
+                                            @foreach ($hotel->facilities() as $key => $facility)
+                                                <div class="location-popup-card-single nearby-single-card {{ $key == 0 ? 'ms-1': ''}} mt-4">
+                                                    <div class="card-single-head d-flex align-items-center" style="background: {{@$facility->color;}}">
+                                                        <div class="card-head-img pe-3 lh-1">
+                                                            <i id="img-icon" class="mb-1 {{ @$facility->icon }}"> </i></div>
+                                                        <div class="card-head-text">{{@$facility->facilities_name}}</div>
+                                                    </div>
+                                                    <div class="card-content nearby-card-content">
+                                                        <p class="mb-2">{{@$facility->description}}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="card-content nearby-card-content">
-                                                    <p class="mb-2">{{@$facility->description}}</p>
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -257,8 +233,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</section> --}}
+    </section> --}}
     <!------- h-details-n-b section end ---------->
     <!------- hotel-policies section start -------->
     <section class="hotel-policies ">
@@ -597,11 +572,11 @@
     <div class="mainReviewPopupDiv">
         @include('frontend::hotel.review')
     </div>
-
+    <!------- img slider popup start -------->
     <div class="mainCategoryImageDiv">
         @include('frontend::hotel.photo')
     </div>
-
+    <!------- img slider popup end -------->
 @endsection
 
 @push('script')
@@ -614,6 +589,7 @@
             $('.timepicker').mdtimepicker();
         });
     </script>
+
     <script>
         $(document).on('click', '.photoPopup', function(e) {
             e.preventDefault();
@@ -632,7 +608,6 @@
                 contentType: false,
                 data: formdata,
                 success: function(response) {
-                    console.log(response);
                     $('.mainCategoryImageDiv').html(response);
                     $('#categoryPhotosPopup').modal('show');
 
@@ -723,4 +698,43 @@
             $('.swiper').addClass('open');
         });
     </script>
+
+<script>
+    // planner-accordion swiper js
+    $('.p-a-swpier').slick({
+        nextButton: '.slick-next',
+        prevButton: '.slick-prev',
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        speed: 300,
+        loop: true,
+        autoplay: true,
+        accessibility: false,
+        dots: false,
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+        ]
+    });
+</script>
 @endpush
