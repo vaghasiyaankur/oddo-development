@@ -11,7 +11,7 @@
             <th scope="col">Start Date </th>
             <th scope="col">End Date </th>
             <th scope="col">Attachment</th>
-            <th scope="col">Actions</th>
+            <!-- <th scope="col">Actions</th> -->
         </tr>
     </thead>
     <tbody class="table__body">
@@ -88,9 +88,9 @@
                     <span></span>
                 </div>
                 <div class="loadingHide">
-                    <a href="javascript:void(0);" class="link-success fs-17 pe-3 editFacility" data-bs-toggle="modal"
+                    <!-- <a href="javascript:void(0);" class="link-success fs-17 pe-3 editFacility" data-bs-toggle="modal"
                         data-bs-target="#exampleModalgrid" data-value="{{ $booking }}"><i class="ri-edit-2-line"></i></a>
-                    <a href="javascript:void(0);" class="link-danger fs-17 deleteFacility" data-value="{{$booking->id}}"><i class="ri-delete-bin-line"></i></a>
+                    <a href="javascript:void(0);" class="link-danger fs-17 deleteFacility" data-value="{{$booking->id}}"><i class="ri-delete-bin-line"></i></a> -->
                 </div>
             </td>
         </tr>

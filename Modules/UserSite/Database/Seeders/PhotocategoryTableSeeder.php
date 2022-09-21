@@ -4,7 +4,7 @@ namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\PhotoCategory;
+use App\Models\Photocategory;
 
 class PhotocategoryTableSeeder extends Seeder
 {
@@ -24,7 +24,7 @@ class PhotocategoryTableSeeder extends Seeder
         ];
 
         foreach ($photoCategories as $index => $photoCategory) {
-            PhotoCategory::create([
+            Photocategory::create([
                 'name' => $photoCategory
             ]);
         }

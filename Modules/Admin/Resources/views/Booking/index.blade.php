@@ -171,7 +171,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="table-responsive bookingTable">
-                                        @include('admin::booking.bookingList')
+                                        @include('admin::Booking.bookingList')
                                     </div>
                                 </div>
                             </div>
@@ -190,5 +190,5 @@
 <!-- init form-pickers js -->
 <script src="{{ asset('assets/Admin/assets/js/pages/form-pickers.init.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    @include('admin::booking.scripts')
+    @include('admin::Booking.scripts')
 @endpush

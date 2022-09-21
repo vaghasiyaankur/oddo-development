@@ -236,7 +236,7 @@ input:not([type="radio"]), textarea {
 
             <div class="position-relative mx-n4 mt-n4">
                 <div class="profile-wid-bg profile-setting-img position-relative">
-                    <img src="{{ asset('assets/admin/assets/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
+                    <img src="{{ asset('assets/Admin/assets/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
                     <div class="headingText">
                         <h2>Settings</h2>
                     </div>
@@ -274,7 +274,7 @@ input:not([type="radio"]), textarea {
                         <div class="card-body p-4" style="min-height: 500px; height: 100%;">
                             <div class="tab-content">
                                 <div class="settingContent active" id="generalSetting">
-                                    @include('admin::settings.generalSetting')
+                                    @include('admin::Settings.generalSetting')
                                 </div>
                             </div>
                         </div>
@@ -290,5 +290,5 @@ input:not([type="radio"]), textarea {
 @endsection
 
 @push('scripts')
-    @include('admin::settings.scripts')
+    @include('admin::Settings.scripts')
 @endpush

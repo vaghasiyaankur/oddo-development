@@ -16,7 +16,7 @@
                                     </div>
                                     <div id="expired-div"></div>
                                     <div class="p-2 mt-4">
-                                        <form class="loginForm" action="javscript:;" method="POST" style="margin-top: 42px;position:relative;">
+                                        <form class="loginForm" action="javascript:;" method="POST" style="margin-top: 42px;position:relative;">
                                             <div class="mb-4">
                                                 <label for="email" class="form-label">Email <span
                                                         class="text-danger">*</span></label>

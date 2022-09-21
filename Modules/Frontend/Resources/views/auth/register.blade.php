@@ -153,6 +153,7 @@
                     $('#useremail-error').text('');
 
                 }, error:function (response) {
+                    console.log(response);
                     $('.spinner-border').hide();
                     $('#name-error').text(response.responseJSON.errors.username);
                     $('#userpassword-error').text(response.responseJSON.errors.password);
