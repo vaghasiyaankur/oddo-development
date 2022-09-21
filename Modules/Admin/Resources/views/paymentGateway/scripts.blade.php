@@ -155,10 +155,9 @@ $(document).ready(function(){
         paypalForm.find('.spinner-container').css('display', 'block');
         
         $.ajax({
-            url: "{{route('show.stripe')}}",
+            url: baseUrl + '/admin/show/stripe?mode=' + mode + '&type=' + type,
             type: "GET",
             dataType:'json',
-            data : { mode : mode, type : type},
             success: function (response) {
 
                 setTimeout(function(){ 

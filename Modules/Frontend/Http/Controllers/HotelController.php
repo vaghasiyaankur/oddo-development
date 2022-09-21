@@ -125,6 +125,7 @@ class HotelController extends Controller
         } else {
             $hotels = Hotel::active()->latest()->paginate(2);
             if ($request->ajax()) {
+                // dd('213');
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
@@ -142,7 +143,6 @@ class HotelController extends Controller
     }
 
     public function hotelPhoto(Request $request){
-        dd($request->toarray());
         $Id = $request->id;
         $hotelId = $request->hotel_id;
         $categoryId = $request->category_id;
