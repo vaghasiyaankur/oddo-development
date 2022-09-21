@@ -16,7 +16,7 @@ class PropertyController extends Controller
     public function index(Request $request)
     {
         $properties = Hotel::with('propertytype')->select('property_name', 'status', 'star_rating', 'property_id', 'slug', 'id')->paginate(10);
-        return view('admin::properties.index', compact('properties'));
+        return view('admin::Properties.index', compact('properties'));
     }
 
     /**
@@ -93,7 +93,7 @@ class PropertyController extends Controller
                                     ->paginate(10);
         }
         // dd($data);
-        return view('admin::properties.PropertyList', $data);
+        return view('admin::Properties.PropertyList', $data);
     }
 
     public function PropertyStatus(Request $request){
@@ -111,6 +111,6 @@ class PropertyController extends Controller
     public function SingleProperty($slug)
     {
        $hotel = Hotel::where('slug', $slug)->first();
-       return view('admin::properties.single-property', compact('hotel'));
+       return view('admin::Properties.single-property', compact('hotel'));
     }
 }
