@@ -36,7 +36,8 @@ class PropertyController extends Controller
     }
 
     public function basicInfo(Request $request, $id) {
-        $hotel_id = Session::get('hotel')->id;
+
+        $hotel_id = $id;
         $countries = Country::with('cities')->active()->get();
         $hotelDetail = Hotel::with('propertytype')->whereUuid($id)->first();
 
@@ -152,7 +153,7 @@ class PropertyController extends Controller
         $hotel = Hotel::select('UUID')->latest('created_at')->first();
 
         return response()->json(['redirect_url' => route('amenities', ['id' => $hotel_id])]);
-    }   
+    }
 
     public function amenities() {
         $hotelDetail = Hotel::latest()->first();
@@ -196,12 +197,12 @@ class PropertyController extends Controller
     }
 
     public function room_lists($id) {
-        $hotel_id = Session::get('hotel')->id;
+        $hotel_id = $id;
         $hotels = Hotel::whereUuid($id)->first();
-        $rooms = Room::with('roomlist')->where('hotel_id',$hotel_id)->get();
+        $rooms = Room::with('roomlist')->where('hotel_id',$hotels->id)->get();
 
         return view('usersite::room-list', compact('rooms','hotels'));
-    } 
+    }
 
     public function editRoom($id, Request $request)
     {
@@ -317,7 +318,7 @@ class PropertyController extends Controller
     }
 
     public function viewPhotos($id)
-    {   
+    {
         $photoCategories = Photocategory::get();
         $hotelDetail = Hotel::whereUuid($id)->first();
         $hotelPhotos = HotelPhoto::whereHotel_id($hotelDetail->id)->get();
@@ -354,9 +355,9 @@ class PropertyController extends Controller
     public function updatePhotos(Request $request)
     {
        $editImages = $request->EditImages;
-       
+
        foreach ($editImages as $key => $editImage) {
-            $hotelPhotoId = $editImage['id'];   
+            $hotelPhotoId = $editImage['id'];
             $hotelPhotoPType = $editImage['propertyType'];
 
             $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
@@ -397,7 +398,7 @@ class PropertyController extends Controller
         $notification = Notification::updateOrCreate(['id' => $id], [
             'hotel_id' => $hotel_id,
         ]);
-        
+
         return response()->json(['redirect_url' => route('home.index')]);
     }
 

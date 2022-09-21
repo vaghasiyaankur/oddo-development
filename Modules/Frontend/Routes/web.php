@@ -24,7 +24,6 @@ Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword')->n
 /* Home Page */
 Route::get('/', 'HomeController@index')->name('home.index');
 
-
 /* Hotel Page */
 Route::get('/hotel', 'HotelController@index')->name('hotel.index');
 
@@ -41,8 +40,6 @@ Route::get('/search', 'SearchController@index')->name('search.index');
 /* Planner Page */
 Route::get('/planner', 'PlannerController@index')->name('planner.index');
 
-
-
 /* Upcoming Trip Page */
 Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrips.index');
 
@@ -55,11 +52,6 @@ Route::controller(WishlistController::class)->group(function(){
     Route::post('remove-wishlist', 'removeWishlist')->name('remove.wishlist');
 });
 
-
-// Route::view('/login', 'frontend::auth.login');
-
-// Route::view('/register', 'frontend::auth.register');
-
 // google socialite
 Route::controller(Auth\Socialite\GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
@@ -70,11 +62,6 @@ Route::controller(Auth\Socialite\FacebookController::class)->group(function(){
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
-
-// Route::controller(Auth\Socialite\TwitterController::class)->group(function(){
-//     Route::get('auth/twitter', 'redirectToTwitter')->name('auth.twitter');
-//     Route::get('auth/twitter/callback', 'handleTwitterCallback');
-// });
 
 Route::middleware(['auth', 'user-access:user'])->group(function(){
     /* Profile Page */
@@ -99,10 +86,6 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
 
     // payment
     Route::prefix('payment')->controller(PaymentController::class)->group(function(){
-        // Route::get('/paypal', 'showPaypal')->name('show.paypal');
-        // Route::get('paypal/success', 'successPaypal')->name('paypal.success');
-        // Route::get('paypal/cancel', 'cancelPaypal')->name('paypal.cancel');
-
         Route::post('show/stripe', 'showStripe')->name('show.stripe');
         Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
         Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');

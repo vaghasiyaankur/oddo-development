@@ -129,7 +129,8 @@ class HotelController extends Controller
         $hotelRating = listHotelRating($hotel->id);
         $photoCategories  = Photocategory::get();
         $hotelPhotos = array();
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos'));
+        $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures'));
     }
 
     public function hotelPhoto(Request $request){
