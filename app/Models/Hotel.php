@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\HotelPhoto;
 use App\Models\City;
 use App\Models\Country;
-use App\Models\amenities;
+use App\Models\Amenities;
 use App\Models\Wishlistable;
 use App\Traits\Uuids;
 

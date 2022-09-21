@@ -25,9 +25,6 @@ class HotelController extends Controller
      */
     public function index(Request $request)
     {
-        
-       
-      
         $propertyType = $request->propertyType;
 
         $search = request()->search;
@@ -132,7 +129,10 @@ class HotelController extends Controller
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
         $hotelRating = listHotelRating($hotel->id);
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating'));
+        $photoCategories  = Photocategory::get();
+        $hotelPhotos = array();
+        $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures'));
     }
 
     public function hotelPhoto(Request $request){

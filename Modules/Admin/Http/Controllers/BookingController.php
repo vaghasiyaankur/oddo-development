@@ -20,7 +20,7 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = HotelBooking::paginate(10);
-        return view('admin::booking.index',compact('bookings'));
+        return view('admin::Booking.index',compact('bookings'));
     }
 
     /**
@@ -89,7 +89,7 @@ class BookingController extends Controller
             $q->where('property_name','like','%'.$search.'%');
         })->paginate(10);
 
-        return view('admin::booking.bookingList',$data);
+        return view('admin::Booking.bookingList',$data);
     }
 
     public function statusBooking(Request $request){

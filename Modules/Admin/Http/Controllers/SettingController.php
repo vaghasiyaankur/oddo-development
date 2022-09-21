@@ -26,7 +26,7 @@ class SettingController extends Controller
         $currencies = json_decode(file_get_contents($path), true);
         $GeneralSetting = GeneralSetting::first();
         // $EmailSetting = EmailSetting::first();
-        return view('admin::settings.index', compact('currencies', 'GeneralSetting'));
+        return view('admin::Settings.index', compact('currencies', 'GeneralSetting'));
     }
 
     public function changeSetting(Request $request)
@@ -34,12 +34,12 @@ class SettingController extends Controller
 
         if($request->target == 'logoFavicon'){
             $logoFavicon = LogoFavicon::first();
-            $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
+            $html = view('admin::Settings.logoFavicon', compact('logoFavicon'))->render();
             // return $html;
 
         }else if($request->target == 'emailSetting'){
             $EmailSetting = EmailSetting::first();
-            $html = view('admin::settings.emailSetting', compact('EmailSetting'))->render();
+            $html = view('admin::Settings.emailSetting', compact('EmailSetting'))->render();
             // return $html;
 
         }else if($request->target == 'generalSetting') {
@@ -47,12 +47,12 @@ class SettingController extends Controller
             $path = public_path().'/json/currency.json';
             $currencies = json_decode(file_get_contents($path), true);
             $GeneralSetting = GeneralSetting::first();
-            $html = view('admin::settings.generalSetting', compact('currencies', 'GeneralSetting'))->render();
+            $html = view('admin::Settings.generalSetting', compact('currencies', 'GeneralSetting'))->render();
 
         } else if($request->target == 'emailTemplate') {
 
             $mailTemplates = EmailTemplate::get();
-            $html = view('admin::settings.emailTemplate', compact('mailTemplates'))->render();
+            $html = view('admin::Settings.emailTemplate', compact('mailTemplates'))->render();
         }
         else {
 
@@ -165,21 +165,21 @@ class SettingController extends Controller
     public function emailSettingShow()
     {
         $EmailSetting = EmailSetting::first();
-        $html = view('admin::settings.emailSetting', compact('EmailSetting'))->render();
+        $html = view('admin::Settings.emailSetting', compact('EmailSetting'))->render();
 
         return $html;
     }
 
     public function logoFaviconShow() {
         $logoFavicon = LogoFavicon::first();
-        $html = view('admin::settings.logoFavicon', compact('logoFavicon'))->render();
+        $html = view('admin::Settings.logoFavicon', compact('logoFavicon'))->render();
         return $html;
     }
 
     public function emailTemplateShow()
     {
         $mailTemplates = EmailTemplate::get();
-        $html = view('admin::settings.emailTemplate', compact('mailTemplates'))->render();
+        $html = view('admin::Settings.emailTemplate', compact('mailTemplates'))->render();
         return $html;
     }
 
@@ -189,7 +189,7 @@ class SettingController extends Controller
 
         $short_code_id = explode(',',$emailTemplate->short_code_id);
         $ShortCodes = ShortCodeMailTemplate::whereIn('id',$short_code_id)->get();
-        $html = view('admin::settings.editEmailTemplate', compact('emailTemplate', 'ShortCodes'))->render();
+        $html = view('admin::Settings.editEmailTemplate', compact('emailTemplate', 'ShortCodes'))->render();
         return $html;
     }
 
