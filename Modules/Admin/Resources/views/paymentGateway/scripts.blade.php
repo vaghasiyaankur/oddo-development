@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function(){
-    
+
     var baseUrl = $('#base_url').val();
 
     $.ajaxSetup({
@@ -8,19 +8,19 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    
+
     // payment height set
-    // $('.payment_main_div').each(function() {  
+    // $('.payment_main_div').each(function() {
     //     var highestBox = 0;
     //     $('.card-body', this).each(function(){
     //         if($(this).height() > highestBox)
     //         {
-    //             highestBox = $(this).height(); 
+    //             highestBox = $(this).height();
     //         }
-    //     });  
-    //     $('.card-body',this).height(highestBox);          
-    // }); 
-    
+    //     });
+    //     $('.card-body',this).height(highestBox);
+    // });
+
     // show paypal value
      // show stripe value
      $(document).on('change', '.paypal_mode', function(){
@@ -37,7 +37,7 @@ $(document).ready(function(){
             data : { mode : mode, type : type},
             success: function (response) {
 
-               setTimeout(function(){ 
+               setTimeout(function(){
                     $('.spinner-container').css('display', 'none');
                  }, 500);
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
                     $('.paypal_id').val(response.paymentGateways.live_client_id);
                     $('.paypal_key').val(response.paymentGateways.live_client_secret_key);
                     $('.paypal_api_key').val(response.paymentGateways.live_api_secret_key);
-                    
+
                 } else {
                     $('.paypal_id').val(response.paymentGateways.test_client_id);
                     $('.paypal_key').val(response.paymentGateways.test_client_secret_key);
@@ -57,7 +57,7 @@ $(document).ready(function(){
 
     // Update Paypal
     $(document).on('click', '.updatePaypal', function(){
-        var paypal_id = $('.paypal_id').val();     
+        var paypal_id = $('.paypal_id').val();
         !paypal_id ? $(`#paypal_id_error`).html(`The Paypal Client ID field is required.`) : $(`#paypal_id_error`).html(``);
 
         var paypal_key = $('.paypal_key').val();
@@ -89,9 +89,9 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
 
-                setTimeout(function(){ 
+                setTimeout(function(){
                     $('.spinner-container').css('display', 'none');
                  }, 500);
 
@@ -99,19 +99,19 @@ $(document).ready(function(){
             }, error:function (response) {
                 // console.log(response);
             }
-        }); 
+        });
     });
 
-    // update stripe 
+    // update stripe
     $(document).on('click', '.updateStripe', function(){
         var stripe_client_id = $('.stripe_client_id').val();
         !stripe_client_id ? $(`#stripe_client_id_error`).html(`The Stripe Client ID field is required.`) : $(`#stripe_client_id_error`).html(``);
-        
+
         var stripe_secret_key = $('.stripe_secret_key').val();
         !stripe_secret_key ? $(`#stripe_secret_key_error`).html(`The Stripe Client Secret error field is required.`) : $(`#stripe_secret_key_error`).html(``);
-        
+
         var stripe_mode = $('.stripe_mode:checked').val();
-        var stripe_id = $('.stripe_id').val();    
+        var stripe_id = $('.stripe_id').val();
 
 
         if (!stripe_id || !stripe_client_id || !stripe_secret_key) {
@@ -134,16 +134,16 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
 
-                setTimeout(function(){ 
+                setTimeout(function(){
                     $('.spinner-container').css('display', 'none');
                  }, 500);
                 toastMixin.fire({ title: response.success, icon: 'success' });
             }, error:function (response) {
                 // console.log(response);
             }
-        }); 
+        });
     });
 
      // show stripe value
@@ -153,15 +153,15 @@ $(document).ready(function(){
 
         var paypalForm = $(this).parents('.card');
         paypalForm.find('.spinner-container').css('display', 'block');
-        
+
         $.ajax({
-            url: "{{route('show.stripe')}}",
+            url: baseUrl + '/admin/show/stripe?mode=' + mode + '&type=' + type,
             type: "GET",
             dataType:'json',
             data : { mode : mode, type : type},
             success: function (response) {
 
-                setTimeout(function(){ 
+                setTimeout(function(){
                     $('.spinner-container').css('display', 'none');
                  }, 500);
 
@@ -176,16 +176,16 @@ $(document).ready(function(){
         });
     });
 
-    // update razorpay 
+    // update razorpay
     $(document).on('click', '.updateRazor', function(){
         var razor_client_id = $('.razor_client_id').val();
         !razor_client_id ? $(`#razor_client_id_error`).html(`The Razorpay Client ID field is required.`) : $(`#razor_client_id_error`).html(``);
-        
+
         var razor_client_secret_key = $('.razor_client_secret_key').val();
         !razor_client_secret_key ? $(`#razor_client_secret_key_error`).html(`The Razorpay Client Secret error field is required.`) : $(`#razor_client_secret_key_error`).html(``);
 
         var razorpay_mode = $('.razorpay_mode:checked').val();
-        var razor_id = $('.razor_id').val();    
+        var razor_id = $('.razor_id').val();
 
         if (!razor_id || !razor_client_id || !razor_client_secret_key) {
             return;
@@ -205,8 +205,8 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
-                setTimeout(function(){ 
+            success: function (response) {
+                setTimeout(function(){
                     $('.spinner-container').css('display', 'none');
                  }, 500);
 
@@ -214,14 +214,14 @@ $(document).ready(function(){
             }, error:function (response) {
                 // console.log(response);
             }
-        }); 
+        });
     });
 
     // show razorpay value
     $(document).on('change', '.razorpay_mode', function(){
         var mode = $(this).val();
         var type = $(this).data('value');
-        
+
         var paypalForm = $(this).parents('.card');
         paypalForm.find('.spinner-container').css('display', 'block');
 
@@ -232,7 +232,7 @@ $(document).ready(function(){
             data : { mode : mode, type : type},
             success: function (response) {
 
-                setTimeout(function(){ 
+                setTimeout(function(){
                     $('.spinner-container').css('display', 'none');
                  }, 500);
 
@@ -268,13 +268,13 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
-            success: function (response) { 
+            success: function (response) {
                 // $('.updateLoader').addClass('off').removeClass('on');
                 // toastMixin.fire({ title: response.success, icon: 'success' });
             }, error:function (response) {
                 // console.log(response);
             }
-        }); 
+        });
     });
 });
 </script>
