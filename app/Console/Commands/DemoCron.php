@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 namespace App\Console\Commands;
-   
+
 use Illuminate\Console\Command;
 use App\Models\UserVerify;
 use App\Models\User;
@@ -15,14 +15,14 @@ class DemoCron extends Command
      * @var string
      */
     protected $signature = 'demo:cron';
-    
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Command description';
-    
+
     /**
      * Create a new command instance.
      *
@@ -32,7 +32,7 @@ class DemoCron extends Command
     {
         parent::__construct();
     }
-    
+
     /**
      * Execute the console command.
      *
@@ -49,10 +49,5 @@ class DemoCron extends Command
                 $user = User::where('email_verified_at',null)->where('updated_at', '<', Carbon::now()->subMinute(60))->delete();
             }
         }
-
-        /*
-           Write your database logic we bellow:
-           Item::create(['name'=>'hello new']);
-        */
     }
 }

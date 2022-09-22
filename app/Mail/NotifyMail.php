@@ -32,7 +32,8 @@ class NotifyMail extends Mailable
      */
     public function build()
     {
-        $User = User::latest()->first();
+        $userId = auth()->user()->id;
+        $User = User::whereId($userId)->first();
         $emailTemplate = EmailTemplate::where('id', 3)->first();
 
         $short_code_id = explode(',',$emailTemplate->short_code_id);
@@ -47,7 +48,7 @@ class NotifyMail extends Mailable
         $shortCodeValue = array_combine($shortCode, $shortCodeValues);
         $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
 
-        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::auth.mail')
+        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::mail.mail')
                 ->subject($emailTemplate->mail_subject)
                 ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $User->name, 'emailContent' => $emailContent]);;
     }

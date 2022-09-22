@@ -306,6 +306,34 @@ hotel
         }
     }
 
+    .slick-prev:before, .slick-next:before{
+        font-size:25px;
+    }
+
+    .slick-prev{
+        left:-40px;
+    }
+
+    .slick-next{
+        right:-40px;
+    }
+    .slick-cloned{
+        width:75px !important;
+    }
+
+    .slick-slide.slick-current.slick-center{
+        border: 1px solid white;
+        width: 75px !important;
+        margin-right: 2px;
+    }
+    /* .slick-track{
+        width: 100% !important;
+    } */
+
+    /* .slick-slide.slick-current.slick-active.slick-center{
+        border: 1px solid white;
+        width: 76px;
+    } */
     /* popup scroll */
     .reviews-popup-main .reviews-popup::-webkit-scrollbar-track {
         border-radius: 10px;
@@ -346,6 +374,10 @@ hotel
             bottom: -272px !important;
             left: 0 !important;
         }
+    }
+
+    .slick-track {
+        width: 620px !important;
     }
 </style>
 @endpush
@@ -1051,9 +1083,9 @@ hotel
                             <label>
                                 <input type="checkbox" class="propertyTypeCheckbox"  name="propertyType" value="All"><span>All ({{@$propertyTypeCounts->count()}})</span>
                             </label>
-                            </div>  
+                            </div>
                             @if (@$propertyTypes)
-                                @foreach ($propertyTypes as $propertyType)    
+                                @foreach ($propertyTypes as $propertyType)
                                     <div class="cat propertyTypeCheckDiv">
                                     <label>
                                         <input type="checkbox" class="P_TypeCheckbox"  name="propertyType" value="{{$propertyType->slug}}" ><span>
@@ -1062,10 +1094,10 @@ hotel
                                             @endphp
                                             {{$propertyType->type}} ({{$propertyId}})</span>
                                     </label>
-                                    </div>  
+                                    </div>
                                 @endforeach
-                            @endif         
-                        </div>                                            
+                            @endif
+                        </div>
                     @endif
                     @include('frontend::hotel.hotelResult')
 
@@ -1109,7 +1141,18 @@ hotel
             });
 </script>
 @endif
-
+@if (session()->get('error'))
+<script>
+    $(document).ready(function() {
+                $('#payment_error_').modal('show');
+                setTimeout(function() {
+                    $('#payment_error_').modal('hide')
+                }, 4000);
+            });
+</script>
+@endif
+{{-- paypal cdn --}}
+<script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}&currency=USD"></script>
 {{-- stripe cdn--}}
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 <script src="https://checkout.stripe.com/v3/checkout.js"></script>
@@ -1172,10 +1215,10 @@ hotel
 <!-------- image popup (slider image js)------>
 <script>
     $('.slider-single').slick({
-            slidesToShow: 1,
+            slidesToShow: 10,
             slidesToScroll: 1,
             arrows: true,
-            draggable: false,
+            draggable: true,
             fade: true,
             asNavFor: '.slider-nav'
         });
@@ -1185,9 +1228,9 @@ hotel
             slidesToScroll: 1,
             asNavFor: '.slider-single',
             dots: false,
-            draggable: false,
+            draggable: true,
             centerMode: true,
-            arrows: true,
+            arrows: false,
             focusOnSelect: true,
             responsive: [{
                     breakpoint: 1024,
@@ -1319,7 +1362,7 @@ hotel
 <!-- custom-selector js -->
 <script>
     $(document).ready(function() {
-        
+
             $(document).on('click', '.select-div', function() {
                 $('.select-room').html('');
                 var index = $('.select_room').val();
@@ -1342,7 +1385,7 @@ hotel
             });
 
             function addRoom($number) {
-                let searchParams = new URLSearchParams(window.location.search);               
+                let searchParams = new URLSearchParams(window.location.search);
 
                 var king = '';
                 var queen = '';
@@ -1393,7 +1436,8 @@ $(document).ready(function(){
     // CSRF TOKEN
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            'X-Requested-With': 'XMLHttpRequest'
         }
     });
 
@@ -1755,6 +1799,32 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('click', '.payment_button_Paypal', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+        var payment_id = $('.paypal_payment_id').val();
+        var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        window.location.href = base_url + "/payment/processPaypal?id=" + id + "&amount=" + amount + "&total_amount=" + total_amount + "&payment_id=" + payment_id + "&property_name=" + property_name + "&hotel_id=" + hotel_id + '&room_id=' + room_id + '&start_date=' + start_date + '&end_date=' + end_date;
+
+        // $.ajax({
+        //     url: "{{route('processPaypal')}}",
+        //     type: "GET",
+        //     data: {id: id,amount: amount,total_amount: total_amount,payment_id: payment_id,property_name: property_name,hotel_id: hotel_id,room_id: room_id,start_date: start_date,end_date: end_date},
+        //     success: function (response) {
+        //         console.log('succeed');
+        //     }, error:function (response) {
+        //         console.log('fail');
+        //     }
+        // });
+    });
 </script>
 
 <script>
@@ -1785,15 +1855,15 @@ $(document).ready(function(){
                 $('.mainReviewPopupDiv').html(response);
                 $('.reviews-popup-main').modal('show');
             }, error:function (response) {
-
+                console.log(response);
             }
         });
-    });   
+    });
 </script>
 
 <script>
     $(document).ready(function(){
-        
+
         $('.propertyTypeCheckbox').click(function(){
             if(this.checked){
                 $('.P_TypeCheckbox').each(function(){
@@ -1802,9 +1872,9 @@ $(document).ready(function(){
                 setTimeout(function(){
                     submitHotelBtn();
                 },50);
-            } 
+            }
         });
-        
+
         $('.P_TypeCheckbox').click(function(){
             if(this.checked){
                 $('.propertyTypeCheckbox').each(function(){

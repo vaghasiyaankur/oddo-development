@@ -42,21 +42,13 @@
                                         <span><img
                                                 src="{{ @$hotelRating['hotelData']->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}"></span>
                                     @endfor
-                                    {{-- <span><img
-                                            src="assets/images/icons/start.png"></span>
-                                    <span><img
-                                            src="assets/images/icons/start.png"></span>
-                                    <span><img
-                                            src="assets/images/icons/start.png"></span>
-                                    <span><img
-                                            src="assets/images/icons/start.png"></span>
-                                    <span><img
-                                            src="assets/images/icons/start.png"></span> --}}
                                 </div>
                             </div>
                             <div class="total-review mt-2 mb-3">
-                                <span class="good-text">{{ @$hotelRating['rating'] >= 2.5 ? 'Good' : 'Bed'}}</span>
-                                <span class="total-review-text ms-3 {{round(@$hotelRating['rating'], 1) <= 2 ? 'bg-red' : 'bg-green' }}">{{round(@$hotelRating['rating'], 1)}}/5</span>
+                                @if (@$hotelRating['rating'])
+                                    <span class="good-text">{{ @$hotelRating['rating'] >= 2.5 ? 'Good' : 'Bed'}}</span>
+                                    <span class="total-review-text ms-3 {{round(@$hotelRating['rating'], 1) <= 2 ? 'bg-red' : 'bg-green' }}">{{round(@$hotelRating['rating'], 1)}}/5</span>
+                                @endif
                             </div>
                         </div>
                         <div class="popup-content-main">

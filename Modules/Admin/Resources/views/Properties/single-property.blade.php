@@ -299,5 +299,4 @@
 @endsection
 
 @push('scripts')
-<!-- @include('admin::settings.scripts') -->
 @endpush

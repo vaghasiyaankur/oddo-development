@@ -35,9 +35,9 @@
                                           </div>
                                           <div class="modal-body display-flex-items py-sm-5">
                                               <div class="img-swiper">
-                                                  <div class="slider slider-single mb-5">
+                                                  <div class="slider slider-single mb-5" >
                                                       @foreach ($hotel->photos as $photo)
-                                                          <div class="slider-single-img"><img
+                                                          <div class="slider-single-img" ><img
                                                                   src="{{ asset('storage/' . @$photo->photos) }}"
                                                                   alt="" style="width: 857px; height: 551px;">
                                                           </div>
@@ -45,7 +45,7 @@
                                                   </div>
                                                   <div class="slider slider-nav">
                                                       @foreach ($hotel->photos as $photo)
-                                                          <div class="slder-nav-img"><img
+                                                          <div class="slder-nav-img d-block"><img
                                                                   src="{{ asset('storage/' . @$photo->photos) }}"
                                                                   class="me-2" alt=""
                                                                   style="width: 72px; height: 72px;">
@@ -609,7 +609,7 @@
                                     </h6>
                                   </div>
                                   <div class="back-tophome-btn">
-                                      <a href="javascript:;" class="try-again-btn text-dark">Try Again</a>
+                                      <a href="{{ route('home.index') }}" class="try-again-btn text-dark">Try Again</a>
                                   </div>
                               </div>
                           </div>

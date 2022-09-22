@@ -9,8 +9,13 @@ use App\Models\Hotel;
 use App\Models\Amenities;
 use App\Models\paymentGetways;
 use App\Models\HotelBooking;
+use App\Models\PropertyType;
 use App\Models\Review;
-use App\Models\PropertyType; 
+use Mail;
+use App\Mail\FeedbackMail;
+use Carbon\Carbon;
+use App\Models\HotelPhoto;
+use App\Models\Photocategory;
 use DB;
 
 class HotelController extends Controller
@@ -29,7 +34,7 @@ class HotelController extends Controller
         $guest =  request()->guest;
         $room = request()->room;
         $bed = explode(',' , request()->bed);
-        $propertyTypeName = explode(',' , request()->propertyTypeName); 
+        $propertyTypeName = explode(',' , request()->propertyTypeName);
 
         $propertyName = request()->propertyName;
         $budgetMin = request()->budgetMin;
@@ -57,9 +62,9 @@ class HotelController extends Controller
                     ->whereHas('hotelBed.bedType', function($query) use ($bed) {
                         $query->whereIn('bed_type', $bed);
                     });
-            
+
             $propertyTypeCounts = $hotels->withCount('propertytype')->active()->latest()->paginate(10);
-            
+
             if ($request->has('propertyTypeName')) {
             $hotels = $hotels->whereHas('propertytype', function($query) use ($propertyTypeName){
                         $query->WhereIn('slug', $propertyTypeName);
@@ -103,7 +108,7 @@ class HotelController extends Controller
         } else if($propertyType){
 
             $propertyTypeId = PropertyType::whereUuid($propertyType)->pluck('id')->first();
-            $hotels = Hotel::with('room')->whereProperty_id($propertyTypeId)->paginate(2); 
+            $hotels = Hotel::with('room')->whereProperty_id($propertyTypeId)->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
@@ -125,20 +130,31 @@ class HotelController extends Controller
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
         $hotelRating = listHotelRating($hotel->id);
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating'));
+        $photoCategories  = Photocategory::get();
+        $hotelPhotos = array();
+        $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures'));
+    }
+
+    public function hotelPhoto(Request $request){
+        $Id = $request->id;
+        $hotelId = $request->hotel_id;
+        $categoryId = $request->category_id;
+        $hotel = Hotel::where('UUID', $Id)->first();
+        $hotelPhotos = HotelPhoto::where('hotel_id', $hotel->id)->where('category_id', $categoryId)->get();
+        return view('frontend::hotel.photo', compact('hotel','hotelPhotos'));
     }
 
     public function hotelReview(Request $request)
     {
         $hotelId = $request->hotel_id;
         $hotel = Hotel::where('UUID', $hotelId)->first();
-
         if ($hotel == null) {
             $data = array(
                 'review' => '',
                 'rating' => '',
                 'hotelData'  => $hotel
-            );  
+            );
         }else{
             $data['hotelRating'] = listHotelRating($hotel->id);
         }

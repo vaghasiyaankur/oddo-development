@@ -504,7 +504,7 @@
                     <div class="slick-wrapper position-relative">
                         <div id="slick1" class="result-swpier-img">
                             @foreach ($propertyTypes as $propertyType)
-                                <div class="slide-item position-relative">
+                                <div class="slide-item position-relative homeslideItem">
                                     <div class="t-city-card-img position-relative"><img
                                             src="{{ asset('storage/' . @$propertyType->image) }}"
                                             style="width: 327px; height: 401px;" class="img-fluid"></div>

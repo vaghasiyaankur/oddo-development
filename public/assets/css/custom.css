@@ -803,7 +803,7 @@ header.header .navbar .dropdown .dropdown-btn {
     font-weight: 900;
 }
 
-.t-city-card-img:before {
+.homeslideItem .t-city-card-img:before {
     content: "";
     display: block;
     position: absolute;
@@ -817,6 +817,7 @@ header.header .navbar .dropdown .dropdown-btn {
     background: rgb(0 0 0 / 27%);
     border-radius: 25px;
 }
+
 
 /*  */
     /* filter mobile button css */
@@ -832,7 +833,10 @@ header.header .navbar .dropdown .dropdown-btn {
     align-items: center;
     overflow-x: auto;
 }
-.select--your-destination div label input {margin-right: 100px;}
+
+.select--your-destination div label input {
+    margin-right: 100px;
+}
 
 .select--your-destination .cat {
     margin: 0 7px;
@@ -842,29 +846,31 @@ header.header .navbar .dropdown .dropdown-btn {
     color: #6a78c7;
     white-space: nowrap;
 }
+
 .select--your-destination .cat label span {
-  text-align: center;
-  padding: 4px 17px;
-  display: block;
-  font-weight: 600;
-  transition: 0.2s all;
-  /* background-color: #e6e8f5  !important; */
+    text-align: center;
+    padding: 4px 17px;
+    display: block;
+    font-weight: 600;
+    transition: 0.2s all;
+    /* background-color: #e6e8f5  !important; */
 }
+
 .select--your-destination .cat label input {
     position: absolute;
     display: none;
     color: #fff !important;
 }
-.select--your-destination .cat input:checked + span {
+
+.select--your-destination .cat input:checked+span {
     color: #ffffff;
-    background-color: #6a78c7  !important;
+    background-color: #6a78c7 !important;
 }
-.select--your-destination .cat label:hover{
-    background-color: #e6e8f5 !important; 
+
+.select--your-destination .cat label:hover {
+    background-color: #e6e8f5 !important;
     border-radius: 4px;
 }
-
-
 
 
 /****** Top cities section end *******/
@@ -1010,10 +1016,8 @@ header.header .navbar .dropdown .dropdown-btn {
 
 
 /******search result side bar start******/
-.hotel-result.search-result
-    .search-result-inner
-    .hotel-result-form
-    .search-input {
+
+.hotel-result.search-result .search-result-inner .hotel-result-form .search-input {
     border: 1px solid #878996;
     border-radius: 5px;
     padding: 1px 16px;
@@ -1240,6 +1244,7 @@ header.header .navbar .dropdown .dropdown-btn {
 
 .hotel-result .img-popup-slider .img-swiper .slider-single img {
     width: 100%;
+    object-fit: cover;
 }
 
 .hotel-result .img-popup-slider .img-swiper .slick-next:before {
@@ -1274,7 +1279,7 @@ header.header .navbar .dropdown .dropdown-btn {
     height: 100%;
     max-height: 640px;
 }
-   
+
 
 /****** View360 popup end *******/
 
@@ -1620,7 +1625,7 @@ header.header .navbar .dropdown .dropdown-btn {
     color: #393c52;
 }
 
- .reviews-popup-main .popup-content-main {
+.reviews-popup-main .popup-content-main {
     padding: 16px 26px 17px 40px;
 }
 
@@ -1658,7 +1663,7 @@ header.header .navbar .dropdown .dropdown-btn {
     text-align: center;
 }
 
-.reviews-popup-inner .total-review .total-review-text{
+.reviews-popup-inner .total-review .total-review-text {
     padding: 8px 9px;
     background: orange;
     border-radius: 5px;

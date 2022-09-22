@@ -1,3 +1,42 @@
+@push('css')
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------- Slick css cdn ------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
+
+    <!------ Swiper css link ------>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">
+
+    <style>
+        .img-popup-slider .img-swiper .slider-single img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-popup-slider .img-swiper .slick-next:before {
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.img-popup-slider .img-swiper .slick-prev:before {
+    content: "\f104";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.img-popup-slider .img-swiper {
+    width: 100%;
+    max-width: 857px;
+    margin: 0 auto;
+}
+    </style>
+@endpush
+
 @forelse ($hotels as $hotel)
 <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -10,67 +49,56 @@
                     </span>
                 </div>
                 <div class="upload-delete-button-step d-flex justify-content-between flex-wrap">
-                    <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Albums</a>
+                    @if ($hotel->photo)
+                        <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">Albums</a>
+                    @endif
                     <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
-                    <a href="{{route('edit.proeprty', ['id' => $hotel->UUID])}}"
+                    <a href="{{route('basic-info', ['id' => $hotel->UUID])}}"
                         class="white-button-step py-2 d-flex align-items-center me-2 px-3">Edit Property</a>
                     <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center propertyDelete"
                         data-value="{{ $hotel->UUID }}">Delete</a>
                 </div>
             </div>
-
-            {{-- <div class="social-media mt-4 d-flex">
-                <div class="social-text mb-0 mr-3">
-                    <div class="dog-text">Share with:</div>
-                </div>
-                <div class="social-icon">
-                    <div class="share-with-your-friend social_back">
-                        <ul class="share-this mb-0">
-                            <li class="share-social-icon mr-2 share-button">
-                                <a href="javascript:;" class="share-icon-text">
-                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/share.svg"
-                                        alt=""><span class="share-span">ShareThis</span>
-                                </a>
-                            </li>
-                            <li class="share-social-icon mr-2 position-relative">
-                                <a href="javascript:;" class="share-anchor"
-                                    data-url="https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32"
-                                    id="dogsite-paste-32" onclick="copyToClipboard('#dogsite-paste-32')">
-                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/copy.svg"
-                                        alt="">
-                                </a>
-                                <p class="copied-tooltip">Copied</p>
-                            </li>
-                            <li class="share-social-icon mr-2">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32"
-                                    class="share-anchor" target="_blank">
-                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/facebook-icon.svg"
-                                        alt="">
-                                </a>
-                            </li>
-                            <li class="share-social-icon mr-2">
-                                <a href="https://twitter.com/intent/tweet?text=Default+share+text&amp;url=https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32"
-                                    class="share-anchor" target="_blank">
-                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/twitter-icon.svg"
-                                        alt="">
-                                </a>
-                            </li>
-
-                            <li class="share-social-icon mr-2">
-                                <a href="https://wa.me/?text=https://dev.idratherbewithmydog.net/dogsite/tn4v3Lh1KB32"
-                                    class="share-anchor" target="_blank">
-                                    <img src="https://dev.idratherbewithmydog.net/themes/irbwmd/assets/images/icon/whatsapp.svg"
-                                        alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
-    {{-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"></div> --}}
 </div>
+
+  <!------- img slider popup start -------->
+  <div class="modal fade img-popup-slider" id="image_{{ $hotel->UUID }}" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-end">
+                <button type="button" data-bs-dismiss="modal" class="modal-close"
+                    aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body display-flex-items py-sm-5">
+                <div class="img-swiper">
+                    <div class="slider slider-single mb-5">
+                        @foreach ($hotel->photos as $photo)
+                            <div class="slider-single-img"><img
+                                    src="{{ asset('storage/' . @$photo->photos) }}"
+                                    alt="" style="width: 857px; height: 551px;">
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="slider slider-nav">
+                        @foreach ($hotel->photos as $photo)
+                            <div class="slder-nav-img d-block"><img
+                                    src="{{ asset('storage/' . @$photo->photos) }}"
+                                    class="me-2" alt=""
+                                    style="width: 72px; height: 72px;">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------- img slider popup end -------->
 @empty
 {{-- FOR EMPTY TABLE --}}
 <main data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1000"
@@ -90,3 +118,73 @@
     </div>
 </main>
 @endforelse
+
+@push('scripts')
+{{-- <script src="{{ asset('assets/js/custom.js') }}"></script> --}}
+    <script>
+        $('.slider-single').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            loop: true,
+            arrows: true,
+            draggable: false,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
+
+        $('.slider-nav').slick({
+            slidesToShow: 10,
+            slidesToScroll: 1,
+            asNavFor: '.slider-single',
+            dots: false,
+            loop: true,
+            draggable: false,
+            centerMode: true,
+            focusOnSelect: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 8,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 7,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 6,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 360,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        });
+    </script>
+@endpush

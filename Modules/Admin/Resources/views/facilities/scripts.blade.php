@@ -185,7 +185,7 @@ $(document).ready(function() {
                 toastMixin.fire({ title: res.success, icon: 'success' });
                 $(".createFaclityForm").trigger("reset");
                 $("#facilityCreate").modal("hide");
-                facilitiesList(search);
+                facilitiesList();
                 setTimeout(function() {
                     $('.loadingShow span').css('display', 'none');
                     $('.loadingHide').removeClass('d-none');

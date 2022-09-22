@@ -54,8 +54,14 @@ return [
         'key' => 'rzp_test_ImnZdPCDKBmCSP',
         'secret' => 'vTX48Qk4Idt5gc49386hu3Ra'
     ],
+    
     'stripe' => [
         'key' => 'pk_test_51LJX8FSEPnfSjpsWa2KgzxFuk0i4inCFJvbFrx96EEaEl9RV7lw3UP0q5JSoVwsooAbtDKf67xwo4ErkRZ2kbR2400ohpvqobG',
         'secret' => 'sk_test_51LJX8FSEPnfSjpsW8odoNKmbHfWkTZbJhoNp3szgE5SyyFuK9h0JIhf33sgHXcsQL13mq4gM7hM5c7stit7sD3jQ00Ckh57Pc5',
+    ],
+    
+    'paypal' => [
+        'key' => 'AaOFHm9cvyu_v8w-gRkli4cfh5ltjx7zjeC9BOOv8Q9Wd4uEEAhOesCFB0thnCV-eiX0AqCHDbWjrSJi',
+        'secret' => 'EAkWlkraPbYJOqLofZ6ZUxEHBIgrAcDLCiKvQeWtICNkiQsPjrYjucqKC2yeUN4em-svKeH8m7JRq5uy',
     ],
 ];

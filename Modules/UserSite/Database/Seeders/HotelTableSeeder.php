@@ -115,6 +115,7 @@ class HotelTableSeeder extends Seeder
                         'photos_path' => Null,
                         'room_id'     => $roomEntry->id,
                         'hotel_id'    => $hotelEntry->id,
+                        'category_id' => '1',
                 ];
 
 

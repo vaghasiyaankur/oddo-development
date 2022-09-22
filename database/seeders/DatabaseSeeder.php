@@ -30,7 +30,7 @@ use Modules\UserSite\Database\Seeders\ShortCodeMailTemplateTableSeeder;
 use Modules\UserSite\Database\Seeders\PaymentTableSeeder;
 use Modules\UserSite\Database\Seeders\BookingTableSeeder;
 use Modules\UserSite\Database\Seeders\ReviewTableSeeder;
-
+use Modules\UserSite\Database\Seeders\PhotocategoryTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            PhotocategoryTableSeeder::class,
             UserTableSeeder::class,
             CountryTableSeeder::class,
             CityTableSeeder::class,
@@ -67,6 +68,7 @@ class DatabaseSeeder extends Seeder
             PaymentTableSeeder::class,
             BookingTableSeeder::class,
             ReviewTableSeeder::class,
+            
         ]);
     }
 }

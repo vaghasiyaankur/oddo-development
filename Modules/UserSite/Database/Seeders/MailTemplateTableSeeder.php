@@ -51,6 +51,11 @@ class MailTemplateTableSeeder extends Seeder
                 'booking request approve',
                 'demo',
                 '1,2'
+            ],[
+                'Give Feedback',
+                'Give Feedback',
+                'demo',
+                '1,2'
             ],
         ];
 

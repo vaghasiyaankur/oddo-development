@@ -1,4 +1,3 @@
-{{-- {{app()}} --}}
 <table class="table align-middle table-nowrap mb-0 ">
     <thead>
         <tr>

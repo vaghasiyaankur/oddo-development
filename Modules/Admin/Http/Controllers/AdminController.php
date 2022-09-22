@@ -107,7 +107,6 @@ class AdminController extends Controller
     public function deleteNotification(Request $request)
     {
         $hotel = Notification::where('hotel_id',$request->hotel_id)->delete();
-
         return response()->json(["message" => 'notification delete successfully.'], 200);
     }
 }

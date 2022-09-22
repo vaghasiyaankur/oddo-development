@@ -4,7 +4,7 @@
         </div>
         <ul class="navbar-nav" id="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link menu-link" href="{{ route('dashboard') }}">
+                <a class="nav-link menu-link  {{ Request::routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                     <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                 </a>
             </li> <!-- end Dashboard Menu -->
@@ -72,6 +72,11 @@
                         <li class="nav-item">
                             <a class="nav-link menu-link {{ Request::routeIs('bed.index') ? 'active' : '' }}" href="{{ route('bed.index') }}">
                                 <i class="ri-apps-2-line"></i> <span data-key="t-apps">Bed</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::routeIs('photocategory.index') ? 'active' : '' }}" href="{{ route('photocategory.index') }}">
+                                <i class="ri-apps-2-line"></i> <span data-key="t-apps">Photo Category</span>
                             </a>
                         </li>
                     </ul>
