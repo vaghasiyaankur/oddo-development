@@ -48,8 +48,8 @@ class FeedbackMail extends Mailable
         $shortCodeValue = array_combine($shortCode, $shortCodeValues);
         $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
 
-        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::mail.giveFeedback')
+        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::mail.feedback')
                     ->subject($emailTemplate->mail_subject)
-                    ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $bookingId->user->name, 'emailContent' => $emailContent]);
+                    ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $bookingId->user->name, 'emailContent' => $emailContent, 'booking_id' => $bookingId->UUID]);
     }
 }
