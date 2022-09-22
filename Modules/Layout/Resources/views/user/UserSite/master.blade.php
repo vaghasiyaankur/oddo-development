@@ -1,4 +1,7 @@
-@php $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon() @endphp
+@php
+$logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon();
+$generalSetting = App\Models\GeneralSetting::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <title>odda / @yield('title')</title>
+  <title>{{ $generalSetting->site_name }} / @yield('title')</title>
   <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
   <!------- Bootstrap CSS Link------->
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
