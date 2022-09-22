@@ -537,8 +537,11 @@ hotel
                             <span class="side-btn ResetForm d-none">
                                 <a href="javascript:;" id="ResetForm" class="btn reset-btn Resetform">Reset</a>
                             </span>
+                            <button class="btn btn-filter-products-mobile d-block d-lg-none " type="button" data-bs-toggle="collapse" data-bs-target="#formReset" aria-expanded="false" aria-controls="formReset">
+                                <i class="fas fa-filter me-2"></i>Filter Property                
+                            </button>
                         </div>
-                        <form class="hotel-result-form" id="formReset">
+                        <form class="hotel-result-form " id="formReset">
                             <div class="hotels-result-search">
                                 <h5 class="search-heading">Search</h5>
                                 <div class="input-group align-items-center search-input">
@@ -550,7 +553,7 @@ hotel
                                     <span class="search-errors text-danger"></span>
                                 </div>
                             </div>
-                            <div class="hotels-result-sort pt-4">
+                            <div class="hotels-result-sort pt-3">
                                 <h5 class="search-heading ">Sort By</h5>
                                 <div class="form-check ">
                                     <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
@@ -1037,7 +1040,7 @@ hotel
                                         </label>
                                     </div>
                                 </div>
-                                <div class="hotels-results-neigh pt-4">
+                                <div class="hotels-results-neigh pt-2">
                                 </div>
                                 <div class="hotels-results-amenities pt-1">
                                     <div class="small-heading">
@@ -1071,7 +1074,7 @@ hotel
                     </aside>
                 </div>
                 <!-------- Search Hotel Result -------->
-                <div class="col-lg-9 position-relative hotelResultDiv">
+                <div class="col-lg-9 position-relative hotelResultDiv mt-4 mt-lg-0">
                     <input type="hidden" class="last_page_value" value="{{$hotels->lastPage()}}">
                     <input type="hidden" class="total_page" value="{{$hotels->total()}}">
                     @if (count($propertyTypeCounts))
@@ -1433,7 +1436,8 @@ $(document).ready(function(){
     // CSRF TOKEN
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            'X-Requested-With': 'XMLHttpRequest'
         }
     });
 

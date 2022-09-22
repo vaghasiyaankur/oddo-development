@@ -820,11 +820,18 @@ header.header .navbar .dropdown .dropdown-btn {
 
 
 /*  */
+    /* filter mobile button css */
+    .hotel-result .side-content .btn.btn-filter-products-mobile {
+        border: 1px solid #6a78c7;
+        white-space: nowrap;
+        text-align: center;
+    }
 
 .select--your-destination {
     display: flex;
-    justify-content: end;
+    /* justify-content: end; */
     align-items: center;
+    overflow-x: auto;
 }
 
 .select--your-destination div label input {
@@ -837,6 +844,7 @@ header.header .navbar .dropdown .dropdown-btn {
     border-radius: 4px;
     border: 1px solid #6a78c7;
     color: #6a78c7;
+    white-space: nowrap;
 }
 
 .select--your-destination .cat label span {

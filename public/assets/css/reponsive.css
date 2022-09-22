@@ -43,9 +43,9 @@
     .hotel-result.search-result
         .side-content
         .hotels-filter.result-mobile-view {
-        max-height: 550px;
+        /* max-height: 550px;
         margin-bottom: 50px;
-        overflow-y: scroll;
+        overflow-y: scroll; */
     }
     .homepage-swiper.swiper-container {
         height: 50vw;
@@ -90,6 +90,16 @@
         line-height: 25px;
         margin-bottom: 31px;
     }
+
+    /* filter property css */   
+    
+    .hotel-result .hotel-result-form{
+        display: none;
+    }
+    .hotel-result .hotel-result-form.show{
+        display: block !important;
+    }
+
 }
 @media screen and (max-width: 767px) {
     .s-top-city .s-top-city-inner .s-top-city-main .slick-prev {

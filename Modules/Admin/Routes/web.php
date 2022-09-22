@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function() {
         //profile
         Route::view('/profile', 'admin::profile.index')->name('profile');
 
-        // Amenity category 
+        // Amenity category
         Route::controller(AmenityCategoryController::class)->group(function(){
             Route::get('/amenity-category', 'amenityCategory')->name('amenityCategory.index');
             Route::post('/add-amenity-category', 'addAmenityCategory')->name('add.amenitycategory');
@@ -160,10 +160,12 @@ Route::prefix('admin')->group(function() {
 
         // booking
         Route::controller(BookingController::class)->group(function(){
-            // Route::get('booking', 'index')->name('booking.index');
-        Route::view('booking', 'admin::booking.index')->name('booking.index');
+            Route::get('booking', 'index')->name('booking.index');
+            Route::get('/booking-list', 'bookingList')->name('booking.list');
+            Route::post('/status-booking', 'statusBooking')->name('status.booking');
         });
 
+        // payment gateway
         Route::controller(PaymentGatewayController::class)->group(function(){
             Route::get('payment', 'index')->name('paymentGateway.index');
             Route::post('payment/status', 'paymentStatus')->name('paymentGateways.status');
@@ -181,22 +183,19 @@ Route::prefix('admin')->group(function() {
             Route::get('/show/razorpay', 'showRazorpay')->name('show.razorpay');
         });
 
+        // payment
         Route::controller(PaymentController::class)->group(function(){
             Route::get('payments', 'index')->name('payment.index');
             Route::get('/payment-list', 'paymentList')->name('payment.list');
         });
 
-        Route::controller(BookingController::class)->group(function(){
-            Route::get('booking', 'index')->name('booking.index');
-            Route::get('/booking-list', 'bookingList')->name('booking.list');
-            Route::post('/status-booking', 'statusBooking')->name('status.booking');
-        });
-
+        // review
         Route::controller(ReviewController::class)->group(function(){
             Route::get('review', 'index')->name('review.index');
             Route::get('review-list', 'ReviewList')->name('review.list');
         });
 
+        // admin
         Route::controller(AdminController::class)->group(function(){
             Route::post('notification', 'notification')->name('property.notification');
             Route::post('notification/show', 'showNotification')->name('notification.show');
