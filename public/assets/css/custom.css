@@ -820,12 +820,15 @@ header.header .navbar .dropdown .dropdown-btn {
 
 
 /*  */
-    /* filter mobile button css */
-    .hotel-result .side-content .btn.btn-filter-products-mobile {
-        border: 1px solid #6a78c7;
-        white-space: nowrap;
-        text-align: center;
-    }
+
+
+/* filter mobile button css */
+
+.hotel-result .side-content .btn.btn-filter-products-mobile {
+    border: 1px solid #6a78c7;
+    white-space: nowrap;
+    text-align: center;
+}
 
 .select--your-destination {
     display: flex;
@@ -2879,3 +2882,6 @@ section.hotel-room .room-card-main .single-card-img img {
 
 
 /*ORDER-HISTORY HOTEL REVIEW FORM POPUP END */
+
+
+/* css end */
