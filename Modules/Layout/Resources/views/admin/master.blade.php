@@ -1,14 +1,17 @@
-@php $logoFavicon = Modules\Admin\Http\Controllers\AdminController::logoFavicon() @endphp
+@php
+$logoFavicon = Modules\Admin\Http\Controllers\AdminController::logoFavicon();
+$generalSetting = App\Models\GeneralSetting::first();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>odda / @yield('title')</title>
+    <title>{{ $generalSetting->site_name }} / @yield('title')</title>
     <link rel="shortcut icon"
         class="favicon_image" href="{{ $logoFavicon->favicon == null ? asset('storage/' . $logoFavicon->default_favicon) : asset('storage/' . $logoFavicon->favicon) }}">
 

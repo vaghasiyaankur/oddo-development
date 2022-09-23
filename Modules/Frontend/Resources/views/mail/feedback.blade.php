@@ -113,10 +113,3 @@
     </table>
 </body>
 </html>
-<script>
-    $(document).ready(function(){
-        $(document).on('click','.ReviewButton',function(){
-            
-        });
-    });
-</script>

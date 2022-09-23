@@ -150,20 +150,6 @@
 <script>
     var baseUrl = $('#base_url').val();
 
-    // count notifiation
-    function notificationCount(){
-        $.ajax({
-            url: "{{route('property.notification')}}",
-            type: 'post',  
-            processData: false,
-            contentType: false, 
-            success: function(response){
-                var count = $('.notificationCount').html(response.hotelCount);
-                $('.hotelCount').val(response.hotelCount);
-            }
-        });
-    }
-
     $(document).ready(function(){
 
         $.ajaxSetup({
@@ -186,16 +172,16 @@
 
         function show() {
             $.ajax({
-                    url: "{{route('notification.show')}}",
-                    type: 'post',
-                    dataType: "HTML",
-                    processData: false,
-                    contentType: false,
-                    success: function(response){
-                        $('.notificationMainDiv').html(response);
-                        $('.notifactionDiv').addClass('show');
-                    }
-                });
+                url: "{{route('notification.show')}}",
+                type: 'post',
+                dataType: "HTML",
+                processData: false,
+                contentType: false,
+                success: function(response){
+                    $('.notificationMainDiv').html(response);
+                    $('.notifactionDiv').addClass('show');
+                }
+            });
         }
 
         // delete Notification
@@ -215,7 +201,24 @@
                     show();
                 },
             });
-        }); 
+        });
+
+        // count notifiation
+        function notificationCount(){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('property.notification')}}",
+                type: 'post',
+                processData: false,
+                contentType: false,
+                success: function(response){
+                    var count = $('.notificationCount').html(response.hotelCount);
+                    $('.hotelCount').val(response.hotelCount);
+                }
+            });
+        }
     });
 </script>
 @endpush

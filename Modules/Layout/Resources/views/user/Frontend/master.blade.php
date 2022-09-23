@@ -1,4 +1,7 @@
-@php $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon() @endphp
+@php
+    $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon();
+    $generalSetting = App\Models\GeneralSetting::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>odda / @yield('title')</title>
+    <title>{{ $generalSetting->site_name }} / @yield('title')</title>
     <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
     <!------- Bootstrap CSS Link------->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -36,14 +39,14 @@
 
     <!------- Timepiker css Link------->
     <link rel="stylesheet" href="{{ asset('assets/css/timepiker.css') }}">
-    
+
     <!-------- Custom CSS Link -------->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/reponsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style-responsive.css') }}">
 
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Icons Css -->
@@ -51,7 +54,7 @@
 
     <!-- Sweet Alert css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
-    
+
     @stack('css')
 
     <style>
@@ -78,7 +81,7 @@
             background-color: #7e8de7;
             border-color: #6A78C7;
         }
-  
+
         .log_in_modal_ .spinner-border{
             margin-top: 3px;
             float: right;
@@ -112,7 +115,7 @@
             /* width: 100%; */
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -180,7 +183,7 @@
     <!-- password-addon init -->
 
     <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
-    
+
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
     <!-- Sweet Alerts js -->
