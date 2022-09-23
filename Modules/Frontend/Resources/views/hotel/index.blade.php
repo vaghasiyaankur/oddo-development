@@ -1504,7 +1504,7 @@ $(document).ready(function(){
                 // $('.mainDivPropertyType').addClass('d-none');
                     $('.hotel_empty').removeClass('d-none');
                 }
-                console.log(response);
+                // console.log(response);
                 $(".hotelResultDiv").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -1620,7 +1620,7 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
-                console.log('done');
+                // console.log('done');
             }, error:function (response) {
                 console.log('fail');
             }
@@ -1647,7 +1647,7 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
-                console.log('done');
+                // console.log('done');
             }, error:function (response) {
                 console.log('fail');
             }

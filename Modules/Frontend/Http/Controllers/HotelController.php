@@ -33,8 +33,8 @@ class HotelController extends Controller
         $checkOut = request()->checkOut;
         $guest =  request()->guest;
         $room = request()->room;
-        $bed = explode(',' , request()->bed);
-        $propertyTypeName = explode(',' , request()->propertyTypeName);
+        request()->bed ? $bed = explode(',' , request()->bed) : $bed = array('');
+        request()->propertyTypeName ? $propertyTypeName = explode(',' , request()->propertyTypeName): $propertyTypeName = array('');
 
         $propertyName = request()->propertyName;
         $budgetMin = request()->budgetMin;
