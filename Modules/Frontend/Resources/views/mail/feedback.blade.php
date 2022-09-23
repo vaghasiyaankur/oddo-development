@@ -81,7 +81,7 @@
                                                     {{-- <a href="route('orderhistory.index')" class="reviewPopUp" data-id="96956022">
                                                         <span class="reviewBtn me-5 ">Add Review</span>
                                                     </a> --}}
-                                                    <a data-click-track-id="37" class="ReviewButton" href="{{ route('hotel.index',['id' => $booking_id])}}"
+                                                    <a data-click-track-id="37" class="ReviewButton" href="{{ route('hotel.index')}}"
                                                         style="margin:0 auto; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 12px; font-smoothing: always; font-style: normal; font-weight: 600; letter-spacing: 0.7px; line-height: 48px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 218px; background-color: #6a78c7; border-radius: 28px; display: block; text-align: center; text-transform: uppercase"
                                                         target="_blank">
                                                         Write a Review

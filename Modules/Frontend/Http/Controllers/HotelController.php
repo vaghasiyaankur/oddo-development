@@ -131,9 +131,12 @@ class HotelController extends Controller
         $hotel = Hotel::where('slug', $slug)->first();
         $hotelRating = listHotelRating($hotel->id);
         $photoCategories  = Photocategory::get();
+        $CategoryId  = Photocategory::where('name','!=', 'other')->pluck('id');
         $hotelPhotos = array();
         $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures'));
+        $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id',$CategoryId)->exists();
+        
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures','checkImage'));
     }
 
     public function hotelPhoto(Request $request){

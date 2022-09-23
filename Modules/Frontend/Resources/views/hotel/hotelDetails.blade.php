@@ -85,46 +85,47 @@
     <!------- h-details-gallery section start -------->
     {{-- <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{ $hotel->UUID }}">
     <input type="hidden" value="{{ @$hotel->category->id }}" class="category_id_{{ $hotel->UUID }}"> --}}
-    <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
-        <div class="container">
-            <div class="h-gallery-inner border--bottom">
-                <div class="row">
-                    @foreach ($photoCategories as $photoCategory)
-                        <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-3 text-start h-gallery--flex">
-                            <div class="h-gallery-single mainPhotoPopup">
-                                <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">{{ $photoCategory->name }}</h5>
-                                <div class="gallery-single-img">
-                                    <div class="swiper-s-img">
-                                        <a href="#" data-bs-toggle="modal" class="photoPopup"
-                                            data-id="{{ $hotel->UUID }}" data-category='{{ $photoCategory->id }}'>
-                                            <img src="{{ asset('assets/images/h-details-1.png') }}"
-                                                class="img-fluid img-wrapper"></a>
+    @if($checkImage)
+        <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
+            <div class="container">
+                <div class="h-gallery-inner border--bottom">
+                    <div class="row">
+                        @foreach ($photoCategories as $photoCategory)                              
+                            <div class="col-6 col-md-4 col-lg-3 mb-2 mb-lg-3 text-start h-gallery--flex">
+                                <div class="h-gallery-single mainPhotoPopup">
+                                    <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">{{ $photoCategory->name }}</h5>
+                                    <div class="gallery-single-img">
+                                        <div class="swiper-s-img">
+                                            <a href="#" data-bs-toggle="modal" class="photoPopup"
+                                                data-id="{{ $hotel->UUID }}" data-category='{{ $photoCategory->id }}'>
+                                                <img src="{{ asset('assets/images/h-details-1.png') }}"
+                                                    class="img-fluid img-wrapper"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-    <!------ Hotel details swiper start -------->
-    {{-- <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
-        <div class="container">
-            <div class="saved-hotels-details p-a-details pt-4 pb-5">
-                <h5 class="heading-fs-16  purple-dark">Hotel Pictures ({{ $hotelPictures->count() }})</h5>
-                <div class="mb-5 p-a-swpier">
-                    @foreach ($hotelPictures as $hotelPicture)
-                        <div class="me-3">
-                            <img src="{{ asset('storage/' . $hotelPicture->photos) }}" class="img-fluid" style="width: 425px; height: 415px; object-fit:cover;" alt="">
-                        </div>
-                    @endforeach
+        </section>
+    @else
+        <!------ Hotel details swiper start -------->
+        <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
+            <div class="container">
+                <div class="saved-hotels-details p-a-details pt-4 pb-5">
+                    <h5 class="heading-fs-16  purple-dark">Hotel Pictures ({{ $hotelPictures->count() }})</h5>
+                    <div class="mb-5 p-a-swpier">
+                        @foreach ($hotelPictures as $hotelPicture)  
+                            <div class="me-3">
+                                <img src="{{ asset('storage/' . $hotelPicture->photos) }}" class="img-fluid" style="width: 425px; height: 415px; object-fit:cover;" alt="">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section> --}}
+        </section>
+    @endif
     <!--------- Hotel details swiper end -------->
 
     <!------- h-details-gallery section end -------->
