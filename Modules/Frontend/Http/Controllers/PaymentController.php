@@ -93,13 +93,18 @@ class PaymentController extends Controller
             'quantity' => 1,
         ]],
             'mode' => 'payment',
-            'success_url' => 'http://127.0.0.1:8000/payment/succeeded',
-            'cancel_url' => 'http://127.0.0.1:8000/cancel',
+            'success_url' => route('succeed.stripe'),
+            'cancel_url' => route('cancel.stripe'),
         ]);
 
 
         Session::put('paymentStripe', $session);
         return response()->json(['session' => $session], 200);
+    }
+
+    public function cancelStripe()
+    {
+        return redirect()->back();
     }
 
     public function StripeSucceed(Request $request){

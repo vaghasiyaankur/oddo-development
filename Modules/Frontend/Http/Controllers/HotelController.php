@@ -164,4 +164,15 @@ class HotelController extends Controller
 
         return view('frontend::hotel.review', $data);
     }
+
+    public function hotelPayment(Request $request)
+    {
+        $paymentGateways = paymentGetways::active()->get();
+        $hotel = Hotel::whereUuid($request->hotelId)->first();
+        $amount = $hotel->room->price_room;
+        $room = $hotel->room->number_of_room;
+        $hotel_amount = $amount * $room;
+        
+        return view('frontend::hotel.payment', compact('paymentGateways', 'hotel', 'hotel_amount'));
+    }
 }

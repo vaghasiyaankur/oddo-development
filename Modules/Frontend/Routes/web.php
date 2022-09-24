@@ -58,6 +58,7 @@ Route::controller(Auth\Socialite\GoogleController::class)->group(function(){
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
 
+// facebook socialite
 Route::controller(Auth\Socialite\FacebookController::class)->group(function(){
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
@@ -86,20 +87,27 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
 
     // payment
     Route::prefix('payment')->controller(PaymentController::class)->group(function(){
-        Route::post('show/stripe', 'showStripe')->name('show.stripe');
+        // stripe
         Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
-        Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
+        Route::post('show/stripe', 'showStripe')->name('show.stripe');
+        Route::get('cancel/stripe', 'cancelStripe')->name('cancel.stripe');
 
+        // razorpay
+        Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
+        
+        // paypal
         Route::get('createpaypal','createpaypal')->name('createpaypal');
         Route::get('processPaypal','processPaypal')->name('processPaypal');
         Route::get('processSuccess','processSuccess')->name('processSuccess');
         Route::get('processCancel','processCancel')->name('processCancel');
     });
-
-
 });
 // review view url
 Route::post('/hotel/review', 'HotelController@hotelReview')->name('hotel.review');
 
 // photo view url
 Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
+
+// payment view url
+Route::post('/hotel/payment', 'HotelController@hotelPayment')->name('hotel.payment');
+
