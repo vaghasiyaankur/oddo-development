@@ -112,7 +112,7 @@ class HotelTableSeeder extends Seeder
                 $photo = [
                         'main_photo'  => '1',
                         'photos'      => 'hotels/'.$k.$key.'.jpg',
-                        'photos_path' => Null,
+                        'real_photo' => 'hotel/'.$k.$key.'.jpg',
                         'room_id'     => $roomEntry->id,
                         'hotel_id'    => $hotelEntry->id,
                         'category_id' => '1',

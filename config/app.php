@@ -198,7 +198,8 @@ return [
         App\Providers\TimeZoneServiceProvider::class,
         App\Providers\EmailSettingServiceProvider::class,
         App\Providers\PaymentGatewayServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
+        
     ],
 
     /*
@@ -217,6 +218,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'Image' => 'Intervention\Image\Facades\Image'
     ])->toArray(),
 
 ];

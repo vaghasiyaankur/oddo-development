@@ -9,6 +9,7 @@
         "cviebrock/eloquent-sluggable": "^9.0",
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "lamalama/laravel-wishlist": "^0.2.1",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",

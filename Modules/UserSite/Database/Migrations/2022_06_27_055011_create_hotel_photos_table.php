@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('UUID')->unique()->nullable();
             $table->string('main_photo')->nullable();
             $table->string('photos')->nullable();
-            $table->string('photos_path')->nullable();
+            $table->string('real_photo')->nullable();
             $table->integer('room_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned()->nullable();

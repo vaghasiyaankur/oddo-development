@@ -41,9 +41,10 @@ Photo
                                         </div>
                                         <input type="hidden" class="hotelId" value="{{@$hotelDetail->UUID}}">
                                         <div class="sortable row editImageDiv" id="gallery" data-id="1">
+                                            <span id="main-photo-error" class="text-danger ui-sortable-handle"></span>
                                             @if(isset($hotelPhotos))
                                                 @foreach ($hotelPhotos as $hotelPhoto)
-                                                    <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0   position-relative" name="image"  id="dz-preview-template">
+                                                    <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 main-photo-wrapper position-relative" name="image"  id="dz-preview-template">
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">
                                                                 <div class="gallery-img m-0">
@@ -216,12 +217,14 @@ Photo
         method: 'post',
         autoProcessQueue: false,
         autoQueue: false,
-        maxFilesize:30,
+        autoDiscover: false,
+        maxFilesize: 50,
         maxFiles: 100,
         acceptedFiles: ".jpeg,.jpg,.png,.gif",
         thumbnailWidth: '500',
         thumbnailHeight: '500',
         clickable: true,
+        maxThumbnailFilesize : 20,
         previewsContainer: "#gallery",
         previewTemplate: document.querySelector('#hotel-photo-preview').innerHTML,
         init : function() {

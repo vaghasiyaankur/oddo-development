@@ -334,18 +334,30 @@ class PropertyController extends Controller
         $image = str_replace(' ', '+', $image);
         $imageName = 'Img_'.Str::random(10).'.'.$extension;
         $img =base64_decode($image);
-        Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
+        Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
 
+        // compress file 
+        $path = 'app\public\hotels';
+        $storageDestinationPath=storage_path($path);
+        
         $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
-
         $hotel_id = $hotelId;
+
+        $x=10;
+        if (!\File::exists($storageDestinationPath)) {
+            \File::makeDirectory($storageDestinationPath, 0755, true);
+        }
+        
+         \Image::make(base64_decode($image))
+         ->save($storageDestinationPath."\\".$imageName,$x);
+
 
         $hotelPhotoId = '';
         $hotelphoto = HotelPhoto::updateOrCreate([ 'UUID' => $hotelPhotoId ],[
             'main_photo' => $request->main,
             'photos' => 'hotels/'.$imageName,
             'hotel_id' => $hotel_id,
-            // 'room_id' => $hotel_id,
+            'real_photo' => 'hotel/'.$imageName,
             'category_id' => $request->photoCategory,
         ]);
 
@@ -372,8 +384,11 @@ class PropertyController extends Controller
             $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
             $hotelPhotoPath = $hotelPhoto->first();
             $image_path = public_path('storage/'.$hotelPhotoPath->photos);
+            $real_path = public_path('storage/'.$hotelPhotoPath->real_photo);
             if (File::exists($image_path)) {
                 unlink($image_path);
+                unlink($real_path);
+
             }
             $hotelPhoto->delete();
         }
