@@ -367,30 +367,33 @@ class PropertyController extends Controller
     public function updatePhotos(Request $request)
     {
        $editImages = $request->EditImages;
+        if($editImages != null){
+            foreach($editImages as $key => $editImage) {
+                $hotelPhotoId = $editImage['id'];
+                $hotelPhotoPType = $editImage['propertyType'];
 
-       foreach ($editImages as $key => $editImage) {
-            $hotelPhotoId = $editImage['id'];
-            $hotelPhotoPType = $editImage['propertyType'];
-
-            $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
-            $editImageData->update([
-            'category_id' => $hotelPhotoPType
-            ]);
+                $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
+                $editImageData->update([
+                'category_id' => $hotelPhotoPType
+                ]);
+            }
         }
 
         $hotelPhotos = json_decode($request->deleteImages);
 
-        foreach($hotelPhotos as $hotelphoto) {
-            $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
-            $hotelPhotoPath = $hotelPhoto->first();
-            $image_path = public_path('storage/'.$hotelPhotoPath->photos);
-            $real_path = public_path('storage/'.$hotelPhotoPath->real_photo);
-            if (File::exists($image_path)) {
-                unlink($image_path);
-                unlink($real_path);
+        if($hotelPhotos != null){
+            foreach($hotelPhotos as $hotelphoto) {
+                $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
+                $hotelPhotoPath = $hotelPhoto->first();
+                $image_path = public_path('storage/'.$hotelPhotoPath->photos);
+                $real_path = public_path('storage/'.$hotelPhotoPath->real_photo);
+                if (File::exists($image_path)) {
+                    unlink($image_path);
+                    unlink($real_path);
 
+                }
+                $hotelPhoto->delete();
             }
-            $hotelPhoto->delete();
         }
         $id = request()->hotelId;
         return response()->json(['redirect_url' => route('policy', ['id' => $id])]);
