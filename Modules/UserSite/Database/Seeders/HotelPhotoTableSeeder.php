@@ -23,7 +23,7 @@ class HotelPhotoTableSeeder extends Seeder
             [
                 'main_photo'  => '1',
                 'photos'      => 'Hotel/hotel-1.jpg',
-                'photos_path' => Null,
+                'real_photo' => 'Hotel/hotel-1.jpg',
                 'room_id'     => '1',
                 'hotel_id'    => '1',
                 'created_at'  => date("Y-m-d H:i:s"),
@@ -31,7 +31,7 @@ class HotelPhotoTableSeeder extends Seeder
             ],[
                 'main_photo'  => '0',
                 'photos'      => 'Hotel/hotel-2.jpg',
-                'photos_path' => Null,
+                'real_photo' => 'Hotel/hotel-2.jpg',
                 'room_id'     => '1',
                 'hotel_id'    => '1',
                 'created_at'  => date("Y-m-d H:i:s"),
@@ -39,7 +39,7 @@ class HotelPhotoTableSeeder extends Seeder
             ],[
                 'main_photo'  => '0',
                 'photos'      => 'Hotel/hotel-3.jpg',
-                'photos_path' => Null,
+                'real_photo' => 'Hotel/hotel-3.jpg',
                 'room_id'     => '1',
                 'hotel_id'    => '1',
                 'created_at'  => date("Y-m-d H:i:s"),
@@ -47,7 +47,7 @@ class HotelPhotoTableSeeder extends Seeder
             ],[
                 'main_photo'  => '1',
                 'photos'      => 'Hotel/hotel-4.jpg',
-                'photos_path' => Null,
+                'real_photo' => 'Hotel/hotel-4.jpg',
                 'room_id'     => '2',
                 'hotel_id'    => '2',
                 'created_at'  => date("Y-m-d H:i:s"),
@@ -55,7 +55,7 @@ class HotelPhotoTableSeeder extends Seeder
             ],[
                 'main_photo'  => '0',
                 'photos'      => 'Hotel/hotel-5.jpg',
-                'photos_path' => Null,
+                'real_photo' => 'Hotel/hotel-5.jpg',
                 'room_id'     => '2',
                 'hotel_id'    => '2',
                 'created_at'  => date("Y-m-d H:i:s"),
@@ -63,7 +63,7 @@ class HotelPhotoTableSeeder extends Seeder
             ],[
                 'main_photo'  => '0',
                 'photos'      => 'Hotel/hotel-6.jpg',
-                'photos_path' => Null,
+                'real_photo' => 'Hotel/hotel-6.jpg',
                 'room_id'     => '2',
                 'hotel_id'    => '2',
                 'created_at'  => date("Y-m-d H:i:s"),

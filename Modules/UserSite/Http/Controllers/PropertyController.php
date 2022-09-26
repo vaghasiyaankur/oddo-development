@@ -334,18 +334,30 @@ class PropertyController extends Controller
         $image = str_replace(' ', '+', $image);
         $imageName = 'Img_'.Str::random(10).'.'.$extension;
         $img =base64_decode($image);
-        Storage::disk('public')->put('hotels'.'/'.$imageName, base64_decode($image));
+        Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
 
+        // compress file 
+        $path = storage_path('/app/public/hotels');
+        $storageDestinationPath=$path;
+        
         $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
-
         $hotel_id = $hotelId;
+
+        $x=5;
+        if (!\File::exists($storageDestinationPath)) {
+            \File::makeDirectory($storageDestinationPath, 0755, true);
+        }
+        
+         \Image::make(base64_decode($image))
+         ->save($storageDestinationPath."/".$imageName,$x);
+
 
         $hotelPhotoId = '';
         $hotelphoto = HotelPhoto::updateOrCreate([ 'UUID' => $hotelPhotoId ],[
             'main_photo' => $request->main,
             'photos' => 'hotels/'.$imageName,
             'hotel_id' => $hotel_id,
-            // 'room_id' => $hotel_id,
+            'real_photo' => 'hotel/'.$imageName,
             'category_id' => $request->photoCategory,
         ]);
 
@@ -355,27 +367,33 @@ class PropertyController extends Controller
     public function updatePhotos(Request $request)
     {
        $editImages = $request->EditImages;
+        if($editImages != null){
+            foreach($editImages as $key => $editImage) {
+                $hotelPhotoId = $editImage['id'];
+                $hotelPhotoPType = $editImage['propertyType'];
 
-       foreach ($editImages as $key => $editImage) {
-            $hotelPhotoId = $editImage['id'];
-            $hotelPhotoPType = $editImage['propertyType'];
-
-            $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
-            $editImageData->update([
-            'category_id' => $hotelPhotoPType
-            ]);
+                $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
+                $editImageData->update([
+                'category_id' => $hotelPhotoPType
+                ]);
+            }
         }
 
         $hotelPhotos = json_decode($request->deleteImages);
 
-        foreach($hotelPhotos as $hotelphoto) {
-            $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
-            $hotelPhotoPath = $hotelPhoto->first();
-            $image_path = public_path('storage/'.$hotelPhotoPath->photos);
-            if (File::exists($image_path)) {
-                unlink($image_path);
+        if($hotelPhotos != null){
+            foreach($hotelPhotos as $hotelphoto) {
+                $hotelPhoto = HotelPhoto::whereUuid($hotelphoto);
+                $hotelPhotoPath = $hotelPhoto->first();
+                $image_path = public_path('storage/'.$hotelPhotoPath->photos);
+                $real_path = public_path('storage/'.$hotelPhotoPath->real_photo);
+                if (File::exists($image_path)) {
+                    unlink($image_path);
+                    unlink($real_path);
+
+                }
+                $hotelPhoto->delete();
             }
-            $hotelPhoto->delete();
         }
         $id = request()->hotelId;
         return response()->json(['redirect_url' => route('policy', ['id' => $id])]);
