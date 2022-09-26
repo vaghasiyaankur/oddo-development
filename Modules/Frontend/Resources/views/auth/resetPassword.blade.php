@@ -72,7 +72,7 @@
                                             <label class="form-label" for="newPassword">New Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input type="password" name="newPassword" class="form-control pe-5 newPassword"
-                                                    placeholder="Enter new password" id="newPassword">
+                                                    placeholder="Enter new password" id="newPassword"  autocomplete="off">
                                                 <span class="text-danger" id="newPassword-error"></span>
                                             </div>
                                         </div>

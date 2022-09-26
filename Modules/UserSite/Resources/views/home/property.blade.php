@@ -43,7 +43,12 @@
         <div class="share-section mb-5">
             <div class="drag-section justify-content-between flex-wrap">
                 <div class="d-flex align-items-center mb-3 mb-lg-0">
-                    <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" alt="" class="drag-image">
+                    @if (@$hotel->mainPhoto->first()->photos)
+                        <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" alt="" class="drag-image">
+                    @else
+                        <img src="{{asset('assets/images/default-image.png')}}" alt="default" class="drag-image">
+                    @endif
+                    
                     <span>
                         <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>
                     </span>

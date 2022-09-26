@@ -148,69 +148,6 @@
     }
 </script>
 
-<!-- custom-selector js -->
-{{-- <script>
-    $(document).ready(function() {
-       $(".select-div").click(function() {
-           $('.select-room').html('');
-           var index = $('.select_room').val();
-           for (var i = 1; i <= index; i++) {
-               $number = i;
-               addRoom($number);
-           }
-           $(".select-room").toggleClass("option-none");
-       });
-
-       $(".js-example-tags").select2({
-           tags: true
-       });
-
-       $(document).on("click", function(event) {
-           var $trigger = $(".bed-selector");
-           if ($trigger !== event.target && !$trigger.has(event.target).length) {
-               $(".select-room").addClass("option-none");
-           }
-       });
-
-       function addRoom($number) {
-           let searchParams = new URLSearchParams(window.location.search)
-           if(!searchParams){
-               let bed = searchParams.get('bed').split(",");
-               var king = '';
-               var queen = '';
-               var twin = '';
-               if(bed.includes('King')){
-                   king = 'checked';
-               }
-               if(bed.includes('Queen')){
-                   queen = 'checked';
-               }
-               if(bed.includes('twin')){
-                   twin = 'checked';
-               }
-           }
-           $room = $(`<div class="room"><div class="title-container">
-                       <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
-                   </div>
-                       <section class="dropdown-container">
-                           <div class="dropdown-inner">
-                               <input type="checkbox" class="form-check-input" id="king_` name="bed" + $number + `" " value="King" `+king+`>
-                               <label for="king_` + $number + `">1 King</label>
-                           </div>
-                           <div class="dropdown-inner">
-                               <input type="checkbox" class="form-check-input" id="twin_` name="bed" + $number + `" " value="twin" `+queen+`>
-                               <label for="twin_` + $number + `">2 Twin</label>
-                           </div>
-                           <div class="dropdown-inner">
-                               <input type="checkbox" class="form-check-input" id="queen_` name="bed" + $number + `" " value="Queen" `+twin+`>
-                               <label for="queen_` + $number + `">2 Queen</label>
-                           </div>
-                       </section>
-                   </div>`);
-           $('.select-room').append($room);
-       }
-   });
-</script> --}}
 <script>
     $(document).ready(function() {
         $(document).on('click', '.select-div', function() {

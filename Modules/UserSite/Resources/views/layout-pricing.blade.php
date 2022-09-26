@@ -362,7 +362,6 @@ Layout & pricing
         });
 
         var name = $('.numberOfpersonDiscount').val();
-        console.log(name);
         selected(name);
         
         $(document).on('click', '#addon-wrapping', function(){

@@ -38,14 +38,14 @@
                                             <div class="mb-3 position-relative" >
                                                 <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="password" class="form-control userpassword"
-                                                id="password" placeholder="Enter Password">
+                                                id="password" placeholder="Enter Password"  autocomplete="off">
                                                 <button class="toggle btn btn-link position-absolute end-0 text-decoration-none text-muted" type="button" id="password-show" style="top: 30px;"><i class="fa fa-eye align-middle" id="eyeIcon"></i></button>
                                                 <span class="text-danger" id="userpassword-error"></span>
                                             </div>
                                             <div class="mb-3 position-relative">
-                                                <label for="password" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                                <label for="userPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
                                                 <input type="password" name="RePassword" class="form-control userrepassword"
-                                                id="username" placeholder="Enter Confirm Password">
+                                                id="userPassword" placeholder="Enter Confirm Password"  autocomplete="off">
                                                 <button class="toggle btn btn-link position-absolute end-0 text-decoration-none text-muted" type="button" id="password-hide" style="top: 30px;"><i class="fa fa-eye align-middle" id="eyeIcons"></i></button>
                                                 <span class="text-danger" id="userrepassword-error"></span>
 

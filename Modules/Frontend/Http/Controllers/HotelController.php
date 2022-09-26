@@ -153,16 +153,16 @@ class HotelController extends Controller
         $hotelId = $request->hotel_id;
         $hotel = Hotel::where('UUID', $hotelId)->first();
         if ($hotel == null) {
-            $data = array(
+            $hotelRating = array(
                 'review' => '',
                 'rating' => '',
                 'hotelData'  => $hotel
             );
         }else{
-            $data['hotelRating'] = listHotelRating($hotel->id);
+            $hotelRating = listHotelRating($hotel->id);
         }
 
-        return view('frontend::hotel.review', $data);
+        return view('frontend::hotel.review', compact('hotelRating'));
     }
 
     public function hotelPayment(Request $request)

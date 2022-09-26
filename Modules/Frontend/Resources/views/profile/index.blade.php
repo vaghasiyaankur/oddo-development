@@ -52,19 +52,19 @@ i.fa-solid.fa-xmark.closeEdit {
                     <div class="account-form">
                         <label for="exampleInputtext1" class="label-text">Name</label>
                         <input type="text" class="userInput form-control name inpute-text border-0 border-bottom rounded-0 p-0"
-                            id="exampleInputPassword1" value="{{$user->name}}" readonly>
+                            id="User_Name" value="{{$user->name}}" readonly>
                         <span class="text-danger" id="name-error"></span>
                     </div>
                     <div class="account-form">
                         <label for="exampleInputtext1" class="label-text">Lastname</label>
                         <input type="text" class="userInput form-control lastName inpute-text border-0 border-bottom rounded-0 p-0"
-                            id="exampleInputPassword1" value="{{$user->last_name}}" readonly>
+                            id="last_name" value="{{$user->last_name}}" readonly>
                         <span class="text-danger" id="lastName-error"></span>
                     </div>
                     <div class="account-form">
                         <label for="exampleInputtext1" class="label-text">Email</label>
                         <input type="text" class="userInput form-control inpute-text border-0 border-bottom rounded-0 p-0 email"
-                            id="exampleInputPassword1" value="{{$user->email}}" readonly>
+                            id="user_email" value="{{$user->email}}" readonly>
                         <span class="text-danger" id="email-error"></span>
                     </div>
                 </form>
@@ -149,17 +149,17 @@ i.fa-solid.fa-xmark.closeEdit {
                                             <form class="changePasswordForm" action="javascript:;">
                                                 <div class="mb-4">
                                                     <p class="m-0 text-start">Old Password</p>
-                                                    <input type="password" class="form-control oldPassword" id="exampleInputPassword1">
+                                                    <input type="password" class="form-control oldPassword" id="old_password" autocomplete="off">
                                                     <span class="text-danger" id="oldPassword-error"></span>
                                                 </div>
                                                 <div class="mb-4">
                                                     <p class="m-0 text-start">New Password</p>
-                                                    <input type="password" class="form-control newPassword" id="exampleInputPassword1">
+                                                    <input type="password" class="form-control newPassword" id="new_password" autocomplete="off">
                                                     <span class="text-danger" id="newPassword-error"></span>
                                                 </div>
                                                 <div class="mb-4">
                                                     <p class="m-0 text-start">Confirm New Password</p>
-                                                    <input type="password" class="form-control confirmPassword" id="exampleInputPassword1">
+                                                    <input type="password" class="form-control confirmPassword" id="confirm_password" autocomplete="off">
                                                     <span class="text-danger" id="confirmPassword-error"></span>
                                                 </div>
                                             </form>

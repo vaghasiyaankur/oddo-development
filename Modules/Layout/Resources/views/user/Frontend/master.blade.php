@@ -128,9 +128,13 @@
     <!------- Header End ------->
 
     @yield('content')
-    @include('frontend::auth.login')
-    @include('frontend::auth.register')
-    @include('frontend::auth.forget')
+
+    @if(!auth()->check())
+        @include('frontend::auth.login')
+        @include('frontend::auth.register')
+        @include('frontend::auth.forget')
+    @endif
+
     <!-------- Footer start -------->
     @include('layout::user.includes.footer')
     <!-------- Footer end -------->
@@ -168,10 +172,6 @@
     <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script>
 
-    <!------- Custom JS Link -----  -->
-
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-
     <!------- Timepiker js link ---------->
 
     <script src="{{ asset('assets/js/timepiker.js') }}"></script>
@@ -180,9 +180,7 @@
 
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
 
-    <!-- password-addon init -->
 
-    <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
 
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
@@ -192,6 +190,10 @@
 
     <script src="{{ asset('assets/Admin/assets/js/custom.js') }}"></script>
 
+    @if (!auth()->check())
+        <!-- password-addon init -->
+        <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script> 
+    @endif
 @stack('script')
 
 </body>

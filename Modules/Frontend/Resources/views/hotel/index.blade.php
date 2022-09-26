@@ -408,7 +408,7 @@ hotel
                                     <div class="check-text-label pt-4 pe-xl-4 pe-lg-3">
                                         <label class="check-inout mt-2">Check-In</label>
                                         <div class="input--text d-flex align-items-center">
-                                            <img src="assets/images/icons/cal-1.png" class="px-2">
+                                            <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2">
                                             <input type="text" class="input--control ps-xl-2 check_in"
                                                 name="value_from_start_date" placeholder="08/19/2020"
                                                 data-datepicker="separateRange" value="{{ request()->checkIn }}" />
@@ -417,7 +417,7 @@ hotel
                                     <div class="check-text-label pt-4">
                                         <label class="check-inout check-out-label mt-2">Check-Out</label>
                                         <div class="input--text d-flex align-items-center">
-                                            <img src="assets/images/icons/cal-2.png" class="px-2">
+                                            <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2">
                                             <input type="text" class="input--control ps-xl-2 check_out"
                                                 name="value_from_end_date" placeholder="08/19/2020"
                                                 data-datepicker="separateRange" value="{{ request()->checkOut }}" />
@@ -516,7 +516,7 @@ hotel
                             </div>
                         </div>
                         <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
-                            <a href="#" class="btn search-btn purple" id='SubmitSearch'>Search</a>
+                            <a href="javascript:;" class="btn search-btn purple" id='SubmitSearch'>Search</a>
                         </div>
                     </div>
                 </div>
@@ -557,10 +557,10 @@ hotel
                                 <h5 class="search-heading ">Sort By</h5>
                                 <div class="form-check ">
                                     <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                        id="flexCheckChecked">
+                                        id="myPreferencesData">
                                     <div class="search-prefe-main d-flex justify-content-between align-items-center">
                                         <div class="search-prefe-text">
-                                            <label class="form-check-label ps-2" for="flexCheckChecked">
+                                            <label class="form-check-label ps-2" for="myPreferencesData">
                                                 My preferences
                                             </label>
                                         </div>
@@ -589,25 +589,25 @@ hotel
                                                                 <div class="hotel-result-sort-popup d-sm-flex">
                                                                     <div class="form-check pe-4">
                                                                         <input class="form-check-input" type="checkbox"
-                                                                            value="" id="flexCheckDefault">
+                                                                            value="" id="PriceLowToHigh">
                                                                         <label class="form-check-label"
-                                                                            for="flexCheckDefault">
+                                                                            for="PriceLowToHigh">
                                                                             Price: low to high
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-check pe-4">
                                                                         <input class="form-check-input" type="checkbox"
-                                                                            value="" id="flexCheckChecked">
+                                                                            value="" id="priceHigh">
                                                                         <label class="form-check-label"
-                                                                            for="flexCheckDefault">
+                                                                            for="priceHigh">
                                                                             Price: high to low
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-check pe-4">
                                                                         <input class="form-check-input" type="checkbox"
-                                                                            value="" id="flexCheckDefault">
+                                                                            value="" id="TopReview">
                                                                         <label class="form-check-label"
-                                                                            for="flexCheckDefault">
+                                                                            for="TopReview">
                                                                             Top Review
                                                                         </label>
                                                                     </div>
@@ -624,9 +624,9 @@ hotel
                                                                                         <input
                                                                                             class="form-check-input topFilter"
                                                                                             type="checkbox" value=""
-                                                                                            id="flexCheckDefault">
+                                                                                            id="finalPriceWithTaxes">
                                                                                         <label class="form-check-label "
-                                                                                            for="flexCheckDefault">
+                                                                                            for="finalPriceWithTaxes">
                                                                                             Final price with taxes +
                                                                                             fees
                                                                                         </label>
@@ -637,9 +637,9 @@ hotel
                                                                                         <input
                                                                                             class="form-check-input topFilter"
                                                                                             type="checkbox" value=""
-                                                                                            id="flexCheckDefault">
+                                                                                            id="breakFastIn">
                                                                                         <label class="form-check-label"
-                                                                                            for="flexCheckDefault">
+                                                                                            for="breakFastIn">
                                                                                             Breakfast Included
                                                                                         </label>
                                                                                     </div>
@@ -649,9 +649,9 @@ hotel
                                                                                         <input
                                                                                             class="form-check-input topFilter"
                                                                                             type="checkbox" value=""
-                                                                                            id="flexCheckChecked">
+                                                                                            id="flexibleCheckIn">
                                                                                         <label class="form-check-label"
-                                                                                            for="flexCheckDefault">
+                                                                                            for="flexibleCheckIn">
                                                                                             Flexible Check-In
                                                                                         </label>
                                                                                     </div>
@@ -661,9 +661,9 @@ hotel
                                                                                         <input
                                                                                             class="form-check-input topFilter"
                                                                                             type="checkbox" value=""
-                                                                                            id="flexCheckDefault">
+                                                                                            id="flexibleCheckOut">
                                                                                         <label class="form-check-label"
-                                                                                            for="flexCheckDefault">
+                                                                                            for="flexibleCheckOut">
                                                                                             Flexible Check-Out
                                                                                         </label>
                                                                                     </div>
@@ -680,27 +680,27 @@ hotel
                                                                             <div class="form-check pe-3">
                                                                                 <input class="form-check-input style"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="Modern">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="Modern">
                                                                                     Modern
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check pe-3">
                                                                                 <input class="form-check-input style"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckChecked">
+                                                                                    id="Histotic">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="Histotic">
                                                                                     Historic
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check pe-3">
                                                                                 <input class="form-check-input style"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="Contemporary">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="Contemporary">
                                                                                     Contemporary
                                                                                 </label>
                                                                             </div>
@@ -732,7 +732,7 @@ hotel
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="5star">
                                                                                 <span
                                                                                     class="property-class-icon propertyStar"><img
                                                                                         src="{{ asset('assets/images/icons/start.png') }}"></span>
@@ -752,7 +752,7 @@ hotel
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckChecked">
+                                                                                    id="4star">
                                                                                 <span class="property-class-icon"><img
                                                                                         src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                                 <span class="property-class-icon "><img
@@ -765,7 +765,7 @@ hotel
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckChecked">
+                                                                                    id="3star">
                                                                                 <span class="property-class-icon"><img
                                                                                         src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                                 <span class="property-class-icon "><img
@@ -776,7 +776,7 @@ hotel
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="2star">
                                                                                 <span class="property-class-icon"><img
                                                                                         src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                                 <span class="property-class-icon "><img
@@ -785,7 +785,7 @@ hotel
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="1star">
                                                                                 <span class="property-class-icon"><img
                                                                                         src="{{ asset('assets/images/icons/start.png') }}"></span>
                                                                             </div>
@@ -800,18 +800,18 @@ hotel
                                                                             <div class="form-check pe-md-4 pe-3">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="AmenitiesAll">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="AmenitiesAll">
                                                                                     All Amenities
                                                                                 </label>
                                                                             </div>
                                                                             <div class="form-check pe-md-4 pe-3">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="Elevators">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="Elevators">
                                                                                     Elevator
                                                                                 </label>
                                                                                 <span class="amenities-icon"><img
@@ -821,9 +821,9 @@ hotel
                                                                             <div class="form-check pe-md-4 pe-3">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckChecked">
+                                                                                    id="breakfast">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="BreakData">
                                                                                     Breakfast
                                                                                 </label>
                                                                                 <span class="amenities-icon"><img
@@ -833,9 +833,9 @@ hotel
                                                                             <div class="form-check pe-md-4 pe-3">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="Pool">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="Pool">
                                                                                     Pool
                                                                                 </label>
                                                                                 <span class="amenities-icon"><img
@@ -845,9 +845,9 @@ hotel
                                                                             <div class="form-check pe-md-4 pe-3">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
-                                                                                    id="flexCheckDefault">
+                                                                                    id="Bar">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexCheckDefault">
+                                                                                    for="Bar">
                                                                                     Bar
                                                                                 </label>
                                                                                 <span class="amenities-icon"><img
@@ -872,22 +872,22 @@ hotel
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value="1"
-                                        id="flexCheckDefault1">
-                                    <label class="form-check-label ps-2" for="flexCheckDefault1">
+                                        id="lowTohigh">
+                                    <label class="form-check-label ps-2" for="lowTohigh">
                                         Price: low to high
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value=""
-                                        id="flexCheckDefault2">
-                                    <label class="form-check-label ps-2" for="flexCheckDefault2">
+                                        id="HighToLowPrice">
+                                    <label class="form-check-label ps-2" for="HighToLowPrice">
                                         Price: high to low
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value=""
-                                        id="flexCheckDefault3">
-                                    <label class="form-check-label ps-2" for="flexCheckDefault3">
+                                        id="TopReviews">
+                                    <label class="form-check-label ps-2" for="TopReviews">
                                         Top Review
                                     </label>
                                 </div>
@@ -904,29 +904,29 @@ hotel
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                            id="flexCheckDefault4">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault4">
+                                            id="taxesFees">
+                                        <label class="form-check-label ps-2" for="taxesFees">
                                             Final price with taxes fees
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                            id="flexCheckDefault5">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault5">
+                                            id="includedBreakfast">
+                                        <label class="form-check-label ps-2" for="includedBreakfast">
                                             Breakfast Included
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                            id="flexCheckChecked6">
-                                        <label class="form-check-label ps-2" for="flexCheckChecked6">
+                                            id="flexCheckCheckedCheckIn">
+                                        <label class="form-check-label ps-2" for="flexCheckCheckedCheckIn">
                                             Flexible Check-In
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
-                                            id="flexCheckDefault7">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault7">
+                                            id="checkOut_flexible">
+                                        <label class="form-check-label ps-2" for="checkOut_flexible">
                                             Flexible Check-Out
                                         </label>
                                     </div>
@@ -937,22 +937,22 @@ hotel
                                     </div>
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                            id="flexCheckDefault8">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault8">
+                                            id="modernData">
+                                        <label class="form-check-label ps-2" for="modernData">
                                             Modern
                                         </label>
                                     </div>
                                     <div class="form-check ">
                                         <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                            id="flexCheckDefault9">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault9">
+                                            id="Historic_nav">
+                                        <label class="form-check-label ps-2" for="Historic_nav">
                                             Historic
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                            id="flexCheckDefault10">
-                                        <label class="form-check-label ps-2" for="flexCheckDefault10">
+                                            id="Contemporarynav">
+                                        <label class="form-check-label ps-2" for="Contemporarynav">
                                             Contemporary
                                         </label>
                                     </div>
@@ -1048,8 +1048,8 @@ hotel
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
-                                            id="flexCheckDefault">
-                                        <label class="form-check-label ps-2 amenityValue" for="flexCheckDefault">
+                                            id="AllAmenities">
+                                        <label class="form-check-label ps-2 amenityValue" for="AllAmenities">
                                             All Amenities
                                         </label>
                                     </div>
@@ -1125,8 +1125,11 @@ hotel
 </section>
 <!------- Search result end ------->
 <div class="mainReviewPopupDiv">
-    @include('frontend::hotel.review')
+    @if (isset($hotelRating))
+        @include('frontend::hotel.review')  
+    @endif
 </div>
+
 <div class="mainPaymentPopupDiv">
     @if (isset($hotel) && $hotel != '')
         @include('frontend::hotel.payment')
@@ -1136,6 +1139,10 @@ hotel
 @endsection
 
 @push('script')
+<!------- Custom JS Link -----  -->
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+
+
 @if (session()->get('booking'))
 <script>
     $(document).ready(function() {
@@ -1200,6 +1207,7 @@ hotel
             });
 
         }
+        
         const swiper = new Swiper(".swiper", {
             slidesPerGroup: 1,
             loop: false,
@@ -1287,15 +1295,15 @@ hotel
             ],
         });
 
-        $('.modal').on('shown.bs.modal', function(e) {
-            $('.slider-single').slick('setPosition');
-            $('.swiper').addClass('open');
-        });
+        // $('.modal').on('shown.bs.modal', function(e) {
+        //     $('.slider-single').slick('setPosition');
+        //     $('.swiper').addClass('open');
+        // });
 
-        $('.modal').on('shown.bs.modal', function(e) {
-            $('.slider-nav').slick('setPosition');
-            $('.swiper').addClass('open');
-        });
+        // $('.modal').on('shown.bs.modal', function(e) {
+        //     $('.slider-nav').slick('setPosition');
+        //     $('.swiper').addClass('open');
+        // });
 
 
         $(document).on('click', '#SubmitSearch', function() {
@@ -1454,7 +1462,9 @@ $(document).ready(function(){
     var page = 2;
     infinteLoadMore(page);
 
-    $(window).scroll(function () {
+    // $(window).scroll(
+    document.addEventListener('scroll',function (e) {
+        e.preventDefault();
         if ($(window).scrollTop() + ($(window).height() + 250) >= $(document).height()) {
             page++;
             var paginate = $('.last_page_value').val();
@@ -1856,6 +1866,9 @@ $(document).ready(function(){
         formdata.append('hotel_id', hotel_id);
 
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: "{{route('hotel.review')}}",
             type: "POST",
             processData: false,
@@ -1925,25 +1938,32 @@ $(document).ready(function(){
             $('.select-room').addClass('option-none');
         }
         setUrlValue();
-    });
+    
 
-    $(document).on('click', '.hotelPayment', function(){
-        var hotelId = $(this).data('id');
+        $(document).on('click', '.hotelPayment', function(e){
+            e.preventDefault();
 
-        formdata = new FormData();
-        formdata.append('hotelId', hotelId);
+            var hotelId = $(this).data('id');
 
-        $.ajax({
-            url: "{{route('hotel.payment')}}",
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: formdata,
-            success: function (response) {
-                $('.mainPaymentPopupDiv').html(response);
-                $('#payment_details_popup').modal('show');
-            }, error:function (response) {
-            }
+            formdata = new FormData();
+            formdata.append('hotelId', hotelId);
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('hotel.payment')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    $('.mainPaymentPopupDiv').html(response);
+                    $('#payment_details_popup').modal('show');
+                }, error:function (response) {
+
+                }
+            });
         });
     });
 </script>

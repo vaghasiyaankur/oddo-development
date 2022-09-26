@@ -585,6 +585,7 @@
     </div>
 @endsection
 @push('script')
-
- @include('frontend::home.script')
+    <!------- Custom JS Link -----  -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    @include('frontend::home.script')
 @endpush

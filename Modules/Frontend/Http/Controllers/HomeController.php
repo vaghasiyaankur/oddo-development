@@ -25,8 +25,8 @@ class HomeController extends Controller
         $checkOut = request()->checkOut;
         $guest =  request()->guest;
         $room = request()->room;
-        $bed = explode(',' , request()->bed);
-        // dd($search);
+        request()->bed ? $bed = explode(',' , request()->bed) : $bed = array('');
+        
         if($search){
             $search = str_replace(',', ' ', $search);
             $hotels = Hotel::with('country', 'city', 'room' )
@@ -59,7 +59,7 @@ class HomeController extends Controller
             }
         }
 
-        $cities = City::where('featured',1)->get();
+        $cities = City::whereFeatured(1)->get();
         $propertyTypes = PropertyType::active()->get();
         $partners = Partner::get();
         return view('frontend::home.index',compact('cities','partners', 'propertyTypes'));

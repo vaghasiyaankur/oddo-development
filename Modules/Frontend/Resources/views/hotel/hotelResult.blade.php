@@ -66,7 +66,7 @@
                                   <a href="{{ route('hotel.detail', @$hotel->slug) }}">
                                       <h2 class="middle-content-heading pt-4 mb-1">{{ $hotel->property_name }}</h2>
                                   <div class="middle-content-location">
-                                      <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
+                                      <p class="mb-1"><img src="{{asset('assets/images/icons/search-h-loaction.png')}}"><span
                                               class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
                                                   ? ',' .$hotel->country->country_name: '' }}</span>
                                       </p>
@@ -86,7 +86,7 @@
                             </a>
                                   <div class="middle-content-review">
                                       <p class="m-0 review-text text-decoration-underline"><a href="javascript:;" class="{{$hotel->reviewCount($hotel->id) != 0 ? 'reviewPopup' :  ''}}"
-                                              data-bs-toggle="modal" data-id="{{$hotel->UUID}}">{{$hotel->reviewCount($hotel->id) != 0 ? $hotel->reviewCount($hotel->id) : 0 }}  review</a></p>
+                                        {{$hotel->reviewCount($hotel->id) != 0 ? 'data-bs-toggle="modal"' :  ''}} data-id="{{$hotel->UUID}}">{{$hotel->reviewCount($hotel->id) != 0 ? $hotel->reviewCount($hotel->id) : 0 }}  review</a></p>
                                               {{--  data-bs-target="#reviewspopup_{{$hotel->UUID}}" --}}
 
                                       @for ($i = 0; $i < 5; $i++)
@@ -100,11 +100,11 @@
                                   </div>
                                   <div class="middle-content-box d-flex mb-3">
                                       <div class="middle-content-box-inner me-2">
-                                          <a href="#"><img src="assets/images/icons/search-r-time.png"></a>
+                                          <a href="#"><img src="{{ asset('assets/images/icons/search-r-time.png') }}"></a>
                                       </div>
                                       <div class="middle-content-box-inner me-2">
                                           <a href="#" data-bs-toggle="modal" data-bs-target="#view360"><img
-                                                  src="assets/images/icons/search-360.png"></a>
+                                                  src="{{ asset('assets/images/icons/search-360.png') }}"></a>
                                           <!-------- view360 popup start --------->
                                           <div class="modal fade" id="view360" data-bs-backdrop="static"
                                               data-bs-keyboard="false" tabindex="-1"
@@ -118,7 +118,7 @@
                                                       </div>
                                                       <div class="modal-body py-sm-5 display-flex-items">
                                                           <div class="modal-body-img text-center">
-                                                              <img src="assets/images/search-360.png" alt="">
+                                                              <img src="{{ asset('assets/images/search-360.png') }}" alt="">
                                                           </div>
                                                       </div>
                                                   </div>
@@ -130,7 +130,7 @@
                                           <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                               data-toggle="tooltip" data-placement="top"
                                               title="Price Comparision"><img
-                                                  src="assets/images/icons/search-doller.png"></a>
+                                                  src="{{ asset('assets/images/icons/search-doller.png') }}"></a>
                                           <!-------- Price comparision popup start -------->
                                           <div class="modal fade price-comparision-main" id="staticBackdrop"
                                               data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -150,7 +150,7 @@
                                                                       <div class="comparison-title">
                                                                           <h3>Price Comparison <span
                                                                                   class="exclamation-icon"><img
-                                                                                      src="assets/images/icons/price-c-ex.png"></span>
+                                                                                      src="{{ asset('assets/images/icons/price-c-ex.png') }}"></span>
                                                                           </h3>
                                                                       </div>
                                                                       <div class="comparison-text"><span>Price for
@@ -196,7 +196,7 @@
                                                                                   class="row align-items-center justify-content-between">
                                                                                   <div class="col-sm-4 text-center">
                                                                                       <div class="other-price-img">
-                                                                                          <img src="assets/images/icons/booking-ar21 1.png"
+                                                                                          <img src="{{ asset('assets/images/icons/booking-ar21 1.png') }}"
                                                                                               alt="">
                                                                                       </div>
                                                                                   </div>
@@ -215,7 +215,7 @@
                                                                                   class="row align-items-center justify-content-between">
                                                                                   <div class="col-sm-4 text-center">
                                                                                       <div class="other-price-img">
-                                                                                          <img src="assets/images/icons/Frame.png"
+                                                                                          <img src="{{ asset('assets/images/icons/Frame.png') }}"
                                                                                               alt="">
                                                                                       </div>
                                                                                   </div>
@@ -234,7 +234,7 @@
                                                                                   class="row align-items-center justify-content-between">
                                                                                   <div class="col-sm-4 text-center">
                                                                                       <div class="other-price-img">
-                                                                                          <img src="assets/images/icons/praice-pop3.png"
+                                                                                          <img src="{{ asset('assets/images/icons/praice-pop3.png') }}"
                                                                                               alt="">
                                                                                       </div>
                                                                                   </div>
@@ -253,7 +253,7 @@
                                                                                   class="row align-items-center justify-content-between">
                                                                                   <div class="col-sm-4 text-center">
                                                                                       <div class="other-price-img">
-                                                                                          <img src="assets/images/icons/price-pop4.png"
+                                                                                          <img src="{{ asset('assets/images/icons/price-pop4.png') }}"
                                                                                               alt="">
                                                                                       </div>
                                                                                   </div>
@@ -280,7 +280,7 @@
                                       <a href="#" data-bs-toggle="modal"
                                           data-bs-target="#facilities_{{ $key }}">
                                           <div class="middle-content-box-inner me-2">
-                                              <img src="assets/images/icons/search-h-loaction.png">
+                                              <img src="{{ asset('assets/images/icons/search-h-loaction.png') }}">
                                           </div>
                                       </a>
                                       <!-------- Location popup start -------->
@@ -307,7 +307,7 @@
                                                                           referrerpolicy="no-referrer-when-downgrade"></iframe>
                                                                   </div>
                                                                   <div class="location-popup-hilton">
-                                                                      <img src="assets/images/icons/location-popup-L.png"
+                                                                      <img src="{{ asset('assets/images/icons/location-popup-L.png') }}"
                                                                           alt="">
                                                                   </div>
                                                                   <div class="loaction-dist-radius">

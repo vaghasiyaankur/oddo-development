@@ -56,9 +56,10 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="review-popup-img">
-                                            
-                                            <img src="{{ asset('storage/' . @$hotelRating['hotelData']->mainPhotoData->photos) }}"
+                                            @if (@$hotelRating['hotelData'])
+                                                <img src="{{ asset('storage/' . @$hotelRating['hotelData']->mainPhotoData->photos) }}"
                                                 class="img-fluid w-100" style="object-fit: cover; width: 100%; min-height: 165px; max-height: 165px;">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-5">
