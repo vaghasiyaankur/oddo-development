@@ -435,7 +435,9 @@
                 @foreach ($hotelAmounts as  $hotelAmount)
                   @foreach ($hotelAmount as $key => $item)
                     @if ($key == $hotel->id)
-                      <button class="price-btn" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button>
+                      {{-- <button class="price-btn" data-id="{{@$hotel->UUID}}" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button> --}}
+                      <button class="price-btn hotelPayment" data-id="{{@$hotel->UUID}}" data-bs-toggle="modal">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button>
+
                       <input type="hidden" value="{{ @$item }}" class="amount_data_{{ $hotel->UUID }}">
                     @endif
                   @endforeach
@@ -445,7 +447,7 @@
               @endif
           </div>
           {{-- PAYMENT POPOUP START --}}
-          <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
+          {{-- <div class="modal fade payment_details_popup" id="payment_type_{{ @$hotel->UUID }}"
               data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
               aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-fullscreen modal-dialog-centered">
@@ -511,14 +513,10 @@
                                       </div>
                                   </div>
                                   <div class="payment_select_type">
-                                      {{-- <input type="hidden" value="{{ @$hotel->room->price_room }}"
-                                          class="amount_data_{{ $hotel->UUID }}"> --}}
                                       <input type="hidden" value="{{ @$hotel->id }}"
                                           class="hotel_id_{{ $hotel->UUID }}">
-                                        {{-- @if(isset($hotel->room)) --}}
                                         <input type="hidden" value="{{ @$hotel->room->id }}"
                                             class="room_id_{{ $hotel->UUID }}">
-                                        {{-- @endif --}}
                                       <h5 class="payment__type_title">Select your payment type</h5>
                                       <div class="row mt-3">
                                           @foreach ($paymentGateways as $paymentGateway)
@@ -535,9 +533,9 @@
                               </div>
                           </div>
                       </div>
-                  </div>
+                  </div>  
               </div>
-          </div>
+          </div> --}}
           {{-- PAYMENT POPOUP END --}}
           {{-- PAYMENT SUCCESS-POPOUP START --}}
           <div class="modal fade payment_details_popup" id="success_payment" data-bs-backdrop="static"

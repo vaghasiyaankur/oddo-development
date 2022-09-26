@@ -1127,6 +1127,11 @@ hotel
 <div class="mainReviewPopupDiv">
     @include('frontend::hotel.review')
 </div>
+<div class="mainPaymentPopupDiv">
+    @if (isset($hotel) && $hotel != '')
+        @include('frontend::hotel.payment')
+    @endif
+</div>
 
 @endsection
 
@@ -1151,8 +1156,13 @@ hotel
             });
 </script>
 @endif
+
+@php
+    $paypalId = config('paypal.sandbox.client_id');
+@endphp
+
 {{-- paypal cdn --}}
-<script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
 {{-- stripe cdn--}}
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 <script src="https://checkout.stripe.com/v3/checkout.js"></script>
@@ -1504,7 +1514,7 @@ $(document).ready(function(){
                 // $('.mainDivPropertyType').addClass('d-none');
                     $('.hotel_empty').removeClass('d-none');
                 }
-                console.log(response);
+                // console.log(response);
                 $(".hotelResultDiv").append(response);
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -1620,7 +1630,7 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
-                console.log('done');
+                // console.log('done');
             }, error:function (response) {
                 console.log('fail');
             }
@@ -1647,7 +1657,7 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
-                console.log('done');
+                // console.log('done');
             }, error:function (response) {
                 console.log('fail');
             }
@@ -1915,6 +1925,26 @@ $(document).ready(function(){
             $('.select-room').addClass('option-none');
         }
         setUrlValue();
+    });
+
+    $(document).on('click', '.hotelPayment', function(){
+        var hotelId = $(this).data('id');
+
+        formdata = new FormData();
+        formdata.append('hotelId', hotelId);
+
+        $.ajax({
+            url: "{{route('hotel.payment')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                $('.mainPaymentPopupDiv').html(response);
+                $('#payment_details_popup').modal('show');
+            }, error:function (response) {
+            }
+        });
     });
 </script>
 
