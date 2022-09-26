@@ -337,8 +337,8 @@ class PropertyController extends Controller
         Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
 
         // compress file 
-        $path = 'app\public\hotels';
-        $storageDestinationPath=storage_path($path);
+        $path = Storage::disk('public')->path('hotels');
+        $storageDestinationPath=$path;
         
         $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
         $hotel_id = $hotelId;
