@@ -337,7 +337,7 @@ class PropertyController extends Controller
         Storage::disk('public')->put('hotel'.'/'.$imageName, base64_decode($image));
 
         // compress file 
-        $path = Storage::disk('public')->path('hotels');
+        $path = storage_path('/app/public/hotels');
         $storageDestinationPath=$path;
         
         $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
@@ -349,7 +349,7 @@ class PropertyController extends Controller
         }
         
          \Image::make(base64_decode($image))
-         ->save($storageDestinationPath."\\".$imageName,$x);
+         ->save($storageDestinationPath."/".$imageName,$x);
 
 
         $hotelPhotoId = '';
