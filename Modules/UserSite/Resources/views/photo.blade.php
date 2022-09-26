@@ -41,9 +41,9 @@ Photo
                                         </div>
                                         <input type="hidden" class="hotelId" value="{{@$hotelDetail->UUID}}">
                                         <div class="sortable row editImageDiv" id="gallery" data-id="1">
-                                            <span id="main-photo-error" class="text-danger ui-sortable-handle"></span>
                                             @if(isset($hotelPhotos))
-                                                @foreach ($hotelPhotos as $hotelPhoto)
+                                            @foreach ($hotelPhotos as $hotelPhoto)
+                                            <span id="main-photo-error" class="text-danger ui-sortable-handle"></span>
                                                     <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 main-photo-wrapper position-relative" name="image"  id="dz-preview-template">
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">

@@ -343,7 +343,7 @@ class PropertyController extends Controller
         $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
         $hotel_id = $hotelId;
 
-        $x=10;
+        $x=5;
         if (!\File::exists($storageDestinationPath)) {
             \File::makeDirectory($storageDestinationPath, 0755, true);
         }
