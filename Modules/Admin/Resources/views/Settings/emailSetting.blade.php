@@ -5,7 +5,6 @@
             <button type="submit" class="btn btn-success emailSettingBtn">{{ isset($EmailSetting) ? 'Update' : 'Create'  }} </button>
         </a>
     </div>
-    {{-- <h3 class="mb-5 fs-4">Email Configuration</h3> --}}
     <div class="row">
         <div class="col-lg-4 pb-3">
             <input type="hidden" class="id" value="{{ isset($EmailSetting) ? $EmailSetting->id : '' }}" >
@@ -36,7 +35,7 @@
         </div>
         <div class="col-lg-4 pb-3">
             <label for="labelInput" class="form-label ">From Email</label>
-            <input type="text" class="form-control fromemail" id="labelInput" placeholder="From Email" value="{{ isset($EmailSetting) ? $EmailSetting->from_email : ''  }}">
+            <input type="email" class="form-control fromemail" id="labelInput" placeholder="From Email" value="{{ isset($EmailSetting) ? $EmailSetting->from_email : ''  }}">
             <span class="text-danger" id="fromemail-error"></span>
         </div>
         <div class="col-lg-4 pb-3">

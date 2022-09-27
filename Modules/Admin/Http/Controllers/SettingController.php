@@ -66,6 +66,11 @@ class SettingController extends Controller
             return response()->json(["error" => "please select logo or favicon."], 403);
         }
 
+        $request->validate([
+            'logo' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3072',
+            'favicon' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3072',
+        ]);
+
         $logo = $request->file('logo');
         $favicon = $request->file('favicon');
         $LogoFavicon = LogoFavicon::first();

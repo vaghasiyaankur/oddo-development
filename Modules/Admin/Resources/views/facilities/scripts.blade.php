@@ -186,6 +186,9 @@ $(document).ready(function() {
                 $(".createFaclityForm").trigger("reset");
                 $("#facilityCreate").modal("hide");
                 facilitiesList();
+                var selected = $('.selectedIcon').find('i');
+                selected.removeClass().addClass('bi-search');
+
                 setTimeout(function() {
                     $('.loadingShow span').css('display', 'none');
                     $('.loadingHide').removeClass('d-none');

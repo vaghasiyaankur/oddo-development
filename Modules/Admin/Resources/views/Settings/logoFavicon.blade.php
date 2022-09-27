@@ -13,11 +13,15 @@
                     <div class="logo-image mb-4 mt-4">
                         <img src='{{ asset('storage/'.$logoFavicon->logo)}}' width='100px' height='100px'>
                         <a href="javascript:;" class="logo-btn-close btn deleteLogo" data-value="{{$logoFavicon->id}}"><i class="ri-close-line fs-4"></i></a>
+                        <span class="logo-error text-danger"></span> 
+
                     </div>
                 @else
                     <div class="logo-uplod p-3 text-center">
                         <input class="filepond logo" id="file01" type="file" name="filepond" data-max-file-size="3MB"
                             data-max-files="1" />
+                        <span class="logo-error text-danger"></span> 
+
                     </div>
                 @endif
             </div>
@@ -30,11 +34,13 @@
                     <div class="logo-image mb-4 mt-4">
                         <img src='{{ asset('storage/'.$logoFavicon->favicon)}}' width='100px' height='100px'>
                         <a href="javascript:;" class="logo-btn-close btn deleteFavicon" data-value="{{$logoFavicon->id}}"><i class="ri-close-line fs-4"></i></a>
+                        <span class="favicon-error text-danger"></span> 
                     </div>
                 @else
                     <div class="logo-uplod p-3 text-center">
                         <input class="filepond favicon" id="file02" type="file" name="filepond" data-max-file-size="3MB"
                             data-max-files="1" />
+                            <span class="favicon-error text-danger"></span> 
                     </div>
                 @endif
             </div>

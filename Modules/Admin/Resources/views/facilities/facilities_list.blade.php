@@ -36,7 +36,7 @@
                         <div class="loadingShow td-3">
                             <span></span>
                         </div>
-                        <div class="loadingHide">{{$facility->color}}</div>
+                        <div class="loadingHide" style="height: 30px; width: 30px; background-color:{{$facility->color}};"></div>
                     </td>
                     <td>
                         <div class="loadingShow td-3">

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\FoodType;
 
-class FoodTyeController extends Controller
+class FoodTypeController extends Controller
 {
     public function __construct()
     {

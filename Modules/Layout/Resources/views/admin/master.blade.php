@@ -307,21 +307,16 @@ $generalSetting = App\Models\GeneralSetting::first();
     </div>
     <!-- END layout-wrapper -->
 
-    <!-- JAVASCRIPT -->
-
-
     <!-- jquery Cdn Link -------->
     <script src="{{ asset('assets/Admin/assets/js/jquery.min.js') }}"></script>
 
 
     <!----- Bootstrap cdn Link ------->
     <script src="{{ asset('assets/Admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('assets/Admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
 
-    <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script> --}}
 
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 
@@ -334,9 +329,6 @@ $generalSetting = App\Models\GeneralSetting::first();
 
     <!-- input step init -->
     <script src="{{ asset('assets/Admin/assets/js/form-input-spin.init.js') }}"></script>
-
-    <!-- ecommerce cart js -->
-    {{-- <script src="{{ asset('assets/Admin/js/pages/ecommerce-cart.init.js') }}"></script> --}}
 
     <!-- icon picker js -->
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>

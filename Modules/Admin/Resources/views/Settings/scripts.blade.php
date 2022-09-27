@@ -94,9 +94,10 @@ $(document).ready(function(){
                     toastMixin.fire({ title: response.success, icon: 'success' });
                 }, 2000);
             }, error:function (response) {
+                $('.logo-error').html(response.responseJSON.errors.logo);
+                $('.favicon-error').html(response.responseJSON.errors.favicon);
                 setTimeout(function(){
                     $('.updateLoader').addClass('off').removeClass('on');
-                    console.log(response.error);
                     toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
                 }, 2000);
             }
@@ -342,7 +343,6 @@ $(document).ready(function(){
                     $('.settingContent').html(response);
                 },  1500);
             }
-
         });
     }
 

@@ -182,7 +182,7 @@
     toggle.addEventListener("click", togglePassword, false);
 </script>
 <script>
-    let passwordInputs = document.getElementById("username"),
+    let passwordInputs = document.getElementById("userPassword"),
     toggles = document.getElementById("password-hide"),
     icons = document.getElementById("eyeIcons");
 

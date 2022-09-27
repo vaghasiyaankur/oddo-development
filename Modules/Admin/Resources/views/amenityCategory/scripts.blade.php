@@ -1,14 +1,16 @@
 <script>
-    $(document).ready(function(){
-    
-        var baseUrl = $('#base_url').val();
+$(document).ready(function(){
+    // baseurl
+    var baseUrl = $('#base_url').val();
 
+    // csrf token
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
+    // insert amenity category
     $(document).on('click', '.amenity-category-submit', function(){
         let amenityCategory = $('.amenityCategory').val();
         !amenityCategory ? $(`#amenityCategory-error`).html(`The Amenitycategory field is required.`) : $(`#amenityCategory-error`).html(``);
@@ -45,6 +47,7 @@
         }); 
     });
 
+    // edit amenity categorty 
     $(document).on('click', '.edit-amenityCategory', function(){
 
         let amenityCategory = $(this).data("value");
@@ -55,6 +58,7 @@
         $(".edit_id").val(amenityCategory.id);
     });
 
+    // amenity update
     $(document).on('click', '.amenity-category-update', function(){
         let id = $(".edit_id").val();
         let category = $('.category').val();
@@ -94,6 +98,7 @@
         });
     });
 
+    // amenitycategory status
     $(document).on('change', '.amenityCategoryStatus', function(){
         let amenityCategory = $(this).data("value");
 
@@ -116,6 +121,7 @@
         }); 
     });
 
+    // delete amenity category
     $(document).on("click", ".delete-amenityCategory", function () {
         let id = $(this).data('value');
         
@@ -137,7 +143,7 @@
         }); 
     });
 
-
+    // list amenity Category
     function CategoryList() {
         $.ajax({
             url: "{{route('amenitycategory.list')}}",

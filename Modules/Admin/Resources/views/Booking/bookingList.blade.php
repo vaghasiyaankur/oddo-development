@@ -59,9 +59,9 @@
                 </div>
                 <div class="form-check form-switch loadingHide">
                 @if($booking->status == 0)
-                    <label class="badge-btn-danger">Failed</label>
+                    <label class="btn btn-danger fs-12 px-2 py-1">Failed</label>
                 @else
-                    <label class="badge-btn-success">Success</label>
+                    <label class="btn btn-success fs-12 px-2 py-1">Success</label>
                 @endif
                 </div>
             </td>

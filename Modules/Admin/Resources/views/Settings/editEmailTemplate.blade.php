@@ -89,7 +89,7 @@
 
         toolbarContainer.appendChild( editor.ui.view.toolbar.element );
     editor.model.document.on( 'change:data', () => {
-        console.log( 'The data has changed!' );
+        // console.log( 'The data has changed!' );
     } );
     myEditor = editor;
     } )

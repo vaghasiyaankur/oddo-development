@@ -69,23 +69,8 @@
     });
 
     $(document).on('change', '.sorting', function(){
-        // var status = $(this).find(":selected").val();
-        // var search = $('.search').val();
-        // $.ajax({
-        //     url: "{{route('property.list')}}",
-        //     type: "GET",
-        //     dataType: "HTML",
-        //     data : { status : status },
-        //     success: function (response) {
-        //         PropertyList(search);
-        //     }
-        // });
-        // $('.loadingShow span').css('display', 'block');
-        // $('.loadingHide').addClass('d-none');
-
         var status = $(this).find(":selected").val();
-        // var searchLength = $(this).val().length;
-        // searchLengthData(searchLength);
+        
         var search = $('.search').val();
         PropertyList(search,status);
         $('.loadingShow span').css('display', 'block');

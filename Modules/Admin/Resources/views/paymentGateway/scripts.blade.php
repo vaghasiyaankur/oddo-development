@@ -22,8 +22,7 @@ $(document).ready(function(){
     // });
 
     // show paypal value
-     // show stripe value
-     $(document).on('change', '.paypal_mode', function(){
+    $(document).on('change', '.paypal_mode', function(){
         var mode = $(this).val();
         var type = $(this).data('value');
 

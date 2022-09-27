@@ -23,8 +23,8 @@ class EmailSettingTableSeeder extends Seeder
             'encryption' => 'ssl',
             'username' => 'krupali.codetrinity@gmail.com',
             'password' => 'owppopybcbhvuslq',
-            'from_email' => null,
-            'from_name' => null,
+            'from_email' => 'krupali.codetrinity@gmail.com',
+            'from_name' => 'Krupali',
         ]);
     }
 }

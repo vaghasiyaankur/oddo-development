@@ -105,6 +105,6 @@ class PaymentGatewayController extends Controller
             'status' => $status
         ]);
         
-        return response()->json(["success" => "paypal updated Successfully"], 200);
+        return response()->json(["success" => "payment gateway Successfully"], 200);
     }
 }

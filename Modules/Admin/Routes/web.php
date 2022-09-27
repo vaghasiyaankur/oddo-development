@@ -108,7 +108,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // foodType
-        Route::controller(FoodTyeController::class)->group(function(){
+        Route::controller(FoodTypeController::class)->group(function(){
             Route::get('/food', 'index')->name('food.index');
             Route::get('/food-list', 'foodList')->name('food.list');
             Route::post('/add-food', 'store')->name('add.food');

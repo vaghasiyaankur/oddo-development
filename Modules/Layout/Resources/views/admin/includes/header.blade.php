@@ -74,7 +74,9 @@
                 </button>
                 <input type="hidden" class="hotelCount" value="">
                 <div class="notificationMainDiv">
-                    @include('layout::admin.includes.notification')
+                    @if (isset($hotels))
+                        @include('layout::admin.includes.notification')
+                    @endif
                 </div>
             </div>
 
@@ -158,8 +160,7 @@
             }
         });
 
-        notificationCount();
-        setInterval(notificationCount,5000);
+        
 
         // show notification panel
         $(document).on('click', '.btnNotificaion', function() {
@@ -202,6 +203,9 @@
                 },
             });
         });
+
+        notificationCount();
+        setInterval(notificationCount,5000);
 
         // count notifiation
         function notificationCount(){

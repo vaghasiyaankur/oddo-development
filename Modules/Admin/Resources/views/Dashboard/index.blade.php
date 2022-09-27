@@ -1535,7 +1535,7 @@
 @endsection
 
 @push('scripts')
-<script src="{{asset('assets/Admin/assets/js/plugins.js')}}"></script>
+{{-- <script src="{{asset('assets/Admin/assets/js/plugins.js')}}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="{{asset('assets/Admin/assets/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>
 <script src="{{asset('assets/Admin/assets/libs/flatpickr/flatpickr.min.js')}}"></script>
