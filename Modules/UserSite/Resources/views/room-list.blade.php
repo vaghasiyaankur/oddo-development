@@ -105,12 +105,7 @@ Room List
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response);
                     window.location = response.redirect_url;
-                    // if(response.roomCount == 1){
-                    // }else{
-                    //     window.location = response.redirect_url;
-                    // }
                 },
             });
         });

@@ -26,7 +26,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    use AuthenticatesUsers;
+
+    protected $redirectTo = 'admin/login';
 
     /**
      * Create a new controller instance.
@@ -35,14 +38,12 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // $this->middleware('guest')->except('logout');
     }
 
     public function login(Request $request)
     {
         $input = $request->all();
-
-
 
         $request->validate([
             'email' => 'required|email',
@@ -56,15 +57,14 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->type == 'admin') {
-                return redirect()->route('amenity.index');
-            }else{
-                return redirect()->route('admin.index');
+                return redirect()->route('dashboard');
+            }else {
+                return redirect()->route('admin.index')->with('error','Credentials are not match.');
             }
         }else{
             return redirect()->route('admin.index')
                 ->with('error','Credentials are not match.');
         }
-
     }
 
     public function logout(Request $request) {
