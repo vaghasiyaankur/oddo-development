@@ -343,13 +343,17 @@ class PropertyController extends Controller
         $hotelId = Hotel::whereUuid($id)->pluck('id')->first();
         $hotel_id = $hotelId;
 
-        $x=5;
+      
         if (!\File::exists($storageDestinationPath)) {
             \File::makeDirectory($storageDestinationPath, 0755, true);
         }
         
-         \Image::make(base64_decode($image))
-         ->save($storageDestinationPath."/".$imageName,$x);
+        $photo = \Image::make(base64_decode($image));
+
+        $photo->resize(500, 500, function($constraint){
+            $constraint->aspectRatio();
+        })->save($storageDestinationPath."/".$imageName);
+
 
 
         $hotelPhotoId = '';

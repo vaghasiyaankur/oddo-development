@@ -40,10 +40,10 @@ Photo
                                             </form>
                                         </div>
                                         <input type="hidden" class="hotelId" value="{{@$hotelDetail->UUID}}">
-                                        <div class="sortable row editImageDiv" id="gallery" data-id="1">
-                                            @if(isset($hotelPhotos))
+                                        @if(isset($hotelPhotos))
+                                        <div class="sortable row editImageDiv" id="gallery" data-id="{{$hotelPhotos->count() > 0 ? '1' : '0'}}">
                                             <span id="main-photo-error" class="text-danger ui-sortable-handle"></span>
-                                                @foreach ($hotelPhotos as $hotelPhoto)
+                                            @foreach ($hotelPhotos as $hotelPhoto)
                                                     <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 main-photo-wrapper position-relative" name="image"  id="dz-preview-template">
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">
@@ -52,8 +52,8 @@ Photo
                                                                 </div>
                                                                 <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
                                                                     <div class="d-flex remove-selected-image">
-                                                                        <a href="javascript:;" class="dz-remove text-dark deleteImages editDeleteimage deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->UUID}}" >
-                                                                            <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
+                                                                        <a href="javascript:;" class="dz-remove text-white deleteImages editDeleteimage deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->UUID}}" >
+                                                                            <i class="fa-solid fa-trash-can"></i>
                                                                         </a>
                                                                     </div>
                                         
@@ -74,8 +74,8 @@ Photo
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                            @endif
-                                            <span id="main-photo-error" class="text-danger"></span>
+                                                {{-- <span id="main-photo-error" class="text-danger"></span> --}}
+                                                @endif
                                         </div>
                                     </div>
                                 </div>
@@ -113,35 +113,36 @@ Photo
     </section>
     <!------ Pannel Form end ------->
 
-        <div id="hotel-photo-preview" style="display:none;">
+        <div id="hotel-photo-preview" style="display:none;"  >
             <div class="dz-preview well dz-image-preview col-lg-4 me-0 ms-0 main-photo-wrapper position-relative"  id="dz-preview-template">
                 <div class="dz-details me-0 ms-0 border">
                     <div class="dz-details-inner d-block m-0">
                         <div class="gallery-img m-0">
-                            <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="">
+                            <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('assets/images/default_Image.png')}}">
                         </div>
                         <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center">
                             <div class="d-flex remove-selected-image">
-                                <a href="javascript:;" class="dz-remove text-dark" data-dz-remove>
-                                    <i class="fa-solid fa-trash-can"></i> <span>Delete</span>
+                                <a href="javascript:;" class="dz-remove text-white" data-dz-remove>
+                                    <i class="fa-solid fa-trash-can"></i> 
                                 </a>
                             </div>
-
+                            
                             <div class="selectPhotoType">
                                 <select class="form-select c-form-select photoCategory">
                                     @foreach ($photoCategories as $photoCategory) 
                                         <option value="{{$photoCategory->id}}">{{$photoCategory->name}}</option>
-                                    @endforeach
+                                        @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="dz-success-mark"><span> </span></div>
-                <div class="dz-error-mark"><span></span></div>
-                <div class="dz-error-message">
-                    <span data-dz-errormessage=""></span>
-                </div>
+            </div>
+             <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+            <div class="dz-success-mark"><span> </span></div>
+            <div class="dz-error-mark"><span></span></div>
+            <div class="dz-error-message">
+                <span data-dz-errormessage=""></span>
             </div>
         </div>
 
@@ -154,9 +155,10 @@ Photo
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 <style>
     .remove-selected-image{
-        border: 1px solid lightgray;
+        border: 1px solid #c7acac;
         border-radius: 4px;
         padding: 6px 11px;
+        background: red;
     }
     .main-photo-wrapper:nth-child(2):before{
         content: "Main Photo";
@@ -225,6 +227,7 @@ Photo
         thumbnailHeight: '500',
         clickable: true,
         maxThumbnailFilesize : 20,
+        filesizeBase: 1000,
         previewsContainer: "#gallery",
         previewTemplate: document.querySelector('#hotel-photo-preview').innerHTML,
         init : function() {
@@ -256,7 +259,7 @@ $(document).ready(function(){
         var formData = new FormData();
 
         var photocategories = $('.photoCategory option:selected').map(function(){return $(this).val();}).get();
-
+        console.log(files);
         $('.spinner-border').show();
 
         files.filter(async (f,i)=> {
