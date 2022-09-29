@@ -246,41 +246,6 @@ $(document).ready(function(){
             },
         });
     });
-
-    // $(document).on('click', '.update-amenities-button', function(){
-
-    //     var hotelId = $('.hotelId').val();
-    //     var extra_bed = $('.extra-bed:checked').val();
-    //     var extra_no_of_bed = $('.extra_no_of_bed').val();
-    //     var amenities = $("input[id='amenities']:checked").map(function(){return $(this).val();}).get();
-
-
-    //     formdata = new FormData();
-
-    //     formdata.append('hotelId', hotelId);
-    //     formdata.append('extra_bed', extra_bed);
-    //     formdata.append('amenities', amenities);
-    //     if(extra_bed == 'yes') {
-    //         formdata.append('extra_no_of_bed', extra_no_of_bed);
-    //     }
-
-    //     $('.spinner-border').show();
-    //     $.ajax({
-    //         headers: {
-    //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-    //         },
-    //         url: "{{route('update.amenities')}}",
-    //         type: "POST",
-    //         processData: false,
-    //         contentType: false,
-    //         data: formdata,
-    //         success: function (res) {
-    //             if (res.redirect_url) {
-    //                 window.location = res.redirect_url;
-    //             }
-    //         },
-    //     });
-    // });
 });
 </script>
 @endpush

@@ -3,34 +3,8 @@
 @section('title')
     Property-Category
 @endsection
-<style>
-    section.l-p-myproperties {
-    min-height: calc(100vh - 337px);
-}
-</style>
+
 @section('content')
-     <!------ list-properties nav start------->
-    {{-- <section class="l-p-navbar">
-        <div class="container">
-                <div class="l-p-nav-list d-flex">
-                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active rounded-pill" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Properties</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Balnace</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Balnace</button>
-                        </li>
-                    </ul>
-                </div>
-        </div>
-    </section> --}}
-    <!------ list-properties nav end------->
     <!------- list properties content start------->
     <section class="l-p-myproperties py-5 d-flex align-items-center">
         <div class="container">
@@ -40,12 +14,12 @@
             </div>
             <div class="l-p-myproperties-card">
                 <div class="d-flex flex-wrap">
-                @foreach($propertys as $no => $property)
+                @foreach($properties as $no => $property)
                     @if($no <= 5)
                     <div class="border-right property-type">
                         <div class="l-mypro-card text-center">
                             <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
+                                <img src="{{asset('assets/images/icons/house.png')}}">
                             </div>
                             <div class="l-mypro-card-heading">
                                 <h5 class="l-mypro-card-head fw-bold pt-3">{{$property->type}}</h5>
@@ -63,15 +37,15 @@
                 </div>
             </div>  
 
-            @if($propertys->count() > 5)
+            @if($properties->count() > 5)
             <div class="l-p-myproperties-card mt-3">
                 <div class="row">
-                 @foreach($propertys as $no => $property)
+                 @foreach($properties as $no => $property)
                     @if($no > 5)
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12 border-right ">
                         <div class="l-mypro-card text-center">
                             <div class="l-mypro-card-logo">
-                                <img src="../assets/images/icons/house.png">
+                                <img src="{{ asset('assets/images/icons/house.png') }}">
                             </div>
                             <div class="l-mypro-card-heading">
                                 <h5 class="l-mypro-card-head fw-bold pt-3">{{$property->type}}</h5>
@@ -97,6 +71,11 @@
 
 @push('css')
     <link rel="stylesheet" href="{{asset('Adminpannel design/css/pannel.css')}}">
+    <style>
+        section.l-p-myproperties {
+        min-height: calc(100vh - 361px);
+    }
+    </style>
 @endpush
 
 @push('scripts')
