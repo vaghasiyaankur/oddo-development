@@ -17,6 +17,8 @@
 
 <!-- // Home page slider start -->
 <script>
+    var baseUrl = $('#base_url').val();
+
     $(document).on('click', '#SubmitSearch', function() {
         var search = $("input[name=search]").val();
         !search ? $(`.search-error`).html(`Please enter a destination to start searching.`) : $(`.search-error`)

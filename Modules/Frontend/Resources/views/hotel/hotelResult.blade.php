@@ -436,7 +436,7 @@
                   @foreach ($hotelAmount as $key => $item)
                     @if ($key == $hotel->id)
                       {{-- <button class="price-btn" data-id="{{@$hotel->UUID}}" data-bs-toggle="modal" data-bs-target="#payment_type_{{ @$hotel->UUID }}">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button> --}}
-                      <button class="price-btn hotelPayment" data-id="{{@$hotel->UUID}}" data-bs-toggle="modal">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button>
+                      <button class="price-btn hotelPayment" data-id="{{@$hotel->UUID}}">{{currency()['sumbol'] }} {{ @$item }} {{currency()['currency'] }}</button>
 
                       <input type="hidden" value="{{ @$item }}" class="amount_data_{{ $hotel->UUID }}">
                     @endif
@@ -1340,7 +1340,7 @@
                     </div>
                   </div>
                   <div class="right-menu mb-2">
-                    <div class="right-menu-icon d-flex pb-1">
+                    <div class="right-menu-icon d-s pb-1">
                       <div class="right-menu-icon-inner">
                         <img src="assets/images/icons/search-i-5.png">
                       </div>

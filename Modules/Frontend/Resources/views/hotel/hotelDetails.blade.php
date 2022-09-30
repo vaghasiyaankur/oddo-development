@@ -96,7 +96,7 @@
                                     <h5 class="heading-fs-16 mb-lg-3 mb-2 purple-dark">{{ $photoCategory->name }}</h5>
                                     <div class="gallery-single-img">
                                         <div class="swiper-s-img">
-                                            <a href="#" data-bs-toggle="modal" class="photoPopup"
+                                            <a href="#"  class="photoPopup"
                                                 data-id="{{ $hotel->UUID }}" data-category='{{ $photoCategory->id }}'>
                                                 <img src="{{ asset('assets/images/h-details-1.png') }}"
                                                     class="img-fluid img-wrapper"></a>
@@ -603,6 +603,9 @@
             formdata.append('category_id', category_id);
 
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 url: "{{ route('hotel.photo') }}",
                 type: "POST",
                 processData: false,
@@ -611,7 +614,7 @@
                 success: function(response) {
                     $('.mainCategoryImageDiv').html(response);
                     $('#categoryPhotosPopup').modal('show');
-
+                    slickCarousel();
                 },
                 error: function(response) {
 
@@ -626,78 +629,82 @@
 
     <!-------- image popup slider image js------>
     <script>
-        $('.slider-single').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            loop: true,
-            arrows: true,
-            draggable: false,
-            fade: true,
-            asNavFor: '.slider-nav'
-        });
-        $('.slider-nav').slick({
-            slidesToShow: 10,
-            slidesToScroll: 1,
-            asNavFor: '.slider-single',
-            dots: false,
-            loop: true,
-            draggable: false,
-            centerMode: true,
-            focusOnSelect: true,
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 8,
-                        slidesToScroll: 1,
+        function slickCarousel() {
+            
+            $('.slider-single').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                loop: true,
+                arrows: true,
+                draggable: false,
+                fade: true,
+                asNavFor: '.slider-nav'
+            });
+    
+            $('.slider-nav').slick({
+                slidesToShow: 10,
+                slidesToScroll: 1,
+                asNavFor: '.slider-single',
+                dots: false,
+                loop: true,
+                draggable: false,
+                centerMode: true,
+                focusOnSelect: true,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 8,
+                            slidesToScroll: 1,
+                        },
                     },
-                },
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: 7,
-                        slidesToScroll: 1,
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 7,
+                            slidesToScroll: 1,
+                        },
                     },
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 6,
-                        slidesToScroll: 1,
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 6,
+                            slidesToScroll: 1,
+                        },
                     },
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 5,
-                        slidesToScroll: 1,
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+                        },
                     },
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        },
                     },
-                },
-                {
-                    breakpoint: 360,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
+                    {
+                        breakpoint: 360,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        },
                     },
-                },
-            ],
-        });
+                ],
+            });
+        }
 
-        $('.modal').on('shown.bs.modal', function(e) {
-            $('.slider-single').slick('setPosition');
-            $('.swiper').addClass('open');
-        });
+        // $('.modal').on('shown.bs.modal', function(e) {
+        //     $('.slider-single').slick('setPosition');
+        //     $('.swiper').addClass('open');
+        // });
 
-        $('.modal').on('shown.bs.modal', function(e) {
-            $('.slider-nav').slick('setPosition');
-            $('.swiper').addClass('open');
-        });
+        // $('.modal').on('shown.bs.modal', function(e) {
+        //     $('.slider-nav').slick('setPosition');
+        //     $('.swiper').addClass('open');
+        // });
     </script>
 
 <script>

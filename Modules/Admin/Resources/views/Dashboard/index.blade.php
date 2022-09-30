@@ -1,5 +1,6 @@
 @extends('layout::admin.master')
-@section('title','Booking')
+@section('title','Dashboard')
+
 @push('css')
 <!-- jsvectormap css -->
 <link href="{{asset('assets/Admin/assets/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />

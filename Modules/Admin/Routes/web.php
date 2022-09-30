@@ -11,13 +11,15 @@
 |
 */
 Route::prefix('admin')->group(function() {
-
-    Route::controller(LoginController::class)->group(function(){
-        Route::get('/login', 'index')->name('admin.index');
-        Route::post('/login', 'login')->name('admin.login');
-        Route::get('/logout', 'logout')->name('admin.logout');
+    
+    Route::group(['middleware' => ['guest']], function() {
+        Route::controller(LoginController::class)->group(function(){
+            Route::get('/login', 'index')->name('admin.index');
+            Route::post('/login', 'login')->name('admin.login');
+        });
     });
-
+    
+    
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         // dashboard
         Route::controller(DashboardController::class)->group(function(){
@@ -202,6 +204,8 @@ Route::prefix('admin')->group(function() {
             Route::post('notification/delete', 'deleteNotification')->name('notification.delete');
         });
 
+        // log out
+        Route::get('/logout', 'LoginController@logout')->name('admin.logout');
     });
 
 
