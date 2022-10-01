@@ -43,12 +43,13 @@ Photo
                                         @if(isset($hotelPhotos))
                                         <div class="sortable row editImageDiv" id="gallery" data-id="{{$hotelPhotos->count() > 0 ? '1' : '0'}}">
                                             <span id="main-photo-error" class="text-danger ui-sortable-handle"></span>
-                                            @foreach ($hotelPhotos as $hotelPhoto)
+                                                @foreach ($hotelPhotos as $hotelPhoto)
+                                                    @if ($hotelPhoto->main_photo == 1)
                                                     <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 main-photo-wrapper position-relative" name="image"  id="dz-preview-template">
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">
                                                                 <div class="gallery-img m-0">
-                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}" >
+                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}">
                                                                 </div>
                                                                 <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
                                                                     <div class="d-flex remove-selected-image">
@@ -58,7 +59,7 @@ Photo
                                                                     </div>
                                         
                                                                     <div class="selectPhotoType">
-                                                                        <select class="form-select c-form-select editPhotoCategory" data-id="{{$hotelPhoto->UUID}}" data-delete="0">
+                                                                        <select class="form-select c-form-select editPhotoCategory" data-id="{{$hotelPhoto->UUID}}" data-delete="0" >
                                                                             @foreach ($photoCategories as $photoCategory) 
                                                                                 <option value="{{$photoCategory->id}}" {{$photoCategory->id == $hotelPhoto->category_id ? 'selected' : ''}}>{{$photoCategory->name}}</option>
                                                                             @endforeach
@@ -73,9 +74,44 @@ Photo
                                                             <span data-dz-errormessage=""></span>
                                                         </div>
                                                     </div>
+                                                    @endif
+                                                @endforeach
+
+                                                @foreach ($hotelPhotos as $hotelPhoto)
+                                                    @if ($hotelPhoto->main_photo == 0)   
+                                                        <div class="dz-preview well dz-image-preview main_photos col-lg-4 me-0 ms-0 main-photo-wrapper position-relative" name="image"  id="dz-preview-template">
+                                                            <div class="dz-details me-0 ms-0 border">
+                                                                <div class="dz-details-inner d-block m-0">
+                                                                    <div class="gallery-img m-0">
+                                                                        <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}">
+                                                                    </div>
+                                                                    <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
+                                                                        <div class="d-flex remove-selected-image">
+                                                                            <a href="javascript:;" class="dz-remove text-white deleteImages editDeleteimage deleteImage_{{$hotelPhoto->id}}" data-id="{{$hotelPhoto->UUID}}" >
+                                                                                <i class="fa-solid fa-trash-can"></i>
+                                                                            </a>
+                                                                        </div>
+                                            
+                                                                        <div class="selectPhotoType">
+                                                                            <select class="form-select c-form-select editPhotoCategory" data-id="{{$hotelPhoto->UUID}}" data-delete="0" >
+                                                                                @foreach ($photoCategories as $photoCategory) 
+                                                                                    <option value="{{$photoCategory->id}}" {{$photoCategory->id == $hotelPhoto->category_id ? 'selected' : ''}}>{{$photoCategory->name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dz-success-mark"><span> </span></div>
+                                                            <div class="dz-error-mark"><span></span></div>
+                                                            <div class="dz-error-message">
+                                                                <span data-dz-errormessage=""></span>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 @endforeach
                                                 {{-- <span id="main-photo-error" class="text-danger"></span> --}}
-                                                @endif
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +154,7 @@ Photo
                 <div class="dz-details me-0 ms-0 border">
                     <div class="dz-details-inner d-block m-0">
                         <div class="gallery-img m-0">
-                            <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('assets/images/default_Image.png')}}">
+                            <img class="image--preview--show w-100 img-fluid" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('assets/images/default_Image.png')}}" data-id="0">
                         </div>
                         <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center">
                             <div class="d-flex remove-selected-image">
@@ -259,8 +295,8 @@ $(document).ready(function(){
         var formData = new FormData();
 
         var photocategories = $('.photoCategory option:selected').map(function(){return $(this).val();}).get();
-        console.log(files);
         $('.spinner-border').show();
+        console.log(files);
 
         files.filter(async (f,i)=> {
             var main = 0;
@@ -291,8 +327,16 @@ $(document).ready(function(){
 
         var editImage = $('.editImageDiv').data('id');
         if (editImage == 1) {
+            var main_photos = $('.image--preview--show').map(function(n){
+                if (n == 0) {
+                    main = 1;
+                }else{
+                    main = 0;
+                }
+                return {'main': main, 'id': $(this).data('id')};
+            }).get();
 
-            var EditImages = $('.editPhotoCategory option:selected').map(function(){
+            var EditImages = $('.editPhotoCategory option:selected').map(function(n){
                 return {'id': $(this).parents('.editPhotoCategory').data('id'), 'propertyType' : $(this).val()};
             }).get();
 
@@ -304,7 +348,7 @@ $(document).ready(function(){
                 },
                 url: "{{route('update-photos')}}",
                 type: "POST",
-                data: {deleteImages: deleteImages, EditImages: EditImages, hotelId: hotelId},
+                data: {deleteImages: deleteImages, EditImages: EditImages, hotelId: hotelId, main_photos: main_photos},
                 success: function (response) {
                     if (response.redirect_url) {
                         window.location = response.redirect_url;
@@ -330,7 +374,7 @@ $(document).ready(function(){
         }
 
         localStorage.setItem('deleteImage', JSON.stringify(obj));
-        $(this).parents('.dz-image-preview').hide();
+        $(this).parents('.dz-image-preview').remove();
     });  
 
 });
