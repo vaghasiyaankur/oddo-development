@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\City;
 use App\Models\PropertyType;
+use App\Models\HotelBooking;
+use DB;
 
 class CityController extends Controller
 {
@@ -16,8 +18,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::get();
-        return view('frontend::city.index', compact('cities'));
+        $hotels = HotelBooking::with('hotel')->select('hotel_id', DB::raw('count(*) as hotel_count'))->groupBy('hotel_id')->get();
+        $cities = City::active()->get();
+        return view('frontend::city.index', compact('cities', 'hotels'));
     }
 
     /**

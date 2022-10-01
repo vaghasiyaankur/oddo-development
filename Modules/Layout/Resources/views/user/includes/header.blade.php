@@ -16,7 +16,8 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('hotel.index') }}">Hotels </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('city.index') }}">Cities</a>
+                        <a class="nav-link" href="{{ route('city.index') }}">Destinations we love</a>
+                        
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('search.index') }}">Search</a>

@@ -35,4 +35,7 @@ class City extends Model
         return $this->hasOne(Hotel::class);
     }
 
+    public function scopeActive($query) {
+        return $query->where('status', 1);
+    }
 }

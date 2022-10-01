@@ -59,7 +59,7 @@ class HomeController extends Controller
             }
         }
 
-        $cities = City::whereFeatured(1)->get();
+        $cities = City::whereFeatured(1)->active()->get();
         $propertyTypes = PropertyType::active()->get();
         $partners = Partner::get();
         return view('frontend::home.index',compact('cities','partners', 'propertyTypes'));
