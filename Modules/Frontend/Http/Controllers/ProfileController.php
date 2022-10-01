@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -38,18 +38,22 @@ class ProfileController extends Controller
     }
     public function changePassword(Request $request)
     {
-        
-        $validated   = $request->validate([
+        $Validator = Validator::make($request->all(), [
             'oldPassword'  => 'required',
             'newPassword'  => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'confirmPassword'  => 'required|same:newPassword',
         ], [ 
-            'oldPassword.unique' => 'The old password field is required' , 
-            'newPassword.unique' => 'The new password field is required.' ,
+            'oldPassword.required' => 'The old password field is required.', 
+            'newPassword.required' => 'The new password field is required.',
             'newPassword.regex' => 'At least 1 letter, a number or symbol, at least 8 characters.',
-            'confirmPassword.unique' => 'The confirm password field is required.' ,
-            'confirmPassword.same' => 'Please enter the same value again.' ,
+            'confirmPassword.required' => 'The confirm password field is required.',
+            'confirmPassword.same' => 'Please enter the same value again.',
         ]);
+
+        // validation massage
+        if (!$Validator->passes()) {
+            return response()->json(["status" => 0, 'errors' => $Validator->errors()->toArray()]);
+        }
        
         $oldPassword = $request->oldPassword;
         $newPassword = $request->newPassword;
@@ -63,9 +67,10 @@ class ProfileController extends Controller
             ]);
 
             auth()->logout();
-            return response()->json(["success" => "user password updated Successfully"], 200);
+
+            return response()->json(['status' => 1, "success" => "user password updated Successfully"]);
         }else{
-            return response()->json(["error" => "old password is not match."], 403);
+            return response()->json(['status' => 0, "error" => "old password is not match."]);
         }
     }
 }

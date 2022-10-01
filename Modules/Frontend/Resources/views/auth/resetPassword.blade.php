@@ -1,15 +1,20 @@
+@php
+    $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon();
+    $generalSetting = App\Models\GeneralSetting::first();
+@endphp
+
 <!doctype html>
 <html>
 
 <head>
     <meta charset="utf-8" />
-    <title>Sign In | Velzon - Admin & Dashboard Template</title>
+    <title>{{ $generalSetting->site_name }} | Reset Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/Admin/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/Admin/assets/js/layout.js') }}"></script>
@@ -44,7 +49,8 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="assets/images/logo-light.png" alt="" height="20">
+                                    <img
+                                    src="{{ $logoFavicon->logo == null ? asset('storage/' . $logoFavicon->default_logo) : asset('storage/' . $logoFavicon->logo) }}">
                                 </a>
                             </div>
                             {{-- <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p> --}}
@@ -113,7 +119,7 @@
     <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
-    <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script>
+    {{-- <script src="{{ asset('assets/Admin/assets/js/plugins.js') }}"></script> --}}
 
     <!-- particles js -->
     <script src="{{ asset('assets/Admin/assets/libs/particles.js/particles.js') }}"></script>
@@ -154,18 +160,21 @@
                     contentType: false,
                     data: formdata,
                     success: function (response) {
-                        $(".updatePasswordForm").trigger("reset");
-                        window.location.href = '/';
+                        if (response.status == 1) {
+                            $(".updatePasswordForm").trigger("reset");
+                            window.location.href = '/';
+                        }else{
+                            if(response.errors){
+                                $('#newPassword-error').text(response.errors.newPassword);
+                                $('#confirmPassword-error').text(response.errors.confirmPassword);
+                            }
+                            if(response.error){
+                                $('#expired-div').html(` <div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                            <span id="expired-link-error">`+response.error+`</span>
+                                        </div>`);
+                            }
+                        }
                     }, error:function (response) {
-                        if(response.responseJSON.errors){
-                            $('#newPassword-error').text(response.responseJSON.errors.newPassword);
-                            $('#confirmPassword-error').text(response.responseJSON.errors.confirmPassword);
-                        }
-                        if(response.responseJSON.error){
-                            $('#expired-div').html(` <div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
-                                        <span id="expired-link-error">`+response.responseJSON.error+`</span>
-                                    </div>`);
-                        }
                     }
                 }); 
 

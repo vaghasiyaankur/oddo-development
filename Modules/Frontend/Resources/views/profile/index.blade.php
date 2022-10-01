@@ -298,25 +298,24 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
-                $(".changePasswordForm").trigger("reset");
-                $("#succesful_password").modal("toggle");
-            }, error:function (response) {
-                if(response.responseJSON.error){
-                    $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
-                                            <span id="expired-link-error">`+response.responseJSON.error+`</span>
-                                        </div>`);
-                }else {
-                    $('#oldPassword-error').text(response.responseJSON.errors.oldPassword);
-                    $('#newPassword-error').text(response.responseJSON.errors.newPassword);
-                    $('#confirmPassword-error').text(response.responseJSON.errors.confirmPassword);
+                if (response.status == 1) {
+                    $(".changePasswordForm").trigger("reset");
+                    $("#succesful_password").modal("toggle");
+                }else{
+                    if(response.error){
+                        $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                                <span id="expired-link-error">`+response.error+`</span>
+                                            </div>`);
+                    }else {
+                        $('#oldPassword-error').text(response.errors.oldPassword);
+                        $('#newPassword-error').text(response.errors.newPassword);
+                        $('#confirmPassword-error').text(response.errors.confirmPassword);
+                    }
                 }
+            }, error:function (response) {
             }
         });
     });
-
-    // $(document).on('click', '.resetLoginButton', function(){
-    //     $("#Log_in_modal").modal("toggle");
-    // });
 });
 </script>
 
