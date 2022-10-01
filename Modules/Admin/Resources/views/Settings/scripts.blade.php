@@ -80,27 +80,39 @@ $(document).ready(function(){
         $('.updateLoader').addClass('on').removeClass('off');
 
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: "{{route('update.logo')}}",
             type: "POST",
             processData: false,
             contentType: false,
             data: formdata,
             success: function (response) {
-                $('.logo-dark img').attr('src', baseUrl+'/storage/'+response.logo);
-                $('.favicon_image').attr('href', baseUrl+'/storage/'+response.favicon);
-                logoFavicon();
-                setTimeout(function(){
-                    $('.updateLoader').addClass('off').removeClass('on');
-                    toastMixin.fire({ title: response.success, icon: 'success' });
-                }, 2000);
+                if (response.status == 1) {
+                    $('.logo-dark img').attr('src', baseUrl+'/storage/'+response.logo);
+                    $('.favicon_image').attr('href', baseUrl+'/storage/'+response.favicon);
+                    logoFavicon();
+                    setTimeout(function(){
+                        $('.updateLoader').addClass('off').removeClass('on');
+                        toastMixin.fire({ title: response.success, icon: 'success' });
+                    }, 2000);
+                }else{
+                    if(response.error){
+                        $('.logo-error').html(response.error);
+                    }else{
+                        $('.logo-error').html(response.errors.logo);
+                        $('.favicon-error').html(response.errors.favicon);
+                        
+                        setTimeout(function(){
+                            $('.updateLoader').addClass('off').removeClass('on');
+                            toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
+                        }, 2000);
+                    }
+                }
             }, error:function (response) {
-                $('.logo-error').html(response.responseJSON.errors.logo);
-                $('.favicon-error').html(response.responseJSON.errors.favicon);
-                setTimeout(function(){
-                    $('.updateLoader').addClass('off').removeClass('on');
-                    toastMixin.fire({ title: 'please select logo or favicon.', icon: 'error' });
-                }, 2000);
             }
+
         });
     });
 

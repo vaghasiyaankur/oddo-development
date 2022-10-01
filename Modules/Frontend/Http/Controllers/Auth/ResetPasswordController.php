@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class ResetPasswordController extends Controller
 {
@@ -87,18 +88,22 @@ class ResetPasswordController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
-            'newPassword' => 'required|min:6',
+        $Validator = Validator::make($request->all(), [
+            'newPassword' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'confirmPassword' => 'required||same:newPassword',
-            
         ]);
+
+         // validation massage
+         if (!$Validator->passes()) {
+            return response()->json(["status" => 0, 'errors' => $Validator->errors()->toArray()]);
+        }
         
         $updatePassword = DB::table('password_resets')
         ->where('token', $request->token)
         ->first();
       
         if(!$updatePassword){
-            return response()->json(["error" => "Your password reset link expired."], 403);  
+            return response()->json(["status" => 0, "error" => "Your password reset link expired."]);  
         }
       
         $user = User::where('email', $updatePassword->email)
@@ -106,6 +111,6 @@ class ResetPasswordController extends Controller
       
         DB::table('password_resets')->where(['email'=> $updatePassword->email])->delete();
       
-        return response()->json(["success" => "We have e-mailed your password reset link!"], 200);  
+        return response()->json(["status" => 1, "success" => "We have e-mailed your password reset link!"], 200);  
     }
 }

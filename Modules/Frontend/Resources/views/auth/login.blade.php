@@ -20,7 +20,7 @@
                                             <div class="mb-4">
                                                 <label for="email" class="form-label">Email <span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" name="email" class="form-control email" id="email"
+                                                <input type="email" name="email" class="form-control email" id="email"
                                                     placeholder="Email">
                                                 <span class="text-danger" id="email-error"></span>
                                             </div>
@@ -38,7 +38,7 @@
                                                         placeholder="Password" id="password-input"  autocomplete="off">
                                                     <button
                                                         class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
-                                                        type="button" id="password-addon"><i
+                                                        type="button" id="password-addon" style="padding-top: 2px;"><i
                                                             class="ri-eye-fill align-middle"></i></button>
                                                     <span class="text-danger" id="password-error"></span>
                                                 </div>
@@ -83,7 +83,9 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '.submitLogin', function(){
+    $(document).on('click', '.submitLogin', function(event){
+        event.preventDefault();
+             
         let email = $('.email').val();
         !email ? $(`#email-error`).html(`The email field is required.`) : $(`#email-error`).html(``);
         
@@ -107,23 +109,27 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: formdata,
+            dataType:'json',
             success: function (response) {
-                // $('.spinner-border').hide();
-                window.location.href = '/';
-            }, error:function (response) {
-                if(response.responseJSON.error){
+                if (response.status == 1) {
+                    window.location.href = '/';
+                } else {
                     $('.spinner-border').hide();
-                    $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center p-2 mx-2" style="position:absolute;width:85%;" role="alert">
-                                            <span id="expired-link-error">`+response.responseJSON.error+`</span>
-                                        </div>`);
-                    setTimeout(function(){
-                        $('#expired-div').html(``); 
-                    }, 4000);
-                }else {
-                    $('.spinner-border').hide();
-                    $('#email-error').text(response.responseJSON.errors.email);
-                    $('#password-error').text(response.responseJSON.errors.password);
+                    if(response.error){
+                        $('.spinner-border').hide();
+                        $('#expired-div').html(`<div class="alert alert-borderless alert-danger text-center p-2 mx-2" style="position:absolute;width:85%;" role="alert">
+                                                <span id="expired-link-error">`+response.error+`</span>
+                                            </div>`);
+                        setTimeout(function(){
+                            $('#expired-div').html(``); 
+                        }, 4000);
+                    }else {
+                        $('.spinner-border').hide();
+                        $('#email-error').text(response.errors.email);
+                        $('#password-error').text(response.errors.password);
+                    }
                 }
+            }, error:function (response) {
             }
         }); 
     }); 

@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 use App\Models\EmailTemplate;
 use App\Models\ShortCodeMailTemplate;
+use DB;
  
 class NotifyMail extends Mailable
 {
@@ -32,8 +33,8 @@ class NotifyMail extends Mailable
      */
     public function build()
     {
-        $userId = auth()->user()->id;
-        $User = User::whereId($userId)->first();
+        $pasword_reset = DB::table('password_resets')->where('token', $this->token)->first();
+        $User = User::whereEmail($pasword_reset->email)->first();
         $emailTemplate = EmailTemplate::where('id', 3)->first();
 
         $short_code_id = explode(',',$emailTemplate->short_code_id);

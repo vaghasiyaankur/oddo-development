@@ -12,6 +12,7 @@ use App\Models\EmailTemplate;
 use App\Models\ShortCodeMailTemplate;
 use File;
 use Illuminate\Support\Facades\Config;
+use Validator;
 
 
 class SettingController extends Controller
@@ -62,14 +63,19 @@ class SettingController extends Controller
 
     public function updateLogo(Request $request)
     {
-        if (!isset($_FILES['logo']) && !isset($_FILES['favicon'])) {
-            return response()->json(["error" => "please select logo or favicon."], 403);
-        }
+        // if (!isset($request->logo) && !isset($request->favicon)) {
+        //     return response()->json(["status" => 0, "error" => "please select logo or favicon."]);
+        // }
 
-        $request->validate([
+        $Validator = Validator::make($request->all(), [
             'logo' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3072',
             'favicon' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3072',
         ]);
+
+        // validation massage
+        if (!$Validator->passes()) {
+            return response()->json(["status" => 0, 'errors' => $Validator->errors()->toArray()]);
+        }
 
         $logo = $request->file('logo');
         $favicon = $request->file('favicon');
@@ -100,7 +106,7 @@ class SettingController extends Controller
             $LogoFavicon->favicon = $logo_image_favicon;
         }
         $LogoFavicon->update();
-        return response()->json(["success" => "logo update Successfully", 'logo' => $logo_image, 'favicon' => $logo_image_favicon], 200);
+        return response()->json(["status" => 1, "success" => "logo update Successfully", 'logo' => $logo_image, 'favicon' => $logo_image_favicon], 200);
     }
 
     public function deleteFavicon($id)

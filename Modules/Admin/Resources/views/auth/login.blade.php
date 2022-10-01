@@ -84,7 +84,8 @@ $generalSetting = App\Models\GeneralSetting::select('site_name')->first();
                                             <div class="mb-3">
                                                 <label class="form-label" for="password-input">Password</label>
                                                 <div class="position-relative auth-pass-inputgroup">
-                                                    <input type="password" name="password" class="form-control pe-5" placeholder="Enter password" id="password-input">
+                                                    <input type="password" name="password" class="form-control pe-5" placeholder="Enter password" id="password-input" autocomplete="off">
+                                                    
                                                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                 </div>
                                                 @if ($errors->has('password'))
