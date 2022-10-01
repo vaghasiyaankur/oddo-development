@@ -325,7 +325,6 @@ class PropertyController extends Controller
     }
 
     public function save_photos($id,Request $request) {
-        // dd($request->deleteImage);
         $image_64 = $request->url;
         $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
         $replace = substr($image_64, 0, strpos($image_64, ',')+1);
@@ -370,15 +369,30 @@ class PropertyController extends Controller
     public function updatePhotos(Request $request)
     {
        $editImages = $request->EditImages;
+       $main_photos = $request->main_photos;
+    //    echo $editImages;
+    //    dd($main_photos);
         if($editImages != null){
-            foreach($editImages as $key => $editImage) {
-                $hotelPhotoId = $editImage['id'];
-                $hotelPhotoPType = $editImage['propertyType'];
 
-                $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
-                $editImageData->update([
-                'category_id' => $hotelPhotoPType
-                ]);
+            foreach($editImages as $key => $editImage) {
+
+                foreach ($main_photos as $key => $main_photo) {
+                    // dd($main_photo['id']);
+                    $hotelPhotoId = $editImage['id'];
+                    $hotelPhotoPType = $editImage['propertyType'];
+                    $main_photo_id = $main_photo['id'];
+
+                    if ($hotelPhotoId == $main_photo_id) {
+
+                        $editImageData = HotelPhoto::whereUuid($hotelPhotoId)->firstOrFail();
+                        
+                        $editImageData->update([
+                        'main_photo' => $main_photo['main'],   
+                        'category_id' => $hotelPhotoPType
+                        ]);
+
+                    }
+                }
             }
         }
 
