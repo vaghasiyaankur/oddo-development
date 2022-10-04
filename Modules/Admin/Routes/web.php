@@ -138,7 +138,7 @@ Route::prefix('admin')->group(function() {
         });
 
          // Setting
-         Route::controller(SettingController::class)->group(function(){
+        Route::controller(SettingController::class)->group(function(){
             Route::get('setting', 'index')->name('setting.index');
             Route::post('setting', 'changeSetting')->name('setting.change');
 
@@ -202,6 +202,17 @@ Route::prefix('admin')->group(function() {
             Route::post('notification', 'notification')->name('property.notification');
             Route::post('notification/show', 'showNotification')->name('notification.show');
             Route::post('notification/delete', 'deleteNotification')->name('notification.delete');
+        });
+
+        // pages
+        Route::controller(PagesController::class)->group(function() {
+            Route::get('/pages', 'index')->name('pages.index');
+            Route::get('/add-page', 'create')->name('page.create');
+            Route::post('/add-page', 'store')->name('page.store');
+            Route::post('delete-page/{id}', 'destroy')->name('page.delete');
+            Route::get('page-list', 'pageList')->name('page.list');
+            Route::get('edit-page/{id}', 'edit')->name('page.edit');
+            Route::post('update-page', 'update')->name('page.update');
         });
 
         // log out

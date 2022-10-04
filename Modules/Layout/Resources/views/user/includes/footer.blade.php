@@ -1,3 +1,6 @@
+@php
+     $bottomPages = App\Models\Pages::whereStatus('1')->whereLocation('0')->get();
+@endphp
     <!-------- Footer start -------->
     <footer class="footer hotel-result">
       <div class="container">
@@ -35,12 +38,18 @@
                       <div class="footer-link">
                           <h5 class="purple">Customers</h5>
                           <ul class="nav flex-column">
-                              <li class="nav-item">
-                                  <a class="nav-link ps-0 active" href="#">Testimonials</a>
-                              </li>
-                              <li class="nav-item">
-                                  <a class="nav-link ps-0" href="#"> Reviews</a>
-                              </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link ps-0 active" href="#">Testimonials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ps-0" href="#"> Reviews</a>
+                                </li> 
+
+                                @foreach ($bottomPages as $bottomPage)
+                                    <li class="nav-item">
+                                        <a class="nav-link ps-0" href="{{ $bottomPage->slug }}"> {{$bottomPage->title}}</a>
+                                    </li> 
+                                @endforeach
                           </ul>
                       </div>
                   </div>

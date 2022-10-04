@@ -111,3 +111,6 @@ Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
 // payment view url
 Route::post('/hotel/payment', 'HotelController@hotelPayment')->name('hotel.payment');
 
+// daynamic page
+Route::get('{slug}', 'PagesController@index');
+

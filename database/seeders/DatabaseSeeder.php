@@ -31,7 +31,7 @@ use Modules\UserSite\Database\Seeders\PaymentTableSeeder;
 use Modules\UserSite\Database\Seeders\BookingTableSeeder;
 use Modules\UserSite\Database\Seeders\ReviewTableSeeder;
 use Modules\UserSite\Database\Seeders\PhotocategoryTableSeeder;
-
+use Modules\UserSite\Database\Seeders\PagesTableSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             PaymentTableSeeder::class,
             BookingTableSeeder::class,
             ReviewTableSeeder::class,
-            
+            PagesTableSeeder::class,
         ]);
     }
 }

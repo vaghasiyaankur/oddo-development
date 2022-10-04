@@ -1,4 +1,7 @@
-@php $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon() @endphp
+@php 
+    $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon();
+    $pages = App\Models\Pages::whereStatus('1')->whereLocation('1')->get();
+@endphp
 
 <header class="header">
     <nav class="navbar navbar-expand-lg">
@@ -33,6 +36,12 @@
                             <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
                         </li>
                     @endauth
+
+                    @foreach ($pages as $page)
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="{{ $page->slug }}">{{$page->title}}</a>
+                        </li>
+                    @endforeach
                 </ul>
 
                 @php
