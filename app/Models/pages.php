@@ -10,6 +10,8 @@ class Pages extends Model
 {
     use HasFactory,Uuids;
 
+
+    
     protected $table = 'pages';
 
     protected $guarded = ['id'];
