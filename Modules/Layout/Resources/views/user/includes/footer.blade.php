@@ -47,7 +47,7 @@
 
                                 @foreach ($bottomPages as $bottomPage)
                                     <li class="nav-item">
-                                        <a class="nav-link ps-0" href="{{ $bottomPage->slug }}"> {{$bottomPage->title}}</a>
+                                        <a class="nav-link ps-0" href="{{ url('/'.$bottomPage->slug) }}"> {{$bottomPage->title}}</a>
                                     </li> 
                                 @endforeach
                           </ul>

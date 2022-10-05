@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->boolean('status')->default(1);
             $table->boolean('show_title')->default(1);
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

@@ -112,5 +112,13 @@ Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
 Route::post('/hotel/payment', 'HotelController@hotelPayment')->name('hotel.payment');
 
 // daynamic page
-Route::get('{slug}', 'PagesController@index');
+Route::fallback(function($slug){
+    $pageData = App\Models\Pages::whereStatus(1)->whereSlug($slug)->first();
+    if($pageData)
+    {
+        return view('frontend::pages.index', compact('pageData'));
+    }else{
+        return abort(404);
+    }
+});
 

@@ -9,9 +9,6 @@
 <!-- 'nano' theme -->
 <link rel="stylesheet" href="{{ asset('assets/Admin/assets/libs/@simonwep/pickr/themes/nano.min.css') }}" />
 
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
-
-{{-- <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"></script> --}}
 @endpush
 
 @section('content')
@@ -114,11 +111,9 @@
                         </div>
                         <div class="col-lg-12 pb-3">
                             <label for="exampleInputdate" class="form-label">Content</label>
-                            {{-- <textarea class="tinyMCE" id="tiny">  
-                            </textarea> --}}
-                            <textarea name="content" class="pageContent" id="createCKEditor">
+                            <textarea class="tinyMCE" id="tiny">  
                                 {{isset($page) ? $page->description : ''}}
-                            </textarea>   
+                            </textarea>
                             <span class="text-danger" id="content-error"></span>
 
                         </div>
@@ -138,16 +133,4 @@
 
 @push('scripts')
 @include('admin::pages.scripts')
-<script>
-    let theEditor;
-    ClassicEditor.create(document.querySelector('#createCKEditor')).then(editor => {
-        theEditor = editor;
-    }).catch(error => {
-        console.error(error);
-    });
-
-    function getDataFromTheEditor() {
-        return theEditor.getData();
-    }
-</script>
 @endpush

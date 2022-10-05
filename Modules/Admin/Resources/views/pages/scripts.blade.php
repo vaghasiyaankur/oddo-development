@@ -1,3 +1,5 @@
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js"></script>
 <script>
     var baseUrl = $('#base_url').val();
 
@@ -7,22 +9,21 @@
         }
     });
 
-    // tinymce.init({
-    //     selector: '.tinyMCE',
-    //     height: 500,
-    //     theme: 'modern',
-    //     plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount tinymcespellchecker a11ychecker imagetools mediaembed  linkchecker contextmenu colorpicker textpattern help',
-    //     toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | code',
-    //     image_advtab: true,
-    //     templates: [
-    //         { title: 'Test template 1', content: 'Test 1' },
-    //         { title: 'Test template 2', content: 'Test 2' }
-    //     ],
-    //     content_css: [
-    //         '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-    //         '//www.tinymce.com/css/codepen.min.css'
-    //     ]
-    // });
+    $('textarea#tiny').tinymce({
+        height: 500,
+        menubar: true,
+        plugins: [
+           'preview', 'searchreplace', 'autolink', 'directionality', 'advcode', 'visualblocks', 'visualchars', 'fullscreen', 'image', 'link', 'media', 'template', 'codesample', 'table', 'charmap', 'pagebreak', 'nonbreaking', 'anchor', 'insertdatetime', 'advlist', 'lists', 'wordcount', 'tinymcespellchecker', 'a11ychecker', 'mediaembed',  'linkchecker', 'help', 'code', 'autoresize', 'quickbars',
+        ],
+        toolbar1: 'fullscreen code preview | bold italic underline strikethrough |blocks fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | numlist bullist | forecolor backcolor removeformat | table image media link | outdent indent superscript subscript insertdatetime| codesample ltr rtl | wordcount',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+        image_advtab: true,
+        insertdatetime_timeformat: '%H:%M:%S',
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],  
+    });
 
     // create pages
     $(document).on('click', '.page-submit', function(){
@@ -42,7 +43,7 @@
         let location = $('.location:checked').val();
         let titleShow = $('.titleShow:checked').val();
 
-        let content = getDataFromTheEditor();
+        let content =  tinyMCE.activeEditor.getContent();
         !content ? $(`#content-error`).html(`The content field is required.`) : $(`#content-error`).html(``);
 
         if (!title || !slug || !description || !keywords || !status || !location || !titleShow || !content) {
@@ -100,7 +101,7 @@
         let location = $('.location:checked').val();
         let titleShow = $('.titleShow:checked').val();
 
-        let content = getDataFromTheEditor();
+        let content = tinyMCE.activeEditor.getContent();
         !content ? $(`#content-error`).html(`The content field is required.`) : $(`#content-error`).html(``);
 
         if (!title || !slug || !description || !keywords || !status || !location || !titleShow || !content) {

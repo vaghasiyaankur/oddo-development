@@ -2,6 +2,7 @@
 @section('title','Pages')
 
 @push('css')
+
 <style>
     .amenity-type-select .iconpicker-dropdown ul {
         left: -21px !important;
@@ -106,8 +107,6 @@
             font-size: 17px;
         }
 </style>
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 @endpush
 
 @section('content')

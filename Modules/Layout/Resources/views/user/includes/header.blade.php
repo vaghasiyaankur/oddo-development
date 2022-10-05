@@ -39,7 +39,7 @@
 
                     @foreach ($pages as $page)
                         <li class="nav-item">
-                            <a class="nav-link position-relative" href="{{ $page->slug }}">{{$page->title}}</a>
+                            <a class="nav-link position-relative" href="{{ url('/'.$page->slug) }}">{{$page->title}}</a>
                         </li>
                     @endforeach
                 </ul>

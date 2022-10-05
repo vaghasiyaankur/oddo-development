@@ -19,8 +19,8 @@ class PagesTableSeeder extends Seeder
             [
                 'About Us',
                 'about-us',
-                'meta_desctiption',
-                'meta_key',
+                'Page About Us',
+                'Page, About Us',
                 '1',
                 '1',
                 '1',
@@ -29,8 +29,8 @@ class PagesTableSeeder extends Seeder
             [
                 'Contact Us',
                 'contact-us',
-                'meta_desctiption',
-                'meta_key',
+                'Page Contact Us',
+                'Page, Contact Us',
                 '1',
                 '1',
                 '1',
