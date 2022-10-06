@@ -19,7 +19,7 @@
                 <div class="card-header  border-0">
                     <div class="card-heading d-flex justify-content-between align-items-center">
                         <div class="single-main-head">
-                            <h5 class="purple-dark">Pages</h5>
+                            <h5 class="purple-dark">Edit Page</h5>
                         </div>
                         <div class="single-small-title">
                             <a class="btn btn-success text-nowrap" href="{{ route('pages.index') }}">

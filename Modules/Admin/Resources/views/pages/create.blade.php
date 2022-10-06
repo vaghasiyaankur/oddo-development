@@ -23,7 +23,7 @@
                         <div class="single-small-title">
                             <a class="btn btn-success text-nowrap" href="{{ route('pages.index') }}">
                                 <i class="fa fa-list-ul me-1"></i>
-                                Pages
+                                Add Pages
                             </a>
                         </div>
                     </div>

@@ -1,5 +1,4 @@
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/h7duqkv254b2tnkol8wox96wzoggk5023srkhiwlam34e4e0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     var baseUrl = $('#base_url').val();
 
@@ -9,20 +8,18 @@
         }
     });
 
-    $('textarea#tiny').tinymce({
-        height: 500,
-        menubar: true,
-        plugins: [
+    tinymce.init({
+      selector: '#tiny',
+      plugins: [
            'preview', 'searchreplace', 'autolink', 'directionality', 'advcode', 'visualblocks', 'visualchars', 'fullscreen', 'image', 'link', 'media', 'template', 'codesample', 'table', 'charmap', 'pagebreak', 'nonbreaking', 'anchor', 'insertdatetime', 'advlist', 'lists', 'wordcount', 'tinymcespellchecker', 'a11ychecker', 'mediaembed',  'linkchecker', 'help', 'code', 'autoresize', 'quickbars',
         ],
-        toolbar1: 'fullscreen code preview | bold italic underline strikethrough |blocks fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | numlist bullist | forecolor backcolor removeformat | table image media link | outdent indent superscript subscript insertdatetime| codesample ltr rtl | wordcount',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
-        image_advtab: true,
-        insertdatetime_timeformat: '%H:%M:%S',
-        templates: [
-            { title: 'Test template 1', content: 'Test 1' },
-            { title: 'Test template 2', content: 'Test 2' }
-        ],  
+      toolbar: 'fullscreen code preview | bold italic underline strikethrough | blocks fontfamily fontsize | align lineheight | forecolor backcolor removeformat | checklist numlist bullist indent outdent | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | emoticons charmap | removeformat | codesample ltr rtl',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
     });
 
     // create pages
@@ -172,12 +169,40 @@
         $(".slug").val(title);        
     }
 
-     // page Table
-     function pageList() {
+    // search 
+    $(document).on('keyup', '.search', function(){
+        var search = $(this).val();
+        console.log(search);
+        var searchLength = $(this).val().length;
+        searchLengthData(searchLength);
+        pageList(search);
+
+        $('.loadingShow span').css('display', 'block');
+        $('.loadingHide').addClass('d-none');
+    });
+
+    function searchLengthData(searchLength) {
+        if(searchLength >= 1){
+            $('.close-icon').removeClass('d-none');
+        }else{
+            $('.close-icon').addClass('d-none');
+        }
+    }
+
+    $(document).on('click', '.cancelBtn', function(){
+        var search = $('.search').val('');
+        var searchLength = $(search).val().length;
+        searchLengthData(searchLength);
+        pageList();
+    });
+
+    // page Table
+    function pageList(data = null) {
         $.ajax({
             url: "{{route('page.list')}}",
             type: "GET",
             dataType: "HTML",
+            data : { search : data },
             success: function (response) {
                 setTimeout(function() {
                     $('.loadingShow span').css('display', 'none');

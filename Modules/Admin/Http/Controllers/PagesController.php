@@ -111,7 +111,8 @@ class PagesController extends Controller
     }
 
     public function pageList(Request $request){
-        $data['pages'] = pages::paginate(10);
+        $search = $request->input('search');
+        $data['pages'] = pages::latest()->where('title','LIKE',"%{$search}%")->paginate(10);
         return view('admin::pages.pages_list', $data);
     }
 }
