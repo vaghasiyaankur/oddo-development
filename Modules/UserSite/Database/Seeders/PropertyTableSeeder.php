@@ -19,18 +19,18 @@ class PropertyTableSeeder extends Seeder
     {
 
         $propertyTypes = [
-            ['Hotel', 'Accommodation for travellers often offering restaurants, meeting rooms and other guest services', 'Property/hotel.jpg'],
-            ['Guest house', 'Private home with separate living facilities for host and guest', 'Property/guestHouse.jpg'],
-            ['Homestay', 'A shared home where the guest has a private room and the host lives and is on site.', 'Property/homestay.jpg'],
-            ['Hostel', 'Budget accommodation with mostly dorm-style bedding and a social atmosphere', 'Property/hostel.jpg'],
-            ['Farm stay', 'Private farm with simple accommodation', 'Property/farmStay.jpg'],
+            ['Hotel', 'Accommodation for travellers often offering restaurants, meeting rooms and other guest services', 'Property/hotel.webp'],
+            ['Guest house', 'Private home with separate living facilities for host and guest', 'Property/guestHouse.webp'],
+            ['Homestay', 'A shared home where the guest has a private room and the host lives and is on site.', 'Property/homestay.webp'],
+            ['Hostel', 'Budget accommodation with mostly dorm-style bedding and a social atmosphere', 'Property/hostel.webp'],
+            ['Farm stay', 'Private farm with simple accommodation', 'Property/farmStay.webp'],
         ];
 
-        File::copy(public_path('storage/images/hotel.jpg'), public_path('storage/Property/hotel.jpg'));
-        File::copy(public_path('storage/images/guestHouse.jpg'), public_path('storage/Property/guestHouse.jpg'));
-        File::copy(public_path('storage/images/homestay.jpg'), public_path('storage/Property/homestay.jpg'));
-        File::copy(public_path('storage/images/hostel.jpg'), public_path('storage/Property/hostel.jpg'));
-        File::copy(public_path('storage/images/farmStay.jpg'), public_path('storage/Property/farmStay.jpg'));
+        File::copy(public_path('storage/images/hotel.webp'), public_path('storage/Property/hotel.webp'));
+        File::copy(public_path('storage/images/guestHouse.webp'), public_path('storage/Property/guestHouse.webp'));
+        File::copy(public_path('storage/images/homestay.webp'), public_path('storage/Property/homestay.webp'));
+        File::copy(public_path('storage/images/hostel.webp'), public_path('storage/Property/hostel.webp'));
+        File::copy(public_path('storage/images/farmStay.webp'), public_path('storage/Property/farmStay.webp'));
 
         foreach ($propertyTypes as  list($name, $description, $image)) {
             PropertyType::create([

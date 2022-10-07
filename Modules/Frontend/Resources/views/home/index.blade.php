@@ -7,7 +7,7 @@
 
 @push('css')
     <!-------- Swiper Css Cdn --------->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.3/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.3/swiper-bundle.css" defer/>
 
     <style>
         /*  */
@@ -149,6 +149,56 @@
             flex: 0 0 50%;
             padding-right: 135px;
         }
+
+        .top-hotels-img img{
+            width: 100%;
+            height:100%;
+            max-height: 493px;
+            max-width:1230px;
+        }
+
+        .top-hotels-card-inner img {
+            width: 100%;
+            height: 100%;
+            max-width: 240px;
+            max-height: 240px;
+            object-fit: none;
+        }
+        
+        .swiper-logo img{
+            width: 100%;
+            height: 100%;
+            max-height: 23px;
+            max-width: 32px;
+        }
+
+        .check-icons-inner img{
+            width: 100%;
+            height: 100%;
+            max-height: 32px;
+            max-width: 32px;
+        }
+
+        .checkInDiv img{
+            width: 100%;
+            height: 100%;
+            max-height: 31px;
+            max-width: 31px;
+        }
+
+        .checkoutDiv img{
+            width: 100%;
+            height: 100%;
+            max-height: 31px;
+            max-width: 31px;
+        }
+
+        .explorePlan img{
+            width: 100%;
+            height: 100%;
+            max-height: 41px;
+            max-width: 41px;
+        }
     </style>
 @endpush
 
@@ -159,10 +209,10 @@
         <div class="swiper-wrapper">
             @foreach ($cities as $city)
                 <div class="swiper-slide" style="background-image:url({{ asset('storage/' . @$city->background_image) }})">
-                    <img src="{{ asset('storage/' . $city->background_image) }}" class="entity-img img-fluid" />
+                    {{-- <img src="{{ asset('storage/' . $city->background_image) }}" class="entity-img img-fluid" /> --}}
                     <div class="content">
-                        <p class="swiper-logo text-center"><img src="{{ asset('storage/' . @$city->country->icon) }}"
-                                alt=""></p>
+                        <div class="swiper-logo text-center"><img src="{{ asset('storage/' . @$city->country->icon) }}"
+                                alt=""></div>
                         <p class="title">{{ $city->name }}</p>
                     </div>
                 </div>
@@ -199,8 +249,8 @@
                                         class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
                                         <div class="check-text-label pt-4 pe-xl-4 pe-lg-3 mb-3 mb-lg-0">
                                             <label class="check-inout mt-2">Check-In </label>
-                                            <div class="input--text d-flex align-items-center">
-                                                <img src="assets/images/icons/cal-1.png" class="px-2">
+                                            <div class="input--text d-flex align-items-center checkInDiv">
+                                                <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2">
                                                 <input type="text" class="input--control ps-xl-2"
                                                     name="value_from_start_date" placeholder="08/19/2020"
                                                     data-datepicker="separateRange" value="{{ request()->checkIn }}" />
@@ -208,8 +258,8 @@
                                         </div>
                                         <div class="check-text-label pt-4">
                                             <label class="check-inout check-out-label mt-2">Check-Out</label>
-                                            <div class="input--text d-flex align-items-center">
-                                                <img src="assets/images/icons/cal-2.png" class="px-2">
+                                            <div class="input--text d-flex align-items-center checkoutDiv">
+                                                <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2">
                                                 <input type="text" class="input--control ps-xl-2"
                                                     name="value_from_end_date" placeholder="08/19/2020"
                                                     data-datepicker="separateRange" value="{{ request()->checkOut }}" />
@@ -319,10 +369,10 @@
                             <div class="col-lg-6 col-md-6 text-lg-center mt-4 d-flex align-items-center">
                                 <div class="check-in-out-icon d-flex pt-2 align-items-center">
                                     <div class="check-icons-inner ms-lg-4">
-                                        <img src="assets/images/icons/check-1.png" class="img-fluid me-1">
-                                        <img src="assets/images/icons/check-2.png" class="img-fluid me-1">
-                                        <img src="assets/images/icons/check-3.png" class="img-fluid me-1">
-                                        <img src="assets/images/icons/check-1.png" class="img-fluid me-1">
+                                        <img src="{{ asset('assets/images/icons/check-1.png') }}" class="img-fluid me-1">
+                                        <img src="{{ asset('assets/images/icons/check-2.png') }}" class="img-fluid me-1">
+                                        <img src="{{ asset('assets/images/icons/check-3.png') }}" class="img-fluid me-1">
+                                        <img src="{{ asset('assets/images/icons/check-1.png') }}" class="img-fluid me-1">
                                     </div>
                                 </div>
                                 <div class="check--out_btn_ pt-2">
@@ -385,7 +435,7 @@
                         <span><a href="#" class="pagination-text text-decoration-none"> Explore</a></span>
                     </div>
                     <div class="list-right-arrow">
-                        <li class="list-group-item border-0"><img src="assets/images/icons/Vector.png" class="img-fluid">
+                        <li class="list-group-item explorePlan border-0"><img src="{{ asset('assets/images/icons/Vector.png') }}" class="img-fluid">
                         </li>
                     </div>
                     <div class="list-group-main text-center">
@@ -395,7 +445,7 @@
                         <span><a href="#" class="pagination-text text-decoration-none">Plan</a> </span>
                     </div>
                     <div class="list-right-arrow">
-                        <li class="list-group-item border-0"><img src="assets/images/icons/Vector.png" class="img-fluid">
+                        <li class="list-group-item explorePlan border-0"><img src="{{ asset('assets/images/icons/Vector.png') }}" class="img-fluid">
                         </li>
                     </div>
                     <div class="list-group-main text-center">
@@ -414,37 +464,37 @@
                 <div class="container">
                     <div class="travel-info-inner position-relative">
                         <div class="travel-info-logo-img travel-info-bg bg-white position-relative">
-                            <img src="assets/images/icons/t-info-1.png" class="img-fluid">
+                            <img src="{{ asset('assets/images/icons/t-info-1.png') }}" class="img-fluid">
                         </div>
                         <div class="travel-info-car">
                             <div class="travel-info-car-img travel-info-bg bg-blue position-relative">
-                                <img src="assets/images/icons/t-info-2.png" class="img-fluid">
+                                <img src="{{ asset('assets/images/icons/t-info-2.png') }}" class="img-fluid">
                             </div>
                         </div>
                         <div class="travel-info-bank">
                             <div class="travel-info-bank-img travel-info-bg bg-purple position-relative">
-                                <img src="assets/images/icons/t-info-3.png" class="img-fluid">
+                                <img src="{{ asset('assets/images/icons/t-info-3.png') }}" class="img-fluid">
                             </div>
                         </div>
                         <div class="travel-info-tree">
                             <div class="travel-info-tree-img travel-info-bg bg-green position-relative">
-                                <img src="assets/images/icons/t-info-4.png" class="img-fluid">
+                                <img src="{{ asset('assets/images/icons/t-info-4.png') }}" class="img-fluid">
                             </div>
                         </div>
                         <div class="travel-info-bag">
                             <div class="travel-info-bag-img travel-info-bg bg-yellow position-relative">
-                                <img src="assets/images/icons/t-info-5.png" class="img-fluid">
+                                <img src="{{ asset('assets/images/icons/t-info-5.png') }}" class="img-fluid">
                             </div>
                         </div>
                         <div class="travel-info-rest">
                             <div class="travel-info-rest-img travel-info-bg bg-green-two position-relative">
-                                <img src="assets/images/icons/t-info-6.png" class="img-fluid">
+                                <img src="{{ asset('assets/images/icons/t-info-6.png') }}" class="img-fluid">
                             </div>
                         </div>
                         <div class="rounded-pill bg-danger text-white coming--pill">COMING SOON</div>
                         <div class="travel-info-csoon">
                             <div class="travel-info-csoon-img travel-info-bg d-pink position-relative">
-                                <img src="assets/images/icons/t-info-7.png" class="img-fluid">
+                                <img src="{{ asset('assets/images/icons/t-info-7.png') }}" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -535,7 +585,7 @@
                 </div>
                 <div class="position-relative">
                     <div class="top-hotels-img text-center">
-                        <img src="assets/images/t-hotel-bg.png" class="img-fluid">
+                        <img src="{{asset('assets/images/t-hotel-bg.webp')}}" class="img-fluid">
                     </div>
                     <div class="top-hotels-wraper">
                         <div class="row">
