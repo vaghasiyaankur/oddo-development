@@ -114,11 +114,16 @@ class Hotel extends Model
         return $this->hasMany(Payment::class, 'id');
     }
 
+    // public function hotelBooking()
+    // {
+    //     return $this->hasMany(HotelBooking::class, 'id');
+    // }
+
     public function hotelBooking()
     {
-        return $this->hasMany(HotelBooking::class, 'id');
+        return $this->hasMany(HotelBooking::class, 'hotel_id');
     }
-
+    
     public function review()
     {
         return $this->hasMany(Review::class, 'id');

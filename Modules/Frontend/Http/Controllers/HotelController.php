@@ -16,6 +16,7 @@ use App\Mail\FeedbackMail;
 use Carbon\Carbon;
 use App\Models\HotelPhoto;
 use App\Models\Photocategory;
+use App\Models\City;
 use DB;
 
 class HotelController extends Controller
@@ -27,6 +28,7 @@ class HotelController extends Controller
     public function index(Request $request)
     {
         $propertyType = $request->propertyType;
+        $cityType = $request->City;
 
         $search = request()->search;
         $checkIn = request()->checkIn;
@@ -109,6 +111,15 @@ class HotelController extends Controller
 
             $propertyTypeId = PropertyType::whereUuid($propertyType)->pluck('id')->first();
             $hotels = Hotel::with('room')->whereProperty_id($propertyTypeId)->paginate(2);
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
+                return $html;
+            }
+
+        }else if($cityType){
+            $cityId = City::whereName($cityType)->pluck('id')->first();
+            
+            $hotels = Hotel::with('hotelBooking')->where('city_id', $cityId)->whereHas('hotelBooking')->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;

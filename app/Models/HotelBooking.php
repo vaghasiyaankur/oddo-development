@@ -19,6 +19,11 @@ class HotelBooking extends Model
         return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
     }
 
+    // public function hotel()
+    // {
+    //     return $this->belongsTo(Hotel::class, 'id');
+    // }
+
     public function paymentGateway()
     {
         return $this->belongsTo(paymentGetways::class, 'payment_method_id', 'id');
