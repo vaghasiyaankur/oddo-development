@@ -31,7 +31,7 @@ class CityTableSeeder extends Seeder
         foreach ($cities as $index => $city) {
             City::create([
                 'name' => $city ,
-                'background_image' => 'city/'.\Str::slug($city).'.jpg',
+                'background_image' => 'city/'.\Str::slug($city).'.webp',
                 'country_id' => $index + 1,
                 'featured' => 1,
                 'status' => 1,

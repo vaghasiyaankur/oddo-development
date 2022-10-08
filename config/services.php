@@ -2,7 +2,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -35,20 +34,20 @@ return [
     'google' => [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect'      => 'http://localhost:8000/auth/google/callback',
+        'redirect'      => env('APP_URL').'auth/google/callback',
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/auth/facebook/callback',
+        'redirect' => env('APP_URL').'auth/facebook/callback',
     ],
 
-    'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/auth/twitter/callback',
-    ],
+    // 'twitter' => [
+    //     'client_id' => env('TWITTER_CLIENT_ID'),
+    //     'client_secret' => env('TWITTER_CLIENT_SECRET'),
+    //     'redirect' => 'http://localhost:8000/auth/twitter/callback',
+    // ],
 
     'razorpay' => [
         'key' => 'rzp_test_ImnZdPCDKBmCSP',

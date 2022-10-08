@@ -1,4 +1,7 @@
-@php $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon() @endphp
+@php 
+    $logoFavicon = Modules\Frontend\Http\Controllers\HomeController::logoFavicon();
+    $pages = App\Models\Pages::whereStatus('1')->whereLocation('1')->get();
+@endphp
 
 <header class="header">
     <nav class="navbar navbar-expand-lg">
@@ -13,13 +16,13 @@
             <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
                 <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('hotel.index') }}">Hotels </a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('hotel.index') }}">Search</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('city.index') }}">Destinations we love</a>
                         
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('search.index') }}">Search</a>
                     </li>
                     <li class="nav-item">
@@ -27,12 +30,18 @@
                             <span
                                 class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
                         </a>
-                    </li>
+                    </li> --}}
                     @auth
                         <li class="nav-item ps-lg-3">
                             <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
                         </li>
                     @endauth
+
+                    @foreach ($pages as $page)
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="{{ url('/'.$page->slug) }}">{{$page->title}}</a>
+                        </li>
+                    @endforeach
                 </ul>
 
                 @php

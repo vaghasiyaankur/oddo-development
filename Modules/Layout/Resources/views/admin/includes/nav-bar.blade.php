@@ -7,7 +7,9 @@
                 <a class="nav-link menu-link  {{ Request::routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                     <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                 </a>
-            </li> <!-- end Dashboard Menu -->
+            </li> 
+            <!-- end Dashboard Menu -->
+
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs(['amenity.index', 'amenityCategory.index']) ? 'active' : '' }}" href="#hotel_facilities" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="hotel_facilities">
@@ -82,6 +84,28 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-link {{ Request::routeIs(['page.create', 'pages.index']) ? 'active' : '' }}" href="#Pages" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="Pages">
+                    <i class="ri-apps-2-line"></i> <span data-key="t-apps">Pages</span>
+                </a>
+                <div class="collapse menu-dropdown" id="Pages">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::routeIs('page.create') ? 'active' : '' }}" href="{{ route('page.create') }}">
+                                <i class="ri-apps-2-line"></i> <span data-key="t-landing">Add page</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::routeIs('pages.index') ? 'active' : '' }}" href="{{ route('pages.index') }}">
+                                <i class="ri-apps-2-line"></i> <span data-key="t-landing">Pages</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link menu-link {{ Request::routeIs('facilities.index') ? 'active' : '' }}" href="{{ route('facilities.index') }}"><i class="ri-apps-2-line"></i>Facilities</span>
                 </a>
