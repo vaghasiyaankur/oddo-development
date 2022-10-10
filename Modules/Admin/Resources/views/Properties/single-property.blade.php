@@ -53,8 +53,8 @@
                                         <div class="col-md-auto">
                                             <div class="avatar-md mb-md-0 mb-4">
                                                 <div class="avatar-title bg-white rounded-circle">
-                                                    <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" alt="" class="avatar-sm">
-                                                    
+                                                    <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" alt="" 
+                                                    onerror="this.src='{{asset('assets/images/default.png')}}'" class="avatar-sm">
                                                 </div>
                                             </div>
                                         </div>

@@ -57,7 +57,8 @@
                                     <div class="col-md-4">
                                         <div class="review-popup-img">
                                             @if (@$hotelRating['hotelData'])
-                                                <img src="{{ asset('storage/' . @$hotelRating['hotelData']->mainPhotoData->photos) }}"
+                                                <img src="{{ @$hotelRating['hotelData']->mainPhotoData->photos ? asset('storage/' . @$hotelRating['hotelData']->mainPhotoData->photos) : asset('assets/images/default.png') }}"
+                                                onerror="this.src='{{asset('assets/images/default.png')}}'"
                                                 class="img-fluid w-100" style="object-fit: cover; width: 100%; min-height: 165px; max-height: 165px;">
                                             @endif
                                         </div>

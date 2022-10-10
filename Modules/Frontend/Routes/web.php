@@ -32,6 +32,8 @@ Route::get('/hotel-detail/{slug}','HotelController@hotelDetail')->name('hotel.de
 
 /* City Page */
 Route::get('/city', 'CityController@index')->name('city.index');
+Route::post('/destination', 'CityController@Destination')->name('city.change');
+
 Route::get('/explore/city/{slug}', 'CityController@explore')->name('city.explore');
 
 /* Search Page */

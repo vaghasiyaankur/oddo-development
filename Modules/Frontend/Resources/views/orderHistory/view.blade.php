@@ -38,7 +38,8 @@ tabindex="-1" aria-labelledby="staticBackdropLabel" aria-modal="true" role="dial
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="review-popup-img">
-                                            <img src="{{ asset('assets/images/reviews-popup-1.png') }}" class="img-fluid w-100">
+                                            <img src="{{ @$ReviewsPopup->hotel->mainPhotoData->photos ? asset('storage/' . @$ReviewsPopup->hotel->mainPhotoData->photos) : asset('assets/images/default.png') }}" 
+                                            onerror="this.src='{{asset('assets/images/default.png')}}'" class="img-fluid w-100" style="height: 180px;object-fit:cover;">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-5">

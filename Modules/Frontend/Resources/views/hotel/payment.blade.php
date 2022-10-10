@@ -24,8 +24,8 @@
                             <div class="col-12  left-order-list">
                                 <div class="payment--detail-box holiday-details mt-3 position-relative">
                                     <div class="hotel--img">
-                                        <img src="{{ asset('storage/' . @$hotel->mainPhotoData->photos) }}"
-                                            alt="">
+                                        <img src="{{ @$hotel->mainPhotoData->photos ? asset('storage/' . @$hotel->mainPhotoData->photos) : asset('assets/images/default.png') }}"
+                                        onerror="this.src='{{asset('assets/images/default.png')}}'" alt="">
                                     </div>
                                     <h5 class="h--title ms-2">{{ $hotel->property_name }}</h5>
                                     <div class="h-date d-flex align-items-center">

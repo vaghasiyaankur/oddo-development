@@ -23,7 +23,8 @@
             @foreach ($wishlistItems as $hotel)
                 <div class="col-sm-6 col-lg-4 mt-4 mb-4 mb-lg-0">
                     <div class="hotel-box mx-auto mx-lg-0">
-                        <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" class="w-100" alt="">
+                        <img src="{{@$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" class="w-100" 
+                        onerror="this.src='{{asset('assets/images/default.png')}}'" alt="">
                         <div class="content">
                             <h5 class="ms-2">{{$hotel->property_name}}</h5>
                             <span class="d-l-Purple mb-3 ms-2"><img src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt=""

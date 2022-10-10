@@ -118,7 +118,7 @@
                     <div class="mb-5 p-a-swpier">
                         @foreach ($hotelPictures as $hotelPicture)  
                             <div class="me-3">
-                                <img src="{{ asset('storage/' . $hotelPicture->photos) }}" class="img-fluid" style="width: 425px; height: 415px; object-fit:cover;" alt="">
+                                <img src="{{ @$hotelPicture->photos ? asset('storage/' . $hotelPicture->photos) : asset('assets/images/default.png') }}" class="img-fluid" style="width: 425px; height: 415px; object-fit:cover;" alt="" onerror="this.src='{{asset('assets/images/default.png')}}'">
                             </div>
                         @endforeach
                     </div>
@@ -718,6 +718,7 @@
         speed: 300,
         loop: true,
         autoplay: true,
+        autoplaySpeed: 2000,
         accessibility: false,
         dots: false,
         responsive: [

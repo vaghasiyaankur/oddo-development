@@ -23,7 +23,8 @@ Add-Layout
                                 <div class="share-section mb-lg-5 mb-4">
                                     <div class="drag-section justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center mb-4 mb-lg-0">
-                                            <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}"
+                                            <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}"
+                                                onerror="this.src='{{asset('assets/images/default.png')}}'"
                                                 alt="" class="drag-image">
                                             <span>
                                                 <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>

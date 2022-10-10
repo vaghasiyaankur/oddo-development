@@ -18,8 +18,8 @@
                                   @endauth
 
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">
-                                      <img src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}"
-                                          class="img-wrapper">
+                                      <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/' . @$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}"
+                                          class="img-wrapper" onerror="this.src='{{asset('assets/images/default.png')}}'">
                                   </a>
                               </div>
                               <!------- img slider popup start -------->
@@ -38,7 +38,8 @@
                                                   <div class="slider slider-single mb-5" >
                                                       @foreach ($hotel->photos as $photo)
                                                           <div class="slider-single-img" ><img
-                                                                  src="{{ asset('storage/' . @$photo->photos) }}"
+                                                                  src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}" 
+                                                                  onerror="this.src='{{asset('assets/images/default.png')}}'"
                                                                   alt="" style="width: 857px; height: 551px;">
                                                           </div>
                                                       @endforeach
@@ -46,7 +47,8 @@
                                                   <div class="slider slider-nav">
                                                       @foreach ($hotel->photos as $photo)
                                                           <div class="slder-nav-img d-block"><img
-                                                                  src="{{ asset('storage/' . @$photo->photos) }}"
+                                                                  src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}"
+                                                                  onerror="this.src='{{asset('assets/images/default.png')}}'"
                                                                   class="me-2" alt=""
                                                                   style="width: 72px; height: 72px;">
                                                           </div>

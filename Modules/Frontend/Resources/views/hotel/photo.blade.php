@@ -11,7 +11,8 @@
                     <div class="slider slider-single mb-5">
                         @if (isset($hotelPhotos))
                             @foreach ($hotelPhotos as $key => $hotelPhoto)
-                                <div><img src="{{ asset('storage/' . $hotelPhoto->photos) }}"
+                                <div><img src="{{ @$hotelPhoto->photos ? asset('storage/' . $hotelPhoto->photos) : asset('assets/images/default.png') }}"
+                                        onerror="this.src='{{asset('assets/images/default.png')}}'"
                                         style="width: 857px; height: 551px;" alt=""></div>
                             @endforeach
                         @endif
@@ -19,7 +20,8 @@
                     <div class="slider slider-nav">
                         @if (@$hotelPhotos)
                             @foreach ($hotelPhotos as $key => $hotelPhoto)
-                                <img src="{{ asset('storage/' . @$hotelPhoto->photos) }}"
+                                <img src="{{ @$hotelPhoto->photos ? asset('storage/' . @$hotelPhoto->photos) : asset('assets/images/default.png') }}"
+                                    onerror="this.src='{{asset('assets/images/default.png')}}'"
                                     style="width: 72px !important; height: 72px;" class="me-2" alt="">
                             @endforeach
                         @endif

@@ -17,16 +17,38 @@
         color: #878996;
     }
 
+    .hotel-wrapper .hotel-box {
+        max-width: 328px;
+        min-height: 386px;
+        background: #ffffff;
+        box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
+        border-radius: 12px;
+    }
+
     .p-a-tabcontent-inner .p-a-details .p-a-details-btn {
-        margin-top: -0;
+        margin-top: 15px;
         margin-left: 65px;
-        margin-bottom: 0;
+        margin-bottom: 15px;
     }
 
     section.explore-city {
         min-height: calc(100vh - 337px);
     }
+    .slick-slide{
+        width: 328px !important;
+    }
+
+    .HotelImage{
+        height: 160px;
+        width: 328px;
+        object-fit: cover;
+    }
+
+    .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content{
+        padding-top: 0px;
+    }
 </style>
+
 @endpush
 
 
@@ -85,94 +107,21 @@
 
         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item " role="presentation">
-                <button class="nav-link active rounded-pill" id="pills-overview-tab" data-bs-toggle="pill"
-                    data-bs-target="#Cities" type="button" role="tab" aria-controls="pills-home"
+                <button class="nav-link active rounded-pill selectDestinationTab" id="pills-overview-tab" data-bs-toggle="pill"
+                    data-target="Cities" type="button" role="tab" aria-controls="pills-home"
                     aria-selected="true">Cities</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-pill hotelsBtn" id="pills-daily-tab" data-bs-toggle="pill"
-                    data-bs-target="#Hotels" type="button" role="tab" aria-controls="pills-profile"
+                <button class="nav-link rounded-pill hotelsBtn selectDestinationTab hotelBTN" id="pills-daily-tab" data-bs-toggle="pill"
+                    data-target="Cities_data" type="button" role="tab" aria-controls="pills-profile"
                     aria-selected="false">Hotels</button>
             </li>
         </ul>
-
-        <div class="tab-content p-a-tabcontent saved-section" id="pills-tabContent">
-            <!------- Cities Nav Tab ------->
-            <div class="tab-pane fade show active p-a-tabcontent-inner" id="Cities" role="tabpanel"
-                aria-labelledby="pills-overview-tab">
-                <div class="p-a-tab-map">
-                    <div class="s-top-city-inner pb-5">
-                        <div class="s-top-city-main">
-                            <div class="row">
-                                @foreach ($cities as $city)
-                                <div class="col-lg-4 col-sm-6 col-12  p-0 mb-3">
-                                    <div class="t-city-card position-relative ">
-                                        <div class="t-city-card-img position-relative text-center">
-                                            <img src="{{asset('storage/'.$city->background_image)}}"
-                                                style="width: 327px; height: 401px;" class="img-fluid">
-                                        </div>
-                                        <div class="t-city-card-content text-center">
-                                            <h3>{{ $city->name }}</h3>
-                                            <img src="{{asset('storage/'.@$city->country->icon)}}" class="img-fluid">
-                                            <div class="t-city-card-button">
-                                                <a href="{{ route('city.explore',['slug' => @$city->slug]) }}" class="btn bg-purple t-city-btn">Explore</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="tab-content p-a-tabcontent saved-section destination-Tab"   >
+                @include('frontend::city.cities')
+                
             </div>
-
-            <!------- Hotels Nav Tab ------->
-            <div class="tab-pane fade show p-a-tabcontent-inner" id="Hotels" role="tabpanel"
-                aria-labelledby="pills-overview-tab">
-                <div class="saved-hotels-details p-a-details pt-4 pb-5">
-                    <div class="hotel-wrapper mb-5 p-a-swpier">
-                        @foreach ($hotels as $hotel)
-                            <div class="hotel-box me-3">
-                                <img src="{{ asset('assets/images/save card.png') }}" class="img-fluid" alt="">
-                                <div class="content">
-                                    <h5 class="ms-2">{{$hotel->hotel->property_name}}</h5>
-                                    <span class="d-l-Purple mb-3 ms-2"><img
-                                            src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt=""
-                                            class="mb-2 me-2 d-inline">
-                                        Madrid</span>
-                                    <p class="d-l-Purple mt-2 mb-1 ms-1"><span class="purpel-text fw-bold">10/19/20 -
-                                            10/22/20 </span> 3 nights</p>
-                                    <span class="purple-dark"><img
-                                            src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}" class="d-inline"
-                                            alt=""> 2 Adults</span>
-                                    <div class="text-with--btn d-flex justify-content-between">
-                                        <div class="">
-                                            <span><img src="{{ asset('assets/images/icons/order-hotel-icon3.png') }}"
-                                                    class="d-inline" alt="">2
-                                                Rooms</span>
-                                            <p class="mb--0 ms-4 ps-2 purple-dark">1 King, 1 Queen
-                                            </p>
-                                        </div>
-                                        <div class="icons_">
-                                            <a href="javacsript:;"><img
-                                                    src="{{ asset('assets/images/icons/pluse-big-blue.png') }}"
-                                                    class="me-1 d-inline" alt=""></a>
-                                            <a href="javacsript:;"><img
-                                                    src="{{ asset('assets/images/icons/remove-s.png') }}" class="d-inline"
-                                                    style="width:44px;" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="search-result-price__tag b-1 p-a-details-btn position-relative">
-                                    <button class="price-btn">Show me Hotels</button>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
+            {{-- @include('frontend::city.hotel') --}}
     </div>
 </section>
 <!------- Explore cities section end ------->
@@ -181,10 +130,9 @@
 @push('script')
 
 <!--------SLICK CDN JS--------->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <!-------Select option with image  --------->
-<script>
+{{-- <script>
     (function ($) {
         $.fn.mySelectDropdown = function (options) {
             return this.each(function () {
@@ -275,46 +223,106 @@
 
     $('select.f-dropdown').mySelectDropdown();
 
-</script>
-
+</script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 {{-- swiper --}}
 <script>
-    // planner-accordion swiper js
-    $('.p-a-swpier').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        speed: 300,
-        loop: true,
-        accessibility: false,
-        dots: false,
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                }
+    var baseUrl = $('#base_url').val();
+
+    function slickCarousel(){
+        $('.p-a-swpier').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            speed: 300,
+            loop: true,
+            accessibility: false,
+            dots: false,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+                {
+                    breakpoint: 1199,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                },
+            ]
+        });
+
+        $(".slick-next").trigger('click');
+    }
+
+    
+
+    $(document).on('click', '.selectDestinationTab', function () {
+        var target = $(this).data('target');
+        var active = $(this).addClass('active');
+
+        $('.selectDestinationTab').removeClass('active');
+        $(this).addClass('active');
+
+        formdata = new FormData();
+        formdata.append('target', target);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            },
-        ]
+            url: "{{route('city.change')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                $('.destination-Tab').empty();
+                $('.destination-Tab').html(response);
+                slickCarousel();
+                // $('.slick-track').css("width","1440px");
+                $('.tab-pane').addClass('active');
+                $('.tab-content>.tab-pane').addClass("d-block"); 
+            }, error:function (response) {
+
+            }
+        });
     });
 
-    $(document).on('click', '.hotelsBtn', function () {
-        $(".slick-next").trigger('click')
+    // $(document).on('click', '.hotelsBtn', function () {
+    //     $(".slick-next").trigger('click');
+    // });
+
+    $(document).on('click','.citySearchBtn',function(){
+        var id = $(this).data('id');
+
+        window.location.href = baseUrl  + "/hotel?City=" + id;
+    });
+    
+</script>
+<script>
+
+    $('.modal').on('shown.bs.modal', function (e) {
+        $('.slider-single').slick('setPosition');
+        $('.swiper').addClass('open');
+    })
+    $('.modal').on('shown.bs.modal', function (e) {
+        $('.slider-nav').slick('setPosition');
+        $('.swiper').addClass('open');
     })
 </script>
 @endpush

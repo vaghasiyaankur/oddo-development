@@ -1494,6 +1494,12 @@ $(document).ready(function(){
         propertyTypeUrl.has('propertyType');
         let propertyType = propertyTypeUrl.get('propertyType');
 
+        // city
+        let CityUrl = new URLSearchParams(window.location.search);
+        CityUrl.has('City');
+        let City = CityUrl.get('City');
+
+
         // var propertyTypeCheckBox = [];
         //     $.each($("input[class='P_TypeCheckbox']"), function(){
         //         propertyTypeCheckBox.push($(this).val());
@@ -1594,7 +1600,27 @@ $(document).ready(function(){
                 .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
                 });
-        }else {
+        } else if(City){
+            $.ajax({
+                url: baseUrl  +  "/hotel?page=" + page + "&City=" + City,
+                datatype: "html",
+                type: "get",
+                beforeSend: function () {
+                $('.loading_spiner_').removeClass('d-none');
+                }
+                })
+                .done(function (response) {
+                $('.loading_spiner_').addClass('d-none');
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
+                }
+                    $(".hotelResultDiv").append(response);
+                })
+                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                console.log('Server error occured');
+                });
+        } else {
             $.ajax({
 
                 url: baseUrl + "/hotel?page=" + page,

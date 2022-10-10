@@ -24,7 +24,7 @@
                     <div class="loadingShow td-3">
                         <span></span>
                     </div>
-                    <div class="loadingHide"><img src="{{asset('storage/'.@$property->mainPhoto->first()->photos)}}" width="70px" height="70px"></div>
+                    <div class="loadingHide"><img src="{{ @$property->mainPhoto->first()->photos ? asset('storage/'.@$property->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" onerror="this.src='{{asset('assets/images/default.png')}}'" width="70px" height="70px"></div>
                 </td>
                 <td>
                     <div class="loadingShow td-3">
