@@ -43,12 +43,7 @@
         <div class="share-section mb-5">
             <div class="drag-section justify-content-between flex-wrap">
                 <div class="d-flex align-items-center mb-3 mb-lg-0">
-                    @if (@$hotel->mainPhoto->first()->photos)
-                        <img src="{{asset('storage/'.@$hotel->mainPhoto->first()->photos)}}" alt="" class="drag-image">
-                    @else
-                        <img src="{{asset('assets/images/default-image.png')}}" alt="default" class="drag-image">
-                    @endif
-                    
+                        <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default-image.png') }}" alt="" class="drag-image"  onerror="this.src='{{asset('assets/images/default.png')}}'">
                     <span>
                         <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>
                     </span>
@@ -84,7 +79,8 @@
                     <div class="slider slider-single mb-5">
                         @foreach ($hotel->photos as $photo)
                             <div class="slider-single-img"><img
-                                    src="{{ asset('storage/' . @$photo->photos) }}"
+                                    src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}"
+                                    onerror="this.src='{{asset('assets/images/default.png')}}'"
                                     alt="" style="width: 857px; height: 551px;">
                             </div>
                         @endforeach
@@ -92,7 +88,8 @@
                     <div class="slider slider-nav">
                         @foreach ($hotel->photos as $photo)
                             <div class="slder-nav-img d-block"><img
-                                    src="{{ asset('storage/' . @$photo->photos) }}"
+                                    src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}"
+                                    onerror="this.src='{{asset('assets/images/default.png')}}'"
                                     class="me-2" alt=""
                                     style="width: 72px; height: 72px;">
                             </div>

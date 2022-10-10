@@ -208,7 +208,7 @@
     <section class="swiper-container loading homepage-swiper">
         <div class="swiper-wrapper">
             @foreach ($cities as $city)
-                <div class="swiper-slide" style="background-image:url({{ asset('storage/' . @$city->background_image) }})">
+                    <div class="swiper-slide" style="background-image:url({{ @$city->background_image ? asset('storage/' . @$city->background_image) : asset('assets/images/defaultImage.png') }})" onerror="this.src='{{asset('assets/images/defaultImage.png')}}'">
                     {{-- <img src="{{ asset('storage/' . $city->background_image) }}" class="entity-img img-fluid" /> --}}
                     <div class="content">
                         <div class="swiper-logo text-center"><img src="{{ asset('storage/' . @$city->country->icon) }}"
@@ -555,9 +555,10 @@
                         <div id="slick1" class="result-swpier-img">
                             @foreach ($propertyTypes as $propertyType)
                                 <div class="slide-item position-relative homeslideItem">
-                                    <div class="t-city-card-img position-relative"><img
-                                            src="{{ asset('storage/' . @$propertyType->image) }}"
-                                            style="width: 327px; height: 401px;" class="img-fluid"></div>
+                                    <div class="t-city-card-img position-relative">
+                                        <img src="{{ $propertyType->image ? asset('storage/' . @$propertyType->image) : asset('assets/images/default.png') }}"
+                                        style="width: 327px; height: 401px;" class="img-fluid" onerror="this.src='{{asset('assets/images/default.png')}}'">
+                                    </div>
                                     <div class="position-absolute" style="z-index: 9999;">
                                         <div class="s-city-img-content">
                                             <h4 class="text-white fw-bold">{{@$propertyType->type}}</h4>

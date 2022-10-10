@@ -238,6 +238,9 @@
             loop: true,
             accessibility: false,
             dots: false,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 2000,
             responsive: [
                 {
                     breakpoint: 1199,

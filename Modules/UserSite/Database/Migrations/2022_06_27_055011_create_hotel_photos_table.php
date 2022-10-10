@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer('room_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('photocategories');
             $table->timestamps();
         });

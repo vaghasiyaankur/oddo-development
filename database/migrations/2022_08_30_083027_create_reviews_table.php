@@ -31,10 +31,10 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('hotel_id')->unsigned()->nullable();
             $table->integer('room_id')->unsigned()->nullable();
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('hotel_id')->references('id')->on('hotels');
-            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

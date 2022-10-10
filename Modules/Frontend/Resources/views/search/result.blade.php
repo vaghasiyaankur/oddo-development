@@ -8,7 +8,8 @@
                             <div class="result-main-img result-swpier-img overflow-hidden">
                                 <div class="swiper-s-img"><a href="#" data-bs-toggle="modal"
                                         data-bs-target="#image_{{ $key }}"><img
-                                            src="{{ asset('storage/' . @$hotel->mainPhoto->first()->photos) }}"
+                                            src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/' . @$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}"
+                                            onerror="this.src='{{asset('assets/images/default.png')}}'"
                                             class="img-wrapper"></a>
                                 </div>
                                 <!------- img slider popup start -------->
@@ -27,7 +28,8 @@
                                                     <div class="slider slider-single mb-5">
                                                         @foreach ($hotel->photos as $photo)
                                                             <div class="slider-single-img"><img
-                                                                    src="{{ asset('storage/' . @$photo->photos) }}"
+                                                                    src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}"
+                                                                    onerror="this.src='{{asset('assets/images/default.png')}}'"
                                                                     alt="" style="width: 857px; height: 551px;">
                                                             </div>
                                                         @endforeach
@@ -36,7 +38,8 @@
 
                                                         @foreach ($hotel->photos as $photo)
                                                             <div class="slder-nav-img"><img
-                                                                    src="{{ asset('storage/' . @$photo->photos) }}"
+                                                                    src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}"
+                                                                    onerror="this.src='{{asset('assets/images/default.png')}}'"
                                                                     class="me-2" alt=""
                                                                     style="width: 72px; height: 72px;">
                                                             </div>

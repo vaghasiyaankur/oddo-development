@@ -4,7 +4,7 @@
         <div class="hotel-wrapper mb-5 p-a-swpier">
             @foreach ($hotels as $hotel)
                 <div class="hotel-box me-3">
-                    <img src="{{asset('storage/'.@$hotel->hotel->mainPhoto->first()->photos)}}" class="img-fluid HotelImage" alt="">
+                    <img src="{{ @$hotel->hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" class="img-fluid HotelImage" alt="" onerror="this.src='{{asset('assets/images/default.png')}}'">
                     <div class="content">
                         <h5 class="ms-2 mt-2">{{ @$hotel->hotel->property_name }}</h5>
                         <span class="d-l-Purple mb-3 ms-2"><img

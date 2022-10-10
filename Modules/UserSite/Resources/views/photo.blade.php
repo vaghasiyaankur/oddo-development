@@ -49,7 +49,7 @@ Photo
                                                         <div class="dz-details me-0 ms-0 border">
                                                             <div class="dz-details-inner d-block m-0">
                                                                 <div class="gallery-img m-0">
-                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}">
+                                                                    <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{ @$hotelPhoto->photos ? asset('storage/'.@$hotelPhoto->photos) : asset('assets/images/default.png') }}" data-id="{{$hotelPhoto->UUID}}" onerror="this.src='{{asset('assets/images/default.png')}}'">
                                                                 </div>
                                                                 <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
                                                                     <div class="d-flex remove-selected-image">
@@ -83,7 +83,8 @@ Photo
                                                             <div class="dz-details me-0 ms-0 border">
                                                                 <div class="dz-details-inner d-block m-0">
                                                                     <div class="gallery-img m-0">
-                                                                        <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{asset('storage/'.@$hotelPhoto->photos)}}" data-id="{{$hotelPhoto->UUID}}">
+                                                                        <img class="image--preview--show w-100 img-fluid imageEditValue" style="min-height:280px; min-width:280px" data-dz-thumbnail="" src="{{ @$hotelPhoto->photos ? asset('storage/'.@$hotelPhoto->photos) : asset('assets/images/default.png') }}" 
+                                                                        onerror="this.src='{{asset('assets/images/default.png')}}'" data-id="{{$hotelPhoto->UUID}}">
                                                                     </div>
                                                                     <div class="gallery-btn d-block ms-0 me-0  text-center d-flex justify-content-between align-items-center editImageParentClass">
                                                                         <div class="d-flex remove-selected-image">

@@ -4,7 +4,7 @@
         <div class="col-lg-12 mb-4">
                 <div class="booking--inner-box d-flex">
                     <div class="hotel_book_img">
-                        <img src="{{ asset('storage/' . @$booking->hotel->mainPhoto->first()->photos) }}" style="height:150px;width:150px;">
+                        <img src="{{ @$booking->hotel->mainPhoto->first()->photos ? asset('storage/' . @$booking->hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" style="height:150px;width:150px;" onerror="this.src='{{asset('assets/images/default.png')}}'">
                     </div>
                     <div class="inner-right-content">
                         <div
