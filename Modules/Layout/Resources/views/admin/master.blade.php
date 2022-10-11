@@ -11,15 +11,15 @@ $generalSetting = App\Models\GeneralSetting::first();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="description" content="oddo Development">
+    <meta name="keywords" content="oddo admin">
+    <meta name="author" content="oddo">
     <title>{{ $generalSetting->site_name }} / @yield('title')</title>
     <link rel="shortcut icon"
         class="favicon_image" href="{{ $logoFavicon->favicon == null ? asset('storage/' . $logoFavicon->default_favicon) : asset('storage/' . $logoFavicon->favicon) }}">
 
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/style.css') }}">
-
-    <!-- App favicon -->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/images/favicon.ico') }}">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/Admin/assets/js/layout.js') }}"></script>
@@ -31,17 +31,13 @@ $generalSetting = App\Models\GeneralSetting::first();
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/icons.min.css') }}">
 
     <!-- App Css-->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/app.min.css') }}">
-
-    <!-- custom Css-->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/custom.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/app.css') }}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Sweet Alert css-->
-    {{-- <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
     <style>
         .submenu_active {
@@ -331,7 +327,7 @@ $generalSetting = App\Models\GeneralSetting::first();
     <script src="{{ asset('assets/Admin/assets/js/form-input-spin.init.js') }}"></script>
 
     <!-- icon picker js -->
-    <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
+    <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js" defer></script>
     <script>
         $(document).ready(function() {
             $(".topnav-hamburger").click(function() {

@@ -15,11 +15,11 @@
                 <a href="{{ route('dashboard') }}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img
-                            src="{{ $logoFavicon->logo == null ? asset('storage/' . $logoFavicon->default_logo) : asset('storage/' . $logoFavicon->logo) }}">
+                            src="{{ $logoFavicon->logo == null ? asset('storage/' . $logoFavicon->default_logo) : asset('storage/' . $logoFavicon->logo) }}" height="50" width="124" alt="logo">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ $logoFavicon->logo == null ? asset('storage/' . $logoFavicon->default_logo) : asset('storage/' . $logoFavicon->logo) }}"
-                            height="50">
+                            height="50" width="124" alt="logo">
                     </span>
                 </a>
             </div>
@@ -87,7 +87,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     <span class="d-flex align-items-center">
                         <img class="rounded-circle header-profile-user"
-                            src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
+                            src="{{ asset('assets/Admin/assets/images/users/avatar-1.jpg') }}" alt="Header Avatar" >
                         <span class="text-start ms-xl-2">
                             <span
                                 class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ auth()->user()->name }}</span>
@@ -116,7 +116,7 @@
 
 <!-- ========== App Menu ========== -->
 <div class="app-menu navbar-menu" style="z-index: 112;">
-    <!-- LOGO -->
+    {{-- <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
         <a href="index.html" class="logo logo-dark">
@@ -140,7 +140,7 @@
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
-    </div>
+    </div> --}}
 
     @include('layout::admin.includes.nav-bar')
 </div>
