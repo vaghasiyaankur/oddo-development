@@ -23,7 +23,7 @@ $generalSetting = App\Models\GeneralSetting::select('site_name')->first();
         <!-- Icons Css -->
         <link href="{{ asset('assets/Admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{{ asset('assets/Admin/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/Admin/assets/css/app.css') }}" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div class="auth-page-wrapper pt-5">
