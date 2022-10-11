@@ -26,6 +26,8 @@ Route::get('/', 'HomeController@index')->name('home.index');
 
 /* Hotel Page */
 Route::get('/hotel', 'HotelController@index')->name('hotel.index');
+Route::post('/hotel-image', 'HotelController@hotelImage')->name('hotel.image');
+
 
 /* Hotel Details */
 Route::get('/hotel-detail/{slug}','HotelController@hotelDetail')->name('hotel.detail');

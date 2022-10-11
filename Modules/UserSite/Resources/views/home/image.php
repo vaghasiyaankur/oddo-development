@@ -35,25 +35,22 @@
     margin: 0 auto;
 }
 .slick-track{
-    width: 11141px !important;
+    width: 9427px !important;
 }
-.slick-track .slick-cloned,.slick-active{
+.slick-track .slick-cloned{
     width: 76px !important;
 }
 
-/* .slider-nav .slick-list .slick-track{
-    width: 2508px !important; */
+.slider-nav .slick-list .slick-track{
+    /* width: 2508px !important; */
     /* transform: translate3d(-456px, 0px, 0px) !important; */
-/* } */
-.slick-list {
-    padding: 0px 0px !important;
 }
-.slider-nav .slick-list .slick-track .slick-slide{
-    width: 86px !important;
+.slick-track .slick-cloned {
+    width: 76px !important;
 }
-.slder-nav-img img{
-    width: 82px !important;
-}
+/* .slick-slider .slick-list{
+    transform: translate3d(0, 0, 0);
+} */
 </style>
 @endpush
 
@@ -112,7 +109,6 @@
         @include('usersite::home.popup-image')
     @endif
 </div>
-
 @push('scripts')
 {{-- <script src="{{ asset('assets/js/custom.js') }}"></script> --}}
     <script>
@@ -128,7 +124,7 @@
                 $('.slider-nav').slick({
                     slidesToShow: 10,
                     slidesToScroll: 1,
-                    // infinite: true,
+                    infinite: true,
                     speed: 500,
                     asNavFor: '.slider-single',
                     dots: false,
@@ -201,7 +197,7 @@
                 processData: false,
                 contentType: false,
                 data: formdata,
-                    success: function (response) {
+                success: function (response) {
                     $('.popupImage').html(response);
                     $('.slick-prev').trigger('click');
                     $('.img-popup-slider').modal('show');

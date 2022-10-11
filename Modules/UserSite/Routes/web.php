@@ -29,6 +29,7 @@ Route::prefix('user')->group(function() {
     Route::middleware(['auth', 'user-access:user'])->group(function(){
         Route::controller(UserController::class)->group(function(){
             Route::get('/home', 'index')->name('user.view');
+            Route::post('/image','imageShow')->name('show.image');
             Route::get('property-list', 'propertyList')->name('property.List');
         });
 

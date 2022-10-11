@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Hotel;
+use App\Models\HotelPhoto;
 
 class UserController extends Controller
 {
@@ -85,5 +86,13 @@ class UserController extends Controller
         $userId = auth()->user()->id;
         $data['hotels'] = Hotel::where('user_id',$userId)->get(); 
         return view('usersite::home.property', $data);
+    }
+
+
+    public function imageShow(Request $request){
+        $userId = auth()->user()->id;
+        $hotelId = Hotel::whereUuid($request->id)->pluck('id')->first();
+        $data['hotelPhotos'] = HotelPhoto::whereHotel_id($hotelId)->get();
+        return view('usersite::home.popup-image', $data);
     }
 }
