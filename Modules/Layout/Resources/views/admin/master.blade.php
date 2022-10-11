@@ -33,15 +33,11 @@ $generalSetting = App\Models\GeneralSetting::first();
     <!-- App Css-->
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/app.min.css') }}">
 
-    <!-- custom Css-->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/custom.min.css') }}">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Sweet Alert css-->
-    {{-- <link href="{{ asset('assets/Admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
     <style>
         .submenu_active {

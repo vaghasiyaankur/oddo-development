@@ -116,7 +116,7 @@
 
 <!-- ========== App Menu ========== -->
 <div class="app-menu navbar-menu" style="z-index: 112;">
-    <!-- LOGO -->
+    {{-- <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
         <a href="index.html" class="logo logo-dark">
@@ -140,7 +140,7 @@
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
-    </div>
+    </div> --}}
 
     @include('layout::admin.includes.nav-bar')
 </div>

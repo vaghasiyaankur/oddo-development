@@ -24,8 +24,6 @@ $generalSetting = App\Models\GeneralSetting::select('site_name')->first();
         <link href="{{ asset('assets/Admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{ asset('assets/Admin/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- custom Css-->
-        {{-- <link href="{{ asset('assets/Admin/assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     </head>
     <body>
         <div class="auth-page-wrapper pt-5">
@@ -47,7 +45,7 @@ $generalSetting = App\Models\GeneralSetting::select('site_name')->first();
                             <div class="text-center mt-sm-5 mb-4 text-white-50">
                                 <div>
                                     <a href="javascript:;" class="d-inline-block auth-logo">
-                                        <img src="{{ asset('assets/Admin/assets/images/logo-light.png') }}" alt="logo" height="20" width="118">
+                                        <img src="{{ $logoFavicon->logo == null ? asset('storage/' . $logoFavicon->default_logo) : asset('storage/' . $logoFavicon->logo) }}" alt="logo" height="50" width="118">
                                     </a>
                                 </div>
                             </div>
@@ -116,18 +114,6 @@ $generalSetting = App\Models\GeneralSetting::select('site_name')->first();
         <!-- JAVASCRIPT -->
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="{{ asset('assets/Admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-        {{-- <script src="{{ asset('assets/Admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
-        <script src="{{ asset('assets/Admin/assets/libs/node-waves/waves.min.js') }}"></script>
-        <script src="{{ asset('assets/Admin/assets/libs/feather-icons/feather.min.js') }}"></script> --}}
-
-        {{-- <script src="{{ asset('assets/Admin/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script> --}}
-
-        <!-- particles js -->
-        {{-- <script src="{{ asset('assets/Admin/assets/libs/particles.js/particles.js') }}"></script> --}}
-        <!-- particles app js -->
-        {{-- <script src="{{ asset('assets/Admin/assets/js/pages/particles.app.js') }}"></script> --}}
-        <!-- password-addon init -->
         <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
         
         <script  type="text/javascript">
