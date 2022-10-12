@@ -186,4 +186,12 @@ class HotelController extends Controller
         
         return view('frontend::hotel.payment', compact('paymentGateways', 'hotel', 'hotel_amount'));
     }
+
+    public function hotelImage(Request $request){
+        // dd('hello');
+        $hotelId = Hotel::whereUuid($request->id)->pluck('id')->first();
+        $data['hotelPhotos'] = HotelPhoto::whereHotel_id($hotelId)->get();
+        // dd($hotelId);
+        return view('frontend::hotel.popup-image', $data);
+    }
 }

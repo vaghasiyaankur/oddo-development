@@ -17,49 +17,11 @@
                                           data-id='{{ $hotel->UUID }}'><i class="fa-solid fa-heart"></i></a>
                                   @endauth
 
-                                  <a href="#" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">
-                                      <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/' . @$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}"
-                                          class="img-wrapper" onerror="this.src='{{asset('assets/images/default.png')}}'">
+                                  <a href="javascript:;" class="ImagepPopup" data-id="{{ $hotel->UUID }}">
+                                      <img src="{{asset('storage/' . @$hotel->mainPhoto->first()->photos)}}"
+                                          class="img-wrapper ImageLoad" onerror="this.src='{{asset('assets/images/default.png')}}'">
                                   </a>
                               </div>
-                              <!------- img slider popup start -------->
-                              <div class="modal fade img-popup-slider" id="image_{{ $hotel->UUID }}" tabindex="-1"
-                                  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                  <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                          <div class="modal-header justify-content-end">
-                                              <button type="button" data-bs-dismiss="modal" class="modal-close"
-                                                  aria-label="Close">
-                                                  <i class="fa-solid fa-xmark"></i>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body display-flex-items py-sm-5">
-                                              <div class="img-swiper">
-                                                  <div class="slider slider-single mb-5" >
-                                                      @foreach ($hotel->photos as $photo)
-                                                          <div class="slider-single-img" ><img
-                                                                  src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}" 
-                                                                  onerror="this.src='{{asset('assets/images/default.png')}}'"
-                                                                  alt="" style="width: 857px; height: 551px;">
-                                                          </div>
-                                                      @endforeach
-                                                  </div>
-                                                  <div class="slider slider-nav">
-                                                      @foreach ($hotel->photos as $photo)
-                                                          <div class="slder-nav-img d-block"><img
-                                                                  src="{{ @$photo->photos ? asset('storage/' . @$photo->photos) : asset('assets/images/default.png') }}"
-                                                                  onerror="this.src='{{asset('assets/images/default.png')}}'"
-                                                                  class="me-2" alt=""
-                                                                  style="width: 72px; height: 72px;">
-                                                          </div>
-                                                      @endforeach
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <!------- img slider popup end -------->
                           </div>
                       </div>
                       <div class="col-md-4">

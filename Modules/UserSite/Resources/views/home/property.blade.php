@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">
 
     <style>
-        .img-popup-slider .img-swiper .slider-single img {
+.img-popup-slider .img-swiper .slider-single img {
     width: 100%;
     object-fit: cover;
 }
@@ -35,7 +35,7 @@
     margin: 0 auto;
 }
 .slick-track{
-    width: 11141px !important;
+    width: 18141px !important;
 }
 .slick-track .slick-cloned,.slick-active{
     width: 76px !important;
@@ -71,7 +71,7 @@
                 <div class="upload-delete-button-step d-flex justify-content-between flex-wrap">
                     @if ($hotel->photo)
                         {{-- <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">Albums</a> --}}
-                        <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-bs-toggle="modal" data-id="{{$hotel->UUID}}">Albums</a>
+                        <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-id="{{$hotel->UUID}}">Albums</a>
                         {{-- data-bs-target="#image_{{ $hotel->UUID }} " --}}
 
                     @endif

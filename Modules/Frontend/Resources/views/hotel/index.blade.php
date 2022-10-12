@@ -317,23 +317,6 @@ hotel
     .slick-next{
         right:-40px;
     }
-    .slick-cloned{
-        width:75px !important;
-    }
-
-    .slick-slide.slick-current.slick-center{
-        border: 1px solid white;
-        width: 75px !important;
-        margin-right: 2px;
-    }
-    /* .slick-track{
-        width: 100% !important;
-    } */
-
-    /* .slick-slide.slick-current.slick-active.slick-center{
-        border: 1px solid white;
-        width: 76px;
-    } */
     /* popup scroll */
     .reviews-popup-main .reviews-popup::-webkit-scrollbar-track {
         border-radius: 10px;
@@ -376,9 +359,54 @@ hotel
         }
     }
 
-    .slick-track {
+    /* .slick-track {
         width: 620px !important;
+    } */
+
+    .img-popup-slider .img-swiper .slider-single img {
+    width: 100%;
+    object-fit: cover;
     }
+
+    .img-popup-slider .img-swiper .slick-next:before {
+        content: "\f105";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+    }
+
+    .img-popup-slider .img-swiper .slick-prev:before {
+        content: "\f104";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+    }
+
+    .img-popup-slider .img-swiper {
+        width: 100%;
+        max-width: 857px;
+        margin: 0 auto;
+    }
+     .slick-list .slick-track{
+        width: 18710px !important;
+    }
+    .slick-track .slick-cloned,.slick-active{
+        width: 76px !important;
+    }
+    .slick-list {
+        padding: 0px 0px !important;
+    }
+    .slider-nav .slick-list .slick-track .slick-slide{
+        width: 86px !important;
+    }
+    .slder-nav-img img{
+        width: 82px !important;
+    }
+    .ImagepPopup {
+        background:url("{{('assets/images/loading.gif')}}") 50% 50% no-repeat;
+        width: 301px;
+        height: 350px;
+        display: inline-block;
+    }
+   
 </style>
 @endpush
 
@@ -1129,7 +1157,11 @@ hotel
         @include('frontend::hotel.review')  
     @endif
 </div>
-
+<div class="popupImage">
+    @if (isset($hotelPhotos))
+        @include('frontend::hotel.popup-image')
+    @endif
+</div>
 <div class="mainPaymentPopupDiv">
     @if (isset($hotel) && $hotel != '')
         @include('frontend::hotel.payment')
@@ -1232,8 +1264,30 @@ hotel
 
 <!-------- image popup (slider image js)------>
 <script>
-    $('.slider-single').slick({
-            slidesToShow: 10,
+        $(function () {
+            $('.ImagepPopup img').hide();
+        });
+
+        var i = 0;
+        var int=0;
+        $(window).bind("load", function() {
+
+            var int = setInterval("doThis(i)",500);
+
+        });
+
+        function doThis() {
+            var images = $('.ImageLoad').length;
+            if (i >= images) {
+                clearInterval(int);
+            }
+            $('.ImageLoad:hidden').eq(0).fadeIn(500);
+            i++;
+        } 
+
+    function slider(){
+        $('.slider-single').slick({
+            slidesToShow: 1,
             slidesToScroll: 1,
             arrows: true,
             draggable: true,
@@ -1294,7 +1348,34 @@ hotel
                 },
             ],
         });
+    }
 
+        $(document).on('click','.ImagepPopup',function(){
+            var id = $(this).data('id');
+
+            formdata = new FormData();
+            formdata.append('id', id);
+            
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('image.hotel')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                    success: function (response) {
+                    // console.log(response);
+                    $('.popupImage').html(response);
+                    $('.slick-prev').trigger('click');
+                    $('.img-popup-slider').modal('show');
+                    slider();
+                }, error:function (response) {
+                    console.log('error');
+                }
+            });
+        });
         // $('.modal').on('shown.bs.modal', function(e) {
         //     $('.slider-single').slick('setPosition');
         //     $('.swiper').addClass('open');
