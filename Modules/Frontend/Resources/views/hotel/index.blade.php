@@ -408,7 +408,7 @@ hotel
                                     <div class="check-text-label pt-4 pe-xl-4 pe-lg-3">
                                         <label class="check-inout mt-2">Check-In</label>
                                         <div class="input--text d-flex align-items-center">
-                                            <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2">
+                                            <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2" alt="checkin" width="31" height="16">
                                             <input type="text" class="input--control ps-xl-2 check_in"
                                                 name="value_from_start_date" placeholder="08/19/2020"
                                                 data-datepicker="separateRange" value="{{ request()->checkIn }}" />
@@ -417,7 +417,7 @@ hotel
                                     <div class="check-text-label pt-4">
                                         <label class="check-inout check-out-label mt-2">Check-Out</label>
                                         <div class="input--text d-flex align-items-center">
-                                            <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2">
+                                            <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2" alt="checkout" width="31" height="16">
                                             <input type="text" class="input--control ps-xl-2 check_out"
                                                 name="value_from_end_date" placeholder="08/19/2020"
                                                 data-datepicker="separateRange" value="{{ request()->checkOut }}" />
@@ -566,7 +566,7 @@ hotel
                                         </div>
                                         <div class="search-prefe-icon">
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#myPreferences"><img
-                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}"></a>
+                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
                                             <!--------- MyPreferences popup start---------->
                                             <div class="modal fade mypreferences-popup" id="myPreferences"
                                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -735,59 +735,59 @@ hotel
                                                                                     id="5star">
                                                                                 <span
                                                                                     class="property-class-icon propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span
                                                                                     class="property-class-icon propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span
                                                                                     class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span
                                                                                     class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span
                                                                                     class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="4star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="3star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="2star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="1star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -984,15 +984,15 @@ hotel
                                             value="5" id="star_5" {{ request()->starRating == 5 ? 'checked' : ''}}>
                                         <label for="star_5">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -1000,13 +1000,13 @@ hotel
                                             value="4" id="star_4" {{ request()->starRating == 4 ? 'checked' : ''}}>
                                         <label for="star_4">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -1014,11 +1014,11 @@ hotel
                                             value="3" id="star_3" {{ request()->starRating == 3 ? 'checked' : ''}}>
                                         <label for="star_3">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -1026,17 +1026,17 @@ hotel
                                             value="2" id="star_2" {{ request()->starRating == 2 ? 'checked' : ''}}>
                                         <label for="star_2">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
-                                            value="1" id="star_1" {{ request()->starRating == 1 ? 'checked' : ''}}>
+                                            value="1" id="star_1" {{ request()->starRating == 1 ? 'checked' : ''}} >
                                         <label for="star_1">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
                                         </label>
                                     </div>
                                 </div>
@@ -1168,13 +1168,7 @@ hotel
     $paypalId = config('paypal.sandbox.client_id');
 @endphp
 
-{{-- paypal cdn --}}
-<script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
-{{-- stripe cdn--}}
-<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-<script src="https://checkout.stripe.com/v3/checkout.js"></script>
-{{-- razorpay cdn --}}
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <!-- aos js -->
 <script src="{{ asset('assets/Admin/assets/libs/aos/aos.js') }}"></script>
 
@@ -1755,123 +1749,10 @@ $(document).ready(function(){
     }
     resetFilter();
 
-    // razorpay payment gateway
-    $(document).on('click', '.payment_button_Razorpay', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        var total_amount = amount+"00";
-        var image = $('.logoImage').attr('src');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var payment_id = $('.razorpay_payment_id').val();
-        var room_id = $('.room_id_'+id).val();
-        var start_date = $('.check_in').val();
-        var end_date = $('.check_out').val();
-
-        var options = {
-        "key": "{{config('services.razorpay.key')}}",
-        "amount": total_amount,
-        "currency": "INR",
-        "name": "NiceSnippets",
-        "description": "Test Transaction",
-        "image": image,
-        "order_id": "",
-        "handler": function (response){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type:'POST',
-                url:"{{ route('payment.razorpay') }}",
-                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id, start_date: start_date, end_date : end_date},
-                success:function(data){
-                    $('.payment_details_popup').hide();
-                    $('.modal-backdrop').hide();
-                    $("#success_payment").modal("toggle");
-                    $('.bookingId').val('Booking Ref :'+ data.bookingId);
-                }
-            });
-        },
-        "prefill": {
-            "name": "demo",
-            "email": "dem@examle.com",
-            "contact": "1234567890"
-        },
-        "notes": {
-            "address": "test test"
-        },
-        "theme": {
-            "color": "#6a78c7"
-        }
-        };
-        var rzp1 = new Razorpay(options);
-        rzp1.open();
-    });
+    
 });
 </script>
-<script>
-    const stripe =  Stripe("{{ config('services.stripe.key') }}");
 
-    $(document).on('click', '.payment_button_Stripe', function(e){
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        var total_amount = amount+"00";
-        var payment_id = $('.stripe_payment_id').val();
-        var property_name = $(this).data('value');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var room_id = $('.room_id_'+id).val();
-        var start_date = $('.check_in').val();
-        var end_date = $('.check_out').val();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            type:'POST',
-            url:"{{ route('show.stripe') }}",
-            data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
-            success:function(response){
-
-                stripe.redirectToCheckout({
-                    sessionId : response.session.id,
-                })
-            },error:function (response) {
-                console.log('fail');
-            }
-        });
-    });
-
-    $(document).on('click', '.payment_button_Paypal', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        var total_amount = amount+"00";
-        var payment_id = $('.paypal_payment_id').val();
-        var property_name = $(this).data('value');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var room_id = $('.room_id_'+id).val();
-        var start_date = $('.check_in').val();
-        var end_date = $('.check_out').val();
-
-        window.location.href = base_url + "/payment/processPaypal?id=" + id + "&amount=" + amount + "&total_amount=" + total_amount + "&payment_id=" + payment_id + "&property_name=" + property_name + "&hotel_id=" + hotel_id + '&room_id=' + room_id + '&start_date=' + start_date + '&end_date=' + end_date;
-
-        // $.ajax({
-        //     url: "{{route('processPaypal')}}",
-        //     type: "GET",
-        //     data: {id: id,amount: amount,total_amount: total_amount,payment_id: payment_id,property_name: property_name,hotel_id: hotel_id,room_id: room_id,start_date: start_date,end_date: end_date},
-        //     success: function (response) {
-        //         console.log('succeed');
-        //     }, error:function (response) {
-        //         console.log('fail');
-        //     }
-        // });
-    });
-</script>
 
 <script>
     $(document).on('click','.hotelPriceBtn',function (e) {
@@ -1994,4 +1875,130 @@ $(document).ready(function(){
     });
 </script>
 
+@if (isset($hotel) && $hotel != '')
+{{-- paypal cdn --}}
+<script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
+{{-- stripe cdn--}}
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script src="https://checkout.stripe.com/v3/checkout.js"></script>
+{{-- razorpay cdn --}}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    // razorpay payment gateway
+    $(document).on('click', '.payment_button_Razorpay', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+        var image = $('.logoImage').attr('src');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var payment_id = $('.razorpay_payment_id').val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        var options = {
+        "key": "{{config('services.razorpay.key')}}",
+        "amount": total_amount,
+        "currency": "INR",
+        "name": "NiceSnippets",
+        "description": "Test Transaction",
+        "image": image,
+        "order_id": "",
+        "handler": function (response){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url:"{{ route('payment.razorpay') }}",
+                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id, start_date: start_date, end_date : end_date},
+                success:function(data){
+                    $('.payment_details_popup').hide();
+                    $('.modal-backdrop').hide();
+                    $("#success_payment").modal("toggle");
+                    $('.bookingId').val('Booking Ref :'+ data.bookingId);
+                }
+            });
+        },
+        "prefill": {
+            "name": "demo",
+            "email": "dem@examle.com",
+            "contact": "1234567890"
+        },
+        "notes": {
+            "address": "test test"
+        },
+        "theme": {
+            "color": "#6a78c7"
+        }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    });
+</script>
+<script>
+    const stripe =  Stripe("{{ config('services.stripe.key') }}");
+
+    $(document).on('click', '.payment_button_Stripe', function(e){
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+        var payment_id = $('.stripe_payment_id').val();
+        var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type:'POST',
+            url:"{{ route('show.stripe') }}",
+            data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
+            success:function(response){
+
+                stripe.redirectToCheckout({
+                    sessionId : response.session.id,
+                })
+            },error:function (response) {
+                console.log('fail');
+            }
+        });
+    });
+
+    $(document).on('click', '.payment_button_Paypal', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        var total_amount = amount+"00";
+        var payment_id = $('.paypal_payment_id').val();
+        var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        window.location.href = base_url + "/payment/processPaypal?id=" + id + "&amount=" + amount + "&total_amount=" + total_amount + "&payment_id=" + payment_id + "&property_name=" + property_name + "&hotel_id=" + hotel_id + '&room_id=' + room_id + '&start_date=' + start_date + '&end_date=' + end_date;
+
+        // $.ajax({
+        //     url: "{{route('processPaypal')}}",
+        //     type: "GET",
+        //     data: {id: id,amount: amount,total_amount: total_amount,payment_id: payment_id,property_name: property_name,hotel_id: hotel_id,room_id: room_id,start_date: start_date,end_date: end_date},
+        //     success: function (response) {
+        //         console.log('succeed');
+        //     }, error:function (response) {
+        //         console.log('fail');
+        //     }
+        // });
+    });
+</script>
+@endif
 @endpush
