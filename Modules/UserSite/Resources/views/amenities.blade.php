@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Amenities
-@endsection
+@section('title', 'Amenities')
+@section('meta_description', 'Page Amenities')
+@section('meta_keywords', 'Page, Amenities')
 
 @section('content')
 <!------ Pannel Form start ------->

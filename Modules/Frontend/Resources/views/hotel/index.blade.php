@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-hotel
-@endsection
+@section('title', 'Search')
+@section('meta_description', 'Page Search')
+@section('meta_keywords', 'Page, Search')
 
 @push('css')
 <!-- aos css -->

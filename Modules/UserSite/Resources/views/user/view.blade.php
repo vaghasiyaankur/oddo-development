@@ -3,6 +3,10 @@
 @section('title')
 Add-Layout
 @endsection
+@section('title', 'show Property')
+@section('meta_description', 'Page show Property')
+@section('meta_keywords', 'Page, show Property')
+
 
 @push('css')
 <link rel="stylesheet" href="{{asset('user/asset/css/user-style.css')}}">

@@ -12,6 +12,9 @@ $generalSetting = App\Models\GeneralSetting::first();
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>{{ $generalSetting->site_name }} / @yield('title')</title>
+  <meta name ="description" content="@yield('meta_description', 'page Odda-development')">
+  <meta name ="keywords" content="@yield('meta_keywords', 'page,Odda-development')">
+  <meta name="author" content="Odda">
   <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
   <!------- Bootstrap CSS Link------->
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">

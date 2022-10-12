@@ -1,9 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    Planner
-@endsection
-
+@section('title', 'Planner')
+@section('meta_description', 'Page Planner')
+@section('meta_keywords', 'Page, Planner')
 
 @push('css')
 @endpush

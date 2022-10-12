@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Basic-Info
-@endsection
+@section('title', 'Basic Info')
+@section('meta_description', 'Page Basic Info')
+@section('meta_keywords', 'Page, Basic Info')
 
 @section('content')
 <!------ Pannel Form start ------->

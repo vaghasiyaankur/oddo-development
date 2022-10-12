@@ -1,8 +1,9 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    home
-@endsection
+@section('meta_description', 'Page Home')
+@section('meta_keywords', 'Page,Home')
+
+@section('title', 'Home')
 
 
 @push('css')

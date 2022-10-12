@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Room List
-@endsection
+@section('title', 'Room List')
+@section('meta_description', 'Page Room List')
+@section('meta_keywords', 'Page, Room List')
 <style>
     .pannel-form.admin-pannel-main {
     min-height: calc(100vh - 361px);

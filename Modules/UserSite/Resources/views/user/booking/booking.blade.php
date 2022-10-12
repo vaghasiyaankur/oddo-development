@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-    Add-Layout
-@endsection
+@section('title', 'booking')
+@section('meta_description', 'Page booking')
+@section('meta_keywords', 'Page, booking')
 
 
 @push('css')

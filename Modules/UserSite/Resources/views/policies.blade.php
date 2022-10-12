@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Policies
-@endsection
+@section('title', 'Policies')
+@section('meta_description', 'Page Policies')
+@section('meta_keywords', 'Page, Policies')
 
 @section('content')
 <!------ Pannel Form start ------->

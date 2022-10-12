@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    Order History
-@endsection
+@section('title', 'Order History')
+@section('meta_description', 'Page Order History')
+@section('meta_keywords', 'Page, Order History')
 
 
 @push('css')

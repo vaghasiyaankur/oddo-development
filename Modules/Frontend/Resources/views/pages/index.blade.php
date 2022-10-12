@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    {{$pageData->title}}
-@endsection
+@section('title')   {{$pageData->title}} @endsection
+@section('meta_description') {{$pageData->meta_description}} @endsection
+@section('meta_keywords') {{$pageData->meta_key}} @endsection
 
 @push('css')
 @endpush
