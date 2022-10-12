@@ -14,7 +14,8 @@
                           </div>
                           <div class="t-city-card-content text-center">
                               <h3>{{ @$city->name }}</h3>
-                              <img src="{{asset('storage/'.@$city->icon)}}" class="img-fluid" onerror="this.src='{{asset('assets/images/default.png')}}', style='width:32px;height:23px;' ">
+                              <img src="{{asset('storage/'.@$city->icon)}}" class="img-fluid" onerror="this.src='{{asset('assets/images/default.png')}}', style='width:32px;height:23px;' " width='32'
+                              height="23">
                                 <div class="t-city-card-button">
                                   {{-- <a href="{{ route('city.explore',['slug' => @$hotel->hotel->city->slug]) }}" class="btn bg-purple t-city-btn">Explore</a> --}}
                                   <a href="javascript:;" class="btn bg-purple t-city-btn citySearchBtn" data-id="{{@$city->name}}">Explore</a>
