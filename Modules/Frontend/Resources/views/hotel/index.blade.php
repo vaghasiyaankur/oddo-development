@@ -594,7 +594,7 @@
                                         </div>
                                         <div class="search-prefe-icon">
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#myPreferences"><img
-                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
+                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24" alt="plus"></a>
                                             <!--------- MyPreferences popup start---------->
                                             <div class="modal fade mypreferences-popup" id="myPreferences"
                                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -763,59 +763,59 @@
                                                                                     id="5star">
                                                                                 <span
                                                                                     class="property-class-icon propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span
                                                                                     class="property-class-icon propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span
                                                                                     class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span
                                                                                     class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span
                                                                                     class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="4star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="3star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="2star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                                 <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                             </div>
                                                                             <div class="form-check pe-4">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox" value=""
                                                                                     id="1star">
                                                                                 <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1012,15 +1012,15 @@
                                             value="5" id="star_5" {{ request()->starRating == 5 ? 'checked' : ''}}>
                                         <label for="star_5">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -1028,13 +1028,13 @@
                                             value="4" id="star_4" {{ request()->starRating == 4 ? 'checked' : ''}}>
                                         <label for="star_4">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -1042,21 +1042,21 @@
                                             value="3" id="star_3" {{ request()->starRating == 3 ? 'checked' : ''}}>
                                         <label for="star_3">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
-                                        </label>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
+                                        </label> alt="star"
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
                                             value="2" id="star_2" {{ request()->starRating == 2 ? 'checked' : ''}}>
                                         <label for="star_2">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -1064,7 +1064,7 @@
                                             value="1" id="star_1" {{ request()->starRating == 1 ? 'checked' : ''}} >
                                         <label for="star_1">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                 </div>
