@@ -1,6 +1,8 @@
 @extends('layout::user.Frontend.master')
 
 @section('title', 'Destinations we love')
+@section('meta_description', 'Page Destinations We love')
+@section('meta_keywords', 'Page, Destinations We love')
 
 @push('css')
 <style>

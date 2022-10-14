@@ -3,7 +3,9 @@
 @section('title')
 Add-Layout
 @endsection
-
+@section('title', 'Calender')
+@section('meta_description', 'Page Calender')
+@section('meta_keywords', 'Page, Calender')
 
 @push('css')
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->

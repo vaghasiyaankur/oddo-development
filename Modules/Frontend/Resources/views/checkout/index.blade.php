@@ -4,6 +4,10 @@
     Checkout
 @endsection
 
+@section('title', 'Checkout')
+@section('meta_description', 'Page Checkout')
+@section('meta_keywords', 'Page, Checkout')
+
 
 @push('css')
 {{-- <link rel="stylesheet" href="https://kenwheeler.github.io/slick/slick/slick-theme.css"> --}}

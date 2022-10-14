@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Add-Layout
-@endsection
+@section('title', 'Add Layout')
+@section('meta_description', 'Page Add Layout')
+@section('meta_keywords', 'Page, Add  Layout')
 
 @section('content')
 <!------ Pannel Form start ------->

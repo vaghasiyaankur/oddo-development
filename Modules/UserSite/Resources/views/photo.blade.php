@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Photo
-@endsection
+@section('title', 'Photo')
+@section('meta_description', 'Page Photo')
+@section('meta_keywords', 'Page, Photo')
 
 @section('content')
     <!------ Pannel Form start ------->

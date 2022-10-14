@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    hotel
-@endsection
+@section('title', 'Hotel Detail')
+@section('meta_description', 'Page Hotel Detail')
+@section('meta_keywords', 'Page, Hotel Detail')
 
 @push('css')
     <!------- Slick theme css  ------->

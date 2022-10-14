@@ -3,7 +3,9 @@
 @section('title')
     search
 @endsection
-
+@section('title', 'Search')
+@section('meta_description', 'Page Search')
+@section('meta_keywords', 'Page, Search')
 
 @push('css')
 <style>
@@ -375,7 +377,7 @@
                 </div>
             </div>
             <div class="account-section text-center m_b_5 mt-3">
-                <a href="multisearchresult.html"><button class="account-pass-btn mt-3">Search</button></a>
+                <a href="javascript:;"><button class="account-pass-btn mt-3">Search</button></a>
             </div>
         </div>
     </section>

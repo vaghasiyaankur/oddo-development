@@ -603,8 +603,9 @@ search
                                         </div>
                                         <div class="search-prefe-icon">
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#myPreferences"><img
-                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
+                                                src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
                                                 @include('frontend::hotel.preference')
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -722,15 +723,15 @@ search
                                             value="5" id="star_5" {{ request()->starRating == 5 ? 'checked' : ''}}>
                                         <label for="star_5">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -738,13 +739,13 @@ search
                                             value="4" id="star_4" {{ request()->starRating == 4 ? 'checked' : ''}}>
                                         <label for="star_4">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -752,21 +753,21 @@ search
                                             value="3" id="star_3" {{ request()->starRating == 3 ? 'checked' : ''}}>
                                         <label for="star_3">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
-                                        </label>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
+                                        </label> alt="star"
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
                                             value="2" id="star_2" {{ request()->starRating == 2 ? 'checked' : ''}}>
                                         <label for="star_2">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -774,7 +775,7 @@ search
                                             value="1" id="star_1" {{ request()->starRating == 1 ? 'checked' : ''}} >
                                         <label for="star_1">
                                             <span class="property-class-icon ps-2"><img
-                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12"></span>
+                                                    src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                         </label>
                                     </div>
                                 </div>

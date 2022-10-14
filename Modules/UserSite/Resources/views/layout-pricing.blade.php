@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-Layout & pricing
-@endsection
+@section('title', 'Layout & pricing')
+@section('meta_description', 'Page Layout & pricing')
+@section('meta_keywords', 'Page, Layout & pricing')
 
 @section('content')
 <!------ Pannel Form start ------->

@@ -3,6 +3,9 @@
 @section('title')
 Add-Layout
 @endsection
+@section('title', 'Add Layout')
+@section('meta_description', 'Page Add Layout')
+@section('meta_keywords', 'Page, Add  Layout')
 
 
 @push('css')

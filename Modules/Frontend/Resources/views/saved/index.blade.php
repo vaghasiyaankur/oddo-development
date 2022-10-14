@@ -1,9 +1,10 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    Saved for Later
-@endsection
-
+@section('title', 'SavedDestinations We love
+Destinations We loveDestinations We love
+Destinations We love')
+@section('meta_description', 'Page Saved')
+@section('meta_keywords', 'Page, Saved')
 
 @push('css')
 <style>

@@ -386,7 +386,7 @@
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a
-                                                                        href="apps-ecommerce-product-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Branded
                                                                         T-Shirts</a></h5>
                                                                 <span class="text-muted">24 Apr 2021</span>
@@ -420,7 +420,7 @@
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a
-                                                                        href="apps-ecommerce-product-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Bentwood
                                                                         Chair</a></h5>
                                                                 <span class="text-muted">19 Mar 2021</span>
@@ -456,7 +456,7 @@
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a
-                                                                        href="apps-ecommerce-product-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Borosil Paper
                                                                         Cup</a></h5>
                                                                 <span class="text-muted">01 Mar 2021</span>
@@ -490,7 +490,7 @@
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a
-                                                                        href="apps-ecommerce-product-details.html"
+                                                                        href="#"
                                                                         class="text-reset">One Seater
                                                                         Sofa</a></h5>
                                                                 <span class="text-muted">11 Feb 2021</span>
@@ -526,7 +526,7 @@
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1"><a
-                                                                        href="apps-ecommerce-product-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Stillbird
                                                                         Helmet</a></h5>
                                                                 <span class="text-muted">17 Jan 2021</span>
@@ -620,7 +620,7 @@
                                                             </div>
                                                             <div>
                                                                 <h5 class="fs-14 my-1 fw-medium"><a
-                                                                        href="apps-ecommerce-seller-details.html"
+                                                                        href="#"
                                                                         class="text-reset">iTest Factory</a>
                                                                 </h5>
                                                                 <span class="text-muted">Oliver Tyler</span>
@@ -652,7 +652,7 @@
                                                             </div>
                                                             <div class="flex-grow-1">
                                                                 <h5 class="fs-14 my-1 fw-medium"><a
-                                                                        href="apps-ecommerce-seller-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Digitech
                                                                         Galaxy</a></h5>
                                                                 <span class="text-muted">John Roberts</span>
@@ -684,7 +684,7 @@
                                                             </div>
                                                             <div class="flex-gow-1">
                                                                 <h5 class="fs-14 my-1 fw-medium"><a
-                                                                        href="apps-ecommerce-seller-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Nesta
                                                                         Technologies</a></h5>
                                                                 <span class="text-muted">Harley
@@ -717,7 +717,7 @@
                                                             </div>
                                                             <div class="flex-grow-1">
                                                                 <h5 class="fs-14 my-1 fw-medium"><a
-                                                                        href="apps-ecommerce-seller-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Zoetic
                                                                         Fashion</a></h5>
                                                                 <span class="text-muted">James Bowen</span>
@@ -749,7 +749,7 @@
                                                             </div>
                                                             <div class="flex-grow-1">
                                                                 <h5 class="fs-14 my-1 fw-medium"><a
-                                                                        href="apps-ecommerce-seller-details.html"
+                                                                        href="#"
                                                                         class="text-reset">Meta4Systems</a>
                                                                 </h5>
                                                                 <span class="text-muted">Zoe Dennis</span>
@@ -867,7 +867,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <a href="apps-ecommerce-order-details.html"
+                                                        <a href="#"
                                                             class="fw-medium link-primary">#VZ2112</a>
                                                     </td>
                                                     <td>
@@ -896,7 +896,7 @@
                                                 </tr><!-- end tr -->
                                                 <tr>
                                                     <td>
-                                                        <a href="apps-ecommerce-order-details.html"
+                                                        <a href="#"
                                                             class="fw-medium link-primary">#VZ2111</a>
                                                     </td>
                                                     <td>
@@ -926,7 +926,7 @@
                                                 </tr><!-- end tr -->
                                                 <tr>
                                                     <td>
-                                                        <a href="apps-ecommerce-order-details.html"
+                                                        <a href="#"
                                                             class="fw-medium link-primary">#VZ2109</a>
                                                     </td>
                                                     <td>
@@ -955,7 +955,7 @@
                                                 </tr><!-- end tr -->
                                                 <tr>
                                                     <td>
-                                                        <a href="apps-ecommerce-order-details.html"
+                                                        <a href="#"
                                                             class="fw-medium link-primary">#VZ2108</a>
                                                     </td>
                                                     <td>
@@ -984,7 +984,7 @@
                                                 </tr><!-- end tr -->
                                                 <tr>
                                                     <td>
-                                                        <a href="apps-ecommerce-order-details.html"
+                                                        <a href="#"
                                                             class="fw-medium link-primary">#VZ2107</a>
                                                     </td>
                                                     <td>
@@ -1058,17 +1058,17 @@
                                                     class="fw-semibold">style collection</span></h6>
                                             <p class="text-muted mb-1">By Nesta Technologies</p>
                                             <div class="d-inline-flex gap-2 border border-dashed p-2 mb-2">
-                                                <a href="apps-ecommerce-product-details.html"
+                                                <a href="#"
                                                     class="bg-light rounded p-1">
                                                     <img src="{{asset('assets/Admin/assets/images/products/img-8.png')}}" alt=""
                                                         class="img-fluid d-block" />
                                                 </a>
-                                                <a href="apps-ecommerce-product-details.html"
+                                                <a href="#"
                                                     class="bg-light rounded p-1">
                                                     <img src="{{asset('assets/Admin/assets/images/products/img-2.png')}}" alt=""
                                                         class="img-fluid d-block" />
                                                 </a>
-                                                <a href="apps-ecommerce-product-details.html"
+                                                <a href="#"
                                                     class="bg-light rounded p-1">
                                                     <img src="{{asset('assets/Admin/assets/images/products/img-10.png')}}" alt=""
                                                         class="img-fluid d-block" />
@@ -1100,7 +1100,7 @@
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h6 class="mb-1 lh-base">Today offers by <a
-                                                    href="apps-ecommerce-seller-details.html"
+                                                    href="#"
                                                     class="link-secondary">Digitech Galaxy</a></h6>
                                             <p class="text-muted mb-2">Offer is valid on orders of Rs.500 Or
                                                 above for selected products only.</p>

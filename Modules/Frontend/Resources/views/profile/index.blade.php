@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    My Account
-@endsection
+@section('title', 'My Account')
+@section('meta_description', 'Page My Account')
+@section('meta_keywords', 'Page, My Account')
 
 
 @push('css')

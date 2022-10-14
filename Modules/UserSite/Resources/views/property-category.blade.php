@@ -1,8 +1,8 @@
 @extends('layout::user.UserSite.master')
 
-@section('title')
-    Property-Category
-@endsection
+@section('title', 'Property Category')
+@section('meta_description', 'Page Property Category')
+@section('meta_keywords', 'Page, Property Category')
 
 @section('content')
     <!------- list properties content start------->

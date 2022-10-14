@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title')
-    Upcoming Trips
-@endsection
+@section('title', 'Upcoming Trips')
+@section('meta_description', 'Page Upcoming Trips')
+@section('meta_keywords', 'Page, Upcoming Trips')
 
 
 @push('css')
