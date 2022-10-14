@@ -1,7 +1,7 @@
 @extends('layout::user.Frontend.master')
 
 @section('title')
-search
+hotel
 @endsection
 
 @push('css')
@@ -602,10 +602,9 @@ search
                                             </label>
                                         </div>
                                         <div class="search-prefe-icon">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#myPreferences"><img
-                                                src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
-                                                @include('frontend::hotel.preference')
-                                        </div>
+                                            <a href="javascript:;" class="preferenceModal" data-bs-target="#myPreferences"><img
+                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
+                                                    @include('frontend::hotel.preference')
                                         </div>
                                     </div>
                                 </div>
@@ -927,6 +926,11 @@ search
     src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
 </script>
 
+<script>
+    $(document).on('click','.preferenceModal', function(){
+        $('.mypreferences-popup').modal('show');
+    });
+</script>
 <!-------- Weather swiper js start--------->
 <script>
     // Google Place Search
