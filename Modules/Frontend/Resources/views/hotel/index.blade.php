@@ -406,7 +406,10 @@
         height: 350px;
         display: inline-block;
     }
-   
+    
+    .check-in-out-bottom .bed-selector  .select-bed-selector {
+        cursor: pointer;
+    }
 </style>
 @endpush
 
@@ -496,7 +499,7 @@
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             <label>Beds</label>
                             <div class="bed-selector ">
-                                <div class="select-div d-flex justify-content-between align-items-center">
+                                <div class="select-div d-flex justify-content-between align-items-center select-bed-selector">
                                     <i class="fa-solid fa-car" style="color: #878996"></i>
                                     <span style="color: #878996">king</span>
                                     <i class="fa-solid fa-caret-down" style="color: #878996"></i>
@@ -1047,7 +1050,7 @@
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                        </label> alt="star"
+                                        </label> 
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
@@ -1138,8 +1141,8 @@
                                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
                                     colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
                                 </lord-icon>
-                                <h4>No records has been added yet.</h4>
-                                <h6>Add a new record by simpley clicking the button on right side.</h6>
+                                <h4>No Property Found.</h4>
+                                {{-- <h6>Add a new record by simpley clicking the button on right side.</h6> --}}
                             </div>
                         </div>
                     </main>
