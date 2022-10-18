@@ -111,9 +111,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('city.index') }}">Cities</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('search.index') }}">Search</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link position-relative" href="{{ route('planner.index') }}">Planner
                         <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>

@@ -16,8 +16,10 @@ use App\Mail\FeedbackMail;
 use Carbon\Carbon;
 use App\Models\HotelPhoto;
 use App\Models\Photocategory;
+use App\Models\Preference;
 use App\Models\City;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
@@ -193,5 +195,28 @@ class HotelController extends Controller
         $data['hotelPhotos'] = HotelPhoto::whereHotel_id($hotelId)->get();
         // dd($hotelId);
         return view('frontend::hotel.popup-image', $data);
+    }
+
+    public function preferences(){
+        return view('frontend::hotel.preference');
+    }
+
+    public function add_update_preference(Request $request){
+        if(Auth::user()){
+            $id = $request->preferenceId;
+            // dd($id);
+            $preference = Preference::updateOrCreate([ 'UUID' => $id ],[ 
+                'user_id' => auth()->user()->id,
+                'sort_by' =>$request->sort_by,
+                'top_filter' =>$request->top_filter,
+                'style' =>$request->style,
+                'property_rating' =>$request->property_class, 
+                'amenity_id' =>$request->amenities,
+                'budget_min' =>$request->budgetMinimum,
+                'budget_max' =>$request->budgetMaximum
+            ]);
+
+            return response()->json(['success' => 'Preference added successfully'],200);
+        }
     }
 }

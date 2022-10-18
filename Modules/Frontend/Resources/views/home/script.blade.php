@@ -36,7 +36,7 @@
             return;
         }   
         var page = 2;
-        window.location.href = baseUrl  + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
+        window.location.href = baseUrl  + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
    });
 
 
@@ -44,7 +44,7 @@
         var id = $(this).data('id');
         
         var page = 2;
-        window.location.href = baseUrl  + "/hotel?propertyType=" + id;
+        window.location.href = baseUrl  + "/search?propertyType=" + id;
     });
 
     var sliderSelector = '.swiper-container',

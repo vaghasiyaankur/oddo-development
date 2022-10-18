@@ -1,8 +1,8 @@
 @extends('layout::user.Frontend.master')
 
-@section('title', 'Search')
-@section('meta_description', 'Page Search')
-@section('meta_keywords', 'Page, Search')
+@section('title')
+hotel
+@endsection
 
 @push('css')
 <!-- aos css -->
@@ -410,6 +410,15 @@
     .check-in-out-bottom .bed-selector  .select-bed-selector {
         cursor: pointer;
     }
+    .hotels-results-amenities-popup{
+        flex-wrap: wrap;
+    }
+    /* .amenitylabel{
+        width: 25%;
+    } */
+    .amenityIcon{
+        font-size: 12px;
+    }
 </style>
 @endpush
 
@@ -596,308 +605,9 @@
                                             </label>
                                         </div>
                                         <div class="search-prefe-icon">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#myPreferences"><img
-                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24" alt="plus"></a>
-                                            <!--------- MyPreferences popup start---------->
-                                            <div class="modal fade mypreferences-popup" id="myPreferences"
-                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body py-sm-5">
-                                                            <div class="hotels-result-sort hotel-sort-popup"
-                                                                id="preferences-scroll">
-                                                                <div
-                                                                    class="hotel-sort-popup-heading justify-content-between d-flex">
-                                                                    <h4>My Preferences</h4>
-                                                                    <div class="modal-header justify-content-end p-0">
-                                                                        <button type="button" data-bs-dismiss="modal"
-                                                                            class="modal-close" aria-label="Close"><i
-                                                                                class="fa-solid fa-xmark text-secondary fs-3"></i></button>
-                                                                    </div>
-                                                                </div>
-                                                                <h5 class="search-heading pt-3">Sort By</h5>
-                                                                <div class="hotel-result-sort-popup d-sm-flex">
-                                                                    <div class="form-check pe-4">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            value="" id="PriceLowToHigh">
-                                                                        <label class="form-check-label"
-                                                                            for="PriceLowToHigh">
-                                                                            Price: low to high
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-check pe-4">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            value="" id="priceHigh">
-                                                                        <label class="form-check-label"
-                                                                            for="priceHigh">
-                                                                            Price: high to low
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-check pe-4">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            value="" id="TopReview">
-                                                                        <label class="form-check-label"
-                                                                            for="TopReview">
-                                                                            Top Review
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="hotels-filter ">
-                                                                    <div class="hotels-result-top-filter">
-                                                                        <div class="small-heading mt-3">
-                                                                            <h6>Top filters </h6>
-                                                                        </div>
-                                                                        <div class="hotels-top-filter-popup ">
-                                                                            <div class="row">
-                                                                                <div class="col-sm-6">
-                                                                                    <div class="form-check">
-                                                                                        <input
-                                                                                            class="form-check-input topFilter"
-                                                                                            type="checkbox" value=""
-                                                                                            id="finalPriceWithTaxes">
-                                                                                        <label class="form-check-label "
-                                                                                            for="finalPriceWithTaxes">
-                                                                                            Final price with taxes +
-                                                                                            fees
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <div class="form-check">
-                                                                                        <input
-                                                                                            class="form-check-input topFilter"
-                                                                                            type="checkbox" value=""
-                                                                                            id="breakFastIn">
-                                                                                        <label class="form-check-label"
-                                                                                            for="breakFastIn">
-                                                                                            Breakfast Included
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <div class="form-check">
-                                                                                        <input
-                                                                                            class="form-check-input topFilter"
-                                                                                            type="checkbox" value=""
-                                                                                            id="flexibleCheckIn">
-                                                                                        <label class="form-check-label"
-                                                                                            for="flexibleCheckIn">
-                                                                                            Flexible Check-In
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <div class="form-check">
-                                                                                        <input
-                                                                                            class="form-check-input topFilter"
-                                                                                            type="checkbox" value=""
-                                                                                            id="flexibleCheckOut">
-                                                                                        <label class="form-check-label"
-                                                                                            for="flexibleCheckOut">
-                                                                                            Flexible Check-Out
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="hotels-result-style">
-                                                                        <div class="small-heading mt-3">
-                                                                            <h6>Style </h6>
-                                                                        </div>
-                                                                        <div
-                                                                            class="hotels-result-style-popup d-sm-flex">
-                                                                            <div class="form-check pe-3">
-                                                                                <input class="form-check-input style"
-                                                                                    type="checkbox" value=""
-                                                                                    id="Modern">
-                                                                                <label class="form-check-label"
-                                                                                    for="Modern">
-                                                                                    Modern
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="form-check pe-3">
-                                                                                <input class="form-check-input style"
-                                                                                    type="checkbox" value=""
-                                                                                    id="Histotic">
-                                                                                <label class="form-check-label"
-                                                                                    for="Histotic">
-                                                                                    Historic
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="form-check pe-3">
-                                                                                <input class="form-check-input style"
-                                                                                    type="checkbox" value=""
-                                                                                    id="Contemporary">
-                                                                                <label class="form-check-label"
-                                                                                    for="Contemporary">
-                                                                                    Contemporary
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="hotels-result-budget">
-                                                                        <div class="small-heading mt-3">
-                                                                            <h6>Budget </h6>
-                                                                        </div>
-                                                                        <div class="row g-3 align-items-center pb-4">
-                                                                            <div class="col-md-3 col-5">
-                                                                                <input type="tel" class="form-control"
-                                                                                    placeholder="$ Min">
-                                                                            </div>
-                                                                            <div class="col-md-1 col-2 p-0 text-center">
-                                                                                <span class="form-text">to</span>
-                                                                            </div>
-                                                                            <div class="col-md-3 col-5">
-                                                                                <input type="tel" class="form-control"
-                                                                                    placeholder="$ Max">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="hotels-result-property">
-                                                                        <div class="small-heading mt-3">
-                                                                            <h6>Property Class </h6>
-                                                                        </div>
-                                                                        <div class="hotels-result-property d-sm-flex">
-                                                                            <div class="form-check pe-4">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="5star">
-                                                                                <span
-                                                                                    class="property-class-icon propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span
-                                                                                    class="property-class-icon propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span
-                                                                                    class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span
-                                                                                    class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span
-                                                                                    class="property-class-icon  propertyStar"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-4">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="4star">
-                                                                                <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-4">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="3star">
-                                                                                <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-4">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="2star">
-                                                                                <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                                <span class="property-class-icon "><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-4">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="1star">
-                                                                                <span class="property-class-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="hotels-results-amenities">
-                                                                        <div class="small-heading mt-3">
-                                                                            <h6>Amenities </h6>
-                                                                        </div>
-                                                                        <div
-                                                                            class="hotels-results-amenities-popup d-sm-flex">
-                                                                            <div class="form-check pe-md-4 pe-3">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="AmenitiesAll">
-                                                                                <label class="form-check-label"
-                                                                                    for="AmenitiesAll">
-                                                                                    All Amenities
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="form-check pe-md-4 pe-3">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="Elevators">
-                                                                                <label class="form-check-label"
-                                                                                    for="Elevators">
-                                                                                    Elevator
-                                                                                </label>
-                                                                                <span class="amenities-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/amenities-2.png') }}"
-                                                                                        alt=""></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-md-4 pe-3">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="breakfast">
-                                                                                <label class="form-check-label"
-                                                                                    for="BreakData">
-                                                                                    Breakfast
-                                                                                </label>
-                                                                                <span class="amenities-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/amenities-3.png') }}"
-                                                                                        alt=""></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-md-4 pe-3">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="Pool">
-                                                                                <label class="form-check-label"
-                                                                                    for="Pool">
-                                                                                    Pool
-                                                                                </label>
-                                                                                <span class="amenities-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/amenities-4.png') }}"
-                                                                                        alt=""></span>
-                                                                            </div>
-                                                                            <div class="form-check pe-md-4 pe-3">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" value=""
-                                                                                    id="Bar">
-                                                                                <label class="form-check-label"
-                                                                                    for="Bar">
-                                                                                    Bar
-                                                                                </label>
-                                                                                <span class="amenities-icon"><img
-                                                                                        src="{{ asset('assets/images/icons/amenities-5.png') }}"
-                                                                                        alt=""></span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="preference-popup-save-btn text-center mt-5">
-                                                                    <button
-                                                                        class="preference-popup-btn btn bg-purple">Save</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--------- MyPreferences popup end---------->
+                                            <a href="javascript:;" class="preferenceModal" data-bs-target="#myPreferences"><img
+                                                    src="{{ asset('assets/images/icons/h-s-pluse.png') }}" width="24" height="24"></a>
+                                                    @include('frontend::hotel.preference')
                                         </div>
                                     </div>
                                 </div>
@@ -1176,6 +886,7 @@
 @push('script')
 <!------- Custom JS Link -----  -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 
 @if (session()->get('booking'))
@@ -1218,6 +929,11 @@
     src='https://maps.googleapis.com/maps/api/js?libraries=places&v=3&language=En&key=AIzaSyBZhREk9TESs69r99eYGKkIQ725IqOP8Zc&ver=5.9.3'>
 </script>
 
+<script>
+    $(document).on('click','.preferenceModal', function(){
+        $('.mypreferences-popup').modal('show');
+    });
+</script>
 <!-------- Weather swiper js start--------->
 <script>
     // Google Place Search
@@ -1413,10 +1129,10 @@
             var propertyTypeName = propertyTypeCheckBox.join(",");
 
             if(propertyTypeName){
-                window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
+                window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                     checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed + '&propertyTypeName=' + propertyTypeName;
             }else{
-                window.location.href = base_url + "/hotel?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
+                window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                     checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
             }
         }
@@ -1432,7 +1148,7 @@
             //     return;
             // }
 
-            window.location.href = base_url + "/hotel?searchProperty=" + searchProperty;
+            window.location.href = base_url + "/search?searchProperty=" + searchProperty;
         });
 
         $(document).on('click', '.filterButton', function(){
@@ -1451,7 +1167,7 @@
             if (!propertyName) {
                 return;
             }
-            window.location.href = baseUrl  + "/hotel?propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating;
+            window.location.href = baseUrl  + "/search?propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating;
         });
 
 </script>
@@ -1593,7 +1309,7 @@ $(document).ready(function(){
         if(search){
             $.ajax({
 
-                url: baseUrl  + "/hotel?page=" + page + "&search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed + "&propertyTypeName=" + propertyTypeName,
+                url: baseUrl  + "/search?page=" + page + "&search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed + "&propertyTypeName=" + propertyTypeName,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1618,7 +1334,7 @@ $(document).ready(function(){
         } else if(searchProperty) {
             $.ajax({
 
-                url: baseUrl  + "/hotel?page=" + page + "&searchProperty=" + searchProperty,
+                url: baseUrl  + "/search?page=" + page + "&searchProperty=" + searchProperty,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1639,7 +1355,7 @@ $(document).ready(function(){
         } else if(propertyName) {
             $.ajax({
 
-                url: baseUrl  + "/hotel?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating,
+                url: baseUrl  + "/search?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1660,7 +1376,7 @@ $(document).ready(function(){
         } else if(propertyType){
             $.ajax({
 
-                url: baseUrl  +  "/hotel?page=" + page + "&propertyType=" + propertyType,
+                url: baseUrl  +  "/search?page=" + page + "&propertyType=" + propertyType,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1680,7 +1396,7 @@ $(document).ready(function(){
                 });
         } else if(City){
             $.ajax({
-                url: baseUrl  +  "/hotel?page=" + page + "&City=" + City,
+                url: baseUrl  +  "/search?page=" + page + "&City=" + City,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1701,7 +1417,7 @@ $(document).ready(function(){
         } else {
             $.ajax({
 
-                url: baseUrl + "/hotel?page=" + page,
+                url: baseUrl + "/search?page=" + page,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -2083,6 +1799,7 @@ $(document).ready(function(){
         //     }
         // });
     });
+    
 </script>
 @endif
 @endpush

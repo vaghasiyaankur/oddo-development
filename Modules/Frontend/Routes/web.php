@@ -25,21 +25,23 @@ Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword')->n
 Route::get('/', 'HomeController@index')->name('home.index');
 
 /* Hotel Page */
-Route::get('/hotel', 'HotelController@index')->name('hotel.index');
+Route::get('/search', 'HotelController@index')->name('hotel.index');
 Route::post('/hotel-image', 'HotelController@hotelImage')->name('image.hotel');
+Route::get('/preference', 'HotelController@preferences')->name('preference.index');
+Route::post('/add-preference', 'HotelController@add_update_preference')->name('add.preference');
 
 
 /* Hotel Details */
 Route::get('/hotel-detail/{slug}','HotelController@hotelDetail')->name('hotel.detail');
 
 /* City Page */
-Route::get('/city', 'CityController@index')->name('city.index');
+Route::get('/destination-we-love', 'CityController@index')->name('city.index');
 Route::post('/destination', 'CityController@Destination')->name('city.change');
 
 Route::get('/explore/city/{slug}', 'CityController@explore')->name('city.explore');
 
 /* Search Page */
-Route::get('/search', 'SearchController@index')->name('search.index');
+// Route::get('/search', 'SearchController@index')->name('search.index');
 
 /* Planner Page */
 Route::get('/planner', 'PlannerController@index')->name('planner.index');
