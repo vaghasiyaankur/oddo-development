@@ -19,7 +19,7 @@
                               
                                <a href="javascript:;" class="ImagepPopup" data-id="{{ $hotel->UUID }}">
                                    <img src="{{asset('storage/' . @$hotel->mainPhoto->first()->photos)}}"
-                                       class="img-wrapper ImageLoad" onerror="this.src='{{asset('assets/images/default.png')}}'">
+                                       class="img-wrapper ImageLoad" onerror="this.src='{{asset('assets/images/default.png')}}'" alt="hotelImage">
                                </a>
                            </div>
                        </div>
