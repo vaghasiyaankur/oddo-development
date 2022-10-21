@@ -145,4 +145,8 @@ class Hotel extends Model
     {
         return $this->hasMany(HotelBed::class, 'id');
     }
+
+    public function amenities(){
+        return $this->belongsTo(Amenities::class, 'amenity_id');
+    }
 }

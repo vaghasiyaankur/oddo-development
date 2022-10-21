@@ -34,7 +34,7 @@
                                            class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
                                                ? ',' .$hotel->country->country_name: '' }}</span>
                                    </p>
-                                   <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
+                                   <p class="loaction-text mb-1">{{ @$hotel->street_addess }},
                                        {{ @$hotel->pos_code }}</p>
                                </div>
 

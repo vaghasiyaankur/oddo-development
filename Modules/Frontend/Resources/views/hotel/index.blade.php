@@ -409,13 +409,41 @@ hotel
     .hotels-results-amenities-popup{
         flex-wrap: wrap;
     }
-    /* .amenitylabel{
-        width: 25%;
-    } */
     .amenityIcon{
         font-size: 12px;
     }
-   
+    a.applyButton {
+        background: #6a78c7;
+        color: #fff;
+        border: none;
+        padding: 8px 24px;
+        border-radius: 80px;
+        width: 100%;    
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: 400;
+        text-align: center;
+        /* width: 90%; */
+    }
+    .apply_button_ {
+        position: sticky;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        margin-left:  -5px;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+        padding-left:7px;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
 </style>
 @endpush
 
@@ -568,7 +596,7 @@ hotel
         <div class="search-result-inner">
             <div class="row">
                 <div class="col-lg-3">
-                    <aside class="side-content">
+                    <aside class="side-content">                       
                         <div class="d-flex align-items-center justify-content-between result-view">
                             <span class="side-text">Viewing {{ $hotels->total() }} results</span>
                             <span class="side-btn ResetForm d-none">
@@ -577,7 +605,7 @@ hotel
                             <button class="btn btn-filter-products-mobile d-block d-lg-none " type="button" data-bs-toggle="collapse" data-bs-target="#formReset" aria-expanded="false" aria-controls="formReset">
                                 <i class="fas fa-filter me-2"></i>Filter Property                
                             </button>
-                        </div>
+                        </div>                        
                         <form class="hotel-result-form " id="formReset">
                             <div class="hotels-result-search">
                                 <h5 class="search-heading">Search</h5>
@@ -593,7 +621,7 @@ hotel
                             <div class="hotels-result-sort pt-3">
                                 <h5 class="search-heading ">Sort By</h5>
                                 <div class="form-check ">
-                                    <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
+                                    <input class="form-check-input myPreference" type="checkbox" name="FilterCheck" value=""
                                         id="myPreferencesData">
                                     <div class="search-prefe-main d-flex justify-content-between align-items-center">
                                         <div class="search-prefe-text">
@@ -609,22 +637,22 @@ hotel
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value="1"
-                                        id="lowTohigh">
+                                    <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value="low_to_high"
+                                        id="lowTohigh" {{ request()->sortby == 'low_to_high' ? 'checked' : '' }}>
                                     <label class="form-check-label ps-2" for="lowTohigh">
                                         Price: low to high
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value=""
-                                        id="HighToLowPrice">
+                                    <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value="high_to_low"
+                                        id="HighToLowPrice" {{ request()->sortby == 'high_to_low' ? 'checked' : '' }}>
                                     <label class="form-check-label ps-2" for="HighToLowPrice">
                                         Price: high to low
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value=""
-                                        id="TopReviews">
+                                    <input class="form-check-input sortBy" name="FilterCheck" type="checkbox" value="top_review"
+                                        id="TopReviews" {{ request()->sortby == 'top_review' ? 'checked' : '' }}>
                                     <label class="form-check-label ps-2" for="TopReviews">
                                         Top Review
                                     </label>
@@ -636,40 +664,40 @@ hotel
                                 </div> --}}
                             </div>
                             <div class="hotels-filter result-mobile-view">
-                                <div class="hotels-result-top-filter pt-2">
+                                {{-- <div class="hotels-result-top-filter pt-2">
                                     <div class="small-heading">
                                         <h6>Top filters </h6>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
+                                        <input class="form-check-input top-filter" name="FilterCheck" type="checkbox" value="final_price_with_taxes_fees"
                                             id="taxesFees">
                                         <label class="form-check-label ps-2" for="taxesFees">
                                             Final price with taxes fees
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
+                                        <input class="form-check-input top-filter" name="FilterCheck" type="checkbox" value="breakfast_included"
                                             id="includedBreakfast">
                                         <label class="form-check-label ps-2" for="includedBreakfast">
                                             Breakfast Included
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
+                                        <input class="form-check-input top-filter" name="FilterCheck" type="checkbox" value="flexible_check_in"
                                             id="flexCheckCheckedCheckIn">
                                         <label class="form-check-label ps-2" for="flexCheckCheckedCheckIn">
                                             Flexible Check-In
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" name="FilterCheck" type="checkbox" value=""
+                                        <input class="form-check-input top-filter" name="FilterCheck" type="checkbox" value="flexible_check_out"
                                             id="checkOut_flexible">
                                         <label class="form-check-label ps-2" for="checkOut_flexible">
                                             Flexible Check-Out
                                         </label>
                                     </div>
-                                </div>
-                                <div class="hotels-result-style pt-1">
+                                </div> --}}
+                                {{-- <div class="hotels-result-style pt-1">
                                     <div class="small-heading">
                                         <h6>Style </h6>
                                     </div>
@@ -694,21 +722,21 @@ hotel
                                             Contemporary
                                         </label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="hotels-result-budget pt-1">
                                     <div class="small-heading">
                                         <h6>Budget </h6>
                                     </div>
                                     <div class="row g-0  align-items-center ">
                                         <div class="col-4 col-lg-5">
-                                            <input type="number" class="form-control budgetMin" placeholder="$ Min"
+                                            <input type="number" class="form-control budgetMin" placeholder="Min"
                                                 value="{{request()->budgetMin}}">
                                         </div>
                                         <div class="col-2 p-0 text-center">
                                             <span class="form-text">to</span>
                                         </div>
                                         <div class="col-4 col-lg-5">
-                                            <input type="number" class="form-control budgetMax" placeholder="$ Max"
+                                            <input type="number" class="form-control budgetMax" placeholder="Max"
                                                 value="{{request()->budgetMax}}">
                                         </div>
                                     </div>
@@ -717,9 +745,12 @@ hotel
                                     <div class="small-heading">
                                         <h6>Property Class </h6>
                                     </div>
+                                    @php
+                                        $staRating = explode(',', request()->starRating);
+                                    @endphp
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
-                                            value="5" id="star_5" {{ request()->starRating == 5 ? 'checked' : ''}}>
+                                            value="5" id="star_5" {{ in_array("5", $staRating) ? 'checked' : ''}}>
                                         <label for="star_5">
                                             <span class="property-class-icon ps-2"><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
@@ -735,7 +766,7 @@ hotel
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
-                                            value="4" id="star_4" {{ request()->starRating == 4 ? 'checked' : ''}}>
+                                            value="4" id="star_4" {{ in_array("4", $staRating) ? 'checked' : ''}}>
                                         <label for="star_4">
                                             <span class="property-class-icon ps-2"><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
@@ -749,7 +780,7 @@ hotel
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
-                                            value="3" id="star_3" {{ request()->starRating == 3 ? 'checked' : ''}}>
+                                            value="3" id="star_3" {{ in_array("3", $staRating) ? 'checked' : ''}}>
                                         <label for="star_3">
                                             <span class="property-class-icon ps-2"><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
@@ -757,11 +788,11 @@ hotel
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
                                             <span class="property-class-icon "><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
-                                        </label> alt="star"
+                                        </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
-                                            value="2" id="star_2" {{ request()->starRating == 2 ? 'checked' : ''}}>
+                                            value="2" id="star_2" {{ in_array("2", $staRating) ? 'checked' : ''}}>
                                         <label for="star_2">
                                             <span class="property-class-icon ps-2"><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
@@ -771,7 +802,7 @@ hotel
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input starRating" type="checkbox" name="FilterCheck"
-                                            value="1" id="star_1" {{ request()->starRating == 1 ? 'checked' : ''}} >
+                                            value="1" id="star_1" {{ in_array("1", $staRating) ? 'checked' : ''}} >
                                         <label for="star_1">
                                             <span class="property-class-icon ps-2"><img
                                                     src="{{ asset('assets/images/icons/start.png') }}" width="12" height="12" alt="star"></span>
@@ -785,16 +816,21 @@ hotel
                                         <h6>Amenities </h6>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="FilterCheck" value=""
+                                        <input class="form-check-input amenityAll" type="checkbox" name="FilterCheck" value="all"
                                             id="AllAmenities">
-                                        <label class="form-check-label ps-2 amenityValue" for="AllAmenities">
+                                        <label class="form-check-label ps-2" for="AllAmenities">
                                             All Amenities
                                         </label>
                                     </div>
+
+                                    @php
+                                        $reqAmenity = explode(',', request()->amenities);
+                                    @endphp
+                                    
                                     @foreach ($amenities as $amenity)
                                     <div class="form-check">
                                         <input class="form-check-input ps-2 amenityValue" type="checkbox"
-                                            name="FilterCheck" value="" id="flexCheckChecked_{{$amenity->id}}">
+                                            name="FilterCheck" value="{{$amenity->slug}}" id="flexCheckChecked_{{$amenity->id}}" {{ in_array($amenity->slug, $reqAmenity) ? 'checked' : ''}}>
                                         <label class="form-check-label  ps-2 " for="flexCheckChecked_{{$amenity->id}}">
                                             {{ @$amenity->amenities }}
                                         </label>
@@ -804,9 +840,13 @@ hotel
                                     </div>
                                     @endforeach
                                 </div>
-                                <div class="hotels-result-filter-btn text-center pb-4">
-                                    <a href="javascript:;" class="btn bg-purple filter-btn filterButton">Filter</a>
+                                
+                                <div class="apply_button_">
+                                    <a href="javascript:;" class="applyButton" >Apply</a>
                                 </div>
+                                {{-- <div class="hotels-result-filter-btn text-center pb-4">
+                                    <a href="javascript:;" class="btn bg-purple filter-btn filterButton">Filter</a>
+                                </div>                                 --}}
                             </div>
                         </form>
                     </aside>
@@ -927,12 +967,15 @@ hotel
 </script>
 
 <script>
+        var baseUrl = $('#base_url').val();
+
     $(document).on('click','.preferenceModal', function(){
         $('.mypreferences-popup').modal('show');
     });
 </script>
 <!-------- Weather swiper js start--------->
 <script>
+    
     // Google Place Search
         google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -970,6 +1013,7 @@ hotel
             // },
         });
 </script>
+
 <!-------- Weather swiper js end--------->
 
 <!-------- image popup (slider image js)------>
@@ -1147,24 +1191,57 @@ hotel
 
             window.location.href = base_url + "/search?searchProperty=" + searchProperty;
         });
+        
+        $(document).ready(function(){
+            $('.amenityAll').on('click',function(){
+                if(this.checked){
+                    $('.amenityValue').each(function(){
+                        this.checked = true;
+                    });
+                }else{
+                    $('.amenityValue').each(function(){
+                        this.checked = false;
+                    });
+                }
+            });
+            
+            $('.amenityValue').on('click',function(){
+                if($('.amenityValue:checked').length == $('.amenityValue').length){
+                    $('.amenityAll').prop('checked',true);
+                }else{
+                    $('.amenityAll').prop('checked',false);
+                }
+            });
+        });
 
-        $(document).on('click', '.filterButton', function(){
+        
+        $(document).on('click', '.applyButton', function(){
             var propertyName = $('.propertyName').val();
             var budgetMax = $('.budgetMax').val();
             var budgetMin = $('.budgetMin').val();
-            var starRating = $('.starRating:checked').val();
-
-            // var sortBy = $('.sortBy').val();
-            // var topFilter = $('.topFilter').val();
-            // var style = $('.style').val();
-            // var propertyStar = $('.propertyStar').val();
-            // var amenityValue = $('.amenityValue').val();
-            // // alert(propertyName);
-
-            if (!propertyName) {
-                return;
+            var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
+            var amenities = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
+            var sortby = $(".sortBy:checked").map(function(){return $(this).val();}).get();
+            
+            var baseUrlData =  baseUrl  + "/search?";
+            if (sortby != '') {
+                baseUrlData = baseUrlData + "&sortby=" + sortby;
             }
-            window.location.href = baseUrl  + "/search?propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating;
+
+            if (budgetMin != '' && budgetMax != '') {
+                baseUrlData = baseUrlData + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax;
+            }
+            
+            if(starRating != '') {
+                baseUrlData = baseUrlData + '&starRating=' + starRating;
+            }
+
+            if(amenities != '') {
+                baseUrlData = baseUrlData + '&amenities=' + amenities;
+            }
+            
+            window.location.href = baseUrlData;
+
         });
 
 </script>
@@ -1240,7 +1317,6 @@ hotel
 
 $(document).ready(function(){
 
-    var baseUrl = $('#base_url').val();
 
     // CSRF TOKEN
     $.ajaxSetup({
@@ -1265,6 +1341,8 @@ $(document).ready(function(){
         }
     });
 
+    //filter checked
+   
     // load hotel Detail
     function infinteLoadMore(page) {
         var search = $("input[name=search]").val();
@@ -1277,6 +1355,12 @@ $(document).ready(function(){
             bed.push(this.value);
         });
         var propertyName = $("input[name=propertyName]").val();
+        
+        var budgetMax = $('.budgetMax').val();
+        var budgetMin = $('.budgetMin').val();
+        var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
+        var amenities = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
+        var sortby = $(".sortBy:checked").map(function(){return $(this).val();}).get();
 
         var searchProperty = $('.searchProperty').val();
 
@@ -1349,10 +1433,10 @@ $(document).ready(function(){
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
             });
-        } else if(propertyName) {
+        } else if(propertyName || budgetMin || budgetMin || budgetMax || starRating || amenities || sortby) {
             $.ajax({
 
-                url: baseUrl  + "/search?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating,
+                url: baseUrl  + "/search?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating + '&amenities=' + amenities + '&sortby=' + sortby,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1435,7 +1519,29 @@ $(document).ready(function(){
         }
     }
 
+    $(document).on('click','.myPreference',function(){
+        var sortBy = $('.sortBy_pre:checked').val();
+        $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);
 
+        var rating = $(".propertyClass:checked").map(function(){return $(this).val();}).get();
+        $(rating).each(function(val, value) {
+            $('.starRating[value="' + value + '"]').prop('checked', 'checked');
+        });
+
+        var amenities = $(".amenities:checked").map(function(){return $(this).val();}).get();
+        $(amenities).each(function(val, value) {
+            $('.amenityValue[value="' + value + '"]').prop('checked', 'checked');
+        });
+
+        var minBudget = $('.budgetMinimum').val();
+        $('.budgetMin').val(minBudget);
+
+        var maxBudget = $('.budgetMaximum').val();
+        $('.budgetMax').val(maxBudget);
+
+
+        // console.log(topFilter);
+    });
 
     $(document).on('click', '.addWishlist', function(){
         let hotelId = $(this).data('id');
@@ -1496,7 +1602,7 @@ $(document).ready(function(){
         $("#formReset")[0].reset();
         resetFilter();
     });
-
+  
     $(document).on('keyup', '.searchProperty', function(){
         var searchProperty = $(this).val().length;
         searchPropertyData(searchProperty);
@@ -1527,6 +1633,10 @@ $(document).ready(function(){
     $(document).on('keyup', '.budgetMax', function(){
         var searchProperty = $(this).val().length;
         ResetPropertyData(searchProperty);
+    });
+
+    $('.sortBy').on('change',function(){
+        $('.sortBy').not(this).prop('checked', false);  
     });
 
     function resetFilter() {
@@ -1798,5 +1908,6 @@ $(document).ready(function(){
     });
     
 </script>
+
 @endif
 @endpush

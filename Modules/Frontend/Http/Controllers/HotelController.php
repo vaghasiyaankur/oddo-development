@@ -44,7 +44,7 @@ class HotelController extends Controller
         $budgetMin = request()->budgetMin;
         $budgetMax = request()->budgetMax;
         $starRating = request()->starRating;
-
+        $amenity = request()->amenities;
         $searchProperty = request()->searchProperty;
 
         $booking = HotelBooking::select('UUID')->latest()->first();
@@ -54,6 +54,10 @@ class HotelController extends Controller
 
         $propertyTypes = '';
         $propertyTypeCounts = [];
+
+        $sortby = request()->sortby;
+        // $topFilter = request()->top_filter;
+        
         if($search){
             $search = str_replace(',', ' ', $search);
 
@@ -99,12 +103,65 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
-        } else if($propertyName) {
-            $hotels = Hotel::with('room')->where('property_name', 'like', '%'.$propertyName.'%')
-            ->where('star_rating', '=' , $starRating)
-            ->whereHas('room', function($query) use($budgetMin, $budgetMax) {
-                $query->whereBetween('price_room', [$budgetMin, $budgetMax]); })
-            ->active()->latest()->paginate(2);
+        } else if($sortby || $budgetMin || $budgetMax || $starRating || $amenity) {
+            $amenity_data = explode(',', $amenity);
+            $star = $starRating ? explode(',',$starRating) : '';
+            
+            $hotels = Hotel::with('room','amenities');
+            
+            if (!(empty($star))) {
+                $hotels = $hotels->whereIn('star_rating', $star);
+            }
+            if(!empty($request['budgetMin']) && !empty($request['budgetMax'])){
+                $hotels = $hotels->whereHas('room', function($query) use($budgetMin, $budgetMax) {
+                    $query->whereBetween('price_room', [$budgetMin, $budgetMax]); });
+            }
+            // dd($amenity_data);
+            // if(!empty($request['amenities'])){
+            //     $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
+            //         foreach ([$amenity_data] as $key => $val) {
+            //             // dd($val);
+            //             $query->whereIn('slug', $val);
+            //         }
+            //     });
+            // }
+            // dd($amenity_data);
+            // if(!empty($request['amenities'])){
+            //     $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
+            //         $query->where('slug', $amenity_data);
+            //     });
+            // }
+            
+                    
+            // if(!empty($request['amenities'])){
+            //     $hotels = $hotels->join('amenities', 'hotels.amenity_id', 'amenities.id')->where('slug', $amenity_data);
+            // }
+            
+            if(!empty($request['amenities'])){
+                $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
+                    $query->whereIn('slug', $amenity_data);
+                });
+            }
+            
+            if(!empty($request['sortby'])){
+                if ($sortby == 'low_to_high') {
+                    $hotels = $hotels->join('rooms', 'hotels.id', '=', 'rooms.hotel_id')->orderBy('rooms.price_room','ASC');
+                    
+                }elseif($sortby == 'high_to_low'){
+                    $hotels = $hotels->join('rooms', 'hotels.id', '=', 'rooms.hotel_id')->orderBy('rooms.price_room','DESC');
+
+                }elseif($sortby == 'top_review'){
+                    
+                    $hotels = $hotels->join('reviews', 'hotels.id', '=', 'reviews.hotel_id')
+                    ->select('hotels.*', DB::raw("count(reviews.total_rating) as review_count"))
+                    ->groupBy('reviews.hotel_id')->orderBy('review_count','DESC');
+                    
+                    
+                }else{
+                    
+                }
+            }
+            $hotels = $hotels->active()->paginate(20);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
@@ -208,8 +265,8 @@ class HotelController extends Controller
             $preference = Preference::updateOrCreate([ 'UUID' => $id ],[ 
                 'user_id' => auth()->user()->id,
                 'sort_by' =>$request->sort_by,
-                'top_filter' =>$request->top_filter,
-                'style' =>$request->style,
+                // 'top_filter' =>$request->top_filter,
+                // 'style' =>$request->style,
                 'property_rating' =>$request->property_class, 
                 'amenity_id' =>$request->amenities,
                 'budget_min' =>$request->budgetMinimum,

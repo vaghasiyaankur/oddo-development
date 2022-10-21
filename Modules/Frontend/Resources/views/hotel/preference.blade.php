@@ -46,7 +46,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                         </div>
                     </div>
                     <div class="hotels-filter ">
-                        <div class="hotels-result-top-filter">
+                        {{-- <div class="hotels-result-top-filter">
                             <div class="small-heading mt-3">
                                 <h6>Top filters </h6>
                             </div>
@@ -91,8 +91,8 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="hotels-result-style">
+                        </div> --}}
+                        {{-- <div class="hotels-result-style">
                             <div class="small-heading mt-3">
                                 <h6>Style </h6>
                             </div>
@@ -119,7 +119,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="hotels-result-budget">
                             <div class="small-heading mt-3">
                                 <h6>Budget </h6>
@@ -219,7 +219,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                                 </div>
                                 @foreach ($amenities as $amenity)
                                 <div class="amenitylabel form-check pe-md-4 pe-3 ">
-                                    <input class="form-check-input amenities" type="checkbox" value="{{$amenity->id}}"
+                                    <input class="form-check-input amenities" type="checkbox" value="{{$amenity->slug}}"
                                         name="amenities" id="AmenityCheck_{{$amenity->id}}">
                                     <label class="form-check-label" for="AmenityCheck_{{$amenity->id}}">{{ @$amenity->amenities }}</label>
                                     {{-- <i class="{{ @$amenity->icon }} amenityIcon"></i> --}}
@@ -250,14 +250,19 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
 
     $(document).on('click','.savePreference',function(){
         savePreferences();
+        // this is class index page
+        $('.myPreference').trigger('click');
+    });
+
+    $('.sortBy_pre').on('change',function(){
+        $('.sortBy_pre').not(this).prop('checked', false);  
     });
 
     function savePreferences(){
         var baseUrl = $('#base_url').val();
 
         var sort_by = $(".sortBy_pre:checked").map(function(){return $(this).val();}).get();
-        var top_filter = $(".topFilter:checked").map(function(){return $(this).val();}).get();
-        var style = $(".style:checked").map(function(){return $(this).val();}).get();
+        // var top_filter = $(".topFilter:checked").map(function(){return $(this).val();}).get();
         var property_class = $(".propertyClass:checked").map(function(){return $(this).val();}).get();
         var amenities = $(".amenities:checked").map(function(){return $(this).val();}).get();
         var budgetMinimum = $('.budgetMinimum').val();
@@ -265,15 +270,14 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
         var preferenceId = $('.preferenceId').val();
 
         let sort_val = sort_by.toString();
-        let filter = top_filter.toString();
-        let styles = style.toString();
+        // let filter = top_filter.toString();
         let propertyclass = property_class.toString();
         let amenity = amenities.toString();
         let budgetmin = budgetMinimum.toString();
         let budgetmax = budgetMaximum.toString();
 
         var value = [
-            {sort_val :sort_val, filter : filter, styles : styles, propertyclass : propertyclass, amenity : amenity, budgetmin : budgetmin, budgetmax : budgetmax},
+            {sort_val :sort_val, propertyclass : propertyclass, amenity : amenity, budgetmin : budgetmin, budgetmax : budgetmax},
                 ];
                 
         var val = JSON.stringify(value);
@@ -286,8 +290,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
         // console.log(value);
         formdata = new FormData();
         formdata.append('sort_by', sort_by);
-        formdata.append('top_filter', top_filter);
-        formdata.append('style', style);
+        // formdata.append('top_filter', top_filter);
         formdata.append('property_class', property_class);
         formdata.append('amenities', amenities);
         formdata.append('budgetMinimum', budgetMinimum);
@@ -311,6 +314,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
 
 
     $(document).ready(function(){
+        
         var get = $.cookie("preference");
         var empArr = $.parseJSON(get);
 
@@ -320,17 +324,11 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
             $('.sortBy_pre[value="' + value + '"]').prop('checked', 'checked');
         });
     
-        var filter_value = (empArr[0]['filter']);
-        filter_arr = filter_value.split(',');
-        $(filter_arr).each(function(val, value) {
-            $('.topFilter[value="' + value + '"]').prop('checked', 'checked');
-        });
-
-        var style_value = (empArr[0]['styles']);
-        style_arr = style_value.split(',');
-        $(style_arr).each(function(val, value) {
-            $('.style[value="' + value + '"]').prop('checked', 'checked');
-        });
+        // var filter_value = (empArr[0]['filter']);
+        // filter_arr = filter_value.split(',');
+        // $(filter_arr).each(function(val, value) {
+        //     $('.topFilter[value="' + value + '"]').prop('checked', 'checked');
+        // });
 
         var class_value = (empArr[0]['propertyclass']);
         class_arr = class_value.split(',');

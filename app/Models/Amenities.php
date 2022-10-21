@@ -29,7 +29,7 @@ class Amenities extends Model
     }
 
     public function hotel(){
-        return $this->hasOne(Hotel::class);
+        return $this->hasMany(Hotel::class);
     }
     
     public function scopeActive($query) {

@@ -832,7 +832,7 @@ header.header .navbar .dropdown .dropdown-btn {
 
 .select--your-destination {
     display: flex;
-    /* justify-content: end; */
+    justify-content: end;
     align-items: center;
     overflow-x: auto;
 }
@@ -1132,7 +1132,7 @@ header.header .navbar .dropdown .dropdown-btn {
 
 .hotel-result.search-result .result-main-content .result-main-middle h2.middle-content-heading {
     font-weight: 400;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 24px;
     color: #393c52;
 }
@@ -1142,7 +1142,7 @@ header.header .navbar .dropdown .dropdown-btn {
     font-weight: 500;
     font-size: 12px;
     line-height: 22px;
-    padding-left: 6px;
+    padding-left: 3px;
     color: #878996;
     vertical-align: middle;
 }

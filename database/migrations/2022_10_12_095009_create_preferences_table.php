@@ -18,8 +18,6 @@ return new class extends Migration
             $table->integer('UUID')->unique()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('sort_by')->nullable();
-            $table->string('top_filter')->nullable();
-            $table->string('style')->nullable();
             $table->string('budget_min')->nullable();
             $table->string('budget_max')->nullable();
             $table->string('property_rating')->nullable();
@@ -39,3 +37,4 @@ return new class extends Migration
         Schema::dropIfExists('preferences');
     }
 };
+ 

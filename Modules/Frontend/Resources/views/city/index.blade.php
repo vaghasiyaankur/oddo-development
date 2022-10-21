@@ -49,12 +49,35 @@
     .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content{
         padding-top: 0px;
     }
+    .loading {
+    height: 0;
+    width: 0;
+    padding: 15px;
+    border: 6px solid #ccc;
+    border-right-color: #888;
+    border-radius: 22px;
+    -webkit-animation: rotate 1s infinite linear;
+    /* left, top and position just for the demo! */
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    z-index: 999;
+    }
+
+@-webkit-keyframes rotate {
+  /* 100% keyframe for  clockwise. 
+     use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
 </style>
 
 @endpush
 
 
 @section('content')
+<div class="loading"></div>
 <!------- Explore cities section start ------->
 <section class="explore-city s-top-city pt-2">
     <div class="container">
@@ -283,6 +306,8 @@
         formdata = new FormData();
         formdata.append('target', target);
 
+        $('.loading').show();
+        $('.tab-content').hide();
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -293,6 +318,8 @@
             contentType: false,
             data: formdata,
             success: function (response) {
+                $('.loading').hide();   
+                $('.tab-content').show();
                 $('.destination-Tab').empty();
                 $('.destination-Tab').html(response);
                 slickCarousel();
@@ -303,6 +330,10 @@
 
             }
         });
+    });
+
+    $(window).on('load',function() {
+        $('.loading').hide();
     });
 
     // $(document).on('click', '.hotelsBtn', function () {
