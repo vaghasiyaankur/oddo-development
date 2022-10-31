@@ -285,7 +285,6 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
         $.cookie("preference", val);
         var get = $.cookie("preference");
         var empArr = $.parseJSON(get);
-        console.log(empArr);
 
         // console.log(value);
         formdata = new FormData();

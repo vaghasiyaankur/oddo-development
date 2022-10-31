@@ -1,7 +1,7 @@
 @extends('layout::user.Frontend.master')
 
 @section('title')
-hotel
+search
 @endsection
 
 @push('css')
