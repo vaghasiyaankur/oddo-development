@@ -24,10 +24,6 @@
     <div
         class="modal-dialog modal-dialog-scrollable modal-fullscreen modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header justify-content-end">
-                <button type="button" data-bs-dismiss="modal" class="modal-close"
-                    aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-            </div>
             <div class="modal-body py-sm-5">
                 <div class="reviews-popup overflow-auto">
                     <div class="reviews-popup-inner">
@@ -44,11 +40,17 @@
                                     @endfor
                                 </div>
                             </div>
-                            <div class="total-review mt-2 mb-3">
-                                @if (@$hotelRating['rating'])
-                                    <span class="good-text">{{ @$hotelRating['rating'] >= 2.5 ? 'Good' : 'Bed'}}</span>
-                                    <span class="total-review-text ms-3 {{round(@$hotelRating['rating'], 1) <= 2 ? 'bg-red' : 'bg-green' }}">{{round(@$hotelRating['rating'], 1)}}/5</span>
-                                @endif
+                            <div class="modal-reviews" style="display:block;">
+                                <div class="modal-header justify-content-end" style="padding:0px;">
+                                    <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                        aria-label="Close" style="margin-right:5px;color:black;margin-top:-11px;"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                                <div class="total-review mt-1 mb-3">
+                                    @if (@$hotelRating['rating'])
+                                        <span class="good-text">{{ @$hotelRating['rating'] >= 2.5 ? 'Good' : 'Bed'}}</span>
+                                        <span class="total-review-text ms-3 {{round(@$hotelRating['rating'], 1) <= 2 ? 'bg-red' : 'bg-green' }}">{{round(@$hotelRating['rating'], 1)}}/5</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <div class="popup-content-main">

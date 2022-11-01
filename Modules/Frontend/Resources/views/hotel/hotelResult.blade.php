@@ -408,7 +408,10 @@
               @endforeach
             @endforeach
           @else
-            <button class="hotelPriceBtn price-btn">  {{currency()['sumbol'] }} {{ @$hotel->room->price_room }}   {{currency()['currency'] }}</button>
+          {{-- <button class="hotelPriceBtn price-btn">  {{currency()['sumbol'] }} {{number_format(exchange_rate(@$hotel->room->price_room), 2, '.', ',');
+          }} </button> --}}
+          <button class="hotelPriceBtn price-btn">  {{currency()['sumbol'] }} {{exchange_rate(@$hotel->room->price_room)
+          }}  {{currency()['currency'] }}</button>
           @endif
       </div>
       {{-- PAYMENT POPOUP START --}}

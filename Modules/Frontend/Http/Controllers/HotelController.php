@@ -20,6 +20,8 @@ use App\Models\Preference;
 use App\Models\City;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\GeneralSetting;
+use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class HotelController extends Controller
 {
@@ -84,7 +86,7 @@ class HotelController extends Controller
                 $hotelAmounts = array();
                 if($hotels){
                     foreach($hotels as $hotel){
-                    $amount = $hotel->room->price_room;
+                    $amount = exchange_rate($hotel->room->price_room);
                     $hotel_amount = $amount * $room;
                     $hotelAmounts[] = array($hotel->id => $hotel_amount);
                 }
@@ -112,30 +114,23 @@ class HotelController extends Controller
             if (!(empty($star))) {
                 $hotels = $hotels->whereIn('star_rating', $star);
             }
-            if(!empty($request['budgetMin']) && !empty($request['budgetMax'])){
-                $hotels = $hotels->whereHas('room', function($query) use($budgetMin, $budgetMax) {
-                    $query->whereBetween('price_room', [$budgetMin, $budgetMax]); });
-            }
-            // dd($amenity_data);
-            // if(!empty($request['amenities'])){
-            //     $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
-            //         foreach ([$amenity_data] as $key => $val) {
-            //             // dd($val);
-            //             $query->whereIn('slug', $val);
-            //         }
-            //     });
-            // }
-            // dd($amenity_data);
-            // if(!empty($request['amenities'])){
-            //     $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
-            //         $query->where('slug', $amenity_data);
-            //     });
-            // }
             
-                    
-            // if(!empty($request['amenities'])){
-            //     $hotels = $hotels->join('amenities', 'hotels.amenity_id', 'amenities.id')->where('slug', $amenity_data);
-            // }
+            if(!empty($request['budgetMin']) && !empty($request['budgetMax'])){
+
+                $data = GeneralSetting::first();
+                $currency = Currency::convert()->from('USD')
+                ->to($data->currency)
+                ->get();         
+                $con = round($currency, 2);
+
+                $hotels = $hotels ->whereHas('room', function($query) use($con, $budgetMin, $budgetMax){ 
+                    return $query->whereBetween(DB::raw('price_room *'.$con), [$budgetMin, $budgetMax]);
+                 });
+                // ->with(['room' => function($query) use($con, $budgetMin, $budgetMax) {
+                //     $query->select('id', 'hotel_id', 'smoking_policy', 'price_room', DB::raw('price_room *'.$con.' as price'))
+                //     ;     
+                // }])
+            }
             
             if(!empty($request['amenities'])){
                 $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
@@ -155,8 +150,7 @@ class HotelController extends Controller
                     $hotels = $hotels->join('reviews', 'hotels.id', '=', 'reviews.hotel_id')
                     ->select('hotels.*', DB::raw("count(reviews.total_rating) as review_count"))
                     ->groupBy('reviews.hotel_id')->orderBy('review_count','DESC');
-                    
-                    
+                 
                 }else{
                     
                 }
@@ -191,7 +185,6 @@ class HotelController extends Controller
                 return $html;
             }
         }
-
         $amenities = Amenities::where('featured',1)->active()->get();
         return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways','booking', 'hotelAmounts', 'propertyTypes', 'propertyTypeCounts'));
     }
@@ -239,7 +232,7 @@ class HotelController extends Controller
     {
         $paymentGateways = paymentGetways::active()->get();
         $hotel = Hotel::whereUuid($request->hotelId)->first();
-        $amount = $hotel->room->price_room;
+        $amount = exchange_rate($hotel->room->price_room);
         $room = $hotel->room->number_of_room;
         $hotel_amount = $amount * $room;
         

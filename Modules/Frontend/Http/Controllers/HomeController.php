@@ -41,7 +41,7 @@ class HomeController extends Controller
             $hotelAmounts = array();
 
             foreach($hotels as $hotel){
-                $amount = $hotel->room->price_room;
+                $amount = exchange_rate($hotel->room->price_room);
                 $hotel_amount = $amount * $room;
                 $hotelAmounts[] = array($hotel->id => $hotel_amount);
             }
