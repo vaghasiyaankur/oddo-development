@@ -399,7 +399,7 @@
                                         <span
                                             class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>
                                         @php
-                                            $price = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", exchange_rate($hotel->room->price_room));
+                                            $price = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", number_format(exchange_rate($hotel->room->price_room)));
                                         @endphp
                                         {{ $price }}
                                     </h5>

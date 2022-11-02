@@ -251,7 +251,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
     $(document).on('click','.savePreference',function(){
         savePreferences();
         // this is class index page
-        $('.myPreference').trigger('click');
+        // $('.myPreference').trigger('click');
     });
 
     $('.sortBy_pre').on('change',function(){

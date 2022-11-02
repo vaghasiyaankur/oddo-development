@@ -1543,8 +1543,13 @@ $(document).ready(function(){
         var maxBudget = $('.budgetMaximum').val();
         $('.budgetMax').val(maxBudget);
 
+        $('input:checked').removeAttr('checked');
+        $(this).removeClass('myPreference').addClass('myPreferenceHide');
+    });
 
-        // console.log(topFilter);
+    $(document).on('click', '.myPreferenceHide', function(){
+        $(this).removeClass('myPreferenceHide').addClass('myPreference');
+        $('#ResetForm').trigger('click');
     });
 
     $(document).on('click', '.addWishlist', function(){
@@ -1604,7 +1609,12 @@ $(document).ready(function(){
     $(document).on('click', '.Resetform', function(e){
         e.preventDefault();
         $("#formReset")[0].reset();
+        
+        $('input:checked').removeAttr('checked');
+        $('input[type="number"]').removeAttr('value');
         resetFilter();
+
+        window.location.href = base_url + "/search";
     });
   
     $(document).on('keyup', '.searchProperty', function(){
@@ -1639,15 +1649,15 @@ $(document).ready(function(){
         ResetPropertyData(searchProperty);
     });
 
-    $('.sortBy').on('change',function(){
+    $('.sortBy').on('change', function(){
         $('.sortBy').not(this).prop('checked', false);  
     });
 
     function resetFilter() {
         if($('input[type="checkbox"]:checked').length > 0){
-            $('.ResetForm').removeClass('d-none');
-        }else{
             $('.ResetForm').addClass('d-none');
+        }else{
+            $('.ResetForm').removeClass('d-none');
         }
 
         $('input[type="checkbox"]').change(function() {

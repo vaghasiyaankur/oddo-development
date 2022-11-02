@@ -86,8 +86,9 @@ class HotelController extends Controller
                 $hotelAmounts = array();
                 if($hotels){
                     foreach($hotels as $hotel){
-                    $amount = exchange_rate($hotel->room->price_room);
-                    $hotel_amount = $amount * $room;
+                    $price = exchange_rate($hotel->room->price_room);
+                    $amount = $price * $room;
+                    $hotel_amount = number_format($amount);
                     $hotelAmounts[] = array($hotel->id => $hotel_amount);
                 }
             }
@@ -232,9 +233,12 @@ class HotelController extends Controller
     {
         $paymentGateways = paymentGetways::active()->get();
         $hotel = Hotel::whereUuid($request->hotelId)->first();
-        $amount = exchange_rate($hotel->room->price_room);
         $room = $hotel->room->number_of_room;
-        $hotel_amount = $amount * $room;
+        // $hotel_amount = $amount * $room;
+        // $amount = exchange_rate($hotel->room->price_room);
+        $price = exchange_rate($hotel->room->price_room);
+        $amount = $price * $room;
+        $hotel_amount = number_format($amount);
         
         return view('frontend::hotel.payment', compact('paymentGateways', 'hotel', 'hotel_amount'));
     }
