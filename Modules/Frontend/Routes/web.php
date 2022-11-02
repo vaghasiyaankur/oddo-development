@@ -129,18 +129,3 @@ Route::fallback(function($slug){
 });
 
 
-
-Route::get('/query', function(){
-    $data = App\Models\GeneralSetting::first();
-    $currency = AmrShawky\LaravelCurrency\Facade\Currency::convert()->from('USD')
-    ->to($data->currency)
-    ->get();
-            
-    $con = round($currency, 2);
-    // dd($con);
-    $hotels = App\Models\Hotel::with('amenities')->with(['room' => function($query) use($con) {
-        $query->select('id', 'hotel_id',DB::raw('price_room *'.$con.' as price'))->get();
-    }])->get();
-    dd($hotels->toarray());
-});
-
