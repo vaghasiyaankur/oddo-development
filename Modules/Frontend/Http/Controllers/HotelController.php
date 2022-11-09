@@ -39,6 +39,7 @@ class HotelController extends Controller
         $checkOut = request()->checkOut;
         $guest =  request()->guest;
         $room = request()->room;
+        $preference = request()->preference;
         request()->bed ? $bed = explode(',' , request()->bed) : $bed = array('');
         request()->propertyTypeName ? $propertyTypeName = explode(',' , request()->propertyTypeName): $propertyTypeName = array('');
 
@@ -106,7 +107,7 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
-        } else if($sortby || $budgetMin || $budgetMax || $starRating || $amenity) {
+        } else if($sortby || $budgetMin || $budgetMax || $starRating || $amenity || $preference) {
             $amenity_data = explode(',', $amenity);
             $star = $starRating ? explode(',',$starRating) : '';
             

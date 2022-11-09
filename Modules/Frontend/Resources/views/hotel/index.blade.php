@@ -625,8 +625,8 @@ search
                             <div class="hotels-result-sort pt-3">
                                 <h5 class="search-heading ">Sort By</h5>
                                 <div class="form-check ">
-                                    <input class="form-check-input myPreference" type="checkbox" name="FilterCheck" value=""
-                                        id="myPreferencesData">
+                                    <input class="form-check-input {{ request()->preference == 'my_preference' ? 'myPreferenceHide' : 'myPreference'}}" type="checkbox" name="FilterCheck" value="my_preference"
+                                        id="myPreferencesData" {{ request()->preference == 'my_preference' ? 'checked' : '' }}>
                                     <div class="search-prefe-main d-flex justify-content-between align-items-center">
                                         <div class="search-prefe-text">
                                             <label class="form-check-label ps-2" for="myPreferencesData">
@@ -1216,6 +1216,10 @@ search
                     $('.amenityAll').prop('checked',false);
                 }
             });
+
+            if($('.amenityValue:checked').length == $('.amenityValue').length){
+                $('#AllAmenities').prop('checked',true);
+            }
         });
 
         
@@ -1226,7 +1230,8 @@ search
             var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
             var amenities = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
             var sortby = $(".sortBy:checked").map(function(){return $(this).val();}).get();
-            
+            var preference = $("#myPreferencesData:checked").map(function(){return $(this).val();}).get();
+
             var baseUrlData =  baseUrl  + "/search?";
             if (sortby != '') {
                 baseUrlData = baseUrlData + "&sortby=" + sortby;
@@ -1243,7 +1248,9 @@ search
             if(amenities != '') {
                 baseUrlData = baseUrlData + '&amenities=' + amenities;
             }
-            
+            if(preference != '') {
+                baseUrlData = baseUrlData + '&preference=' + preference;
+            }
             window.location.href = baseUrlData;
 
         });
@@ -1365,6 +1372,7 @@ $(document).ready(function(){
         var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
         var amenities = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
         var sortby = $(".sortBy:checked").map(function(){return $(this).val();}).get();
+        var preference = $("#myPreferencesData:checked").map(function(){return $(this).val();}).get();
 
         var searchProperty = $('.searchProperty').val();
 
@@ -1437,10 +1445,10 @@ $(document).ready(function(){
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
             });
-        } else if(propertyName || budgetMin || budgetMin || budgetMax || starRating || amenities || sortby) {
+        } else if(propertyName || budgetMin || budgetMin || budgetMax || starRating || amenities || sortby || preference) {
             $.ajax({
 
-                url: baseUrl  + "/search?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating + '&amenities=' + amenities + '&sortby=' + sortby,
+                url: baseUrl  + "/search?page=" + page + "&propertyName=" + propertyName + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax + '&starRating=' + starRating + '&amenities=' + amenities + '&sortby=' + sortby + '&preference=' + preference,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -1543,13 +1551,23 @@ $(document).ready(function(){
         var maxBudget = $('.budgetMaximum').val();
         $('.budgetMax').val(maxBudget);
 
-        $('input:checked').removeAttr('checked');
+        var data = $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);;
+        $('.sortBy').not(data).prop('checked', false); 
+
+        // $('input:checked').removeAttr('checked');
         $(this).removeClass('myPreference').addClass('myPreferenceHide');
     });
 
     $(document).on('click', '.myPreferenceHide', function(){
         $(this).removeClass('myPreferenceHide').addClass('myPreference');
-        $('#ResetForm').trigger('click');
+        
+        $('.myPreference').prop('checked', false);
+        $('.sortBy').prop('checked', false);
+        $('.starRating').prop('checked', false);
+        $('.amenityValue').prop('checked', false);
+        $('.budgetMin').val('');
+        $('.budgetMax').val('');
+
     });
 
     $(document).on('click', '.addWishlist', function(){
