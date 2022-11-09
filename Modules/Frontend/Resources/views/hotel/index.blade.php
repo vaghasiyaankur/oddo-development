@@ -1554,6 +1554,9 @@ $(document).ready(function(){
         var data = $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);;
         $('.sortBy').not(data).prop('checked', false); 
 
+        if($('.amenityValue:checked').length == $('.amenityValue').length){
+            $('#AllAmenities').prop('checked',true);
+        }
         // $('input:checked').removeAttr('checked');
         $(this).removeClass('myPreference').addClass('myPreferenceHide');
     });
@@ -1561,6 +1564,7 @@ $(document).ready(function(){
     $(document).on('click', '.myPreferenceHide', function(){
         $(this).removeClass('myPreferenceHide').addClass('myPreference');
         
+        $('#AllAmenities').prop('checked', false);
         $('.myPreference').prop('checked', false);
         $('.sortBy').prop('checked', false);
         $('.starRating').prop('checked', false);
