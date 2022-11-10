@@ -1108,6 +1108,12 @@ search
         });
     }
 
+    if($('.form-check input[type=checkbox]:checked').length  > 0){
+            $('.side-btn.ResetForm').removeClass('d-none');
+        }else{
+            $('.ResetForm').addClass('d-none');
+        }
+
         $(document).on('click','.ImagepPopup',function(){
             var id = $(this).data('id');
 
@@ -1530,7 +1536,9 @@ $(document).ready(function(){
             });
         }
     }
-
+    if($('.amenities:checked').length == $('.amenities').length){
+        $('#AmenitiesAll').prop('checked',true);
+    }
     $(document).on('click','.myPreference',function(){
         var sortBy = $('.sortBy_pre:checked').val();
         $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);
@@ -1557,6 +1565,11 @@ $(document).ready(function(){
         if($('.amenityValue:checked').length == $('.amenityValue').length){
             $('#AllAmenities').prop('checked',true);
         }
+
+        // console.log($('.sortBy:checked').length != $('.sortBy_pre:checked').length);
+        // if($('.sortBy_pre:checked').length != $('.sortBy:checked').length){
+        //     $('.myPreference').prop('checked',false);
+        // }
         // $('input:checked').removeAttr('checked');
         $(this).removeClass('myPreference').addClass('myPreferenceHide');
     });
@@ -1676,11 +1689,6 @@ $(document).ready(function(){
     });
 
     function resetFilter() {
-        if($('input[type="checkbox"]:checked').length > 0){
-            $('.ResetForm').addClass('d-none');
-        }else{
-            $('.ResetForm').removeClass('d-none');
-        }
 
         $('input[type="checkbox"]').change(function() {
             if($('input[name="FilterCheck"]:checked').length > 0){
