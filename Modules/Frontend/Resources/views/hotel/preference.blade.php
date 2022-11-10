@@ -243,11 +243,31 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
-        $(".Amenitiesall").on('click',function(){
-            $(".amenities").prop("checked",$(this).prop("checked"));
+        $('#AmenitiesAll').on('click',function(){
+            if(this.checked){
+                $('.amenities').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('.amenities').each(function(){
+                    this.checked = false;
+                });
+            }
         });
-    });
+        
+        $('.amenities').on('click',function(){
+            if($('.amenities:checked').length == $('.amenities').length){
+                $('#AmenitiesAll').prop('checked',true);
+            }else{
+                $('#AmenitiesAll').prop('checked',false);
+            }
+        });
 
+        if($('.amenities:checked').length == $('.amenities').length){
+            $('#AmenitiesAll').prop('checked',true);
+        }
+    });
+    
     $(document).on('click','.savePreference',function(){
         savePreferences();
         // this is class index page
@@ -344,6 +364,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
        $('.budgetMinimum').val(empArr[0]['budgetmin']);
        $('.budgetMaximum').val(empArr[0]['budgetmax']);
     });
+
 </script>
 
 @if (auth()->check())    
