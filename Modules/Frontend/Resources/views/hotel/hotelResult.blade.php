@@ -29,45 +29,47 @@
                            <div class="result-main-middle-content">
                                <a href="{{ route('hotel.detail', @$hotel->slug) }}">
                                    <h2 class="middle-content-heading pt-4 mb-1">{{ $hotel->property_name }}</h2>
-                               <div class="middle-content-location">
-                                   <p class="mb-1"><img src="{{asset('assets/images/icons/search-h-loaction.png')}}" width="10" height="12" alt="search-icon"><span
-                                           class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
-                                               ? ',' .$hotel->country->country_name: '' }}</span>
-                                   </p>
-                                   <p class="loaction-text mb-1">{{ @$hotel->street_addess }},
-                                       {{ @$hotel->pos_code }}</p>
-                               </div>
-
-                              {{-- <div class="middle-content-location">
-                                <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
-                                        class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
-                                            ? ', $hotel->country->country_name
-                                            : '' }}</span>
-                                </p>
-                                <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
-                                    {{ @$hotel->pos_code }}</p>
-                              </div> --}}
-                        </a>
-                              <div class="middle-content-review">
-                                  <p class="m-0 review-text text-decoration-underline"><a href="javascript:;" class="{{$hotel->reviewCount($hotel->id) != 0 ? 'reviewPopup' :  ''}}"
-                                    {{$hotel->reviewCount($hotel->id) != 0 ? 'data-bs-toggle="modal"' :  ''}} data-id="{{$hotel->UUID}}">{{$hotel->reviewCount($hotel->id) != 0 ? $hotel->reviewCount($hotel->id) : 0 }}  review</a></p>
-                                          {{--  data-bs-target="#reviewspopup_{{$hotel->UUID}}" --}}
-
-                                  @for ($i = 0; $i < 5; $i++)
+                                   @for ($i = 0; $i < 5; $i++)
                                       <span><img
-                                              src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}" width="12" height="12"></span>
-                                  @endfor
+                                           src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}" width="13" height="13"></span>
+                                    @endfor
+                                    <div class="middle-content-location">
+                                        <p class="mb-1"><img src="{{asset('assets/images/icons/search-h-loaction.png')}}" width="10" height="12" alt="search-icon"><span
+                                                class="loaction-text mt-2 mb-0">{{ @$hotel->city->name }}{{ @$hotel->country_id
+                                                    ? ',' .$hotel->country->country_name: '' }}</span>
+                                        </p>
+                                        <p class="loaction-text mt-2 mb-0">{{ @$hotel->street_addess }},
+                                            {{ @$hotel->pos_code }}</p>
+                                    </div>
 
-                                  <div class="total-review mt-2 mb-3">
-                                      <span class="total-review-text">8/10</span>
-                                  </div>
+                                    {{-- <div class="middle-content-location">
+                                      <p class="mb-1"><img src="assets/images/icons/search-h-loaction.png"><span
+                                              class="loaction-text">{{ @$hotel->city->name }}{{ @$hotel->country_id
+                                                  ? ', $hotel->country->country_name
+                                                  : '' }}</span>
+                                      </p>
+                                      <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
+                                          {{ @$hotel->pos_code }}</p>
+                                    </div> --}}
+                              </a>
+                              <div class="middle-content-review d-flex mt-2">
+
+                                <div class="total-review mt-2 mb-3">
+                                    <span class="total-review-text">{{$hotel->listHotelRating($hotel->id) != null ? $hotel->listHotelRating($hotel->id) : 0 }}/5</span>
+                                </div>
+                                <div class="rate-show mx-2">
+                                  <span class="good-text">{{ $hotel->listHotelRating($hotel->id) >= 2.5 ? 'Good' : 'Bed'}}</span>
+                                  <p class="review-text" style="margin-top: -7px;"><a href="javascript:;" class="{{$hotel->reviewCount($hotel->id) != 0 ? 'reviewPopup' :  ''}}"
+                                    {{$hotel->reviewCount($hotel->id) != 0 ? 'data-bs-toggle="modal"' :  ''}} style="font-size:15px;" data-id="{{$hotel->UUID}}">{{$hotel->reviewCount($hotel->id) != 0 ? $hotel->reviewCount($hotel->id) : 0 }}  review</a></p>
+                                          {{--  data-bs-target="#reviewspopup_{{$hotel->UUID}}" --}}
+                                </div>
                               </div>
                               <div class="middle-content-box d-flex mb-3">
                                   <div class="middle-content-box-inner me-2">
                                       <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Calender"><img src="{{ asset('assets/images/icons/search-r-time.png') }}" alt="search-time" width="15" height="16"></a>
                                   </div>
                                   <div class="middle-content-box-inner me-2">
-                                      <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#view360" data-toggle="tooltip" data-placement="top" title="360 Degree View"><img
+                                      <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#view360" data-toggle="tooltip" data-placement="top" title="360° View"><img
                                               src="{{ asset('assets/images/icons/search-360.png') }}" width="18" height="14" alt="search"></a>
                                       <!-------- view360 popup start --------->
                                       <div class="modal fade" id="view360" data-bs-backdrop="static"

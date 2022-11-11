@@ -451,6 +451,12 @@ search
     -webkit-appearance: none;
     margin: 0;
     }
+    .hotel-result.search-result .result-main-content .middle-content-review .total-review .total-review-text{
+        font-size: 14px;
+    }
+    .loaction-text{
+        font-size: 13px !important;
+    }
 </style>
 @endpush
 
@@ -1224,6 +1230,17 @@ search
                 }else{
                     $('.amenityAll').prop('checked',false);
                 }
+                var amenityval = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
+                var amenityValue = $('.amenities:checked').map(function(){return $(this).val();}).get();
+
+                if (amenityval != amenityValue) {
+                    $('#myPreferencesData').prop('checked',false); 
+                    if ($('#myPreferencesData').hasClass('myPreference')) {                
+                        $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                    }else{
+                        $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                    }
+                }
             });
 
             if($('.amenityValue:checked').length == $('.amenityValue').length){
@@ -1570,9 +1587,20 @@ $(document).ready(function(){
             $('#AllAmenities').prop('checked',true);
         }
 
-        $('input:checked').removeAttr('checked');
+        var sort_pre = $('.sortBy_pre:checked').length == 0;
+        var budMin = $('.budgetMinimum').val() == '';
+        var budMax = $('.budgetMaximum').val() == '';
+        var rate = $('.propertyClass:checked').map(function(){return $(this).val();}).get().length == 0;
+        var amenity = $('.amenities:checked').map(function(){return $(this).val();}).get().length == 0;
+
+        if(sort_pre && budMin && budMax && rate && amenity){
+            $('.preferenceModal').click();
+        }
+
+        // $('input:checked').removeAttr('checked');
         $(this).prop('checked',true);
         $(this).removeClass('myPreference').addClass('myPreferenceHide');
+
     });
 
     $(document).on('click', '.myPreferenceHide', function(){
@@ -1694,7 +1722,11 @@ $(document).ready(function(){
             
             if (sortModel != sortBy) {
                 $('#myPreferencesData').prop('checked',false);
-                
+                if ($('#myPreferencesData').hasClass('myPreference')) {                
+                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                }else{
+                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                }
             }
 
         });
@@ -1705,27 +1737,30 @@ $(document).ready(function(){
             var starRate = $('.starRate:checked').map(function(){return $(this).val();}).get();
             
             if (starRating != starRate) {
-                $('#myPreferencesData').prop('checked',false); 
-            
+                $('#myPreferencesData').prop('checked',false);
+                if ($('#myPreferencesData').hasClass('myPreference')) {                
+                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                }else{
+                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                }  
             }
         });
-
-        $('.amenityValue').on('change', function(){
+        // $('.amenityValue').on('change', function(){
 
             
-            var amenityval = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
-            var amenityValue = $('.amenities:checked').map(function(){return $(this).val();}).get();
+        //     var amenityval = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
+        //     var amenityValue = $('.amenities:checked').map(function(){return $(this).val();}).get();
 
-            if (amenityval != amenityValue) {
-                $('#myPreferencesData').prop('checked',false); 
+        //     if (amenityval != amenityValue) {
+        //         $('#myPreferencesData').prop('checked',false); 
+        //         if ($('#myPreferencesData').hasClass('myPreference')) {                
+        //             $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+        //         }else{
+        //             $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+        //         }
                
-            }
-        });
-        if ($('#myPreferencesData').hasClass('myPreference')) {                
-            $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
-        }else{
-            $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
-        }
+        //     }
+        // });
     });
 
     // $('input[name="FilterCheck"]').on('change', function(){
@@ -1870,8 +1905,7 @@ $(document).ready(function(){
         });
     });
 </script>
-
-@if (isset($hotel) && $hotel != '')
+@if (isset($hotels) && $hotels->total() != 0)
 {{-- paypal cdn --}}
 <script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
 {{-- stripe cdn--}}
@@ -1885,6 +1919,8 @@ $(document).ready(function(){
         e.preventDefault();
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
+        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
+        amount=parseInt(amount,10);     
         var total_amount = amount+"00";
         var image = $('.logoImage').attr('src');
         var hotel_id = $('.hotel_id_'+id).val();
@@ -1941,6 +1977,8 @@ $(document).ready(function(){
     $(document).on('click', '.payment_button_Stripe', function(e){
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
+        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
+        amount=parseInt(amount,10);
         var total_amount = amount+"00";
         var payment_id = $('.stripe_payment_id').val();
         var property_name = $(this).data('value');
@@ -1974,6 +2012,8 @@ $(document).ready(function(){
         e.preventDefault();
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
+        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
+        amount=parseInt(amount,10);
         var total_amount = amount+"00";
         var payment_id = $('.paypal_payment_id').val();
         var property_name = $(this).data('value');

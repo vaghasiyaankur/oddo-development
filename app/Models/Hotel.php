@@ -141,6 +141,12 @@ class Hotel extends Model
         return $data;
     }
 
+    public function listHotelRating($id)
+    {
+        $data = listHotelRating($id);
+        return $data['rating'];
+    }
+
     public function hotelBed()
     {
         return $this->hasMany(HotelBed::class, 'id');
