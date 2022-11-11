@@ -64,10 +64,10 @@
                               </div>
                               <div class="middle-content-box d-flex mb-3">
                                   <div class="middle-content-box-inner me-2">
-                                      <a href="javascript:;"><img src="{{ asset('assets/images/icons/search-r-time.png') }}" alt="search-time" width="15" height="16"></a>
+                                      <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Calender"><img src="{{ asset('assets/images/icons/search-r-time.png') }}" alt="search-time" width="15" height="16"></a>
                                   </div>
                                   <div class="middle-content-box-inner me-2">
-                                      <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#view360"><img
+                                      <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#view360" data-toggle="tooltip" data-placement="top" title="360 Degree View"><img
                                               src="{{ asset('assets/images/icons/search-360.png') }}" width="18" height="14" alt="search"></a>
                                       <!-------- view360 popup start --------->
                                       <div class="modal fade" id="view360" data-bs-backdrop="static"
@@ -243,7 +243,7 @@
                                       <!-------- Price comparision popup end -------->
                                   </div>
                                   <a href="javascript:;" data-bs-toggle="modal"
-                                      data-bs-target="#facilities_{{ $key }}">
+                                      data-bs-target="#facilities_{{ $key }}" data-toggle="tooltip" data-placement="top" title="Location">
                                       <div class="middle-content-box-inner me-2">
                                           <img src="{{ asset('assets/images/icons/search-h-loaction.png') }}" alt="location" width="10" height="12">
                                       </div>

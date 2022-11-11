@@ -221,7 +221,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                                 <div class="amenitylabel form-check pe-md-4 pe-3 ">
                                     <input class="form-check-input amenities" type="checkbox" value="{{$amenity->slug}}"
                                         name="amenities" id="AmenityCheck_{{$amenity->id}}">
-                                    <label class="form-check-label" for="AmenityCheck_{{$amenity->id}}">{{ @$amenity->amenities }}</label>
+                                    <label class="form-check-label" for="AmenityCheck_{{$amenity->id}}">{{ Str::limit(@$amenity->amenities, 17) }}</label>
                                     {{-- <i class="{{ @$amenity->icon }} amenityIcon"></i> --}}
                                 </div>
                                 @endforeach

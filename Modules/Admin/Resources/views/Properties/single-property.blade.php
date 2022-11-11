@@ -267,7 +267,7 @@
                             <div class="col-6">
                                 <div class="h-check-in-out border-green mx-auto">
                                     <div class="text-center p-2">
-                                        <img src="http://127.0.0.1:8000/assets/images/icons/cal-icon.png" class="pe-2">
+                                        <img src="{{asset('assets/images/icons/cal-icon.png')}}" class="pe-2">
                                         <span class="check-text text--green">check-in-time</span>
                                         <p class="mb-0">5:20 am</p>
                                     </div>
@@ -276,7 +276,7 @@
                             <div class="col-6">
                                 <div class="h-check-in-out border-red mx-auto">
                                     <div class="text-center p-2 ">
-                                        <img src="http://127.0.0.1:8000/assets/images/icons/check-close.png" class="pe-2">
+                                        <img src="{{asset('assets/images/icons/check-close.png')}}" class="pe-2">
                                         <span class="check-text text--red">check-in-out</span>
                                         <p class="mb-0">5:20 pm</p>
                                     </div>

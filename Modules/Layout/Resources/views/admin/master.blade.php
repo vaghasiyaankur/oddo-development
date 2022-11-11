@@ -31,7 +31,7 @@ $generalSetting = App\Models\GeneralSetting::first();
     <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/icons.min.css') }}">
 
     <!-- App Css-->
-    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/Admin/assets/css/app.min.css') }}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 

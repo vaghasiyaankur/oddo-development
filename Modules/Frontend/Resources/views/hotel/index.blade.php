@@ -413,6 +413,9 @@ search
     .hotels-results-amenities-popup{
         flex-wrap: wrap;
     }
+    .hotels-results-amenities-popup .amenitylabel {
+        width: 25%;
+    }
     .amenityIcon{
         font-size: 12px;
     }
@@ -838,9 +841,9 @@ search
                                         <label class="form-check-label  ps-2 " for="flexCheckChecked_{{$amenity->id}}">
                                             {{ @$amenity->amenities }}
                                         </label>
-                                        <span class="amenities-icon">
+                                        {{-- <span class="amenities-icon">
                                             <i class="{{ @$amenity->icon }}"></i>
-                                        </span>
+                                        </span> --}}
                                     </div>
                                     @endforeach
                                 </div>
@@ -1539,6 +1542,7 @@ $(document).ready(function(){
     if($('.amenities:checked').length == $('.amenities').length){
         $('#AmenitiesAll').prop('checked',true);
     }
+    
     $(document).on('click','.myPreference',function(){
         var sortBy = $('.sortBy_pre:checked').val();
         $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);
@@ -1566,11 +1570,8 @@ $(document).ready(function(){
             $('#AllAmenities').prop('checked',true);
         }
 
-        // console.log($('.sortBy:checked').length != $('.sortBy_pre:checked').length);
-        // if($('.sortBy_pre:checked').length != $('.sortBy:checked').length){
-        //     $('.myPreference').prop('checked',false);
-        // }
-        // $('input:checked').removeAttr('checked');
+        $('input:checked').removeAttr('checked');
+        $(this).prop('checked',true);
         $(this).removeClass('myPreference').addClass('myPreferenceHide');
     });
 
@@ -1683,11 +1684,55 @@ $(document).ready(function(){
         var searchProperty = $(this).val().length;
         ResetPropertyData(searchProperty);
     });
+    
+    $(document).ready(function(){
+        $('.sortBy').on('change', function(){
+            $('.sortBy').not(this).prop('checked', false);  
 
-    $('.sortBy').on('change', function(){
-        $('.sortBy').not(this).prop('checked', false);  
+            var sortModel = $('.sortBy_pre:checked').val();
+            var sortBy = $('.sortBy:checked').val();
+            
+            if (sortModel != sortBy) {
+                $('#myPreferencesData').prop('checked',false);
+                
+            }
+
+        });
+        
+        $('.starRating').on('click', function(){
+
+            var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
+            var starRate = $('.starRate:checked').map(function(){return $(this).val();}).get();
+            
+            if (starRating != starRate) {
+                $('#myPreferencesData').prop('checked',false); 
+            
+            }
+        });
+
+        $('.amenityValue').on('change', function(){
+
+            
+            var amenityval = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
+            var amenityValue = $('.amenities:checked').map(function(){return $(this).val();}).get();
+
+            if (amenityval != amenityValue) {
+                $('#myPreferencesData').prop('checked',false); 
+               
+            }
+        });
+        if ($('#myPreferencesData').hasClass('myPreference')) {                
+            $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+        }else{
+            $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+        }
     });
 
+    // $('input[name="FilterCheck"]').on('change', function(){
+    //     $('.myPreferenceHide').click();
+    //     $('.myPreference').prop('checked',false);
+    //     $(this).prop('checked',true);
+    // });
     function resetFilter() {
 
         $('input[type="checkbox"]').change(function() {

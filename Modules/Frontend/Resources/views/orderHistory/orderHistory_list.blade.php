@@ -39,7 +39,7 @@
                                 @php $review = $reviews->where('hotel_id', $orderHistory->hotel_id)->first() @endphp
                                 @if ($review)
                                     <div class="recipt_button text-end mt-3">
-                                        <a href="javascript:;" data-bs-toggle="modal" class="reviewPopUp"
+                                        <a href="javascript:;" class="reviewPopUp"
                                             data-id="{{ $review->UUID }}">
                                             <span class="reviewBtn me-5 ">View Review</span>
                                         </a>

@@ -144,7 +144,7 @@
                                 <div class="d-flex align-items-center justify-content-evenly">
                                     <div class="search-box w-100">
                                         <input type="text" value="" class="form-control search" name="search"
-                                            placeholder="Search for Amenity status or something...">
+                                            placeholder="Search for Review or something...">
                                         <i class="ri-search-line search-icon"></i>
                                         <i class="ri-close-line close-icon cancelBtn d-none"></i>
                                     </div>
