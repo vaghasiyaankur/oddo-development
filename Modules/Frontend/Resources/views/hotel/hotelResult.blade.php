@@ -51,20 +51,38 @@
                                       <p class="loaction-text mb-3">{{ @$hotel->street_addess }},
                                           {{ @$hotel->pos_code }}</p>
                                     </div> --}}
+
                               </a>
                               <div class="middle-content-review d-flex mt-2">
-
+                                @if($hotel->listHotelRating($hotel->id) != null)
                                 <div class="total-review mt-2 mb-3">
-                                    <span class="total-review-text">{{$hotel->listHotelRating($hotel->id) != null ? $hotel->listHotelRating($hotel->id) : 0 }}/5</span>
+                                    {{-- <span class="total-review-text">{{$hotel->listHotelRating($hotel->id) != null ? $hotel->listHotelRating($hotel->id) : 0 }}/5</span> --}}
+                                    @if($hotel->listHotelRating($hotel->id) != null)
+                                    <span class="total-review-text">{{ number_format($hotel->listHotelRating($hotel->id),1,'.',',') }}/5</span>
+                                    @else
+                                    <span class="total-review-text">0/5</span>
+                                    @endif
                                 </div>
                                 <div class="rate-show mx-2">
-                                  <span class="good-text">{{ $hotel->listHotelRating($hotel->id) >= 2.5 ? 'Good' : 'Bed'}}</span>
+                                  @if ($hotel->listHotelRating($hotel->id) >= 4.5)
+                                    <span class="good-text">Excellent</span>
+                                  @elseif ($hotel->listHotelRating($hotel->id) >= 4)
+                                   <span class="good-text">Very Good</span>
+                                  @elseif ($hotel->listHotelRating($hotel->id) >= 2.5)
+                                    <span class="good-text">Good</span>
+                                  @elseif ($hotel->listHotelRating($hotel->id) <= 1)
+                                    <span class="good-text">Very Bad</span>
+                                  @else
+                                    <span class="good-text">Bad</span>
+                                  @endif
+                                  {{-- <span class="good-text">{{ $hotel->listHotelRating($hotel->id) >= 2.5 ? 'Good' : 'Bad'}}</span> --}}
                                   <p class="review-text" style="margin-top: -7px;"><a href="javascript:;" class="{{$hotel->reviewCount($hotel->id) != 0 ? 'reviewPopup' :  ''}}"
                                     {{$hotel->reviewCount($hotel->id) != 0 ? 'data-bs-toggle="modal"' :  ''}} style="font-size:15px;" data-id="{{$hotel->UUID}}">{{$hotel->reviewCount($hotel->id) != 0 ? $hotel->reviewCount($hotel->id) : 0 }}  review</a></p>
                                           {{--  data-bs-target="#reviewspopup_{{$hotel->UUID}}" --}}
                                 </div>
+                                @endif
                               </div>
-                              <div class="middle-content-box d-flex mb-3">
+                              <div class="middle-content-box d-flex mb-3 mt-2">
                                   <div class="middle-content-box-inner me-2">
                                       <a href="javascript:;" data-toggle="tooltip" data-placement="top" title="Calender"><img src="{{ asset('assets/images/icons/search-r-time.png') }}" alt="search-time" width="15" height="16"></a>
                                   </div>
