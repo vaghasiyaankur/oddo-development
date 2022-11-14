@@ -511,6 +511,11 @@ Destinations We love')
 <script>
 $(document).ready(function(){
     var baseUrl = $('#base_url').val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $(document).on('click', '.removeWishlist', function(e){
         e.preventDefault();

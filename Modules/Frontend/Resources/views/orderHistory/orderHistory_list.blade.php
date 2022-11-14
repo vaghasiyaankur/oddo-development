@@ -1,6 +1,6 @@
 <div class="accordion" id="accordionExample">
 
-    @forelse ($orderHistorys as $orderHistory)
+    @forelse ($orderHistorys as  $key => $orderHistory)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <div class="d-flex flex-wrap align-items-center p-3 justify-content-sm-evenly justify-content-start j_c_center"
@@ -19,8 +19,8 @@
                     </div>
                 </div>
             </h2>
-            <div id="collapse_{{ $orderHistory->UUID }}" class="accordion-collapse collapse show"
-                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div id="collapse_{{ $orderHistory->UUID }}" class="accordion-collapse collapse {{$key == count($orderHistorys)-1 ? 'show' : ''}}"
+                aria-labelledby="headingOne" data-bs-parent="#accordionExample" >
                 <div class="accordion-body p-0">
                     <div class="order-id d-flex flex-wrap align-items-center justify-content-evenly">
                         <p class="mb-0 or-id">Order Id: {{ $orderHistory->UUID }}</p>

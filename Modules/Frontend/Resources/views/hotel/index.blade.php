@@ -1555,6 +1555,12 @@ $(document).ready(function(){
                 console.log('Server error occured');
             });
         }
+        $('.middle-content-box-inner').on('mouseover', 'a', function () {
+            $('[data-toggle="tooltip"]').tooltip({
+                trigger: 'hover',
+                html: true
+            });
+        });
     }
     if($('.amenities:checked').length == $('.amenities').length){
         $('#AmenitiesAll').prop('checked',true);
@@ -1595,6 +1601,14 @@ $(document).ready(function(){
 
         if(sort_pre && budMin && budMax && rate && amenity){
             $('.preferenceModal').click();
+            $('.modal-close').click(function(){
+                $('#myPreferencesData').prop('checked',false);
+                if ($('#myPreferencesData').hasClass('myPreference')) {                
+                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                }else{
+                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                }
+            });
         }
 
         // $('input:checked').removeAttr('checked');
@@ -1784,6 +1798,16 @@ $(document).ready(function(){
 });
 </script>
 
+
+<!-- ToolTip -->
+<script>
+    $('.middle-content-box-inner').on('mouseover', 'a', function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            trigger: 'hover',
+            html: true
+        });
+    });
+</script>
 
 <script>
     $(document).on('click','.hotelPriceBtn',function (e) {

@@ -55,7 +55,7 @@
             </div>
             @endforeach
         <div class="row g-0 text-center text-sm-start align-items-center mb-4 px-3">
-            @if($total_booking)
+            @if(count($bookings))
                 {{$bookings->withPath('/user/booking')->withQueryString()->links('usersite::pagination.pagination')}}
             @else
                 <div class="empty-table w-100 text-center py-5">

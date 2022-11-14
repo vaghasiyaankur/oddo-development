@@ -343,7 +343,7 @@
     $(document).on('click','.citySearchBtn',function(){
         var id = $(this).data('id');
 
-        window.location.href = baseUrl  + "/hotel?City=" + id;
+        window.location.href = baseUrl  + "/search?City=" + id;
     });
     
 </script>
