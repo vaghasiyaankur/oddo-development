@@ -1532,7 +1532,7 @@ $(document).ready(function(){
                 })
                 .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');
-                });
+            });
         } else {
             $.ajax({
 
@@ -1759,22 +1759,6 @@ $(document).ready(function(){
                 }  
             }
         });
-        // $('.amenityValue').on('change', function(){
-
-            
-        //     var amenityval = $(".amenityValue:checked").map(function(){return $(this).val();}).get();
-        //     var amenityValue = $('.amenities:checked').map(function(){return $(this).val();}).get();
-
-        //     if (amenityval != amenityValue) {
-        //         $('#myPreferencesData').prop('checked',false); 
-        //         if ($('#myPreferencesData').hasClass('myPreference')) {                
-        //             $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
-        //         }else{
-        //             $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
-        //         }
-               
-        //     }
-        // });
     });
 
     // $('input[name="FilterCheck"]').on('change', function(){

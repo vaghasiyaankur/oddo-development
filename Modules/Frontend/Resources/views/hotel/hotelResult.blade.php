@@ -58,7 +58,7 @@
                                 <div class="total-review mt-2 mb-3">
                                     {{-- <span class="total-review-text">{{$hotel->listHotelRating($hotel->id) != null ? $hotel->listHotelRating($hotel->id) : 0 }}/5</span> --}}
                                     @if($hotel->listHotelRating($hotel->id) != null)
-                                    <span class="total-review-text">{{ number_format($hotel->listHotelRating($hotel->id),1,'.',',') }}/5</span>
+                                    <span class="total-review-text">{{ is_float($hotel->listHotelRating($hotel->id)) ? $hotel->listHotelRating($hotel->id) : number_format($hotel->listHotelRating($hotel->id),1,'.',',') }}/5</span>
                                     @else
                                     <span class="total-review-text">0/5</span>
                                     @endif

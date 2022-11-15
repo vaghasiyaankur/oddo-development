@@ -135,9 +135,9 @@ class HotelController extends Controller
             }
             
             if(!empty($request['amenities'])){
-                $hotels = $hotels->whereHas('amenities', function($query) use ($amenity_data) {
-                    $query->whereIn('slug', $amenity_data);
-                });
+                $amenities_ids = Amenities::whereIn('slug', $amenity_data)->pluck('id')->toarray();
+                $amenities_ids = implode(",",$amenities_ids);
+                $hotels = $hotels->where('amenity_id','LIKE','%'.$amenities_ids.'%');
             }
             
             if(!empty($request['sortby'])){
@@ -173,7 +173,6 @@ class HotelController extends Controller
 
         }else if($cityType){
             $cityId = City::whereName($cityType)->pluck('id')->first();
-            
             $hotels = Hotel::with('hotelBooking')->where('city_id', $cityId)->whereHas('hotelBooking')->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
