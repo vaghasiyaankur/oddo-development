@@ -157,7 +157,7 @@ class HotelController extends Controller
                     
                 }
             }
-            $hotels = $hotels->active()->paginate(20);
+            $hotels = $hotels->active()->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
