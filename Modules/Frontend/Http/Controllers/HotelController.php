@@ -180,7 +180,7 @@ class HotelController extends Controller
             }
 
         } else {
-            $hotels = Hotel::active()->latest()->paginate(2);
+            $hotels = Hotel::orderBy('id','DESC')->active()->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;

@@ -73,7 +73,6 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
                     colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
                 </lord-icon>
                 <h4>No records has been added yet.</h4>
-                <h6>Add a new record by simpley clicking the button on top right side.</h6>
             </div>
             @endif
         </div>

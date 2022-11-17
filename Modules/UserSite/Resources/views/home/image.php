@@ -93,8 +93,8 @@
             <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
                 colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
             </lord-icon>
+            <img src="{{ asset('assets\images\searchload.gif') }}" height="70" width="120">
             <h4>No records has been added yet.</h4>
-            <h6>Add a new Property by simpley clicking the button.</h6>
             <div class="another-c-details mt-4">
                 <a href="{{route('property-category')}}" class="btn another-c-d-btn"
                     style="background-color: #6A78C7 !important; color: white;white-space:nowrap;">Add Property</a>

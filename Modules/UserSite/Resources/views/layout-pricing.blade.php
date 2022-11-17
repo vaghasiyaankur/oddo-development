@@ -209,7 +209,7 @@
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text para-fs-14" id="addon-wrapping" >INR/per
                                                     Night</span>
-                                                <input type="number" class="form-control custom-from-control bed_price" placeholder="0" value="{{ isset($roomDetail) ? number_format(exchange_rate($roomDetail->price_room)) : '' }}" >
+                                                <input type="number" class="form-control custom-from-control bed_price" placeholder="0" value="{{ isset($roomDetail) ? exchange_rate($roomDetail->price_room) : '' }}" >
                                             </div>
                                             <span id="bed_price_error" class="text-danger"></span>
                                         </div>

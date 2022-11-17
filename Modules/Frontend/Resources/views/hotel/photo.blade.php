@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header justify-content-end">
-                <button type="button" data-bs-dismiss="modal" class="modal-close" aria-label="Close"><i
+                <button type="button" data-bs-dismiss="modal" class="modal-close image-close" aria-label="Close"><i
                         class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body d-flex justify-content-center align-items-center">

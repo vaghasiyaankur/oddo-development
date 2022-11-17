@@ -26,16 +26,6 @@ class PagesTableSeeder extends Seeder
                 '1',
                 '<p>hello</p>'
             ],
-            [
-                'Contact Us',
-                'contact-us',
-                'Page Contact Us',
-                'Page, Contact Us',
-                '1',
-                '1',
-                '1',
-                '<p>hello</p>'
-            ]
         ];
 
         foreach ($pages as  list($title, $slug, $meta_description, $meta_key, $location, $status, $show_title, $description)) {

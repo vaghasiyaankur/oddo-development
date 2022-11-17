@@ -42,7 +42,7 @@
                             </div>
                             <div class="modal-reviews" style="display:block;">
                                 <div class="modal-header justify-content-end" style="padding:0px;">
-                                    <button type="button" data-bs-dismiss="modal" class="modal-close"
+                                    <button type="button" data-bs-dismiss="modal" class="modal-close review-close"
                                         aria-label="Close" style="margin-right:5px;color:black;margin-top:-11px;"><i class="fa-solid fa-xmark"></i></button>
                                 </div>
                                 <div class="total-review mt-1 mb-3">

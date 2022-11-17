@@ -63,6 +63,5 @@
             style="width:75px;height:75px">
         </lord-icon>
         <h4>No records has been added yet.</h4>
-        {{-- <h6>Add a new record by simpley clicking the button on top right side.</h6> --}}
     </div>
 @endif

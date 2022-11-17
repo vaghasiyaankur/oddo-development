@@ -1117,18 +1117,25 @@ search
         });
     }
 
-    if($('.form-check input[type=checkbox]:checked').length  > 0){
+        if($('.form-check input[type=checkbox]:checked').length  > 0){
             $('.side-btn.ResetForm').removeClass('d-none');
         }else{
             $('.ResetForm').addClass('d-none');
         }
 
+        $(document).on('click','.image-close',function(){
+            $('.ImagepPopup').prop("disabled", false);
+        });
+
+
         $(document).on('click','.ImagepPopup',function(){
+            
+            $(this).prop("disabled", true);
             var id = $(this).data('id');
 
             formdata = new FormData();
             formdata.append('id', id);
-            
+ 
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1610,6 +1617,7 @@ $(document).ready(function(){
                 }else{
                     $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
                 }
+                $('.ResetForm').addClass('d-none');
             });
         }
 
@@ -1805,11 +1813,15 @@ $(document).ready(function(){
         return false;
 	});
 
+    $('.reviewPopup').prop("disabled", false);
+    $(document).on('click','.review-close',function(){
+        $('.reviewPopup').prop("disabled", false);
+    });
     $(document).on('click', '.reviewPopup', function(e) {
         e.preventDefault();
-
         var hotel_id = $(this).data('id');
 
+        $(this).prop("disabled", true);
         formdata = new FormData();
         formdata.append('hotel_id', hotel_id);
 
@@ -1823,6 +1835,7 @@ $(document).ready(function(){
             contentType: false,
             data: formdata,
             success: function (response) {
+            // $('.reviewPopup').prop("disabled", true);
                 $('.mainReviewPopupDiv').html(response);
                 $('.reviews-popup-main').modal('show');
             }, error:function (response) {
@@ -1830,6 +1843,7 @@ $(document).ready(function(){
             }
         });
     });
+    
 </script>
 
 <script>
