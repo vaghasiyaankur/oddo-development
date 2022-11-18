@@ -5,6 +5,12 @@
 @section('meta_keywords') {{$pageData->meta_key}} @endsection
 
 @push('css')
+<style>
+    .page{
+        text-align: center;
+        margin-top: 25px;
+    }
+</style>
 @endpush
 
 @section('content')

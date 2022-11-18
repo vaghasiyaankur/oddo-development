@@ -72,7 +72,7 @@ $color = ['#6A78C7', '#219653', '#6FCF97', '#9B51E0', '#2d9cdb', '#f2994a'];
                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
                     colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
                 </lord-icon>
-                <h4>No records has been added yet.</h4>
+                <h4>No record has been found.</h4>
             </div>
             @endif
         </div>

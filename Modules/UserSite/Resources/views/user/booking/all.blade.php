@@ -60,8 +60,7 @@
             @else
                 <div class="empty-table w-100 text-center py-5">
                     <img src="{{ asset('assets\images\searchload.gif') }}" height="70" width="120">
-                    <h4>No records has been added yet.</h4>
-                    {{-- <h6>Book your stay</h6> --}}
+                    <h4>No record has been found.</h4>
                 </div>
             @endif
         </div>

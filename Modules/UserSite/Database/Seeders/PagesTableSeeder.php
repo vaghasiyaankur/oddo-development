@@ -24,7 +24,7 @@ class PagesTableSeeder extends Seeder
                 '1',
                 '1',
                 '1',
-                '<p>hello</p>'
+                '<p> Oddo is a global platform that empowers entrepreneurs and small businesses with hotels and homes by providing full stack technology that increases earnings and eases operations. Bringing affordable and trusted accommodation that guests can book instantly.</p>'
             ],
         ];
 

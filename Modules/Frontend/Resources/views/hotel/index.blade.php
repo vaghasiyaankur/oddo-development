@@ -1617,7 +1617,11 @@ $(document).ready(function(){
                 }else{
                     $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
                 }
-                $('.ResetForm').addClass('d-none');
+                if ($("input:checkbox:checked").length > 0) {
+                    $('.ResetForm').removeClass('d-none');
+                }else{
+                    $('.ResetForm').addClass('d-none');
+                }
             });
         }
 
