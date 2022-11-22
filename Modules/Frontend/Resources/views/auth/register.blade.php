@@ -154,10 +154,10 @@
                         $('#useremail-error').text('');
                     }else {
                         $('.spinner-border').hide();
-                        $('#name-error').text(response.responseJSON.errors.username);
-                        $('#userpassword-error').text(response.responseJSON.errors.password);
-                        $('#useremail-error').text(response.responseJSON.errors.email);
-                        $('#userrepassword-error').text(response.responseJSON.errors.RePassword);
+                        $('#name-error').text(response.errors.username);
+                        $('#userpassword-error').text(response.errors.password);
+                        $('#useremail-error').text(response.errors.email);
+                        $('#userrepassword-error').text(response.errors.RePassword);
                     }
 
                 }, error:function (response) {
