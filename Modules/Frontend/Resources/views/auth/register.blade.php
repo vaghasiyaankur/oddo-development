@@ -140,25 +140,32 @@
                 contentType: false,
                 data: formdata,
                 success: function (response) {
-                    $('.spinner-border').hide();
-                    $('#success-div').html(` <div class="alert alert-borderless alert-success text-center p-2 mx-2" role="alert"  style="position:absolute;width:85%;>
-                                        <span id="">`+response.success+`</span>
-                                    </div>`);
-                    setTimeout(function(){
-                        $('#success-div').html(``);
-                    }, 4000);
-                    $(".signUpForm").trigger("reset");
-                    $('#name-error').text('');
-                    $('#userpassword-error').text('');
-                    $('#useremail-error').text('');
+                    if (response.status == 1) {
+                        $('.spinner-border').hide();
+                        $('#success-div').html(` <div class="alert alert-borderless alert-success text-center p-2 mx-2" role="alert"  style="position:absolute;width:85%;>
+                                            <span id="">`+response.success+`</span>
+                                        </div>`);
+                        setTimeout(function(){
+                            $('#success-div').html(``);
+                        }, 4000);
+                        $(".signUpForm").trigger("reset");
+                        $('#name-error').text('');
+                        $('#userpassword-error').text('');
+                        $('#useremail-error').text('');
+                    }else {
+                        $('.spinner-border').hide();
+                        $('#name-error').text(response.responseJSON.errors.username);
+                        $('#userpassword-error').text(response.responseJSON.errors.password);
+                        $('#useremail-error').text(response.responseJSON.errors.email);
+                        $('#userrepassword-error').text(response.responseJSON.errors.RePassword);
+                    }
 
                 }, error:function (response) {
-                    console.log(response);
-                    $('.spinner-border').hide();
-                    $('#name-error').text(response.responseJSON.errors.username);
-                    $('#userpassword-error').text(response.responseJSON.errors.password);
-                    $('#useremail-error').text(response.responseJSON.errors.email);
-                    $('#userrepassword-error').text(response.responseJSON.errors.RePassword);
+                    // $('.spinner-border').hide();
+                    // $('#name-error').text(response.responseJSON.errors.username);
+                    // $('#userpassword-error').text(response.responseJSON.errors.password);
+                    // $('#useremail-error').text(response.responseJSON.errors.email);
+                    // $('#userrepassword-error').text(response.responseJSON.errors.RePassword);
                 }
             });
         });

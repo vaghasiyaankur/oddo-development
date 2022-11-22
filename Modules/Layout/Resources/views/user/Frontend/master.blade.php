@@ -21,6 +21,8 @@
     <!------- Fontawsomee cdn link ------->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
+
+
     <!------- Font Family Link ------->
     <link rel="stylesheet" href="{{ asset('assets/fonts/stylesheet.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
@@ -53,7 +55,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Icons Css -->
-    {{-- <link href="{{ asset('assets/Admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+    <link href="{{ asset('assets/Admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Sweet Alert css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
