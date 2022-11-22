@@ -64,15 +64,68 @@ class HotelController extends Controller
         if($search){
             $search = str_replace(',', ' ', $search);
 
-            $hotels = Hotel::with('country', 'city', 'room' )
-                    // ->orwhere('property_name', 'like', '%'.$search.'%')
-                    // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
-                    ->whereRelation('city', 'name', 'like', '%'.$search.'%')
-                    ->whereRelation('room', 'guest_stay_room', $guest)
-                    ->whereRelation('room', 'number_of_room', $room)
-                    ->whereHas('hotelBed.bedType', function($query) use ($bed) {
-                        $query->whereIn('bed_type', $bed);
-                    });
+            
+            $hotels = Hotel::with('country', 'city', 'room','amenities');
+            if (!(empty($search))) {
+                $hotels = $hotels
+                // ->orwhere('property_name', 'like', '%'.$search.'%')
+                // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
+                ->whereRelation('city', 'name', 'like', '%'.$search.'%')
+                ->whereRelation('room', 'guest_stay_room', $guest)
+                ->whereRelation('room', 'number_of_room', $room)
+                ->whereHas('hotelBed.bedType', function($query) use ($bed) {
+                    $query->whereIn('bed_type', $bed);
+                });
+            }
+
+            $amenity_data = explode(',', $amenity);
+            $star = $starRating ? explode(',',$starRating) : '';
+            
+            
+            if (!(empty($star))) {
+                $hotels = $hotels->whereIn('star_rating', $star);
+            }
+            
+            if(!empty($request['budgetMin']) && !empty($request['budgetMax'])){
+
+                $data = GeneralSetting::first();
+                $currency = Currency::convert()->from('USD')
+                ->to($data->currency)
+                ->get();         
+                $con = round($currency, 2);
+
+                $hotels = $hotels ->whereHas('room', function($query) use($con, $budgetMin, $budgetMax){ 
+                    return $query->whereBetween(DB::raw('price_room *'.$con), [$budgetMin, $budgetMax]);
+                 });
+                // ->with(['room' => function($query) use($con, $budgetMin, $budgetMax) {
+                //     $query->select('id', 'hotel_id', 'smoking_policy', 'price_room', DB::raw('price_room *'.$con.' as price'))
+                //     ;     
+                // }])
+            }
+            
+            if(!empty($request['amenities'])){
+                $amenities_ids = Amenities::whereIn('slug', $amenity_data)->pluck('id')->toarray();
+                $amenities_ids = implode(",",$amenities_ids);
+                $hotels = $hotels->where('amenity_id',$amenities_ids);
+            }
+            
+            if(!empty($request['sortby'])){
+                if ($sortby == 'low_to_high') {
+                    $hotels = $hotels->join('rooms', 'hotels.id', '=', 'rooms.hotel_id')->orderBy('rooms.price_room','ASC');
+                    
+                }elseif($sortby == 'high_to_low'){
+                    $hotels = $hotels->join('rooms', 'hotels.id', '=', 'rooms.hotel_id')->orderBy('rooms.price_room','DESC');
+
+                }elseif($sortby == 'top_review'){
+                    
+                    $hotels = $hotels->join('reviews', 'hotels.id', '=', 'reviews.hotel_id')
+                    ->select('hotels.*', DB::raw("count(reviews.total_rating) as review_count"))
+                    ->groupBy('reviews.hotel_id')->orderBy('review_count','DESC');
+                 
+                }else{
+                    
+                }
+            }
 
             $propertyTypeCounts = $hotels->withCount('propertytype')->active()->latest()->paginate(10);
 
@@ -107,11 +160,27 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways','booking', 'hotelAmounts'))->render();
                 return $html;
             }
-        } else if($sortby || $budgetMin || $budgetMax || $starRating || $amenity || $preference) {
+        } else if($sortby || $budgetMin || $budgetMax || $starRating || $amenity || $preference || $search) {
+            $search = str_replace(',', ' ', $search);
+
+            
+            $hotels = Hotel::with('country', 'city', 'room','amenities');
+            if (!(empty($search))) {
+                dd($search);
+                $hotels = $hotels
+                // ->orwhere('property_name', 'like', '%'.$search.'%')
+                // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
+                ->whereRelation('city', 'name', 'like', '%'.$search.'%')
+                ->whereRelation('room', 'guest_stay_room', $guest)
+                ->whereRelation('room', 'number_of_room', $room)
+                ->whereHas('hotelBed.bedType', function($query) use ($bed) {
+                    $query->whereIn('bed_type', $bed);
+                });
+            }
+
             $amenity_data = explode(',', $amenity);
             $star = $starRating ? explode(',',$starRating) : '';
             
-            $hotels = Hotel::with('room','amenities');
             
             if (!(empty($star))) {
                 $hotels = $hotels->whereIn('star_rating', $star);
@@ -137,7 +206,7 @@ class HotelController extends Controller
             if(!empty($request['amenities'])){
                 $amenities_ids = Amenities::whereIn('slug', $amenity_data)->pluck('id')->toarray();
                 $amenities_ids = implode(",",$amenities_ids);
-                $hotels = $hotels->where('amenity_id','LIKE','%'.$amenities_ids.'%');
+                $hotels = $hotels->where('amenity_id',$amenities_ids);
             }
             
             if(!empty($request['sortby'])){

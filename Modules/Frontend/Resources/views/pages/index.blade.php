@@ -10,6 +10,13 @@
         text-align: center;
         margin-top: 25px;
     }
+    .pages{
+        font-family: "Avenir LT Std";
+        color: #393c52;
+    }
+    .multi-s-title h5 {
+        font-weight: 400;
+    }
 </style>
 @endpush
 

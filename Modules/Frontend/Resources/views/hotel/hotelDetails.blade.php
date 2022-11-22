@@ -50,6 +50,10 @@
             max-width: 857px;
             margin: 0 auto;
         }
+        .reserve-btn:hover{
+            color: white;
+            background-color: #566ce2;
+        }
     </style>
 @endpush
 
@@ -289,9 +293,9 @@
 
                     </div>
                 </div>
-                <div class="policies-link pt-4 pb-3">
+                {{-- <div class="policies-link pt-4 pb-3">
                     <a href="#" class="purple">See all Policies details</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -404,7 +408,7 @@
                                         {{ $price }}
                                     </h5>
                                     <p class="mb-4 para-fs-14 d-l-Purple">For 12 Nights, Tax. Included</p>
-                                    <a href="#" class="t-city-btn bg-purple mt-3">Add Room</a>
+                                    <a href="#" class="t-city-btn bg-purple mt-3 reserve-btn">Add Room</a>
                                 </div>
                             </div>
                         </div>

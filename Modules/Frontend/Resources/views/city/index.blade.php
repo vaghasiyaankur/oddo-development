@@ -9,12 +9,15 @@
     .explore-city .nav-pills .nav-link.active,
     .nav-pills .show>.nav-link {
         color: #6a78c7;
-        background-color: #c3d6fd;
+        background-color: #e9f0fe;
+        border: 2px solid;
+        box-shadow: 0px 0px 1px 3px #c3d6fd;
     }
 
     .explore-city .nav-pills .nav-link {
-        padding: 6px 12px;
-        font-size: 20px;
+        padding: 14px 16px;
+        font-size: 17px;
+        font-weight: 600;
         line-height: 22px;
         color: #878996;
     }
@@ -60,7 +63,7 @@
     /* left, top and position just for the demo! */
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 50%;
     z-index: 999;
     }
 
@@ -70,6 +73,18 @@
   100% {
     -webkit-transform: rotate(360deg);
   }
+}
+
+.citySearchBtn:hover, .price-btn:hover{
+    color: white;
+    background-color: #566ce2;
+
+}
+section.explore-city .explore-city-check{
+    padding: 10px 0 32px 0 !important;
+}
+.form-check-label h1{
+    font-size: 2.5rem;
 }
 </style>
 
@@ -129,6 +144,18 @@
                 <a href="#" class="filter-btn bg-purple text-white btn">Filter</a>
             </div>
         </div> --}}
+
+        <div class="explore-city-check d-flex justify-content-center align-items-center flex-wrap">
+            <div class="form-check me-5">
+                <label class="form-check-label" style="color: #393c52">
+                   <h1>Destination We Love</h1>
+                </label>
+            </div>
+        </div> 
+        {{-- <div class="destination content"> --}}
+            {{-- <p style="color:#878996;margin-left:25px;">Enjoy the best experiences with top Destination and Hotel.</p> --}}
+            {{-- <p style="color:#878996;margin-left:25px;">It is equipped with quality room amenities and premium facilities. The Hotel is serviced by a group of experienced staff dedicated to premier services and the warmth of heart in everything we do.</p> --}}
+        {{-- </div> --}}
 
         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item " role="presentation">

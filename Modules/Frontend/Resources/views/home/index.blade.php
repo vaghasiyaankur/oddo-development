@@ -139,7 +139,7 @@
         }
 
         .t-city-card-button .btn:hover {
-            background-color: #5971f3;
+            background-color: #566ce2;
             color: #fff;
         }
         .check-in-out-inner .check-in-out-bottom .check-in-out-icon{
@@ -248,12 +248,13 @@
                                 <form action="javascript: void(0);">
                                     <div
                                         class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
+                                        <?php $checkDate = Carbon\Carbon::now()->format('d/m/Y'); ?>
                                         <div class="check-text-label pt-4 pe-xl-4 pe-lg-3 mb-3 mb-lg-0">
                                             <label class="check-inout mt-2">Check-In </label>
                                             <div class="input--text d-flex align-items-center checkInDiv">
                                                 <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2">
                                                 <input type="text" class="input--control ps-xl-2"
-                                                    name="value_from_start_date" placeholder="08/19/2020"
+                                                    name="value_from_start_date" placeholder="{{ $checkDate }}"
                                                     data-datepicker="separateRange" value="{{ request()->checkIn }}" />
                                             </div>
                                         </div>
@@ -262,7 +263,7 @@
                                             <div class="input--text d-flex align-items-center checkoutDiv">
                                                 <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2">
                                                 <input type="text" class="input--control ps-xl-2"
-                                                    name="value_from_end_date" placeholder="08/19/2020"
+                                                    name="value_from_end_date" placeholder="{{ $checkDate }}"
                                                     data-datepicker="separateRange" value="{{ request()->checkOut }}" />
                                             </div>
                                         </div>
