@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Mail;
- 
+use Validator;
+
 use App\Mail\NotifyMail;
 
 class ForgetPasswordController extends Controller
@@ -88,10 +89,14 @@ class ForgetPasswordController extends Controller
     public function forgetpassword(Request $request)
     {
         // dd($request->toarray());
-        $request->validate([
+        $Validator = Validator::make($request->all(), [
             'forgetEmail' => 'required|email|exists:users,email',
         ]);
         
+        if (!$Validator->passes()) {
+            return response()->json(["status" => 0, 'errors' => $Validator->errors()->toArray()]);
+        }
+
         $token = Str::random(64);
 
         DB::table('password_resets')->insert(
@@ -100,6 +105,6 @@ class ForgetPasswordController extends Controller
 
         Mail::to($request->forgetEmail)->send(new NotifyMail($token));
         
-        return response()->json(["success" => "We have E-mailed your password reset link!"], 200);  
+        return response()->json(["status" => 1, "success" => "We have E-mailed your password reset link!"], 200);  
     }
 }

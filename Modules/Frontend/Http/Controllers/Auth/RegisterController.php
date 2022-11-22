@@ -13,6 +13,7 @@ use Mail;
 use App\Mail\RegisterVerification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class RegisterController extends Controller
 {
@@ -41,7 +42,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $Validator = Validator::make($request->all(), [
             'username' => 'required',
             'lastName' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -57,6 +58,10 @@ class RegisterController extends Controller
             'RePassword.required' => 'The Re-Password field is required.',
             'RePassword.same' => 'Please enter the same password.',
         ]);
+
+        if (!$Validator->passes()) {
+            return response()->json(["status" => 0, 'errors' => $Validator->errors()->toArray()]);
+        }
 
         $user = new User();
         $user->name = $request->username;
@@ -75,7 +80,7 @@ class RegisterController extends Controller
 
         Mail::to($request->email)->send(new RegisterVerification($token));
 
-        return response()->json(["success" => "A verification link has been sent to your email account"], 200);      
+        return response()->json(["status" => 1, "success" => "A verification link has been sent to your email account"], 200);      
     }
 
     /**
