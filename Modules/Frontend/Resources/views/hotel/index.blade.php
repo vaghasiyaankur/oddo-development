@@ -566,7 +566,7 @@ search
                                         </div>
                                         <section class="dropdown-container">
                                             <div class="dropdown-inner">
-                                                <input class="form-check-input bedTypes hotelBeds" type="checkbox" id="king_1">
+                                                <input class="form-check-input bedTypes hotelBeds king" type="checkbox" id="king_1">
                                                 <label for="king_1">1 King</label>
                                             </div>
                                             <div class="dropdown-inner">
@@ -1387,7 +1387,8 @@ search
 <!-- custom-selector js -->
 <script>
     $(document).ready(function() {
-
+            localStorage.removeItem('hotelBeds');
+            
             $(document).on('click', '.select-div', function() {
                 $('.select-room').html('');
                 var index = $('.select_room').val();
@@ -1396,6 +1397,15 @@ search
                     addRoom($number);
                 }
                 $(".select-option").toggleClass("option-none");
+                
+                var get = localStorage.getItem('hotelBeds');
+                if(get){
+                    let data = get.split(",");
+                    $(data).each(function(val, value) {
+                        $('.hotelBeds[value="' + value + '"]').prop('checked', 'checked');
+                    });
+                }
+                
             });
 
             $(".js-example-tags").select2({
@@ -1411,10 +1421,11 @@ search
 
             function addRoom($number) {
                 let searchParams = new URLSearchParams(window.location.search);
-
                 var king = '';
                 var queen = '';
                 var twin = '';
+
+                
                 if(searchParams && searchParams.has('bed')){
                     let bed = searchParams.get('bed').split(",");
                     if(bed.includes('King')){
@@ -1447,7 +1458,7 @@ search
                     </div>`);
                 $('.select-room').append($room);
             }
-
+            
         });
 </script>
 
@@ -2167,6 +2178,11 @@ $(document).ready(function(){
         //         console.log('fail');
         //     }
         // });
+    });
+
+    $(document).on('change', '.hotelBeds', function() {
+        var hotelBeds = $('.hotelBeds:checked').map(function(){return $(this).val();}).get();
+        localStorage.setItem('hotelBeds', hotelBeds);
     });
 </script>
 

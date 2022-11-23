@@ -63,7 +63,7 @@
     /* left, top and position just for the demo! */
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 55%;
     z-index: 999;
     }
 
@@ -84,7 +84,7 @@ section.explore-city .explore-city-check{
     padding: 10px 0 32px 0 !important;
 }
 .form-check-label h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 </style>
 
@@ -152,10 +152,10 @@ section.explore-city .explore-city-check{
                 </label>
             </div>
         </div> 
-        {{-- <div class="destination content"> --}}
-            {{-- <p style="color:#878996;margin-left:25px;">Enjoy the best experiences with top Destination and Hotel.</p> --}}
-            {{-- <p style="color:#878996;margin-left:25px;">It is equipped with quality room amenities and premium facilities. The Hotel is serviced by a group of experienced staff dedicated to premier services and the warmth of heart in everything we do.</p> --}}
-        {{-- </div> --}}
+        <div class="destination content">
+            <p style="color:#878996;margin-left:20px;">Enjoy the best experiences with top Destination and Hotel.</p>
+            <p style="color:#878996;margin-left:20px;">It is equipped with quality room amenities and premium facilities. The Hotel is serviced by a group of experienced staff dedicated to premier services and the warmth of heart in everything we do.</p>
+        </div>
 
         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item " role="presentation">
