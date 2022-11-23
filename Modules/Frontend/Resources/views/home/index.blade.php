@@ -200,6 +200,163 @@
             max-height: 41px;
             max-width: 41px;
         }
+
+        /* dropdown css */
+        .guests-option.select-option{
+            width: 100%;
+            max-width: 275px !important;
+        }
+        .guests-option .drop-down{
+            display: inline-block;
+            position: relative;
+            padding-top: 35px;
+            width: 100%;
+        }
+        .guests-option .drop-down__button{
+            display: inline-block;
+            line-height: 36px;
+            padding: 0 18px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border-radius: 4px;
+            box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: 1px solid #878996;
+            border-radius: 5px;
+        }
+        .guests-option .drop-down__name {
+            font-size: 15px;
+            line-height: 20px;
+            color: #6A78C7;
+            font-weight: 500;
+            padding: 0 20px;
+        }
+        .guests-option .drop-down__icon {
+            width: 18px;
+            vertical-align: middle;
+            margin-left: 14px;
+            height: 18px;
+            border-radius: 50%;
+            transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            -ms-transition: all 0.4s;
+            -o-transition: all 0.4s;
+        }
+        .guests-option .drop-down__menu-box {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 53%);
+            transition: all 0.3s;
+            visibility: hidden;
+            opacity: 0;
+            margin-top: 5px;
+        }
+        .guests-option .drop-down__button::after{
+            content: "\f107";
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            right: 7px;
+            color: #6A78C7;
+        }
+       
+        .guests-option .drop-down__menu {
+            margin: 0;
+            padding: 0px;
+            list-style: none;
+        }
+        .guests-option .drop-down__menu-box:before{
+            content: '';
+            background-color: transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid #fff;
+            border-top: 10px solid transparent;
+            top: -20px;
+            right: 123px;
+        }
+
+        .guests-option .drop-down__menu-box:after{
+            content:'';
+            background-color: transparent;
+        }
+        .guests-option .drop-down__item {
+            font-size: 15px;
+            padding: 13px 0;
+            text-align: left;
+            font-weight: 500;
+            color: #000;
+            cursor: pointer;
+            position: relative;
+            border-bottom: 1px solid #e0e2e9;
+        }
+        .guests-option .drop-down__item-icon {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            right: 0px;
+            fill: #8995b6;
+        }
+        .guests-option .drop-down__item:hover .drop-down__item-icon{
+             fill: #3d6def;
+        }
+       
+        .guests-option .drop-down__item:last-of-type{
+            border-bottom: 0;
+        }
+        .guests-option .drop-down--active .drop-down__menu-box{
+            visibility: visible;
+            opacity: 1;
+            margin-top: 15px;
+            z-index: 111;
+        }
+        .guests-option .quantity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .guests-option .quantity  .quantity__minus,
+        .guests-option .quantity  .quantity__plus {
+            display: block;
+            width: 27px;
+            height: 27px;
+            margin: 0 10px;
+            background: #fff;
+            text-decoration: none;
+            text-align: center;
+            line-height: 24px;
+            font-size: 20px;
+            border: 1px solid #878996;
+        }
+       
+        .guests-option .quantity  .quantity__minus,
+        .guests-option .quantity  .quantity__plus{
+             border-radius:50px ;
+        }
+        
+        .guests-option .quantity .quantity__input {
+            width: 38px;
+            height: 28px;
+            margin: 0;
+            padding: 0;
+            border-radius: 7px;
+            border: 1px solid #878996;
+            text-align: center;
+            color: #6A78C7;
+        }
+        
+        .guests-option .quantity .quantity__minus:link,
+        .guests-option .quantity .quantity__plus:link {
+            color: #6A78C7;
+        } 
+
     </style>
 @endpush
 
@@ -319,7 +476,7 @@
                                         {{ in_array('3', $selectBed) ? 'selected' : '' }}>3</option>
                                 </select>
                             </div> --}}
-                            <div class="col-lg-2 col-6 pe-lg-0 mt-2">
+                            {{-- <div class="col-lg-2 col-6 pe-lg-0 mt-2">
                                 <div class="select-option">
                                     <label>Guests</label>
                                     <select class="form-control js-example-tags select_guest" name="guest">
@@ -328,8 +485,8 @@
                                         <option>3</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-lg-2 col-6 pe-lg-0 mt-2">
+                            </div> --}}
+                            {{-- <div class="col-lg-2 col-6 pe-lg-0 mt-2">
                                 <div class="select-option">
                                     <label>Room</label>
                                     <select class="form-control js-example-tags select_room" name="room">
@@ -337,6 +494,46 @@
                                         <option>2</option>
                                         <option>3</option>
                                     </select>
+                                </div>
+                            </div> --}}
+                            <div class="col-lg-4 col-6">
+                                <div class="guests-option select-option">
+                                    <div class="drop-down">
+                                        <div id="dropDown" class="drop-down__button">
+                                            <span class="drop-down__name">1 Guests</span>
+                                            <span class="drop-down__name">2 Room</span>
+                                        </div>
+                                        <div class="drop-down__menu-box">
+                                          <ul class="drop-down__menu">
+                                            <li data-name="profile" class="drop-down__item">
+                                                <div class="d-flex align-items-center justify-content-between px-3">
+                                                    <div>Guests</div>
+                                                    <div class="quantity">
+                                                        <a href="#" class="quantity__minus"><span>-</span></a>
+                                                        <input name="quantity" type="text" class="quantity__input" value="1">
+                                                        <a href="#" class="quantity__plus"><span>+</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li data-name="dashboard" class="drop-down__item">
+                                                <div class="d-flex align-items-center justify-content-between px-3">
+                                                    <div>Room</div>
+                                                    <div class="quantity">
+                                                        <a href="#" class="quantity__minus"><span>-</span></a>
+                                                        <input name="quantity" type="text" class="quantity__input" value="1">
+                                                        <a href="#" class="quantity__plus"><span>+</span></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li data-name="dashboard" class="drop-down__item">
+                                                <div class="d-flex align-items-center justify-content-between px-3">
+                                                    <button type="button" class="btn border-dark">Reset</button>
+                                                    <button type="button" class="btn bg-purple text-white">Apply</button>
+                                                </div>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6 pe-lg-0 mt-2">
