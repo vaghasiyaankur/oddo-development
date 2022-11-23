@@ -21,7 +21,7 @@
         @foreach ($items as $wishlistItems)
             <input type="hidden" class="hotelCount" value="{{$wishlistItems->count()}}">
             @foreach ($wishlistItems as $hotel)
-                <div class="col-sm-6 col-lg-4 mt-4 mb-4 mb-lg-0">
+                <div class="col-sm-6 col-lg-3 mt-4 mb-4 mb-lg-0">
                     <div class="hotel-box mx-auto mx-lg-0">
                         <img src="{{@$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" class="w-100" 
                         onerror="this.src='{{asset('assets/images/default.png')}}'" alt="">

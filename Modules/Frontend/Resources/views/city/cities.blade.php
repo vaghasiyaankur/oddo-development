@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active p-a-tabcontent-inner" id="Cities" role="tabpanel"
+<div class="tab-pane fade show active p-a-tabcontent-inner pt-4" id="Cities" role="tabpanel"
   aria-labelledby="pills-overview-tab">
   <div class="p-a-tab-map">
       <div class="s-top-city-inner pb-5">
