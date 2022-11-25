@@ -234,14 +234,14 @@
             line-height: 20px;
             color: #6A78C7;
             font-weight: 500;
-            padding: 0 20px;
+            padding: 0 5px;
         }
         .guests-option .drop-down__guest {
             font-size: 15px;
             line-height: 20px;
             color: #6A78C7;
             font-weight: 500;
-            padding: 0 20px 0 0;
+            padding: 0 5px 0 40px;
         }
         .guests-option .drop-down__icon {
             width: 18px;
@@ -273,6 +273,14 @@
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             right: 17px;
+            color: #6A78C7;
+        }
+        .guests-option .drop-down__button::before {
+            content: "\f500";
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            left: 17px;
             color: #6A78C7;
         }
        
@@ -344,7 +352,7 @@
             text-decoration: none;
             text-align: center;
             line-height: 24px;
-            font-size: 20px;
+            /* font-size: 20px; */
             border: 1px solid #878996;
         }
        

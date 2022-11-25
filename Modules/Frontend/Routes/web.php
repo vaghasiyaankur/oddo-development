@@ -128,4 +128,8 @@ Route::fallback(function($slug){
     }
 });
 
+// contact us
+Route::view('/contact-us', 'frontend::contactUs.index')->name('contact.index');
+
+
 
