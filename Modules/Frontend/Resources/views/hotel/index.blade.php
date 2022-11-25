@@ -462,7 +462,7 @@ search
     .guests-option .drop-down{
         display: inline-block;
         position: relative;
-        padding-top: 35px;
+        padding-top: 30px;
         width: 100%;
     }
     .guests-option .drop-down__button{
@@ -483,14 +483,14 @@ search
         line-height: 20px;
         color: #6A78C7;
         font-weight: 500;
-        padding: 0 20px;
+        padding: 0 5px;
     }
     .guests-option .drop-down__guest {
         font-size: 15px;
         line-height: 20px;
         color: #6A78C7;
         font-weight: 500;
-        padding: 0 20px 0 5px;
+        padding: 0 5px 0 40px;
     }
     .guests-option .drop-down__icon {
         width: 18px;
@@ -522,6 +522,14 @@ search
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         right: 17px;
+        color: #6A78C7;
+    }
+    .guests-option .drop-down__button::before {
+        content: "\f500";
+        position: absolute;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        left: 17px;
         color: #6A78C7;
     }
     
@@ -593,7 +601,7 @@ search
         text-decoration: none;
         text-align: center;
         line-height: 24px;
-        font-size: 20px;
+        /* font-size: 20px; */
         border: 1px solid #878996;
     }
     
@@ -637,6 +645,20 @@ search
         border: 1px solid #bbbcc2 !important;
         background-color: rgba(243,244,245,var(--tw-bg-opacity)) !important;
         cursor: not-allowed;
+    }
+    .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
+        flex: 0 0 65%;
+        padding-left: 100px;
+    }
+    .check-icons-inner img {
+        width: 100%;
+        height: 100%;
+        max-height: 32px;
+        max-width: 32px;
+    }
+    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+        flex: 0 0 50%;
+        padding-right: 100px;
     }
 </style>
 @endpush
@@ -774,9 +796,9 @@ search
                             <label>Beds</label>
                             <div class="bed-selector ">
                                 <div class="select-div d-flex justify-content-between align-items-center select-bed-selector">
-                                    <i class="fa-solid fa-car" style="color: #878996"></i>
-                                    <span style="color: #878996">king</span>
-                                    <i class="fa-solid fa-caret-down" style="color: #878996"></i>
+                                    <i class="fa-solid fa-car" style="color: #6A78C7"></i>
+                                    <span style="color: #6A78C7">king</span>
+                                    <i class="fa-solid fa-angle-down" style="color: #6A78C7"></i>
                                 </div>
                                 <div class="select-option select-room option-none">
                                     <div class="room">
@@ -822,8 +844,23 @@ search
                             
                             <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Beds</span>
                         </div>
-                        <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
+                        {{-- <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
                             <a href="javascript:;" class="btn search-btn purple" id='SubmitSearch'>Search</a>
+                        </div> --}}
+                        <div class="col-lg-6 col-md-6 text-lg-center mt-4 d-flex align-items-center">
+                            <div class="check-in-out-icon d-flex pt-2 align-items-center">
+                                <div class="check-icons-inner ms-lg-4">
+                                    <img src="{{ asset('assets/images/icons/check-1.png') }}" class="img-fluid me-1">
+                                    <img src="{{ asset('assets/images/icons/check-2.png') }}" class="img-fluid me-1">
+                                    <img src="{{ asset('assets/images/icons/check-3.png') }}" class="img-fluid me-1">
+                                    <img src="{{ asset('assets/images/icons/check-1.png') }}" class="img-fluid me-1">
+                                </div>
+                            </div>
+                            <div class="check--out_btn_ pt-2">
+                                <div class="check-in-out-btn text-center me-lg-3 mx-auto">
+                                    <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
