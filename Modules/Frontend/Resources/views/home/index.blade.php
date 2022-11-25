@@ -571,16 +571,16 @@
                                                 </div>
                                                 <section class="dropdown-container">
                                                     <div class="dropdown-inner">
-                                                        <input class="form-check-input" type="checkbox" id="king_1">
-                                                        <label for="king_1">1 King</label>
+                                                        <input class="form-check-input hotelBeds" type="checkbox" id="king_1">
+                                                        <label for="king_1">1. King</label>
                                                     </div>
-                                                    <div class="dropdown-inner">
+                                                    <div class="dropdown-inner hotelBeds">
                                                         <input type="checkbox" id="twin_1">
-                                                        <label for="twin_1">2 Twin</label>
+                                                        <label for="twin_1">2. Twin</label>
                                                     </div>
-                                                    <div class="dropdown-inner">
+                                                    <div class="dropdown-inner hotelBeds">
                                                         <input type="checkbox" id="queen_1">
-                                                        <label for="queen_1">2 Queen</label>
+                                                        <label for="queen_1">3. Queen</label>
                                                     </div>
                                                 </section>
                                             </div>

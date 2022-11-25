@@ -629,7 +629,7 @@ search
         max-width: 255px;
     }
     .hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-room{
-        margin: 0px 14px;
+        margin: 0px 9px;
     }
     .quantity__minus[disabled], .room__minus[disabled]{
         --tw-border-opacity: 1;

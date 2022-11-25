@@ -168,6 +168,13 @@
                 addRoom($number);
             }
             $(".select-option").toggleClass("option-none");
+            var get = localStorage.getItem('hotelBeds');
+            if(get){
+                let data = get.split(",");
+                $(data).each(function(val, value) {
+                    $('.hotelBeds[value="' + value + '"]').prop('checked', 'checked');
+                });
+            }
         });
 
         $(".js-example-tags").select2({
@@ -369,4 +376,10 @@
         });
     });
 
+</script>
+<script>
+     $(document).on('change', '.hotelBeds', function() {
+        var hotelBeds = $('.hotelBeds:checked').map(function(){return $(this).val();}).get();
+        localStorage.setItem('hotelBeds', hotelBeds);
+    });
 </script>
