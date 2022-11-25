@@ -99,7 +99,8 @@ search
         box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
         border-radius: 8px;
         height: 111px;
-        width: 180px;
+        width: 225px;
+        line-height: 25px;
     }
 
     .bed-selector .room .title-container {
@@ -140,7 +141,7 @@ search
 
     .bed-selector .select-div {
         padding: 6px 10px;
-        width: 130px;
+        /* width: 130px; */
         border: 1px solid #878996;
         border-radius: 5px
     }
@@ -457,6 +458,186 @@ search
     .loaction-text{
         font-size: 13px !important;
     }
+
+    .guests-option .drop-down{
+        display: inline-block;
+        position: relative;
+        padding-top: 35px;
+        width: 100%;
+    }
+    .guests-option .drop-down__button{
+        display: inline-block;
+        line-height: 36px;
+        padding: 0 17px;
+        width: 100%;
+        /* text-align: center; */
+        position: relative;
+        border-radius: 4px;
+        /* box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2); */
+        cursor: pointer;
+        border: 1px solid #878996;
+        border-radius: 5px;
+    }
+    .guests-option .drop-down__name {
+        font-size: 15px;
+        line-height: 20px;
+        color: #6A78C7;
+        font-weight: 500;
+        padding: 0 20px;
+    }
+    .guests-option .drop-down__guest {
+        font-size: 15px;
+        line-height: 20px;
+        color: #6A78C7;
+        font-weight: 500;
+        padding: 0 20px 0 5px;
+    }
+    .guests-option .drop-down__icon {
+        width: 18px;
+        vertical-align: middle;
+        margin-left: 14px;
+        height: 18px;
+        border-radius: 50%;
+        transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        -ms-transition: all 0.4s;
+        -o-transition: all 0.4s;
+    }
+    .guests-option .drop-down__menu-box {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 53%);
+        transition: all 0.3s;
+        visibility: hidden;
+        opacity: 0;
+        margin-top: 5px;
+    }
+    .guests-option .drop-down__button::after{
+        content: "\f107";
+        position: absolute;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        right: 17px;
+        color: #6A78C7;
+    }
+    
+    .guests-option .drop-down__menu {
+        margin: 0;
+        padding: 0px;
+        list-style: none;
+    }
+    .guests-option .drop-down__menu-box:before{
+        content: '';
+        background-color: transparent;
+        border-right: 10px solid transparent;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-bottom: 10px solid #dadada;
+        border-top: 10px solid transparent;
+        top: -20px;
+        right: 30px;
+    }
+
+    .guests-option .drop-down__menu-box:after{
+        content:'';
+        background-color: transparent;
+    }
+    .guests-option .drop-down__item {
+        font-size: 15px;
+        padding: 13px 0;
+        text-align: left;
+        font-weight: 500;
+        color: #000;
+        cursor: pointer;
+        position: relative;
+        border-bottom: 1px solid #e0e2e9;
+    }
+    .guests-option .drop-down__item-icon {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        right: 0px;
+        fill: #8995b6;
+    }
+    .guests-option .drop-down__item:hover .drop-down__item-icon{
+            fill: #3d6def;
+    }
+    
+    .guests-option .drop-down__item:last-of-type{
+        border-bottom: 0;
+    }
+    .guests-option .drop-down--active .drop-down__menu-box{
+        visibility: visible;
+        opacity: 1;
+        margin-top: 15px;
+        z-index: 111;
+    }
+    .guests-option .quantity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+    .guests-option .quantity  .quantity__minus,
+    .guests-option .quantity  .quantity__plus, 
+    .room__minus, .room__plus {
+        display: block;
+        width: 27px;
+        height: 27px;
+        margin: 0 10px;
+        background: #fff;
+        text-decoration: none;
+        text-align: center;
+        line-height: 24px;
+        font-size: 20px;
+        border: 1px solid #878996;
+    }
+    
+    .guests-option .quantity  .quantity__minus,
+    .guests-option .quantity  .quantity__plus, 
+    .room__minus, .room__plus{
+            border-radius:50px ;
+    }
+    
+    .guests-option .quantity .quantity__input, .room__input {
+        width: 38px;
+        height: 28px;
+        margin: 0;
+        padding: 0;
+        border-radius: 7px;
+        border: 1px solid #878996;
+        text-align: center;
+        color: #6A78C7;
+    }
+    
+    .guests-option .quantity .quantity__minus,
+    .guests-option .quantity .quantity__plus {
+        color: #6A78C7;
+    } 
+    .guests-option .quantity .room__minus,
+    .guests-option .quantity .room__plus {
+        color: #6A78C7;
+    } 
+    .btn-reset, .btn-apply{
+        padding: .300rem .50rem;
+    }
+    .hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option{
+        max-width: 255px;
+    }
+    .hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-room{
+        margin: 0px 14px;
+    }
+    .quantity__minus[disabled], .room__minus[disabled]{
+        --tw-border-opacity: 1;
+        color: #bbbcc2 !important;
+        border: 1px solid #bbbcc2 !important;
+        background-color: rgba(243,244,245,var(--tw-bg-opacity)) !important;
+        cursor: not-allowed;
+    }
 </style>
 @endpush
 
@@ -516,7 +697,7 @@ search
                 </div>
                 <div class="check-in-out-bottom mt-2">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                        {{-- <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             <label>Guests</label>
                             <select class="form-control js-example-tags select_guest" name="guest">
                                 @php
@@ -526,14 +707,56 @@ search
                                 <option {{ $selectGuest=='1' ? 'selected' : '' }}>1</option>
                                 <option {{ $selectGuest=='2' ? 'selected' : '' }}>2</option>
                                 <option {{ $selectGuest=='3' ? 'selected' : '' }}>3</option>
-                                {{-- <option {{ $selectGuest=='4' ? 'selected' : '' }}>4</option>
-                                <option {{ $selectGuest=='5' ? 'selected' : '' }}>5</option>
-                                <option {{ $selectGuest=='6' ? 'selected' : '' }}>6</option>
-                                <option {{ $selectGuest=='7' ? 'selected' : '' }}>7</option> --}}
                             </select>
                             <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Guest</span>
+                        </div> --}}
+                        <div class="col-lg-3 col-6">
+                            <div class="guests-option">
+                                <div class="drop-down">
+                                    
+                                    @php
+                                        $selectGuest = Request()->guest;
+                                        $selectRoom = Request()->room;
+                                    @endphp
+                                    <div id="dropDown" class="drop-down__button">
+                                        <span class="drop-down__guest toggle"><span class="guestNum"> {{ $selectGuest ? $selectGuest : 1 }} </span> Guests</span>
+                                        <span class="drop-down__name toggle"><span class="roomNum"> {{ $selectRoom ? $selectRoom : 1 }} </span> Room</span>
+                                    </div>
+                            <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Gues & Room</span>
+                                    <div class="drop-down__menu-box">
+                                      <ul class="drop-down__menu">
+                                        <li data-name="profile" class="drop-down__item">
+                                            <div class="d-flex align-items-center justify-content-between px-3">
+                                                <div>Guests</div>
+                                                <div class="quantity">
+                                                    <button class="quantity__minus"><span>-</span></button>
+                                                    <input type="text" class="quantity__input select_guest" name="guest" value="{{ $selectGuest ? $selectGuest : 1 }}">
+                                                    <a href="#" class="quantity__plus"><span>+</span></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li data-name="dashboard" class="drop-down__item">
+                                            <div class="d-flex align-items-center justify-content-between px-3">
+                                                <div>Room</div>
+                                                <div class="quantity">
+                                                    <button class="room__minus"><span>-</span></button>
+                                                    <input type="text" class="room__input select_room" name="room" value="{{ $selectRoom ? $selectRoom : 1 }}">
+                                                    <a href="#" class="room__plus"><span>+</span></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li data-name="dashboard" class="drop-down__item">
+                                            <div class="d-flex align-items-center justify-content-between px-3">
+                                                <button type="button" class="btn border-dark btn-reset">Reset</button>
+                                                <button type="button" class="btn bg-purple btn-apply applyBtn text-white">Apply</button>
+                                            </div>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
+                        {{-- <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             @php
                             $selectRoom = Request()->room;
                             @endphp
@@ -543,13 +766,9 @@ search
                                 <option {{ $selectRoom=='1' ? 'selected' : '' }}>1</option>
                                 <option {{ $selectRoom=='2' ? 'selected' : '' }}>2</option>
                                 <option {{ $selectRoom=='3' ? 'selected' : '' }}>3</option>
-                                {{-- <option {{ $selectRoom=='4' ? 'selected' : '' }}>4</option>
-                                <option {{ $selectRoom=='5' ? 'selected' : '' }}>5</option>
-                                <option {{ $selectRoom=='6' ? 'selected' : '' }}>6</option>
-                                <option {{ $selectRoom=='7' ? 'selected' : '' }}>7</option> --}}
                             </select>
                             <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Room</span>
-                        </div>
+                        </div> --}}
 
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             <label>Beds</label>
@@ -1189,8 +1408,8 @@ search
                 .html(``);
             var checkIn = $("input[name=value_from_start_date]").val();
             var checkOut = $("input[name=value_from_end_date]").val();
-            var guest = $("select[name=guest]").val();
-            var room = $("select[name=room]").val();
+            var guest = $("input[name=guest]").val();
+            var room = $("input[name=room]").val();
 
             var bed = new Array();
             $('input[name="bed"]:checked').each(function() {
@@ -1205,9 +1424,9 @@ search
             var sortby = $(".sortBy:checked").map(function(){return $(this).val();}).get();
             var preference = $("#myPreferencesData:checked").map(function(){return $(this).val();}).get();
 
-            if (!search) {
-                return;
-            }
+            // if (!search) {
+            //     return;
+            // }   
 
             var propertyTypeCheckBox = [];
             $.each($("input[class='P_TypeCheckbox']:checked"), function(){
@@ -1215,63 +1434,23 @@ search
             });
             var propertyTypeName = propertyTypeCheckBox.join(",");
 
+            var baseUrlData =  baseUrl  + "/search?";
+
             if(propertyTypeName){
-                var baseUrlData =  baseUrl  + "/search?";
-
-                if (propertyTypeName != '') {
                     baseUrlData = baseUrlData + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
-                        checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed + '&propertyTypeName=' + propertyTypeName;
-                }
-                if (sortby != '') {
-                    baseUrlData = baseUrlData + "&sortby=" + sortby;
-                }
-
-                if (budgetMin != '' && budgetMax != '') {
-                    baseUrlData = baseUrlData + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax;
-                }
+                        checkOut + "&guest=" + guest + "&room=" + room + '&propertyTypeName=' + propertyTypeName;
                 
-                if(starRating != '') {
-                    baseUrlData = baseUrlData + '&starRating=' + starRating;
-                }
-
-                if(amenities != '') {
-                    baseUrlData = baseUrlData + '&amenities=' + amenities;
-                }
-                if(preference != '') {
-                    baseUrlData = baseUrlData + '&preference=' + preference;
+                if ((bed.length) != 0) {
+                   baseUrlData = baseUrlData + "&bed=" + bed;
                 }
                 window.location.href = baseUrlData;
             }else{
-                if (sortby || budgetMin || budgetMax || starRating || amenities || preference) {
-                    var baseUrlData =  baseUrl  + "/search?";
-                    if (search && checkIn && checkOut && guest && room && bed != '') {
-                        baseUrlData = baseUrlData + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
-                                checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
-
-                    }
-                    if (sortby != '') {
-                        baseUrlData = baseUrlData + "&sortby=" + sortby;
-                    }
-
-                    if (budgetMin != '' && budgetMax != '') {
-                        baseUrlData = baseUrlData + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax;
-                    }
-                    
-                    if(starRating != '') {
-                        baseUrlData = baseUrlData + '&starRating=' + starRating;
-                    }
-
-                    if(amenities != '') {
-                        baseUrlData = baseUrlData + '&amenities=' + amenities;
-                    }
-                    if(preference != '') {
-                        baseUrlData = baseUrlData + '&preference=' + preference;
-                    }
-                    window.location.href = baseUrlData;
-                }else{
-                    window.location.href = base_url + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
-                                checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
+               baseUrlData = baseUrlData + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
+                                checkOut + "&guest=" + guest + "&room=" + room;
+                if (bed.length != 0) {
+                   baseUrlData = baseUrlData + "&bed=" + bed;
                 }
+                window.location.href = baseUrlData;
             }
                     
         }
@@ -1328,7 +1507,6 @@ search
         });
 
         $(document).on('click', '.applyButton', function(){   
-            console.log('hello');
             var propertyName = $('.propertyName').val();
             var budgetMax = $('.budgetMax').val();
             var budgetMin = $('.budgetMin').val();
@@ -1338,8 +1516,8 @@ search
             var preference = $("#myPreferencesData:checked").map(function(){return $(this).val();}).get();
             var checkIn = $("input[name=value_from_start_date]").val();
             var checkOut = $("input[name=value_from_end_date]").val();
-            var guest = $("select[name=guest]").val();
-            var room = $("select[name=room]").val();
+            var guest = $("input[name=guest]").val();
+            var room = $("input[name=room]").val();
 
             var bed = new Array();
             $('input[name="bed"]:checked').each(function() {
@@ -1354,7 +1532,6 @@ search
             // }
 
             var baseUrlData =  baseUrl  + "/search?";
-               console.log(search);
             if(search != ''){
                 baseUrlData = baseUrlData + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
@@ -1498,8 +1675,8 @@ $(document).ready(function(){
         var search = $("input[name=search]").val();
         var checkIn = $("input[name=value_from_start_date]").val();
         var checkOut = $("input[name=value_from_end_date]").val();
-        var guest = $("select[name=guest]").val();
-        var room = $("select[name=room]").val();
+        var guest = $("input[name=guest]").val();
+        var room = $("input[name=room]").val();
         var bed = new Array();
         $('input[name="bed"]:checked').each(function() {
             bed.push(this.value);
@@ -1555,6 +1732,14 @@ $(document).ready(function(){
                 if(total_page == 0){
                 // $('.mainDivPropertyType').addClass('d-none');
                     $('.hotel_empty').removeClass('d-none');
+                }
+                var guestvalue = $('.quantity__input').val();
+                var roomvalue = $('.room__input').val();
+                if(guestvalue.length >= 1){
+                    $('.quantity__minus').prop('disabled', false);
+                }
+                if(roomvalue.length >= 1){
+                    $('.room__minus').prop('disabled', false);
                 }
                 // console.log(response);
                 $(".hotelResultDiv").append(response);
@@ -1902,7 +2087,84 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+    $(document).on('click','.applyBtn',function(){
+        var guest = $(".select_guest").val();
+        var room = $(".select_room").val();
+        $('.guestNum').html(guest);
+        $('.roomNum').html(room);
+        $('.drop-down').removeClass('drop-down--active');
+    });
+    $(document).ready(function() {
+        $(".btn-reset").click(function() {
+            $(".select_guest").val('1');
+            $(".select_room").val('1'); 
+            $('.guestNum').html(1);
+            $('.roomNum').html(1);
+        });
+    });
+    $(document).ready(function() {
+        $('.quantity__plus').on('keydown, click', function () {
+            var texInputValue = $('.select_guest').val();
+            var data = parseInt(texInputValue) + 1;
+            var value = $('.quantity__input').val();
+            if(value.length >= 1){
+                $('.quantity__minus').prop('disabled', false);
+            }
+        });
 
+        $('.quantity__minus').attr('disabled',true);
+        $('.room__minus').attr('disabled',true);
+
+        $('.quantity__minus').on('keydown, click', function () {
+            var texInputValue = $('.select_guest').val();
+            var data = parseInt(texInputValue) - 1;
+            if (data == 0) {
+                $('.guestNum').html(1);
+                $('.quantity__minus').attr('disabled', true);
+            }
+            
+        });
+        $('.select_guest').on('keydown, keyup', function () {
+            var texInputValue = $('.select_guest').val();
+            var data = parseInt(texInputValue);
+            var value = $('.quantity__input').val();
+            if(value.length >= 1){
+                $('.quantity__minus').prop('disabled', false);
+            }
+        });
+        $('.room__plus').on('keydown, click', function () {
+            var texInputValue = $('.select_room').val();
+            var data = parseInt(texInputValue) + 1;
+            var value = $('.room__input').val();
+            if (value.length >= 1) {
+                $('.room__minus').prop('disabled', false);
+            }
+        });
+        $('.room__minus').on('keydown, click', function () {
+            var texInputValue = $('.select_room').val();
+            var data = parseInt(texInputValue) - 1;
+            if (data == 0) {
+                $('.roomNum').html(1);
+                $('.room__minus').prop('disabled',true);
+            }
+        });
+        $('.select_room').on('keydown, keyup', function () {
+            var texInputValue = $('.select_room').val();
+            var data = parseInt(texInputValue);
+            // $('.roomNum').html(data);
+            // if (texInputValue == '') {
+            //     $('.roomNum').html(0);
+            // }
+            var value = $('.room__input').val();
+            if (value.length >= 1) {
+                $('.room__minus').prop('disabled', false);
+            }
+        });
+    });
+    
+
+</script>
 <!-- ToolTip -->
 <script>
     $('.middle-content-box-inner').on('mouseover', 'a', function () {
@@ -1919,9 +2181,8 @@ $(document).ready(function(){
         $('.bookingSelectError').removeClass("d-none");
         var data = $('.pac-target-input').val().length;
         if(data >= 1){
-            $('bookingSelectError').addClass('d-none');
+            $('.bookingSelectError').addClass('d-none');
         }
-        console.log(data);
 	    e.preventDefault();
         $("html, body").animate({
             scrollTop: 0
@@ -2049,6 +2310,71 @@ $(document).ready(function(){
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        const minus = $('.quantity__minus');
+        const plus = $('.quantity__plus');
+        const input = $('.quantity__input');
+        minus.click(function(e) {
+            e.preventDefault();
+            var value = input.val();
+            if (value > 1) {
+            value--;
+            }
+            input.val(value);
+        });
+        
+        plus.click(function(e) {
+            e.preventDefault();
+            var value = input.val();
+            value++;
+            input.val(value);
+        })
+    });
+    $(document).ready(function() {
+        const minus = $('.room__minus');
+        const plus = $('.room__plus');
+        const input = $('.room__input');
+        minus.click(function(e) {
+            e.preventDefault();
+            var value = input.val();
+            if (value > 1) {
+            value--;
+            }
+            input.val(value);
+        });
+        
+        plus.click(function(e) {
+            e.preventDefault();
+            var value = input.val();
+            value++;
+            input.val(value);
+        })
+    });
+    
+
+    $(document).ready(function(){
+        const $menu = $('.drop-down')
+        const onMouseUp = e => {
+        if (!$menu.is(e.target) // If the target of the click isn't the container...
+        && $menu.has(e.target).length === 0) // ... or a descendant of the container.
+        {
+            $menu.removeClass('drop-down--active');
+        }
+        }
+
+        $('#dropDown').on('click', () => {
+            $menu.toggleClass('drop-down--active').promise().done(() => {
+                if ($menu.hasClass('drop-down--active')) {
+                $(document).on('mouseup', onMouseUp); // Only listen for mouseup when menu is active...
+                } else {
+                $(document).off('mouseup', onMouseUp); // else remove listener.
+                }
+            })
+        });
+    });
+</script>
+
 @if (isset($hotels) && $hotels->total() != 0)
 {{-- paypal cdn --}}
 <script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
