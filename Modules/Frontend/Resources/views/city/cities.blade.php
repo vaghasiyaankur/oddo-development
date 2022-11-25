@@ -10,7 +10,7 @@
                       <div class="t-city-card position-relative ">
                           <div class="t-city-card-img position-relative text-center">
                                 <img src="{{$city->background_image ? asset('storage/'.$city->background_image) : asset('assets/images/defaultImage.png')}}"
-                                  style="width: 327px; height: 401px;" class="img-fluid" onerror="this.src='{{asset('assets/images/defaultImage.png')}}'">
+                                  style="width: 350px; height: 401px;" class="img-fluid" onerror="this.src='{{asset('assets/images/defaultImage.png')}}'">
                           </div>
                           <div class="t-city-card-content text-center">
                               <h3>{{ @$city->name }}</h3>

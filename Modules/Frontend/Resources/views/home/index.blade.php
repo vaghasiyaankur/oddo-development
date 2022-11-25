@@ -21,8 +21,9 @@
             background: #FFFFFF;
             box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
             border-radius: 8px;
-            height: 111px;
-            width: 180px;
+            height: 125px;
+            width: 230px;
+            line-height: 30px;
         }
 
         .bed-selector .room .title-container {
@@ -204,7 +205,10 @@
         /* dropdown css */
         .guests-option.select-option{
             width: 100%;
-            max-width: 275px !important;
+            max-width: 265px !important;
+        }
+        .hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option{
+            max-width: 265px !important;
         }
         .guests-option .drop-down{
             display: inline-block;
@@ -215,12 +219,12 @@
         .guests-option .drop-down__button{
             display: inline-block;
             line-height: 36px;
-            padding: 0 18px;
+            padding: 0 17px;
             width: 100%;
-            text-align: center;
+            /* text-align: center; */
             position: relative;
             border-radius: 4px;
-            box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2);
+            /* box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2); */
             cursor: pointer;
             border: 1px solid #878996;
             border-radius: 5px;
@@ -231,6 +235,13 @@
             color: #6A78C7;
             font-weight: 500;
             padding: 0 20px;
+        }
+        .guests-option .drop-down__guest {
+            font-size: 15px;
+            line-height: 20px;
+            color: #6A78C7;
+            font-weight: 500;
+            padding: 0 20px 0 0;
         }
         .guests-option .drop-down__icon {
             width: 18px;
@@ -261,7 +272,7 @@
             position: absolute;
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
-            right: 7px;
+            right: 17px;
             color: #6A78C7;
         }
        
@@ -276,10 +287,10 @@
             border-right: 10px solid transparent;
             position: absolute;
             border-left: 10px solid transparent;
-            border-bottom: 10px solid #fff;
+            border-bottom: 10px solid #dadada;
             border-top: 10px solid transparent;
             top: -20px;
-            right: 123px;
+            right: 30px;
         }
 
         .guests-option .drop-down__menu-box:after{
@@ -323,7 +334,8 @@
             padding: 0;
         }
         .guests-option .quantity  .quantity__minus,
-        .guests-option .quantity  .quantity__plus {
+        .guests-option .quantity  .quantity__plus, 
+        .room__minus, .room__plus {
             display: block;
             width: 27px;
             height: 27px;
@@ -337,11 +349,12 @@
         }
        
         .guests-option .quantity  .quantity__minus,
-        .guests-option .quantity  .quantity__plus{
+        .guests-option .quantity  .quantity__plus, 
+        .room__minus, .room__plus{
              border-radius:50px ;
         }
         
-        .guests-option .quantity .quantity__input {
+        .guests-option .quantity .quantity__input, .room__input {
             width: 38px;
             height: 28px;
             margin: 0;
@@ -352,11 +365,28 @@
             color: #6A78C7;
         }
         
-        .guests-option .quantity .quantity__minus:link,
-        .guests-option .quantity .quantity__plus:link {
+        .guests-option .quantity .quantity__minus,
+        .guests-option .quantity .quantity__plus{
+            color: #6A78C7;
+        }
+        
+        .guests-option .quantity .room__minus,
+        .guests-option .quantity .room__plus {
             color: #6A78C7;
         } 
-
+        .btn-reset, .btn-apply{
+            padding: .300rem .50rem;
+        }
+        .hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-room{
+            margin: 0px 16px;
+        }
+        .quantity__minus[disabled], .room__minus[disabled]{
+            --tw-border-opacity: 1;
+            color: #bbbcc2 !important;
+            border: 1px solid #bbbcc2 !important;
+            background-color: rgba(243,244,245,var(--tw-bg-opacity)) !important;
+            cursor: not-allowed;
+        }
     </style>
 @endpush
 
@@ -406,8 +436,8 @@
                                     <div
                                         class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
                                         <?php 
-                                            $checkInDate = Carbon\Carbon::tomorrow()->format('d/mY');
-                                            $checkOutDate = Carbon\Carbon::now()->addDays(2)->format('d/mY');
+                                            $checkInDate = Carbon\Carbon::tomorrow()->format('d/m/Y');
+                                            $checkOutDate = Carbon\Carbon::now()->addDays(2)->format('d/m/Y');
                                         ?>
                                         <div class="check-text-label pt-4 pe-xl-4 pe-lg-3 mb-3 mb-lg-0">
                                             <label class="check-inout mt-2">Check-In </label>
@@ -476,59 +506,49 @@
                                         {{ in_array('3', $selectBed) ? 'selected' : '' }}>3</option>
                                 </select>
                             </div> --}}
-                            {{-- <div class="col-lg-2 col-6 pe-lg-0 mt-2">
-                                <div class="select-option">
-                                    <label>Guests</label>
-                                    <select class="form-control js-example-tags select_guest" name="guest">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                            </div> --}}
-                            {{-- <div class="col-lg-2 col-6 pe-lg-0 mt-2">
-                                <div class="select-option">
-                                    <label>Room</label>
-                                    <select class="form-control js-example-tags select_room" name="room">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                            </div> --}}
-                            <div class="col-lg-4 col-6">
+                            <div class="col-lg-3 col-6">
                                 <div class="guests-option select-option">
                                     <div class="drop-down">
+                                        @php
+                                            $selectGuest = Request()->guest;
+                                            $selectRoom = Request()->room;
+                                        @endphp
                                         <div id="dropDown" class="drop-down__button">
-                                            <span class="drop-down__name">1 Guests</span>
-                                            <span class="drop-down__name">2 Room</span>
+                                            <span class="drop-down__guest toggle"><span class="guestNum"> {{ $selectGuest ? $selectGuest : 1 }} </span> Guests</span>
+                                            <span class="drop-down__name toggle"><span class="roomNum"> {{ $selectRoom ? $selectRoom : 1 }} </span> Room</span>
                                         </div>
                                         <div class="drop-down__menu-box">
                                           <ul class="drop-down__menu">
                                             <li data-name="profile" class="drop-down__item">
                                                 <div class="d-flex align-items-center justify-content-between px-3">
                                                     <div>Guests</div>
+                                                    @php
+                                                    $selectGuest = Request()->guest;
+                                                    @endphp
                                                     <div class="quantity">
-                                                        <a href="#" class="quantity__minus"><span>-</span></a>
-                                                        <input name="quantity" type="text" class="quantity__input" value="1">
-                                                        <a href="#" class="quantity__plus"><span>+</span></a>
+                                                        <button class="quantity__minus"><span>-</span></button>
+                                                        <input type="text" class="quantity__input select_guest" name="guest" value="{{ $selectGuest ? $selectGuest : 1 }}">
+                                                        <button class="quantity__plus"><span>+</span></button>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li data-name="dashboard" class="drop-down__item">
                                                 <div class="d-flex align-items-center justify-content-between px-3">
                                                     <div>Room</div>
+                                                    @php
+                                                    $selectRoom = Request()->room;
+                                                    @endphp
                                                     <div class="quantity">
-                                                        <a href="#" class="quantity__minus"><span>-</span></a>
-                                                        <input name="quantity" type="text" class="quantity__input" value="1">
-                                                        <a href="#" class="quantity__plus"><span>+</span></a>
+                                                        <button href="#" class="room__minus"><span>-</span></button>
+                                                        <input type="text" class="room__input select_room" name="room" value="{{ $selectRoom ? $selectRoom : 1 }}">
+                                                        <a href="#" class="room__plus"><span>+</span></a>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li data-name="dashboard" class="drop-down__item">
                                                 <div class="d-flex align-items-center justify-content-between px-3">
-                                                    <button type="button" class="btn border-dark">Reset</button>
-                                                    <button type="button" class="btn bg-purple text-white">Apply</button>
+                                                    <button type="button" class="btn border-dark btn-reset">Reset</button>
+                                                    <button type="button" class="btn bg-purple btn-apply applyBtn text-white">Apply</button>
                                                 </div>
                                             </li>
                                           </ul>
@@ -536,7 +556,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6 pe-lg-0 mt-2">
+                            <div class="col-lg-3 col-md-6 pe-lg-0 mt-2">
                                 <div class="select-option">
                                     <div class="bed-selector">
                                         <div class="select-div d-flex justify-content-between align-items-center">

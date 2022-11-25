@@ -25,8 +25,8 @@
             .html(``);
         var checkIn = $("input[name=value_from_start_date]").val();
         var checkOut = $("input[name=value_from_end_date]").val();
-        var guest = $("select[name=guest]").val();
-        var room = $("select[name=room]").val();
+        var guest = $("input[name=guest]").val();
+        var room = $("input[name=room]").val();
         var bed = new Array();
         $('input[name="bed"]:checked').each(function() {
             bed.push($(this).val());
@@ -36,7 +36,15 @@
             return;
         }   
         var page = 2;
-        window.location.href = baseUrl  + "/search?search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
+
+        var baseUrlData =  baseUrl  + "/search?";
+
+        baseUrlData = baseUrlData  + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" + checkOut + "&guest=" + guest + "&room=" + room;
+
+        if (bed.length != 0) {
+            baseUrlData = baseUrlData + "&bed=" + bed;
+        }
+        window.location.href = baseUrlData;
    });
 
 
@@ -214,11 +222,11 @@
 </script>
 
 <script>
-    $(document).ready(function(){
-  $('#dropDown').click(function(){
-    $('.drop-down').toggleClass('drop-down--active');
-  });
-});
+//     $(document).ready(function(){
+//   $('#dropDown').click(function(){
+//     $('.drop-down').toggleClass('drop-down--active');
+//   });
+// });
 </script>
 <script>
     $(document).ready(function() {
@@ -241,4 +249,124 @@
             input.val(value);
         })
     });
+    $(document).ready(function() {
+        const minus = $('.room__minus');
+        const plus = $('.room__plus');
+        const input = $('.room__input');
+        minus.click(function(e) {
+            e.preventDefault();
+            var value = input.val();
+            if (value > 1) {
+            value--;
+            }
+            input.val(value);
+        });
+        
+        plus.click(function(e) {
+            e.preventDefault();
+            var value = input.val();
+            value++;
+            input.val(value);
+        })
+    });
+    
+
+    $(document).ready(function(){
+        const $menu = $('.drop-down')
+        const onMouseUp = e => {
+        if (!$menu.is(e.target) // If the target of the click isn't the container...
+        && $menu.has(e.target).length === 0) // ... or a descendant of the container.
+        {
+            $menu.removeClass('drop-down--active');
+        }
+        }
+
+        $('#dropDown').on('click', () => {
+            $menu.toggleClass('drop-down--active').promise().done(() => {
+                if ($menu.hasClass('drop-down--active')) {
+                $(document).on('mouseup', onMouseUp); // Only listen for mouseup when menu is active...
+                } else {
+                $(document).off('mouseup', onMouseUp); // else remove listener.
+                }
+            })
+        });
+    });
+</script>
+<script>
+    $(document).on('click','.applyBtn',function(){
+        var guest = $(".select_guest").val();
+        var room = $(".select_room").val();
+        $('.guestNum').html(guest);
+        $('.roomNum').html(room);
+        $('.drop-down').removeClass('drop-down--active');
+    });
+    $(document).ready(function() {
+        $(".btn-reset").click(function() {
+            $(".select_guest").val('1');
+            $(".select_room").val('1'); 
+            $('.guestNum').html(1);
+            $('.roomNum').html(1);
+        });
+    });
+
+    $(document).ready(function() {
+        $('.quantity__plus').on('keydown, click', function () {
+            var texInputValue = $('.select_guest').val();
+            var data = parseInt(texInputValue) + 1;
+            var value = $('.quantity__input').val();
+            if(value.length >= 1){
+                $('.quantity__minus').prop('disabled', false);
+            }
+        });
+
+        $('.quantity__minus').attr('disabled',true);
+        $('.room__minus').attr('disabled',true);
+
+        $('.quantity__minus').on('keydown, click', function () {
+            var texInputValue = $('.select_guest').val();
+            var data = parseInt(texInputValue) - 1;
+            if (data == 0) {
+                $('.guestNum').html(1);
+                $('.quantity__minus').attr('disabled', true);
+            }
+            
+        });
+        $('.select_guest').on('keydown, keyup', function () {
+            var texInputValue = $('.select_guest').val();
+            var data = parseInt(texInputValue);
+            var value = $('.quantity__input').val();
+            if(value.length >= 1){
+                $('.quantity__minus').prop('disabled', false);
+            }
+        });
+        $('.room__plus').on('keydown, click', function () {
+            var texInputValue = $('.select_room').val();
+            var data = parseInt(texInputValue) + 1;
+            var value = $('.room__input').val();
+            if (value.length >= 1) {
+                $('.room__minus').prop('disabled', false);
+            }
+        });
+        $('.room__minus').on('keydown, click', function () {
+            var texInputValue = $('.select_room').val();
+            var data = parseInt(texInputValue) - 1;
+            if (data == 0) {
+                $('.roomNum').html(1);
+                $('.room__minus').prop('disabled',true);
+            }
+        });
+        $('.select_room').on('keydown, keyup', function () {
+            var texInputValue = $('.select_room').val();
+            var data = parseInt(texInputValue);
+            // $('.roomNum').html(data);
+            // if (texInputValue == '') {
+            //     $('.roomNum').html(0);
+            // }
+            var value = $('.room__input').val();
+            if (value.length >= 1) {
+                $('.room__minus').prop('disabled', false);
+            }
+        });
+    });
+
 </script>

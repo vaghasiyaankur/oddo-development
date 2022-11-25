@@ -66,18 +66,20 @@ class HotelController extends Controller
 
             
             $hotels = Hotel::with('country', 'city', 'room','amenities');
-            if (!(empty($search))) {
+            if (!empty($search)) {
                 $hotels = $hotels
                 // ->orwhere('property_name', 'like', '%'.$search.'%')
                 // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
                 ->whereRelation('city', 'name', 'like', '%'.$search.'%')
                 ->whereRelation('room', 'guest_stay_room', $guest)
-                ->whereRelation('room', 'number_of_room', $room)
+                ->whereRelation('room', 'number_of_room', $room);
+            }
+            if (!empty($request['bed'])) {
+                $hotels = $hotels
                 ->whereHas('hotelBed.bedType', function($query) use ($bed) {
                     $query->whereIn('bed_type', $bed);
                 });
             }
-
             $amenity_data = explode(',', $amenity);
             $star = $starRating ? explode(',',$starRating) : '';
             
@@ -136,10 +138,10 @@ class HotelController extends Controller
             }
 
             $hotels = $hotels->active()->latest()->paginate(10);
-
-                $hotelAmounts = array();
-                if($hotels){
-                    foreach($hotels as $hotel){
+            
+            $hotelAmounts = array();
+            if($hotels){
+                foreach($hotels as $hotel){
                     $price = exchange_rate($hotel->room->price_room);
                     $amount = $price * $room;
                     $hotel_amount = number_format($amount);
@@ -166,7 +168,6 @@ class HotelController extends Controller
             
             $hotels = Hotel::with('country', 'city', 'room','amenities');
             if (!(empty($search))) {
-                dd($search);
                 $hotels = $hotels
                 // ->orwhere('property_name', 'like', '%'.$search.'%')
                 // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
