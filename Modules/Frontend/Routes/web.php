@@ -129,7 +129,8 @@ Route::fallback(function($slug){
 });
 
 // contact us
-Route::view('/contact-us', 'frontend::contactUs.index')->name('contact.index');
+Route::any('/contact-us', 'ContactUsController@index')->name('contact.index');
+Route::post('/contact', 'ContactUsController@contact')->name('user.contact');
 
 
 

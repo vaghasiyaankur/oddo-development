@@ -31,17 +31,23 @@
                                 class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-primary">25</span>
                         </a>
                     </li> --}}
+                    
+                    @foreach ($pages as $page)
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="{{ url('/'.$page->slug) }}">{{$page->title}}</a>
+                        </li>
+                    @endforeach
+
                     @auth
                         <li class="nav-item ps-lg-3">
                             <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
                         </li>
                     @endauth
 
-                    @foreach ($pages as $page)
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="{{ url('/'.$page->slug) }}">{{$page->title}}</a>
-                        </li>
-                    @endforeach
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact.index') }}">Contact Us</a>
+                        
+                    </li>
                 </ul>
 
                 @php

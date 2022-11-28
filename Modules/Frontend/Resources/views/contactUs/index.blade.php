@@ -1,6 +1,6 @@
 @extends('layout::user.Frontend.master')
 
-@section('title', 'contactus')
+@section('title', 'Contact Us')
 @section('meta_description', 'contactus')
 @section('meta_keywords', 'contactus')
 @push('css')
@@ -173,8 +173,9 @@
             display: flex;
             padding-left: 15px;
             color: #c4c4c4;
-            height: 100%;
+            /* height: 100%; */
             font-weight: 900;
+            margin-top: 15px;
             align-items: center;
         }
         .contactus-section textarea {
@@ -192,7 +193,7 @@
         }
         .contactus-section .btn--base:hover{
             box-shadow: 0px 0px 12px rgb(0 0 0 / 35%);
-            color: black;
+            color: white;
         }
 
         /* --- MEDIA QUERRY START --- */
@@ -248,6 +249,24 @@
                 padding: 45px 0;
             }
         }
+        .spinner-border{
+            margin-top: 3px;
+            float: right;
+            left: 55px;
+            width: 18px !important;
+            height: 18px !important;
+        }
+        /* .loadingBtn{
+            width: 131px !important;
+            height: 38px !important;
+            bottom: 1% !important;
+            background-color: white;
+        } */
+        @media screen and (max-width:992px){
+            .spinner-border{
+                left: 49%;
+            }
+        }
     </style>
 @endpush
 
@@ -296,40 +315,53 @@
                     </div>
                     <div class="col-lg-6 mt-lg-0 mt-4">
                         <div class="contact-right-area">
-                            <div class="row mb-2">
+                            <div class="row">
                                 <div class="col-lg-10">
                                     <h3 class="title mb-2">Get In Touch With Us</h3>
                                     <p class="description">Do you have any question?</p>
                                 </div>
                             </div>
-                            <form method="post" action="" class="verify-gcaptcha">
+                            <div id="success-div"></div>
+                            <form method="post" action="" class="verify-gcaptcha contactForm" style="position: relative;margin-top:30px;">
+                                @csrf
                                 <input type="hidden" name="" value="">
                                 <div class="mb-3">
                                     <label>Name</label>
                                     <div class="custom-icon-field">
-                                        <input name="name" type="text" class="form--control" value=""
+                                        <input name="name" type="text" class="form--control name" value=""
                                             placeholder="Enter Your Name" required>
                                         <i class="fas fa-user-alt"></i>
+                                        <span class="text-danger" id="name-error"></span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label>Email</label>
                                     <div class="custom-icon-field">
-                                        <input name="email" type="email" class="form--control" value=""
+                                        <input name="email" type="email" class="form--control email" value=""
                                             placeholder="Enter Email Address" required>
                                         <i class="fas fa-envelope"></i>
+                                        <span class="text-danger" id="email-error"></span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label>Subject</label>
-                                    <input name="subject" type="text" class="form--control" value=""
+                                    <input name="subject" type="text" class="form--control subject" value=""
                                         placeholder="Enter Subject" required>
+                                        <span class="text-danger" id="subject-error"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label>Message</label>
-                                    <textarea name="message" wrap="off" class="form--control" placeholder="Write Message" required></textarea>
+                                    <textarea name="message" wrap="off" class="form--control message" placeholder="Write Message" required></textarea>
+                                    <span class="text-danger" id="message-error"></span>
                                 </div>
-                                <button type="submit" class="btn btn--base">Send Message</button>
+                                {{-- <button type="submit" class="btn btn--base ContactBtn">Send Message</button> --}}
+                                <div class="mt-4 position-relative">
+                                    <button type="submit" class="btn btn--base ContactBtn">Send Message</button>
+                                    <div class="spinner-border" role="status" style="display: none;position: absolute;top:7px;color: rgb(120 134 211);">
+                                        <span class="sr-only">Loading...</span>
+                                    {{-- </div> --}}
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -341,4 +373,78 @@
 @endsection
 
 @push('script')
+<script>
+    
+    $('#success-div').html('');
+
+$(document).ready(function(){
+    $(document).on('click','.ContactBtn',function(e){
+        e.preventDefault();
+        let name = $('.name').val();
+            !name ? $(`#name-error`).html(`The name field is required.`) : $(`#name-error`).html(``);
+
+        let email = $('.email').val();
+            !email ? $(`#email-error`).html(`The email field is required.`) : $(`#email-error`).html(``);
+
+        let subject = $('.subject').val();
+            !subject ? $(`#subject-error`).html(`The subject field is required.`) : $(`#subject-error`).html(``);
+
+        let message = $('.message').val();
+            !message ? $(`#message-error`).html(`The message field is required.`) : $(`#message-error`).html(``);
+
+        
+        if (!name || !email || !subject || !message) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('name', name);
+        formdata.append('email', email);
+        formdata.append('subject', subject);
+        formdata.append('message', message);
+
+        $('.spinner-border').show();
+        $(".btn--base").css({"opacity": ".4"});
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('user.contact')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    
+                    if (response.status == 1) {
+                        $('.spinner-border').hide();
+                        $('#success-div').html(` <div class="alert alert-borderless alert-success text-center p-1" role="alert"  style="position:absolute;margin-top:-10px;width:39%;">
+                                            <span id="">`+response.success+`</span>
+                                        </div>`);
+                        setTimeout(function(){
+                            $('#success-div').html(``);
+                        }, 4000000);
+                        $(".btn--base").css({ 'background-color' : '', 'opacity' : '' });
+                        $('#name-error').text('');
+                        $('#email-error').text('');
+                        $('#subject-error').text('');
+                        $('#message-error').text('');
+                        $('.contactForm')[0].reset();
+                    }else {
+                        $('.spinner-border').hide();
+                        $(".btn--base").css({ 'background-color' : '', 'opacity' : '' });
+                        $('.contactForm')[0].reset();
+                        $('#name-error').text(response.errors.name);
+                        $('#email-error').text(response.errors.email);
+                        $('#subject-error').text(response.errors.subject);
+                        $('#message-error').text(response.errors.message);
+                    }
+
+                }, error:function (response) {
+                }
+            });
+
+    });
+});
+</script>
 @endpush
