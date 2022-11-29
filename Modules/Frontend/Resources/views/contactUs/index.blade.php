@@ -423,7 +423,7 @@ $(document).ready(function(){
                                         </div>`);
                         setTimeout(function(){
                             $('#success-div').html(``);
-                        }, 4000000);
+                        }, 4000);
                         $(".btn--base").css({ 'background-color' : '', 'opacity' : '' });
                         $('#name-error').text('');
                         $('#email-error').text('');

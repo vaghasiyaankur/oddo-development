@@ -104,7 +104,7 @@ class ContactUsController extends Controller
 
         Mail::to($request->email)->send(new ContactMail($data));
         
-        return response()->json(["status" => 1, "success" => "Message has been sent to your email account"], 200);    
+        return response()->json(["status" => 1, "success" => "Message has been sent to your email account."], 200);    
 
 
     }

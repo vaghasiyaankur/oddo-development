@@ -710,8 +710,8 @@ search
                                                 data-datepicker="separateRange" value="{{ request()->checkOut }}" />
                                         </div>
                                     </div>
-                                    <span class="text-danger d-none bookingSelectError" style="position: absolute;bottom: -23px;
-                                    left: 62px;font-size:14px;">Please Select your trip date for booking room!</span>
+                                    {{-- <span class="text-danger d-none bookingSelectError" style="position: absolute;bottom: -23px;
+                                    left: 62px;font-size:14px;">Please Select your trip date for booking room!</span> --}}
                                 </div>
                             </form>
                         </div>
@@ -744,7 +744,7 @@ search
                                         <span class="drop-down__guest toggle"><span class="guestNum"> {{ $selectGuest ? $selectGuest : 1 }} </span> Guests</span>
                                         <span class="drop-down__name toggle"><span class="roomNum"> {{ $selectRoom ? $selectRoom : 1 }} </span> Room</span>
                                     </div>
-                            <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Gues & Room</span>
+                            {{-- <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Gues & Room</span> --}}
                                     <div class="drop-down__menu-box">
                                       <ul class="drop-down__menu">
                                         <li data-name="profile" class="drop-down__item">
@@ -842,7 +842,7 @@ search
                                 </div>
                             </div>
                             
-                            <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Beds</span>
+                            {{-- <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Beds</span> --}}
                         </div>
                         {{-- <div class="check-in-out-btn mt-5 mt-lg-4 text-xl-end text-center col-lg-3">
                             <a href="javascript:;" class="btn search-btn purple" id='SubmitSearch'>Search</a>
@@ -1254,6 +1254,149 @@ search
         $('.mypreferences-popup').modal('show');
     });
 </script>
+
+{{-- Payments --}}
+
+@if (isset($hotels) && $hotels->total() != 0)
+{{-- paypal cdn --}}
+<script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
+{{-- stripe cdn--}}
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script src="https://checkout.stripe.com/v3/checkout.js"></script>
+{{-- razorpay cdn --}}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    // razorpay payment gateway
+    $(document).on('click', '.payment_button_Razorpay', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
+        amount=parseInt(amount,10);     
+        var total_amount = amount+"00";
+        var image = $('.logoImage').attr('src');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var payment_id = $('.razorpay_payment_id').val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        var options = {
+        "key": "{{config('services.razorpay.key')}}",
+        "amount": total_amount,
+        "currency": "INR",
+        "name": "NiceSnippets",
+        "description": "Test Transaction",
+        "image": image,
+        "order_id": "",
+        "handler": function (response){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type:'POST',
+                url:"{{ route('payment.razorpay') }}",
+                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id, start_date: start_date, end_date : end_date},
+                success:function(data){
+                    $('.payment_details_popup').hide();
+                    $('.modal-backdrop').hide();
+                    $("#success_payment").modal("toggle");
+                    $('.bookingId').val('Booking Ref :'+ data.bookingId);
+                }
+            });
+        },
+        "prefill": {
+            "name": "demo",
+            "email": "dem@examle.com",
+            "contact": "1234567890"
+        },
+        "notes": {
+            "address": "test test"
+        },
+        "theme": {
+            "color": "#6a78c7"
+        }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    });
+</script>
+<script>
+    const stripe =  Stripe("{{ config('services.stripe.key') }}");
+
+    $(document).on('click', '.payment_button_Stripe', function(e){
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
+        amount=parseInt(amount,10);
+        var total_amount = amount+"00";
+        var payment_id = $('.stripe_payment_id').val();
+        var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type:'POST',
+            url:"{{ route('show.stripe') }}",
+            data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
+            success:function(response){
+
+                stripe.redirectToCheckout({
+                    sessionId : response.session.id,
+                })
+            },error:function (response) {
+                console.log('fail');
+            }
+        });
+    });
+
+    $(document).on('click', '.payment_button_Paypal', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var amount = $('.amount_data_'+id).val();
+        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
+        amount=parseInt(amount,10);
+        var total_amount = amount+"00";
+        var payment_id = $('.paypal_payment_id').val();
+        var property_name = $(this).data('value');
+        var hotel_id = $('.hotel_id_'+id).val();
+        var room_id = $('.room_id_'+id).val();
+        var start_date = $('.check_in').val();
+        var end_date = $('.check_out').val();
+
+        window.location.href = base_url + "/payment/processPaypal?id=" + id + "&amount=" + amount + "&total_amount=" + total_amount + "&payment_id=" + payment_id + "&property_name=" + property_name + "&hotel_id=" + hotel_id + '&room_id=' + room_id + '&start_date=' + start_date + '&end_date=' + end_date;
+
+        // $.ajax({
+        //     url: "{{route('processPaypal')}}",
+        //     type: "GET",
+        //     data: {id: id,amount: amount,total_amount: total_amount,payment_id: payment_id,property_name: property_name,hotel_id: hotel_id,room_id: room_id,start_date: start_date,end_date: end_date},
+        //     success: function (response) {
+        //         console.log('succeed');
+        //     }, error:function (response) {
+        //         console.log('fail');
+        //     }
+        // });
+    });
+
+    $(document).on('change', '.hotelBeds', function() {
+        var hotelBeds = $('.hotelBeds:checked').map(function(){return $(this).val();}).get();
+        localStorage.setItem('hotelBeds', hotelBeds);
+    });
+</script>
+
+@endif
+
+
 <!-------- Weather swiper js start--------->
 <script>
     
@@ -2412,142 +2555,4 @@ $(document).ready(function(){
     });
 </script>
 
-@if (isset($hotels) && $hotels->total() != 0)
-{{-- paypal cdn --}}
-<script src="https://www.paypal.com/sdk/js?client-id={{ $paypalId }}&currency=USD"></script>
-{{-- stripe cdn--}}
-<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-<script src="https://checkout.stripe.com/v3/checkout.js"></script>
-{{-- razorpay cdn --}}
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-    // razorpay payment gateway
-    $(document).on('click', '.payment_button_Razorpay', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
-        amount=parseInt(amount,10);     
-        var total_amount = amount+"00";
-        var image = $('.logoImage').attr('src');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var payment_id = $('.razorpay_payment_id').val();
-        var room_id = $('.room_id_'+id).val();
-        var start_date = $('.check_in').val();
-        var end_date = $('.check_out').val();
-
-        var options = {
-        "key": "{{config('services.razorpay.key')}}",
-        "amount": total_amount,
-        "currency": "INR",
-        "name": "NiceSnippets",
-        "description": "Test Transaction",
-        "image": image,
-        "order_id": "",
-        "handler": function (response){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type:'POST',
-                url:"{{ route('payment.razorpay') }}",
-                data:{razorpay_payment_id:response.razorpay_payment_id, amount:amount, hotel_id:hotel_id, payment_id:payment_id, room_id:room_id, start_date: start_date, end_date : end_date},
-                success:function(data){
-                    $('.payment_details_popup').hide();
-                    $('.modal-backdrop').hide();
-                    $("#success_payment").modal("toggle");
-                    $('.bookingId').val('Booking Ref :'+ data.bookingId);
-                }
-            });
-        },
-        "prefill": {
-            "name": "demo",
-            "email": "dem@examle.com",
-            "contact": "1234567890"
-        },
-        "notes": {
-            "address": "test test"
-        },
-        "theme": {
-            "color": "#6a78c7"
-        }
-        };
-        var rzp1 = new Razorpay(options);
-        rzp1.open();
-    });
-</script>
-<script>
-    const stripe =  Stripe("{{ config('services.stripe.key') }}");
-
-    $(document).on('click', '.payment_button_Stripe', function(e){
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
-        amount=parseInt(amount,10);
-        var total_amount = amount+"00";
-        var payment_id = $('.stripe_payment_id').val();
-        var property_name = $(this).data('value');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var room_id = $('.room_id_'+id).val();
-        var start_date = $('.check_in').val();
-        var end_date = $('.check_out').val();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            type:'POST',
-            url:"{{ route('show.stripe') }}",
-            data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
-            success:function(response){
-
-                stripe.redirectToCheckout({
-                    sessionId : response.session.id,
-                })
-            },error:function (response) {
-                console.log('fail');
-            }
-        });
-    });
-
-    $(document).on('click', '.payment_button_Paypal', function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var amount = $('.amount_data_'+id).val();
-        amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
-        amount=parseInt(amount,10);
-        var total_amount = amount+"00";
-        var payment_id = $('.paypal_payment_id').val();
-        var property_name = $(this).data('value');
-        var hotel_id = $('.hotel_id_'+id).val();
-        var room_id = $('.room_id_'+id).val();
-        var start_date = $('.check_in').val();
-        var end_date = $('.check_out').val();
-
-        window.location.href = base_url + "/payment/processPaypal?id=" + id + "&amount=" + amount + "&total_amount=" + total_amount + "&payment_id=" + payment_id + "&property_name=" + property_name + "&hotel_id=" + hotel_id + '&room_id=' + room_id + '&start_date=' + start_date + '&end_date=' + end_date;
-
-        // $.ajax({
-        //     url: "{{route('processPaypal')}}",
-        //     type: "GET",
-        //     data: {id: id,amount: amount,total_amount: total_amount,payment_id: payment_id,property_name: property_name,hotel_id: hotel_id,room_id: room_id,start_date: start_date,end_date: end_date},
-        //     success: function (response) {
-        //         console.log('succeed');
-        //     }, error:function (response) {
-        //         console.log('fail');
-        //     }
-        // });
-    });
-
-    $(document).on('change', '.hotelBeds', function() {
-        var hotelBeds = $('.hotelBeds:checked').map(function(){return $(this).val();}).get();
-        localStorage.setItem('hotelBeds', hotelBeds);
-    });
-</script>
-
-@endif
 @endpush
