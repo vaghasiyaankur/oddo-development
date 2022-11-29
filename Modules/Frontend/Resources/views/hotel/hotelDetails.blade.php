@@ -54,6 +54,10 @@
             color: white;
             background-color: #566ce2;
         }
+        .property-name{
+            color: black;
+            font-weight: 800;
+        }
     </style>
 @endpush
 
@@ -63,8 +67,10 @@
         <div class="container">
             <div class="h-details-title-box">
                 <div class="h-details-heading d-flex justify-content-between align-items-center">
-                    <h2 class="d-flex align-items-center">Holiday In {{ @$hotel->city->name }} <span
-                            class="rating-text bg-green ms-2 py-1">{{ @$hotel->propertytype->type }}</span></h2>
+                    <div class="d-block">
+                    <h3 class="align-items-center property-name">{{ @$hotel->property_name }} </h3>
+                    <h6 class="align-items-center mx-1">Holiday In {{ @$hotel->city->name }} <span
+                            class="rating-text bg-green ms-2 py-1">{{ @$hotel->propertytype->type }}</span></h6></div>
                     <div class="h-rating">
                         <span class="rating-text bg-green ">{{ @$hotel->star_rating }}/5</span>
                         @for ($i = 0; $i < 5; $i++)

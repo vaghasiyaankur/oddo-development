@@ -112,7 +112,7 @@
             </div>
             <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('hotel.index') }}">Hotels </a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('hotel.index') }}">Search </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('city.index') }}">Cities</a>

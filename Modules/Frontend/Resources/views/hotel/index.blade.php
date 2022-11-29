@@ -1604,9 +1604,15 @@ search
             var sortby = $(".sortBy:checked").map(function(){return $(this).val();}).get();
             var preference = $("#myPreferencesData:checked").map(function(){return $(this).val();}).get();
 
-            // if (!search) {
-            //     return;
-            // }   
+            $('.bookingSelectError').removeClass("d-none");
+            var data = $('.pac-target-input').val().length;
+            if(data >= 1){
+                $('.bookingSelectError').addClass('d-none');
+            }
+        
+            if (!search) {
+                return;
+            }   
 
             var propertyTypeCheckBox = [];
             $.each($("input[class='P_TypeCheckbox']:checked"), function(){
@@ -1749,10 +1755,10 @@ search
             $(document).on('click', '.select-div', function() {
                 $('.select-room').html('');
                 var index = $('.select_room').val();
-                for (var i = 1; i <= index; i++) {
-                    $number = i;
+                // for (var i = 1; i <= index; i++) {
+                    $number = 1;
                     addRoom($number);
-                }
+                // }
                 $(".select-option").toggleClass("option-none");
                 
                 var get = localStorage.getItem('hotelBeds');
