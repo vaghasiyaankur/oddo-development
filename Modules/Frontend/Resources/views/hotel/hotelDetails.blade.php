@@ -58,6 +58,12 @@
             color: black;
             font-weight: 800;
         }
+        
+        @media screen and (max-width:992px){
+            .saved-hotels-details .slick-initialized .slick-slide{
+                margin-right: 15px;
+            }
+        }
     </style>
 @endpush
 

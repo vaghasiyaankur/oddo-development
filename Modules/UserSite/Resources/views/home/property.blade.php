@@ -75,7 +75,7 @@
                         {{-- data-bs-target="#image_{{ $hotel->UUID }} " --}}
 
                     @endif
-                    <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
+                    <a href="{{ route('hotel.detail', @$hotel->slug) }}" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
                     <a href="{{route('basic-info', ['id' => $hotel->UUID])}}"
                         class="white-button-step py-2 d-flex align-items-center me-2 px-3">Edit Property</a>
                     <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center propertyDelete"
@@ -185,8 +185,13 @@
                     ],
                 });
             }
+        
+        $(document).on('click','.image-close',function(){
+            $('.popupImage').prop("disabled", false);
+        });
 
         $(document).on('click','.albumBtn',function(){
+            $(this).prop("disabled", true);
             var id = $(this).data('id');
 
             formdata = new FormData();

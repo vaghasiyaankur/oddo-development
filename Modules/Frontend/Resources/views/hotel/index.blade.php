@@ -117,10 +117,11 @@ search
     .bed-selector .dropdown-container {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         flex-wrap: wrap;
         /* height: 150px; */
-        padding: 12px;
+        padding: 9px 12px;
+        line-height: 29px;
     }
 
     .bed-selector .dropdown-container .column {
@@ -285,7 +286,7 @@ search
 
     @media screen and (max-width:992px) {
         .hotel-result .bookingSelectError {
-            position: absolute;
+            /* position: absolute; */
             bottom: -113px !important;
             left: 0 !important;
         }
@@ -293,7 +294,7 @@ search
 
     @media screen and (min-width:406px) and (max-width:768px) {
         .hotel-result .bookingSelectError {
-            position: absolute;
+            /* position: absolute; */
             bottom: -258px !important;
             left: 0 !important;
         }
@@ -338,7 +339,7 @@ search
 
     @media screen and (max-width:992px) {
         .hotel-result .bookingSelectError {
-            position: absolute;
+            /* position: absolute; */
             bottom: -113px !important;
             left: 0 !important;
         }
@@ -346,7 +347,7 @@ search
 
     @media screen and (min-width:406px) and (max-width:768px) {
         .hotel-result .bookingSelectError {
-            position: absolute;
+            /* position: absolute; */
             bottom: -258px !important;
             left: 0 !important;
         }
@@ -354,7 +355,7 @@ search
 
     @media screen and (max-width:406px) {
         .hotel-result .bookingSelectError {
-            position: absolute;
+            /* position: absolute; */
             bottom: -272px !important;
             left: 0 !important;
         }
@@ -660,6 +661,27 @@ search
         flex: 0 0 50%;
         padding-right: 100px;
     }
+
+    @media screen and (max-width:1200px){
+        .guests-option .drop-down__guest{
+            padding: 0 5px 0 23px;
+        }        
+    }
+    @media screen and (max-width:992px){
+        .bookingSelectError{
+           top: 20%;
+        }        
+    }
+    @media screen and (max-width:768px){
+        .ImagepPopup{
+            width: 100%;
+            height: 100%;
+        }
+        .reviews-popup-main .reviews-popup .reviews-heading h4{
+            font-size: 21px;
+        }
+    }
+
 </style>
 @endpush
 
@@ -682,7 +704,7 @@ search
                                 <i class="fa-solid fa-magnifying-glass pe-3"></i>
                             </div>
                             
-                            <span class="text-danger d-none bookingSelectError" style="position: absolute;font-size:14px;">Please Select destination for booking room!</span>
+                            <span class="text-danger d-none bookingSelectError">Please Select destination for booking room!</span>
                         </div>
                         <div class="col-lg-6 mb-2">
                             <form action="javascript: void(0);">
@@ -1755,7 +1777,7 @@ search
             $(document).on('click', '.select-div', function() {
                 $('.select-room').html('');
                 var index = $('.select_room').val();
-                // for (var i = 1; i <= index; i++) {
+                // for (var i = 1; i <= index; i++) { 
                     $number = 1;
                     addRoom($number);
                 // }
@@ -1802,20 +1824,20 @@ search
                     }
                 }
                 $room = $(`<div class="room"><div class="title-container">
-                            <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
+                            <h5 class="title" style="margin:10px;">Room </h5>
                         </div>
                         <section class="dropdown-container">
-                            <div class="dropdown-inner">
+                            <div class="dropdown-inner mx-3">
                                 <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="king_` + $number + `" value="King"`+ king +`>
-                                <label for="king_` + $number + `">1 King</label>
+                                <label for="king_` + $number + `"> King</label>
                             </div>
-                            <div class="dropdown-inner">
+                            <div class="dropdown-inner mx-4">
                                 <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin"`+ twin +`>
-                                <label for="twin_` + $number + `">2 Twin</label>
+                                <label for="twin_` + $number + `"> Twin</label>
                             </div>
-                            <div class="dropdown-inner">
+                            <div class="dropdown-inner mx-3">
                                 <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen"`+  queen +` >
-                                <label for="queen_` + $number + `">2 Queen</label>
+                                <label for="queen_` + $number + `"> Queen</label>
                             </div>
                         </section>
                     </div>`);

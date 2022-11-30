@@ -119,6 +119,15 @@
             max-width: 516px;
             /* width: 100%; */
         }
+        @media screen and (max-width:1200px){
+            header.header .navbar .navbar-nav .nav-item{
+            padding-right: 8px;            
+            }
+            header.header .navbar .navbar-nav .nav-item a.nav-link{
+                font-size: 13px;
+                line-height: 26px;
+            }
+        }
     </style>
 
 </head>

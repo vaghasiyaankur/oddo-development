@@ -395,6 +395,11 @@
             background-color: rgba(243,244,245,var(--tw-bg-opacity)) !important;
             cursor: not-allowed;
         }
+        @media screen and (max-width:1200px){
+            .guests-option .drop-down__guest{
+                padding: 0 5px 0 23px;
+            }        
+        }
     </style>
 @endpush
 

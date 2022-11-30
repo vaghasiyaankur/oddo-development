@@ -6,7 +6,7 @@
               <div class="row">
                   @foreach ($cities as $city)
                   {{-- @dd($city) --}}
-                  <div class="col-lg-4 col-sm-6 col-12  p-0 mb-3">
+                  <div class="col-lg-4 col-12  p-0 mb-3">
                       <div class="t-city-card position-relative ">
                           <div class="t-city-card-img position-relative text-center">
                                 <img src="{{$city->background_image ? asset('storage/'.$city->background_image) : asset('assets/images/defaultImage.png')}}"
