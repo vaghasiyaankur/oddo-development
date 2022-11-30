@@ -49,7 +49,10 @@
                         
                     </li>
                 </ul>
-
+                <div class="notification-button">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                    
+                </div>
                 @php
                     if (auth()->check()) {
                         $authId = auth()->user()->id;

@@ -128,6 +128,21 @@
                 line-height: 26px;
             }
         }
+        /*  */
+        .notification-button {
+            width: 100%;
+            max-width: 30px;
+            height: 100%;
+            min-height: 30px;
+            max-height: 30px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+        
     </style>
 
 </head>
