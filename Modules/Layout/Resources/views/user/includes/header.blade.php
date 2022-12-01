@@ -50,8 +50,28 @@
                     </li>
                 </ul>
                 <div class="notification-button">
-                    <i class="fa fa-bell-o" aria-hidden="true"></i>
-                    
+                    <div class="notification-icon">
+                        <i class="fa fa-bell-o" aria-hidden="true"></i>                    
+                    </div>                    
+                    <div class="notification-box">
+                        <div class="notification-inner">
+                            <div class="notification-heading">Notification</div>
+                            <div class="inner-box">
+                                <div class="notification-img">
+                                    <img src="{{ asset('storage/city/bangkok.webp') }}" alt="">
+                                </div>
+                                <div class="notification-data">
+                                    <h5>Buckminster Patton</h5>
+                                    <div class="data-time">
+                                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>1 Hour ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-close-btn">
+                                    <a href="javascript:;"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @php
                     if (auth()->check()) {
