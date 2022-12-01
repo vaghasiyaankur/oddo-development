@@ -5,6 +5,8 @@ namespace Modules\UserSite\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\BookingNotification;
+use Illuminate\Support\Facades\Auth;
 
 class UserSiteController extends Controller
 {
@@ -75,5 +77,17 @@ class UserSiteController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function notification(){
+            $hotelCount = BookingNotification::count();
+            return response()->json(["hotelCount" => $hotelCount], 200);
+    }
+    
+    public function showNotification(Request $request){
+
+    }
+
+    public function deleteNotification(Request $request){
+
     }
 }

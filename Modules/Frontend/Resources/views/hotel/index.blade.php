@@ -1239,7 +1239,7 @@ search
             });
 </script>
 @endif
-@if (session()->get('error'))
+{{-- @if (session()->get('error'))
 <script>
     $(document).ready(function() {
                 $('#payment_error_').modal('show');
@@ -1248,7 +1248,7 @@ search
                 }, 4000);
             });
 </script>
-@endif
+@endif --}}
 
 @php
     $paypalId = config('paypal.sandbox.client_id');

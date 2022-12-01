@@ -103,5 +103,11 @@ Route::prefix('user')->group(function() {
             Route::get('/', 'index')->name('booking');
             Route::post('filter', 'bookingFilter')->name('booking.filter');
         });
+
+        Route::controller(UserSiteController::class)->group(function(){
+            Route::post('notification', 'notification')->name('booking.notification');
+            Route::post('notification/show', 'showNotification')->name('booking.show');
+            Route::post('notification/delete', 'deleteNotification')->name('booking.delete');
+        });
     });
 });

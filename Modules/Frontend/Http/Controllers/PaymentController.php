@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Razorpay\Api\Api;
 use Exception;
 use App\Models\HotelBooking;
+use App\Models\BookingNotification;
 use Illuminate\Support\Facades\Session;
 use App\Models\Payment;
 use Slim\Http\Response;
@@ -61,6 +62,12 @@ class PaymentController extends Controller
                 return response()->json(['error' =>'error']);
             }
         }
+
+        $id = '';
+        $notification = BookingNotification::updateOrCreate(['id' => $id], [
+            'hotel_id' => $input['hotel_id'],
+            'user_id' => auth()->user()->id
+        ]);
 
         Mail::to(auth()->user()->email)->send(new PaymentSuccess);
         $bookingId = HotelBooking::select('UUID')->latest()->first();
@@ -136,6 +143,12 @@ class PaymentController extends Controller
         $hotel_booking->day_diff = $shift_difference;
         $hotel_booking->save();
 
+        $id = '';
+        $notification = BookingNotification::updateOrCreate(['id' => $id], [
+            'hotel_id' => $paymentData['hotel_id'],
+            'user_id' => auth()->user()->id
+        ]);
+        
         Mail::to(auth()->user()->email)->send(new PaymentSuccess);
         $bookingId = HotelBooking::select('UUID')->latest()->first();
         return redirect()->route('hotel.index')->with(['booking'=> $bookingId]);
@@ -233,6 +246,12 @@ class PaymentController extends Controller
             $hotel_booking->end_date = $end_date;
             $hotel_booking->day_diff = $shift_difference;
             $hotel_booking->save();
+
+            $id = '';
+            $notification = BookingNotification::updateOrCreate(['id' => $id], [
+                'hotel_id' => $paymentPayPal    ['hotel_id'],
+                'user_id' => auth()->user()->id
+            ]);
 
             Mail::to(auth()->user()->email)->send(new PaymentSuccess);
             $bookingId = HotelBooking::select('UUID')->latest()->first();
