@@ -49,30 +49,23 @@
                         
                     </li>
                 </ul>
-                <div class="notification-button">
+                <a href="javascript:;" class="notification-button">
                     <div class="notification-icon">
                         <i class="fa fa-bell-o" aria-hidden="true"></i>                    
-                    </div>                    
-                    <div class="notification-box">
-                        <div class="notification-inner">
-                            <div class="notification-heading">Notification</div>
-                            <div class="inner-box">
-                                <div class="notification-img">
-                                    <img src="{{ asset('storage/city/bangkok.webp') }}" alt="">
-                                </div>
-                                <div class="notification-data">
-                                    <h5>Buckminster Patton</h5>
-                                    <div class="data-time">
-                                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>1 Hour ago</span>
-                                    </div>
-                                </div>
-                                <div class="notification-close-btn">
-                                    <a href="javascript:;"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                    <?php 
+                        $userId = auth()->user()->id;
+                        $hotelCount = App\Models\BookingNotification::where('user_id',$userId)->count();
+                    ?> 
+                    @if ($hotelCount > 0)   
+                    <span
+                    class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger notificationCount"><span class="data-content">0</span> <span
+                        class="visually-hidden">unread messages</span></span>   
+                    <input type="hidden" class="hotelCount" value="">
+                    <div class="notification-box d-none">
+                    </div>
+                    @endif  
+                </a>
                 @php
                     if (auth()->check()) {
                         $authId = auth()->user()->id;
@@ -224,6 +217,86 @@
 
 @push('script')
 <script>
+     $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+    $(document).ready(function(){
+
+        // show notification panel
+        $(document).on('click','.notification-button',function() {
+            var countValue = $('.hotelCount').val();            
+            if(countValue != 0){
+                show();
+            }
+            $('.notification-box').toggle();
+            $('.notification-box').removeClass('d-none');
+        });
+        
+        $(document).on('click','.notification-close-btn', function(){
+            $('.notification-button').trigger('click');
+            var hotel_id = $(this).data('id');
+
+            formdata = new FormData();
+            formdata.append('hotel_id', hotel_id);
+
+            $.ajax({
+                url: "{{route('booking.delete')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    show();
+                    notificationCount();  
+                },
+            });
+        });
+        function show() {
+            $.ajax({
+                url: "{{route('bookingNotification.show')}}",
+                type: 'post',
+                dataType: "HTML",
+                processData: false,
+                contentType: false,
+                success: function(response){
+                    $('.notification-box').html(response);
+                }
+            });
+        }
+
+        notificationCount();
+        setInterval(notificationCount,100000);
+
+        // count notifiation
+        function notificationCount(){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('booking.notification')}}",
+                type: 'post',
+                processData: false,
+                contentType: false,
+                success: function(response){
+                    var count = $('.data-content').html(response.hotelCount);
+                    $('.hotelCount').val(response.hotelCount);
+                }
+            });
+        }
+        
+        $('body').on("click",function(e){
+            var container = $(".notification-box");
+            
+            if(!container.is(e.target) && container.has(e.target).length === 0){
+                container.hide();
+            }
+        });
+        
+        
+    });
+    
     $(document).ready(function(){
         // $(document).on('click', '.responsive_btn', function(){
         //     $(this).addClass('d-none');

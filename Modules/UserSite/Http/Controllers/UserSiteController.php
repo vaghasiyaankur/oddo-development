@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\BookingNotification;
+use App\Models\Hotel;
 use Illuminate\Support\Facades\Auth;
 
 class UserSiteController extends Controller
@@ -79,15 +80,26 @@ class UserSiteController extends Controller
         //
     }
     public function notification(){
-            $hotelCount = BookingNotification::count();
+            $userId = auth()->user()->id;
+            $hotelCount = BookingNotification::where('user_id',$userId)->count();
             return response()->json(["hotelCount" => $hotelCount], 200);
     }
     
-    public function showNotification(Request $request){
+    public function showNotifications(Request $request){
+        $userId = auth()->user()->id;
+        $notifications =  BookingNotification::select('hotel_id','user_id')->where('user_id',$userId)->get();
+        $hotels = array();
+        foreach ($notifications as $key => $notification) {
+            $hotels[] = Hotel::where('id', $notification->hotel_id)->select('id','user_id', 'property_name', 'UUID', 'created_at')->get();
+        }
+
+        $data['hotels'] = $hotels;
+        return view('layout::user.includes.notification', $data);
 
     }
 
     public function deleteNotification(Request $request){
-
+        $hotel = BookingNotification::where('hotel_id',$request->hotel_id)->delete();
+        return response()->json(["message" => 'notification delete successfully.'], 200);
     }
 }
