@@ -442,7 +442,7 @@
                                     <input type="hidden" name="longitude" id="longitude" class="form-control">
                                     <i class="fa-solid fa-magnifying-glass pe-3"></i>
                                 </div>
-                                <span class="search-error text-danger"></span>
+                                <span class="search-error text-danger position-absolute"></span>
                             </div>
                             <div class="col-lg-6 mb-2">
                                 <form action="javascript: void(0);">
@@ -451,6 +451,8 @@
                                         <?php 
                                             $checkInDate = Carbon\Carbon::tomorrow()->format('d/m/Y');
                                             $checkOutDate = Carbon\Carbon::now()->addDays(2)->format('d/m/Y');
+                                            $CheckIn = request()->checkIn;
+                                            $CheckOut = request()->checkOut;
                                         ?>
                                         <div class="check-text-label pt-4 pe-xl-4 pe-lg-3 mb-3 mb-lg-0">
                                             <label class="check-inout mt-2">Check-In </label>
@@ -458,7 +460,7 @@
                                                 <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2">
                                                 <input type="text" class="input--control ps-xl-2"
                                                     name="value_from_start_date" placeholder="{{ $checkInDate }}"
-                                                    data-datepicker="separateRange" value="{{ request()->checkIn }}" />
+                                                    data-datepicker="separateRange" value="{{ $CheckIn ? $CheckIn : $checkInDate }}" />
                                             </div>
                                         </div>
                                         <div class="check-text-label pt-4">
@@ -467,7 +469,7 @@
                                                 <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2">
                                                 <input type="text" class="input--control ps-xl-2"
                                                     name="value_from_end_date" placeholder="{{ $checkOutDate }}"
-                                                    data-datepicker="separateRange" value="{{ request()->checkOut }}" />
+                                                    data-datepicker="separateRange" value="{{ $CheckOut ? $CheckOut : $checkOutDate }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -602,7 +604,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 text-lg-center mt-4 d-flex align-items-center">
-                                <div class="check-in-out-icon d-flex pt-2 align-items-center">
+                                <div class="check-in-out-icon pt-2 align-items-center" style="text-align: left;">
                                     <div class="check-icons-inner ms-lg-4">
                                         <img src="{{ asset('assets/images/icons/check-1.png') }}" class="img-fluid me-1">
                                         <img src="{{ asset('assets/images/icons/check-2.png') }}" class="img-fluid me-1">

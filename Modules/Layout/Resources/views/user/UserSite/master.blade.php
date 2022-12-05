@@ -216,23 +216,20 @@ $generalSetting = App\Models\GeneralSetting::first();
    });
    $(document).ready(function(){
 
-    $(document).on('click','.notification-button',function() {
+        $(document).on('click','.notification-button',function() {
             var countValue = $('.hotelCount').val();            
             if(countValue != 0){
                 show();
             }
             $('.notification-box').toggle();
-            $('.notification-box').removeClass('d-none');
         });
-        $('body').on("click",function(e){
-            var container = $(".notification-box");
-            
-            console.log('hello');
-            if(!container.is(e.target) && container.has(e.target).length === 0){
-                container.hide();
-            }
-        });
-   
+        
+            window.addEventListener('mouseup',function(event){
+                    var pol = document.getElementById('box');
+                    if(event.target != pol && event.target.parentNode != pol){
+                        pol.style.display = 'none';
+                    }
+            }); 
        function show() {
            $.ajax({
                url: "{{route('bookingNotification.show')}}",
@@ -247,7 +244,8 @@ $generalSetting = App\Models\GeneralSetting::first();
        }
 
        $(document).on('click','.notification-close-btn', function(){
-            $('.notification-button').trigger('click');
+            $('.notification-button').removeProp('display','none');
+            $('.notification-box').removeProp('display','none');
            var hotel_id = $(this).data('id');
 
            formdata = new FormData();

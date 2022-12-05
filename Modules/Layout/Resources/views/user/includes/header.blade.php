@@ -57,12 +57,20 @@
                         $userId = auth()->user()->id;
                         $hotelCount = App\Models\BookingNotification::where('user_id',$userId)->count();
                     ?> 
-                    @if ($hotelCount > 0)   
                     <span
                     class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger notificationCount"><span class="data-content">0</span> <span
                         class="visually-hidden">unread messages</span></span>   
                     <input type="hidden" class="hotelCount" value="">
-                    <div class="notification-box d-none">
+                    
+                    @if ($hotelCount > 0)   
+                    <div class="notification-box" id="box" style="display: none;">
+                    </div>
+                    @else
+                    <div class="notification-box" id="box"  style="display: none;">
+                        <div class="notification-inner">
+                            <div class="notification-heading">Notification</div>  
+                            <p class="notification-empty" style="padding:5px;">Notification box is empty.</p>
+                        </div>
                     </div>
                     @endif  
                 </a>
@@ -231,11 +239,19 @@
                 show();
             }
             $('.notification-box').toggle();
-            $('.notification-box').removeClass('d-none');
         });
-        
+
+        window.addEventListener('mouseup',function(event){
+                var pol = document.getElementById('box');
+                if(event.target != pol && event.target.parentNode != pol){
+                    pol.style.display = 'none';
+                }
+        }); 
+
+
         $(document).on('click','.notification-close-btn', function(){
-            $('.notification-button').trigger('click');
+            $('.notification-button').removeProp('display','none');
+            $('.notification-box').removeProp('display','none');
             var hotel_id = $(this).data('id');
 
             formdata = new FormData();
@@ -284,17 +300,7 @@
                     $('.hotelCount').val(response.hotelCount);
                 }
             });
-        }
-        
-        $('body').on("click",function(e){
-            var container = $(".notification-box");
-            
-            if(!container.is(e.target) && container.has(e.target).length === 0){
-                container.hide();
-            }
-        });
-        
-        
+        }        
     });
     
     $(document).ready(function(){

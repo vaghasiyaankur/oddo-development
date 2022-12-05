@@ -703,16 +703,17 @@ search
                                 <input type="hidden" name="longitude" id="longitude" class="form-control">
                                 <i class="fa-solid fa-magnifying-glass pe-3"></i>
                             </div>
-                            
-                            <span class="text-danger d-none bookingSelectError">Please Select destination for booking room!</span>
+                            <span class="text-danger d-none position-absolute bookingSelectError">Please Select destination for booking room!</span>
                         </div>
                         <div class="col-lg-6 mb-2">
                             <form action="javascript: void(0);">
                                 <div
                                     class="custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
                                     <?php 
-                                    $checkInDate = Carbon\Carbon::tomorrow()->format('d/mY');
-                                    $checkOutDate = Carbon\Carbon::now()->addDays(2)->format('d/mY');
+                                    $checkInDate = Carbon\Carbon::tomorrow()->format('d/m/Y');
+                                    $checkOutDate = Carbon\Carbon::now()->addDays(2)->format('d/m/Y');
+                                    $CheckIn = request()->checkIn;
+                                    $CheckOut = request()->checkOut;
                                      ?>
                                     <div class="check-text-label pt-4 pe-xl-4 pe-lg-3">
                                         <label class="check-inout mt-2">Check-In</label>
@@ -720,7 +721,7 @@ search
                                             <img src="{{ asset('assets/images/icons/cal-1.png') }}" class="px-2" alt="checkin" width="31" height="16">
                                             <input type="text" class="input--control ps-xl-2 check_in"
                                                 name="value_from_start_date" placeholder="{{ $checkInDate }}"
-                                                data-datepicker="separateRange" value="{{ request()->checkIn }}" />
+                                                data-datepicker="separateRange" value="{{ $CheckIn ? $CheckIn : $checkInDate }}" />
                                         </div>
                                     </div>
                                     <div class="check-text-label pt-4">
@@ -729,7 +730,7 @@ search
                                             <img src="{{ asset('assets/images/icons/cal-2.png') }}" class="px-2" alt="checkout" width="31" height="16">
                                             <input type="text" class="input--control ps-xl-2 check_out"
                                                 name="value_from_end_date" placeholder="{{ $checkOutDate     }}"
-                                                data-datepicker="separateRange" value="{{ request()->checkOut }}" />
+                                                data-datepicker="separateRange" value="{{ $CheckOut ? $CheckOut : $checkOutDate }}" />
                                         </div>
                                     </div>
                                     {{-- <span class="text-danger d-none bookingSelectError" style="position: absolute;bottom: -23px;
@@ -870,7 +871,7 @@ search
                             <a href="javascript:;" class="btn search-btn purple" id='SubmitSearch'>Search</a>
                         </div> --}}
                         <div class="col-lg-6 col-md-6 text-lg-center mt-4 d-flex align-items-center">
-                            <div class="check-in-out-icon d-flex pt-2 align-items-center">
+                            <div class="check-in-out-icon pt-2 align-items-center" style="text-align: left;">
                                 <div class="check-icons-inner ms-lg-4">
                                     <img src="{{ asset('assets/images/icons/check-1.png') }}" class="img-fluid me-1">
                                     <img src="{{ asset('assets/images/icons/check-2.png') }}" class="img-fluid me-1">
@@ -1232,11 +1233,11 @@ search
 @if (session()->get('booking'))
 <script>
     $(document).ready(function() {
-                $('#success_payment').modal('show');
-                setTimeout(function() {
-                    $('#success_payment').modal('hide')
-                }, 4000);
-            });
+        $('#success_payment').modal('show');
+        setTimeout(function() {
+            $('#success_payment').modal('hide');
+        }, 4000);
+    });
 </script>
 @endif
 {{-- @if (session()->get('error'))
@@ -1324,7 +1325,13 @@ search
                 success:function(data){
                     $('.payment_details_popup').hide();
                     $('.modal-backdrop').hide();
-                    $("#success_payment").modal("toggle");
+                    $('body').css('overflow','');
+                    $('body').css('padding-right','0');
+                    console.log($('body').removeProp('overflow'));
+                    $('#success_payment').modal('show');
+                    setTimeout(function() {
+                        $('#success_payment').modal('hide');
+                    }, 4000);
                     $('.bookingId').val('Booking Ref :'+ data.bookingId);
                 }
             });
@@ -1943,10 +1950,10 @@ $(document).ready(function(){
                 }
                 var guestvalue = $('.quantity__input').val();
                 var roomvalue = $('.room__input').val();
-                if(guestvalue.length >= 1){
+                if(guestvalue.length > 1){
                     $('.quantity__minus').prop('disabled', false);
                 }
-                if(roomvalue.length >= 1){
+                if(roomvalue.length > 1){
                     $('.room__minus').prop('disabled', false);
                 }
                 // console.log(response);
@@ -2110,6 +2117,7 @@ $(document).ready(function(){
         if(sort_pre && budMin && budMax && rate && amenity){
             $('.preferenceModal').click();
             $('.modal-close').click(function(){
+                $('.ResetForm').addClass('d-none');
                 $('#myPreferencesData').prop('checked',false);
                 if ($('#myPreferencesData').hasClass('myPreference')) {                
                     $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
@@ -2305,6 +2313,8 @@ $(document).ready(function(){
     });
     $(document).ready(function() {
         $(".btn-reset").click(function() {
+            $('.quantity__minus').attr('disabled',true);
+            $('.room__minus').attr('disabled',true);
             $(".select_guest").val('1');
             $(".select_room").val('1'); 
             $('.guestNum').html(1);
