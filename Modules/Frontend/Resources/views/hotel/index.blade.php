@@ -774,7 +774,7 @@ search
                                             <div class="d-flex align-items-center justify-content-between px-3">
                                                 <div>Guests</div>
                                                 <div class="quantity">
-                                                    <button class="quantity__minus"><span>-</span></button>
+                                                    <button class="quantity__minus" {{ $selectGuest == 1 ? 'disabled' : ''}}><span>-</span></button>
                                                     <input type="text" class="quantity__input select_guest" name="guest" value="{{ $selectGuest ? $selectGuest : 1 }}">
                                                     <a href="#" class="quantity__plus"><span>+</span></a>
                                                 </div>
@@ -784,7 +784,7 @@ search
                                             <div class="d-flex align-items-center justify-content-between px-3">
                                                 <div>Room</div>
                                                 <div class="quantity">
-                                                    <button class="room__minus"><span>-</span></button>
+                                                    <button class="room__minus" {{ $selectRoom == 1 ? 'disabled' : ''}}><span>-</span></button>
                                                     <input type="text" class="room__input select_room" name="room" value="{{ $selectRoom ? $selectRoom : 1 }}">
                                                     <a href="#" class="room__plus"><span>+</span></a>
                                                 </div>
@@ -2331,8 +2331,8 @@ $(document).ready(function(){
             }
         });
 
-        $('.quantity__minus').attr('disabled',true);
-        $('.room__minus').attr('disabled',true);
+        // $('.quantity__minus').attr('disabled',true);
+        // $('.room__minus').attr('disabled',true);
 
         $('.quantity__minus').on('keydown, click', function () {
             var texInputValue = $('.select_guest').val();

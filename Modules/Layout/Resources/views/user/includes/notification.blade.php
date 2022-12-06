@@ -1,7 +1,5 @@
 <div class="notification-inner">
     <div class="notification-heading">Notification</div>
-
-    {{-- @dd('hello'); --}}
     @if (@$hotels)
         @foreach (@$hotels as $hotelDetails)
             @foreach ($hotelDetails as $hotel)
@@ -9,11 +7,14 @@
                 <div class="notification-img">
                     <img src="{{ asset('storage/city/bangkok.webp') }}" alt="">
                 </div>
+                <?php 
+                    $date = $hotel->created_at->addDay()->subMinutes(-30);
+                ?>
                 <div class="notification-data">
                     <h5>{{ @$hotel->property_name }}</h5>
                     <div class="data-time">
                         <span><i class="fa fa-clock-o" aria-hidden="true"></i>Hotel has been booked
-                            {{$hotel->created_at->diffForHumans() }}</span>
+                            {{$date->diffForHumans() }}</span>
                     </div>
                 </div>
                 <div class="notification-close-btn" data-id="{{ @$hotel->id }}">

@@ -232,6 +232,10 @@
     });
     $(document).ready(function(){
 
+        show();
+        notificationCount();
+        setInterval(notificationCount,4000);
+        
         // show notification panel
         $(document).on('click','.notification-button',function() {
             var countValue = $('.hotelCount').val();            
@@ -282,8 +286,6 @@
             });
         }
 
-        notificationCount();
-        setInterval(notificationCount,100000);
 
         // count notifiation
         function notificationCount(){
