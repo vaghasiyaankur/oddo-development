@@ -154,6 +154,10 @@
                         <a class="nav-link" href="{{ route('saved.index') }}">Saved</a>
                     </li>
                 @endauth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact.index') }}">Contact Us</a>
+                    
+                </li>
             </ul>
 
             @php

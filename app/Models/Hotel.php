@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Amenities;
 use App\Models\Wishlistable;
+use App\Models\BookingNotification;
 use App\Traits\Uuids;
 
 class Hotel extends Model
@@ -154,5 +155,9 @@ class Hotel extends Model
 
     public function amenities(){
         return $this->belongsTo(Amenities::class, 'amenity_id');
+    }
+    public function notification()
+    {
+        return $this->hasMany(BookingNotification::class, 'hotel_id');
     }
 }

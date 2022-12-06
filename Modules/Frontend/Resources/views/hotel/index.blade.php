@@ -681,6 +681,63 @@ search
             font-size: 21px;
         }
     }
+    .spinner-border{
+        margin-top: 3px;
+        float: right;
+        left: 55px;
+        width: 18px !important;
+        height: 18px !important;
+    }
+    .spinner-stripe,.spinner-paypal{
+        margin-top: 3px;
+        float: right;
+        left: 55px;
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    @media screen and (max-width:992px){
+        .spinner-border,.spinner-stripe{
+            left: 49%;
+        }
+    }
+    @-webkit-keyframes spinner-stripe {
+    to {
+        -webkit-transform: rotate(360deg) ;
+                transform: rotate(360deg) ;
+    }
+    }
+
+    @keyframes spinner-stripe {
+    to {
+        -webkit-transform: rotate(360deg) ;
+                transform: rotate(360deg) ;
+    }
+    }
+    @-webkit-keyframes spinner-paypal {
+    to {
+        -webkit-transform: rotate(360deg) ;
+                transform: rotate(360deg) ;
+    }
+    }
+
+    @keyframes spinner-paypal {
+    to {
+        -webkit-transform: rotate(360deg) ;
+                transform: rotate(360deg) ;
+    }
+    }
+    .spinner-stripe,.spinner-paypal {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: -0.125em;
+    border: 0.25em solid currentColor;
+    border-left-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: 0.75s linear infinite spinner-stripe;
+            animation: 0.75s linear infinite spinner-stripe;
+    }
 
 </style>
 @endpush
@@ -1292,6 +1349,9 @@ search
     // razorpay payment gateway
     $(document).on('click', '.payment_button_Razorpay', function(e){
         e.preventDefault();
+        $(this).css('box-shadow', '0 1px 12px rgb(188 185 185)');
+        $(this).css({"opacity": ".4"});
+        $('.spinner-border').show();
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
         amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
@@ -1325,9 +1385,10 @@ search
                 success:function(data){
                     $('.payment_details_popup').hide();
                     $('.modal-backdrop').hide();
+                    $('.spinner-border').hide();
                     $('body').css('overflow','');
                     $('body').css('padding-right','0');
-                    console.log($('body').removeProp('overflow'));
+                    $(this).css({ 'background-color' : '', 'opacity' : '' });
                     $('#success_payment').modal('show');
                     setTimeout(function() {
                         $('#success_payment').modal('hide');
@@ -1356,6 +1417,9 @@ search
     const stripe =  Stripe("{{ config('services.stripe.key') }}");
 
     $(document).on('click', '.payment_button_Stripe', function(e){
+        $(this).css('box-shadow', '0 1px 12px rgb(188 185 185)');
+        $(this).css({"opacity": ".4"});
+        $('.spinner-stripe').show();
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
         amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
@@ -1379,7 +1443,7 @@ search
             url:"{{ route('show.stripe') }}",
             data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
             success:function(response){
-
+                $('.spinner-stripe').hide();
                 stripe.redirectToCheckout({
                     sessionId : response.session.id,
                 })
@@ -1391,6 +1455,9 @@ search
 
     $(document).on('click', '.payment_button_Paypal', function(e){
         e.preventDefault();
+        $(this).css('box-shadow', '0 1px 12px rgb(188 185 185)');
+        $(this).css({"opacity": ".4"});
+        $('.spinner-paypal').show();
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
         amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number

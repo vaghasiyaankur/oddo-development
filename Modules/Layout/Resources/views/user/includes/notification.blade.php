@@ -1,23 +1,23 @@
 <div class="notification-inner">
     <div class="notification-heading">Notification</div>
-    @if (@$hotels)
-        @foreach (@$hotels as $hotelDetails)
-            @foreach ($hotelDetails as $hotel)
+    @if (@$demos)
+    @foreach (@$demos as $hotelD)
+    @foreach ($hotelD as $h)
             <div class="inner-box">
                 <div class="notification-img">
-                    <img src="{{ asset('storage/city/bangkok.webp') }}" alt="">
+                    <img src="{{ @$h->mainPhoto->first()->photos ? asset('storage/' . @$h->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" alt="">
                 </div>
                 <?php 
-                    $date = $hotel->created_at->addDay()->subMinutes(-30);
+                    $date = $h->created_at;
                 ?>
                 <div class="notification-data">
-                    <h5>{{ @$hotel->property_name }}</h5>
+                    <h5>{{ @$h->property_name }}</h5>
                     <div class="data-time">
                         <span><i class="fa fa-clock-o" aria-hidden="true"></i>Hotel has been booked
-                            {{$date->diffForHumans() }}</span>
+                            {{ $h->notification[0]->created_at->diffForHumans() }}</span>
                     </div>
                 </div>
-                <div class="notification-close-btn" data-id="{{ @$hotel->id }}">
+                <div class="notification-close-btn" data-id="{{ @$h->id }}">
                     <a href="javascript:;"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </div>
             </div>

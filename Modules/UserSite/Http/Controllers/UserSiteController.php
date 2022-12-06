@@ -87,13 +87,13 @@ class UserSiteController extends Controller
     
     public function showNotifications(Request $request){
         $userId = auth()->user()->id;
-        $notifications =  BookingNotification::select('hotel_id','user_id')->where('user_id',$userId)->get();
-        $hotels = array();
+        $notifications =  BookingNotification::select('hotel_id','user_id', 'created_at')->where('user_id',$userId)->get();
+        $demos = array();
         foreach ($notifications as $key => $notification) {
-            $hotels[] = Hotel::where('id', $notification->hotel_id)->select('id','user_id', 'property_name', 'UUID', 'created_at')->get();
+            $demos[] = Hotel::with('notification','mainPhoto')->where('id', $notification->hotel_id)->select('id','user_id', 'property_name', 'UUID')->get();
         }
 
-        $data['hotels'] = $hotels;
+        $data['demos'] = $demos;
         return view('layout::user.includes.notification', $data);
 
     }
