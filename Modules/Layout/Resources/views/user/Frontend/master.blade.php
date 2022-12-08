@@ -255,6 +255,30 @@
             text-align: center;
             color: black;
         } 
+        .mobile-view-notification{
+            display: none;
+        }
+
+        @media screen and (max-width:992px){
+            .mobile-view-notification{
+                display: flex;
+                position: absolute;
+                right: 78px;
+                top: 33px;
+            }
+            .notification-button .notification-box{
+                left: -295px;
+            }
+            .notification-box::after {
+                top: -20px;
+                right: 16px;
+            }
+            .notification-button .notification-box::after {
+            top: -20px;
+            left: 88%;
+            width: 15px;
+        }
+        }
     </style>
 
 </head>

@@ -9,6 +9,34 @@
             <a class="navbar-brand " href="{{ route('home.index') }}">
                 <img class="logoImage" src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}" alt="logo">
             </a>
+            <a href="javascript:;" class="notification-button mobile-view-notification">
+                <div class="notification-icon">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>                    
+                </div>
+                <?php 
+                    $hotelCount = 0;
+                    if (auth()->check()) {
+                        $userId = auth()->user()->id;
+                        $hotelCount = App\Models\BookingNotification::where('user_id',$userId)->count();
+                    }
+                ?> 
+                <span
+                class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger notificationCount"><span class="data-content">0</span> <span
+                    class="visually-hidden">unread messages</span></span>   
+                <input type="hidden" class="hotelCount" value="">
+                
+                @if ($hotelCount > 0)   
+                <div class="notification-box" id="box" style="display: none;">
+                </div>
+                @else
+                <div class="notification-box" id="box"  style="display: none;">
+                    <div class="notification-inner">
+                        <div class="notification-heading">Notification</div>  
+                        <p class="notification-empty" style="padding:5px;">Notification box is empty.</p>
+                    </div>
+                </div>
+                @endif  
+            </a>
             <button class="navbar-toggler responsive_btn" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" style="position: absolute;
             right: 26px;top: 34px;">
                 <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
