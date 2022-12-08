@@ -238,10 +238,6 @@
             }
     });
     $(document).ready(function(){
-
-        show();
-        notificationCount();
-        setInterval(notificationCount,4000);
         
         // show notification panel
         $(document).on('click','.notification-button',function() {
@@ -280,6 +276,14 @@
                 },
             });
         });
+        
+        var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+        if (loggedIn){
+            notificationCount();
+            setInterval(notificationCount,5000);
+            show();  
+        }
+
         function show() {
             $.ajax({
                 url: "{{route('bookingNotification.show')}}",
