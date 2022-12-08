@@ -61,19 +61,27 @@ class HotelController extends Controller
         $sortby = request()->sortby;
         // $topFilter = request()->top_filter;
         
-        if($search){
-            $search = str_replace(',', ' ', $search);
 
-            
+        if($search){
+            $searchdata = str_replace(',', ',', $search);
+            $search = preg_split("/[ ]/",$searchdata);  
+            $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn)->format('Y-m-d');
+            $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut)->format('Y-m-d');
             $hotels = Hotel::with('country', 'city', 'room','amenities');
             if (!empty($search)) {
                 $hotels = $hotels
                 // ->orwhere('property_name', 'like', '%'.$search.'%')
                 // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
-                ->whereRelation('city', 'name', 'like', '%'.$search.'%')
+                ->whereRelation('city', 'name', 'like', '%'.$search[0].'%')
                 ->whereRelation('room', 'guest_stay_room', $guest)
-                ->whereRelation('room', 'number_of_room', $room);
-            }
+                ->whereRelation('room', 'number_of_room', $room)
+                ->whereDoesntHave('hotelBooking', function ($query) use ($checkInDate, $checkOutDate) {
+                    return $query->where(function ($q) use ($checkInDate, $checkOutDate) {
+                            return $q->whereBetween('start_date', [$checkInDate,$checkOutDate])
+                                ->orWhereBetween('end_date', [$checkInDate, $checkOutDate]);
+                        });
+                });
+                }
             if (!empty($request['bed'])) {
                 $hotels = $hotels
                 ->whereHas('hotelBed.bedType', function($query) use ($bed) {
@@ -99,6 +107,8 @@ class HotelController extends Controller
                 $hotels = $hotels ->whereHas('room', function($query) use($con, $budgetMin, $budgetMax){ 
                     return $query->whereBetween(DB::raw('price_room *'.$con), [$budgetMin, $budgetMax]);
                  });
+
+                 
                 // ->with(['room' => function($query) use($con, $budgetMin, $budgetMax) {
                 //     $query->select('id', 'hotel_id', 'smoking_policy', 'price_room', DB::raw('price_room *'.$con.' as price'))
                 //     ;     

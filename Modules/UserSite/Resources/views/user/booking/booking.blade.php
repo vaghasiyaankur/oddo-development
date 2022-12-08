@@ -87,7 +87,7 @@
                                         <li class="nav-item order-2 order-lg-1">
                                             <a class="nav-link selectFilter {{!Request::input('filter') ? 'active' : '' }}" href="{{ route('booking') }}" name="btnFilter" id="btnFilter1"
                                                value="All">
-                                                All ({{ $total_booking }})
+                                                All ({{ $upcomingBooking + $pastBooking }})
                                             </a>
                                         </li>
 

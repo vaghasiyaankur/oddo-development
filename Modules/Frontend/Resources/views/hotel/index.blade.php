@@ -463,7 +463,7 @@ search
     .guests-option .drop-down{
         display: inline-block;
         position: relative;
-        padding-top: 30px;
+        /* padding-top: 30px; */
         width: 100%;
     }
     .guests-option .drop-down__button{
@@ -812,9 +812,10 @@ search
                             </select>
                             <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Guest</span>
                         </div> --}}
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg-3 col-6 mt-2">
+                            <label>Guests & Rooms</label>
                             <div class="guests-option">
-                                <div class="drop-down">
+                                <div class="drop-down pt-2">
                                     
                                     @php
                                         $selectGuest = Request()->guest;
@@ -874,7 +875,7 @@ search
 
                         <div class="col-lg-3 col-md-4 select-option pe-lg-0 mt-2">
                             <label>Beds</label>
-                            <div class="bed-selector ">
+                            <div class="bed-selector pt-2">
                                 <div class="select-div d-flex justify-content-between align-items-center select-bed-selector">
                                     <i class="fa-solid fa-car" style="color: #6A78C7"></i>
                                     <span style="color: #6A78C7">king</span>
@@ -2371,6 +2372,7 @@ $(document).ready(function(){
 </script>
 
 <script>
+    
     $(document).on('click','.applyBtn',function(){
         var guest = $(".select_guest").val();
         var room = $(".select_room").val();
@@ -2389,6 +2391,14 @@ $(document).ready(function(){
         });
     });
     $(document).ready(function() {
+        if ($('.select_room').val() == 1) {
+            $('.room__minus').prop('disabled',true);
+        }
+        if ($('.select_guest').val() == 1) {
+            $('.quantity__minus').prop('disabled',true);
+        }
+    });
+    $(document).ready(function() {
         $('.quantity__plus').on('keydown, click', function () {
             var texInputValue = $('.select_guest').val();
             var data = parseInt(texInputValue) + 1;
@@ -2397,14 +2407,13 @@ $(document).ready(function(){
                 $('.quantity__minus').prop('disabled', false);
             }
         });
-
         // $('.quantity__minus').attr('disabled',true);
         // $('.room__minus').attr('disabled',true);
 
         $('.quantity__minus').on('keydown, click', function () {
             var texInputValue = $('.select_guest').val();
             var data = parseInt(texInputValue) - 1;
-            if (data == 0) {
+            if (data == 1) {
                 $('.guestNum').html(1);
                 $('.quantity__minus').attr('disabled', true);
             }
@@ -2429,7 +2438,7 @@ $(document).ready(function(){
         $('.room__minus').on('keydown, click', function () {
             var texInputValue = $('.select_room').val();
             var data = parseInt(texInputValue) - 1;
-            if (data == 0) {
+            if (data == 1) {
                 $('.roomNum').html(1);
                 $('.room__minus').prop('disabled',true);
             }
