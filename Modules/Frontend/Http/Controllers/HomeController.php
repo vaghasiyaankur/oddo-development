@@ -28,18 +28,43 @@ class HomeController extends Controller
         request()->bed ? $bed = explode(',' , request()->bed) : $bed = array('');
         
         if($search){
-            $search = str_replace(',', ' ', $search);
-            $hotels = Hotel::with('country', 'city', 'room' )
-                    ->orWhereRelation('city', 'name', 'like', '%'.$search.'%')
-                    ->whereRelation('room', 'guest_stay_room', $guest)
-                    ->whereRelation('room', 'number_of_room', $room)
-                    ->orwhereHas('hotelBed.bedType', function($query) use ($bed) {
-                        $query->whereIn('bed_type', $bed);
-                    })
-                    ->active()->latest()->paginate(2);
+            $search = str_replace(',', ',', $search);
+            // $hotels = Hotel::with('country', 'city', 'room' )
+            //         ->orWhereRelation('city', 'name', 'like', '%'.$search.'%')
+            //         ->whereRelation('room', 'guest_stay_room', $guest)
+            //         ->whereRelation('room', 'number_of_room', $room)
+            //         ->orwhereHas('hotelBed.bedType', function($query) use ($bed) {
+            //             $query->whereIn('bed_type', $bed);
+            //         })
+            //         ->active()->latest()->paginate(2);
 
-            $hotelAmounts = array();
+            // $hotelAmounts = array();
 
+            $search = preg_split("/[ ]/",$searchdata);  
+            $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn)->format('Y-m-d');
+            $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut)->format('Y-m-d');
+            $hotels = Hotel::with('country', 'city', 'room','amenities');
+            if (!empty($search)) {
+                $hotels = $hotels
+                // ->orwhere('property_name', 'like', '%'.$search.'%')
+                // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
+                ->whereRelation('city', 'name', 'like', '%'.$search[0].'%')
+                ->whereRelation('room', 'guest_stay_room', $guest)
+                ->whereRelation('room', 'number_of_room', $room)
+                ->whereDoesntHave('hotelBooking', function ($query) use ($checkInDate, $checkOutDate) {
+                    return $query->where(function ($q) use ($checkInDate, $checkOutDate) {
+                            return $q->whereBetween('start_date', [$checkInDate,$checkOutDate])
+                                ->orWhereBetween('end_date', [$checkInDate, $checkOutDate]);
+                        });
+                });
+            }
+            if (!empty($request['bed'])) {
+                $hotels = $hotels
+                ->whereHas('hotelBed.bedType', function($query) use ($bed) {
+                    $query->whereIn('bed_type', $bed);
+                });
+            }
+            
             foreach($hotels as $hotel){
                 $price = exchange_rate($hotel->room->price_room);
                 $amount = $price * $room;
