@@ -54,8 +54,11 @@
                         <i class="fa fa-bell-o" aria-hidden="true"></i>                    
                     </div>
                     <?php 
-                        $userId = auth()->user()->id;
-                        $hotelCount = App\Models\BookingNotification::where('user_id',$userId)->count();
+                        $hotelCount = 0;
+                        if (auth()->check()) {
+                            $userId = auth()->user()->id;
+                            $hotelCount = App\Models\BookingNotification::where('user_id',$userId)->count();
+                        }
                     ?> 
                     <span
                     class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger notificationCount"><span class="data-content">0</span> <span
