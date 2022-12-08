@@ -77,11 +77,11 @@ class HotelController extends Controller
                 ->whereRelation('room', 'number_of_room', $room)
                 ->whereDoesntHave('hotelBooking', function ($query) use ($checkInDate, $checkOutDate) {
                     return $query->where(function ($q) use ($checkInDate, $checkOutDate) {
-                            return $q->whereBetween('start_date', [$checkInDate,$checkOutDate])
-                                ->orWhereBetween('end_date', [$checkInDate, $checkOutDate]);
+                            return $q->where('start_date', '<=',$checkInDate)
+                                ->where('end_date', '>=', $checkOutDate);
                         });
                 });
-                }
+            }
             if (!empty($request['bed'])) {
                 $hotels = $hotels
                 ->whereHas('hotelBed.bedType', function($query) use ($bed) {
