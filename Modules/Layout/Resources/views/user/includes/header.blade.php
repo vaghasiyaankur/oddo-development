@@ -279,7 +279,6 @@
         window.addEventListener('mouseup',function(event){
             var pol = document.getElementById('box');
             if(event.target != pol && event.target.parentNode != pol){
-                    console.log('heree');
                     pol.style.display = 'none';
                 }
         }); 

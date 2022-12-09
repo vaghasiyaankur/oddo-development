@@ -46,7 +46,7 @@
                                             <div class="mt-4 position-relative">
                                                 <button class="btn log_in_btn w-100 submitLogin">Log In
                                                 </button>
-                                                <div class="spinner-border" role="status" style="display: none;position: absolute;right: 14px;top:7px;color: #fff;">
+                                                <div class="spinner-border" role="status" style="display: none;position: absolute;right: 50%;top:7px;color: #fff;">
                                                     <span class="sr-only">Loading...</span>
                                                 </div>
                                             </div>
