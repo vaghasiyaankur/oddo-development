@@ -26,10 +26,10 @@
                 <input type="hidden" class="hotelCount" value="">
                 
                 @if ($hotelCount > 0)   
-                <div class="notification-box" id="box" style="display: none;">
+                <div class="notification-box" id="mobile-box" style="display: none;">
                 </div>
                 @else
-                <div class="notification-box" id="box"  style="display: none;">
+                <div class="notification-box" id="mobile-box"  style="display: none;">
                     <div class="notification-inner">
                         <div class="notification-heading">Notification</div>  
                         <p class="notification-empty" style="padding:5px;">Notification box is empty.</p>
@@ -277,8 +277,15 @@
         });
 
         window.addEventListener('mouseup',function(event){
-                var pol = document.getElementById('box');
-                if(event.target != pol && event.target.parentNode != pol){
+            var pol = document.getElementById('box');
+            if(event.target != pol && event.target.parentNode != pol){
+                    console.log('heree');
+                    pol.style.display = 'none';
+                }
+        }); 
+        window.addEventListener('mouseup',function(event){
+            var pol = document.getElementById('mobile-box');
+            if(event.target != pol && event.target.parentNode != pol){
                     pol.style.display = 'none';
                 }
         }); 
