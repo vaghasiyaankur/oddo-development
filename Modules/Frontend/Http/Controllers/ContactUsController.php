@@ -9,6 +9,7 @@ use Validator;
 use Illuminate\Support\Str;
 use App\Mail\ContactMail;
 use App\Models\Contact;
+use App\Models\EmailSetting;
 use Mail;
  
 class ContactUsController extends Controller
@@ -102,7 +103,9 @@ class ContactUsController extends Controller
         $data = $request->all();
         Contact::create($request->all());
 
-        Mail::to($request->email)->send(new ContactMail($data));
+        $emailAdd = EmailSetting::select('from_email')->first();
+        
+        Mail::to($emailAdd['from_email'])->send(new ContactMail($data));
         
         return response()->json(["status" => 1, "success" => "Message has been sent to your email account."], 200);    
 

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Http\Request;
 
 class ContactMail extends Mailable
 {
@@ -27,10 +28,9 @@ class ContactMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
-        // return $this->view('view.name');
-        return $this->from('jemin.codetrinity@gmail.com')->view('frontend::mail.Contact')
+        return $this->from($request->email)->view('frontend::mail.Contact')
                 ->subject('Contact')->with(['data' => $this->data]);
     }
 }
