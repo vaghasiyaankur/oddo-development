@@ -381,35 +381,35 @@
 }
 
 @media screen and (max-width: 1400px) {
-    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+    /* .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
         flex: 0 0 40% !important;
         padding-right: 70px !important;
     }
     .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
         flex: 0 0 52% !important;
         padding-left: 16px !important;
-    }
+    } */
 }
 @media screen and (max-width: 992px) {
-    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+    /* .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
         flex: 0 0 40% !important;
         padding-right: 2px !important;
-    }
-    .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
+    } */
+    /* .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
         flex: 0 0 60% !important;
         padding-left: 2px !important;
-    }
+    } */
     .header .navbar .navbar-brand img{
         margin-top: -18px;
     }
 }
 @media screen and (max-width: 768px) {
-    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+    /* .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
         flex: 0 0 40% !important;
         padding-right: 2px !important;
         margin: 0 auto !important;
     }
     .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
         display: none !important;
-    }
+    } */
 }

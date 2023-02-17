@@ -6,28 +6,53 @@
 
 @push('css')
 <style>
+     .explore-city .nav-pills::before{
+        position: absolute;
+        content: "";
+        top: 50%;
+        border: 1px solid black;
+        width: 100%;
+        z-index: -6;
+        border: 1px solid rgb(106 120 199 / 10%);
+     }
+     
     .explore-city .nav-pills .nav-link.active,
     .nav-pills .show>.nav-link {
-        color: #6a78c7;
+        background: linear-gradient(180deg, #6A78C7 0%, #8F9DE9 100%);
+        border-radius: 40px;
         background-color: #e9f0fe;
-        border: 2px solid;
         box-shadow: 0px 0px 1px 3px #c3d6fd;
+        color: #ffffff !important;
+        z-index: 1;
     }
-
+    .explore-city .nav-pills .nav-link,
+    .nav-pills .show>.nav-link{
+        color: #6A78C7 !important;
+         background: rgb(106 120 199 / 10%);
+        border-radius: 30px;
+    }
+    .explore-city .nav-pills li.nav-item {
+        width: 100%;
+        max-width: 150px;
+        margin: 0 15px;
+    }
     .explore-city .nav-pills .nav-link {
-        padding: 14px 16px;
+        padding: 12px 25px;
         font-size: 17px;
         font-weight: 600;
         line-height: 22px;
         color: #878996;
+        width: 100%;
     }
 
     .hotel-wrapper .hotel-box {
-        max-width: 328px;
-        min-height: 386px;
-        background: #ffffff;
-        box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
-        border-radius: 12px;
+        width: 100%;
+        height: 100%;
+        /* min-height: 369px; */
+        background: #FFFFFF;
+        box-shadow: 0px 0px 9px rgba(87, 110, 154, 0.3);
+        border-radius: 5px;
+        padding: 10px;
     }
 
     .p-a-tabcontent-inner .p-a-details .p-a-details-btn {
@@ -39,32 +64,46 @@
     section.explore-city {
         min-height: calc(100vh - 337px);
     }
-    .slick-slide{
-        width: 328px !important;
-    }
+    /* .slick-slide{
+        width: 400px !important;
+    } */
 
     .HotelImage{
-        height: 160px;
-        width: 328px;
+        width: 100%;
         object-fit: cover;
+        height: 100%;
+        max-height: 300px;
+        min-height: 300px;
+        border-radius: 15px !important;
     }
-
-    .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content{
-        padding-top: 0px;
+    .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content .d-l-Purple{
+        background: rgba(95, 113, 215, 0.15);
+        border-radius: 30px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
     }
+    /* .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content {
+        padding-top: 21px;
+        padding-left: 25px;
+        padding-right: 25px;
+    } */
     .loading {
-    height: 0;
-    width: 0;
-    padding: 15px;
-    border: 6px solid #ccc;
-    border-right-color: #888;
-    border-radius: 22px;
-    -webkit-animation: rotate 1s infinite linear;
-    /* left, top and position just for the demo! */
-    position: absolute;
-    left: 50%;
-    top: 55%;
-    z-index: 999;
+        height: 0;
+        width: 0;
+        padding: 15px;
+        border: 6px solid #ccc;
+        border-right-color: #888;
+        border-radius: 22px;
+        -webkit-animation: rotate 1s infinite linear;
+        /* left, top and position just for the demo! */
+        position: absolute;
+        left: 50%;
+        top: 55%;
+        z-index: 999;
     }
 
 @-webkit-keyframes rotate {
@@ -152,12 +191,13 @@ section.explore-city .explore-city-check{
                 </label>
             </div>
         </div> 
-        <div class="destination content">
-            <p style="color:#878996;margin-left:20px;">Enjoy the best experiences with top Destination and Hotel.</p>
-            <p style="color:#878996;margin-left:20px;">It is equipped with quality room amenities and premium facilities. The Hotel is serviced by a group of experienced staff dedicated to premier services and the warmth of heart in everything we do.</p>
+        <div class="destination content mb-5">
+            <p class="text-center" style="color:#878996;">Enjoy the best experiences with top Destination and Hotel.</p>
+            <p class="text-center mx-auto" style="color:#878996;max-width:800px;">It is equipped with quality room amenities and premium facilities. The Hotel is serviced by a group of experienced staff dedicated to premier services and the warmth of heart in everything we do.</p>
         </div>
+        <h2 class="text-center mb-4 pb-2" style="color: #393c52">Hotels</h2>
 
-        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3 justify-content-center position-relative" id="pills-tab" role="tablist">
             <li class="nav-item " role="presentation">
                 <button class="nav-link active rounded-pill selectDestinationTab" id="pills-overview-tab" data-bs-toggle="pill"
                     data-target="Cities" type="button" role="tab" aria-controls="pills-home"

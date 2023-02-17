@@ -7,7 +7,7 @@
     <style>
         .contact-us-title {
             text-align: center;
-            padding: 40px 0 65px;
+            padding: 65px 0 65px;
             margin: 0 auto;
             border-bottom: 1px solid rgba(224, 224, 224, 1);
         }
@@ -17,6 +17,7 @@
             color: #373e4a;
             font-weight: 500;
             line-height: 1.3;
+            margin-bottom: 0px;
         }
         .contact-us-title h6 {
             font-size: 22px;
@@ -272,7 +273,8 @@
 
 @section('content')
 <div class="contact-us-title container">
-    <h5>Haven’t found what you’re looking for? </h5> <h6>Contact us</h6>
+    <h5>Haven’t found what you’re looking for? </h5> 
+    {{-- <h6>Contact us</h6> --}}
 </div>
     <!-- contact section start -->
     <section class="contactus-section">

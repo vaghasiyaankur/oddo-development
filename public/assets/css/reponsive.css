@@ -18,7 +18,7 @@
         .check-in-out-form
         .check-in-out-bottom
         .select-option {
-        max-width: 100%;
+        max-width: 100% !important;
     }
     .s-top-city .s-top-city-inner .s-top-city-main .slick-prev {
         left: -4%;
@@ -98,6 +98,9 @@
     }
     .hotel-result .hotel-result-form.show{
         display: block !important;
+    }
+    .check-in-out.hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option .bed-selector{
+        margin-right: 0px;
     }
 
 }
