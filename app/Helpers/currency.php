@@ -1,26 +1,37 @@
 <?php
 
-use App\Models\GeneralSetting;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Models\GeneralSetting;
 
-if(!function_exists("removeWhiteSpace")){
-    function currency(){
+if (!function_exists("removeWhiteSpace")) {
+
+    /**
+     * @return array<SomeConstants::*, mixed>
+     */
+    function currency()
+    {
         $data = GeneralSetting::first();
-        
+
         $currency = [
             'currency' => $data->currency,
-            'sumbol' => $data->currency_symbol
+            'sumbol' => $data->currency_symbol,
         ];
 
         return $currency;
     }
 
-    function exchange_rate($amount){
+    /**
+     * @param int $amount
+     *
+     * @return float
+     */
+    function exchange_rate($amount)
+    {
 
         $data = GeneralSetting::first();
         $currency = Currency::convert()->from('USD')
-        ->to($data->currency)
-        ->get();
+            ->to($data->currency)
+            ->get();
 
         $convert = round($currency, 2);
 

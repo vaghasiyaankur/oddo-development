@@ -9,7 +9,14 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
+
+use Modules\Frontend\Http\Controllers\Auth\Socialite\FacebookController;
+use Modules\Frontend\Http\Controllers\Auth\Socialite\GoogleController;
+use Modules\Frontend\Http\Controllers\OrderHistoryController;
+use Modules\Frontend\Http\Controllers\PaymentController;
+use Modules\Frontend\Http\Controllers\SavedController;
+use Modules\Frontend\Http\Controllers\WishlistController;
 
 // user register/login
 Route::post('user/login', 'Auth\LoginController@login')->name('user.login');
@@ -30,9 +37,8 @@ Route::post('/hotel-image', 'HotelController@hotelImage')->name('image.hotel');
 Route::get('/preference', 'HotelController@preferences')->name('preference.index');
 Route::post('/add-preference', 'HotelController@add_update_preference')->name('add.preference');
 
-
 /* Hotel Details */
-Route::get('/hotel-detail/{slug}','HotelController@hotelDetail')->name('hotel.detail');
+Route::get('/hotel-detail/{slug}', 'HotelController@hotelDetail')->name('hotel.detail');
 
 /* City Page */
 Route::get('/destination-we-love', 'CityController@index')->name('city.index');
@@ -53,46 +59,46 @@ Route::get('/upcoming-trip', 'UpcomingTripController@index')->name('upcomingtrip
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 
 /* WishList Route  */
-Route::controller(WishlistController::class)->group(function(){
+Route::controller(WishlistController::class)->group(function () {
     Route::post('add-wishlist', 'addWishlist')->name('add.wishlist');
     Route::post('remove-wishlist', 'removeWishlist')->name('remove.wishlist');
 });
 
 // google socialite
-Route::controller(Auth\Socialite\GoogleController::class)->group(function(){
+Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
 
 // facebook socialite
-Route::controller(Auth\Socialite\FacebookController::class)->group(function(){
+Route::controller(FacebookController::class)->group(function () {
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
 
-Route::middleware(['auth', 'user-access:user'])->group(function(){
+Route::middleware(['auth', 'user-access:user'])->group(function () {
     /* Profile Page */
     Route::get('/my-account', 'ProfileController@index')->name('myaccount.index');
     Route::post('/update-user', 'ProfileController@update')->name('update.user');
     Route::post('/change-password', 'ProfileController@changePassword')->name('change.password');
 
     /* Saved Page */
-    Route::prefix('saved')->controller(SavedController::class)->group(function(){
+    Route::prefix('saved')->controller(SavedController::class)->group(function () {
         Route::get('/', 'index')->name('saved.index');
         Route::post('/remove/wishlist', 'destroy')->name('wishlish.remove');
         Route::get('wishlist/list', 'wishlistList')->name('wishlist.list');
     });
 
     /* Order Histrory Page */
-    Route::prefix('order')->controller(OrderHistoryController::class)->group(function(){
+    Route::prefix('order')->controller(OrderHistoryController::class)->group(function () {
         Route::get('/history', 'index')->name('orderhistory.index');
         Route::post('/store', 'store')->name('add.review');
         Route::post('/view', 'show')->name('show.review');
-        Route::get('/list', 'list')->name('list.review');
+        Route::get('/list', 'reivewlist')->name('list.review');
     });
 
     // payment
-    Route::prefix('payment')->controller(PaymentController::class)->group(function(){
+    Route::prefix('payment')->controller(PaymentController::class)->group(function () {
         // stripe
         Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
         Route::post('show/stripe', 'showStripe')->name('show.stripe');
@@ -100,12 +106,12 @@ Route::middleware(['auth', 'user-access:user'])->group(function(){
 
         // razorpay
         Route::post('/razorpay', 'razorpayStore')->name('payment.razorpay');
-        
+
         // paypal
-        Route::get('createpaypal','createpaypal')->name('createpaypal');
-        Route::get('processPaypal','processPaypal')->name('processPaypal');
-        Route::get('processSuccess','processSuccess')->name('processSuccess');
-        Route::get('processCancel','processCancel')->name('processCancel');
+        Route::get('createpaypal', 'createpaypal')->name('createpaypal');
+        Route::get('processPaypal', 'processPaypal')->name('processPaypal');
+        Route::get('processSuccess', 'processSuccess')->name('processSuccess');
+        Route::get('processCancel', 'processCancel')->name('processCancel');
     });
 });
 // review view url
@@ -118,12 +124,11 @@ Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
 Route::post('/hotel/payment', 'HotelController@hotelPayment')->name('hotel.payment');
 
 // daynamic page
-Route::fallback(function($slug){
+Route::fallback(function ($slug) {
     $pageData = App\Models\Pages::whereStatus(1)->whereSlug($slug)->first();
-    if($pageData)
-    {
+    if ($pageData) {
         return view('frontend::pages.index', compact('pageData'));
-    }else{
+    } else {
         return abort(404);
     }
 });
@@ -131,6 +136,3 @@ Route::fallback(function($slug){
 // contact us
 Route::any('/contact-us', 'ContactUsController@index')->name('contact.index');
 Route::post('/contact', 'ContactUsController@contact')->name('user.contact');
-
-
-

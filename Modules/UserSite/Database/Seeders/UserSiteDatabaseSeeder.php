@@ -2,13 +2,13 @@
 
 namespace Modules\UserSite\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class UserSiteDatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the UserSite seeds.
      *
      * @return void
      */

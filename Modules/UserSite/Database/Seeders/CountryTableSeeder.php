@@ -3,15 +3,10 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Country;
 
 class CountryTableSeeder extends Seeder
 {
 
-    protected $model = Country::class;
-
-    
     /**
      * Run the database seeds.
      *
@@ -28,12 +23,24 @@ class CountryTableSeeder extends Seeder
             'Thailand',
         ];
 
+        $check_folder = is_dir(public_path('storage/country'));
+        if (!$check_folder) {
+            mkdir(public_path('storage/country'));
+        }
+
+        $icon = is_dir(public_path('storage/country/icon'));
+        if (!$icon) {
+            mkdir(public_path('storage/country/icon'));
+        }
+
         foreach ($countries as $country) {
-            Country::create([
-                'country_name' => $country,
-                'icon'         => 'country/icon/'.\Str::slug($country).'.png',
-                'status'       => '1',
-            ]);
+            \App\Models\Country::create(
+                [
+                    'country_name' => $country,
+                    'icon' => 'country/icon/' . \Str::slug($country) . '.png',
+                    'status' => '1',
+                ]
+            );
         }
     }
 }

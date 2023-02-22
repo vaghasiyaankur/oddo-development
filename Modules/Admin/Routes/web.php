@@ -9,20 +9,40 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-Route::prefix('admin')->group(function() {
-    
-    Route::group(['middleware' => ['guest']], function() {
-        Route::controller(LoginController::class)->group(function(){
+ */
+use Modules\Admin\Http\Controllers\AdminController;
+use Modules\Admin\Http\Controllers\AmenityCategoryController;
+use Modules\Admin\Http\Controllers\AmenityController;
+use Modules\Admin\Http\Controllers\BathroomItemController;
+use Modules\Admin\Http\Controllers\BedtypesController;
+use Modules\Admin\Http\Controllers\BookingController;
+use Modules\Admin\Http\Controllers\DashboardController;
+use Modules\Admin\Http\Controllers\FacilitiesController;
+use Modules\Admin\Http\Controllers\FoodTypeController;
+use Modules\Admin\Http\Controllers\LocationController;
+use Modules\Admin\Http\Controllers\LoginController;
+use Modules\Admin\Http\Controllers\PagesController;
+use Modules\Admin\Http\Controllers\PaymentController;
+use Modules\Admin\Http\Controllers\PaymentGatewayController;
+use Modules\Admin\Http\Controllers\PhotoCategoryController;
+use Modules\Admin\Http\Controllers\PropertyController;
+use Modules\Admin\Http\Controllers\ReviewController;
+use Modules\Admin\Http\Controllers\RoomController;
+use Modules\Admin\Http\Controllers\RoomTypeController;
+use Modules\Admin\Http\Controllers\SettingController;
+
+Route::prefix('admin')->group(function () {
+
+    Route::group(['middleware' => ['guest']], function () {
+        Route::controller(LoginController::class)->group(function () {
             Route::get('/login', 'index')->name('admin.index');
             Route::post('/login', 'login')->name('admin.login');
         });
     });
-    
-    
+
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         // dashboard
-        Route::controller(DashboardController::class)->group(function(){
+        Route::controller(DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('dashboard');
         });
 
@@ -30,7 +50,7 @@ Route::prefix('admin')->group(function() {
         Route::view('/profile', 'admin::profile.index')->name('profile');
 
         // Amenity category
-        Route::controller(AmenityCategoryController::class)->group(function(){
+        Route::controller(AmenityCategoryController::class)->group(function () {
             Route::get('/amenity-category', 'amenityCategory')->name('amenityCategory.index');
             Route::post('/add-amenity-category', 'addAmenityCategory')->name('add.amenitycategory');
             Route::get('/amenity-category-getlist', 'getList')->name('amenitycategory.list');
@@ -40,7 +60,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // amenity
-        Route::controller(AmenityController::class)->group(function(){
+        Route::controller(AmenityController::class)->group(function () {
             Route::get('/amenity', 'index')->name('amenity.index');
             Route::get('/amenity-list', 'amenityList')->name('amenity.list');
             Route::post('/add-amenity', 'store')->name('add.amenity');
@@ -50,7 +70,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // faclilities
-        Route::controller(FacilitiesController::class)->group(function(){
+        Route::controller(FacilitiesController::class)->group(function () {
             Route::get('/facilities', 'index')->name('facilities.index');
             Route::get('/facilities-list', 'facilitiesList')->name('facilities.list');
             Route::post('/add-facility', 'store')->name('add.facility');
@@ -60,7 +80,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // roomType
-        Route::controller(RoomTypeController::class)->group(function(){
+        Route::controller(RoomTypeController::class)->group(function () {
             Route::get('/room-type', 'index')->name('roomType.index');
             Route::get('/room-type-list', 'roomTypeList')->name('roomtype.list');
             Route::post('/add-room-type', 'store')->name('add.roomtype');
@@ -70,7 +90,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // room
-        Route::controller(RoomController::class)->group(function(){
+        Route::controller(RoomController::class)->group(function () {
             Route::get('/room', 'index')->name('room.index');
             Route::get('/room-list', 'roomList')->name('room.list');
             Route::post('/add-room', 'store')->name('add.room');
@@ -80,7 +100,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // location
-        Route::controller(LocationController::class)->group(function(){
+        Route::controller(LocationController::class)->group(function () {
             Route::get('/location', 'index')->name('location.index');
             Route::get('/location-list', 'locationList')->name('location.list');
             Route::post('/add-location', 'store')->name('add.location');
@@ -90,7 +110,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // bathroomItem
-        Route::controller(BathroomItemController::class)->group(function(){
+        Route::controller(BathroomItemController::class)->group(function () {
             Route::get('/bathroom', 'index')->name('bathroomitem.index');
             Route::get('/bathroom-list', 'bathroomList')->name('bathroom.list');
             Route::post('/add-bathroom', 'store')->name('add.bathroom');
@@ -100,7 +120,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // bedtype
-        Route::controller(BedtypesController::class)->group(function(){
+        Route::controller(BedtypesController::class)->group(function () {
             Route::get('/bed', 'index')->name('bed.index');
             Route::get('/bed-list', 'bedtypeList')->name('bedtype.list');
             Route::post('/add-bed', 'store')->name('add.bedtype');
@@ -110,7 +130,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // foodType
-        Route::controller(FoodTypeController::class)->group(function(){
+        Route::controller(FoodTypeController::class)->group(function () {
             Route::get('/food', 'index')->name('food.index');
             Route::get('/food-list', 'foodList')->name('food.list');
             Route::post('/add-food', 'store')->name('add.food');
@@ -120,7 +140,7 @@ Route::prefix('admin')->group(function() {
         });
 
         // Photo Category
-        Route::controller(PhotoCategoryController::class)->group(function(){
+        Route::controller(PhotoCategoryController::class)->group(function () {
             Route::get('/photo-category', 'index')->name('photocategory.index');
             Route::get('/photo-list', 'photoList')->name('photoCategory.list');
             Route::post('/add-photo-catgory', 'store')->name('add.photoCategory');
@@ -130,15 +150,15 @@ Route::prefix('admin')->group(function() {
         });
 
         // property
-        Route::controller(PropertyController::class)->group(function(){
-            Route::get('/property','index')->name('property.index');
+        Route::controller(PropertyController::class)->group(function () {
+            Route::get('/property', 'index')->name('property.index');
             Route::get('/property-list', 'propertyList')->name('property.list');
-            Route::post('/property-status','PropertyStatus')->name('property.status');
+            Route::post('/property-status', 'PropertyStatus')->name('property.status');
             Route::get('/single-property/{slug}', 'SingleProperty')->name('property.single');
         });
 
-         // Setting
-        Route::controller(SettingController::class)->group(function(){
+        // Setting
+        Route::controller(SettingController::class)->group(function () {
             Route::get('setting', 'index')->name('setting.index');
             Route::post('setting', 'changeSetting')->name('setting.change');
 
@@ -161,14 +181,14 @@ Route::prefix('admin')->group(function() {
         });
 
         // booking
-        Route::controller(BookingController::class)->group(function(){
+        Route::controller(BookingController::class)->group(function () {
             Route::get('booking', 'index')->name('booking.index');
             Route::get('/booking-list', 'bookingList')->name('booking.list');
             Route::post('/status-booking', 'statusBooking')->name('status.booking');
         });
 
         // payment gateway
-        Route::controller(PaymentGatewayController::class)->group(function(){
+        Route::controller(PaymentGatewayController::class)->group(function () {
             Route::get('payment', 'index')->name('paymentGateway.index');
             Route::post('payment/status', 'paymentStatus')->name('paymentGateways.status');
 
@@ -186,26 +206,26 @@ Route::prefix('admin')->group(function() {
         });
 
         // payment
-        Route::controller(PaymentController::class)->group(function(){
+        Route::controller(PaymentController::class)->group(function () {
             Route::get('payments', 'index')->name('payment.index');
             Route::get('/payment-list', 'paymentList')->name('payment.list');
         });
 
         // review
-        Route::controller(ReviewController::class)->group(function(){
+        Route::controller(ReviewController::class)->group(function () {
             Route::get('review', 'index')->name('review.index');
             Route::get('review-list', 'ReviewList')->name('review.list');
         });
 
         // admin
-        Route::controller(AdminController::class)->group(function(){
+        Route::controller(AdminController::class)->group(function () {
             Route::post('notification', 'notification')->name('property.notification');
             Route::post('notification/show', 'showNotification')->name('notification.show');
             Route::post('notification/delete', 'deleteNotification')->name('notification.delete');
         });
 
         // pages
-        Route::controller(PagesController::class)->group(function() {
+        Route::controller(PagesController::class)->group(function () {
             Route::get('/pages', 'index')->name('pages.index');
             Route::get('/add-page', 'create')->name('page.create');
             Route::post('/add-page', 'store')->name('page.store');
@@ -218,7 +238,6 @@ Route::prefix('admin')->group(function() {
         // log out
         Route::get('/logout', 'LoginController@logout')->name('admin.logout');
     });
-
 
     // Route::view('/amenity-view', 'admin::amenity');
     // Route::view('/location-old', 'admin::location');

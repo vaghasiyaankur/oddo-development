@@ -21,26 +21,30 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text h-100 selected-icon"></span>
                                 </div>
-                                <input type="text" class="form-control iconpicker  amenityIcon" placeholder="Search Your Icon">
+                                <input type="text" class="form-control iconpicker  amenityIcon"
+                                    placeholder="Search Your Icon">
                             </div>
                             <span class="text-danger" id="amenityIcon-error"></span>
                         </div>
                         <div class=" mb-2">
                             <label>Amenities Icon</label>
-                            <select class="form-select mb-3 amenityCategory" aria-label="Default select example" name="amenityCategory">
-                                @foreach($amenityCategories as $category)
-                                    <option value="{{$category->id}}">{{$category->category}}</option>
+                            <select class="form-select mb-3 amenityCategory" aria-label="Default select example"
+                                name="amenityCategory">
+                                @foreach ($amenityCategories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="active-deactive-input">
                                 <div class="form-check form-check-inline form-radio-success me-1">
-                                    <input class="form-check-input" type="radio" name="status" id="WithoutinlineRadio1" value="1" checked="">
+                                    <input class="form-check-input" type="radio" name="status"
+                                        id="WithoutinlineRadio1" value="1" checked="">
                                     <label class="form-check-label" for="WithoutinlineRadio1">Active</label>
                                 </div>
                                 <div class="form-check form-check-inline form-radio-danger">
-                                    <input class="form-check-input" type="radio" name="status" id="WithoutinlineRadio2" value="0">
+                                    <input class="form-check-input" type="radio" name="status"
+                                        id="WithoutinlineRadio2" value="0">
                                     <label class="form-check-label" for="WithoutinlineRadio2">Deactive</label>
                                 </div>
                             </div>

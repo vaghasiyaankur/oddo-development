@@ -2,14 +2,13 @@
 
 namespace Modules\UserSite\Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\FoodType;
+use Illuminate\Database\Seeder;
 
 class FoodTypeTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the Food Type seed.
      *
      * @return void
      */
@@ -25,14 +24,13 @@ class FoodTypeTableSeeder extends Seeder
         ];
 
         foreach ($food_types as $food_type) {
-            FoodType::create([
-                'food_type' => $food_type,
-                'slug'         => \Str::slug($food_type),
-                'status'       => '1',
-            ]);
+            FoodType::create(
+                [
+                    'food_type' => $food_type,
+                    'slug' => \Str::slug($food_type),
+                    'status' => '1',
+                ]
+            );
         }
-
-
-        // $this->call("OthersTableSeeder");
     }
 }

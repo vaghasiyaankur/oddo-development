@@ -2,43 +2,25 @@
 
 namespace Modules\Frontend\Http\Controllers\Auth;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Mail\RegisterVerification;
 use App\Models\User;
 use App\Models\UserVerify;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Mail; 
-use App\Mail\RegisterVerification;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Mail;
 use Validator;
 
 class RegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('frontend::index');
-    }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('frontend::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      * @param Request $request
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -49,7 +31,7 @@ class RegisterController extends Controller
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'RePassword' => 'required|same:password',
         ], [
-            'username.required' => 'The username field is required.', 
+            'username.required' => 'The username field is required.',
             'email.required' => 'The Email field is required.',
             'email.email' => 'please enter a valid email address',
             'email.unique' => 'EmailId already exists. Kindly use different emailId.',
@@ -69,68 +51,34 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->type = 0;
-        $user->save(); 
+        $user->save();
 
         $token = Str::random(64);
 
         UserVerify::create([
-            'user_id' => $user->id, 
-            'token' => $token
+            'user_id' => $user->id,
+            'token' => $token,
         ]);
 
         Mail::to($request->email)->send(new RegisterVerification($token));
 
-        return response()->json(["status" => 1, "success" => "A verification link has been sent to your email account"], 200);      
+        return response()->json(["status" => 1, "success" => "A verification link has been sent to your email account"], 200);
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
+     * User verification function
+     * @param string $token
+     *
+     * @return mixed
      */
-    public function show($id)
+    public function userVerification($token)
     {
-        return view('frontend::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('frontend::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function userVerification($token) {
         $UserVerify = UserVerify::where('token', $token)->first();
         $user = UserVerify::where('token', $token)->where('created_at', '<', Carbon::now()->subHours(1))->first();
 
-        if(!$UserVerify || $user) {
+        if (!$UserVerify || $user) {
             // return redirect('/')->with('validationfail', 'fail');
-            return redirect()->route('home.index')->with([ 'message' => 'error' ]);
+            return redirect()->route('home.index')->with(['message' => 'error']);
         }
 
         $findUser = User::find($UserVerify->user_id);
@@ -138,13 +86,13 @@ class RegisterController extends Controller
         $findUser->save();
 
         Auth::login($findUser);
-        if(auth()->check()) {
+        if (auth()->check()) {
             if (auth()->user()->type == 'user') {
                 UserVerify::where('token', $token)->delete();
-                return redirect('/');
+                return redirect()->route('home.index');
             }
-        }else {
-            return redirect('/');
+        } else {
+            return redirect()->route('home.index');
         }
     }
 }

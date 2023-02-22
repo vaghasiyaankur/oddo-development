@@ -16,15 +16,15 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $userType)
     {
-        if(auth()->user()->type == $userType){
+        if (auth()->user()->type == $userType) {
             return $next($request);
         }
-        
-        if(auth()->user() && $userType == 'admin'){
+
+        if (auth()->user() && $userType == 'admin') {
             return redirect()->route('home.index');
         }
 
-        if(auth()->user() && $userType == 'user'){
+        if (auth()->user() && $userType == 'user') {
             return redirect()->route('admin.index');
         }
         /* return response()->view('errors.check-permission'); */

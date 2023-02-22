@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\Request;
+
 trait Uuids
 {
     /**
@@ -13,7 +14,7 @@ trait Uuids
         parent::boot();
 
         static::creating(function ($model) {
-            $model->UUID = random_int(10000000,99999999);
+            $model->UUID = random_int(10000000, 99999999);
         });
     }
 }

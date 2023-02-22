@@ -2,33 +2,35 @@
 
 namespace Modules\Admin\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Routing\Controller;
 use App\Models\LogoFavicon;
 use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
-    public function index()
-    {
-        $logoFavicon = LogoFavicon::first();
-       return view('admin::auth.login',compact('logoFavicon'));
-    }
-
     /**
      * Where to redirect users after login.
      *
-     * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
     use AuthenticatesUsers;
 
+    /**
+     * This is Static function  logoFavicon
+     *
+     * @return object $LogoFavicon
+     */
+    public function index()
+    {
+        $logoFavicon = LogoFavicon::first();
+        return view('admin::auth.login', compact('logoFavicon'));
+    }
+
+    /**
+     * @var string $redirectTo
+     */
     protected $redirectTo = 'admin/login';
 
     /**
@@ -41,6 +43,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Login user function
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         $input = $request->all();
@@ -51,24 +60,31 @@ class LoginController extends Controller
         ], [
             'email.required' => 'The Email field is required.',
             'email.email' => 'please enter a valid email address',
-            'password' => 'The Password field is required.'
+            'password' => 'The Password field is required.',
         ]);
 
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        {
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('dashboard');
-            }else {
-                return redirect()->route('admin.index')->with('error','Credentials are not match.');
+            } else {
+                return redirect()->route('admin.index')->with('error', 'Credentials are not match.');
             }
-        }else{
+        } else {
             return redirect()->route('admin.index')
-                ->with('error','Credentials are not match.');
+                ->with('error', 'Credentials are not match.');
         }
     }
 
-    public function logout(Request $request) {
+    /**
+     * user Logout function
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout(Request $request)
+    {
         Auth::logout();
         return redirect('admin/login');
-      }
+    }
 }

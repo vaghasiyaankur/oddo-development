@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\UserVerify;
 use App\Models\User;
-use Carbon\carbon;
+use App\Models\UserVerify;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
 
 class DemoCron extends Command
 {
@@ -40,13 +40,16 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        $userVerifys = UserVerify::where('created_at', '<', Carbon::now()->subMinute(60))->delete();
+        $time = Carbon::now()->subMinutes(60);
+        $userVerifys = UserVerify::where('created_at', '<', $time)->delete();
 
-        $users = User::where('email_verified_at',null)->where('updated_at', '<', Carbon::now()->subMinute(60))->get();
+        $users = User::where('email_verified_at', null)
+            ->where('updated_at', '<', $time)->get();
+
         foreach ($users as $user) {
-            \Log::info($user->id);
-            if($user->email_verified_at == null){
-                $user = User::where('email_verified_at',null)->where('updated_at', '<', Carbon::now()->subMinute(60))->delete();
+            if ($user->email_verified_at == null) {
+                $user = User::where('email_verified_at', null)
+                    ->where('updated_at', '<', $time)->delete();
             }
         }
     }

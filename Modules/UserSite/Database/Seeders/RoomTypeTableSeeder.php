@@ -3,8 +3,6 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\RoomType;
 
 class RoomTypeTableSeeder extends Seeder
 {
@@ -23,11 +21,13 @@ class RoomTypeTableSeeder extends Seeder
         ];
 
         foreach ($amenities_categorys as $category) {
-            RoomType::create([
-                'room_type' => $category,
-                'slug'         => \Str::slug($category),
-                'status'       => '1',
-            ]);
+            \App\Models\RoomType::create(
+                [
+                    'room_type' => $category,
+                    'slug' => \Str::slug($category),
+                    'status' => '1',
+                ]
+            );
         }
     }
 }

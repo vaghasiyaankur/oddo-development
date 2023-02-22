@@ -2,13 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\HotelBooking;
 use App\Mail\FeedbackMail;
-use App\Models\User;
+use App\Models\HotelBooking;
 use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Mail;
-use Log;
 
 class GiveFeedBack extends Command
 {
@@ -26,22 +24,20 @@ class GiveFeedBack extends Command
      */
     protected $description = 'Command description';
 
-
-
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return mixed
      */
     public function handle()
     {
 
-        $subdate =  Carbon::now()->subDay()->format('Y-m-d');
-        $hotelBookings = HotelBooking::where('end_date',$subdate)->get();
+        $subdate = Carbon::now()->subDay()->format('Y-m-d');
+        $hotelBookings = HotelBooking::where('end_date', $subdate)->get();
 
         foreach ($hotelBookings as $key => $hotelBooking) {
-           $userMail = $hotelBooking->hotelBookingUser($hotelBooking->user_id)->email;
-           $hotel_id = $hotelBooking->hotel_id;
+            $userMail = $hotelBooking->hotelBookingUser($hotelBooking->user_id)->email;
+            $hotel_id = $hotelBooking->hotel_id;
             Mail::to($userMail)->send(new FeedbackMail());
         }
     }

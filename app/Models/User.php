@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use LamaLama\Wishlist\HasWishlists;
-
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -29,7 +27,7 @@ class User extends Authenticatable
         'facebook_id',
         'twitter_id',
         'last_name',
-        'is_email_verified'
+        'is_email_verified',
     ];
 
     /**
@@ -54,26 +52,40 @@ class User extends Authenticatable
     /**
      * Interact with the user's first name.
      *
-     * @param  string  $value
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute<string, never>
      */
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["user", "admin"][$value],
+            get:fn($value) => ["user", "admin"][$value],
         );
     }
 
+    /**
+     * Payment that belongs the Amenities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Payment>
+     */
     public function payment()
     {
         return $this->hasMany(Payment::class, 'id');
     }
 
+    /**
+     * HotelBooking that belongs the Amenities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<HotelBooking>
+     */
     public function hotelBooking()
     {
         return $this->hasMany(HotelBooking::class, 'id');
     }
 
+    /**
+     * Review that belongs the Amenities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Review>
+     */
     public function review()
     {
         return $this->hasMany(Review::class, 'id');

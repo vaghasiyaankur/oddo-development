@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Uuids;
 
 class HotelBed extends Model
 {
@@ -12,11 +12,23 @@ class HotelBed extends Model
 
     protected $guarded = ['id'];
 
-    public function room(){
+    /**
+     * Define a relationship between the HotelBed and Room models.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Room, HotelBed>
+     */
+    public function room()
+    {
         return $this->belongsTo(Room::class, 'room_id');
     }
 
-    public function bedType(){
+    /**
+     * Define a relationship between the HotelBed and BedType models.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<BedType, HotelBed>
+     */
+    public function bedType()
+    {
         return $this->belongsTo(BedType::class, 'bed_id');
     }
 }

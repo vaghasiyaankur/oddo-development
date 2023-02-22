@@ -11,7 +11,7 @@ class UserVerify extends Model
 
     public $table = "user_verifies";
 
-     /**
+    /**
      * Write code on Method
      *
      * @return response()
@@ -20,11 +20,11 @@ class UserVerify extends Model
         'user_id',
         'token',
     ];
-  
+
     /**
-     * Write code on Method
+     * Define a relationship between the User and UserVerify models.
      *
-     * @return response()
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, UserVerify>
      */
     public function user()
     {

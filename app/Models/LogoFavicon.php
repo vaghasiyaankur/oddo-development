@@ -12,5 +12,4 @@ class LogoFavicon extends Model
     protected $table = 'logo_favicons';
 
     protected $guarded = ['id'];
-
 }

@@ -2,11 +2,11 @@
 
 namespace Modules\UserSite\Http\Controllers;
 
+use App\Models\Hotel;
+use App\Models\HotelPhoto;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\Hotel;
-use App\Models\HotelPhoto;
 
 class UserController extends Controller
 {
@@ -17,82 +17,32 @@ class UserController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-        $hotels = Hotel::where('user_id',$userId)->get(); 
+        $hotels = Hotel::where('user_id', $userId)->get();
         return view('usersite::home.index', compact('hotels'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Property List function
      * @return Renderable
      */
-    public function create()
-    {
-        return view('usersite::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('usersite::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('usersite::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function propertyList()
     {
         $userId = auth()->user()->id;
-        $data['hotels'] = Hotel::where('user_id',$userId)->get(); 
+        $data['hotels'] = Hotel::where('user_id', $userId)->get();
         return view('usersite::home.property', $data);
     }
 
-
-    public function imageShow(Request $request){
+    /**
+     * Image Show Function
+     * @param Request $request
+     *
+     * @return Renderable
+     */
+    public function imageShow(Request $request)
+    {
         $userId = auth()->user()->id;
-        $hotelId = Hotel::whereUuid($request->id)->pluck('id')->first();
-        $data['hotelPhotos'] = HotelPhoto::whereHotel_id($hotelId)->get();
+        $hotel = Hotel::whereUuid($request->id)->select('id')->first();
+        $data['hotelPhotos'] = HotelPhoto::whereHotel_id($hotel->id)->get();
         return view('usersite::home.popup-image', $data);
     }
 }

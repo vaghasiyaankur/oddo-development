@@ -2,10 +2,10 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\FoodType;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\FoodType;
 
 class FoodTypeController extends Controller
 {
@@ -13,9 +13,9 @@ class FoodTypeController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the foodtype.
      * @return Renderable
      */
     public function index()
@@ -25,25 +25,16 @@ class FoodTypeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('admin::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created foodtype in storage.
      * @param Request $request
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $validated   = $request->validate([
-            'food'  => 'required|unique:food_types,food_type',
-        ], [ 
-            'food.unique' => 'this food already exists.' 
+        $validated = $request->validate([
+            'food' => 'required|unique:food_types,food_type',
+        ], [
+            'food.unique' => 'this food already exists.',
         ]);
 
         try {
@@ -52,87 +43,78 @@ class FoodTypeController extends Controller
             $food->save();
 
             return response()->json(["success" => "food inserted Successfully"], 200);
-        }catch(\Exception $e){
+        } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong"], 503);
-        } 
+        }
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified foodtype in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        $validated   = $request->validate([
-            'editFood'  => 'required|unique:food_types,food_type,'.$id.',UUID',
-        ], [ 
-            'editFood.unique' => 'this food already exists.' 
+        $validated = $request->validate([
+            'editFood' => 'required|unique:food_types,food_type,' . $id . ',UUID',
+        ], [
+            'editFood.unique' => 'this food already exists.',
         ]);
 
         try {
-            $food = FoodType::updateOrCreate([ 'UUID' => $id ], [
-                'food_type' => $request->editFood
+            $food = FoodType::updateOrCreate(['UUID' => $id], [
+                'food_type' => $request->editFood,
             ]);
             return response()->json(["success" => "food updated Successfully"], 200);
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified foodtype from storage.
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
         try {
-            $result = FoodType::where('UUID',$id)->delete();
-            return response()->json(["danger" => "Food Deleted Successfully"], 200);  
-        } catch (\Exception $e) {
+            $result = FoodType::where('UUID', $id)->delete();
+            return response()->json(["danger" => "Food Deleted Successfully"], 200);
+        } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
     }
 
+    /**
+     * Update the status of the specified foodtype in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function statusFood(Request $request)
     {
         $status = $request->status;
-        $id     = $request->id;
-        if($status == '1'){
-            $amenityCategories   =  FoodType::updateOrCreate([ 'UUID' => $id ], [
-                'status' => 0
+        $id = $request->id;
+        if ($status == '1') {
+            $amenityCategories = FoodType::updateOrCreate(['UUID' => $id], [
+                'status' => 0,
             ]);
             return response()->json(["message" => "food updated Successfully"], 200);
-        }else{
-            $amenityCategories   =  FoodType::updateOrCreate([ 'UUID' => $id ], [
-                'status' => 1
+        } else {
+            $amenityCategories = FoodType::updateOrCreate(['UUID' => $id], [
+                'status' => 1,
             ]);
             return response()->json(["message" => "food updated Successfully"], 200);
         }
     }
 
+    /**
+     * Display a listing of the facilities in search.
+     * @return \Illuminate\View\View
+     */
     public function foodList()
     {
         $data['foodTypes'] = FoodType::latest()->paginate(10);

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class BedType extends Model
 {
@@ -15,20 +15,37 @@ class BedType extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array<SomeConstants::*, mixed>
+     */
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'bed_type'
-            ]
+                'source' => 'bed_type',
+            ],
         ];
     }
 
-    public function scopeActive($query) {
+    /**
+     * @param mixed $query
+     *
+     * @return object $query
+     */
+    public function scopeActive($query)
+    {
         return $query->where('status', 1);
     }
 
-    public function hotelBed(){
+    /**
+     * BedType that belongs the HotelBed
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<HotelBed>
+     */
+    public function hotelBed()
+    {
         return $this->hasOne(HotelBed::class);
     }
 }

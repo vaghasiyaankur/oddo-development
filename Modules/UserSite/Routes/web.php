@@ -10,14 +10,11 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-
-
-
-
+ */
+use Modules\UserSite\Http\Controllers\BookingController;
+use Modules\UserSite\Http\Controllers\PropertyController;
+use Modules\UserSite\Http\Controllers\UserController;
+use Modules\UserSite\Http\Controllers\UserSiteController;
 
 // Route::get('/update-column', function(){
 //     Schema::table('hotels', function (Blueprint $table) {
@@ -25,23 +22,23 @@ use Illuminate\Support\Facades\Schema;
 //     });
 // });
 
-Route::prefix('user')->group(function() {
-    Route::middleware(['auth', 'user-access:user'])->group(function(){
-        Route::controller(UserController::class)->group(function(){
+Route::prefix('user')->group(function () {
+    Route::middleware(['auth', 'user-access:user'])->group(function () {
+        Route::controller(UserController::class)->group(function () {
             Route::get('/home', 'index')->name('user.view');
-            Route::post('/image','imageShow')->name('show.image');
+            Route::post('/image', 'imageShow')->name('show.image');
             Route::get('property-list', 'propertyList')->name('property.List');
         });
 
         Route::view('/calender', 'usersite::user.calender')->name('calender');
 
         // proeprty form
-        Route::controller(PropertyController::class)->group(function(){
+        Route::controller(PropertyController::class)->group(function () {
 
             // property category
             Route::get('property-category', 'category')->name('property-category');
             Route::post('add-property', 'add_property')->name('add-property');
-            
+
             // basic information
             Route::get('basic-info/{id}', 'basicInfo')->name('basic-info');
             Route::post('cities', 'cities')->name('cities');
@@ -71,11 +68,10 @@ Route::prefix('user')->group(function() {
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
             Route::post('deleteRoom/{hotelid}/{id}', 'deleteRoom')->name('delete.room');
 
-            //Photos   
+            //Photos
             Route::get('photos/{id}', 'viewPhotos')->name('photo');
             Route::post('/save-photos/{id}', 'save_photos')->name('save-photos');
             Route::post('update/photos', 'updatePhotos')->name('update-photos');
-
 
             // Route::post('update-photos', 'photoUpdate')->name('update-photos');
             // Route::post('add-photos', 'photos_add_update')->name('add-photos');
@@ -98,13 +94,13 @@ Route::prefix('user')->group(function() {
             // Route::post('update/photos', 'updatePhotos')->name('update-photos');
         });
 
-        // booking 
-        Route::prefix('booking')->controller(BookingController::class)->group(function(){
+        // booking
+        Route::prefix('booking')->controller(BookingController::class)->group(function () {
             Route::get('/', 'index')->name('booking');
             Route::post('filter', 'bookingFilter')->name('booking.filter');
         });
 
-        Route::controller(UserSiteController::class)->group(function(){
+        Route::controller(UserSiteController::class)->group(function () {
             Route::post('notification', 'notification')->name('booking.notification');
             Route::post('notification/show', 'showNotifications')->name('bookingNotification.show');
             Route::post('notification/delete', 'deleteNotification')->name('booking.delete');

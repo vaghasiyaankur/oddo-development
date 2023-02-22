@@ -3,7 +3,6 @@
 namespace Modules\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -67,7 +66,7 @@ class AdminServiceProvider extends ServiceProvider
         $sourcePath = module_path($this->moduleName, 'Resources/views');
 
         $this->publishes([
-            $sourcePath => $viewPath
+            $sourcePath => $viewPath,
         ], ['views', $this->moduleNameLower . '-module-views']);
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
@@ -92,13 +91,16 @@ class AdminServiceProvider extends ServiceProvider
     /**
      * Get the services provided by the provider.
      *
-     * @return array
+     * @return mixed
      */
     public function provides()
     {
         return [];
     }
 
+    /**
+     * @return array<SomeConstants::*, mixed>
+     */
     private function getPublishableViewPaths(): array
     {
         $paths = [];

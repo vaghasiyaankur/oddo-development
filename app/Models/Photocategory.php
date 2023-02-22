@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
-use App\Models\HotelPhoto;
-use App\Traits\Uuids;
 
 class Photocategory extends Model
 {
@@ -16,12 +15,17 @@ class Photocategory extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array<SomeConstants::*, mixed>
+     */
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
 
@@ -29,5 +33,4 @@ class Photocategory extends Model
     // {
     //     return $this->hasOne(HotelPhoto::class);
     // }
-
 }

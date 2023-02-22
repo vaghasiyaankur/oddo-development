@@ -2,12 +2,12 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\RoomList;
+use App\Models\RoomType;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\RoomList;
-use App\Models\RoomType;
-use App\Models\Room;
 
 class RoomController extends Controller
 {
@@ -15,9 +15,9 @@ class RoomController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the roomtype & roomlist.
      * @return Renderable
      */
     public function index()
@@ -28,25 +28,16 @@ class RoomController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('admin::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created roomlist in storage.
      * @param Request $request
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $validated   = $request->validate([
-            'roomName'  => 'required|unique:room_lists,room_name',
-        ], [ 
-            'roomName.unique' => 'This roomList already exists.' 
+        $validated = $request->validate([
+            'roomName' => 'required|unique:room_lists,room_name',
+        ], [
+            'roomName.unique' => 'This roomList already exists.',
         ]);
 
         try {
@@ -55,91 +46,83 @@ class RoomController extends Controller
             $roomList->room_type_id = $request->roomType;
             $roomList->save();
             return response()->json(["success" => "roomList created Successfully"]);
-        } catch(\Exception $e) {
+        } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong"], 503);
         }
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified roomlist in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        $validated   = $request->validate([
-            'editRoomName'  => 'required|unique:room_lists,room_name,'.$id.',id',
-        ], [ 
-            'editRoomName.unique' => 'This roomList already exists.' 
+        $validated = $request->validate([
+            'editRoomName' => 'required|unique:room_lists,room_name,' . $id . ',id',
+        ], [
+            'editRoomName.unique' => 'This roomList already exists.',
         ]);
 
-        try{
-            $roomType   =  RoomList::updateOrCreate([ 'id' => $id ], [
+        try {
+            $roomType = RoomList::updateOrCreate(['id' => $id], [
                 'room_name' => $request->editRoomName,
-                'room_type_id' => $request->edtiRoomType
+                'room_type_id' => $request->edtiRoomType,
             ]);
             return response()->json(["success" => "Room updated Successfully"], 200);
-        }catch(\Exception $e){
+        } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong"], 503);
         }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified roomlist from storage.
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
         try {
-            $room = Room::where('room_list_id',$id)->count();
-            if($room != 0){
+            $room = Room::where('room_list_id', $id)->count();
+            if ($room != 0) {
                 return response()->json(["warning" => "room not deleted"], 200);
-            }else{
-                $room = RoomList::where('id',$id)->delete();
+            } else {
+                $room = RoomList::where('id', $id)->delete();
                 return response()->json(["danger" => "room deleted Successfully"], 200);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
         }
     }
 
+    /**
+     * Display a listing of the roomlist.
+     *
+     * @return \Illuminate\View\View.
+     */
     public function roomList()
     {
         $data['roomLists'] = RoomList::paginate(10);
         return view('admin::room.room_list', $data);
     }
 
+    /**
+     * Update the status of the specified roomlist in storage.
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function statusRoom(Request $request)
     {
         $status = $request->status;
-        $id     = $request->id;
-        if($status == '1') {
-            $facility = RoomList::where('id', $id)->update([ 'status' => 0 ]);
+        $id = $request->id;
+        if ($status == '1') {
+            $facility = RoomList::where('id', $id)->update(['status' => 0]);
             return response()->json(["message" => "room status updated Successfully"], 200);
-        }else {
-            $facility = RoomList::where('id', $id)->update([ 'status' => 1 ]);
+        } else {
+            $facility = RoomList::where('id', $id)->update(['status' => 1]);
             return response()->json(["message" => "room status updated Successfully"], 200);
         }
     }

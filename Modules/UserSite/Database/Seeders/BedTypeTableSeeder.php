@@ -2,14 +2,13 @@
 
 namespace Modules\UserSite\Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\BedType;
+use Illuminate\Database\Seeder;
 
 class BedTypeTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the BedType table seed.
      *
      * @return void
      */
@@ -22,12 +21,14 @@ class BedTypeTableSeeder extends Seeder
             ['King', '183-203 cm wide'],
         ];
 
-        foreach ($bedTypes as  list($bed_type, $bed_size)) {
-            BedType::create([
-                'bed_type' => $bed_type,
-                'bed_size' => $bed_size,
-                'status' => '1'
-            ]);
+        foreach ($bedTypes as list($bed_type, $bed_size)) {
+            BedType::create(
+                [
+                    'bed_type' => $bed_type,
+                    'bed_size' => $bed_size,
+                    'status' => '1',
+                ]
+            );
         }
     }
 }

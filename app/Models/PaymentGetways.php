@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Uuids;
 
-class paymentGetways extends Model
+class PaymentGetways extends Model
 {
     use HasFactory, Uuids;
 
@@ -14,18 +14,33 @@ class paymentGetways extends Model
 
     protected $guarded = ['id'];
 
-    public function scopeActive($query) {
+    /**
+     * @param mixed $query
+     *
+     * @return object
+     */
+    public function scopeActive($query)
+    {
         return $query->where('status', 1);
     }
 
+    /**
+     * Payment that belongs the PaymentGetways
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Payment>
+     */
     public function payment()
     {
         return $this->hasMany(Payment::class, 'id');
     }
 
+    /**
+     * HotelBooking that belongs the PaymentGetways
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<HotelBooking>
+     */
     public function hotelBooking()
     {
         return $this->hasMany(HotelBooking::class, 'id');
     }
-    
 }

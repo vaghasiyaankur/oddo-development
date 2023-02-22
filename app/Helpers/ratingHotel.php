@@ -1,11 +1,16 @@
 <?php
 
-use Carbon\Carbon;
 use App\Models\Review;
 
-if(!function_exists("removeWhiteSpace")){
+if (!function_exists("removeWhiteSpace")) {
 
-    function ratingHotel($rating){
+    /**
+     * @param mixed $rating
+     *
+     * @return int $value
+     */
+    function ratingHotel($rating)
+    {
         $Review = Review::where('UUID', $rating)->first();
 
         $staff = $Review->staff;
@@ -19,7 +24,8 @@ if(!function_exists("removeWhiteSpace")){
         $amenities = $Review->amenities;
         $internet = $Review->internet;
 
-        $value = ($staff + $cleaness + $rooms + $location + $breakfast + $service_staff + $property + $price_quality + $amenities + $internet) / 10;
+        $value = ($staff + $cleaness + $rooms + $location + $breakfast + $service_staff + $property +
+            $price_quality + $amenities + $internet) / 10;
 
         return $value;
     }

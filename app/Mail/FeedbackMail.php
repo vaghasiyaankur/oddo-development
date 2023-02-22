@@ -2,14 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\EmailTemplate;
+use App\Models\HotelBooking;
+use App\Models\ShortCodeMailTemplate;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
-use App\Models\EmailTemplate;
-use App\Models\ShortCodeMailTemplate;
-use App\Models\HotelBooking;
 
 class FeedbackMail extends Mailable
 {
@@ -34,10 +33,10 @@ class FeedbackMail extends Mailable
     {
         $emailTemplate = EmailTemplate::where('id', 8)->first();
 
-        $short_code_id = explode(',',$emailTemplate->short_code_id);
-        $ShortCodes = ShortCodeMailTemplate::whereIn('id',$short_code_id)->get();
+        $short_code_id = explode(',', $emailTemplate->short_code_id);
+        $ShortCodes = ShortCodeMailTemplate::whereIn('id', $short_code_id)->get();
         $bookingId = HotelBooking::latest()->first();
-        
+
         $shortCode = array();
         foreach ($ShortCodes as $key => $ShortCode) {
             $shortCode[] = $ShortCode->short_code;
@@ -49,7 +48,8 @@ class FeedbackMail extends Mailable
         $emailContent = strtr($emailTemplate->mail_body, $shortCodeValue);
 
         return $this->from('jemin.codetrinity@gmail.com')->view('frontend::mail.feedback')
-                    ->subject($emailTemplate->mail_subject)
-                    ->with(['content' => $emailTemplate->mail_body ,'customer_name' =>  $bookingId->user->name, 'emailContent' => $emailContent, 'booking_id' => $bookingId->UUID]);
+            ->subject($emailTemplate->mail_subject)
+            ->with(['content' => $emailTemplate->mail_body, 'customer_name' => $bookingId->user->name,
+                'emailContent' => $emailContent, 'booking_id' => $bookingId->UUID]);
     }
 }

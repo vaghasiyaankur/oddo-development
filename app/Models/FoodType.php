@@ -2,23 +2,32 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Uuids;
 
 class FoodType extends Model
 {
     use HasFactory, Uuids;
     protected $guarded = [];
-    
-    public function scopeActive($query) {
+
+    /**
+     * @param mixed $query
+     *
+     * @return object
+     */
+    public function scopeActive($query)
+    {
         return $query->where('status', 1);
     }
 
-    public function hotel(){
+    /**
+     * Hotel that belongs the FoodType
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Hotel>
+     */
+    public function hotel()
+    {
         return $this->hasOne(Hotel::class);
     }
-
-    
-
 }

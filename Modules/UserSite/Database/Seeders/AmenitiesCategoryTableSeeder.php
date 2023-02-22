@@ -1,16 +1,13 @@
 <?php
-
 namespace Modules\UserSite\Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\AmenitiesCategory;
-
+use Illuminate\Database\Seeder;
 
 class AmenitiesCategoryTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the Amenities Category seed.
      *
      * @return void
      */
@@ -20,17 +17,15 @@ class AmenitiesCategoryTableSeeder extends Seeder
             'Bathroom',
             'Food & drink',
             'Media & technology',
-            'Room amenities'
+            'Room amenities',
         ];
 
         foreach ($amenities_categorys as $category) {
             AmenitiesCategory::create([
                 'category' => $category,
-                'slug'         => \Str::slug($category),
-                'status'       => '1',
+                'slug' => \Str::slug($category),
+                'status' => '1',
             ]);
         }
-
-        // $this->call("OthersTableSeeder");
     }
 }

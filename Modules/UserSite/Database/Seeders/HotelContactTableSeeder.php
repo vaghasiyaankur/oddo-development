@@ -3,8 +3,6 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\HotelContact;
 
 class HotelContactTableSeeder extends Seeder
 {
@@ -13,9 +11,6 @@ class HotelContactTableSeeder extends Seeder
      *
      * @return void
      */
-    
-    protected $model = HotelContact::class;
-
     public function run()
     {
         $HotelContacts = [
@@ -24,13 +19,15 @@ class HotelContactTableSeeder extends Seeder
             ['smitbhai', '228-281-4243', '206-313-5390', '2'],
         ];
 
-        foreach ($HotelContacts as  list($name, $number, $number_optinal, $hotel_id)) {
-            HotelContact::create([
-                'name' => $name,
-                'number' => $number,
-                'number_optinal' =>$number_optinal,
-                'hotel_id' => $hotel_id
-            ]);
+        foreach ($HotelContacts as list($name, $number, $number_optinal, $hotel_id)) {
+            \App\Models\HotelContact::create(
+                [
+                    'name' => $name,
+                    'number' => $number,
+                    'number_optinal' => $number_optinal,
+                    'hotel_id' => $hotel_id,
+                ]
+            );
         }
     }
 }

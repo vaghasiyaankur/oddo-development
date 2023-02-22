@@ -1,16 +1,13 @@
 <?php
-
 namespace Modules\UserSite\Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Amenities;
-use App\Models\AmenitiesCategory;
+use Illuminate\Database\Seeder;
 
 class AmenitiesTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the Amenity seed.
      *
      * @return void
      */
@@ -32,17 +29,23 @@ class AmenitiesTableSeeder extends Seeder
         $Amenities[4][3] = "Wardrobe or closet";
         $Amenities[4][4] = "Carpeted";
 
+        $check_folder = is_dir(public_path('storage/amenities'));
+        if (!$check_folder) {
+            mkdir(public_path('storage/amenities'));
+        }
+
         foreach ($Amenities as $key => $amenity) {
             foreach ($amenity as $v2) {
-                Amenities::create([
-                    'amenities' => $v2,
-                    'icon' => 'bi-search',
-                    'status' => '1',
-                    'featured' => rand(0,1),
-                    'amenities_category_id' => $key
-                ]);
+                Amenities::create(
+                    [
+                        'amenities' => $v2,
+                        'icon' => 'bi-search',
+                        'status' => '1',
+                        'featured' => rand(0, 1),
+                        'amenities_category_id' => $key,
+                    ]
+                );
             }
-        }     
-
+        }
     }
 }

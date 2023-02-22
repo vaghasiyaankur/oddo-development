@@ -3,8 +3,6 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Review;
 
 class ReviewTableSeeder extends Seeder
 {
@@ -23,24 +21,28 @@ class ReviewTableSeeder extends Seeder
             ['3', '2', '1', '4', '5', '2', '4', '3', '1', '5', '3', 'Private farm with simple', '2', '2', '2'],
         ];
 
-        foreach ($Reviews as  list($staff, $cleaness, $rooms, $location, $breakfast, $service_staff, $property, $price_quality, $amenities, $internet, $total_rating, $feedback, $user_id, $hotel_id, $room_id)) {
-            Review::create([
-                "staff" => $staff,
-                "cleaness" => $cleaness,
-                "rooms" => $rooms,
-                "location" => $location,
-                "breakfast" => $breakfast,
-                "service_staff" => $service_staff,
-                "property" => $property,
-                "price_quality" => $price_quality,
-                "amenities" => $amenities,
-                "internet" => $internet,
-                "total_rating" => $total_rating,
-                "feedback" => $feedback,
-                "user_id" => $user_id,
-                "hotel_id" => $hotel_id,
-                "room_id" => $room_id,
-            ]);
+        foreach ($Reviews as list($staff, $cleaness, $rooms, $location, $breakfast, $service_staff, $property,
+            $price_quality, $amenities, $internet, $total_rating, $feedback, $user_id, $hotel_id, $room_id)) {
+
+            \App\Models\Review::create(
+                [
+                    "staff" => $staff,
+                    "cleaness" => $cleaness,
+                    "rooms" => $rooms,
+                    "location" => $location,
+                    "breakfast" => $breakfast,
+                    "service_staff" => $service_staff,
+                    "property" => $property,
+                    "price_quality" => $price_quality,
+                    "amenities" => $amenities,
+                    "internet" => $internet,
+                    "total_rating" => $total_rating,
+                    "feedback" => $feedback,
+                    "user_id" => $user_id,
+                    "hotel_id" => $hotel_id,
+                    "room_id" => $room_id,
+                ]
+            );
         }
     }
 }

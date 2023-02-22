@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
-use App\Traits\Uuids;
 
 class BathroomItem extends Model
 {
@@ -15,20 +15,37 @@ class BathroomItem extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array<SomeConstants::*, mixed>
+     */
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'item'
-            ]
+                'source' => 'item',
+            ],
         ];
     }
 
-    public function scopeActive($query) {
+    /**
+     * @param mixed $query
+     *
+     * @return object $query
+     */
+    public function scopeActive($query)
+    {
         return $query->where('status', 1);
     }
 
-    public function hotel() {
+    /**
+     * RoomBathroomItem that belongs the Room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Room>
+     */
+    public function hotel()
+    {
         return $this->hasOne(Room::class);
     }
 }
