@@ -11,11 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name ="description" content="@yield('meta_description', 'page Odda-development')">
-    <meta name ="keywords" content="@yield('meta_keywords', 'page,Odda-development')">
+    <meta name="description" content="@yield('meta_description', 'page Odda-development')">
+    <meta name="keywords" content="@yield('meta_keywords', 'page,Odda-development')">
     <meta name="author" content="Odda">
     <title>{{ $generalSetting->site_name }} / @yield('title')</title>
-    <link rel="shortcut icon" href="{{ $logoFavicon->favicon == null ? asset('storage/'.$logoFavicon->default_favicon) : asset('storage/'.$logoFavicon->favicon) }}">
+    <link rel="shortcut icon"
+        href="{{ $logoFavicon->favicon == null ? asset('storage/' . $logoFavicon->default_favicon) : asset('storage/' . $logoFavicon->favicon) }}">
     <!------- Bootstrap CSS Link------->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <!------- Fontawsomee cdn link ------->
@@ -46,10 +47,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/timepiker.css') }}">
 
     <!-------- Custom CSS Link -------->
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/reponsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css?version=1') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/reponsive.css?version=1') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css?version=1') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style-responsive.css?version=1') }}">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.min.css">
@@ -77,7 +78,7 @@
 
         .log_in_modal_ .card .log_in_btn {
             color: #fff;
-            background-color: #6A78C7 ;
+            background-color: #6A78C7;
             border-color: #6A78C7;
         }
 
@@ -87,12 +88,13 @@
             border-color: #6A78C7;
         }
 
-        .log_in_modal_ .spinner-border{
+        .log_in_modal_ .spinner-border {
             margin-top: 3px;
             float: right;
             width: 18px !important;
             height: 18px !important;
         }
+
         /* .daterangepicker {
             top: 869.391px !important;
             left: 1025px !important;
@@ -103,27 +105,31 @@
             width: 100%;
             align-items: center;
         }
-        .range_inputs .cancelBtn{
+
+        .range_inputs .cancelBtn {
             border: 1px solid #d9c8c8;
             margin-top: 5px;
         }
-        .ranges{
+
+        .ranges {
             width: 100%;
             padding: 0 56px;
         }
 
-        .daterangepicker{
+        .daterangepicker {
             top: 260.797px;
             left: 1323px;
             right: auto;
             max-width: 516px;
             /* width: 100%; */
         }
-        @media screen and (max-width:1200px){
-            header.header .navbar .navbar-nav .nav-item{
-            padding-right: 8px;            
+
+        @media screen and (max-width:1200px) {
+            header.header .navbar .navbar-nav .nav-item {
+                padding-right: 8px;
             }
-            header.header .navbar .navbar-nav .nav-item a.nav-link{
+
+            header.header .navbar .navbar-nav .nav-item a.nav-link {
                 font-size: 13px;
                 line-height: 26px;
             }
@@ -146,7 +152,8 @@
             margin-right: 15px;
             border-right: 1px solid #B1BACA;
         }
-         .notification-box{
+
+        .notification-box {
             top: 50px;
             right: -50px !important;
             /* opacity: 0; */
@@ -155,7 +162,8 @@
             width: 335px;
             min-height: 111px;
             /* display: none; */
-           .notification-button /* visibility: hidden; */
+            .notification-button
+            /* visibility: hidden; */
             position: absolute;
             border-radius: 5px;
             backdrop-filter: blur(10px);
@@ -164,6 +172,7 @@
             transition: all ease 0.2s;
             border-bottom: 5px solid #DC3B3B;
         }
+
         .notification-button .notification-box::after {
             top: -20px;
             right: 72px;
@@ -177,6 +186,7 @@
             border-bottom: 10px solid rgb(255 255 255);
             filter: drop-shadow(0 0 0px rgb(247 55 87 / 30%));
         }
+
         .notification-button .notification-heading {
             font-size: 16px;
             color: #212529;
@@ -185,6 +195,7 @@
             padding: 10px 20px;
             letter-spacing: 0.5px;
         }
+
         .notification-button .inner-box {
             display: flex;
             justify-content: space-between;
@@ -194,10 +205,12 @@
             padding: 15px;
             border-top: 1px solid rgb(238 241 247);
         }
+
         .notification-button .notification-data {
             width: 100%;
             padding: 0 15px;
         }
+
         .notification-button .notification-img {
             width: 100%;
             max-width: 50px;
@@ -207,11 +220,12 @@
             border-radius: 50%;
             overflow: hidden;
         }
-        
-        .notification-button .notification-icon i{
+
+        .notification-button .notification-icon i {
             color: #B4B8CF;
             font-size: 20px;
         }
+
         .notification-button .notification-img img {
             width: 100%;
             height: 100%;
@@ -219,25 +233,31 @@
             min-height: 50px;
             max-width: 50px;
         }
+
         .notification-button .notification-data h5 {
             font-size: 16px;
             color: #42455a;
             margin-bottom: 0;
         }
+
         .notification-button .notification-data .data-time span {
             font-size: 14px;
             color: #959596;
         }
+
         .notification-button .notification-data .data-time span i {
             margin-right: 5px;
         }
-        .notification-button .inner-box:hover{
+
+        .notification-button .inner-box:hover {
             background-color: #eef1f782;
         }
-        .notification-close-btn a{
+
+        .notification-close-btn a {
             color: #42455a;
         }
-        .notificationCount{
+
+        .notificationCount {
             width: 17px;
             height: 17px;
             text-align: center;
@@ -245,14 +265,16 @@
             margin-left: 36px;
             margin-top: -6px;
             background: #6A78C7;
-        } 
-        .data-content{
+        }
+
+        .data-content {
             font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-        } 
-        .notification-empty{
+        }
+
+        .notification-empty {
             /* position: absolute;
             top: 40% !important;
             left: 20%;
@@ -264,31 +286,35 @@
             font-weight: 400;
             font-size: 20px;
             line-height: 24px;
-        } 
-        .mobile-view-notification{
+        }
+
+        .mobile-view-notification {
             display: none;
         }
 
-        @media screen and (max-width:992px){
-            .mobile-view-notification{
+        @media screen and (max-width:992px) {
+            .mobile-view-notification {
                 display: flex;
                 align-items: center;
                 position: absolute;
                 right: 50px;
                 top: 7px;
             }
-            .notification-button .notification-box{
+
+            .notification-button .notification-box {
                 right: -50px !important;
             }
+
             .notification-box::after {
                 top: -20px;
                 right: 16px;
             }
+
             .notification-button .notification-box::after {
-            top: -20px;
-            right: 72px;
-            width: 15px;
-        }
+                top: -20px;
+                right: 72px;
+                width: 15px;
+            }
         }
     </style>
 
@@ -305,7 +331,7 @@
 
     @yield('content')
 
-    @if(!auth()->check())
+    @if (!auth()->check())
         @include('frontend::auth.login')
         @include('frontend::auth.register')
         @include('frontend::auth.forget')
@@ -320,7 +346,8 @@
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
 
     <!------- Bootstrap JS Link ------->
@@ -346,8 +373,10 @@
 
     <!------Datepiker js cdn ------->
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
-    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.24/daterangepicker.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script> --}}
 
     <!------- Timepiker js link ---------->
@@ -370,9 +399,9 @@
 
     @if (!auth()->check())
         <!-- password-addon init -->
-        <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script> 
+        <script src="{{ asset('assets/Admin/assets/js/pages/password-addon.init.js') }}"></script>
     @endif
-@stack('script')
+    @stack('script')
 
 </body>
 
