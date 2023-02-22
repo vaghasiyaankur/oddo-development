@@ -9,7 +9,7 @@
             <a class="navbar-brand " href="{{ route('home.index') }}">
                 <img class="logoImage" src="{{ $logoFavicon->logo == null ? asset('storage/'.$logoFavicon->default_logo) : asset('storage/'.$logoFavicon->logo) }}" alt="logo">
             </a>
-            <a href="javascript:;" class="notification-button mobile-view-notification">
+            {{-- <a href="javascript:;" class="notification-button mobile-view-notification">
                 <div class="notification-icon">
                     <i class="fa-solid fa-bell"></i>                 
                 </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 @endif  
-            </a>
+            </a> --}}
             <button class="navbar-toggler responsive_btn" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" style="position: absolute;
             right: 0px;">
                 <span class="navbar-toggler-icon d-flex align-items-center justify-content-center"><i class="fa-solid fa-bars"></i></span>
@@ -224,7 +224,9 @@
                 @if (!auth()->check())
                     <div class="list-properties pe-lg-3 mt-3 mt-lg-0 w-100 mt-auto px-2" data-bs-dismiss="offcanvas" aria-label="Close">
                         <button type="button" class="w-100 list-properties-btn btn loginDate" data-bs-toggle="modal"
-                            data-bs-target="#Log_in_modal" >Log In</button>
+                            data-bs-target="#Log_in_modal" >
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </button>
                     </div>
                 @endif
 
@@ -232,7 +234,8 @@
                     <div class="w-100 dropdown pe-lg-3 mt-auto mt-lg-0 px-2 mx-auto">
                         <button class="d-flex align-items-center justify-content-center w-100 btn btn-secondary dropdown-toggle dropdown-btn" type="button"
                             id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hi, {{ auth()->user()->name }}
+                            <i class="fa-solid fa-user"></i> 
+                            {{-- {{ auth()->user()->name }} --}}
                         </button>
                         <ul class="w-100 dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
                             <li>

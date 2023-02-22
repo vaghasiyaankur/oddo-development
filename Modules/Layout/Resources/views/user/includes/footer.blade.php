@@ -110,16 +110,18 @@
     <footer class="footer hotel-result">
         <div class="container">
             <div class="footer-main">
-                <div class="footer-logo d-flex align-items-center justify-content-between">
-                    <div class="footer-title">
+                <div class="row footer-logo d-flex align-items-center">
+                    <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7  footer-title d-flex justify-content-sm-start justify-content-center">
                         <a href="#">
                             <img src="{{asset('storage/images/white_background.png')}}" alt="" class="img-fluid">
                         </a>
                     </div>
-                    <div class="footer-icons d-flex">
-                        <div class="icon-inner"><i class="fa-solid fa-phone"></i></div>
-                        <div class="icon-inner"><i class="fa-solid fa-envelope"></i></div>
-                        <div class="icon-inner"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5  footer-icons">
+                        <div class="footer-icons d-flex justify-content-sm-between justify-content-center">
+                            <div class="icon-inner mx-sm-0 mx-2"><i class="fa-solid fa-phone"></i></div>
+                            <div class="icon-inner mx-sm-0 mx-2"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="icon-inner mx-sm-0 mx-2"><i class="fa-solid fa-location-dot"></i></div>
+                        </div>
                     </div>
                 </div>
                 <div class="row footer-content">

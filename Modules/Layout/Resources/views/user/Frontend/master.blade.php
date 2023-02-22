@@ -146,7 +146,7 @@
             margin-right: 15px;
             border-right: 1px solid #B1BACA;
         }
-        .notification-button .notification-box{
+         .notification-box{
             top: 50px;
             right: -50px !important;
             /* opacity: 0; */
@@ -155,7 +155,7 @@
             width: 335px;
             min-height: 111px;
             /* display: none; */
-            /* visibility: hidden; */
+           .notification-button /* visibility: hidden; */
             position: absolute;
             border-radius: 5px;
             backdrop-filter: blur(10px);

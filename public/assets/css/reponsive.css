@@ -75,8 +75,11 @@
     .pwm-museums .pwm-museums-inner .city-tab-popup-main .tab-side-content {
         padding: 53px 32px 23px;
     }
-    .hotel-policies .h-policies-main .h-check-in-out {
+    /* .hotel-policies .h-policies-main .h-check-in-out {
         max-width: 240px;
+    } */
+    .hotel-policies .h-policies-main .h-policies-main-inner {
+        border-right: 1px solid transparent;
     }
     .hotel-room .hotel-room-inner .room-card-main .border--left {
         border: none;
@@ -102,7 +105,11 @@
     .check-in-out.hotel-result .check-in-out-inner .check-in-out-form .check-in-out-bottom .select-option .bed-selector{
         margin-right: 0px;
     }
-
+    .hotel-room .hotel-room-inner .room-single-card{
+        padding:0px 20px 24px 20px;
+        height: 100%;
+    }
+    
 }
 @media screen and (max-width: 767px) {
     .s-top-city .s-top-city-inner .s-top-city-main .slick-prev {
@@ -152,6 +159,14 @@
     .h-details-title .h-details-title-box .h-details-heading h2 {
         font-size: 32px;
         line-height: 32px;
+    }
+    .hotel-room .hotel-room-inner .room-single-card .h-room-overview {
+        border-bottom: 1px solid rgb(106 120 199 / 20%);
+        border-right: 1px solid transparent;
+        padding:15px;
+    }
+    .h-details-title .h-details-title-box .property-name{
+        font-size: 24px ;
     }
 }
 
@@ -364,8 +379,19 @@
         min-height: 159px;
         padding: 32px;
     }
-    .hotel-policies .h-policies-main .h-check-in-out {
+    /* .hotel-policies .h-policies-main .h-check-in-out {
         padding: 7px;
+    } */
+    .footer .footer-main .footer-content{
+        margin: 30px 0;
+    }
+    .footer.hotel-result .footer-icons .icon-inner{
+        width: 40px;
+        height: 40px;
+    }
+    .footer.hotel-result .footer-icons .icon-inner i {
+        color: #6A78C7;
+        font-size: 18px;
     }
 }
 @media screen and (max-width: 520px) {
@@ -528,7 +554,7 @@
     }
     .hotel-room .hotel-room-inner .hotel-room-heading h5 {
         font-size: 16px;
-        line-height: 10px;
+        line-height: 22px;
     }
     .pwm-transport-heading h2 {
         font-size: 22px;

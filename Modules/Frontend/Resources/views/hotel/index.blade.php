@@ -1066,7 +1066,7 @@ search
     <div class="container">
         <div class="search-result-inner">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 mt-4 mt-lg-0">
                     <aside class="side-content">                       
                         <div class="d-flex align-items-center justify-content-between result-view">
                             <span class="side-text">Viewing {{ $hotels->total() }} results</span>
