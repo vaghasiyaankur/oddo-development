@@ -223,17 +223,17 @@
     }
 }
 @media screen and (max-width: 992px) {
-    .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content {
+    /* .saved-section .saved-hotels-details .hotel-wrapper .hotel-box .content {
         padding-top: 11px;
         padding-left: 5px;
         padding-right: 4px;
-    }
+    } */
     .search-result-price__tag .price-btn {
         padding: 10px 15px;
     }
-    .search-result-price__tag.b-1 {
+    /* .search-result-price__tag.b-1 {
         margin-left: 24%;
-    }
+    } */
     .search-result-price__tag.b-2,
     .search-result-price__tag.b-3 {
         margin-left: 26%;
@@ -243,35 +243,36 @@
     .search-result-price__tag .price-btn {
         padding: 6px 13px;
     }
-    .search-result-price__tag.b-1 {
+    /* .search-result-price__tag.b-1 {
         margin-left: 19%;
-    }
+    } */
     .search-result-price__tag.b-2,
     .search-result-price__tag.b-3 {
         margin-left: 19%;
     }
 }
 @media screen and (max-width: 576px) {
-    .search-result-price__tag.b-1 {
+    /* .search-result-price__tag.b-1 {
         margin-left: 34%;
-    }
+    } */
     .search-result-price__tag.b-2,
     .search-result-price__tag.b-3 {
         margin-left: 33%;
     }
     .place-box {
-        max-width: 280px;
+        max-width: 100%;
         margin: 0 auto;
     }
 }
 @media screen and (max-width: 375px) {
-    .search-result-price__tag.b-1 {
+    /* .search-result-price__tag.b-1 {
         margin-left: 25%;
-    }
+    } */
     .search-result-price__tag.b-2,
     .search-result-price__tag.b-3 {
         margin-left: 25%;
     }
+    
 }
 
 /* ================== SAVE PAGE CSS END ================= */
@@ -376,40 +377,40 @@
 }
 @media screen and (max-width: 578px) {
     .check-in-out-form .check-in-out-icon .check-icons-inner {
-        display: none;
+        display: none !important;
     }
 }
 
 @media screen and (max-width: 1400px) {
-    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+    /* .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
         flex: 0 0 40% !important;
         padding-right: 70px !important;
     }
     .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
         flex: 0 0 52% !important;
         padding-left: 16px !important;
-    }
+    } */
 }
 @media screen and (max-width: 992px) {
-    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+    /* .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
         flex: 0 0 40% !important;
         padding-right: 2px !important;
-    }
-    .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
+    } */
+    /* .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
         flex: 0 0 60% !important;
         padding-left: 2px !important;
-    }
+    } */
     .header .navbar .navbar-brand img{
         margin-top: -18px;
     }
 }
 @media screen and (max-width: 768px) {
-    .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
+    /* .check-in-out-inner .check-in-out-bottom .check--out_btn_ {
         flex: 0 0 40% !important;
         padding-right: 2px !important;
         margin: 0 auto !important;
     }
     .check-in-out-inner .check-in-out-bottom .check-in-out-icon {
         display: none !important;
-    }
+    } */
 }

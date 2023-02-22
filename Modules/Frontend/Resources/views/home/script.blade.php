@@ -208,18 +208,18 @@
             $room = $(`<div class="room"><div class="title-container">
                         <h5 class="title" style="margin:10px;">Room ` + $number + `</h5>
                     </div>
-                    <section class="dropdown-container">
-                        <div class="dropdown-inner">
-                            <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="king_` + $number + `" value="King" `+king+`>
-                            <label for="king_` + $number + `">1 King</label>
+                    <section class="row dropdown-container">
+                        <div class="col-xl-6 col-lg-12 col-6 dropdown-inner d-flex align-items-center">
+                            <input class="form-check-input hotelBeds mt-0" type="checkbox" name="bed" id="king_` + $number + `" value="King" `+king+`>
+                            <label for="king_` + $number + `" class="px-2">1 King</label>
                         </div>
-                        <div class="dropdown-inner">
-                            <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="twin_` + $number + `" value="twin" `+twin+`>
-                            <label for="twin_` + $number + `">2 Twin</label>
+                        <div class="col-xl-6 col-lg-12 col-6 dropdown-inner d-flex align-items-center">
+                            <input class="form-check-input hotelBeds mt-0" type="checkbox" name="bed" id="twin_` + $number + `" value="twin" `+twin+`>
+                            <label for="twin_` + $number + `" class="px-2">2 Twin</label>
                         </div>
-                        <div class="dropdown-inner">
-                            <input class="form-check-input hotelBeds" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen" `+queen+`>
-                            <label for="queen_` + $number + `">2 Queen</label>
+                        <div class="col-xl-6 col-lg-12 col-6 dropdown-inner d-flex align-items-center">
+                            <input class="form-check-input hotelBeds mt-0" type="checkbox" name="bed" id="queen_` + $number + `" value="Queen" `+queen+`>
+                            <label for="queen_` + $number + `" class="px-2">2 Queen</label>
                         </div>
                     </section>
                 </div>`);

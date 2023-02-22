@@ -133,38 +133,40 @@
 
         .notification-button {
             width: 100%;
-            max-width: 30px;
+            max-width: 40px;
             height: 100%;
-            min-height: 30px;
-            max-height: 30px;
-            border-radius: 50%;
-            background: white;
+            min-height: 40px;
+            max-height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 10px;
+            padding-right: 25px;
+            padding-top: 10px;
             position: relative;
+            margin-right: 15px;
+            border-right: 1px solid #B1BACA;
         }
-        .notification-button .notification-box{
-            top: 42px;
-            left: 0;
+         .notification-box{
+            top: 50px;
+            right: -50px !important;
             /* opacity: 0; */
             z-index: 9999;
             right: -17px;
             width: 335px;
-            min-height: 212px;
+            min-height: 111px;
             /* display: none; */
-            /* visibility: hidden; */
+           .notification-button /* visibility: hidden; */
             position: absolute;
             border-radius: 5px;
             backdrop-filter: blur(10px);
-            background: rgb(255 255 255 / 90%);
-            box-shadow: 0 0 5px rgb(185 185 185 / 30%);
+            background: linear-gradient(2.29deg, #FFEEEE 2.02%, #FFFFFF 89.4%);
+            box-shadow: 0px 1px 9px rgba(167, 82, 82, 0.3);
             transition: all ease 0.2s;
+            border-bottom: 5px solid #DC3B3B;
         }
         .notification-button .notification-box::after {
             top: -20px;
-            left: 5px;
+            right: 72px;
             content: "";
             z-index: -1;
             position: absolute;
@@ -207,7 +209,8 @@
         }
         
         .notification-button .notification-icon i{
-            color: #42455a;
+            color: #B4B8CF;
+            font-size: 20px;
         }
         .notification-button .notification-img img {
             width: 100%;
@@ -235,25 +238,32 @@
             color: #42455a;
         }
         .notificationCount{
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             text-align: center;
             justify-content: center;
-            margin-left: 35px;
-            margin-top: -13px;
+            margin-left: 36px;
+            margin-top: -6px;
+            background: #6A78C7;
         } 
         .data-content{
-            margin-left: -3.5px;
-            position: absolute;
-            margin-top: -1px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         } 
         .notification-empty{
-            position: absolute;
+            /* position: absolute;
             top: 40% !important;
             left: 20%;
-            margin-left: 10px;
+            margin-left: 10px; */
             text-align: center;
-            color: black;
+            color: #DC3B3B;
+            font-family: 'Avenir LT Std';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
         } 
         .mobile-view-notification{
             display: none;
@@ -262,12 +272,13 @@
         @media screen and (max-width:992px){
             .mobile-view-notification{
                 display: flex;
+                align-items: center;
                 position: absolute;
-                right: 78px;
-                top: 33px;
+                right: 50px;
+                top: 7px;
             }
             .notification-button .notification-box{
-                left: -295px;
+                right: -50px !important;
             }
             .notification-box::after {
                 top: -20px;
@@ -275,7 +286,7 @@
             }
             .notification-button .notification-box::after {
             top: -20px;
-            left: 88%;
+            right: 72px;
             width: 15px;
         }
         }

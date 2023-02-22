@@ -121,10 +121,10 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                             </div>
                         </div> --}}
                         <div class="hotels-result-budget">
-                            <div class="small-heading mt-3">
+                            <div class="small-heading">
                                 <h6>Budget </h6>
                             </div>
-                            <div class="row g-3 align-items-center pb-4">
+                            <div class="row g-3 align-items-center">
                                 <div class="col-md-3 col-5">
                                     <input type="number" class="form-control budgetMinimum" placeholder="$ Min"
                                         value="{{request()->budgetMinimum}}">
@@ -139,10 +139,10 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                             </div>
                         </div>
                         <div class="hotels-result-property">
-                            <div class="small-heading mt-3">
+                            <div class="small-heading">
                                 <h6>Property Class </h6>
                             </div>
-                            <div class="hotels-result-property d-sm-flex">
+                            <div class="hotels-result-propertys d-sm-flex">
                                 <div class="form-check pe-4">
                                     <input class="form-check-input propertyClass" type="checkbox" value="5" id="5star">
                                     <label for="5star" class="property-class-icon propertyStar"><img
@@ -206,7 +206,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                             </div>
                         </div>
                         <div class="hotels-results-amenities">
-                            <div class="small-heading mt-3">
+                            <div class="small-heading">
                                 <h6>Amenities </h6>
                             </div>
                             <div class="hotels-results-amenities-popup d-sm-flex">
@@ -229,7 +229,7 @@ $preferenceId = App\Models\Preference::whereUser_id($authId)->pluck('UUID')->fir
                         </div>
                     </div>
                     @php $auth = auth()->user(); @endphp
-                    <div class="preference-popup-save-btn text-center mt-5">
+                    <div class="preference-popup-save-btn text-center mt-3">
                         <a href="javascript:;" class="preference-popup-btn btn bg-purple savePreference">Save</a>
                     </div>
                 </div>

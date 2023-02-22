@@ -1,7 +1,7 @@
 @if($wishlists == null)
     <input type="hidden" class="hotelCount" value="0">
      {{-- No Data Found For wishlist --}}
-     <div class="check-in-out py-2">
+     <div class="check-in-out p-3">
         <div class="check-in-out-inner">
             <div class="empty-table w-100 text-center py-4">
                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
