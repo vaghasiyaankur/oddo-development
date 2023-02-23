@@ -28,7 +28,7 @@
     .explore-city .nav-pills .nav-link,
     .nav-pills .show>.nav-link{
         color: #6A78C7 !important;
-         background: rgb(106 120 199 / 10%);
+        background: rgb(231 234 255 / 80%);
         border-radius: 30px;
     }
     .explore-city .nav-pills li.nav-item {

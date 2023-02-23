@@ -38,7 +38,7 @@
                 @endif  
             </a> --}}
             <button class="navbar-toggler responsive_btn" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" style="position: absolute;
-            right: 0px;">
+            right: 0px; color: #6a78c7;">
                 <span class="navbar-toggler-icon d-flex align-items-center justify-content-center"><i class="fa-solid fa-bars"></i></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarTogglerDemo01">

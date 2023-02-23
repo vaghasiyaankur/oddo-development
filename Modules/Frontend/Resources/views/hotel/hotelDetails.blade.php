@@ -81,7 +81,7 @@
             min-height: 400px;
         }
 
-        .section-padding .screenshot_slider .owl-item .item img {
+        .section-padding .owl-item .item img {
             -webkit-transition: 0.3s;
             -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
             box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
@@ -116,13 +116,13 @@
             left: 28%;
         }
         
-        .section-padding .screenshot_slider .owl-item.center .item img {
+        .section-padding .owl-item.center .item img {
             -webkit-transform: scale(1.15);
             -ms-transform: scale(1.15);
             transform: scale(1.15);
         }
 
-        .section-padding .screenshot_slider .owl-nav {
+        .section-padding .owl-nav {
          text-align: center;
         }
         .section-padding .owl-carousel .owl-item img {
@@ -131,13 +131,10 @@
             height: 100%;
             max-height: 400px;
             min-height: 400px;
-            /* background: rgba(231, 234, 255, 0.6);
-            padding: 11px; */
-            border-radius: 14px;
             object-fit: cover;
         }
 
-        .section-padding .screenshot_slider .owl-nav button {
+        .section-padding .owl-nav button {
             font-size: 24px !important;
             margin: 10px;
             color: #033aff !important;
@@ -153,9 +150,49 @@
             border: 14px solid rgba(231, 234, 255, 0.7);
             border-radius: 14px;
         }
-        /* .owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
-            display: block ;
-        }  */
+        .section-padding  p.counter-text{
+            font-weight: 750;
+            font-size: 22px;
+            line-height: 26px;
+            color: #767992;
+        }
+      
+         /* ===== Hotel details tab swiper start ===== */
+         .h-gallery-inner  .nav-pills li.nav-item {
+            width: 100%;
+            flex: 0 0 13%;
+            margin: 0 10px;
+        }
+        .h-gallery-inner .nav-pills::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            width: 100%;
+            z-index: -6;
+            border: 1px solid rgb(106 120 199 / 10%);
+        }
+        .h-gallery-inner .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            background: linear-gradient(180deg, #6A78C7 0%, #8F9DE9 100%);
+            border-radius: 40px;
+            background-color: #e9f0fe;
+            box-shadow: 0px 0px 1px 3px #c3d6fd;
+            color: #ffffff !important;
+            z-index: 1;
+        }
+        .h-gallery-inner .nav-pills .nav-link, .nav-pills .show>.nav-link {
+            color: #6A78C7 !important;
+            background: rgb(231 234 255 / 80%);
+            border-radius: 30px;
+        }
+        .h-gallery-inner .nav-pills .nav-link {
+            padding: 12px 0px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19px;
+            color: #878996;
+            width: 100%;
+        }
+
 
         @media screen and (max-width:1024px){
             .section-padding .owl-item .item {
@@ -186,12 +223,45 @@
                 font-size: 32px;
                 line-height: 32px;
             }
+            .h-gallery-inner  .nav-pills li.nav-item {
+                width: 100%;
+                flex: 0 0 15%;
+                margin: 0 7px;
+            }
+            .h-gallery-inner .nav-pills .nav-link {
+                padding: 12px 0px;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 19px;
+                color: #878996;
+                width: 100%;
+            }
 
         }
         @media screen and (max-width:992px){
             .saved-hotels-details .slick-initialized .slick-slide{
                     margin-right: 15px;
-                }
+            }
+            .h-gallery-inner  .nav-pills li.nav-item {
+                width: 100%;
+                flex: 1 0 15%;
+                margin: 0 5px;
+            }
+        }
+        @media screen and (max-width:767px){
+            .h-gallery-inner  .nav-pills li.nav-item {
+                width: 100%;
+                flex: 0 0 29%;
+                margin: 0 10px 10px;
+            }
+            .h-gallery-inner .nav-pills::before {
+                position: absolute;
+                content: "";
+                top: 50%;
+                width: 100%;
+                z-index: -6;
+                border: 1px solid transparent;
+            }
         }
         @media screen and (max-width:576px){
             .section-padding .owl-carousel .owl-nav button.owl-next,
@@ -228,7 +298,18 @@
                 margin: 0px;
             }
         }
-       
+        @media screen and (max-width:480px){
+            .h-gallery-inner  .nav-pills{
+                justify-content: center !important;
+            }
+            .h-gallery-inner  .nav-pills li.nav-item {
+                width: 100%;
+                flex: 0 0 100%;
+                margin: 0 10px 10px;
+            }
+          
+        }
+        
     </style>
 @endpush
 
@@ -237,14 +318,20 @@
     <section class="h-details-title pt-3">
         <div class="container">
             <div class="h-details-title-box">
-                <h3 class="align-items-center property-name">{{ @$hotel->property_name }} </h3>
+                {{-- <h3 class="align-items-center property-name">{{ @$hotel->property_name }} </h3> --}}
                 <div class="h-details-title-box-inner">
-                    <div class="h-details-heading d-flex justify-content-sm-between justify-content-center align-items-center flex-wrap">
+                    <div class="h-details-heading d-flex justify-content-sm-between align-items-center flex-wrap">
                         <div class="d-block">
-                            <h6 class="d-flex align-items-center mx-1">Holiday In {{ @$hotel->city->name }} <span
-                                    class="rating-text ms-2 py-1">{{ @$hotel->propertytype->type }}</span></h6>
+                            <h6 class="d-flex align-items-center mx-1">
+                                <span class="city-name">  
+                                    Holiday In {{ @$hotel->city->name }} 
+                                </span>
+                                <span
+                                    class="rating-text ms-2 py-1">{{ @$hotel->propertytype->type }}
+                                </span>
+                            </h6>
                         </div>
-                        <div class="h-rating">
+                        <div class="h-rating d-md-block d-none">
                             @for ($i = 0; $i < 5; $i++)
                                 <span>
                                     <img
@@ -257,17 +344,26 @@
                     <div class="h-title-box-inner row align-items-center mt-4">
                         <div class="col-md-8 justify-content-md-end justify-content-center">
                             <span class="h-rating-location d-flex align-items-center para-fs-15">
-                                <div class="h-rating-location-img">
+                                <div class="h-rating-location-img mb-1">
                                     <img
-                                        src="{{ asset('assets/images/icons/loaction-purple.png') }}"
+                                        src="{{ asset('storage/images/location-icon.png') }}"
                                         class="img-fluid">
                                 </div>
                                    <p class="mb-0"> {{ @$hotel->street_addess }}, {{ @$hotel->city->name }}
                                 {{ @$hotel->country_id ? ',' . $hotel->country->country_name : '' }}, {{ @$hotel->pos_code }}.</p>
                             </span>
                         </div>
-                        <div class="col-md-4 d-flex justify-content-md-end justify-content-center">
-                            <div class="h-rating-btn mt-lg-0 mt-3 d-flex justify-content-center">
+                        <div class="col-md-4 d-flex justify-content-md-end justify-content-center align-items-center">
+                            <div class="h-rating d-block d-md-none w-100 mt-3">
+                                @for ($i = 0; $i < 5; $i++)
+                                    <span>
+                                        <img
+                                            src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}">
+                                    </span>
+                                @endfor
+                                <span class="rating-text">{{ @$hotel->star_rating }}/5</span>
+                            </div>
+                            <div class="h-rating-btn mt-lg-0 mt-3 w-100 d-flex justify-content-end">
                                 <a href="#hotel-room" class="btn reserve-btn para-d-l-p">Reserve a Room</a>
                             </div>
                         </div>
@@ -281,7 +377,7 @@
     {{-- <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{ $hotel->UUID }}">
     <input type="hidden" value="{{ @$hotel->category->id }}" class="category_id_{{ $hotel->UUID }}"> --}}
     @if($checkImage)
-        <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
+        <section class="h-deatils-gallery hotel-result pt-md-5 pt-4">
             <div class="container">
                 <div class="h-gallery-inner border--bottom">
                     <div class="row">
@@ -305,6 +401,134 @@
             </div>
         </section>
     @else
+    <section class="h-deatils-gallery hotel-result pt-md-5 pt-4">
+        <div class="container">
+            <div class="h-gallery-inner border--bottom">
+                <ul class="nav nav-pills mb-3 justify-content-md-center justify-content-sm-start position-relative" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All (5)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-restaurant-tab" data-bs-toggle="pill" data-bs-target="#pills-restaurant" type="button" role="tab" aria-controls="pills-restaurant" aria-selected="false">Restaurant (3)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-lobby-tab" data-bs-toggle="pill" data-bs-target="#pills-lobby" type="button" role="tab" aria-controls="pills-lobby" aria-selected="false">Lobby (7)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-bed-tab" data-bs-toggle="pill" data-bs-target="#pills-bed" type="button" role="tab" aria-controls="pills-bed" aria-selected="false">Bed</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-rooms-tab" data-bs-toggle="pill" data-bs-target="#pills-rooms" type="button" role="tab" aria-controls="pills-rooms" aria-selected="false">Rooms (2)</button>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
+                <div class="section-padding">
+                    <div class="product_tab_slider owl-carousel owl-loaded">
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                   </div>
+                   <p class="counter-text text-center">
+                    (<span class="slider-counter"></span>)
+                   </p>
+               </div>
+            </div>
+            <div class="tab-pane fade" id="pills-restaurant" role="tabpanel" aria-labelledby="pills-restaurant-tab" tabindex="0">
+                <div class="section-padding">
+                    <div class="product_tab_slider owl-carousel owl-loaded">
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                   </div>
+                   <p class="counter-text text-center">
+                    (<span class="slider-counter"></span>)
+                   </p>
+               </div>
+               
+            </div>
+            <div class="tab-pane fade" id="pills-lobby" role="tabpanel" aria-labelledby="pills-lobby-tab" tabindex="0">
+                <div class="section-padding">
+                    <div class="product_tab_slider owl-carousel owl-loaded">
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                   </div>
+                   <p class="counter-text text-center">
+                    (<span class="slider-counter"></span>)
+                   </p>
+               </div>
+               
+            </div>
+            <div class="tab-pane fade" id="pills-bed" role="tabpanel" aria-labelledby="pills-bed-tab" tabindex="0">
+                <div class="section-padding">
+                    <div class="product_tab_slider owl-carousel owl-loaded">
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                   </div>
+                   <p class="counter-text text-center">
+                    (<span class="slider-counter"></span>)
+                   </p>
+               </div>
+              
+            </div>
+            <div class="tab-pane fade" id="pills-rooms" role="tabpanel" aria-labelledby="pills-rooms-tab" tabindex="0">
+                <div class="section-padding">
+                    <div class="product_tab_slider owl-carousel owl-loaded">
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                        <div class="item">
+                            <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" title="" class="img-fluid">
+                        </div>
+                   </div>
+                   <p class="counter-text text-center">
+                    (<span class="slider-counter"></span>)
+                   </p>
+               </div>
+               
+            </div>
+        </div>
+    </section>
         <!------ Hotel details swiper start -------->
         {{-- <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
             <div class="container">
@@ -321,6 +545,7 @@
             </div>
         </section> --}}
     @endif
+    
     <!------ Hotel details swiper start -------->
     <div class="h-deatils-gallery hotel-result pt-md-5 pt-3">
         <div class="saved-hotels-details p-a-details">
@@ -823,7 +1048,8 @@
         loop: true,
         responsiveClass: true,
         nav: true,
-        margin: 0,    
+        margin: 0,   
+        dots:false, 
         autoplayTimeout: 4000,
         smartSpeed: 400,        
     // navText: ['&#8592;', '&#8594;'],
@@ -839,25 +1065,38 @@
         }
     }
 });
+    var owl = $('.product_tab_slider').owlCarousel({
+        items:1,
+        loop: true,
+        responsiveClass: true,
+        nav: true,
+        margin: 0,    
+        dots:false, 
+        autoplayTimeout: 4000,
+        smartSpeed: 400,        
+    // navText: ['&#8592;', '&#8594;'],
+    responsive: {      
+        576: {
+            items: 2,
+            center:true,
+        },
+        1025: {
+            items: 3,
+            center:true,
 
-/****************************/
-
-jQuery(document.documentElement).keydown(function (event) {    
-
-    // var owl = jQuery("#carousel");
-
-    // handle cursor keys
-    if (event.keyCode == 37) {
-       // go left
-      owl.trigger('prev.owl.carousel', [400]);
-      //owl.trigger('owl.prev');
-    } else if (event.keyCode == 39) {
-       // go right
-        owl.trigger('next.owl.carousel', [400]);
-       //owl.trigger('owl.next');
+        }
     }
 
 });
+$('.product_tab_slider').on('initialized.owl.carousel changed.owl.carousel', function(e) {
+    if (!e.namespace)  {
+      return;
+    }
+    var carousel = e.relatedTarget;
+    $('.slider-counter').text(carousel.relative(carousel.current()) + 1 + '/' + carousel.items().length);
+});
+
+
 </script>
     <!-- icon picker js -->
     <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>

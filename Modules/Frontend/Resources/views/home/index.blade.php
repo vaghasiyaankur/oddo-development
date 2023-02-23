@@ -647,7 +647,7 @@
                                     <div class="col-sm-6 mb-4 pb-2 mb-lg-0 pb-lg-0">
                                         <div class="check--out_btn_">
                                             <div class="check-in-out-btn text-center">
-                                                <a href="javascript:;" class="btn search-btn purple" id="SubmitSearch">Search</a>
+                                                <a href="javascript:;" class="btn search-btn purple w-100" id="SubmitSearch">Search</a>
                                             </div>
                                         </div>
                                     </div>

@@ -1213,10 +1213,10 @@ header.header .navbar .dropdown .dropdown-btn:hover{
     border-radius: 16px;
 }
 
-.hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .check-inout {
-    /* position: absolute;
-    top: -24px; */
-}
+/* .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .check-inout {
+    position: absolute;
+    top: -24px;
+} */
 
 .hotel-result.check-in-out .check-in-out-form .custom-calender-piker .check-text-label .input--control {
     border: none;
@@ -2870,17 +2870,17 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
     color: #393C52;
     margin-bottom: 20px;
 }
-.h-details-title .h-details-title-box .h-details-title-box-inner{
-    /* background: rgb(106 120 199 / 10%); */
+/* .h-details-title .h-details-title-box .h-details-title-box-inner{
+    background: rgb(106 120 199 / 10%);
     border-top: 1px solid #E7E7E7;
     border-radius: 3px;
     padding: 30px 0 0;
-}
+} */
 .h-details-title .h-details-title-box .h-details-title-box-inner .h-title-box-inner .h-rating-btn .reserve-btn{
     background-color: #6a78c7;
     box-shadow: 0px 0px 19px rgb(0 0 0 / 10%);
 }
- .h-details-title  .h-details-title-box .h-details-title-box-inner .h-details-heading span.rating-text {
+ .h-details-title  .h-details-title-box .h-details-title-box-inner  span.rating-text {
     padding: 5px 15px;
     font-weight: 750;
     font-size: 15px;
@@ -2890,14 +2890,20 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
     border-radius: 3px;
     color: #2DA84F;
 }
-.h-details-title  .h-details-title-box .h-details-title-box-inner .h-details-heading .h-rating .rating-text{
+.h-details-title .h-details-title-box .h-details-title-box-inner .h-details-heading span.city-name{
+    font-weight: 750;
+    font-size: 26px;
+    line-height: 31px;
+    color: #393C52;
+}
+.h-details-title  .h-details-title-box .h-details-title-box-inner .h-rating .rating-text{
     background: rgb(106 120 199 / 20%);
     border-radius: 3px;
     color: #393C52;
 }
 
 .h-details-title-box-inner .h-title-box-inner .h-rating-location .h-rating-location-img{
-    background: rgb(106 120 199 / 20%);
+    /* background: rgb(106 120 199 / 20%);
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -2905,7 +2911,7 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
     width: 100%;
     max-width: 38px;
     height: 100%;
-    min-height: 38px;
+    min-height: 38px; */
     margin-right: 10px;
 }
 .h-details-title .h-details-title-box .h-rating img {
@@ -2947,7 +2953,7 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
 }
 .h-d-amenities .amenities-single-card .para-fs-14{
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
     color: #6A78C7;
 }
@@ -3050,8 +3056,8 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
 
 .hotel-policies .h-policies-main .policies-extra a,
 .hotel-policies .h-policies-main {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 
