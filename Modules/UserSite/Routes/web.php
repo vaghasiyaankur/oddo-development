@@ -99,6 +99,8 @@ Route::prefix('user')->group(function () {
             Route::get('/', 'index')->name('booking');
             Route::post('filter', 'bookingFilter')->name('booking.filter');
         });
+        
+        Route::view('/booking/booking-detail', 'usersite::user.booking.bookingDetail')->name('booking.bookingDetail');
 
         Route::controller(UserSiteController::class)->group(function () {
             Route::post('notification', 'notification')->name('booking.notification');

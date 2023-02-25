@@ -220,6 +220,15 @@
     width: 100%;
     padding: 15px 20px;
 }
+.hotel--booking-box .booking--inner-box .inner-right-content .view-btn{
+    border: 1px solid #6A78C7;
+    border-radius: 3px;
+    font-weight: 750;
+    font-size: 14px;
+    line-height: 17px;
+    color: #6A78C7;
+    padding: 7px 20px;
+}
 
 .offer--button {
     padding: 6px 11px;

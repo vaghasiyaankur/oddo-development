@@ -124,7 +124,7 @@
             padding-right: 8px;            
             }
             header.header .navbar .navbar-nav .nav-item a.nav-link{
-                font-size: 13px;
+                font-size: 14px;
                 line-height: 26px;
             }
         }

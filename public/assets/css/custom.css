@@ -185,6 +185,7 @@ h5.heading-fs-16 {
 header.header .navbar {
     padding: 26px 0;
     background: #eef1f7;
+    background: rgb(106 120 199 / 20%);
 }
 
 .navbar-toggler:focus {
@@ -197,14 +198,14 @@ header.header .navbar {
     padding: 11px 24px;
     color: #6A78C7;
     white-space: nowrap;
-    font-weight: 400;
+    font-weight: 600;
     border: 1px solid transparent;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .header .list-properties .list-properties-btn i{
-    font-size: 20px;
+    font-size: 22px;
 }
 .header .list-properties .list-properties-btn:hover{
     background: linear-gradient(180deg, #6A78C7 0%, #8F9DE9 100%);
@@ -234,46 +235,46 @@ header.header .navbar .dropdown-custom {
     left: -77px !important;
     top: 52px;
 }
-.header .navbar .offcanvas .dropdown .dropdown-custom{
-    border: none;
-    border-radius: 16px;
-    background: #FFFFFF;
-    box-shadow: 0px 1px 9px rgb(87 110 154 / 30%);
-    border-radius: 10px;
-    max-width: 245px;
-    position: absolute;
-    left: 16px!important;
-    top: 57px;
+
+header.header .navbar .dropdown-custom li{
+    padding:5px 10px 0;
+}
+header.header .navbar .dropdown-custom li:hover{
+    background-color: #eef1f7;
+}
+header.header .navbar .dropdown-custom li .dropdown-item.active{
+    background-color: transparent;
 }
 
-header.header .navbar .dropdown-custom .dropdown-item {
-    padding:5px;
+header.header .navbar .dropdown-custom li a{
+    border-bottom: 1px solid #E1E1E1 ;
     line-height: 32px;
-    /* text-align: center; */
+    padding: 5px 0px;
     color: #6A78C7;
     font-family: 'Avenir LT Std';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    border-bottom: 1px solid #E1E1E1;
 }
-header.header .navbar .dropdown-custom li{
-    border-radius: 0px;
-    padding:0 10px;
+.header.header .navbar .dropdown-custom li:last-child a{
+    border-bottom: 1px solid transparent ;
 }
-header.header .navbar .dropdown-custom li:last-child .dropdown-item{
+header.header .navbar .dropdown-custom li:last-child{
     border-bottom: 1px solid transparent;
-    border-radius: 0px;
-}
-header.header .navbar .dropdown-custom .dropdown-item.active{
-    background-color: #eef1f7;
-    /* border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px; */
-}
-header.header .navbar .dropdown-custom .dropdown-item:hover{
-    background-color: transparent;
 }
 
+header.header .navbar .dropdown-custom li a.dropdown-item:hover{
+    background-color: transparent !important;
+} 
+
+header.header .navbar .dropdown-custom li:hover:first-child{
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+}
+header.header .navbar .dropdown-custom li:hover:last-child{
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
 
 /******Logo design *******/
 
@@ -290,7 +291,7 @@ header.header .navbar a.navbar-brand {
     width: 100%;
 } */
 header.header .navbar .navbar-nav .nav-item {
-    padding-right: 28px;
+    padding-right: 22px;
 }
 
 header.header .navbar .navbar-nav .nav-item a.nav-link {
@@ -301,7 +302,9 @@ header.header .navbar .navbar-nav .nav-item a.nav-link {
     line-height: 150%;
     color: #385774;
 }
-
+header.header .navbar .navbar-nav .nav-item a.nav-link.active{
+    color: #6A78C7;
+}
 header.header .navbar .navbar-nav .nav-item a.nav-link span {
     font-size: 10px;
     line-height: 12px;
@@ -336,8 +339,71 @@ header.header .navbar .dropdown .dropdown-btn:hover{
 
 
 /****** Header End ******/
+/****** Offcanvas Header start ******/
+header.header .navbar .offcanvas {
+    border-right: 1px solid transparent;
+    
+}
+.header .navbar .offcanvas .dropdown .dropdown-custom{
+    border: none;
+    border-radius: 16px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 9px rgb(87 110 154 / 30%);
+    border-radius: 10px;
+    max-width: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0px!important;
+    top: -200px;
+}
+.header .navbar .offcanvas .list-properties .list-properties-btn{
+    font-weight: 600;
+    padding: 11px 22px;
+}
 
-
+header.header .navbar .offcanvas .offcanvas-header{
+    background: rgb(106 120 199 / 20%);
+    padding: 26px 0;
+}
+header.header .navbar .offcanvas .offcanvas-body{
+    background: linear-gradient(180deg, #F7F8FF 0%, #F0F2FF 100%);
+}
+header.header .navbar .offcanvas .offcanvas-body .listproperty_btn{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
+    padding: 0 16px;
+}
+header.header .navbar .offcanvas .offcanvas-body .listproperty_btn .listproperty_login{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header.header .navbar .offcanvas .offcanvas-body .listproperty_btn .listproperty_user{
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    left: 0;
+    padding: 0 16px;
+}
+header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item a.nav-link{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #393C52;
+    padding: 20px 0;
+}
+header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item{
+    border-bottom: 1px solid rgb(106 120 199 / 10%);
+}
+header.header .navbar .offcanvas .offcanvas-body .navbar-nav .nav-item a.nav-link.active{
+    color: #6A78C7;
+}
+header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-child{
+    border-bottom: 1px solid transparent
+}
 /****** homepage-swiper section start *******/
 
 [class^="swiper-button-"],
@@ -3178,7 +3244,11 @@ section.hotel-room .room-card-main .single-card-img img {
 /******** Multisearch page end ********/
 
 .navbar .offcanvas-start {
-    width: 280px;
+    width: 300px;
+}
+.offcanvas-start .navbar-nav .nav-item{
+    padding-left: auto !important;
+    padding-right: auto !important;
 }
 
 

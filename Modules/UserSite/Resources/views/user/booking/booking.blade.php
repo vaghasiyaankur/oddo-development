@@ -34,7 +34,9 @@
             min-width: 25px;
             font-size: 14px;
         }
-
+        .daterangepicker .ranges{
+            display: none;
+        }
         @media screen and (max-width:1123px) {
             .calendar.left {
                 max-width: 210px;
