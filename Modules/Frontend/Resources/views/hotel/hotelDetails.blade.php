@@ -892,7 +892,8 @@
                                                 <p class="mb-2">
                                                     <img src="{{ asset('assets/images/icons/english-breakfast.png') }}">
                                                     <span class="para-fs-14 ps-3">Breakfast :-
-                                                        {{ @$hotel->breakfast }}{{ @$hotel->breakfast == 'yes' ? ', ' . $hotel->foodTypes->food_type : '' }}
+
+                                                        {{ @$hotel->breakfast }}{{ @$hotel->breakfast == 'yes' ? ', ' . $hotel->foodType->food_type : '' }}
                                                     </span>
                                                 </p>
                                                 <p class="mb-2">
