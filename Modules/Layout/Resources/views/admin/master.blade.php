@@ -343,6 +343,14 @@ $generalSetting = App\Models\GeneralSetting::first();
         });
     </script>
     <script>
+        window.onload = function() {
+            $('.overlay, body').addClass('loaded');
+                setTimeout(function() {
+                    $('.overlay').css({
+                        'display': 'none'
+                    })
+                }, 2000)
+        };
         $(document).ready(function() {
             // Users can skip the loading process if they want.
             $('.skip').click(function() {
