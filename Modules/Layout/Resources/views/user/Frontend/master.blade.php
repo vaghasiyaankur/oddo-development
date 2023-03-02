@@ -130,7 +130,7 @@
             }
 
             header.header .navbar .navbar-nav .nav-item a.nav-link{
-                font-size: 14px;
+                font-size: 13px;
                 line-height: 26px;
             }
         }
@@ -156,14 +156,10 @@
         .notification-box {
             top: 50px;
             right: -50px !important;
-            /* opacity: 0; */
             z-index: 9999;
             right: -17px;
             width: 335px;
             min-height: 111px;
-            /* display: none; */
-            .notification-button
-            /* visibility: hidden; */
             position: absolute;
             border-radius: 5px;
             backdrop-filter: blur(10px);

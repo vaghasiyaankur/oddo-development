@@ -880,7 +880,7 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
     height: 100%;
 }
 .s-top-city .s-top-city-inner .t-city-card-img img.img-fluid {
-    border-radius: 10px 10px 0 0 ;
+    border-radius: 20px;
     object-fit: cover;
     height: 100%;
     min-width: 100%;
@@ -976,7 +976,7 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
     width: 100%;
     height: 100%;
     background: rgb(0 0 0 / 27%);
-    border-radius: 25px;
+    border-radius: 20px;
 }
 
 
@@ -3108,8 +3108,8 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
 }
 
 .hotel-policies .h-policies-main .h-check-in-out .check-text {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .hotel-policies .h-policies-main .policies-extra .policies-text {
@@ -3136,6 +3136,13 @@ section.explore-city.s-top-city .explore-city-map .dropdown span.drop-text {
     border-top: 1px solid #DBDBDB;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+.hotel-room .hotel-depiction .depiction-text{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #555D64;
+    text-align: justify;
 }
 .hotel-room-inner{
     border: 1px solid #6A78C7;
