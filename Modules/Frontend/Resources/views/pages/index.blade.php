@@ -213,7 +213,26 @@
         letter-spacing: 0px;
         width: 90%;
         transform: rotate(301deg);
+        -webkit-animation-name: rotate;
+        
+        animation-name: rotate;
+
+        animation-duration: 10s;
+        
+        -o-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        
+        animation-timing-function: linear;
     }
+    @keyframes rotate {
+        from {
+            transform: rotate(360deg);
+        }
+        to {
+            transform: rotate(0);
+        }
+    }
+
 
     @media screen and (max-width:480px){
         .about-hotel-logo-content{
