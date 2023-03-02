@@ -310,9 +310,9 @@
                         <div class="about-inner">
                             <div class="about-experience-content-img position-relative">
                                 <div class="about-experience-content">
-                                    <img src="{{asset('storage/images/about_img1.png')}}" alt="" class="img-fluid bg-img1">
+                                    <img src="{{asset('about/about_img1.png')}}" alt="" class="img-fluid bg-img1">
                                     <div class="about-content-text">
-                                        <img src="{{asset('storage/images/about_call_icon.png')}}" alt="" class="img-fluid">
+                                        <img src="{{asset('about/about_call_icon.png')}}" alt="" class="img-fluid">
                                         <p class="mb-0 pt-sm-3 pb-sm-2 py-1">Phone Number</p>
                                         <p class="mb-0">+91 85123 12345</p>
                                     </div>
@@ -321,22 +321,22 @@
                         </div>
                         <div class="about-inner">
                             <div class="about-experience-image">
-                                <img src="{{asset('storage/images/about_img2.png')}}" alt="" class="img-fluid bg-img2">
+                                <img src="{{asset('about/about_img4.png')}}" alt="" class="img-fluid bg-img2">
                             </div>
                         </div>
                     </div>
                     <div class="about-experience-inner2">
                         <div class="about-inner">
                             <div class="about-experience-content-img"> 
-                                <img src="{{asset('storage/images/about_img1.png')}}" alt="" class="img-fluid bg-img3">
+                                <img src="{{asset('about/about_img2.png')}}" alt="" class="img-fluid bg-img3">
                             </div>
                         </div>
                         <div class="about-inner">
                             <div class="about-experience-image position-relative">
                                 <div class="about-experience-content">
-                                    <img src="{{asset('storage/images/about_img2.png')}}" alt="" class="img-fluid bg-img4">
+                                    <img src="{{asset('about/about_img3.png')}}" alt="" class="img-fluid bg-img4">
                                     <div class="about-content-text">
-                                        <img src="{{asset('storage/images/about_mail_icon.png')}}" alt="" class="img-fluid">
+                                        <img src="{{asset('about/about_mail_icon.png')}}" alt="" class="img-fluid">
                                         <p class="mb-0 pt-sm-3 pb-sm-2 py-1">Email Address</p>
                                         <p class="mb-0">info@webmail.com</p>
                                     </div>
@@ -361,7 +361,7 @@
                             </text>
                         </svg>
                        <div class="about-hote-image position-absolute">
-                           <img src="{{asset('storage/images/about-content-img.png')}}" alt="" class="img-fluid">
+                           <img src="{{asset('about/about-content-img.png')}}" alt="" class="img-fluid">
                        </div>
                     </div>
                 </div>
