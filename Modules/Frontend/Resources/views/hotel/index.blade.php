@@ -478,7 +478,7 @@ search
         height: 350px;
         display: inline-block;
     }
-    
+
     .check-in-out-bottom .bed-selector  .select-bed-selector {
         cursor: pointer;
     }
@@ -497,7 +497,7 @@ search
         border: none;
         padding: 8px 24px;
         border-radius: 80px;
-        width: 100%;    
+        width: 100%;
         font-size: 14px;
         line-height: 22px;
         font-weight: 400;
@@ -609,14 +609,14 @@ search
         font-size: 13px;
         padding: 0 4px;
     }
-   
+
     .guests-option .drop-down__button .drop-down__name.toggle i {
         color: #6A78C7;
         font-size: 13px;
         padding: 0 4px;
     }
-   
-    
+
+
     .guests-option .drop-down__menu {
         margin: 0;
         padding: 0px;
@@ -658,7 +658,7 @@ search
     .guests-option .drop-down__item:hover .drop-down__item-icon{
             fill: #3d6def;
     }
-    
+
     .guests-option .drop-down__item:last-of-type{
         border-bottom: 0;
     }
@@ -675,7 +675,7 @@ search
         padding: 0;
     }
     .guests-option .quantity  .quantity__minus,
-    .guests-option .quantity  .quantity__plus, 
+    .guests-option .quantity  .quantity__plus,
     .room__minus, .room__plus {
         display: block;
         width: 27px;
@@ -688,13 +688,13 @@ search
         /* font-size: 20px; */
         border: 1px solid #878996;
     }
-    
+
     .guests-option .quantity  .quantity__minus,
-    .guests-option .quantity  .quantity__plus, 
+    .guests-option .quantity  .quantity__plus,
     .room__minus, .room__plus{
             border-radius:50px ;
     }
-    
+
     .guests-option .quantity .quantity__input, .room__input {
         width: 38px;
         height: 28px;
@@ -705,15 +705,15 @@ search
         text-align: center;
         color: #6A78C7;
     }
-    
+
     .guests-option .quantity .quantity__minus,
     .guests-option .quantity .quantity__plus {
         color: #6A78C7;
-    } 
+    }
     .guests-option .quantity .room__minus,
     .guests-option .quantity .room__plus {
         color: #6A78C7;
-    } 
+    }
     .btn-reset{
         background: #f33e3e;
         border: transparent;
@@ -754,7 +754,7 @@ search
         justify-content: center;
         margin-right: 20px;
     }
-    
+
     .check-in-out-inner .check-in-out-bottom .check--out_btn {
         flex: 0 0 50%;
         /* padding-right: 100px; */
@@ -763,12 +763,12 @@ search
     @media screen and (max-width:1200px){
         .guests-option .drop-down__guest{
             /* padding: 0 5px 0 23px; */
-        }        
+        }
     }
     @media screen and (max-width:992px){
         .bookingSelectError{
            top: 20%;
-        }        
+        }
         .check-in-out-inner .check-in-out-top {
             border-right: 1px solid transparent;
         }
@@ -881,7 +881,7 @@ search
                                             </span>
                                             <span class="drop-down__name toggle">
                                                 <i class="fa-solid fa-house"></i>
-                                                <span class="roomNum"> {{ $selectRoom ? $selectRoom : 1 }} </span> 
+                                                <span class="roomNum"> {{ $selectRoom ? $selectRoom : 1 }} </span>
                                                 Room
                                             </span>
                                             <i class="fa-sharp fa-solid fa-caret-down"></i>
@@ -933,7 +933,7 @@ search
                                 </select>
                                 <span class="text-danger d-none bookingSelectError" style="font-size:14px;">* Select Room</span>
                             </div> --}}
-    
+
                             <div class="col-sm-6 mb-lg-0 pb-lg-0 select-option mb-4 pb-2">
                                 {{-- <label>Beds</label> --}}
                                 <div class="bed-selector">
@@ -996,7 +996,7 @@ search
                         <form action="javascript: void(0);">
                             <div
                                 class="row custom-calender-piker d-lg-flex justify-content-lg-center position-relative align-items-center">
-                                <?php 
+                                <?php
                                 $checkInDate = Carbon\Carbon::tomorrow()->format('d/m/Y');
                                 $checkOutDate = Carbon\Carbon::now()->addDays(2)->format('d/m/Y');
                                 $CheckIn = request()->checkIn;
@@ -1067,16 +1067,16 @@ search
         <div class="search-result-inner">
             <div class="row">
                 <div class="col-lg-3 mt-4 mt-lg-0">
-                    <aside class="side-content">                       
+                    <aside class="side-content">
                         <div class="d-flex align-items-center justify-content-between result-view">
                             <span class="side-text">Viewing {{ $hotels->total() }} results</span>
                             <span class="side-btn ResetForm d-none">
                                 <a href="javascript:;" id="ResetForm" class="btn reset-btn Resetform">Reset</a>
                             </span>
                             <button class="btn btn-filter-products-mobile d-block d-lg-none " type="button" data-bs-toggle="collapse" data-bs-target="#formReset" aria-expanded="false" aria-controls="formReset">
-                                <i class="fas fa-filter me-2"></i>Filter Property                
+                                <i class="fas fa-filter me-2"></i>Filter Property
                             </button>
-                        </div>                        
+                        </div>
                         <form class="hotel-result-form " id="formReset">
                             <div class="hotels-result-search">
                                 <h5 class="search-heading">Search</h5>
@@ -1297,7 +1297,7 @@ search
                                     @php
                                         $reqAmenity = explode(',', request()->amenities);
                                     @endphp
-                                    
+
                                     @foreach ($amenities as $amenity)
                                     <div class="form-check">
                                         <input class="form-check-input ps-2 amenityValue" type="checkbox"
@@ -1311,7 +1311,7 @@ search
                                     </div>
                                     @endforeach
                                 </div>
-                                
+
                                 <div class="apply_button_">
                                     <a href="javascript:;" class="applyButton" >Apply</a>
                                 </div>
@@ -1375,7 +1375,7 @@ search
 <!------- Search result end ------->
 <div class="mainReviewPopupDiv">
     @if (isset($hotelRating))
-        @include('frontend::hotel.review')  
+        @include('frontend::hotel.review')
     @endif
 </div>
 <div class="popupImage">
@@ -1465,7 +1465,7 @@ search
         var id = $(this).data('id');
         var amount = $('.amount_data_'+id).val();
         amount=amount.replace(/\,/g,''); // 1125, but a string, so convert it to number
-        amount=parseInt(amount,10);     
+        amount=parseInt(amount,10);
         var total_amount = amount+"00";
         var image = $('.logoImage').attr('src');
         var hotel_id = $('.hotel_id_'+id).val();
@@ -1550,7 +1550,7 @@ search
 
         $.ajax({
             type:'POST',
-            url:"{{ route('show.stripe') }}",
+            url:"{{ route('show.stripe.frontend') }}",
             data: {amount : amount, total_amount : total_amount,property_name : property_name, hotel_id : hotel_id, payment_id : payment_id, room_id : room_id, start_date : start_date, end_date : end_date},
             success:function(response){
                 $('.spinner-stripe').hide();
@@ -1605,7 +1605,7 @@ search
 
 <!-------- Weather swiper js start--------->
 <script>
-    
+
     // Google Place Search
         google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -1622,7 +1622,7 @@ search
             });
 
         }
-        
+
         const swiper = new Swiper(".swiper", {
             slidesPerGroup: 1,
             loop: false,
@@ -1667,7 +1667,7 @@ search
             }
             $('.ImageLoad:hidden').eq(0).fadeIn(500);
             i++;
-        } 
+        }
 
     function slider(){
         $('.slider-single').slick({
@@ -1746,13 +1746,13 @@ search
 
 
         $(document).on('click','.ImagepPopup',function(){
-            
+
             $(this).prop("disabled", true);
             var id = $(this).data('id');
 
             formdata = new FormData();
             formdata.append('id', id);
- 
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1815,10 +1815,10 @@ search
             if(data >= 1){
                 $('.bookingSelectError').addClass('d-none');
             }
-        
+
             if (!search) {
                 return;
-            }   
+            }
 
             var propertyTypeCheckBox = [];
             $.each($("input[class='P_TypeCheckbox']:checked"), function(){
@@ -1831,7 +1831,7 @@ search
             if(propertyTypeName){
                     baseUrlData = baseUrlData + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                         checkOut + "&guest=" + guest + "&room=" + room + '&propertyTypeName=' + propertyTypeName;
-                
+
                 if ((bed.length) != 0) {
                    baseUrlData = baseUrlData + "&bed=" + bed;
                 }
@@ -1844,7 +1844,7 @@ search
                 }
                 window.location.href = baseUrlData;
             }
-                    
+
         }
 
         $(document).on('click', '#Apply', function(e) {
@@ -1860,7 +1860,7 @@ search
 
             window.location.href = base_url + "/search?searchProperty=" + searchProperty;
         });
-        
+
         $(document).ready(function(){
             $('.amenityAll').on('click',function(){
                 if(this.checked){
@@ -1873,7 +1873,7 @@ search
                     });
                 }
             });
-            
+
             $('.amenityValue').on('click',function(){
                 if($('.amenityValue:checked').length == $('.amenityValue').length){
                     $('.amenityAll').prop('checked',true);
@@ -1884,11 +1884,11 @@ search
                 var amenityValue = $('.amenities:checked').map(function(){return $(this).val();}).get();
 
                 if (amenityval != amenityValue) {
-                    $('#myPreferencesData').prop('checked',false); 
-                    if ($('#myPreferencesData').hasClass('myPreference')) {                
-                        $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                    $('#myPreferencesData').prop('checked',false);
+                    if ($('#myPreferencesData').hasClass('myPreference')) {
+                        $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');
                     }else{
-                        $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                        $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');
                     }
                 }
             });
@@ -1898,7 +1898,7 @@ search
             }
         });
 
-        $(document).on('click', '.applyButton', function(){   
+        $(document).on('click', '.applyButton', function(){
             var propertyName = $('.propertyName').val();
             var budgetMax = $('.budgetMax').val();
             var budgetMin = $('.budgetMin').val();
@@ -1928,7 +1928,7 @@ search
                 baseUrlData = baseUrlData + "search=" + search + "&checkIn=" + checkIn + "&checkOut=" +
                                 checkOut + "&guest=" + guest + "&room=" + room + "&bed=" + bed;
             }
-            
+
             if (sortby != '') {
                 baseUrlData = baseUrlData + "&sortby=" + sortby;
             }
@@ -1936,7 +1936,7 @@ search
             if (budgetMin != '' && budgetMax != '') {
                 baseUrlData = baseUrlData + '&budgetMin=' + budgetMin + '&budgetMax=' + budgetMax;
             }
-            
+
             if(starRating != '') {
                 baseUrlData = baseUrlData + '&starRating=' + starRating;
             }
@@ -1947,9 +1947,9 @@ search
             if(preference != '') {
                 baseUrlData = baseUrlData + '&preference=' + preference;
             }
-             
+
             window.location.href = baseUrlData;
-            
+
         });
 
 </script>
@@ -1957,16 +1957,16 @@ search
 <script>
     $(document).ready(function() {
             localStorage.removeItem('hotelBeds');
-            
+
             $(document).on('click', '.select-div', function() {
                 $('.select-room').html('');
                 var index = $('.select_room').val();
-                // for (var i = 1; i <= index; i++) { 
+                // for (var i = 1; i <= index; i++) {
                     $number = 1;
                     addRoom($number);
                 // }
                 $(".select-option").toggleClass("option-none");
-                
+
                 var get = localStorage.getItem('hotelBeds');
                 if(get){
                     let data = get.split(",");
@@ -1974,7 +1974,7 @@ search
                         $('.hotelBeds[value="' + value + '"]').prop('checked', 'checked');
                     });
                 }
-                
+
             });
 
             $(".js-example-tags").select2({
@@ -1994,7 +1994,7 @@ search
                 var queen = '';
                 var twin = '';
 
-                
+
                 if(searchParams && searchParams.has('bed')){
                     let bed = searchParams.get('bed').split(",");
                     if(bed.includes('King')){
@@ -2027,7 +2027,7 @@ search
                     </div>`);
                 $('.select-room').append($room);
             }
-            
+
         });
 </script>
 
@@ -2061,7 +2061,7 @@ $(document).ready(function(){
     });
 
     //filter checked
-   
+
     // load hotel Detail
     function infinteLoadMore(page) {
         var search = $("input[name=search]").val();
@@ -2074,7 +2074,7 @@ $(document).ready(function(){
             bed.push(this.value);
         });
         var propertyName = $("input[name=propertyName]").val();
-        
+
         var budgetMax = $('.budgetMax').val();
         var budgetMin = $('.budgetMin').val();
         var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
@@ -2257,7 +2257,7 @@ $(document).ready(function(){
     if($('.amenities:checked').length == $('.amenities').length){
         $('#AmenitiesAll').prop('checked',true);
     }
-    
+
     $(document).on('click','.myPreference',function(){
         var sortBy = $('.sortBy_pre:checked').val();
         $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);
@@ -2279,7 +2279,7 @@ $(document).ready(function(){
         $('.budgetMax').val(maxBudget);
 
         var data = $('.sortBy[value="' + sortBy + '"]').prop('checked', this.checked);;
-        $('.sortBy').not(data).prop('checked', false); 
+        $('.sortBy').not(data).prop('checked', false);
 
         if($('.amenityValue:checked').length == $('.amenityValue').length){
             $('#AllAmenities').prop('checked',true);
@@ -2296,10 +2296,10 @@ $(document).ready(function(){
             $('.modal-close').click(function(){
                 $('.ResetForm').addClass('d-none');
                 $('#myPreferencesData').prop('checked',false);
-                if ($('#myPreferencesData').hasClass('myPreference')) {                
-                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                if ($('#myPreferencesData').hasClass('myPreference')) {
+                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');
                 }else{
-                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');
                 }
                 if ($("input:checkbox:checked").length > 0) {
                     $('.ResetForm').removeClass('d-none');
@@ -2317,7 +2317,7 @@ $(document).ready(function(){
 
     $(document).on('click', '.myPreferenceHide', function(){
         $(this).removeClass('myPreferenceHide').addClass('myPreference');
-        
+
         $('#AllAmenities').prop('checked', false);
         $('.myPreference').prop('checked', false);
         $('.sortBy').prop('checked', false);
@@ -2385,14 +2385,14 @@ $(document).ready(function(){
     $(document).on('click', '.Resetform', function(e){
         e.preventDefault();
         $("#formReset")[0].reset();
-        
+
         $('input:checked').removeAttr('checked');
         $('input[type="number"]').removeAttr('value');
         resetFilter();
 
         window.location.href = base_url + "/search";
     });
-  
+
     $(document).on('keyup', '.searchProperty', function(){
         var searchProperty = $(this).val().length;
         searchPropertyData(searchProperty);
@@ -2424,37 +2424,37 @@ $(document).ready(function(){
         var searchProperty = $(this).val().length;
         ResetPropertyData(searchProperty);
     });
-    
+
     $(document).ready(function(){
         $('.sortBy').on('change', function(){
-            $('.sortBy').not(this).prop('checked', false);  
+            $('.sortBy').not(this).prop('checked', false);
 
             var sortModel = $('.sortBy_pre:checked').val();
             var sortBy = $('.sortBy:checked').val();
-            
+
             if (sortModel != sortBy) {
                 $('#myPreferencesData').prop('checked',false);
-                if ($('#myPreferencesData').hasClass('myPreference')) {                
-                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                if ($('#myPreferencesData').hasClass('myPreference')) {
+                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');
                 }else{
-                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
+                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');
                 }
             }
 
         });
-        
+
         $('.starRating').on('click', function(){
 
             var starRating = $('.starRating:checked').map(function(){return $(this).val();}).get();
             var starRate = $('.starRate:checked').map(function(){return $(this).val();}).get();
-            
+
             if (starRating != starRate) {
                 $('#myPreferencesData').prop('checked',false);
-                if ($('#myPreferencesData').hasClass('myPreference')) {                
-                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');  
+                if ($('#myPreferencesData').hasClass('myPreference')) {
+                    $('#myPreferencesData').removeClass('myPreference').addClass('myPreferenceHide');
                 }else{
-                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');  
-                }  
+                    $('#myPreferencesData').removeClass('myPreferenceHide').addClass('myPreference');
+                }
             }
         });
     });
@@ -2476,12 +2476,12 @@ $(document).ready(function(){
     }
     resetFilter();
 
-    
+
 });
 </script>
 
 <script>
-    
+
     $(document).on('click','.applyBtn',function(){
         var guest = $(".select_guest").val();
         var room = $(".select_room").val();
@@ -2494,7 +2494,7 @@ $(document).ready(function(){
             $('.quantity__minus').attr('disabled',true);
             $('.room__minus').attr('disabled',true);
             $(".select_guest").val('1');
-            $(".select_room").val('1'); 
+            $(".select_room").val('1');
             $('.guestNum').html(1);
             $('.roomNum').html(1);
         });
@@ -2526,7 +2526,7 @@ $(document).ready(function(){
                 $('.guestNum').html(1);
                 $('.quantity__minus').attr('disabled', true);
             }
-            
+
         });
         $('.select_guest').on('keydown, keyup', function () {
             var texInputValue = $('.select_guest').val();
@@ -2565,7 +2565,7 @@ $(document).ready(function(){
             }
         });
     });
-    
+
 
 </script>
 <!-- ToolTip -->
@@ -2579,7 +2579,7 @@ $(document).ready(function(){
 </script>
 
 <script>
-    
+
     $(document).on('click','.hotelPriceBtn',function (e) {
         $('.bookingSelectError').removeClass("d-none");
         var data = $('.pac-target-input').val().length;
@@ -2596,7 +2596,7 @@ $(document).ready(function(){
         var search = $('.pac-target-input').val().length;
         if(search >= 1)  $('.bookingSelectError').addClass("d-none");
     });
-    
+
     $('.reviewPopup').prop("disabled", false);
     $(document).on('click','.review-close',function(){
         $('.reviewPopup').prop("disabled", false);
@@ -2627,7 +2627,7 @@ $(document).ready(function(){
             }
         });
     });
-    
+
 </script>
 
 <script>
@@ -2684,7 +2684,7 @@ $(document).ready(function(){
             $('.select-room').addClass('option-none');
         }
         setUrlValue();
-    
+
 
         $(document).on('click', '.hotelPayment', function(e){
             e.preventDefault();
@@ -2726,7 +2726,7 @@ $(document).ready(function(){
             }
             input.val(value);
         });
-        
+
         plus.click(function(e) {
             e.preventDefault();
             var value = input.val();
@@ -2746,7 +2746,7 @@ $(document).ready(function(){
             }
             input.val(value);
         });
-        
+
         plus.click(function(e) {
             e.preventDefault();
             var value = input.val();
@@ -2754,7 +2754,7 @@ $(document).ready(function(){
             input.val(value);
         })
     });
-    
+
 
     $(document).ready(function(){
         const $menu = $('.drop-down')

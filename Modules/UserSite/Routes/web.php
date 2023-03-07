@@ -66,7 +66,7 @@ Route::prefix('user')->group(function () {
 
             // delete Property
             Route::post('propertyDelete/{id}', 'deleteProperty')->name('delete.proeprty');
-            Route::post('deleteRoom/{hotelid}/{id}', 'deleteRoom')->name('delete.room');
+            Route::post('deleteRoom/{hotelid}/{id}', 'deleteRoom')->name('delete.room.hotel');
 
             //Photos
             Route::get('photos/{id}', 'viewPhotos')->name('photo');

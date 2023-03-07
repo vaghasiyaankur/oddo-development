@@ -21,7 +21,7 @@ class PhotoCategoryController extends Controller
      */
     public function index()
     {
-        $photoCategories = Photocategory::paginate(10);
+        $photoCategories = Photocategory::latest()->paginate(10);
         return view('admin::photoCategory.index', compact('photoCategories'));
     }
 
@@ -98,7 +98,7 @@ class PhotoCategoryController extends Controller
      */
     public function photoList()
     {
-        $data['photoCategories'] = Photocategory::paginate(10);
+        $data['photoCategories'] = Photocategory::latest()->paginate(10);
         return view('admin::photoCategory.photoCategory_list', $data);
     }
 

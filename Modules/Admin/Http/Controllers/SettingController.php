@@ -202,6 +202,12 @@ class SettingController extends Controller
     {
         $id = $request->id;
 
+        // $validated = $request->validate([
+        //     'from_email' => 'required|email',
+        // ], [
+        //     'from_email.email' => 'This item already exists.',
+        // ]);
+
         $EmailSetting = EmailSetting::updateOrCreate(['id' => $id], [
             'host_name' => $request->host_name,
             'port_name' => $request->port_name,
@@ -219,13 +225,13 @@ class SettingController extends Controller
      * email Setting show
      * @return string $html
      */
-    public function emailSettingShow()
-    {
-        $EmailSetting = EmailSetting::first();
-        $html = view('admin::Settings.emailSetting', compact('EmailSetting'))->render();
+    // public function emailSettingShow()
+    // {
+    //     $EmailSetting = EmailSetting::first();
+    //     $html = view('admin::Settings.emailSetting', compact('EmailSetting'))->render();
 
-        return $html;
-    }
+    //     return $html;
+    // }
 
     /**
      * logoFavicon show

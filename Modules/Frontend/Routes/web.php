@@ -101,7 +101,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::prefix('payment')->controller(PaymentController::class)->group(function () {
         // stripe
         Route::get('/succeeded', 'StripeSucceed')->name('succeed.stripe');
-        Route::post('show/stripe', 'showStripe')->name('show.stripe');
+        Route::post('show/stripe', 'showStripe')->name('show.stripe.frontend');
         Route::get('cancel/stripe', 'cancelStripe')->name('cancel.stripe');
 
         // razorpay
