@@ -1,23 +1,20 @@
 @extends('layout::user.Frontend.master')
 
 @section('title')
-    {{ $pageData->title }}
+    About Us
 @endsection
 @section('meta_description')
-    {{ $pageData->meta_description }}
+    About Us
 @endsection
 @section('meta_keywords')
-    {{ $pageData->meta_key }}
+    About US
 @endsection
 
 @push('css')
     <style>
-        .page {
-            text-align: center;
-            margin-top: 25px;
-        }
 
-        .pages {
+
+        .about {
             font-family: "Avenir LT Std";
             color: #393c52;
         }
@@ -345,99 +342,101 @@
 @endpush
 
 @section('content')
-    <div class="pages">
+    <div class="about">
         <div class="container">
             <div class="multi-s-title text-center">
-                <h5>{{ $pageData->show_title == 1 ? $pageData->title : '' }}</h5>
+                <h5>About Us</h5>
             </div>
-            {{-- <div class="row align-items-center py-4">
-            <div class="col-lg-6 py-3">
-                <div class="about-experience d-flex position-relative">
-                    <div class="about-experience-inner1">
-                        <div class="about-inner">
-                            <div class="about-experience-content-img position-relative">
-                                <div class="about-experience-content">
-                                    <img src="{{asset('about/about_img1.png')}}" alt="" class="img-fluid bg-img1">
-                                    <div class="about-content-text">
-                                        <img src="{{asset('about/about_call_icon.png')}}" alt="" class="img-fluid">
-                                        <p class="mb-0 pt-sm-3 pb-sm-2 py-1">Phone Number</p>
-                                        <p class="mb-0">+91 85123 12345</p>
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 py-3">
+                    <div class="about-experience d-flex position-relative">
+                        <div class="about-experience-inner1">
+                            <div class="about-inner">
+                                <div class="about-experience-content-img position-relative">
+                                    <div class="about-experience-content">
+                                        <img src="{{ asset('about/about_img1.png') }}" alt=""
+                                            class="img-fluid bg-img1">
+                                        <div class="about-content-text">
+                                            <img src="{{ asset('about/about_call_icon.png') }}" alt=""
+                                                class="img-fluid">
+                                            <p class="mb-0 pt-sm-3 pb-sm-2 py-1">Phone Number</p>
+                                            <p class="mb-0">+91 85123 12345</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about-inner">
+                                <div class="about-experience-image">
+                                    <img src="{{ asset('about/about_img4.png') }}" alt="" class="img-fluid bg-img2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-experience-inner2">
+                            <div class="about-inner">
+                                <div class="about-experience-content-img">
+                                    <img src="{{ asset('about/about_img2.png') }}" alt="" class="img-fluid bg-img3">
+                                </div>
+                            </div>
+                            <div class="about-inner">
+                                <div class="about-experience-image position-relative">
+                                    <div class="about-experience-content">
+                                        <img src="{{ asset('about/about_img3.png') }}" alt=""
+                                            class="img-fluid bg-img4">
+                                        <div class="about-content-text">
+                                            <img src="{{ asset('about/about_mail_icon.png') }}" alt=""
+                                                class="img-fluid">
+                                            <p class="mb-0 pt-sm-3 pb-sm-2 py-1">Email Address</p>
+                                            <p class="mb-0">info@webmail.com</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="about-inner">
-                            <div class="about-experience-image">
-                                <img src="{{asset('about/about_img4.png')}}" alt="" class="img-fluid bg-img2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-experience-inner2">
-                        <div class="about-inner">
-                            <div class="about-experience-content-img">
-                                <img src="{{asset('about/about_img2.png')}}" alt="" class="img-fluid bg-img3">
-                            </div>
-                        </div>
-                        <div class="about-inner">
-                            <div class="about-experience-image position-relative">
-                                <div class="about-experience-content">
-                                    <img src="{{asset('about/about_img3.png')}}" alt="" class="img-fluid bg-img4">
-                                    <div class="about-content-text">
-                                        <img src="{{asset('about/about_mail_icon.png')}}" alt="" class="img-fluid">
-                                        <p class="mb-0 pt-sm-3 pb-sm-2 py-1">Email Address</p>
-                                        <p class="mb-0">info@webmail.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-hotel-logo-content">
-                        <svg viewBox="0 0 100 100" width="100" height="100">
-                            <defs>
-                              <path id="circle"
-                                d="
+                        <div class="about-hotel-logo-content">
+                            <svg viewBox="0 0 100 100" width="100" height="100">
+                                <defs>
+                                    <path id="circle"
+                                        d="
                                   M 50, 50
                                   m -37, 0
                                   a 37,37 0 1,1 74,0
-                                  a 37,37 0 1,1 -74,0"/>
-                            </defs>
-                            <text font-size="13">
-                              <textPath xlink:href="#circle">
-                                5 years of experience hotel business -
-                              </textPath>
-                            </text>
-                        </svg>
-                       <div class="about-hote-image position-absolute">
-                           <img src="{{asset('about/about-content-img.png')}}" alt="" class="img-fluid">
-                       </div>
+                                  a 37,37 0 1,1 -74,0" />
+                                </defs>
+                                <text font-size="13">
+                                    <textPath xlink:href="#circle">
+                                        5 years of experience hotel business -
+                                    </textPath>
+                                </text>
+                            </svg>
+                            <div class="about-hote-image position-absolute">
+                                <img src="{{ asset('about/about-content-img.png') }}" alt="" class="img-fluid">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 py-3">
-                <div class="about-content mb-sm-5 mb-3">
-                    <h5 class="about-title">About Hotel</h5>
-                    <h4 class="about-title-text">Hotel Regent Laguna has been welcoming Booking.com
-                        guests since Aug 24, 2019</h4>
-                    <p class="about-content-text">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </p>
-                    <p class="about-inner-text">Five-star hotels are properties that offer their guest the highest level of luxury.</p>
-                    <p class="about-kennenth">
-                        <span>Kenneth Campbell</span>
-                        <span> - Head of Idea</span>
-                    </p>
+                <div class="col-lg-6 py-3">
+                    <div class="about-content mb-sm-5 mb-3">
+                        <h5 class="about-title">About Hotel</h5>
+                        <h4 class="about-title-text">Hotel Regent Laguna has been welcoming Booking.com
+                            guests since Aug 24, 2019</h4>
+                        <p class="about-content-text">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        </p>
+                        <p class="about-inner-text">Five-star hotels are properties that offer their guest the highest level
+                            of luxury.</p>
+                        <p class="about-kennenth">
+                            <span>Kenneth Campbell</span>
+                            <span> - Head of Idea</span>
+                        </p>
+                    </div>
+                    <div class="about-content-inner">
+                        <h5 class="about-title">Our Mission & Vision</h5>
+                        <p class="about-content-text">Welcomed every pain avoided but in certain circumstances owing to the
+                            claims of duty or the obligations</p>
+                    </div>
                 </div>
-                <div class="about-content-inner">
-                    <h5 class="about-title">Our  Mission & Vision</h5>
-                    <p class="about-content-text">Welcomed every pain avoided but in certain circumstances owing to the claims of duty or the obligations</p>
-                </div>
-            </div>
-        </div> --}}
-
-            <div class="page" style="min-height:calc(100vh - 361px);">
-                {!! $pageData->description !!}
             </div>
         </div>
     </div>

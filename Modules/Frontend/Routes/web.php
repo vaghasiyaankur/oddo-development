@@ -123,6 +123,8 @@ Route::post('/hotel/photo', 'HotelController@hotelPhoto')->name('hotel.photo');
 // payment view url
 Route::post('/hotel/payment', 'HotelController@hotelPayment')->name('hotel.payment');
 
+Route::view('about-us', 'frontend::about.index');
+
 // daynamic page
 Route::fallback(function ($slug) {
     $pageData = App\Models\Pages::whereStatus(1)->whereSlug($slug)->first();

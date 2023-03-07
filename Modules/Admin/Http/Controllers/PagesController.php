@@ -35,6 +35,12 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'title' => 'required|unique:pages,title',
+            'slug' => 'required|unique:pages,slug',
+            'content' => 'required|min:20',
+        ]);
+
         $id = '';
         $pages = Pages::updateOrCreate(['UUID' => $id], [
             'title' => $request->title,
@@ -68,8 +74,14 @@ class PagesController extends Controller
      */
     public function update(Request $request)
     {
-
         $id = $request->id;
+
+        $validated = $request->validate([
+            'title' => 'required|unique:pages,title,' . $id . ',UUID',
+            'slug' => 'required|unique:pages,slug,' . $id . ',UUID',
+            'content' => 'required|min:20',
+        ]);
+
         $pages = Pages::updateOrCreate(['UUID' => $id], [
             'title' => $request->title,
             'slug' => $request->slug,
