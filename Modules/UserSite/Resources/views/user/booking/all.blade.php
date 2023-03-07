@@ -2,7 +2,7 @@
     <div class="row">
         @foreach($bookings as $booking)
         <div class="col-lg-12 mb-4">
-                <div class="booking--inner-box d-flex">
+                <div class="booking--inner-box d-flex align-items-center">
                     <div class="hotel_book_img">
                         <img src="{{ @$booking->hotel->mainPhoto->first()->photos ? asset('storage/' . @$booking->hotel->mainPhoto->first()->photos) : asset('assets/images/default.png') }}" style="height:150px;width:150px;" onerror="this.src='{{asset('assets/images/default.png')}}'">
                     </div>
@@ -13,17 +13,21 @@
                                 <span class="badge"
                                     style="background-color: #eef1f7;color: #8195a8;font-size: 13px;">{{ $booking->hotel->propertytype->type }}</span>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="hotel--title">
-                                <h6 class="fw-bold mb-0">{{ $booking->hotel->property_name }}</h6>
-                            </div>
                             <div class="title-price--tage">
                                 <span
                                     class="fs-5 fw-normal">${{ $booking->rent }}</span>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="hotel--title">
+                                <h6 class="fw-bold mb-0">{{ $booking->hotel->property_name }}</h6>
+                            </div>
+                            <div class="hotel--title-rate">
+                                <span class="fw-bold" style="color: #14d014;">Save
+                                   {{ $booking->rent * $booking->room->discount /100 }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="h-date d-flex align-items-center"
                                 style="margin-left: -8px;">
                                 <img src="{{ asset('assets/images/icons/order-hotel-icon.png') }}"
@@ -33,22 +37,19 @@
                                     alt="">
                                 <p class="m-0 ps-sm-2">{{ $booking->end_date }}</p>
                             </div>
-                            <div class="hotel--title-rate">
-                                <span class="fw-bold" style="color: #14d014;">Save
-                                   {{ $booking->rent * $booking->room->discount /100 }}</span>
+                            <div class="d-flex align-items-center">
+                                <p class="m-0 pe-2 h-amount">${{ ($booking->rent - ($booking->rent * $booking->room->discount /100)) * $booking->day_diff }}
+                                </p><span class="h--totl text-muted">for {{ $booking->day_diff }} nights</span>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="h-pepl d-flex align-items-center"
                                 style="margin-left: -8px;">
                                 <img src="{{ asset('assets/images/icons/order-hotel-icon2.png') }}"
                                     alt="">
                                 <p class="m-0 ">{{ $booking->room->guest_stay_room }} Guests</p>
                             </div>
-                            <div class="d-flex align-items-center">
-                                <p class="m-0 pe-2 h-amount">${{ ($booking->rent - ($booking->rent * $booking->room->discount /100)) * $booking->day_diff }}
-                                </p><span class="h--totl text-muted">for {{ $booking->day_diff }} nights</span>
-                            </div>
+                           <a href="{{route('booking.bookingDetail')}}" class="view-btn">view all</a>
                         </div>
                     </div>
                 </div>

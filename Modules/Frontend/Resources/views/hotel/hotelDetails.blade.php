@@ -329,6 +329,10 @@
             .section-padding {
                 margin: 0px;
             }
+            .section-padding p.counter-text {
+                font-size: 18px;
+                line-height: 24px;
+            }
         }
 
         @media screen and (max-width:480px) {
@@ -776,8 +780,10 @@
                             <div class="col-sm-6 mb-2 mb-md-0">
                                 <div class="h-check-in-out border-green">
                                     <div class="timepicker_div ">
-                                        <img src="{{ asset('assets/images/icons/cal-icon.png') }}" class="pe-2">
-                                        <span class="check-text text--green">check-in-time</span>
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset('assets/images/icons/cal-icon.png') }}" class="pe-2">
+                                            <span class="check-text text--green">check-in-time</span>
+                                        </div>
                                         <span class="form-control  text-center">{{ @$hotel->check_in }}</span>
                                     </div>
                                 </div>
@@ -785,8 +791,10 @@
                             <div class="col-sm-6">
                                 <div class="h-check-in-out border-red h-gallery--flex">
                                     <div class="timepicker_div ">
-                                        <img src="{{ asset('assets/images/icons/check-close.png') }}" class="pe-2">
-                                        <span class="check-text text--red">check-in-out</span>
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset('assets/images/icons/check-close.png') }}" class="pe-2">
+                                            <span class="check-text text--red">check-in-out</span>
+                                        </div>
                                         <span class="form-control  text-center">{{ @$hotel->check_out }}</span>
                                     </div>
                                 </div>
@@ -824,9 +832,21 @@
         </div>
     </section>
     <!------- hotel-policies section end -------->
+
     <!-------- Hotel Room section start -------->
     <section class="hotel-room" id="hotel-room">
         <div class="container">
+            <div class="hotel-depiction">
+                <p class="depiction-text">
+                    You're eligible for a Genius discount at Hotel Regent Laguna! To save at this property, all you have to do is sign in.
+                    Located in Anjuna, a 13-minute walk from Anjuna Beach, Hotel Regent Laguna provides accommodations with an outdoor 
+                    swimming pool, free private parking, a garden and a restaurant. With free WiFi, this 4-star hotel offers room service
+                    and a 24-hour front desk. The property has a concierge service, a tour desk and currency exchange for guests. 
+                    At the hotel every room includes air conditioning, a seating area, a flat-screen TV with satellite channels, a
+                    safety deposit box and a private bathroom with a shower, free toiletries and a hairdryer. At Hotel Regent Laguna 
+                    all rooms come with bed linen and towels.</p>
+            </div>
+           
             <div class="hotel-room-inner">
                 <div class="hotel-room-heading pb-2 d-flex justify-content-between align-items-center flex-wrap">
                     <h5 class="mb-2">Pick your room for <span class="purple">{{ @$hotel->city->name }},
@@ -890,9 +910,8 @@
                                                     <span class="para-fs-14">parking</span>
                                                 </p>
                                                 <p class="mb-2">
-                                                    <img src="{{ asset('assets/images/icons/english-breakfast.png') }}">
-                                                    <span class="para-fs-14 ps-3">Breakfast :-
-
+                                                    {{-- <img src="{{ asset('assets/images/icons/english-breakfast.png') }}"> --}}
+                                                    <span class="para-fs-14">Breakfast :-
                                                         {{ @$hotel->breakfast }}{{ @$hotel->breakfast == 'yes' ? ', ' . $hotel->foodType->food_type : '' }}
                                                     </span>
                                                 </p>
