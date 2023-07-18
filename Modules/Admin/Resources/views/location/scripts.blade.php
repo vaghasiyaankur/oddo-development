@@ -156,7 +156,8 @@
             let location = $(this).data("value");
             $(".edit_id").val(location.UUID);
             $(".EditcityName").val(location.name);
-            $(".editCountry option[value='"+location.country_id+"']").attr('selected',true);
+            // $(".editCountry option[value='"+location.country_id+"']").attr('selected',true);
+            $(".editCountry").val(location.country_id);
             if(location.status == 1){
                 $('.status_active').prop("checked", true);
                 $('.status_deactive').prop("checked", false);

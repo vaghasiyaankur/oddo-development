@@ -123,10 +123,14 @@
                                 data-bs-target="#Log_in_modal">List Your Property</a>
                         </div>
                     @else
-                        <div class="list-properties pe-3">
-                            <a href="{{ route('property-category') }}" class="list-properties-btn btn">List Your
-                                Property</a>
-                        </div>
+                        @if (auth()->check())
+                            @if (auth()->user()->type != 'admin')
+                                <div class="list-properties pe-3">
+                                    <a href="{{ route('property-category') }}" class="list-properties-btn btn">List Your
+                                        Property</a>
+                                </div>
+                            @endif
+                        @endif
                     @endif
                 @else
                     <div class="list-properties pe-3">
@@ -144,21 +148,28 @@
                     </div>
                 @endif
 
-                @if (auth()->check() && auth()->user()->type == 'user')
+                @if (auth()->check())
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle dropdown-btn" type="button"
                             id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-user"></i>
                         </button>
+                        
                         <ul class="dropdown-menu dropdown-custom py-0" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item {{ Request::routeIs('myaccount.index') ? 'active' : '' }}"
-                                    href="{{ route('myaccount.index') }}">My Account</a></li>
-                            <li><a class="dropdown-item {{ Request::routeIs('orderhistory.index') ? 'active' : '' }}"
-                                    href="{{ route('orderhistory.index') }}">Order History</a></li>
-                            <li><a class="dropdown-item {{ Request::routeIs('upcomingtrips.index') ? 'active' : '' }}"
-                                    href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
-                            <li><a class="dropdown-item {{ Request::routeIs('logout.index') ? 'active' : '' }}"
-                                    href="{{ route('logout.index') }}"><span class="text--red">Logout</span> </a></li>
+                            @if (auth()->user()->type == 'admin')
+                                <li><a class="dropdown-item {{ Request::routeIs('myaccount.index') ? 'active' : '' }}"
+                                    href="{{ route('dashboard') }}">Admin Panel</a></li>
+                            @endif
+                            @if (auth()->user()->type == 'user')
+                                <li><a class="dropdown-item {{ Request::routeIs('myaccount.index') ? 'active' : '' }}"
+                                        href="{{ route('myaccount.index') }}">My Account</a></li>
+                                <li><a class="dropdown-item {{ Request::routeIs('orderhistory.index') ? 'active' : '' }}"
+                                        href="{{ route('orderhistory.index') }}">Order History</a></li>
+                                <li><a class="dropdown-item {{ Request::routeIs('upcomingtrips.index') ? 'active' : '' }}"
+                                        href="{{ route('upcomingtrips.index') }}">Upcoming Trips</a></li>
+                            @endif
+                                <li><a class="dropdown-item {{ Request::routeIs('logout.index') ? 'active' : '' }}"
+                                        href="{{ route('logout.index') }}"><span class="text--red">Logout</span> </a></li>
                         </ul>
                     </div>
                 @endif
@@ -206,10 +217,14 @@
                                             data-bs-target="#Log_in_modal">List Your Property</a>
                                     </div>
                                 @else
-                                    <div class="list-properties pe-3">
-                                        <a href="{{ route('property-category') }}" class="list-properties-btn btn">List Your
-                                            Property</a>
-                                    </div>
+                                    @if (auth()->check())
+                                        @if (auth()->user()->type != 'admin')
+                                            <div class="list-properties pe-3">
+                                                <a href="{{ route('property-category') }}" class="list-properties-btn btn">List Your
+                                                    Property</a>
+                                            </div>
+                                        @endif
+                                    @endif
                                 @endif
                             @endif
                             @if (!auth()->check())
@@ -220,12 +235,12 @@
                                     </button>
                                 </div>
                             @endif
-                            @if (auth()->check() && auth()->user()->type == 'user')
+                            @if (auth()->check())
                                 <div class="list-properties w-100 pe-3">
                                     <a href="{{ route('user.view') }}" class="list-properties-btn btn">My Property</a>
                                 </div>
                             @endif
-                            @if (auth()->check() && auth()->user()->type == 'user')
+                            @if (auth()->check() && auth()->user()->type == 'user' && auth()->user()->type == 'admin')
                                 <div class="dropdown ">
                                     <button class="btn btn-secondary dropdown-toggle dropdown-btn w-100" type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

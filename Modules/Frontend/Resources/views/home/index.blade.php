@@ -984,7 +984,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center see-all-btn">
-                    <a href="javascript" class="btn bg-purple text-white ">See All</a>
+                    <a href="javascript:;" class="btn bg-purple text-white ">See All</a>
                 </div>
             </div>
         </div>
@@ -996,7 +996,7 @@
         <div class="container">
             <div class="recommended-home-inner">
                 <div class="recommended-home-head text-center">
-                    <h2>Recommended Home</h2>
+                    <h2>Popular Home</h2>
                 </div>
                 <div class="recommended-home-main py-5">
                     <div class="row">
@@ -1156,7 +1156,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center see-all-btn">
-                    <a href="javascript" class="btn bg-purple text-white ">See All</a>
+                    <a href="javascript:;" class="btn bg-purple text-white ">See All</a>
                 </div>
             </div>
         </div>
