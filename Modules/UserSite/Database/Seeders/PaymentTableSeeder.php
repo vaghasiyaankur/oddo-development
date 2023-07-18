@@ -2,9 +2,8 @@
 
 namespace Modules\UserSite\Database\Seeders;
 
-use File;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\File;
 class PaymentTableSeeder extends Seeder
 {
     /**

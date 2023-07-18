@@ -4,6 +4,7 @@ namespace Modules\UserSite\Database\Seeders;
 
 use App\Models\FoodType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class FoodTypeTableSeeder extends Seeder
 {
@@ -27,7 +28,7 @@ class FoodTypeTableSeeder extends Seeder
             FoodType::create(
                 [
                     'food_type' => $food_type,
-                    'slug' => \Str::slug($food_type),
+                    'slug' => Str::slug($food_type),
                     'status' => '1',
                 ]
             );

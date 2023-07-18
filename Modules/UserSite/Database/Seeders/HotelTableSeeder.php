@@ -3,6 +3,8 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class HotelTableSeeder extends Seeder
 {
@@ -14,6 +16,7 @@ class HotelTableSeeder extends Seeder
     public function run()
     {
 
+        // dd('12');
         $check_folder = is_dir(public_path('storage/hotels'));
         if (!$check_folder) {
             mkdir(public_path('storage/hotels'));
@@ -106,7 +109,7 @@ class HotelTableSeeder extends Seeder
                 ];
 
                 $bedEntry = \App\Models\HotelBed::create($bed);
-
+// dd($k . $key);
                 $photo = [
                     'main_photo' => '1',
                     'photos' => 'hotels/' . $k . $key . '.jpg',
@@ -115,6 +118,24 @@ class HotelTableSeeder extends Seeder
                     'hotel_id' => $hotelEntry->id,
                     'category_id' => '1',
                 ];
+
+                $sourcePath = public_path('assets/images/seederImages/hotel/' .$k . $key . '.jpg');
+                $destinationPath = public_path('storage/hotel/'. $k . $key . '.jpg');
+                if (File::exists($sourcePath)) {
+                    if(!File::exists($destinationPath)){
+                        File::copy($sourcePath, $destinationPath);
+                    }
+                }
+
+                $sourcePath_hotels = public_path('assets/images/seederImages/hotels/' .$k . $key . '.jpg');
+                $destinationPath_hotels = public_path('storage/hotels/'. $k . $key . '.jpg');
+
+                if (File::exists($sourcePath_hotels)) {
+                    if(!File::exists($destinationPath_hotels)){
+                        File::copy($sourcePath_hotels, $destinationPath_hotels);
+                    }
+                }
+
 
                 $photoEntry = \App\Models\HotelPhoto::create($photo);
             }

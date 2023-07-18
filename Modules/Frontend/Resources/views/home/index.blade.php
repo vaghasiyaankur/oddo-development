@@ -831,7 +831,7 @@
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{asset('storage/images/finn-home.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('assets/images/finn-home.png')}}" alt="" class="img-fluid">
                                     <a href="javascript:;" class="mb-0 price">$30 / Night</a>
                                     <div class="wislist">
                                         <i class="fa-solid fa-heart"></i>
@@ -842,7 +842,7 @@
                                         <h2 class="card-content-title mb-0">Entire Home in Paris</h2>
                                         <div class="client-guests d-flex align-items-center">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/location-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/location-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <span class="mb-0">India</span>
                                         </div>
@@ -858,20 +858,20 @@
                                     </div>                         
                                     <div class="client-guests d-flex align-items-center py-2">
                                         <div class="client-guests-image">
-                                            <img src="{{asset('storage/images/user-icon.png')}}" alt="" class="img-fluid">
+                                            <img src="{{asset('assets/images/user-icon.png')}}" alt="" class="img-fluid">
                                         </div>
                                         <p class="mb-0">4 Guests</p>
                                     </div>
                                     <div class="client-guests d-flex align-items-center py-2 w-100 ">
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bed-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bed-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bedrooms</p>
                                         </div>
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bath-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bath-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bathrooms</p>
                                         </div>
@@ -882,7 +882,7 @@
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{asset('storage/images/christian-home.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('assets/images/christian-home.png')}}" alt="" class="img-fluid">
                                     <a href="javascript:;" class="mb-0 price">$30 / Night</a>
                                     <div class="wislist">
                                         <i class="fa-regular fa-heart"></i>
@@ -893,7 +893,7 @@
                                         <h2 class="card-content-title mb-0">Entire Home in Paris</h2>
                                         <div class="client-guests d-flex align-items-center">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/location-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/location-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <span class="mb-0">India</span>
                                         </div>
@@ -909,20 +909,20 @@
                                     </div>   
                                     <div class="client-guests d-flex align-items-center py-2">
                                         <div class="client-guests-image">
-                                            <img src="{{asset('storage/images/user-icon.png')}}" alt="" class="img-fluid">
+                                            <img src="{{asset('assets/images/user-icon.png')}}" alt="" class="img-fluid">
                                         </div>
                                         <p class="mb-0">4 Guests</p>
                                     </div>
                                     <div class="client-guests d-flex align-items-center py-2 w-100 ">
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bed-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bed-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bedrooms</p>
                                         </div>
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bath-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bath-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bathrooms</p>
                                         </div>
@@ -933,7 +933,7 @@
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{asset('storage/images/wesley-home.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('assets/images/wesley-home.png')}}" alt="" class="img-fluid">
                                     <a href="javascript:;" class="mb-0 price">$30 / Night</a>
                                     <div class="wislist">
                                         <i class="fa-regular fa-heart"></i>
@@ -944,7 +944,7 @@
                                         <h2 class="card-content-title mb-0">Entire Home in Paris</h2>
                                         <div class="client-guests d-flex align-items-center">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/location-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/location-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <span class="mb-0">India</span>
                                         </div>
@@ -960,20 +960,20 @@
                                     </div>   
                                     <div class="client-guests d-flex align-items-center py-2">
                                         <div class="client-guests-image">
-                                            <img src="{{asset('storage/images/user-icon.png')}}" alt="" class="img-fluid">
+                                            <img src="{{asset('assets/images/user-icon.png')}}" alt="" class="img-fluid">
                                         </div>
                                         <p class="mb-0">4 Guests</p>
                                     </div>
                                     <div class="client-guests d-flex align-items-center py-2 w-100 ">
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bed-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bed-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bedrooms</p>
                                         </div>
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bath-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bath-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bathrooms</p>
                                         </div>
@@ -1003,7 +1003,7 @@
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{asset('storage/images/finn-home.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('assets/images/finn-home.png')}}" alt="" class="img-fluid">
                                     <a href="javascript:;" class="mb-0 price">$30 / Night</a>
                                     <div class="wislist">
                                         <i class="fa-solid fa-heart"></i>
@@ -1014,7 +1014,7 @@
                                         <h2 class="card-content-title mb-0">Entire Home in Paris</h2>
                                         <div class="client-guests d-flex align-items-center">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/location-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/location-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <span class="mb-0">India</span>
                                         </div>
@@ -1030,20 +1030,20 @@
                                     </div>                         
                                     <div class="client-guests d-flex align-items-center py-2">
                                         <div class="client-guests-image">
-                                            <img src="{{asset('storage/images/user-icon.png')}}" alt="" class="img-fluid">
+                                            <img src="{{asset('assets/images/user-icon.png')}}" alt="" class="img-fluid">
                                         </div>
                                         <p class="mb-0">4 Guests</p>
                                     </div>
                                     <div class="client-guests d-flex align-items-center py-2 w-100 ">
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bed-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bed-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bedrooms</p>
                                         </div>
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bath-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bath-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bathrooms</p>
                                         </div>
@@ -1054,7 +1054,7 @@
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{asset('storage/images/christian-home.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('assets/images/christian-home.png')}}" alt="" class="img-fluid">
                                     <a href="javascript:;" class="mb-0 price">$30 / Night</a>
                                     <div class="wislist">
                                         <i class="fa-regular fa-heart"></i>
@@ -1065,7 +1065,7 @@
                                         <h2 class="card-content-title mb-0">Entire Home in Paris</h2>
                                         <div class="client-guests d-flex align-items-center">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/location-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/location-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <span class="mb-0">India</span>
                                         </div>
@@ -1081,20 +1081,20 @@
                                     </div>   
                                     <div class="client-guests d-flex align-items-center py-2">
                                         <div class="client-guests-image">
-                                            <img src="{{asset('storage/images/user-icon.png')}}" alt="" class="img-fluid">
+                                            <img src="{{asset('assets/images/user-icon.png')}}" alt="" class="img-fluid">
                                         </div>
                                         <p class="mb-0">4 Guests</p>
                                     </div>
                                     <div class="client-guests d-flex align-items-center py-2 w-100 ">
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bed-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bed-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bedrooms</p>
                                         </div>
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bath-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bath-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bathrooms</p>
                                         </div>
@@ -1105,7 +1105,7 @@
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{asset('storage/images/wesley-home.png')}}" alt="" class="img-fluid">
+                                    <img src="{{asset('assets/images/wesley-home.png')}}" alt="" class="img-fluid">
                                     <a href="javascript:;" class="mb-0 price">$30 / Night</a>
                                     <div class="wislist">
                                         <i class="fa-regular fa-heart"></i>
@@ -1116,7 +1116,7 @@
                                         <h2 class="card-content-title mb-0">Entire Home in Paris</h2>
                                         <div class="client-guests d-flex align-items-center">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/location-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/location-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <span class="mb-0">India</span>
                                         </div>
@@ -1132,20 +1132,20 @@
                                     </div>   
                                     <div class="client-guests d-flex align-items-center py-2">
                                         <div class="client-guests-image">
-                                            <img src="{{asset('storage/images/user-icon.png')}}" alt="" class="img-fluid">
+                                            <img src="{{asset('assets/images/user-icon.png')}}" alt="" class="img-fluid">
                                         </div>
                                         <p class="mb-0">4 Guests</p>
                                     </div>
                                     <div class="client-guests d-flex align-items-center py-2 w-100 ">
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bed-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bed-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bedrooms</p>
                                         </div>
                                         <div class="d-flex align-items-center w-100">
                                             <div class="client-guests-image">
-                                                <img src="{{asset('storage/images/bath-icon.png')}}" alt="" class="img-fluid">
+                                                <img src="{{asset('assets/images/bath-icon.png')}}" alt="" class="img-fluid">
                                             </div>
                                             <p class="mb-0">2 Bathrooms</p>
                                         </div>

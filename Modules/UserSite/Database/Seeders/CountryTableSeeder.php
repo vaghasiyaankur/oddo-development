@@ -3,6 +3,8 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CountryTableSeeder extends Seeder
 {
@@ -37,10 +39,19 @@ class CountryTableSeeder extends Seeder
             \App\Models\Country::create(
                 [
                     'country_name' => $country,
-                    'icon' => 'country/icon/' . \Str::slug($country) . '.png',
+                    'icon' => 'country/icon/' . Str::slug($country) . '.png',
                     'status' => '1',
                 ]
             );
+
+            $sourcePath = public_path('assets/images/seederImages/country/icon/'.Str::slug($country).'.png');
+            $destinationPath = public_path('storage/country/icon/'.Str::slug($country).'.png');
+
+            if (File::exists($sourcePath)) {
+                if(!File::exists($destinationPath)){
+                    File::copy($sourcePath, $destinationPath);
+                }
+            }
         }
     }
 }
