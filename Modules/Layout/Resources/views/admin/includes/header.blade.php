@@ -34,16 +34,21 @@
             </button>
 
             <!-- Back Button Pos Link-->
-            <div class="navbar-header-links fs-4">
+            {{-- <div class="navbar-header-links fs-4">
                 <button type="button" class="btn btn-success px-3 px-sm-4 fs-5"
                     onclick="javascript:window.history.back();">
                     <i class="fa fa-angle-double-left me-2" aria-hidden="true"></i>
                     Back</button>
-            </div>
+            </div> --}}
         </div>
 
         <div class="d-flex align-items-center">
-
+            <div class="navbar-header-links fs-4">
+                <a type="button" class="btn btn-success px-3 px-sm-3 fs-5"
+                    href="{{route('home.index')}}">
+                    <i class="fa fa-eye me-2" aria-hidden="true"></i>
+                    View Site</a>
+            </div>
             <div class="dropdown d-none topbar-head-dropdown header-item">
                 <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
                     id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
