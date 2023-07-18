@@ -21,11 +21,11 @@ class UserAccess
         }
 
         if (auth()->user() && $userType == 'admin') {
-            return redirect()->route('home.index');
+            return redirect()->route('admin.index');
         }
 
         if (auth()->user() && $userType == 'user') {
-            return redirect()->route('admin.index');
+            return redirect()->route('home.index');
         }
         /* return response()->view('errors.check-permission'); */
     }
