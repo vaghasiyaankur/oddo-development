@@ -51,7 +51,8 @@ $(document).ready(function(){
         $('.edit_div').removeClass("d-none");
         $('.create_div').hide();
         $("#editRoomName").val(room.room_name);
-        $("#edtiRoomType option[value='"+room.room_type_id+"']").attr('selected',true);
+        // $("#edtiRoomType option[value='"+room.room_type_id+"']").attr('selected',true);
+        $("#edtiRoomType").val(room.room_type_id);
         $(".edit_id").val(room.id);
     });
 

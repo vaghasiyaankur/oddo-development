@@ -110,7 +110,8 @@
             let amenity = $(this).data("value");
             $(".edit_id").val(amenity.id);
             $("#amenityName").val(amenity.amenities);
-            $("#amenityCategory option[value='"+amenity.amenities_category_id+"']").attr('selected',true);
+            // $("#amenityCategory option[value='"+amenity.amenities_category_id+"']").attr('selected',true);
+            $("#amenityCategory").val(amenity.amenities_category_id);
             if(amenity.status == 1){
                 $('#status_active').prop("checked", true);
                 $('#status_deactive').prop("checked", false);
