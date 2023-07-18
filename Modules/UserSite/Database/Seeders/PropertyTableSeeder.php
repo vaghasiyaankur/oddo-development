@@ -43,11 +43,11 @@ class PropertyTableSeeder extends Seeder
             ],
         ];
 
-        // File::copy(public_path('storage/images/hotel.webp'), public_path('storage/Property/hotel.webp'));
-        // File::copy(public_path('storage/images/guestHouse.webp'), public_path('storage/Property/guestHouse.webp'));
-        // File::copy(public_path('storage/images/homestay.webp'), public_path('storage/Property/homestay.webp'));
-        // File::copy(public_path('storage/images/hostel.webp'), public_path('storage/Property/hostel.webp'));
-        // File::copy(public_path('storage/images/farmStay.webp'), public_path('storage/Property/farmStay.webp'));
+        // File::copy(public_path('assets/images/hotel.webp'), public_path('storage/Property/hotel.webp'));
+        // File::copy(public_path('assets/images/guestHouse.webp'), public_path('storage/Property/guestHouse.webp'));
+        // File::copy(public_path('assets/images/homestay.webp'), public_path('storage/Property/homestay.webp'));
+        // File::copy(public_path('assets/images/hostel.webp'), public_path('storage/Property/hostel.webp'));
+        // File::copy(public_path('assets/images/farmStay.webp'), public_path('storage/Property/farmStay.webp'));
 
         foreach ($propertyTypes as list($name, $description, $image)) {
             \App\Models\PropertyType::create(

@@ -57,9 +57,9 @@ class PaymentTableSeeder extends Seeder
             mkdir(public_path('storage/paymentGateway'));
         }
 
-        File::copy(public_path('storage/images/paypal.png'), public_path('storage/paymentGateway/paypal.png'));
-        File::copy(public_path('storage/images/razorpay.png'), public_path('storage/paymentGateway/stripe.png'));
-        File::copy(public_path('storage/images/stripe.png'), public_path('storage/paymentGateway/razorpay.png'));
+        File::copy(public_path('assets/images/paypal.png'), public_path('storage/paymentGateway/paypal.png'));
+        File::copy(public_path('assets/images/razorpay.png'), public_path('storage/paymentGateway/stripe.png'));
+        File::copy(public_path('assets/images/stripe.png'), public_path('storage/paymentGateway/razorpay.png'));
 
         foreach ($Payments as list($paymentType, $payment_icon, $client_id, $client_key, $api_secret_key, $live_id, $live_key, $live_api, $status, $testMode, $route)) {
             \App\Models\PaymentGetways::create(
