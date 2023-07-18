@@ -4,6 +4,7 @@ namespace Modules\UserSite\Database\Seeders;
 
 use App\Models\Partner;
 use Illuminate\Database\Seeder;
+use File;
 
 class PartnerTableSeeder extends Seeder
 {
@@ -39,6 +40,15 @@ class PartnerTableSeeder extends Seeder
                     // 'hotel_id' => 1,
                 ]
             );
+
+            $sourcePath = public_path('assets/images/seederImages/partner/'. \Str::slug($partner) .'.png');
+            $destinationPath = public_path('storage/partner/'. \Str::slug($partner) .'.png');
+
+            if (File::exists($sourcePath)) {
+                if(!File::exists($destinationPath)){
+                    File::copy($sourcePath, $destinationPath);
+                }
+            }
         }
     }
 }

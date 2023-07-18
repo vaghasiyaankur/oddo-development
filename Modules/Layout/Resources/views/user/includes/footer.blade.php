@@ -113,7 +113,7 @@
                 <div class="row footer-logo d-flex align-items-center">
                     <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7  footer-title d-flex justify-content-sm-start justify-content-center">
                         <a href="#">
-                            <img src="{{asset('storage/images/white_background.png')}}" alt="" class="img-fluid">
+                            <img src="{{asset('assets/images/white_background.png')}}" alt="" class="img-fluid">
                         </a>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5  footer-icons">

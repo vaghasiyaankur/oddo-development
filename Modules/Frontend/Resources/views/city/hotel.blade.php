@@ -12,7 +12,7 @@
                             <div class="d-flex">
                                 <span class="d-l-Purple">
                                     <img
-                                        src="{{asset('storage/images/location-icon.png')}}" alt=""
+                                        src="{{asset('assets/images/location-icon.png')}}" alt=""
                                         class="img-fluid">
                                 </span>
                                 <span class="px-2">
@@ -26,7 +26,7 @@
                                 <div class="d-flex align-items-center justify-content-center w-100">
                                     <span class="d-l-Purple">
                                         <img
-                                        src="{{asset('storage/images/user-icon.png')}}" class="img-fluid"
+                                        src="{{asset('assets/images/user-icon.png')}}" class="img-fluid"
                                         alt=""> 
                                     </span>
                                     <span class="purple-dark ps-2">
@@ -37,7 +37,7 @@
                             <div class="col-4 hotel-guests-inner d-flex mb-1 px-1">
                                 <div class="d-flex align-items-center justify-content-center w-100">
                                     <span class="d-l-Purple">
-                                        <img src="{{asset('storage/images/bed-icon.png')}}"
+                                        <img src="{{asset('assets/images/bed-icon.png')}}"
                                         class="img-fluid" alt="">
                                     </span>
                                     <span class="purple-dark ps-2">

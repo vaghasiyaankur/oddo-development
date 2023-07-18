@@ -381,7 +381,7 @@
                         <div class="col-md-8 justify-content-md-end justify-content-center">
                             <span class="h-rating-location d-flex align-items-center para-fs-15">
                                 <div class="h-rating-location-img mb-1">
-                                    <img src="{{ asset('storage/images/location-icon.png') }}" class="img-fluid">
+                                    <img src="{{ asset('assets/images/location-icon.png') }}" class="img-fluid">
                                 </div>
                                 <p class="mb-0"> {{ @$hotel->street_addess }}, {{ @$hotel->city->name }}
                                     {{ @$hotel->country_id ? ',' . $hotel->country->country_name : '' }},

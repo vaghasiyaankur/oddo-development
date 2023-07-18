@@ -3,6 +3,7 @@
 namespace Modules\UserSite\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class RoomTypeTableSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class RoomTypeTableSeeder extends Seeder
             \App\Models\RoomType::create(
                 [
                     'room_type' => $category,
-                    'slug' => \Str::slug($category),
+                    'slug' => Str::slug($category),
                     'status' => '1',
                 ]
             );
