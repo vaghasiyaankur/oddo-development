@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Helper\hotelListRating;
 
 class HomeController extends Controller
 {
@@ -93,7 +94,25 @@ class HomeController extends Controller
         $cities = City::whereFeatured(1)->active()->get();
         $propertyTypes = PropertyType::active()->get();
         $partners = Partner::get();
-        return view('frontend::home.index', compact('cities', 'partners', 'propertyTypes'));
+        
+        $recommended_hotels = Hotel::whereHas('reviews')
+        ->withCount('reviews')
+        ->withAvg('reviews', 'total_rating')
+        ->orderByDesc('reviews_avg_total_rating')
+        ->where('status', 1)
+        ->get();
+
+        $popular_hotels = Hotel::whereHas('hotelBooking')->withCount('hotelBooking')
+        ->with('country', function($q){
+            $q->where('status', 1)->select('id', 'country_name', 'status');
+        })
+        ->with('city', function($q){
+            $q->where('status', 1)->select('id', 'name', 'status');
+        })->with('room')
+        ->withAvg('reviews', 'total_rating')
+        ->orderByDesc('hotel_booking_count')->where('status', 1)->limit(3)->get();
+        
+        return view('frontend::home.index', compact('cities', 'partners', 'propertyTypes', 'popular_hotels', 'recommended_hotels'));
     }
 
     /**

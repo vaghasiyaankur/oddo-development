@@ -314,4 +314,14 @@ class Hotel extends Model
     {
         return $this->hasMany(BookingNotification::class, 'hotel_id');
     }
+
+    /**
+     * Review that belongs the Amenities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Review>
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'hotel_id');
+    }
 }
