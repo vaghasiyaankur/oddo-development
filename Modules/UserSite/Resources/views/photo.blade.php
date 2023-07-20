@@ -32,7 +32,7 @@
                                             <p class="para-fs-14">You"ll also be able to upload more after registration</p>
                                             <p class="m-0 fw-bold">Drag & Drop Your Photos Here...</p>
                                             <span class="d-l-Purple ">or</span>
-                                            <div class="imguplode-btn imgUploader">
+                                            <div class="imguplode-btn imgUploader" id="image_upload">
                                                 <a href="javascript" class="button purple">Add Photos</a>
                                             </div>
                                             <form class="imgUploader mt-2">
@@ -41,6 +41,7 @@
                                                 <label class="uploader-opacity" for="imgUpload">Add Photos</label>
                                             </form>
                                         </div>
+                                        <span id="image_error" class="mt-2 text-danger"></span>
                                         <input type="hidden" class="hotelId" value="{{ @$hotelDetail->UUID }}">
                                         @if (isset($hotelPhotos))
                                             <div class="sortable row editImageDiv" id="gallery"
@@ -330,6 +331,12 @@
             }
 
             $(document).on('click', '.save-photo-button', function() {
+                
+                if (myNewdDropzone.files.length == 0) {
+                    $('#image_error').html('Please Select At Least 1 Photo');
+                    return;
+                } else  $('#image_error').html('');
+                    
                 var deleteImage = localStorage.getItem('deleteImage');
 
                 var hotelId = $('.hotelId').val();
@@ -341,7 +348,6 @@
                     return $(this).val();
                 }).get();
                 $('.spinner-border').show();
-                console.log(files);
 
                 files.filter(async (f, i) => {
                     var main = 0;

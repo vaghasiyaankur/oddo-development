@@ -688,12 +688,14 @@
                                             class="col-md-4 h-room-overview {{ @$hotel->room->bathroom_item ? '' : 'd-none' }}">
                                             <h5 class="para-fs-14 mb-3">In your private bathroom</h5>
                                             <div class="room-overview">
-                                                @foreach ($hotel->room->bathroom() as $item)
-                                                    <p class="mb-2">
-                                                        <i class="{{ @$item->icon }}"></i>
-                                                        <span class="para-fs-14 ps-2">{{ @$item->item }}</span>
-                                                    </p>
-                                                @endforeach
+                                                @isset($hotel->room)
+                                                    @foreach ($hotel->room->bathroom() as $item)
+                                                        <p class="mb-2">
+                                                            <i class="{{ @$item->icon }}"></i>
+                                                            <span class="para-fs-14 ps-2">{{ @$item->item }}</span>
+                                                        </p>
+                                                    @endforeach
+                                                @endisset
                                             </div>
                                         </div>
                                     </div>
@@ -710,7 +712,7 @@
                                         <span
                                             class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>
                                         @php
-                                            $price = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", number_format(exchange_rate($hotel->room->price_room)));
+                                            $price = preg_replace('/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i', "$1,", number_format(exchange_rate($hotel->room ? $hotel->room->price_room : '0.00')));
                                         @endphp
                                         {{ $price }}
                                     </h5>

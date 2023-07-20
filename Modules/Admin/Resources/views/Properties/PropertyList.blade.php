@@ -54,6 +54,13 @@
                             <button class="btn btn-success fs-12 px-2 py-1">Active</button>
                         @else
                             <button class="btn btn-danger fs-12 px-2 py-1">Deactive</button>
+                            <div class="loadingHide">
+                                @isset($property->reject_reason)
+                                    <button class="btn btn-soft-success waves-effect waves-light fs-12 px-2 py-1 mt-2" tabindex="0" data-bs-toggle="popover"
+                                        data-bs-trigger="focus" title="" data-bs-content="{{ strip_tags($property->reject_reason) }}" data-bs-original-title="">Reject Message
+                                    </button>
+                                @endisset
+                            </div>
                         </a>
                         @endif
                     </div>

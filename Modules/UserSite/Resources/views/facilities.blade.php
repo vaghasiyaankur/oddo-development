@@ -52,10 +52,10 @@
                         <div class="form-info-box mt-3">
                             <form action="" class="form-breakfast">
                                 <div class="p-form-heading  d-flex">
-                                    <h5>Breakfast</h5>
+                                    <h5>Meals</h5>
                                 </div>
                                 <div class="f-parking-title">
-                                    <label for="" class="form-label label-heading">Is breakfast available to
+                                    <label for="" class="form-label label-heading">Is meals available to
                                         guests?</label>
                                 </div>
                                 <div class="p-form-select d-flex">

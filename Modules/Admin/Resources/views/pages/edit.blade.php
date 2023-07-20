@@ -87,7 +87,7 @@
                                 <div class="form-check form-check-inline form-radio-success">
                                     <input class="form-check-input location" type="radio" name="location" id="locationDeactive"
                                         value="0" {{isset($page) && $page->location == 0 ? 'checked' : ''}}>
-                                    <label class="form-check-label" for="locationDeactive">Quick Links</label>
+                                    <label class="form-check-label" for="locationDeactive">Footer Menu</label>
                                 </div>
                             </div>
                         </div>

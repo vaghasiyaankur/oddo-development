@@ -88,9 +88,9 @@ class PropertyController extends Controller
         $hotel->user_id = $userId;
         $hotel->save();
 
-        $hotel_id = Hotel::latest('created_at')->take(1)->first();
-        Session::put('hotel', $hotel_id);
-        return response()->json(['redirect_url' => route('basic-info', ['id' => $hotel_id->UUID])]);
+        Hotel::where('id', $hotel->id)->update(['property_name' =>  'new-property-'.$hotel->UUID, 'slug' =>  'new-property-'.$hotel->UUID ]);
+        Session::put('hotel', $hotel->id);
+        return response()->json(['redirect_url' => route('basic-info', ['id' => $hotel->UUID])]);
     }
 
     /**
@@ -147,8 +147,7 @@ class PropertyController extends Controller
             if ($rooms->count() < 1) {
                 return response()->json(['redirect_url' => route('layout-form', ['id' => $hotelId])]);
             } elseif ($rooms->count() == 1) {
-                $url = url("/user/layout-pricing-form/" . $hotelId . "?roomId=" . $rooms[0]->UUID);
-                return response()->json(['redirect_url' => $url]);
+                return response()->json(['redirect_url' => route('room-list', ['id' => $hotelId])]);
             } else {
                 return response()->json(['redirect_url' => route('room-list', ['id' => $hotelId])]);
             }
@@ -169,7 +168,7 @@ class PropertyController extends Controller
         $bathrooms = BathroomItem::active()->get();
         $hotel = Hotel::with('propertytype')->whereUuid($id)->first();
         $rooms = Room::with('roomlist')->where('hotel_id', $hotel->id)->get('id');
-        $roomDetail = Room::where('UUID', $request->roomId)->first();
+        $roomDetail = Room::where('id', $request->roomId)->first();
 
         if ($roomDetail) {
             $hotelBeds = HotelBed::where('room_id', $roomDetail->id)->get();
@@ -326,7 +325,7 @@ class PropertyController extends Controller
      */
     public function editRoom($id, Request $request)
     {
-        $room = Room::whereUuid($request->roomId)->select('UUID')->first();
+        $room = Room::whereUuid($request->roomId)->select('id', 'UUID')->first();
         $url = url("/user/layout-pricing-form/" . $id . "?roomId=" . $room->id);
         return response()->json(['redirect_url' => $url]);
     }
@@ -350,6 +349,26 @@ class PropertyController extends Controller
     public function add_policy(Request $request)
     {
         $hotel_id = $request->hotelId;
+        $hotelDetail = Hotel::with('photos')->where('UUID', $hotel_id)->first();
+        $hotelRoomDetail = Room::where('hotel_id', $hotelDetail->id)->first();
+
+        if(empty($hotelDetail->property_name) || empty($hotelDetail->description) || empty($hotelDetail->street_addess) || empty($hotelDetail->pos_code)){
+            return response()->json(['basic_info_error' => 'Please Fill Basic Form'], 401);
+        }
+
+        if(empty($hotelRoomDetail->room_type_id) || empty($hotelRoomDetail->price_room)) {
+            return response()->json(['layout_pricing_error' => 'Please Fill Layout && Pricing Form'], 401);
+        }
+        
+        if(empty($hotelDetail->language)) {
+            return response()->json(['facilitis_servicies_error' => 'Please Fill Facilites && Services Form'], 401);
+        }
+
+        if(empty($hotelDetail->photos[0]->photos)) {
+            return response()->json(['property_image_error' => 'At Least Upload One Image For Property'], 401);
+        }
+        
+        
         $Hotel = Hotel::updateOrCreate(['UUID' => $hotel_id], [
             'cancel_booking' => $request->cancel_select,
             'pay_type' => $request->guest_pay,
@@ -357,13 +376,17 @@ class PropertyController extends Controller
             'check_out' => $request->check_out,
             'complete' => $request->complete,
         ]);
-
+        
         $id = '';
         $notification = Notification::updateOrCreate(['id' => $id], [
             'hotel_id' => $Hotel->id,
         ]);
+        
+        if(empty($request->check_in) || empty($request->check_out)){
+            return response()->json(['policies_error' => 'Please Fill Policies Form Detail'], 401);
+        }
 
-        return response()->json(['redirect_url' => route('home.index')]);
+        return response()->json(['redirect_url' => route('user.view')]);
     }
 
     /**

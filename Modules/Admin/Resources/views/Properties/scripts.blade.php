@@ -5,6 +5,10 @@
         }
     });
 
+    $(document).ready(function () {
+        $('[data-bs-toggle="popover"]').popover();
+    });
+
     $(document).on('change', '.PropertyStatus', function(){
         let status = $(this).data("value");
         let id = $(this).data('id');

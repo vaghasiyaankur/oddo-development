@@ -176,19 +176,22 @@
                             <!--end col-->
                             <div class="col-md-auto mt-4 d-flex justify-content-center">
                                 <div class="hstack gap-3 flex-wrap">
-                                    <!-- <button type="button" class="btn  view-btn mt-n1 p-0 favourite-btn active">
-                                        <a href="javascript:;"> view</a>
-                                    </button> -->
+                                    @if ($hotel->status == 0)
+                                        <button type="button" class="btn view-btn mt-n1 p-0 favourite-btn active" id="propertyApproveBtn" data-id="{{$hotel->id}}">
+                                            <a href="javascript:;">Approve</a>
+                                        </button>
+                                    @endif
                                     <button type="button" class="btn  view-btn mt-n1 p-0 favourite-btn active">
                                         <a href="javascript:;">Gallery</a>
                                     </button>
                                     <button type="button" class="btn view-btn mt-n1 p-0 favourite-btn active">
                                         <a href="javascript:;">Up</a>
                                     </button>
-                                    <button type="button" class="btn view-btn  mt-n1 p-0 favourite-btn active" data-bs-toggle="modal" data-bs-target="#varyingcontentModal" data-bs-whatever="Mary">
-                                        <a href="javascript:;">Reject</a>
-                                    </button>
-                                    
+                                    @if ($hotel->status == 1)
+                                        <button type="button" class="btn view-btn  mt-n1 p-0 favourite-btn active" id="propertyRejectButton" data-bs-toggle="modal" data-bs-target="#varyingcontentModal" data-bs-whatever="Mary">
+                                            <a href="javascript:;">Reject</a>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -207,14 +210,15 @@
                     </div>
                     <div class="modal-body">
                         <form>
+                            <input type="hidden" name="hotel_id" id="hotel" value="{{$hotel->id}}"/>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text" rows="4"></textarea>
+                                <textarea class="form-control reject_reason" id="message-text" rows="4" name="reject_reason"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="button" class="btn btn-primary" id="rejectMessageBtn">Send message</button>
                     </div>
                 </div>
             </div>
@@ -450,10 +454,57 @@
     </div>
 </div>
 <!-- End Page-content -->
-
-
-
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).on('click', '#propertyApproveBtn', function () {
+            var approveID = $(this).data('id');
+
+            formdata = new FormData();
+            formdata.append('id', approveID);
+
+            $.ajax({
+                url: "{{route('property.approve')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    if(response.success) toastMixin.fire({ title: response.success, icon: 'success' });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                },
+            });
+        });
+
+        $(document).on('click', '#rejectMessageBtn', function () {
+            var hotelID = $('#hotel').val();
+            var rejectMessage = $('.reject_reason').val();
+
+            formdata = new FormData();
+            formdata.append('id', hotelID);
+            formdata.append('reject_reason', rejectMessage);
+
+            $.ajax({
+                url: "{{route('property.reject')}}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    
+                    $('#varyingcontentModal').hide();
+                    $('#propertyApproveBtn').show();
+                    
+                    if(response.success) toastMixin.fire({ title: response.success, icon: 'success' });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                },
+            });
+        });
+        
+    </script>
 @endpush

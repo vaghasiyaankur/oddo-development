@@ -58,36 +58,35 @@
 @endpush
 
 @forelse ($hotels as $hotel)
-<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="share-section mb-5">
-            <div class="drag-section justify-content-between flex-wrap">
-                <div class="d-flex align-items-center mb-3 mb-lg-0">
-                        <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default-image.png') }}" alt="" class="drag-image"  onerror="this.src='{{asset('assets/images/default.png')}}'">
-                    <span>
-                        <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>
-                    </span>
-                </div>
-                <div class="upload-delete-button-step d-flex justify-content-between flex-wrap">
-                    @if ($hotel->photo)
-                        {{-- <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">Albums</a> --}}
-                        <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-id="{{$hotel->UUID}}">Albums</a>
-                        {{-- data-bs-target="#image_{{ $hotel->UUID }} " --}}
+    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="share-section mb-5">
+                <div class="drag-section justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center mb-3 mb-lg-0">
+                            <img src="{{ @$hotel->mainPhoto->first()->photos ? asset('storage/'.@$hotel->mainPhoto->first()->photos) : asset('assets/images/default-image.png') }}" alt="" class="drag-image"  onerror="this.src='{{asset('assets/images/default.png')}}'">
+                        <span>
+                            <h2 class="property-subtitle-text">{{$hotel->property_name}}</h2>
+                        </span>
+                    </div>
+                    <div class="upload-delete-button-step d-flex justify-content-between flex-wrap">
+                        @if ($hotel->photo)
+                            {{-- <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-bs-toggle="modal" data-bs-target="#image_{{ $hotel->UUID }} ">Albums</a> --}}
+                            <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center me-2 albumBtn" data-id="{{$hotel->UUID}}">Albums</a>
+                            {{-- data-bs-target="#image_{{ $hotel->UUID }} " --}}
 
-                    @endif
-                    @if(!empty($hotel->slug))
-                        <a href="{{ route('hotel.detail', $hotel->slug) }}" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
-                    @endif
-                    <a href="{{route('basic-info', ['id' => $hotel->UUID])}}"
-                        class="white-button-step py-2 d-flex align-items-center me-2 px-3">Edit Property</a>
-                    <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center propertyDelete"
-                        data-value="{{ $hotel->UUID }}">Delete</a>
+                        @endif
+                        @if(!empty($hotel->slug) && $hotel->complete == 1)
+                            <a href="{{ route('hotel.detail', $hotel->slug) }}" class="white-button-step px-3 py-2 d-flex align-items-center me-2">Preview</a>
+                        @endif
+                        <a href="{{route('basic-info', ['id' => $hotel->UUID])}}"
+                            class="white-button-step py-2 d-flex align-items-center me-2 px-3">Edit Property</a>
+                        <a href="javascript:;" class="white-button-step px-3 py-2 d-flex align-items-center propertyDelete"
+                            data-value="{{ $hotel->UUID }}">Delete</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 
 @empty
 {{-- FOR EMPTY TABLE --}}
@@ -95,9 +94,9 @@
     class="d-flex justify-content-center align-items-center result-main-content border-semidark mt-4" style="    overflow: hidden;">
     <div class="result-main-inner d-flex align-items-center justify-content-center" style="width: 966px;height: 345px;">
         <div class="empty-table w-100 text-center py-5">
-            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+            {{-- <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
                 colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
-            </lord-icon>
+            </lord-icon> --}}
             <img src="{{ asset('assets\images\searchload.gif') }}" height="70" width="120">
             <h4>No record has been found.</h4>
             <div class="another-c-details mt-4">
