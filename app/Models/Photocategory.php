@@ -29,8 +29,8 @@ class Photocategory extends Model
         ];
     }
 
-    // public function photo()
-    // {
-    //     return $this->hasOne(HotelPhoto::class);
-    // }
+    public function photo()
+    {
+        return $this->hasMany(HotelPhoto::class, 'category_id', 'id');
+    }
 }
