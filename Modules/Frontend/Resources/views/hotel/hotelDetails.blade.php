@@ -408,9 +408,6 @@
         </div>
     </section>
     <!------- h-details-title section end ------->
-    <!------- h-details-gallery section start -------->
-    {{-- <input type="hidden" value="{{ @$hotel->id }}" class="hotel_id_{{ $hotel->UUID }}">
-    <input type="hidden" value="{{ @$hotel->category->id }}" class="category_id_{{ $hotel->UUID }}"> --}}
     @if ($checkImage)
         <section class="h-deatils-gallery hotel-result pt-md-5 pt-4">
             <div class="container">
@@ -436,195 +433,50 @@
             </div>
         </section>
     @else
+        <input type="hidden" value="{{$hotel->slug}}" id="hotelSlug">
         <section class="h-deatils-gallery hotel-result pt-md-5 pt-4">
             <div class="container">
                 <div class="h-gallery-inner border--bottom">
                     <ul class="nav nav-pills mb-3 justify-content-md-center justify-content-sm-start position-relative"
                         id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
-                                aria-selected="true">All (5)</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-restaurant-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-restaurant" type="button" role="tab"
-                                aria-controls="pills-restaurant" aria-selected="false">Restaurant (3)</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-lobby-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-lobby" type="button" role="tab" aria-controls="pills-lobby"
-                                aria-selected="false">Lobby (7)</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-bed-tab" data-bs-toggle="pill" data-bs-target="#pills-bed"
-                                type="button" role="tab" aria-controls="pills-bed" aria-selected="false">Bed</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-rooms-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-rooms" type="button" role="tab" aria-controls="pills-rooms"
-                                aria-selected="false">Rooms (2)</button>
-                        </li>
+                        @foreach ($hotelPhotoData as $photoCategory)
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link tab_category_name" id="pills-all-tab" data-bs-toggle="pill" 
+                                data-category="{{ $photoCategory->category->id}}" 
+                                data-bs-target="#{{ $photoCategory->category->name }}" type="button" role="tab" aria-controls="pills-all"
+                                aria-selected="true">{{ $photoCategory->category->name }} ({{$photoCategory->count}})</button>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab"
+            <div class="tab-content category-photo-tab" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="{{ $photoCategory->category->name }}" role="tabpanel" aria-labelledby="pills-all-tab"
                     tabindex="0">
                     <div class="section-padding">
                         <div class="product_tab_slider owl-carousel owl-loaded">
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
+                            @foreach ($hotelPhotoData as $photos)
+                                    <div class="item">
+                                        <img src="{{ asset('storage/'. $photos->photos) }}" alt="{{ $photos->category->name }}"
+                                            alt="" title="" class="img-fluid">
+                                    </div>
+                            @endforeach
                         </div>
                         <p class="counter-text text-center">
                             (<span class="slider-counter"></span>)
                         </p>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="pills-restaurant" role="tabpanel" aria-labelledby="pills-restaurant-tab"
-                    tabindex="0">
-                    <div class="section-padding">
-                        <div class="product_tab_slider owl-carousel owl-loaded">
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                        </div>
-                        <p class="counter-text text-center">
-                            (<span class="slider-counter"></span>)
-                        </p>
-                    </div>
-
-                </div>
-                <div class="tab-pane fade" id="pills-lobby" role="tabpanel" aria-labelledby="pills-lobby-tab"
-                    tabindex="0">
-                    <div class="section-padding">
-                        <div class="product_tab_slider owl-carousel owl-loaded">
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15579683/pexels-photo-15579683.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                        </div>
-                        <p class="counter-text text-center">
-                            (<span class="slider-counter"></span>)
-                        </p>
-                    </div>
-
-                </div>
-                <div class="tab-pane fade" id="pills-bed" role="tabpanel" aria-labelledby="pills-bed-tab"
-                    tabindex="0">
-                    <div class="section-padding">
-                        <div class="product_tab_slider owl-carousel owl-loaded">
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                        </div>
-                        <p class="counter-text text-center">
-                            (<span class="slider-counter"></span>)
-                        </p>
-                    </div>
-
-                </div>
-                <div class="tab-pane fade" id="pills-rooms" role="tabpanel" aria-labelledby="pills-rooms-tab"
-                    tabindex="0">
-                    <div class="section-padding">
-                        <div class="product_tab_slider owl-carousel owl-loaded">
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/13393875/pexels-photo-13393875.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                                    alt="" title="" class="img-fluid">
-                            </div>
-                        </div>
-                        <p class="counter-text text-center">
-                            (<span class="slider-counter"></span>)
-                        </p>
-                    </div>
-
                 </div>
             </div>
         </section>
-        <!------ Hotel details swiper start -------->
-        {{-- <section class="h-deatils-gallery hotel-result pt-md-5 pt-3">
-            <div class="container">
-                <div class="saved-hotels-details p-a-details">
-                    <h5 class="heading-fs-16  purple-dark text-center">Hotel Pictures ({{ $hotelPictures->count() }})</h5>
-                    <div class="py-5 p-a-swpier">
-                        @foreach ($hotelPictures as $hotelPicture)  
-                            <div class="">
-                                <img src="{{ @$hotelPicture->photos ? asset('storage/' . $hotelPicture->photos) : asset('assets/images/default.png') }}" class="img-fluid" style="width: 425px; height: 415px; object-fit:cover;" alt="" onerror="this.src='{{asset('assets/images/default.png')}}'">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </section> --}}
     @endif
 
     <!------ Hotel details swiper start -------->
-    <div class="h-deatils-gallery hotel-result pt-md-5 pt-3">
+    {{-- <div class="h-deatils-gallery hotel-result pt-md-5 pt-3">
         <div class="saved-hotels-details p-a-details">
             <h5 class="heading-fs-16  purple-dark text-center">Hotel Pictures ({{ $hotelPictures->count() }})</h5>
             <div class="section-padding">
                 <div class="screenshot_slider owl-carousel owl-loaded">
-                    {{-- @foreach ($hotelPictures as $hotelPicture) 
-                     <div class="item">
-                        <img src="{{ @$hotelPicture->photos ? asset('storage/' . $hotelPicture->photos) : asset('assets/images/default.png') }}" class="img-fluid w-100" style="width: 425px; height: 415px; object-fit:cover;" alt="" onerror="this.src='{{asset('assets/images/default.png')}}'">
-                     </div>
-                     @endforeach --}}
                     <div class="item">
                         <img src="https://images.pexels.com/photos/15371312/pexels-photo-15371312.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
                             alt="" title="" class="img-fluid">
@@ -656,7 +508,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!--------- Hotel details swiper end -------->
 
     <!------- h-details-gallery section end -------->
@@ -679,96 +531,6 @@
             </div>
         </div>
     </section>
-    <!-------- h-details-amenities section end --------->
-    <!------- h-details-n-b section start ---------->
-    {{-- <section class="h-details-n-b pb-4">
-        <div class="container">
-            <div class="h-d-near-by-inner border--bottom">
-                <div class="near-b-heading">
-                    <h5 class="heading-fs-16 purple-dark">What’s near by</h5>
-                </div>
-                <div class="nearby-place d-flex flex-wrap justify-content-between align-items-center pb-4">
-                    <div class="nearby-text ">
-                        <p class="para-d-l-p m-0">Pick the places you want to visit.</p>
-                    </div>
-                    <div class="show-map">
-                        <span class="purple">Show Map <img src="{{ asset('assets/images/icons/h-d-showmap.png') }}"
-                                class="ps-2"></span>
-                    </div>
-                </div>
-                <div class="h-d-nearby-loaction overflow-auto">
-                    <div class="small-box-main d-flex mb-3" >
-
-                        @foreach ($hotel->facilities() as $facility)
-                            <div class="small-box-wrapper d-flex jstify-content-between align-items-center me-2">
-                                <div class="small-box-single-img" style="background-color: {{@$facility->color}} !important;">
-                                    <i id="img-icon" class="{{ @$facility->icon }}"></i>
-                                </div>
-                                <div class="small-box-text ps-2 pe-3">
-                                    <span>{{@$facility->facilities_name}}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="nearby-location-main">
-                        <div class="location-popup nearby-loaction">
-                            <div class="location-popup-inner">
-                                <div class="location-popup-locat position-relative">
-                                    <div class="loaction-popup-gmap">
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788790.9018211137!2d-3.794533563867567!3d39.44188449494803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2sSpain!5e0!3m2!1sen!2sin!4v1651900367722!5m2!1sen!2sin"
-                                            width="100%" height="381" style="border:0;" allowfullscreen=""
-                                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                    </div>
-                                    <div class="location-popup-hilton">
-                                        <img src="{{ asset('assets/images/icons/location-popup-L.png') }}">
-                                    </div>
-                                    <div class="loaction-dist-radius">
-                                        <div class="dist-radius-innner">
-                                            <div class="dist-radius-content">
-                                                <h5 class="mt-4 text-center">Distance Radius</h5>
-                                                <div class="dist-radius-total">
-                                                    <p class="m-0">1.5</p>
-                                                </div>
-                                                <div class="dist-radius-mile-text text-center">
-                                                    <p>Miles</p>
-                                                </div>
-                                                <div class="dist-radius-rang pe-3 ps-3">
-                                                    <input type="range" class="form-range" id="customRange1">
-                                                </div>
-                                                <div class="dist-radius-mile d-flex justify-content-between">
-                                                    <span>0.5mi</span><span>5mi</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="loaction-popup-content-box nearby-content-box">
-                                    <div class="loaction-popup-box-main  position-relative">
-                                        <div class="loaction-popup-card d-flex mb-4">
-                                            @foreach ($hotel->facilities() as $key => $facility)
-                                                <div class="location-popup-card-single nearby-single-card {{ $key == 0 ? 'ms-1': ''}} mt-4">
-                                                    <div class="card-single-head d-flex align-items-center" style="background: {{@$facility->color;}}">
-                                                        <div class="card-head-img pe-3 lh-1">
-                                                            <i id="img-icon" class="mb-1 {{ @$facility->icon }}"> </i></div>
-                                                        <div class="card-head-text">{{@$facility->facilities_name}}</div>
-                                                    </div>
-                                                    <div class="card-content nearby-card-content">
-                                                        <p class="mb-2">{{@$facility->description}}</p>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!------- h-details-n-b section end ---------->
     <!------- hotel-policies section start -------->
     <section class="hotel-policies">
         <div class="container">

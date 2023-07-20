@@ -302,13 +302,27 @@ class HotelController extends Controller
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
         $hotelRating = listHotelRating($hotel->id);
+
+        $hotelPhotoData = HotelPhoto::where('hotel_id', $hotel->id)
+            ->with('category')
+            ->select('*', 'category_id', \DB::raw('count(*) as count'))
+            ->groupBy('category_id')
+            ->get();
+
+        // $categoriesWithImage = Photocategory::withWhereHas('photo', function ($query) use($hotel){
+        //     $query->where('hotel_id', $hotel->id)->select('*','category_id', \DB::raw('COUNT(*) as count'))->groupBy('category_id');
+        // })->get();
+        
+        $photos = HotelPhoto::where('hotel_id', $hotel->id)->where('category_id', 1)->get();
+        $hotelPhotos = HotelPhoto::get();
+        
         $photoCategories = Photocategory::get();
         $CategoryId = Photocategory::where('name', '!=', 'other')->pluck('id');
-        $hotelPhotos = array();
+        
         $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
         $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id', $CategoryId)->exists();
 
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage'));
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'hotelPhotoData', 'photos'));
     }
 
     /**
