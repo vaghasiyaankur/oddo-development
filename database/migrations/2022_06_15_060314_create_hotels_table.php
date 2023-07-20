@@ -53,7 +53,7 @@ return new class extends Migration
             $table->integer('property_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->boolean('complete')->default(0);
-            $table->varchar('reject_reason')->nullable();
+            $table->string('reject_reason')->nullable();
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
