@@ -2089,6 +2089,11 @@ $(document).ready(function(){
         propertyTypeUrl.has('propertyType');
         var propertyType = propertyTypeUrl.get('propertyType');
 
+        // hotelType
+        var hotelTypeUrl = new URLSearchParams(window.location.search);
+        hotelTypeUrl.has('hotelType');
+        var hotelType = hotelTypeUrl.get('hotelType');
+
         // city
         var CityUrl = new URLSearchParams(window.location.search);
         CityUrl.has('City');
@@ -2165,6 +2170,27 @@ $(document).ready(function(){
             $.ajax({
 
                 url: baseUrl  +  "/search?page=" + page + "&propertyType=" + propertyType,
+                datatype: "html",
+                type: "get",
+                beforeSend: function () {
+                $('.loading_spiner_').removeClass('d-none');
+                }
+                })
+                .done(function (response) {
+                $('.loading_spiner_').addClass('d-none');
+                var total_page = $('.total_page').val();
+                if(total_page == 0){
+                    $('.hotel_empty').removeClass('d-none');
+                }
+                    $(".hotelResultDiv").append(response);
+                })
+                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                console.log('Server error occured');
+                });
+        } else if(hotelType){
+            $.ajax({
+
+                url: baseUrl  +  "/search?page=" + page + "&hotelType=" + hotelType,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {

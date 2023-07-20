@@ -54,6 +54,18 @@
         var page = 2;
         window.location.href = baseUrl  + "/search?propertyType=" + id;
     });
+    
+    $(document).on('click', '.recommendedHotels', function(){
+        var id = $(this).data('id');
+        var page = 2;
+        window.location.href = baseUrl  + "/search?hotelType=" + id;
+    });
+    
+    $(document).on('click', '.popularHotels', function(){
+        var id = $(this).data('id');
+        var page = 2;
+        window.location.href = baseUrl  + "/search?hotelType=" + id;
+    });
 
     var sliderSelector = '.swiper-container',
         options = {

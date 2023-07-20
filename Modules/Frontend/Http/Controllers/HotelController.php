@@ -31,6 +31,7 @@ class HotelController extends Controller
     public function index(Request $request)
     {
         $propertyType = $request->propertyType;
+        $hotelType = $request->hotelType;
         $cityType = $request->City;
 
         $search = request()->search;
@@ -256,6 +257,30 @@ class HotelController extends Controller
                 return $html;
             }
 
+        } else if($hotelType) {
+            if ($hotelType == 'recommended_hotels') {
+                $hotels = Hotel::whereHas('reviews')
+                ->withCount('reviews')
+                ->withAvg('reviews', 'total_rating')
+                ->orderByDesc('reviews_avg_total_rating')
+                ->active()
+                ->paginate(2);
+            }else {
+                $hotels = Hotel::whereHas('hotelBooking')
+                ->withCount('hotelBooking')
+                ->with('country', function($q){
+                    $q->where('status', 1)
+                    ->select('id', 'country_name', 'status');
+                })
+                ->orderByDesc('hotel_booking_count')
+                ->active()
+                ->paginate(2);
+                
+            }
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
+                return $html;
+            }
         } else {
             $hotels = Hotel::orderBy('id', 'DESC')->active()->paginate(2);
             if ($request->ajax()) {

@@ -995,6 +995,8 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
 .recommended-home-inner .recommended-home-main .card .card-image{
     /* padding: 13px 13px 0 13px; */
     position: relative;
+    height: 100%;
+    padding-bottom: 65%;
 }
 .recommended-home-inner .recommended-home-main .card .card-image .price{
     font-style: normal;
@@ -1009,7 +1011,12 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
     right: 24px;
     padding: 10px;
 }
-.recommended-home-inner .recommended-home-main .card .card-image .wislist{
+.recommended-home-inner .recommended-home-main .card:hover .wislist{
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease-in;
+}
+.recommended-home-inner .recommended-home-main .card .wislist{
     position: absolute;
     top: 20px;
     left: 24px;
@@ -1022,8 +1029,11 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
     max-height: 35px;
     min-height: 35px;
     border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in;
 }
-.recommended-home-inner .recommended-home-main .card .card-image .wislist i{
+.recommended-home-inner .recommended-home-main .card .wislist i{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1032,6 +1042,14 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
 .recommended-home-inner .recommended-home-main .card .card-image img{
     border-radius: 15px 15px 0 0;
     width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .recommended-home-inner .recommended-home-main .card .card-contents{
     padding: 25px;
@@ -1075,6 +1093,11 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
 .recommended-home-inner .recommended-home-main .card .card-contents .client-rooms .rateing i{
     color:  #FFC107;
 }
+
+.recommended-home-inner .recommended-home-main .card .card-contents .client-rooms .rateing small{
+    font-size: 16px;
+}
+
 .recommended-home-inner .recommended-home-main .card .card-contents .client-rooms span{
     font-style: normal;
     font-weight: 400;
