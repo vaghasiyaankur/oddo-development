@@ -155,6 +155,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/property-list', 'propertyList')->name('property.list');
             Route::post('/property-status', 'PropertyStatus')->name('property.status');
             Route::get('/single-property/{slug}', 'SingleProperty')->name('property.single');
+            Route::post('/property-approve', 'approveProperty')->name('property.approve');
+            Route::post('/property-reject', 'propertyReject')->name('property.reject');
         });
 
         // Setting

@@ -46,7 +46,7 @@ Route::prefix('user')->group(function () {
 
             // layout & pricing
             Route::get('layout-pricing-form/{id}', 'layout_pricing')->name('layout-pricing-form');
-            Route::get('room-list/{id}  ', 'room_lists')->name('room-list');
+            Route::get('room-list/{id}', 'room_lists')->name('room-list');
             Route::post('add-layout', 'layouts_add_update')->name('add-layoutprice');
             Route::view('layout-form/{id}', 'usersite::add-layout')->name('layout-form');
             Route::post('room-lists', 'room_list')->name('room-lists');

@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="another-c-details mt-4">
-                            <a href="javascript:;" class="btn another-c-d-btn w-100 button-policy">Continue
+                            <a href="javascript:;" class="btn another-c-d-btn w-100 button-policy">Finish
                                 <div class="spinner-border" role="status" style="display: none;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
@@ -134,12 +134,27 @@ $(document).ready(function(){
 
     $('.timepicker').mdtimepicker();
 
+    var toastMixin = Swal.mixin({
+        toast: true,
+        icon: 'success',
+        title: 'General Title',
+        animation: false,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
     $(document).on('click', '.button-policy', function(){
         let check_in = $('.check_in').val();
-        !check_in ? $(`#check_in_error`).html(`Select a room type`) : $(`#check_in_error`).html(``);
+        !check_in ? $(`#check_in_error`).html(`Select a check in time`) : $(`#check_in_error`).html(``);
 
         let check_out = $('.check_out').val();
-        !check_out ? $(`#check_out_error`).html(`Select a room type`) : $(`#check_out_error`).html(``);
+        !check_out ? $(`#check_out_error`).html(`Select a check out time`) : $(`#check_out_error`).html(``);
 
         let hotelId = $('.hotelId').val();
 
@@ -176,6 +191,16 @@ $(document).ready(function(){
                     window.location = res.redirect_url;
                 }
             },
+            error:function (response) {
+                setTimeout(() => {
+                    $('.spinner-border').hide();
+                    if(response.responseJSON.basic_info_error) toastMixin.fire({ title: response.responseJSON.basic_info_error, icon: 'error' });
+                    if(response.responseJSON.layout_pricing_error) toastMixin.fire({ title: response.responseJSON.layout_pricing_error, icon: 'error' });
+                    if(response.responseJSON.facilitis_servicies_error) toastMixin.fire({ title: response.responseJSON.facilitis_servicies_error, icon: 'error' });
+                    if(response.responseJSON.property_image_error) toastMixin.fire({ title: response.responseJSON.property_image_error, icon: 'error' });
+                    if(response.responseJSON.policies_error) toastMixin.fire({ title: response.responseJSON.policies_error, icon: 'error' });
+                }, 800);
+            }
         });
     });
 

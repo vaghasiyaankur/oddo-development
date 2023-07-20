@@ -615,8 +615,7 @@
                 var roomId = $('.roomId').val();
                 var hotelId = $('.hotelId').val();
                 let room_type = $('.room_type option:selected').val();
-                !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(
-                    ``);
+                !room_type ? $(`#room_type_error`).html(`Select a room type`) : $(`#room_type_error`).html(``);
 
                 let number_of_guest = $('.number_of_guest').val();
                 !number_of_guest ? $(`#number_of_guest_error`).html(`Please tell us the number of guests`) :

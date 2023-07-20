@@ -26,6 +26,7 @@ $generalSetting = App\Models\GeneralSetting::first();
   <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/reponsive.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
   {{-- @stack('links') --}}
 
   @stack('css')
@@ -186,6 +187,7 @@ $generalSetting = App\Models\GeneralSetting::first();
 
     <!-------Jquery Cdn Link ------->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!------- Bootstrap JS Link ------->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>

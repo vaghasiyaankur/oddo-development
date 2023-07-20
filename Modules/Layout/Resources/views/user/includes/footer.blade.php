@@ -118,9 +118,9 @@
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5  footer-icons">
                         <div class="footer-icons d-flex justify-content-sm-between justify-content-center">
-                            <div class="icon-inner mx-sm-0 mx-2"><i class="fa-solid fa-phone"></i></div>
-                            <div class="icon-inner mx-sm-0 mx-2"><i class="fa-solid fa-envelope"></i></div>
-                            <div class="icon-inner mx-sm-0 mx-2"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="icon-inner mx-sm-0 mx-2"><a href="#"><i class="fa-solid fa-phone"></i></a></div>
+                            <div class="icon-inner mx-sm-0 mx-2"><a href="https://www.google.com/gmail/about/"><i class="fa-solid fa-envelope"></i></a></div>
+                            <div class="icon-inner mx-sm-0 mx-2"><a href="https://www.google.com/maps"><i class="fa-solid fa-location-dot"></i></a></div>
                         </div>
                     </div>
                 </div>
@@ -141,31 +141,33 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 mb-3">
-                        <div class="footer-link">
-                            <h5 class="purple">Customers</h5>
-                            <ul class="nav flex-column">
-                                  <li class="nav-item">
-                                      <a class="nav-link ps-0 active" href="#">Testimonials</a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a class="nav-link ps-0" href="#"> Reviews</a>
-                                  </li> 
-  
-                                  @foreach ($bottomPages as $bottomPage)
-                                      <li class="nav-item">
-                                          <a class="nav-link ps-0" href="{{ url('/'.$bottomPage->slug) }}"> {{$bottomPage->title}}</a>
-                                      </li> 
-                                  @endforeach
-                            </ul>
+                    {{-- @if (count($bottomPages) > 0) --}}
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <div class="footer-link">
+                                <h5 class="purple">Useful Link</h5>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link ps-0 active" href="#">Testimonials</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link ps-0" href="#"> Reviews</a>
+                                    </li> 
+                                    
+                                    @foreach ($bottomPages as $bottomPage)
+                                        <li class="nav-item">
+                                            <a class="nav-link ps-0" href="{{ url('/'.$bottomPage->slug) }}"> {{$bottomPage->title}}</a>
+                                        </li> 
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    {{-- @endif --}}
                     <div class="col-lg-3 col-sm-6 mb-3">
                         <div class="footer-link">
                             <h5 class="purple">Company</h5>
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link ps-0 active" href="#">About</a>
+                                    <a class="nav-link ps-0 active" href="{{ route('about.index') }}">About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link ps-0" href="#"> Hotel Partners</a>
@@ -193,7 +195,7 @@
                                     <a class="nav-link ps-0 active" href="#">Support</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link ps-0" href="#"> Contact</a>
+                                    <a class="nav-link ps-0" href="{{ route('contact.index') }}"> Contact</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link ps-0" href="#"> Legal</a>
@@ -218,11 +220,11 @@
                     </div>
                     <div class="col-sm-6 mb-sm-0 mb-3">
                         <div class="footer-icon d-flex justify-content-sm-end justify-content-center">
-                            <div class="icon-inner"><i class="fa-brands fa-facebook-f"></i></div>
-                            <div class="icon-inner"><i class="fa-brands fa-youtube"></i></div>
-                            <div class="icon-inner"><i class="fa-brands fa-instagram"></i></div>
-                            <div class="icon-inner"><i class="fa-brands fa-twitter"></i></div>
-                            <div class="icon-inner"><i class="fa-brands fa-linkedin"></i></div>
+                            <div class="icon-inner"><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a></div>
+                            <div class="icon-inner"><a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a></div>
+                            <div class="icon-inner"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></div>
+                            <div class="icon-inner"><a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a></div>
+                            <div class="icon-inner"><a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin"></i></a></div>
                         </div>
                     </div>
                 </div>
