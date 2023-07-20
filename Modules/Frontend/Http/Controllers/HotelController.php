@@ -263,15 +263,23 @@ class HotelController extends Controller
                 ->withCount('reviews')
                 ->withAvg('reviews', 'total_rating')
                 ->orderByDesc('reviews_avg_total_rating')
-                ->where('status', 1)->paginate(2);
+                ->active()
+                ->paginate(2);
             }else {
                 $hotels = Hotel::whereHas('hotelBooking')
                 ->withCount('hotelBooking')
                 ->with('country', function($q){
                     $q->where('status', 1)
                     ->select('id', 'country_name', 'status');
-                })->where('status', 1)->paginate(2);
+                })
+                ->orderByDesc('hotel_booking_count')
+                ->active()
+                ->paginate(2);
                 
+            }
+            if ($request->ajax()) {
+                $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
+                return $html;
             }
         } else {
             $hotels = Hotel::orderBy('id', 'DESC')->active()->paginate(2);
