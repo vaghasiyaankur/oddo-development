@@ -302,25 +302,30 @@ class HotelController extends Controller
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
         $hotelRating = listHotelRating($hotel->id);
+        $hotelId = $hotel->id;
+        $photosWithCategories = PhotoCategory::with(['photo' => function ($query) use ($hotelId) {
+            $query->where('hotel_id', $hotelId);
+        }])
+        ->whereHas('photo', function ($query) use ($hotelId) {
+            $query->where('hotel_id', $hotelId);
+        })
+        ->get();
+        // if (isset($request->category_id) && !empty($request->category_id)) {
+        //     $category_id = $request->category_id;
+        // }else{
+        //     $category_id = $hotelPhotoData[0]->category_id;
+        // }
 
-        $hotelPhotoData = HotelPhoto::where('hotel_id', $hotel->id)
-            ->with('category')
-            ->select('*', 'category_id', \DB::raw('count(*) as count'))
-            ->groupBy('category_id')
-            ->get();
+        // $photos = HotelPhoto::with('category')->where('hotel_id', $hotel->id)->where('category_id', $category_id)->get();
+        // if ($request->ajax()) {
 
-        if (isset($request->category_id) && !empty($request->category_id)) {
-            $category_id = $request->category_id;
-        }else{
-            $category_id = $hotelPhotoData[0]->category_id;
-        }
+        //     return view('frontend::hotel.hotelDetailsSlider', compact('photos'));
 
-        $photos = HotelPhoto::with('category')->where('hotel_id', $hotel->id)->where('category_id', $category_id)->get();
-        if ($request->ajax()) {
+        // }else{
 
-            return view('frontend::hotel.hotelDetailsSlider', compact('photos'));
+            // $photosCategoryWise =  Photocategory::whereHas('')
 
-        }else{
+
 
             $hotelPhotos = HotelPhoto::get();
             
@@ -330,8 +335,8 @@ class HotelController extends Controller
             $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
             $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id', $CategoryId)->exists();
     
-            return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'hotelPhotoData', 'photos'));
-        }
+            return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'photosWithCategories'));
+        // }
         
     }
 
