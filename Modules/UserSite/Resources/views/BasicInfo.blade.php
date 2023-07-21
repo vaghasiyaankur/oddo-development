@@ -309,7 +309,7 @@
 
             }}).get();
 
-            if (!property_name || !address || !country || !city || !zipcode) {
+            if (!property_name || !address || !country || !city || !zipcode || !description) {
                 return;
             }
 

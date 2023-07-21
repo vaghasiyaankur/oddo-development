@@ -250,11 +250,15 @@ header.header .navbar .dropdown-custom li a{
     border-bottom: 1px solid #E1E1E1 ;
     line-height: 32px;
     padding: 5px 0px;
-    color: #6A78C7;
+    color: #385774;
     font-family: 'Avenir LT Std';
     font-style: normal;
-    font-weight: 400;
     font-size: 16px;
+    opacity: 0.6;
+    font-weight: 600;
+}
+.header.header .navbar .dropdown-custom li a.dropdown-item.active{
+    color: #6A78C7;
 }
 .header.header .navbar .dropdown-custom li:last-child a{
     border-bottom: 1px solid transparent ;
@@ -1021,8 +1025,8 @@ header.header .navbar .offcanvas .offcanvas-body  .navbar-nav .nav-item:last-chi
     top: 20px;
     left: 24px;
     padding: 10px;
-    color: #6A78C7;
-    background: #Ffffff;
+    background: #6A78C7;
+    color: #Ffffff;
     width: 100%;
     max-width: 35px;
     height: 100%;

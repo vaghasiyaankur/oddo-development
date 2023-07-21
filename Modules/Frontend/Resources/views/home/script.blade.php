@@ -388,6 +388,59 @@
         });
     });
 
+    $(document).on('click', '.addWishlist', function(){
+        let hotelId = $(this).data('id');
+
+        $(this).addClass('removeWishlist active');
+        $(this).removeClass('addWishlist');
+
+        if (!hotelId) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('hotelId', hotelId);
+
+        $.ajax({
+            url: "{{route('add.wishlist')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                // console.log('done');
+            }, error:function (response) {
+                console.log('fail');
+            }
+        });
+    });
+
+    $(document).on('click', '.removeWishlist', function(){
+        let hotelId = $(this).data('id');
+
+        $(this).removeClass('removeWishlist active');
+        $(this).addClass('addWishlist');
+
+        if (!hotelId) {
+            return;
+        }
+
+        formdata = new FormData();
+        formdata.append('hotelId', hotelId);
+
+        $.ajax({
+            url: "{{route('remove.wishlist')}}",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formdata,
+            success: function (response) {
+                // console.log('done');
+            }, error:function (response) {
+                console.log('fail');
+            }
+        });
+    });
 </script>
 <script>
      $(document).on('change', '.hotelBeds', function() {

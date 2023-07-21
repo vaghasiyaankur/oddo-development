@@ -454,6 +454,11 @@
                 border-right: 1px solid transparent;
             }
         }
+        
+        .card .card-image .wislist.active, .card .wislist.active{
+            color: #ff0000e6;
+            background-color: #fff;
+        }
     </style>
 @endpush
 
@@ -836,7 +841,7 @@
                                         <img src="{{asset('storage/' . @$recommended_hotel->mainPhoto->first()->photos)}}" alt="" class="img-fluid">
                                         <a href="javascript:;" class="mb-0 price">{{currency()['sumbol'] }} {{number_format(exchange_rate($recommended_hotel->room->price_room))
                                         }} / Night</a>
-                                        <div class="wislist">
+                                        <div class="wislist {{ @$recommended_hotel->wishlistData($recommended_hotel->id) ? 'removeWishlist active' : 'addWishlist' }}" data-id='{{ $recommended_hotel->UUID }}'>
                                             <i class="fa-solid fa-heart"></i>
                                         </div>
                                     </div>
@@ -920,7 +925,11 @@
                                     <div class="card-image">
                                         <img src="{{asset('storage/' . @$popular_hotel->mainPhoto->first()->photos)}}" alt="" class="img-fluid">
                                         <a href="javascript:;" class="mb-0 price">{{currency()['sumbol'] }} {{number_format(exchange_rate($popular_hotel->room->price_room))
-                                        }} / Night</a>                                        
+                                        }} / Night</a>
+                                        
+                                        <div class="wislist {{ @$popular_hotel->wishlistData($popular_hotel->id) ? 'removeWishlist active' : 'addWishlist' }}" data-id='{{ $popular_hotel->UUID }}'>
+                                            <i class="fa-solid fa-heart"></i>
+                                        </div>
                                     </div>
                                     <div class="card-contents">
                                         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -969,9 +978,6 @@
                                                 <p class="mb-0">2 Bathrooms</p>
                                             </div> --}}
                                         </div>
-                                    </div>
-                                    <div class="wislist">
-                                        <i class="fa-solid fa-heart"></i>
                                     </div>
                                 </div>
                             </div>

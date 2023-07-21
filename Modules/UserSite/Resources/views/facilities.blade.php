@@ -49,24 +49,25 @@
                                 </div>
                             </form>
                         </div>
+                        {{-- BreakFast Section Start --}}
                         <div class="form-info-box mt-3">
                             <form action="" class="form-breakfast">
                                 <div class="p-form-heading  d-flex">
                                     <h5>Meals</h5>
                                 </div>
                                 <div class="f-parking-title">
-                                    <label for="" class="form-label label-heading">Is meals available to
+                                    <label for="" class="form-label label-heading">Is breakfast available to
                                         guests?</label>
                                 </div>
                                 <div class="p-form-select d-flex">
-                                    <select class="form-select w-50 me-3 brackfast_select">
+                                    <select class="form-select w-50 me-3 breakfast_select">
                                         <option value="no"  {{ isset($hotelDetail) && $hotelDetail->breakfast == 'no' ? 'selected' : '' }}>no</option>
                                         <option value="optional" {{ isset($hotelDetail) && $hotelDetail->breakfast == 'optional' ? 'selected' : '' }}>yes,it's optional</option>
                                     </select>
                                 </div>
                                 <div class="p-form-select pt-3  {{ isset($hotelDetail) && $hotelDetail->breakfast == 'optional' ? '' : 'd-none' }} food_type_div">
                                     <label for="" class="form-label label-heading">What kind of breakfast is available?</label>
-                                    <select class="form-select w-50 smoking_area food_type_val">
+                                    <select class="form-select w-50 smoking_area breakfast_type_val">
                                         @foreach ($food_types as $food_type)
                                             <option value="{{$food_type->id}}" {{ isset($hotelDetail) && $food_type->id == $hotelDetail->breakfast_type ? 'selected' : '' }}>{{$food_type->food_type}}</option>
                                         @endforeach
@@ -74,6 +75,61 @@
                                 </div>
                             </form>
                         </div>
+                        {{-- BreakFast Section End --}}
+                        {{-- Lunch Section Start --}}
+                        <div class="form-info-box mt-3">
+                            <form action="" class="form-lunch">
+                                <div class="p-form-heading  d-flex">
+                                    <h5>Lunch</h5>
+                                </div>
+                                <div class="f-parking-title">
+                                    <label for="" class="form-label label-heading">Is lunch available to
+                                        guests?</label>
+                                </div>
+                                <div class="p-form-select d-flex">
+                                    <select class="form-select w-50 me-3 lunch_select">
+                                        <option value="no"  {{ isset($hotelDetail) && $hotelDetail->lunch == 'no' ? 'selected' : '' }}>no</option>
+                                        <option value="optional" {{ isset($hotelDetail) && $hotelDetail->lunch == 'optional' ? 'selected' : '' }}>yes,it's optional</option>
+                                    </select>
+                                </div>
+                                <div class="p-form-select pt-3  {{ isset($hotelDetail) && $hotelDetail->lunch == 'optional' ? '' : 'd-none' }} lunch_food_type_div">
+                                    <label for="" class="form-label label-heading">What kind of breakfast is available?</label>
+                                    <select class="form-select w-50 smoking_area lunch_type_val">
+                                        @foreach ($food_types as $food_type)
+                                            <option value="{{$food_type->id}}" {{ isset($hotelDetail) && $food_type->id == $hotelDetail->lunch_type ? 'selected' : '' }}>{{$food_type->food_type}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        {{-- Lunch Section End --}}
+                        {{-- Dinner Section Start --}}
+                        <div class="form-info-box mt-3">
+                            <form action="" class="form-dinner">
+                                <div class="p-form-heading  d-flex">
+                                    <h5>Dinner</h5>
+                                </div>
+                                <div class="f-parking-title">
+                                    <label for="" class="form-label label-heading">Is dinner available to
+                                        guests?</label>
+                                </div>
+                                <div class="p-form-select d-flex">
+                                    <select class="form-select w-50 me-3 dinner_select">
+                                        <option value="no"  {{ isset($hotelDetail) && $hotelDetail->dinner == 'no' ? 'selected' : '' }}>no</option>
+                                        <option value="optional" {{ isset($hotelDetail) && $hotelDetail->dinner == 'optional' ? 'selected' : '' }}>yes,it's optional</option>
+                                    </select>
+                                </div>
+                                <div class="p-form-select pt-3  {{ isset($hotelDetail) && $hotelDetail->dinner == 'optional' ? '' : 'd-none' }} dinner_food_type_div">
+                                    <label for="" class="form-label label-heading">What kind of breakfast is available?</label>
+                                    <select class="form-select w-50 smoking_area dinner_type_val">
+                                        @foreach ($food_types as $food_type)
+                                            <option value="{{$food_type->id}}" {{ isset($hotelDetail) && $food_type->id == $hotelDetail->dinner_type ? 'selected' : '' }}>{{$food_type->food_type}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        {{-- Dinner Section End --}}
                         <div class="form-info-box mt-3">
                             <form action="" class="form-breakfast">
                                 <div class="p-form-heading d-flex">
@@ -227,35 +283,51 @@
             var number = $('.number-of-select').val(numbers);
         });
 
-        $(document).on('change', '.brackfast_select', function(){
+        $(document).on('change', '.breakfast_select', function(){
             var breakfast = $(this).val();
             if(breakfast == 'no'){
                 $('.breakfast_price_div').addClass('d-none');
                 $('.food_type_div').addClass('d-none');
             }
-
-            if(breakfast == 'optional'){
-                $('.food_type_div').removeClass('d-none');
-            }
+            if(breakfast == 'optional') $('.food_type_div').removeClass('d-none');
         });
+
+        $(document).on('change', '.lunch_select', function(){
+            var lunch = $(this).val();
+            if(lunch == 'no')  $('.lunch_food_type_div').addClass('d-none');
+            if(lunch == 'optional')  $('.lunch_food_type_div').removeClass('d-none');
+        });
+
+        $(document).on('change', '.dinner_select', function(){
+            var dinner = $(this).val();
+            if(dinner == 'no')  $('.dinner_food_type_div').addClass('d-none');
+            if(dinner == 'optional')    $('.dinner_food_type_div').removeClass('d-none');
+        });
+        
 
         $('.facilities-button').on('click', function(){
             var number = $('.number-of-select').val();
             var hotelId = $('.hotelId').val();
+            
             let languageSelect = $('.language option:selected').val();
-            !languageSelect ? $(`#language_error_1`).html(`Select a language type`) : $(`#language_error_1`).html(``);
-
             if (!languageSelect) {
+                $(`#language_error_1`).html(`Select a language type`);
                 return;
+            } else {
+                $(`#language_error_1`).html(``);
             }
 
-            let parking_avaliable = $('.parking-avaliable').val();
-            let parking_type      = $('.parking-type').val();
-            let parking_site      = $('.parking-site').val();
-            let brackfast_select  = $('.brackfast_select').val();
-            let food_type_val     = $('.food_type_val').val();
-            var language          = $('.language option:selected').map(function(){return $(this).val();}).get();
-            var facilities        = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
+            let parking_type       = $('.parking-type').val();
+            let parking_avaliable  = $('.parking-avaliable').val();
+            let parking_site       = $('.parking-site').val();
+            let breakfast_select   = $('.breakfast_select').val();
+            let lunch_select       = $('.lunch_select').val();
+            let dinner_select      = $('.dinner_select').val();
+            let breakfast_type_val = $('.breakfast_type_val').val();
+            let lunch_type_val     = $('.lunch_type_val').val();
+            let dinner_type_val    = $('.dinner_type_val').val();
+            var language           = $('.language option:selected').map(function(){return $(this).val();}).get();
+            var facilities         = $("input[name='facilities_check[]']:checked").map(function(){return $(this).val();}).get();
 
             formdata = new FormData();
 
@@ -265,8 +337,16 @@
                 formdata.append('parking_type', parking_type);
                 formdata.append('parking_site', parking_site);
             }
-            formdata.append('brackfast_select', brackfast_select);
-            if(brackfast_select == 'optional') formdata.append('food_type_val', food_type_val);
+            
+            formdata.append('breakfast_select', breakfast_select);
+            if(breakfast_select == 'optional') formdata.append('breakfast_type_val', breakfast_type_val);
+            
+            formdata.append('lunch_select', lunch_select);
+            if(lunch_select == 'optional') formdata.append('lunch_type_val', lunch_type_val);
+            
+            formdata.append('dinner_select', dinner_select);
+            if(dinner_select == 'optional') formdata.append('dinner_type_val', dinner_type_val);
+            
             formdata.append('facilities', facilities);
             formdata.append('language', language);
 

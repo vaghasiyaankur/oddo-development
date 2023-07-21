@@ -429,7 +429,7 @@
                                     <div class="p-2 d-flex align-items-center">
                                         <img src="{{asset('assets/images/icons/cal-icon.png')}}" class="pe-2 pb-1 img-fluid">
                                         {{-- <span class="check-text text--green">check-in-time</span> --}}
-                                        <span class="mb-0 fs-14">5:20 am</span>
+                                        <span class="mb-0 fs-14">{{$hotel->check_in}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -439,7 +439,7 @@
                                     <div class="p-2 d-flex align-items-center">
                                         <img src="{{asset('assets/images/icons/check-close.png')}}" class="pe-2 pb-1 img-fluid">
                                         {{-- <span class="check-text text--red">check-in-out</span> --}}
-                                        <span class="mb-0 fs-14">5:20 pm</span>
+                                        <span class="mb-0 fs-14">{{$hotel->check_out}}</span>
                                     </div>
                                 </div>
                             </div>
