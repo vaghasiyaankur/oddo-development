@@ -28,8 +28,12 @@ return new class extends Migration
             $table->string('parking_type')->nullable();
             $table->string('price_parking')->nullable();
             $table->string('breakfast')->nullable();
+            $table->string('lunch')->nullable();
+            $table->string('dinner')->nullable();
             $table->string('breakfast_price')->nullable();
             $table->string('breakfast_type')->nullable();
+            $table->string('lunch_type')->nullable();
+            $table->string('dinner_type')->nullable();
             $table->string('language')->nullable();
             $table->string('facilities_id')->nullable();
             $table->string('extra_bed')->nullable();
