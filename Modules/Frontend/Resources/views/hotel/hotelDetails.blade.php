@@ -408,7 +408,7 @@
         </div>
     </section>
     <!------- h-details-title section end ------->
-    @if ($checkImage)
+    {{-- @if ($checkImage)
         <section class="h-deatils-gallery hotel-result pt-md-5 pt-4">
             <div class="container">
                 <div class="h-gallery-inner border--bottom">
@@ -432,7 +432,7 @@
                 </div>
             </div>
         </section>
-    @else
+    @else --}}
         <input type="hidden" value="{{$hotel->slug}}" id="hotelSlug">
         <section class="h-deatils-gallery hotel-result pt-md-5 pt-4">
             <div class="container">
@@ -454,13 +454,8 @@
                 <div class="tab-pane fade show active" id="{{ $photoCategory->category->name }}" role="tabpanel" aria-labelledby="pills-all-tab"
                     tabindex="0">
                     <div class="section-padding">
-                        <div class="product_tab_slider owl-carousel owl-loaded">
-                            @foreach ($hotelPhotoData as $photos)
-                                    <div class="item">
-                                        <img src="{{ asset('storage/'. $photos->photos) }}" alt="{{ $photos->category->name }}"
-                                            alt="" title="" class="img-fluid">
-                                    </div>
-                            @endforeach
+                        <div class="product_tab_slider owl-carousel owl-loaded hotel_details_slider">
+                            @include('frontend::hotel.hotelDetailsSlider')
                         </div>
                         <p class="counter-text text-center">
                             (<span class="slider-counter"></span>)
@@ -469,7 +464,7 @@
                 </div>
             </div>
         </section>
-    @endif
+    {{-- @endif --}}
 
     <!------ Hotel details swiper start -------->
     {{-- <div class="h-deatils-gallery hotel-result pt-md-5 pt-3">
@@ -896,6 +891,9 @@
 
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
+    <!-- icon picker js -->
+    <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
 
     <script>
         var owl = $('.screenshot_slider').owlCarousel({
@@ -920,48 +918,45 @@
                 }
             }
         });
-        var owl = $('.product_tab_slider').owlCarousel({
-            items: 1,
-            loop: true,
-            responsiveClass: true,
-            nav: true,
-            margin: 0,
-            dots: false,
-            autoplayTimeout: 4000,
-            smartSpeed: 400,
-            // navText: ['&#8592;', '&#8594;'],
-            responsive: {
-                576: {
-                    items: 2,
-                    center: true,
-                },
-                1025: {
-                    items: 3,
-                    center: true,
 
+        function productSlider() { 
+            var owl = $('.product_tab_slider').owlCarousel({
+                items: 1,
+                loop: true,
+                responsiveClass: true,
+                nav: true,
+                margin: 0,
+                dots: false,
+                autoplayTimeout: 4000,
+                smartSpeed: 400,
+                // navText: ['&#8592;', '&#8594;'],
+                responsive: {
+                    576: {
+                        items: 2,
+                        center: true,
+                    },
+                    1025: {
+                        items: 3,
+                        center: true,
+    
+                    }
                 }
-            }
-
-        });
-        $('.product_tab_slider').on('initialized.owl.carousel changed.owl.carousel', function(e) {
-            if (!e.namespace) {
-                return;
-            }
-            var carousel = e.relatedTarget;
-            $('.slider-counter').text(carousel.relative(carousel.current()) + 1 + '/' + carousel.items().length);
-        });
-    </script>
-    <!-- icon picker js -->
-    <script src="https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js"></script>
-
-    <!------ script for time piker -------->
-    <script>
+    
+            });
+            $('.product_tab_slider').on('initialized.owl.carousel changed.owl.carousel', function(e) {
+                if (!e.namespace) {
+                    return;
+                }
+                var carousel = e.relatedTarget;
+                $('.slider-counter').text(carousel.relative(carousel.current()) + 1 + '/' + carousel.items().length);
+            });
+        }
+        
+        productSlider();
         $(document).ready(function() {
             $('.timepicker').mdtimepicker();
         });
-    </script>
 
-    <script>
         $(document).on('click', '.photoPopup', function(e) {
             e.preventDefault();
 
@@ -995,10 +990,38 @@
         $(document).on('click', '.modal-close', function() {
             $('.modal-backdrop').hide();
         });
-    </script>
 
-    <!-------- image popup slider image js------>
-    <script>
+        $(document).on('click', '.tab_category_name', function (e) {
+            e.preventDefault();
+
+            var category_id = $(this).data('category');
+
+            formdata = new FormData();
+            formdata.append('category_id', category_id);
+
+            $('.tab-content').hide();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/hotel-detail/" + $('#hotelSlug').val(),
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (response) {
+                    $('.tab-content').show();
+
+                    $('.hotel_details_slider').html(response);
+
+                    productSlider();
+
+                }, error:function (response) {
+
+                }
+            });
+        });
+        
         function slickCarousel() {
 
             $('.slider-single').slick({
@@ -1075,9 +1098,6 @@
         //     $('.slider-nav').slick('setPosition');
         //     $('.swiper').addClass('open');
         // });
-    </script>
-
-    <script>
         // planner-accordion swiper js
         $('.p-a-swpier').slick({
             nextButton: '.slick-next',

@@ -38,7 +38,7 @@ Route::get('/preference', 'HotelController@preferences')->name('preference.index
 Route::post('/add-preference', 'HotelController@add_update_preference')->name('add.preference');
 
 /* Hotel Details */
-Route::get('/hotel-detail/{slug}', 'HotelController@hotelDetail')->name('hotel.detail');
+Route::any('/hotel-detail/{slug}', 'HotelController@hotelDetail')->name('hotel.detail');
 
 /* City Page */
 Route::get('/destination-we-love', 'CityController@index')->name('city.index');
