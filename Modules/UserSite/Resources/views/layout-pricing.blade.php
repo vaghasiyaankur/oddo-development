@@ -633,7 +633,7 @@
                     }
                 }).get();
 
-                if (!room_type || !bed_price) {
+                if (!room_type || !bed_price || !number_of_guest) {
                     return;
                 }
 
