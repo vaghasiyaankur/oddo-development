@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('hotel_id')->unsigned()->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->date('date')->nullable();
+            $table->float('price')->nullable();
             $table->boolean('open')->default(1);
             $table->timestamps();
         });

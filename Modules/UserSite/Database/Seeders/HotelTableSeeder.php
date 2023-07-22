@@ -36,6 +36,8 @@ class HotelTableSeeder extends Seeder
         $parkingSite = ['on', 'off'];
         $parkingType = ['private', 'public'];
         $breakfast = ['yes', 'no'];
+        $lunch = ['yes', 'no'];
+        $dinner = ['yes', 'no'];
         $language = ["english", "hindi", "Russian"];
         $cancel = ['1', '2', '3', '7', '14'];
         $payType = ['first_night', 'full_stay'];
@@ -58,6 +60,10 @@ class HotelTableSeeder extends Seeder
                     'parking_type' => $parkingType[array_rand($parkingType)],
                     'breakfast' => $breakfast[array_rand($breakfast)],
                     'breakfast_type' => rand(1, 5),
+                    'lunch' => $lunch[array_rand($lunch)],
+                    'lunch_type' => rand(1, 5),
+                    'dinner' => $dinner[array_rand($dinner)],
+                    'dinner_type' => rand(1, 5),
                     'language' => $language[array_rand($language)],
                     'facilities_id' => rand(1, 7),
                     'extra_bed' => $value[array_rand($value)],

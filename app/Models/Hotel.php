@@ -170,6 +170,28 @@ class Hotel extends Model
         return $this->belongsTo(FoodType::class, 'breakfast_type');
     }
 
+     /**
+     * Define a relationship between the FoodType and Hotel models.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<FoodType, Hotel>
+     */
+    public function foodLunchType()
+    {
+        return $this->belongsTo(FoodType::class, 'lunch_type');
+    }
+
+    /**
+     * Define a relationship between the FoodType and Hotel models.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<FoodType, Hotel>
+     */
+    public function foodDinnerType()
+    {
+        return $this->belongsTo(FoodType::class, 'dinner_type');
+    }
+
+
+    
     /**
      * get food type data
      *
