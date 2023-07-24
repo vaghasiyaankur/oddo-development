@@ -67,6 +67,6 @@ class HotelBooking extends Model
      */
     public function room()
     {
-        return $this->belongsTo(Room::class, 'room_id', 'id');
+        return $this->belongsTo(Room::class, 'hotel_id', 'id');
     }
 }

@@ -320,7 +320,22 @@ class HotelController extends Controller
         $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
         $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id', $CategoryId)->exists();
 
-        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'photosWithCategories'));
+        $numberOfRoomGet = Room::select('number_of_room')->where('hotel_id', $hotelId)->first();
+        $numberOfRoomsBook = HotelBooking::whereHas('room', function ($query) use ($hotelId) {
+            $query->where('hotel_id', $hotelId);
+        })->count();
+        
+        $numberOfRoomLeft = $numberOfRoomGet->number_of_room - $numberOfRoomsBook;
+
+        // $numberOfRoomLeft = Room::selectRaw('rooms.number_of_room - COUNT(hotel_bookings.id) as number_of_room_left')
+        //     ->leftJoin('hotel_bookings', 'rooms.id', '=', 'hotel_bookings.room_id')
+        //     ->where('rooms.hotel_id', $hotelId)
+        //     ->groupBy('rooms.id', 'rooms.number_of_room')
+        //     ->first();
+
+        // $numberOfRoomLeft = $numberOfRoomLeft->number_of_room_left ?? 0;
+
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'photosWithCategories', 'numberOfRoomLeft'));
     }
 
     /**

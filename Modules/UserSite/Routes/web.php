@@ -31,6 +31,7 @@ Route::prefix('user')->group(function () {
         });
 
         Route::view('/calender', 'usersite::user.calender')->name('calender');
+        Route::get('/calneder-price-show', [UserController::class, 'calenderPrice'])->name('calender.priceShow');
 
         // proeprty form
         Route::controller(PropertyController::class)->group(function () {

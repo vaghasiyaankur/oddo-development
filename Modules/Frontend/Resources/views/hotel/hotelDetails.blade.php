@@ -772,13 +772,13 @@
                                         <h5 class="purple-dark mb-0">{{ @$hotel->room->roomtype->room_type }},
                                             {{ @$hotel->room->roomlist->room_name }}</h5>
                                     </div>
-                                    <div class="single-small-title">
+                                    {{-- <div class="single-small-title">
                                         <h5 class="heading-fs-16 purple-dark d-flex align-items-center mb-0">
                                             <img src="{{ asset('assets/images/icons/room-m.png') }}" class="pe-2">
                                             <p class="mb-0"> 12
                                                 Nights</p>
                                         </h5>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="h-room-info-main pt-md-4 py-lg-4">
                                     <div class="row">
@@ -872,7 +872,7 @@
                                 <div class="single-card-price">
                                     <p class="para-fs-14"><img src="{{ asset('assets/images/icons/right.png') }}"><span
                                             class="text--green ps-3">Free Cancel</span> </p>
-                                    <p class="para-fs-14 pt-4 mb-2"><span class="text--red">2 Rooms Left</span> </p>
+                                    <p class="para-fs-14 pt-4 mb-2"><span class="text--red">{{ $numberOfRoomLeft != 0 ? $numberOfRoomLeft .' Room Left' : 'No Room Available' }}</span> </p>
                                     <h5 class="purple-dark">
                                         <span
                                             class="text-decoration-line-through para-fs-14 pe-3 d-l-Purple">$1,425.00</span>

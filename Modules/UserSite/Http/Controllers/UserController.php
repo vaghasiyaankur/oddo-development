@@ -4,6 +4,9 @@ namespace Modules\UserSite\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\HotelPhoto;
+use App\Models\HotelPrice;
+use App\Models\Room;
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -44,5 +47,41 @@ class UserController extends Controller
         $hotel = Hotel::whereUuid($request->id)->select('id')->first();
         $data['hotelPhotos'] = HotelPhoto::whereHotel_id($hotel->id)->get();
         return view('usersite::home.popup-image', $data);
+    }
+
+    /**
+     * Calender Price Show Function
+     * @param Request $request
+     *
+     */
+    public function calenderPrice(Request $request)
+    {
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+    
+        $startDate = Carbon::create($currentYear, $currentMonth, 1);
+        $endDate = $startDate->copy()->endOfMonth();
+    
+        $hotelId = $request->hotel_id; 
+    
+        $calendarData = [];
+    
+        for ($date = $startDate; $date <= $endDate; $date->addDay()) {
+            $price = HotelPrice::where('hotel_id', $hotelId)
+                ->where('date', $date->format('Y-m-d'))
+                ->value('price');
+    
+            if (!$price) {
+                $price = Room::where('hotel_id', $hotelId)
+                    ->value('price_room');
+            }
+    
+            $calendarData[] = [
+                'date' => $date->format('d'),
+                'value' => $price,
+            ];
+        }
+
+        return view('usersite::user.calender', compact('calendarData'));
     }
 }

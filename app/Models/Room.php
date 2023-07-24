@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\HotelPrice;
 
 class Room extends Model
 {
@@ -81,4 +82,15 @@ class Room extends Model
     {
         return $this->hasMany(Review::class, 'id');
     }
+
+    /**
+     * HotelBooking that belongs the Room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<HotelPrice>
+     */
+    public function hotelPrice()
+    {
+        return $this->hasMany(HotelPrice::class, 'hotel_id');
+    }
+
 }
