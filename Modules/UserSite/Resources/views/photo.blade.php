@@ -226,7 +226,6 @@
     </div>
 
 
-
 @endsection
 
 @push('css')
@@ -315,6 +314,18 @@
             },
         });
 
+         // Get the existing image URLs from the backend (you can pass them from your Laravel controller)
+         var existingUuids = {!! json_encode($hotelPhotos->pluck('UUID'))!!}
+        
+         // Inform Dropzone about the existing images
+         var existedImages = [];
+
+         existingUuids.forEach(function(uuid){
+            var mockFile = { UUID:uuid, size:50000};// Replace 'size' with the actual size of the image.
+            existedImages.push(mockFile);
+         });
+         myNewdDropzone.files.push.apply(myNewdDropzone.files, existedImages);
+        
         $(document).ready(function() {
             var baseUrl = $('#base_url').val();
 
@@ -436,6 +447,14 @@
                 var id = $(this).data('id');
 
                 var obj = JSON.parse(localStorage.getItem("deleteImage"));
+                
+                // Find the index of the object with the given UUID
+                var ImageDelete = myNewdDropzone.files.findIndex(item => item.UUID === id);
+
+                // Remove the file from Dropzone
+                if (myNewdDropzone.files[ImageDelete]) {
+                    myNewdDropzone.removeFile(myNewdDropzone.files[ImageDelete]);
+                }
                 var number = id;
                 if (number in obj) {
                     // console.log(obj);
