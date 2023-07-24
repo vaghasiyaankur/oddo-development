@@ -17,7 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-        $hotels = Hotel::where('user_id', $userId)->get();
+        $hotels = Hotel::where('user_id', $userId)
+        ->withCount('review')
+        ->withAvg('review', 'total_rating')->get();
         return view('usersite::home.index', compact('hotels'));
     }
 

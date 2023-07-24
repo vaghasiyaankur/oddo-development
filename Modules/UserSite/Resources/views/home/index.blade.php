@@ -61,8 +61,11 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success: function (response) { 
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
                 console.log(response);
-                propertyList();
+                // propertyList();
             },
         }); 
 

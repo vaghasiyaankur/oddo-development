@@ -321,7 +321,7 @@
          var existedImages = [];
 
          existingUuids.forEach(function(uuid){
-            var mockFile = { UUID:uuid, size:50000};// Replace 'size' with the actual size of the image.
+            var mockFile = { UUID:uuid, size:20000};// Replace 'size' with the actual size of the image.
             existedImages.push(mockFile);
          });
          myNewdDropzone.files.push.apply(myNewdDropzone.files, existedImages);
