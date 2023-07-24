@@ -13,6 +13,7 @@ use App\Models\PaymentGetways;
 use App\Models\Photocategory;
 use App\Models\Preference;
 use App\Models\PropertyType;
+use App\Models\Room;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Contracts\Support\Renderable;
@@ -310,34 +311,16 @@ class HotelController extends Controller
             $query->where('hotel_id', $hotelId);
         })
         ->get();
-        // if (isset($request->category_id) && !empty($request->category_id)) {
-        //     $category_id = $request->category_id;
-        // }else{
-        //     $category_id = $hotelPhotoData[0]->category_id;
-        // }
 
-        // $photos = HotelPhoto::with('category')->where('hotel_id', $hotel->id)->where('category_id', $category_id)->get();
-        // if ($request->ajax()) {
-
-        //     return view('frontend::hotel.hotelDetailsSlider', compact('photos'));
-
-        // }else{
-
-            // $photosCategoryWise =  Photocategory::whereHas('')
-
-
-
-            $hotelPhotos = HotelPhoto::get();
-            
-            $photoCategories = Photocategory::get();
-            $CategoryId = Photocategory::where('name', '!=', 'other')->pluck('id');
-            
-            $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
-            $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id', $CategoryId)->exists();
-    
-            return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'photosWithCategories'));
-        // }
+        $hotelPhotos = HotelPhoto::get();
         
+        $photoCategories = Photocategory::get();
+        $CategoryId = Photocategory::where('name', '!=', 'other')->pluck('id');
+        
+        $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
+        $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id', $CategoryId)->exists();
+
+        return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'photosWithCategories'));
     }
 
     /**

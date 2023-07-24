@@ -370,8 +370,7 @@
                         <div class="h-rating d-md-block d-none">
                             @for ($i = 0; $i < 5; $i++)
                                 <span>
-                                    <img
-                                        src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}">
+                                    <img src="{{ @$hotel->star_rating > $i ? '' . asset('assets/images/icons/start.png') : '' }}">
                                 </span>
                             @endfor
                             <span class="rating-text">{{ @$hotel->star_rating }}/5</span>
@@ -525,6 +524,27 @@
         </div>
     </section>
     <!-------- h-details-amenities section end --------->
+
+    <!-------- h-details-amenities section start --------->
+    <section class="h-d-amenities">
+        <div class="container">
+            <div class="h-d-amenities-inner border--bottom">
+                <h5 class="heading-fs-16 text-center purple-dark">Popular Facilities</h5>
+                <div class="row amenities-card py-5">
+                    @foreach ($hotel->facilities() as $facilities)
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3">
+                            <div class="amenities-single-card">
+                                <i class="{{ $facilities->icon }} pe-3"></i>
+                                <span class="para-fs-14">{{ @$facilities->facilities_name }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-------- h-details-amenities section end --------->
+
     <!------- h-details-n-b section start ---------->
     {{-- <section class="h-details-n-b pb-4">
         <div class="container">
@@ -721,14 +741,15 @@
     <section class="hotel-room" id="hotel-room">
         <div class="container">
             <div class="hotel-depiction">
-                <p class="depiction-text">
+                {{-- <p class="depiction-text">
                     You're eligible for a Genius discount at Hotel Regent Laguna! To save at this property, all you have to do is sign in.
                     Located in Anjuna, a 13-minute walk from Anjuna Beach, Hotel Regent Laguna provides accommodations with an outdoor 
                     swimming pool, free private parking, a garden and a restaurant. With free WiFi, this 4-star hotel offers room service
                     and a 24-hour front desk. The property has a concierge service, a tour desk and currency exchange for guests. 
                     At the hotel every room includes air conditioning, a seating area, a flat-screen TV with satellite channels, a
                     safety deposit box and a private bathroom with a shower, free toiletries and a hairdryer. At Hotel Regent Laguna 
-                    all rooms come with bed linen and towels.</p>
+                    all rooms come with bed linen and towels.</p> --}}
+                    <p class="depiction-text">{{ $hotel->description }}</p>
             </div>
            
             <div class="hotel-room-inner">
@@ -796,20 +817,32 @@
                                                 <p class="mb-2">
                                                     {{-- <img src="{{ asset('assets/images/icons/english-breakfast.png') }}"> --}}
                                                     <span class="para-fs-14">Breakfast :-
-                                                        {{ @$hotel->breakfast }}{{ @$hotel->breakfast == 'yes' ? ', ' . $hotel->foodType->food_type : '' }}
+                                                        {{ @$hotel->breakfast }}{{ @$hotel->breakfast == 'optional' ? ', ' . $hotel->foodType->food_type : '' }}
                                                     </span>
                                                 </p>
                                                 <p class="mb-2">
                                                     {{-- <img src="{{ asset('assets/images/icons/english-breakfast.png') }}"> --}}
-                                                    <span class="para-fs-14">Lunch :-
-                                                        {{ @$hotel->lunch }}{{ @$hotel->lunch == 'yes' ? ', ' . $hotel->foodType->food_type : '' }}
-                                                    </span>
+                                                    @if (@$hotel->lunch == 'optional')
+                                                        <span class="para-fs-14">Lunch :-
+                                                            {{ @$hotel->lunch }}{{ @$hotel->lunch == 'optional' ? ', ' . $hotel->foodLunchType->food_type : '' }}
+                                                        </span>
+                                                    @else
+                                                        <span class="para-fs-14">Lunch :-
+                                                            {{ @$hotel->lunch }}
+                                                        </span>
+                                                    @endif
                                                 </p>
                                                 <p class="mb-2">
                                                     {{-- <img src="{{ asset('assets/images/icons/english-breakfast.png') }}"> --}}
-                                                    <span class="para-fs-14">Dinner :-
-                                                        {{ @$hotel->dinner }}{{ @$hotel->dinner == 'yes' ? ', ' . $hotel->foodType->food_type : '' }}
-                                                    </span>
+                                                    @if (@$hotel->dinner == 'optional')
+                                                        <span class="para-fs-14">Dinner :-
+                                                            {{ @$hotel->dinner }}{{ @$hotel->dinner == 'optional' ? ', ' . $hotel->foodDinnerType->food_type : '' }}
+                                                        </span>
+                                                    @else   
+                                                        <span class="para-fs-14">Dinner :-
+                                                            {{ @$hotel->dinner }}
+                                                        </span>
+                                                    @endif
                                                 </p>
                                                 <p class="mb-2">
                                                     {{-- <img src="{{ asset('assets/images/icons/bed.png') }}"> --}}
@@ -848,7 +881,7 @@
                                         @endphp
                                         {{ $price }}
                                     </h5>
-                                    <p class="mb-4 para-fs-14">For 12 Nights, Tax. Included</p>
+                                    {{-- <p class="mb-4 para-fs-14">For 12 Nights, Tax. Included</p> --}}
                                     <a href="#" class="t-city-btn bg-purple mt-3 reserve-btn">Add Room</a>
                                 </div>
                             </div>
