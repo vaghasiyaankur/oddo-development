@@ -839,7 +839,71 @@ search
     -webkit-animation: 0.75s linear infinite spinner-stripe;
             animation: 0.75s linear infinite spinner-stripe;
     }
-
+    .result-right-content .right-select .dropdown .dropdown-toggle{
+        border-radius: 4px;
+        border: 1px solid#A4A6BA;
+        color: #A4A6BA;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
+    }
+    .result-right-content .right-select .dropdown .dropdown-toggle::after{
+        right: 15px;
+        top: 48%;
+        position: absolute;
+        z-index: 2;
+        border-top: 0.4em solid;
+        border-right: 0.4em solid transparent;
+        border-bottom: 0;
+        border-left: 0.4em solid transparent;
+        color: #6A78C7;
+        margin-left: 0;
+    }
+    .result-right-content .right-select .dropdown .dropdown-toggle::before{
+        content: "";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: rgb(106 120 199 / 10%);
+        z-index: 1;
+        border-radius: 3px;
+    }
+    .result-right-content .right-select .dropdown .dropdown-menu{
+        border: none;
+        filter: drop-shadow(0px 0.7698959708213806px 1.222775936126709px rgba(80, 89, 126, 0.02)) drop-shadow(0px 2px 3.380819082260132px rgba(80, 89, 126, 0.04)) drop-shadow(0px 2.130000114440918px 8.13970947265625px rgba(80, 89, 126, 0.05)) drop-shadow(0px 7px 27px rgba(80, 89, 126, 0.07));
+    }
+    .result-right-content .right-select .dropdown .dropdown-menu .dropdown-item{
+        color: #393C52;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal
+    }
+    .result-right-content .right-select .dropdown .dropdown-menu .dropdown-item:hover,.result-right-content .right-select .dropdown .dropdown-menu .dropdown-item:focus{
+        border-radius: 4px;
+        background: #6A78C7;
+        transition: all 0.2s ease-in;
+        color: #fff;
+    }
+    .result-right-content .dropdown-list .list-options{
+        padding-left: 1rem;
+        margin-top: 10px;
+    }
+    .result-right-content .dropdown-list .list-options li{
+        list-style-type: disc;
+    }
+    .result-right-content .dropdown-list .see_all_btn{
+        padding: 6px 20px;
+        border-radius: 5px;
+        background: #6A78C7;
+        color: #FFF;
+        font-size: 16px;
+        font-weight: 700;
+        display: inline-block;
+    }
 </style>
 @endpush
 

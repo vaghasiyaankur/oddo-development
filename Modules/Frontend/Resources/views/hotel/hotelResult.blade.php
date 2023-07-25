@@ -381,18 +381,38 @@
                       </div>
                   </div>
                   <div class="col-md-4 border-left">
-                      <div class="result-right-content mt-3 ps-3 pe-3 overflow-auto">
+                      <div class="result-right-content mt-3 ps-3 pe-3 ">
                           <div class="result-right-inner">
                               <div class="right-select">
-                                  <select class="form-select form-select-lg mb-3 fs-6"
+                                  {{-- <select class="form-select form-select-lg mb-3 fs-6"
                                       aria-label=".form-select-lg example">
                                       <option selected>What’s nearby</option>
                                       <option value="1">One</option>
                                       <option value="2">Two</option>
                                       <option value="3">Three</option>
-                                  </select>
+                                  </select> --}}
+                                  <div class="dropdown">
+                                    <button class="btn w-100 dropdown-toggle text-start" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                      What’s nearby
+                                    </button>
+                                    <ul class="dropdown-menu w-100 p-0" aria-labelledby="dropdownMenuButton1">
+                                      <li><a class="dropdown-item text-center" href="#">Facilities</a></li>
+                                      <li><a class="dropdown-item text-center" href="#">Amenities</a></li>
+                                    </ul>
+                                  </div>
+                                  <div class="dropdown-list">
+                                    <ul class="list-options">
+                                      <li>Parking</li>
+                                      <li>Breakfast</li>
+                                      <li>Extra bed</li>
+                                      <li>Game console</li>
+                                      <li>Laptop</li>
+                                      <li>Air conditioning</li>
+                                    </ul>
+                                    <a href="javascript:;" class="see_all_btn">See All</a>
+                                  </div>
                               </div>
-                              <div class="right-menu-main mb-4">
+                              {{-- <div class="right-menu-main mb-4">
                                   <div class="right-menu-inner">
                                       @foreach ($hotel->facilities() as $facilities)
                                           <div class="right-menu mb-2">
@@ -407,7 +427,7 @@
                                           </div>
                                       @endforeach
                                   </div>
-                              </div>
+                              </div> --}}
                           </div>
                       </div>
                   </div>

@@ -1,41 +1,48 @@
 /********** SIDE BAR CSS ********/
 .account-content .left-sidebar-main {
-    flex: 0 0 23%;
-    max-width: 23%;
+    flex: 0 0 27%;
+    max-width: 27%;
     width: 100%;
-    padding-right: 35px;
+    /* padding-right: 35px; */
 }
 .left-sidebar-main .sidebar-inner {
-    background: #eef1f7;
+    background: #fff;
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 10px;
+    box-shadow: 0px 0.7698959708213806px 1.222775936126709px 0px rgba(80, 89, 126, 0.02), 0px 2.1286637783050537px 3.380819082260132px 0px rgba(80, 89, 126, 0.04), 0px 5.125002384185791px 8.13970947265625px 0px rgba(80, 89, 126, 0.05), 0px 17px 27px 0px rgba(80, 89, 126, 0.07);
 }
 
 .left-sidebar-main .sidebar-inner ul {
     list-style-type: none;
 }
 .left-sidebar-main .sidebar-inner ul li {
-    padding: 11px 0;
+    padding: 16px 20px;
+}
+.left-sidebar-main .sidebar-inner ul li.active{
+    border-radius: 7px;
+    background: rgba(106, 120, 199, 0.20);
 }
 .left-sidebar-main .sidebar-inner ul li.active a {
-    opacity: 1;
+    color: #6A78C7;
 }
 .left-sidebar-main .sidebar-inner ul li a {
     letter-spacing: -0.01em;
-    color: #385774;
-    opacity: 0.6;
-    font-weight: 600;
+    color: #393C52;
+    font-weight: 500;
     font-size: 18px;
     line-height: 150%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 .logout {
     padding-bottom: 0 !important;
 }
 .account-content .right-side-content {
-    flex: 0 0 77%;
-    max-width: 77%;
+    flex: 0 0 73%;
+    max-width: 73%;
     width: 100%;
-    padding-left: 36px;
+    /* padding-left: 36px; */
 }
 /******** VIEW PAGE DESIGN*********/
 .share-section {
@@ -98,7 +105,112 @@
 .offcanvas_property_btn_ {
     display: none;
 }
-
+/* ======= SIDEBAR CSS ===== */
+.sidebar-inner ul li.active svg path {
+    fill: #6A78C7;
+}
+/* ======= USER HOME CSS ======= */
+.hotelProperty_title{
+    color: #393C52;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.hotelProperty .hotelProperty_card{
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 0px 15px 0px rgba(82, 82, 82, 0.10);
+}
+.hotelProperty .hotelProperty_card .card-image{
+    position: relative;
+    height: 100%;
+    padding-bottom: 68%;
+}
+.hotelProperty .hotelProperty_card .card-image img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.hotelProperty .hotelProperty_card .watch-list{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 31px;
+    height: 31px;
+    border-radius: 100%;
+    background-color: #fff;   
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out; 
+}
+.hotelProperty .hotelProperty_card:hover .watch-list{
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s ease-in-out; 
+}
+.hotelProperty .hotelProperty_card .watch-list .watch-list-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6A78C7;
+    height: 100%;
+}
+.hotelProperty .hotelProperty_card .card-body .card-title{
+    color: #393C52;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+}
+.hotelProperty .hotelProperty_card .card-body .hotel_rating .rating{
+    color: #FFC107;
+    font-size: 15px;
+}
+.hotelProperty .hotelProperty_card .card-body .hotel_rating .rating_label{
+    color: #767992;
+    font-size: 14px;
+    font-weight: 400;
+}
+.hotelProperty .hotelProperty_card .card-body .hotel_location .location_name{    
+    font-size: 16px;
+    font-weight: 400;
+    color: #393C52;
+}
+.hotelProperty .hotelProperty_card .card-footer .change_btn{
+    padding: 8px 25px;
+    border-radius: 5px;
+    background: #6A78C7;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+}
+.hotelProperty .hotelProperty_card .card-footer .exploer-icons .exploer-icons-inner {
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.hotelProperty .hotelProperty_card .card-footer .exploer-icons .exploer-icons-inner.calender-icon{
+    background-color: #6a78c733;
+    margin-right: 9px;
+    color: #6A78C7;
+}
+.hotelProperty .hotelProperty_card .card-footer .exploer-icons .exploer-icons-inner.delete-icon{
+    background-color: rgba(255, 0, 0, 0.10);
+    color: #ED2E2E;
+}
+.hotelProperty .hotelProperty_card .card-footer .exploer-icons .exploer-icons-inner i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .account-content .left-sidebar-main {
         padding-right: 0px;

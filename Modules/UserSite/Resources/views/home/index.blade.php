@@ -25,7 +25,10 @@
             <div class="col-lg-10 col-md-10 col-12 right-side-content">
                 <div id="tabs">
                     <div class="col-xs-12 hotelProperty">
-                        @include('usersite::home.property')
+                        <h2 class="hotelProperty_title mb-4">Property</h2>
+                        <div class="row">
+                            @include('usersite::home.property')
+                        </div>
                     </div>
                 </div>
             </div>
