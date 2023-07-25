@@ -107,7 +107,7 @@
                     <span class="ps-2"><i class="fa-regular fa-pen-to-square"></i></span>
                 </a>
                 <div class="exploer-icons d-flex">
-                    <a href="{{route('calender', ['id' => $hotel->UUID])}}" class="exploer-icons-inner calender-icon">
+                    <a href="{{route('calender', ['uuid' => $hotel->UUID])}}" class="exploer-icons-inner calender-icon">
                         <i class="fa-solid fa-calendar-days"></i>
                     </a>
                     <div class="exploer-icons-inner delete-icon propertyDelete" data-value="{{ $hotel->UUID }}">
