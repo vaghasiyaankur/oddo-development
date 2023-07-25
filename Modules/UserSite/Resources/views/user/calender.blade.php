@@ -22,38 +22,42 @@ Add-Layout
 } */
 
    .calendar-header {
-      background-color: rgba(18, 15, 25, 0.25);
       height: 100%;
       padding: 20px;
       color: #fff;
       /* font-family: 'Roboto', sans-serif; */
       font-weight: 300;
       position: relative;
-   }
-
-   .header-title {
-      padding-left: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
    }
 
    .blue.lighten-3 {
-      background-color: #90CAF9 !important;
+      background: rgba(106, 120, 199, 0.15) !important;
    }
 
    .header-background {
-      background-image: url("https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg");
-      height: 200px;
-      background-position: center right;
+      background-image: url("../../assets/images/calender-header.png");
+      height:125px;
+      background-position: center;
       background-size: cover;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-color: #fff;
+      border-radius: 10px 10px 0 0;
    }
 
    .calendar-content {
       background-color: #fff;
-      padding: 15px 20px;
+      padding: 30px 20px;
       overflow: hidden;
+      border-radius: 0 0 10px 10px;
    }
 
    .calendar-wrapper.z-depth-2 {
-      box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
+      filter: drop-shadow(0px 0px 1.222775936126709px rgba(80, 89, 126, 0.02)) drop-shadow(0px -1.8700000047683716px 3.380819082260132px rgba(80, 89, 126, 0.04)) drop-shadow(0px 0px 8.13970947265625px rgba(80, 89, 126, 0.05)) drop-shadow(0px 17px 27px rgba(80, 89, 126, 0.07));
+      border-radius: 10px;
    }
 
    .emptyForm {
@@ -67,19 +71,22 @@ Add-Layout
       margin-bottom: 2rem;
    }
 
-   h2#month-name {
-      font-size: 43px;
-      line-height: 53px;
-      margin-top: 21px;
-      margin-bottom: 17px;
+   h2#month-name ,h5#todayDayName{
+      color: #393C52;
+      text-align: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
    }
 
-   h5#todayDayName {
+   /* h5#todayDayName {
       font-size: 24px;
       line-height: 34px;
       margin-top: 12px;
       margin-bottom: 9px;
-   }
+      color: #353535;
+   } */
 
    #table-body .col:hover {
       cursor: pointer;
@@ -106,37 +113,36 @@ Add-Layout
       margin-bottom: 0;
    }
 
-   #table-body .col {
-      padding-top: 1.3rem !important;
-      padding-bottom: 1.3rem !important;
-   }
+   /* #table-body .col {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+   } */
 
    #calendar-table {
       text-align: center;
+      width: 100%;
+      max-width: 90%;
+      margin: 0 auto;
    }
 
    .prev-button {
       position: absolute;
       cursor: pointer;
-      left: 0%;
-      top: 35%;
-      color: grey !important;
+      left: 34%;
+      top: 47%;
+      color: #393C52 !important;
    }
 
-   .prev-button i {
-      font-size: 4em;
+   .prev-button i ,.next-button i {
+      font-size: 2em;
    }
 
    .next-button {
       position: absolute;
       cursor: pointer;
-      right: 0%;
-      top: 35%;
-      color: grey !important;
-   }
-
-   .next-button i {
-      font-size: 4em;
+      right: 34%;
+      top: 47%;
+      color: #393C52 !important;
    }
 
    @media (max-width:992px) {
@@ -203,31 +209,132 @@ Add-Layout
 
 .modal-content {
    background-color: white !important;
-   border-radius: 24px;
+   border-radius: 10px;
+   box-shadow: 0px 0.7698959708213806px 1.222775936126709px 0px rgba(0, 0, 0, 0.02), 0px 2.1286637783050537px 3.380819082260132px 0px rgba(0, 0, 0, 0.04), 0px 5.125002384185791px 8.13970947265625px 0px rgba(0, 0, 0, 0.05), 0px 17px 27px 0px rgba(0, 0, 0, 0.07);
 }
 
-.dog-title-text {
-    font-size: 32px;
-    font-weight: 600;
-    color: #385774;
+.modal-title-text {
+    font-size: 24px;
+    font-weight: 500;
+    color: #353535;
 }
-
+.modal .price-input-radio{
+   border-radius: 3px;
+   background: #6a78c70d;
+   padding: 20px;
+   margin: 20px 0;
+}
+.modal .price-input-radio .form-check-label ,.modal .price-input .form-check-label{
+   color:  #A4A6BA;
+   font-size: 18px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+}
+.modal .price-input-radio .title-label,.modal .price-input .title-label{
+   color:  #353535;
+   font-size: 22px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+}
+.modal .price-input{
+   border-radius: 3px;
+   background: #6a78c70d;
+   padding: 20px;
+}
+.modal .price-input-radio .form-radio-btn{
+   width: 15px;
+   height: 15px;
+   accent-color:#6A78C7;
+}
+.modal .price-input-radio .form-radio-btn[type="radio"]:checked .form-check-label{
+   color: #A4A6BA;
+}
+.modal-save-button a{
+   padding: 8px 30px;
+   border-radius: 5px;
+   background: #6A78C7;
+   color: #FFF;
+   font-size: 18px;
+   font-weight: 600;
+   min-width: 146px;
+   max-width: 146px;
+   display: inline-block;
+}
 .dog-example {
    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #212529;
-    outline: none;
-    font-size: 18px;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #A4A6BA;
+   outline: none;
+   font-size: 18px;
 }
 
 .modal-content .modal-content-inner {
-    padding: 20px 30px;
+    padding: 18px 22px;
 }
-
 .modal-header {
    padding: 0;
+}
+.modal .modal-close{
+   position: absolute;
+   bottom: 21%
 }  
+.modal .modal-close .modal-close-btn{
+   width: 44px;
+   height: 44px;
+   border-radius: 100%;
+   background:#ffffff66; 
+   outline: none;
+   border: none;
+   cursor: pointer;
+}
+.calender-open-text{
+   color: #1DB450;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 22px;
+   margin-right: 10px;
+}
+.optionEdit{
+   color: #6A78C7;
+   border-radius: 1px;
+   background: rgba(106, 120, 199, 0.15);
+   padding: 5px;
+}
+.content-wrapper .calendar-content #table-header{
+   margin-bottom: 20px;
+}
+.content-wrapper .calendar-content #table-header .col{
+   color: #6A78C7;
+   text-align: center;
+   font-size: 18px;
+   font-style: normal;
+   font-weight: 600;
+   line-height: 22px;
+}
+.content-wrapper .calendar-content #table-header .col{
+   color: #393C52;
+   text-align: center;
+   font-size: 18px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 16px;
+}
+.content-wrapper #price-div #price{
+   color: #A4A6BA;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 600;
+   line-height: 22px;
+}
+@media (min-width:576px){
+   .modal-dialog{
+      max-width: 420px;
+   }
+}
 </style>
 @endpush
 
@@ -240,9 +347,7 @@ Add-Layout
          <div class="col-lg-10 col-md-10 col-12 right-side-content">
             <div id="tabs">
                <div class="col-xs-12 ">
-                  <div class="dog-title-text">
-                     <h2 class="dog-title-text">Calender & Pricing</h3>
-                  </div>
+                     <h2 class="hotelProperty_title mb-4">Calender & Pricing</h3>
                   <div class="main-wrapper">
                      <div class="content-wrapper  lighten-3">
                         <div class="calendar-wrapper z-depth-2">
@@ -255,7 +360,7 @@ Add-Layout
                                     <i class="material-icons">keyboard_arrow_right</i>
                                  </a>
                                  <div class="row header-title">
-                                    <div class="header-text">
+                                    <div class="header-text text-center">
                                        <h2 id="month-name">February</h2>
                                        <h5 id="todayDayName">Today is Friday 7 Feb</h5>
                                     </div>
@@ -294,37 +399,42 @@ Add-Layout
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-content-inner">
-                <div class="modal-header pb-4">
+                <div class="modal-header pb-3 justify-content-center border--bottom">
                   <input type="hidden" class="" id='value-edit' value="">
-                    <h5 class="dog-title-text mb-0 " id="staticBackdropLabel">Edit Price</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title-text mb-0 " id="staticBackdropLabel">Edit Price</h5>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="price-input-radio">
                   <div class="mb-2">
-                     <label class="fs-5 form-check-label">Hotel</label>
+                     <label class="title-label">Hotel</label>
                   </div>
-                  <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="radio" name="showPrice" id="flexRadioDefault1" value="open" checked>
+                  <div class="form-check form-check-inline ps-0">
+                     <input class="form-radio-btn" type="radio" name="showPrice" id="flexRadioDefault1" value="open" checked>
                      <label class="form-check-label" for="flexRadioDefault1">
                      Open
                      </label>
                   </div>
                   <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="radio" name="showPrice" value="close" id="flexRadioDefault2" >
+                     <input class="form-radio-btn" type="radio" name="showPrice" value="close" id="flexRadioDefault2" >
                      <label class="form-check-label" for="flexRadioDefault2">
                      Close
                      </label>
                   </div>
                </div>
-               <div class="price-input mt-3">
-                  <label class="form-check-label mb-2 fs-5" for="album_title">Price</label>
-                  <input type="text" class="dog-example py-2 mb-3" id="priceInput">
+               <div class="price-input">
+                  <label class="title-label mb-2" for="album_title">Price</label>
+                  <input type="text" class="dog-example py-2" id="priceInput">
                </div>
-                  <div class="model-last-button text-end mt-4">
-                     <a href="javascript:;" class="py-2 px-4 btn btn-success" id="edit-price-btn" data-id="0"
-                           data-type="create" data-bs-dismiss="modal">Save</a>
-                  </div>
+               <div class="modal-save-button text-center mt-4">
+                  <a href="javascript:;" id="edit-price-btn" data-id="0"
+                        data-type="create" data-bs-dismiss="modal">Save</a>
+               </div>
             </div>
+        </div>
+        <div class="modal-close">
+           <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+           </button>
         </div>
     </div>
 </div>
@@ -340,6 +450,12 @@ Add-Layout
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <script>
+   $.ajaxSetup({
+      headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+   });
+
    $(".button-collapse").sideNav();
    var calendar = document.getElementById("calendar-table");
    var gridTable = document.getElementById("table-body");
@@ -398,6 +514,8 @@ function createCalendar(date, side) {
                currentDay.classList.add("lighten-3");
                var element = currentDay.querySelector(".optionEdit");
                element.classList.remove("d-none");
+               var calender_open = currentDay.querySelector(".calender-open-text");
+               calender_open.classList.remove("d-none");
             }, 900);
          }
          currentDay.innerHTML = i;
@@ -473,6 +591,8 @@ gridTable.onclick = function (e) {
          selectedDayBlock.classList.remove("lighten-3");
          var element = selectedDayBlock.querySelector(".optionEdit");
          element.classList.add("d-none");
+         var calender_open = selectedDayBlock.querySelector(".calender-open-text");
+         calender_open.classList.add("d-none");
       }
    }
 
@@ -481,6 +601,8 @@ gridTable.onclick = function (e) {
    selectedDayBlock.classList.add("lighten-3");
    var element = selectedDayBlock.querySelector(".optionEdit");
    element.classList.remove("d-none");
+   var calender_open = selectedDayBlock.querySelector(".calender-open-text");
+   calender_open.classList.remove("d-none");
 
 
    selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(e.target.innerHTML));
@@ -498,7 +620,14 @@ function date(data){
       $($(this).children(".col").not('.empty-day')).each(function(val){
          var date = $(this).text();
          var price = '400';
-         $(this).html(date+'<div class="d-flex justify-content-evenly" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-marker"></i></a></div>');
+         $.ajax({
+            type: "GET",
+            url: "{{route('calender.priceShow')}}",
+            success: function (response) {
+            }
+         });
+         // $(this).html(date+'<div class="d-flex justify-content-evenly" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-marker"></i></a></div>');
+         $(this).html(date+'<div class="" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><p class="mb-0"><span class="calender-open-text d-none">Open</span><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-pencil"></i></a></p></div>');
       });
    });
 }
