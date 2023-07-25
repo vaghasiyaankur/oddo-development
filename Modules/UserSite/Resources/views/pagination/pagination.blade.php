@@ -1,9 +1,16 @@
 @if ($paginator->hasPages())
+    @php
+        $currentPage = $paginator->currentPage();
+        $perPage = $paginator->perPage();
+        $totalEntries = $paginator->total();
+        $startingEntry = ($currentPage - 1) * $perPage + 1;
+        $endingEntry = min($startingEntry + $perPage - 1, $totalEntries);
+    @endphp
     <div class="col-sm-6">
         <div>
-            <p class="mb-sm-0 text-muted">Showing <span class="fw-semibold">{{ $paginator->currentPage() }}</span> to
-                <span class="fw-semibold">{{ $paginator->lastPage() }}</span> of <span
-                    class="fw-semibold">{{ $paginator->lastPage() }}</span> entries
+            <p class="mb-sm-0 text-muted">Showing <span class="fw-semibold">{{ $startingEntry }}</span> to
+                <span class="fw-semibold">{{ $endingEntry }}</span> of <span
+                    class="fw-semibold">{{ $totalEntries }}</span> entries
             </p>
         </div>
     </div>
