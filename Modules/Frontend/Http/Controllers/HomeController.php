@@ -31,25 +31,12 @@ class HomeController extends Controller
 
         if ($search) {
             $search = str_replace(',', ',', $search);
-            // $hotels = Hotel::with('country', 'city', 'room' )
-            //         ->orWhereRelation('city', 'name', 'like', '%'.$search.'%')
-            //         ->whereRelation('room', 'guest_stay_room', $guest)
-            //         ->whereRelation('room', 'number_of_room', $room)
-            //         ->orwhereHas('hotelBed.bedType', function($query) use ($bed) {
-            //             $query->whereIn('bed_type', $bed);
-            //         })
-            //         ->active()->latest()->paginate(2);
 
-            // $hotelAmounts = array();
-
-            // $search = preg_split("/[ ]/", $searchdata);
             $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn);
             $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut);
             $hotels = Hotel::with('country', 'city', 'room', 'amenities');
             if (!empty($search)) {
                 $hotels = $hotels
-                // ->orwhere('property_name', 'like', '%'.$search.'%')
-                // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
                     ->whereRelation('city', 'name', 'like', '%' . $search[0] . '%')
                     ->whereRelation('room', 'guest_stay_room', $guest)
                     ->whereRelation('room', 'number_of_room', $room)
@@ -108,9 +95,13 @@ class HomeController extends Controller
         })
         ->with('city', function($q){
             $q->where('status', 1)->select('id', 'name', 'status');
-        })->with('room')
+        })
+        ->with('room')
         ->withAvg('reviews', 'total_rating')
-        ->orderByDesc('hotel_booking_count')->where('status', 1)->limit(3)->get();
+        ->orderByDesc('hotel_booking_count')
+        ->where('status', 1)
+        ->limit(3)
+        ->get();
         
         return view('frontend::home.index', compact('cities', 'partners', 'propertyTypes', 'popular_hotels', 'recommended_hotels'));
     }

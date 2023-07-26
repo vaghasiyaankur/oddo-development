@@ -34,7 +34,9 @@ class HotelController extends Controller
         $propertyType = $request->propertyType;
         $hotelType = $request->hotelType;
         $cityType = $request->City;
-
+        $selectedValue = $request->selected_value;
+        $hotel_id = $request->hotel_id;
+        
         $search = request()->search;
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
@@ -282,6 +284,22 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
+        } else if($selectedValue) {
+            
+            $hotel = Hotel::where('id', $hotel_id)->get();
+            
+            $values = [];
+            if ($selectedValue === 'Facilities') {
+                foreach ($hotel[0]->facilities() as $index => $facilities) {
+                    array_push($values, $facilities->facilities_name);
+                }
+            } elseif ($selectedValue === 'Amenities') {
+                foreach ($hotel[0]->amenityData() as $index => $amenities) {
+                    array_push($values, $amenities->amenities);
+                }
+            }
+            return response()->json($values);
+            
         } else {
             $hotels = Hotel::orderBy('id', 'DESC')->active()->paginate(2);
             if ($request->ajax()) {

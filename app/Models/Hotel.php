@@ -346,4 +346,16 @@ class Hotel extends Model
     {
         return $this->hasMany(Review::class, 'hotel_id');
     }
+
+    
+    /**
+     * get amenities data
+     *
+     * @return object
+     */
+    public function amenityData()
+    {
+        $amenities = explode(',', $this->amenity_id);
+        return Amenities::whereIn('id', $amenities)->get();
+    }
 }

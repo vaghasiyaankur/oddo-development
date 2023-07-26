@@ -514,7 +514,7 @@
                                             <div id="dropDown" class="drop-down__button">
                                                 <span class="drop-down__guest toggle">
                                                     <i class="fa-solid fa-user"></i>
-                                                    <span class="guestNum"> {{ $selectGuest ? $selectGuest : 4 }} </span> 
+                                                    <span class="guestNum"> {{ $selectGuest ? $selectGuest : 1 }} </span> 
                                                     Guests
                                                 </span>
                                                 <span class="drop-down__name toggle">

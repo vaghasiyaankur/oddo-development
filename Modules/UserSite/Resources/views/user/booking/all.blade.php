@@ -59,9 +59,12 @@
             @if(count($bookings))
                 {{$bookings->withPath('/user/booking')->withQueryString()->links('usersite::pagination.pagination')}}
             @else
-                <div class="empty-table w-100 text-center py-5">
-                    <img src="{{ asset('assets\images\searchload.gif') }}" height="70" width="120">
-                    <h4>No record has been found.</h4>
+                {{-- FOR EMPTY TABLE --}}
+                <div class="noFound_search">
+                    <div class="text-center">
+                        <img src="{{asset('assets/images/find-hote-img.png')}}" class="img-fluid">
+                    </div>
+                    <p class="mb-o text-center">Booking Not Found</p>
                 </div>
             @endif
         </div>

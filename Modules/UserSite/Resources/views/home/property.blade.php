@@ -123,7 +123,7 @@
         <div class="text-center">
             <img src="{{asset('assets/images/find-hote-img.png')}}" class="img-fluid">
         </div>
-        <p class="mb-o text-center">No Hotel Founded</p>
+        <p class="mb-o text-center">No Hotel Found</p>
     </div>
 @endforelse
 
