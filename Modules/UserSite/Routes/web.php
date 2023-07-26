@@ -30,8 +30,8 @@ Route::prefix('user')->group(function () {
             Route::get('property-list', 'propertyList')->name('property.List');
         });
 
-        Route::view('/calender/{id}', 'usersite::user.calender')->name('calender');
-        Route::get('/calneder-price-show', [UserController::class, 'calenderPrice'])->name('calender.priceShow');
+        Route::view('/calender/{uuid}', 'usersite::user.calender')->name('calender');
+        Route::post('/calneder-price-show/{uuid}', [UserController::class, 'calenderPrice'])->name('calender.priceShow');
 
         // proeprty form
         Route::controller(PropertyController::class)->group(function () {

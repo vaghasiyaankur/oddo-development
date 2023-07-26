@@ -450,12 +450,6 @@ Add-Layout
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <script>
-   $.ajaxSetup({
-      headers: {
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-   });
-
    $(".button-collapse").sideNav();
    var calendar = document.getElementById("calendar-table");
    var gridTable = document.getElementById("table-body");
@@ -567,7 +561,7 @@ prevButton.onclick = function changeMonthPrev() {
    createCalendar(currentDate, "left");
    setTimeout(() => {
       data = document.getElementById("table-body").childNodes;
-      date(data);
+      date(data, currentDate.getMonth() + 1, currentDate.getFullYear());
    }, 270);
 }
 nextButton.onclick = function changeMonthNext() {
@@ -575,7 +569,7 @@ nextButton.onclick = function changeMonthNext() {
    createCalendar(currentDate, "right");
    setTimeout(() => {
       data = document.getElementById("table-body").childNodes;
-      date(data);
+      date(data, currentDate.getMonth() + 1, currentDate.getFullYear());
    }, 270);
 }
 
@@ -615,20 +609,25 @@ var addForm = document.getElementById("addForm");
 
 
 
-function date(data){  
-   $(data).each(function(item){
-      $($(this).children(".col").not('.empty-day')).each(function(val){
-         var date = $(this).text();
-         var price = '400';
-         $.ajax({
-            type: "GET",
-            url: "{{route('calender.priceShow')}}",
-            success: function (response) {
-            }
+function date(data, month, year){  
+   var uuid = window.location.pathname.split('/').pop();
+   var url = "{{ route('calender.priceShow', ['uuid' => 'placeholder']) }}";
+   url = url.replace('placeholder', uuid);
+
+   $.ajax({
+      type: "POST",
+      data: { month: month, year : year },
+      url: url,
+      success: function (response) {
+         $(data).each(function(item){
+            $($(this).children(".col").not('.empty-day')).each(function(val){
+               var date = $(this).text();
+               var price = response.calendarData[date];
+               // $(this).html(date+'<div class="d-flex justify-content-evenly" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-marker"></i></a></div>');
+               $(this).html(date+'<div class="" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><p class="mb-0"><span class="calender-open-text d-none">Open</span><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-pencil"></i></a></p></div>');
+            });
          });
-         // $(this).html(date+'<div class="d-flex justify-content-evenly" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-marker"></i></a></div>');
-         $(this).html(date+'<div class="" id="price-div"><p class="m-0 price_'+date+'" data-date="'+date+'" id="price">$ '+price+'</p><p class="mb-0"><span class="calender-open-text d-none">Open</span><a class="optionEdit d-none" data-bs-toggle="modal" data-bs-target="#date_'+date+'"><i class="fa-solid fa-pencil"></i></a></p></div>');
-      });
+      }
    });
 }
 
@@ -639,7 +638,7 @@ var col = $('.modal').attr('id','date_'+day);
 
 $(document).ready(function(){
    var data =$('#table-body').children('.row');
-   date(data);
+   date(data, currentDate.getMonth() + 1, currentDate.getFullYear());
 
    $(document).on('click', '.col',function(){
       var dates = $(this).children('#price-div').children('#price').attr('data-date');

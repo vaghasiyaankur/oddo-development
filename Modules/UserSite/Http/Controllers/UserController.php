@@ -58,32 +58,29 @@ class UserController extends Controller
      */
     public function calenderPrice(Request $request)
     {
-        $currentMonth = date('m');
-        $currentYear = date('Y');
+        $currentMonth = $request->month;
+        $currentYear = $request->year;
     
         $startDate = Carbon::create($currentYear, $currentMonth, 1);
         $endDate = $startDate->copy()->endOfMonth();
     
-        $hotelId = $request->hotel_id; 
+        $hotelId = Hotel::where('UUID', $request->uuid)->first()->id; 
     
         $calendarData = [];
     
         for ($date = $startDate; $date <= $endDate; $date->addDay()) {
             $price = HotelPrice::where('hotel_id', $hotelId)
-                ->where('date', $date->format('Y-m-d'))
-                ->value('price');
+            ->where('date', $date->format('Y-m-d'))
+            ->value('price');
+            // dump($price);
     
             if (!$price) {
-                $price = Room::where('hotel_id', $hotelId)
-                    ->value('price_room');
+                $room = Room::where('hotel_id', $hotelId)
+                ->first();
+                $price = $room ? $room->price_room : 0;
             }
-    
-            $calendarData[] = [
-                'date' => $date->format('d'),
-                'value' => $price,
-            ];
+            $calendarData[$date->format('j')] = $price;
         }
-
-        return view('usersite::user.calender', compact('calendarData'));
-    }
+        return response()->json(["calendarData" => $calendarData], 200);
+    }   
 }
