@@ -361,10 +361,10 @@
                         <div class="d-block">
                             <h6 class="d-flex align-items-center mx-1">
                                 <span class="city-name">
-                                    Holiday In {{ @$hotel->city->name }}
+                                    Holiday In {{ @$hotel->property_name }}
                                 </span>
-                                <span class="rating-text ms-2 py-1">{{ @$hotel->propertytype->type }}
-                                </span>
+                                {{-- <span class="rating-text ms-2 py-1">{{ @$hotel->propertytype->type }}
+                                </span> --}}
                             </h6>
                         </div>
                         <div class="h-rating d-md-block d-none">
