@@ -11,7 +11,8 @@ use Illuminate\Routing\Controller;
 class WishlistController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the frontend index view.
+     *
      * @return Renderable
      */
     public function index()
@@ -20,9 +21,9 @@ class WishlistController extends Controller
     }
 
     /**
-     * Add wishlist function
-     * @param Request $request
+     * Add a hotel to the user's wishlist.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function addWishlist(Request $request)
@@ -39,9 +40,9 @@ class WishlistController extends Controller
     }
 
     /**
-     * Remove Wishlist
-     * @param Request $request
+     * Remove a hotel from the user's wishlist.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function removeWishlist(Request $request)

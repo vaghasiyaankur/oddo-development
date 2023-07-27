@@ -14,7 +14,8 @@ use Validator;
 class ContactUsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the contact us page.
+     *
      * @return Renderable
      */
     public function index()
@@ -23,12 +24,14 @@ class ContactUsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Handle the contact form submission and send an email notification.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function contact(Request $request)
     {
+        // Validate the input data
         $Validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -50,6 +53,7 @@ class ContactUsController extends Controller
 
         $emailAdd = EmailSetting::select('from_email')->first();
 
+        // Send the contact email
         Mail::to($emailAdd['from_email'])->send(new ContactMail($data));
 
         return response()->json(["status" => 1, "success" => "Message has been sent."], 200);

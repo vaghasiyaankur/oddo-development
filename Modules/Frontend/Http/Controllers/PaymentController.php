@@ -19,10 +19,9 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 class PaymentController extends Controller
 {
     /**
-     * Razorpay Data store
+     * Store Razorpay data after payment completion.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function razorpayStore(Request $request)
@@ -77,6 +76,12 @@ class PaymentController extends Controller
         return response()->json(['bookingId' => $bookingId]);
     }
 
+    /**
+     * Show the Stripe payment page.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function showStripe(Request $request)
     {
 
@@ -111,11 +116,22 @@ class PaymentController extends Controller
         return response()->json(['session' => $session], 200);
     }
 
+    /**
+     * Handle the cancellation of a Stripe payment and redirect back.
+     *
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function cancelStripe()
     {
         return redirect()->back();
     }
 
+    /**
+     * Handle the successful payment from Stripe and save the payment details.
+     *
+     * @param Request $request
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function StripeSucceed(Request $request)
     {
         $paymentStripe = Session::get('paymentStripe');
@@ -157,14 +173,24 @@ class PaymentController extends Controller
         return redirect()->route('hotel.index')->with(['booking' => $bookingId]);
     }
 
+    /**
+     * Redirect to the hotel index page after creating a PayPal payment.
+     *
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function createpaypal()
     {
         return redirect()->route('hotel.index');
     }
 
+    /**
+     * Process PayPal payment.
+     *
+     * @param Request $request
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function processPaypal(Request $request)
     {
-
         $paymentPayPal = [
             'hotel_id' => $request->hotel_id,
             'payment_id' => $request->payment_id,
@@ -214,6 +240,12 @@ class PaymentController extends Controller
         }
     }
 
+    /**
+     * Handle the successful payment response from PayPal.
+     *
+     * @param Request $request
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function processSuccess(Request $request)
     {
         $provider = new PayPalClient;
@@ -265,6 +297,13 @@ class PaymentController extends Controller
                 ->with(['error' => $bookingId]);
         }
     }
+
+    /**
+     * Handle the cancellation of the PayPal payment.
+     *
+     * @param Request $request
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function processCancel(Request $request)
     {
         return redirect()

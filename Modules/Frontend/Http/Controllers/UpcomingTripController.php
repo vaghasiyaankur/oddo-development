@@ -10,7 +10,8 @@ use Illuminate\Routing\Controller;
 class UpcomingTripController extends Controller
 {
     /**
-     * Display a listing of the city.
+     * Display a listing of cities.
+     *
      * @return Renderable
      */
     public function index()

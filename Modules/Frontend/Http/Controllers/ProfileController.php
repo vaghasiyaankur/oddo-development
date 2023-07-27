@@ -11,13 +11,14 @@ use Validator;
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the city.
+     * Display the user's profile.
+     *
      * @return \Illuminate\View\View
      */
     public function index()
     {
         $id = auth()->user()->id;
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->select('id', 'name', 'last_name', 'email')->first();
         return view('frontend::profile.index', compact('user'));
     }
 
@@ -25,7 +26,6 @@ class ProfileController extends Controller
      * Update the specified user in storage.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request)
@@ -48,14 +48,14 @@ class ProfileController extends Controller
     }
 
     /**
-     * change Password function
+     * Change user's password.
      *
      * @param Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function changePassword(Request $request)
     {
+        // Validate the incoming request data for password change
         $Validator = Validator::make($request->all(), [
             'oldPassword' => 'required',
             'newPassword' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
@@ -73,6 +73,7 @@ class ProfileController extends Controller
             return response()->json(["status" => 0, 'errors' => $Validator->errors()->toArray()]);
         }
 
+        // Retrieve user's old, new, and confirmed passwords from the request
         $oldPassword = $request->oldPassword;
         $newPassword = $request->newPassword;
         $confirmPassword = $request->confirmPassword;

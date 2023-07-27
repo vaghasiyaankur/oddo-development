@@ -48,7 +48,7 @@
                             <div class="col-4 hotel-guests-inner d-flex mb-1 px-1">
                                 <div class="d-flex align-items-center justify-content-center w-100">
                                     <span class="d-l-Purple">
-                                        <img src="{{asset('storage/images/home-icon.png')}}"
+                                        <img src="{{asset('assets/images/home-icon.png')}}"
                                                 class="img-fluid" alt="">
                                     </span>
                                     <span class="purple-dark ps-2">

@@ -31,6 +31,7 @@ class HotelController extends Controller
      */
     public function index(Request $request)
     {
+        // Retrieve the input parameters from the request
         $propertyType = $request->propertyType;
         $hotelType = $request->hotelType;
         $cityType = $request->City;
@@ -62,22 +63,23 @@ class HotelController extends Controller
         $propertyTypeCounts = [];
 
         $sortby = request()->sortby;
-        // $topFilter = request()->top_filter;
 
         if ($search) {
+            // Search hotels based on the provided criteria
 
+            // Convert search data to an array
             $searchdata = str_replace(',', ',', $search);
             $search = preg_split("/[ ]/", $searchdata);
-            // $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn)->format('Y-m-d');
-            // $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut)->format('Y-m-d');
-
-            $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn);
-            $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut);
+            
+            $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn);// Parse check-in date
+            $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut);// Parse check-out date
+            
+            // Retrieve hotels with specified filters
             $hotels = Hotel::with(array('country', 'city', 'room', 'amenities'));
+
+            // Apply filters based on search parameters
             if (!empty($search)) {
                 $hotels = $hotels
-                // ->orwhere('property_name', 'like', '%'.$search.'%')
-                // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%')
                     ->whereRelation('city', 'name', 'like', '%' . $search[0] . '%')
                     ->whereRelation('room', 'guest_stay_room', $guest)
                     ->whereRelation('room', 'number_of_room', $room)
@@ -112,11 +114,6 @@ class HotelController extends Controller
                 $hotels = $hotels->whereHas('room', function ($query) use ($con, $budgetMin, $budgetMax) {
                     return $query->whereBetween(DB::raw('price_room *' . $con), [$budgetMin, $budgetMax]);
                 });
-
-                // ->with(['room' => function($query) use($con, $budgetMin, $budgetMax) {
-                //     $query->select('id', 'hotel_id', 'smoking_policy', 'price_room', DB::raw('price_room *'.$con.' as price'))
-                //     ;
-                // }])
             }
 
             if (!empty($request['amenities'])) {
@@ -161,6 +158,7 @@ class HotelController extends Controller
                 $hotelAmounts[] = array($hotel->id => $hotel_amount);
             }
 
+            // Retrieve hotels with property type
             $propertyTypes = PropertyType::active()->get();
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts', 'propertyTypes', 'propertyTypeCounts'))->render();
@@ -168,16 +166,17 @@ class HotelController extends Controller
             }
 
         } elseif ($searchProperty) {
+             // Search hotels by property name
             $hotels = Hotel::with('room')->where('property_name', 'like', '%' . $searchProperty . '%')->active()->latest()->paginate(2);
 
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
+
         } elseif ($sortby != '' || $budgetMin != '' || $budgetMax != '' || $starRating != '' || $amenity != '' || $preference != '' || $search != '') {
 
-            // $search = str_replace(',', ' ', $search);
-
+            // Perform filtering based on various criteria
             $hotels = Hotel::with('country', 'city', 'room', 'amenities');
             if (!(empty($search))) {
                 $hotels = $hotels
@@ -187,8 +186,6 @@ class HotelController extends Controller
                     ->whereHas('hotelBed.bedType', function ($query) use ($bed) {
                         $query->whereIn('bed_type', $bed);
                     });
-                // ->orwhere('property_name', 'like', '%'.$search.'%')
-                // ->orWhereRelation('country', 'country_name', 'like', '%'.$search.'%');
             }
 
             $amenity_data = explode(',', $amenity);
@@ -209,10 +206,6 @@ class HotelController extends Controller
                 $hotels = $hotels->whereHas('room', function ($query) use ($con, $budgetMin, $budgetMax) {
                     return $query->whereBetween(DB::raw('price_room *' . $con), [$budgetMin, $budgetMax]);
                 });
-                // ->with(['room' => function($query) use($con, $budgetMin, $budgetMax) {
-                //     $query->select('id', 'hotel_id', 'smoking_policy', 'price_room', DB::raw('price_room *'.$con.' as price'))
-                //     ;
-                // }])
             }
 
             if (!empty($request['amenities'])) {
@@ -239,28 +232,34 @@ class HotelController extends Controller
                 }
             }
             $hotels = $hotels->active()->paginate(2);
+            
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
+            
         } else if ($propertyType) {
-
-            $propertyType = PropertyType::whereUuid($propertyType)->select('id')->first();
+            // Filter hotels by property type
+            $propertyType = PropertyType::whereUuid($request->propertyType)->select('id')->first();
             $hotels = Hotel::with('room')->whereProperty_id($propertyType->id)->paginate(2);
+            
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
 
         } else if ($cityType) {
+             // Filter hotels by city
             $city = City::whereName($cityType)->select('id')->first();
             $hotels = Hotel::with('hotelBooking')->where('city_id', $city->id)->whereHas('hotelBooking')->paginate(2);
+            
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
 
         } else if($hotelType) {
+            // Filter hotels by hotel type (recommended or booked)
             if ($hotelType == 'recommended_hotels') {
                 $hotels = Hotel::whereHas('reviews')
                 ->withCount('reviews')
@@ -284,8 +283,9 @@ class HotelController extends Controller
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
-        } else if($selectedValue) {
             
+        } else if($selectedValue) {
+             // Get additional data for a specific hotel (facilities or amenities)
             $hotel = Hotel::where('id', $hotel_id)->get();
             
             $values = [];
@@ -301,27 +301,35 @@ class HotelController extends Controller
             return response()->json($values);
             
         } else {
+            // Retrieve all hotels (default case)
             $hotels = Hotel::orderBy('id', 'DESC')->active()->paginate(2);
             if ($request->ajax()) {
                 $html = view('frontend::hotel.hotelResult', compact('hotels', 'paymentGateways', 'booking', 'hotelAmounts'))->render();
                 return $html;
             }
         }
+        // Retrieve featured amenities
         $amenities = Amenities::where('featured', 1)->active()->get();
         return view('frontend::hotel.index', compact('hotels', 'amenities', 'paymentGateways', 'booking', 'hotelAmounts', 'propertyTypes', 'propertyTypeCounts'));
     }
 
     /**
-     * hotel Detail function
+     * Show hotel details.
      *
+     * @param Request $request
+     * @param string $slug
      * @return Renderable
      */
     public function hotelDetail(Request $request,$slug)
     {
         $slug = request()->slug;
         $hotel = Hotel::where('slug', $slug)->first();
-        $hotelRating = listHotelRating($hotel->id);
         $hotelId = $hotel->id;
+
+        // Get the hotel rating
+        $hotelRating = listHotelRating($hotel->id);
+
+        // Retrieve photos with their categories for the hotel
         $photosWithCategories = PhotoCategory::with(['photo' => function ($query) use ($hotelId) {
             $query->where('hotel_id', $hotelId);
         }])
@@ -331,36 +339,27 @@ class HotelController extends Controller
         ->get();
 
         $hotelPhotos = HotelPhoto::get();
-        
         $photoCategories = Photocategory::get();
         $CategoryId = Photocategory::where('name', '!=', 'other')->pluck('id');
-        
         $hotelPictures = hotelPhoto::where('hotel_id', $hotel->id)->get();
         $checkImage = hotelPhoto::where('hotel_id', $hotel->id)->whereIn('category_id', $CategoryId)->exists();
-
         $numberOfRoomGet = Room::select('number_of_room')->where('hotel_id', $hotelId)->first();
+
+        // Get the number of rooms booked for the hotel
         $numberOfRoomsBook = HotelBooking::whereHas('room', function ($query) use ($hotelId) {
             $query->where('hotel_id', $hotelId);
         })->count();
         
+        // Calculate the number of rooms left
         $numberOfRoomLeft = $numberOfRoomGet->number_of_room - $numberOfRoomsBook;
-
-        // $numberOfRoomLeft = Room::selectRaw('rooms.number_of_room - COUNT(hotel_bookings.id) as number_of_room_left')
-        //     ->leftJoin('hotel_bookings', 'rooms.id', '=', 'hotel_bookings.room_id')
-        //     ->where('rooms.hotel_id', $hotelId)
-        //     ->groupBy('rooms.id', 'rooms.number_of_room')
-        //     ->first();
-
-        // $numberOfRoomLeft = $numberOfRoomLeft->number_of_room_left ?? 0;
 
         return view('frontend::hotel.hotelDetails', compact('hotel', 'hotelRating', 'photoCategories', 'hotelPhotos', 'hotelPictures', 'checkImage', 'photosWithCategories', 'numberOfRoomLeft'));
     }
 
     /**
-     * Hotel photo function
+     * Show hotel photos by category.
      *
      * @param Request $request
-     *
      * @return Renderable
      */
     public function hotelPhoto(Request $request)
@@ -374,10 +373,9 @@ class HotelController extends Controller
     }
 
     /**
-     * Hotel review function
+     * Show hotel review and rating.
      *
      * @param Request $request
-     *
      * @return Renderable
      */
     public function hotelReview(Request $request)
@@ -398,10 +396,9 @@ class HotelController extends Controller
     }
 
     /**
-     * Hotel payment function
+     * Show hotel payment options.
      *
      * @param Request $request
-     *
      * @return Renderable
      */
     public function hotelPayment(Request $request)
@@ -409,8 +406,6 @@ class HotelController extends Controller
         $paymentGateways = PaymentGetways::active()->get();
         $hotel = Hotel::whereUuid($request->hotelId)->first();
         $room = $hotel->room->number_of_room;
-        // $hotel_amount = $amount * $room;
-        // $amount = exchange_rate($hotel->room->price_room);
         $price = exchange_rate($hotel->room->price_room);
         $amount = $price * $room;
         $hotel_amount = number_format($amount);
@@ -419,9 +414,9 @@ class HotelController extends Controller
     }
 
     /**
-     * Hotel image function
-     * @param Request $request
+     * Show hotel images in a popup.
      *
+     * @param Request $request
      * @return Renderable
      */
     public function hotelImage(Request $request)
@@ -442,20 +437,18 @@ class HotelController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Add or update user preferences for hotel searches.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function add_update_preference(Request $request)
     {
         if (Auth::user()) {
             $id = $request->preferenceId;
-            // dd($id);
             $preference = Preference::updateOrCreate(['UUID' => $id], [
                 'user_id' => auth()->user()->id,
                 'sort_by' => $request->sort_by,
-                // 'top_filter' =>$request->top_filter,
-                // 'style' =>$request->style,
                 'property_rating' => $request->property_class,
                 'amenity_id' => $request->amenities,
                 'budget_min' => $request->budgetMinimum,

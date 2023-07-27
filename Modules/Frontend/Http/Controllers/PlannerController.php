@@ -10,7 +10,8 @@ use App\Models\City;
 class PlannerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of cities for the planner.
+     *
      * @return Renderable
      */
     public function index()

@@ -9,8 +9,9 @@ use Illuminate\Routing\Controller;
 class PagesController extends Controller
 {
     /**
-     * Display a listing of the pages.
-     * @param string $slug
+     * Display the content of a specific page based on its slug.
+     * 
+     * @param string $slug The unique slug of the page to display.
      * @return Renderable
      */
     public function index($slug)

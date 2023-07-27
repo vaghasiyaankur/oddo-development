@@ -12,7 +12,8 @@ use Illuminate\Routing\Controller;
 class SavedController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of user's saved wishlists.
+     *
      * @return Renderable
      */
     public function index()
@@ -29,6 +30,7 @@ class SavedController extends Controller
 
     /**
      * Remove the specified wishlist from storage.
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -37,7 +39,7 @@ class SavedController extends Controller
         try {
             $id = auth()->user()->id;
             $user = User::find($id);
-            $hotel = Hotel::where('UUID', $request->hotelId)->first();
+            $hotel = Hotel::where('UUID', $request->hotelId)->select('id', 'UUID')->first();
             $user->unwish($hotel);
         } catch (\Exception$e) {
             return response()->json(["message" => "Something Went Wrong", "error" => $e->getMessage()], 503);
@@ -46,7 +48,7 @@ class SavedController extends Controller
     }
 
     /**
-     * Show Wishlist
+     * Show the user's wishlist.
      *
      * @return Renderable
      */

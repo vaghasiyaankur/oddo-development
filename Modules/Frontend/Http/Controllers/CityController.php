@@ -13,7 +13,8 @@ use Illuminate\Routing\Controller;
 class CityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of cities based on the number of hotel bookings made in each city.
+     *
      * @return Renderable
      */
     public function index()
@@ -42,8 +43,9 @@ class CityController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Generate HTML content based on the target specified in the request.
      *
+     * @param Request $request
      * @return string $html
      */
     public function Destination(Request $request)
@@ -58,7 +60,9 @@ class CityController extends Controller
                 ->groupBy('city_id')->get()->sortByDesc('city_count');
             $html = view('frontend::city.cities', compact('cities'));
         } else {
-            $hotels = HotelBooking::with('hotel')
+            $hotels = HotelBooking::withWhereHas('hotel', function($q){
+                $q->select('id', 'UUID', 'property_name', 'slug', 'city_id', 'country_id', 'status');
+            })
                 ->select('hotel_id', DB::raw('count(*) as hotel_count'))
                 ->groupBy('hotel_id')
                 ->get()->sortByDesc('hotel_count');

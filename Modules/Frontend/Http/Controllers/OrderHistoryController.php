@@ -12,7 +12,8 @@ use Illuminate\Routing\Controller;
 class OrderHistoryController extends Controller
 {
     /**
-     * Display a listing of the review.
+     * Display a listing of the user's order history and reviews.
+     *
      * @return Renderable
      */
     public function index()
@@ -29,6 +30,7 @@ class OrderHistoryController extends Controller
 
     /**
      * Store a newly created review in storage.
+     * 
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -61,13 +63,13 @@ class OrderHistoryController extends Controller
 
     /**
      * Show the specified review.
+     * 
      * @param Request $request
      * @return Renderable
      */
     public function show(Request $request)
     {
-
-        // ratingHostel Helper function
+        // Calculate the rating for the hotel using the provided review ID
         $rating = ratingHotel($request->reviewId);
         $data['reviewCount'] = $rating;
 
@@ -76,7 +78,8 @@ class OrderHistoryController extends Controller
     }
 
     /**
-     *list of review
+     * List of reviews for the authenticated user.
+     * 
      * @return Renderable
      */
     public function reivewlist()

@@ -9,7 +9,8 @@ use Illuminate\Routing\Controller;
 class CheckoutController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the checkout page.
+     *
      * @return Renderable
      */
     public function index()

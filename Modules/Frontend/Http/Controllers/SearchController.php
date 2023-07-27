@@ -39,7 +39,6 @@ class SearchController extends Controller
             $hotels = Hotel::get();
         }
 
-        // dd($hotels);
         return view('frontend::search.index', compact('hotels'));
     }
 }

@@ -16,12 +16,13 @@ use App\Helper\hotelListRating;
 class HomeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of hotels or search for hotels based on the provided criteria.
+     *
+     * @param Request $request
      * @return string $html|Renderable
      */
     public function index(Request $request)
     {
-
         $search = request()->search;
         $checkIn = request()->checkIn;
         $checkOut = request()->checkOut;
@@ -35,7 +36,9 @@ class HomeController extends Controller
             $checkInDate = Carbon::createFromFormat('d/m/Y', request()->checkIn);
             $checkOutDate = Carbon::createFromFormat('d/m/Y', request()->checkOut);
             $hotels = Hotel::with('country', 'city', 'room', 'amenities');
+            
             if (!empty($search)) {
+                // Fetch hotels based on search criteria
                 $hotels = $hotels
                     ->whereRelation('city', 'name', 'like', '%' . $search[0] . '%')
                     ->whereRelation('room', 'guest_stay_room', $guest)
@@ -55,7 +58,8 @@ class HomeController extends Controller
             }
 
             $hotels = $hotels->get();
-
+            
+            // Get hotel details and calculate hotel amounts
             $hotelAmounts = [];
             foreach ($hotels as $hotel) {
                 $price = exchange_rate($hotel->room->price_room);
@@ -78,6 +82,7 @@ class HomeController extends Controller
             }
         }
 
+        // Fetch data for the home page, including cities, property types, and popular/recommended hotels
         $cities = City::whereFeatured(1)->active()->get();
         $propertyTypes = PropertyType::active()->get();
         $partners = Partner::get();
@@ -107,7 +112,9 @@ class HomeController extends Controller
     }
 
     /**
-     * @return object $LogoFavicon
+     * Get the first record from the "LogoFavicon" table.
+     *
+     * @return object $LogoFavicon.
      */
     public static function logoFavicon()
     {
